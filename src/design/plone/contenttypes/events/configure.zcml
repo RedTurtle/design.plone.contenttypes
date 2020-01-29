@@ -1,0 +1,62 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    i18n_domain="design.plone.contenttypes">
+
+     <subscriber
+      for="design.plone.contenttypes.interfaces.pratica.IPratica
+           zope.lifecycleevent.interfaces.IObjectAddedEvent"
+      handler=".pratica.praticaCreateHandler"
+    />
+    <subscriber
+      for="design.plone.contenttypes.interfaces.documento_personale.IDocumentoPersonale
+           zope.lifecycleevent.interfaces.IObjectAddedEvent"
+      handler=".documento_personale.documentoPersonaleCreateHandler"
+    />
+    <subscriber
+     for="collective.venue.interfaces.IVenue
+          zope.lifecycleevent.interfaces.IObjectAddedEvent"
+     handler=".luogo.luogoCreateHandler"
+    />
+    <subscriber
+      for="design.plone.contenttypes.interfaces.unita_organizzativa.IUnitaOrganizzativa
+          zope.lifecycleevent.interfaces.IObjectAddedEvent"
+      handler=".unita_organizzativa.unitaOrganizzativaCreateHandler"
+    />
+    <subscriber
+      for="design.plone.contenttypes.interfaces.persona.IPersona
+          zope.lifecycleevent.interfaces.IObjectAddedEvent"
+      handler=".persona.personaCreateHandler"
+    />
+    <subscriber
+      for="plone.event.interfaces.IEvent
+          zope.lifecycleevent.interfaces.IObjectAddedEvent"
+      handler=".evento.eventoCreateHandler"
+    />
+    <subscriber
+      for="design.plone.contenttypes.interfaces.documento.IDocumento
+          zope.lifecycleevent.interfaces.IObjectAddedEvent"
+      handler=".documento.documentoCreateHandler"
+    />
+    <subscriber
+      for="design.plone.contenttypes.interfaces.servizio.IServizio
+          zope.lifecycleevent.interfaces.IObjectAddedEvent"
+      handler=".servizio.servizioCreateHandler"
+    />
+    <subscriber
+      for="plone.app.contenttypes.interfaces.INewsItem
+          zope.lifecycleevent.interfaces.IObjectAddedEvent"
+      handler=".notizie_e_comunicati_stampa.notiziaCreateHandler"
+    />
+    <subscriber
+      for="design.plone.contenttypes.interfaces.amministrazione_folder.IAmministrazioneFolder
+          zope.lifecycleevent.interfaces.IObjectAddedEvent"
+      handler=".amministrazione_folder.amministrazioneFolderCreateHandler"
+    />
+    <subscriber
+      for="design.plone.contenttypes.interfaces.news_folder.INewsFolder
+          zope.lifecycleevent.interfaces.IObjectAddedEvent"
+      handler=".news_folder.newsFolderCreateHandler"
+    />
+
+    
+</configure>

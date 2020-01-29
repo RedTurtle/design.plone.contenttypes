@@ -1,0 +1,61 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    i18n_domain="design.plone.contenttypes">
+
+    <!-- -*- extra stuff goes here -*- -->
+
+    <utility
+        component=".all_life_events_vocabulary.AllLifeEventsVocabularyFactory"
+        name="design.plone.contenttypes.AllLifeEventsVocabulary"
+    />
+
+
+    <utility
+        component=".tags_vocabulary.TagsVocabularyFactory"
+        name="design.plone.contenttypes.TagsVocabulary"
+    />
+
+
+    <utility
+        component=".people_vocabulary.PeopleVocabularyFactory"
+        name="design.plone.contenttypes.PeopleVocabulary"
+    />
+
+
+    <utility
+        component=".available_services_vocabulary.AvailableServicesVocabularyFactory"
+        name="design.plone.contenttypes.AvailableServicesVocabulary"
+    />
+
+
+    <utility
+        component=".document_types_vocabulary.DocumentTypesVocabularyFactory"
+        name="design.plone.contenttypes.DocumentTypesVocabulary"
+    />
+
+
+    <utility
+        component=".tipologia_persona.TipologiaPersonaFactory"
+        name="design.plone.contenttypes.TipologiaPersona"
+    />
+
+
+    <utility
+        component=".tipologia_notizia.TipologiaNotiziaFactory"
+        name="design.plone.contenttypes.TipologiaNotizia"
+    />
+
+
+    <utility
+        component=".mockup.MockupFactory"
+        name="design.plone.contenttypes.Mockup"
+    />
+
+
+    <utility
+        component=".lista_azioni_pratica.ListaAzioniPraticaFactory"
+        name="design.plone.contenttypes.ListaAzioniPratica"
+    />
+
+
+</configure>

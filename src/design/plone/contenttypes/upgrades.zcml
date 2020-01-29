@@ -3,14 +3,31 @@
   xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
 
   <!-- -*- extra stuff goes here -*- -->
-  <!--<genericsetup:upgradeStep
+  <genericsetup:upgradeStep
     source="*"
     destination="1001"
     title="Reload GS profiles"
     description=""
     profile="design.plone.contenttypes:default"
-    handler=".upgrades.reload_gs_profile"
-    />-->
+    handler=".upgrades.import_types_registry"
+    />
 
+  <!-- <genericsetup:upgradeStep
+    source="1001"
+    destination="1002"
+    title="Reload GS profiles"
+    description=""
+    profile="design.plone.contenttypes:default"
+    handler=".upgrades.import_types_registry"
+    />
 
+  <genericsetup:upgradeStep
+    source="1002"
+    destination="1003"
+    title="Reload GS profiles"
+    description=""
+    profile="design.plone.contenttypes:default"
+    handler=".upgrades.import_types_registry"
+    />
+   -->
 </configure>

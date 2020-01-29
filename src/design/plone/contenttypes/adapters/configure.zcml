@@ -1,0 +1,14 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
+
+  <adapter
+    for = "design.plone.contenttypes.interfaces.servizio.IServizio
+           zope.publisher.interfaces.browser.IHTTPRequest"
+    provides = ".interfaces.ICorrelati"
+    factory = ".servizi_correlati.GetCorrelatiServizi"
+    name = "correlati-servizi"
+  />
+
+
+</configure>

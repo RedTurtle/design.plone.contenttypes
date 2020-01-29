@@ -1,0 +1,37 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="design.plone.contenttypes">
+
+    <include package="plone.behavior" file="meta.zcml" />
+    <plone:behavior
+      title="Metadati luogo"
+      name="design.plone.contenttypes.behavior.luogo"
+      description="Adds fields."
+      provides=".luogo.ILuogo"
+      factory=".luogo.Luogo"
+      for="collective.venue.interfaces.IVenue"
+      marker=".luogo.ILuogo"
+      />
+
+    <plone:behavior
+      title="Metadati evento"
+      name="design.plone.contenttypes.behavior.evento"
+      description="Adds fields."
+      provides=".evento.IEvento"
+      factory=".evento.Evento"
+      for="plone.event.interfaces.IEvent"
+      marker=".evento.IEvento"
+      />
+
+    <plone:behavior
+      title="Metadati news"
+      name="design.plone.contenttypes.behavior.notizie_e_comunicati_stampa"
+      description="Adds fields."
+      provides=".notizie_e_comunicati_stampa.INotizieEComunicatiStampa"
+      factory=".notizie_e_comunicati_stampa.NotizieEComunicatiStampa"
+      for="plone.app.contenttypes.interfaces.INewsItem"
+      marker=".notizie_e_comunicati_stampa.INotizieEComunicatiStampa"
+      />
+
+</configure>

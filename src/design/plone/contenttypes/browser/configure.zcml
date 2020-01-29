@@ -8,7 +8,7 @@
   <include package="z3c.jbot" file="meta.zcml" />
   <browser:jbot
       directory="overrides"
-      layer="design.plone.contenttypes.interfaces.IDesignPloneContenttypesLayer"
+      layer="design.plone.contenttypes.interfaces.IKuteContenttypesLayer"
       />
 
   <!-- Publish static files -->
@@ -17,5 +17,79 @@
       type="plone"
       directory="static"
       />
+  <browser:page
+    name="correlati"
+    for="design.plone.contenttypes.interfaces.servizio.IServizio"
+    permission="zope2.View"
+    layer="design.plone.contenttypes.interfaces.IKuteContenttypesLayer"
+    class=".correlati.Correlati"
+    />
+
+
+    <adapter
+        for="Products.CMFCore.interfaces.IFolderish
+            zope.publisher.interfaces.browser.IDefaultBrowserLayer
+            plone.dexterity.interfaces.IDexterityFTI"
+        provides="zope.publisher.interfaces.browser.IBrowserPage"
+        factory=".venue.AddView"
+        name="Venue"
+        />
+    <class class=".venue.AddView">
+        <require
+            permission="cmf.AddPortalContent"
+            interface="zope.publisher.interfaces.browser.IBrowserPage"
+            />
+    </class>
+
+    <browser:page
+        for="collective.venue.interfaces.IVenue"
+        name="edit"
+        class=".venue.EditForm"
+        permission="cmf.ModifyPortalContent"
+    />
+
+    <adapter
+        for="Products.CMFCore.interfaces.IFolderish
+            zope.publisher.interfaces.browser.IDefaultBrowserLayer
+            plone.dexterity.interfaces.IDexterityFTI"
+        provides="zope.publisher.interfaces.browser.IBrowserPage"
+        factory=".event.AddView"
+        name="Event"
+        />
+    <class class=".event.AddView">
+        <require
+            permission="cmf.AddPortalContent"
+            interface="zope.publisher.interfaces.browser.IBrowserPage"
+            />
+    </class>
+
+    <browser:page
+        for="plone.event.interfaces.IEvent"
+        name="edit"
+        class=".event.EditForm"
+        permission="cmf.ModifyPortalContent"
+    />
+
+    <adapter
+        for="Products.CMFCore.interfaces.IFolderish
+            zope.publisher.interfaces.browser.IDefaultBrowserLayer
+            plone.dexterity.interfaces.IDexterityFTI"
+        provides="zope.publisher.interfaces.browser.IBrowserPage"
+        factory=".newsItem.AddView"
+        name="News Item"
+        />
+    <class class=".newsItem.AddView">
+        <require
+            permission="cmf.AddPortalContent"
+            interface="zope.publisher.interfaces.browser.IBrowserPage"
+            />
+    </class>
+
+    <browser:page
+        for="plone.app.contenttypes.interfaces.INewsItem"
+        name="edit"
+        class=".newsItem.EditForm"
+        permission="cmf.ModifyPortalContent"
+    />
 
 </configure>

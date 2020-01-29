@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<object name="Venue" meta_type="Dexterity FTI" i18n:domain="plone"
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+<property name="title" i18n:translate="">Luogo</property>
+<property name="klass">design.plone.contenttypes.content.luogo.Venue</property>
+<property name="schema">collective.venue.interfaces.IVenue</property>
+ <property name="behaviors" purge="False">
+  <element value="design.plone.contenttypes.behaviors.luogo.ILuogo"/>
+  <element value="collective.address.behaviors.IAddress" remove="True"/>
+  <element value="collective.address.behaviors.IContact" remove="True"/>
+  <element value="collective.address.behaviors.ISocial" remove="True"/>
+ </property>
+ 
+</object>

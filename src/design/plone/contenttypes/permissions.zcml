@@ -6,6 +6,114 @@
   <configure zcml:condition="installed AccessControl.security">
   <!-- -*- extra stuff goes here -*- -->
 
+    <permission
+        id="design.plone.contenttypes.AddNewsFolder"
+        title="design.plone.contenttypes: Add NewsFolder"
+    />
+
+
+    <permission
+        id="design.plone.contenttypes.AddLuoghiFolder"
+        title="design.plone.contenttypes: Add LuoghiFolder"
+    />
+
+
+    <permission
+        id="design.plone.contenttypes.AddPersoneFolder"
+        title="design.plone.contenttypes: Add PersoneFolder"
+    />
+
+
+    <permission
+        id="design.plone.contenttypes.AddUnitaOrganizzativaFolder"
+        title="design.plone.contenttypes: Add UnitaOrganizzativaFolder"
+    />
+
+
+    <permission
+        id="design.plone.contenttypes.AddAmministrazioneFolder"
+        title="design.plone.contenttypes: Add AmministrazioneFolder"
+    />
+
+
+    <permission
+        id="design.plone.contenttypes.AddDocumento"
+        title="design.plone.contenttypes: Add Documento"
+    />
+
+
+    <permission
+        id="design.plone.contenttypes.AddServizio"
+        title="design.plone.contenttypes: Add Servizio"
+    />
+
+
+    <permission
+        id="design.plone.contenttypes.AddEvento"
+        title="design.plone.contenttypes: Add Evento"
+    />
+
+
+    <permission
+        id="design.plone.contenttypes.AddPersona"
+        title="design.plone.contenttypes: Add Persona"
+    />
+
+
+    <permission
+        id="design.plone.contenttypes.AddUnitaOrganizzativa"
+        title="design.plone.contenttypes: Add UnitaOrganizzativa"
+    />
+
+
+    <permission
+        id="design.plone.contenttypes.AddNotizieEComunicatiStampa"
+        title="design.plone.contenttypes: Add NotizieEComunicatiStampa"
+    />
+
+
+    <permission
+        id="design.plone.contenttypes.AddMessaggio"
+        title="design.plone.contenttypes: Add Messaggio"
+    />
+
+
+    <permission
+        id="design.plone.contenttypes.AddLuogo"
+        title="design.plone.contenttypes: Add Luogo"
+    />
+
+
+    <permission
+        id="design.plone.contenttypes.AddDocumentoPersonale"
+        title="design.plone.contenttypes: Add DocumentoPersonale"
+    />
+
+
+    <permission
+        id="design.plone.contenttypes.AddPaginaArgomento"
+        title="design.plone.contenttypes: Add PaginaArgomento"
+    />
+
+
+    <permission
+        id="design.plone.contenttypes.AddDataset"
+        title="design.plone.contenttypes: Add Dataset"
+    />
+
+
+    <permission
+        id="design.plone.contenttypes.AddRicevutaPagamento"
+        title="design.plone.contenttypes: Add RicevutaPagamento"
+    />
+
+
+    <permission
+        id="design.plone.contenttypes.AddPratica"
+        title="design.plone.contenttypes: Add Pratica"
+    />
+
+
 
   </configure>
 

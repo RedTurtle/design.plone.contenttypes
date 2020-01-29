@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<object name="News Item" meta_type="Dexterity FTI" i18n:domain="plone"
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+<property name="title" i18n:translate="">Notizie e comunicati stampa</property>
+<property name="klass">design.plone.contenttypes.content.notizie_e_comunicati_stampa.NewsItem</property>
+<property name="schema">plone.app.contenttypes.interfaces.INewsItem</property>
+ <property name="behaviors" purge="False">
+  <element value="design.plone.contenttypes.behaviors.notizie_e_comunicati_stampa.INotizieEComunicatiStampa"/>
+  <!-- <element value="collective.address.behaviors.IAddress" remove="True"/>
+  <element value="collective.address.behaviors.IContact" remove="True"/>
+  <element value="collective.address.behaviors.ISocial" remove="True"/> -->
+ </property>
+ 
+</object>

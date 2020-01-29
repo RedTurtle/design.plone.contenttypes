@@ -1,0 +1,16 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone">
+
+    <include package="plone.restapi" file="configure.zcml"/>
+
+    <plone:service
+        method="GET"
+        name="@correlati"
+        accept="application/json"
+        for="design.plone.contenttypes.interfaces.servizio.IServizio"
+        factory=".correlati.CorrelatiService"
+        permission="cmf.ModifyPortalContent"
+        />
+
+</configure>
