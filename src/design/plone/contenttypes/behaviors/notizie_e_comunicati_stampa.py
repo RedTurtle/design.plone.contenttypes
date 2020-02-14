@@ -9,6 +9,8 @@ from plone.autoform.interfaces import IFormFieldProvider
 from plone.autoform import directives as form
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
+from plone.app.vocabularies.catalog import CatalogSource
+from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from design.plone.contenttypes import _
 
 
@@ -58,17 +60,20 @@ class INotizieEComunicatiStampa(model.Schema):
             "selectableTypes": ["Unita organizzativa"],
         },
     )
-
-    a_cura_di_persone = RelationChoice(
-        title=_(u"a_cura_di_persone", default=u"Persone"),
+    a_cura_di_persone = RelationList(
+        title=_(u'a_cura_di_persone', default=u'Persone'),
+        default=[],
+        value_type=RelationChoice(
+            title=u'Related', vocabulary='plone.app.vocabularies.Catalog'
+        ),
         required=False,
-        vocabulary="plone.app.vocabularies.Catalog",
     )
     form.widget(
-        "a_cura_di_persone",
+        'a_cura_di_persone',
         RelatedItemsFieldWidget,
+        vocabulary='plone.app.vocabularies.Catalog',
         pattern_options={
-            "maximumSelectionSize": 10,
+            'recentlyUsed': True,  # Just turn on. Config in plone.app.widgets.
             "selectableTypes": ["Persona"],
         },
     )
