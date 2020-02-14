@@ -10,7 +10,7 @@ from plone.testing import z2
 import design.plone.contenttypes
 
 
-class KuteContenttypesLayer(PloneSandboxLayer):
+class DesignPloneContenttypesLayer(PloneSandboxLayer):
 
     defaultBases = (PLONE_APP_CONTENTTYPES_FIXTURE,)
 
@@ -26,26 +26,26 @@ class KuteContenttypesLayer(PloneSandboxLayer):
         applyProfile(portal, 'design.plone.contenttypes:default')
 
 
-KUTE_CONTENTTYPES_FIXTURE = KuteContenttypesLayer()
+DESIGN_PLONE_CONTENTTYPES_FIXTURE = DesignPloneContenttypesLayer()
 
 
-KUTE_CONTENTTYPES_INTEGRATION_TESTING = IntegrationTesting(
-    bases=(KUTE_CONTENTTYPES_FIXTURE,),
-    name='KuteContenttypesLayer:IntegrationTesting',
+DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING = IntegrationTesting(
+    bases=(DESIGN_PLONE_CONTENTTYPES_FIXTURE,),
+    name='DesignPloneContenttypesLayer:IntegrationTesting',
 )
 
 
-KUTE_CONTENTTYPES_FUNCTIONAL_TESTING = FunctionalTesting(
-    bases=(KUTE_CONTENTTYPES_FIXTURE,),
-    name='KuteContenttypesLayer:FunctionalTesting',
+DESIGN_PLONE_CONTENTTYPES_FUNCTIONAL_TESTING = FunctionalTesting(
+    bases=(DESIGN_PLONE_CONTENTTYPES_FIXTURE,),
+    name='DesignPloneContenttypesLayer:FunctionalTesting',
 )
 
 
-KUTE_CONTENTTYPES_ACCEPTANCE_TESTING = FunctionalTesting(
+DESIGN_PLONE_CONTENTTYPES_ACCEPTANCE_TESTING = FunctionalTesting(
     bases=(
-        KUTE_CONTENTTYPES_FIXTURE,
+        DESIGN_PLONE_CONTENTTYPES_FIXTURE,
         REMOTE_LIBRARY_BUNDLE_FIXTURE,
         z2.ZSERVER_FIXTURE,
     ),
-    name='KuteContenttypesLayer:AcceptanceTesting',
+    name='DesignPloneContenttypesLayer:AcceptanceTesting',
 )

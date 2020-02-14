@@ -8,7 +8,7 @@
   <include package="z3c.jbot" file="meta.zcml" />
   <browser:jbot
       directory="overrides"
-      layer="design.plone.contenttypes.interfaces.IKuteContenttypesLayer"
+      layer="design.plone.contenttypes.interfaces.IDesignPloneContenttypesLayer"
       />
 
   <!-- Publish static files -->
@@ -21,7 +21,7 @@
     name="correlati"
     for="design.plone.contenttypes.interfaces.servizio.IServizio"
     permission="zope2.View"
-    layer="design.plone.contenttypes.interfaces.IKuteContenttypesLayer"
+    layer="design.plone.contenttypes.interfaces.IDesignPloneContenttypesLayer"
     class=".correlati.Correlati"
     />
 

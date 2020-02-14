@@ -18,11 +18,22 @@ class INotizieEComunicatiStampa(model.Schema):
     """ Marker interface for NotizieEComunicatiStampa
     """
 
+    model.fieldset(
+        'other_information',
+        label=_(u'other_information', default=u'Informazioni avanzate'),
+        fields=['numero_progressivo_cs', 'tassonomia_argomenti', 'dataset']
+    )
+    model.fieldset(
+        'categorization',
+        fields=['related_news']
+    )
+
+
     # TODO: vocabolario per le tipologie di notizie
     tipologia_notizia = schema.Choice(
         title=_(u"tipologia_notizia", default=u"Tipologia notizia"),
         required=True,
-        vocabulary="design.plone.contenttypes.Mockup",
+        vocabulary="design.plone.contenttypes.TipologiaNotizia",
     )
 
     # numero progressivo del cs se esiste. Numero o stringa?
@@ -39,10 +50,32 @@ class INotizieEComunicatiStampa(model.Schema):
         required=True,
         vocabulary="plone.app.vocabularies.Catalog",
     )
-
-    immagine = field.NamedImage(
-        title=_(u"immagine", default=u"Immagine in evidenza"), required=False,
+    form.widget(
+        "a_cura_di",
+        RelatedItemsFieldWidget,
+        pattern_options={
+            "maximumSelectionSize": 1,
+            "selectableTypes": ["Unita organizzativa"],
+        },
     )
+
+    a_cura_di_persone = RelationChoice(
+        title=_(u"a_cura_di_persone", default=u"Persone"),
+        required=False,
+        vocabulary="plone.app.vocabularies.Catalog",
+    )
+    form.widget(
+        "a_cura_di_persone",
+        RelatedItemsFieldWidget,
+        pattern_options={
+            "maximumSelectionSize": 10,
+            "selectableTypes": ["Persona"],
+        },
+    )
+
+    # immagine = field.NamedImage(
+    #     title=_(u"immagine", default=u"Immagine in evidenza"), required=False,
+    # )
 
     tassonomia_argomenti = schema.List(
         title=_(u"tassonomia_argomenti", default=u"Tassonomia argomenti"),
@@ -62,21 +95,21 @@ class INotizieEComunicatiStampa(model.Schema):
 
     # stile specifico da usare in frontend
 
-    documenti_allegati = RelationList(
-        title=u"Documenti allegati",
+    related_news = RelationList(
+        title=u"Notizie collegate",
         default=[],
         value_type=RelationChoice(
-            title=_(u"documenti_allegati", default=u"Documenti allegati"),
+            title=_(u"related_news", default=u"Notizie collegate"),
             vocabulary="plone.app.vocabularies.Catalog",
         ),
         required=False,
     )
     form.widget(
-        "documenti_allegati",
+        "related_news",
         RelatedItemsFieldWidget,
         pattern_options={
             "maximumSelectionSize": 10,
-            "selectableTypes": ["Documento"],
+            "selectableTypes": ["News Item"],
         },
     )
 
@@ -84,9 +117,9 @@ class INotizieEComunicatiStampa(model.Schema):
         title=_(u"dataset", default=u"Dataset"), required=False,
     )
 
-    informazioni = RichText(
-        title=_(u"informazioni", default=u"Informazioni"), required=True,
-    )
+    # informazioni = RichText(
+    #     title=_(u"informazioni", default=u"Informazioni"), required=True,
+    # )
 
     # TODO: come gestiamo i correlati?
 

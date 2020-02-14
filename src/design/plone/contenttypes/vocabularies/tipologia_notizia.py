@@ -6,7 +6,9 @@ from plone.dexterity.interfaces import IDexterityContent
 from zope.globalrequest import getRequest
 from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
+from zope.component import getUtility
 from zope.schema.vocabulary import SimpleTerm
+from plone.registry.interfaces import IRegistry
 from zope.schema.vocabulary import SimpleVocabulary
 
 
@@ -22,13 +24,18 @@ class TipologiaNotizia(object):
     """
 
     def __call__(self, context):
-    
-        #  solo questi 3?
-        items = [
-            VocabItem(u'news', _(u'News')),
-            VocabItem(u'comunicato_stampa', _(u'Comunicato stampa')),
-            VocabItem(u'avvisi', _(u'Avvisi')),
-        ]
+
+        registry = getUtility(IRegistry)
+        values = registry.get(
+            "design.plone.contenttypes.controlpanels.vocabularies.IVocabulariesControlPanel.news_tipologia_notizia",  # noqa
+            default=""
+        )
+        if not values:
+            return SimpleVocabulary([])
+
+        values = values.splitlines()
+        items = [VocabItem(value, value) for value in values]
+        items.insert(0, VocabItem("", "-- seleziona un valore --"))
 
         # Fix context if you are using the vocabulary in DataGridField.
         # See https://github.com/collective/collective.z3cform.datagridfield/issues/31:  # NOQA: 501

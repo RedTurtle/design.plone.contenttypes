@@ -4,7 +4,7 @@ from Products.CMFPlone.interfaces import ISelectableConstrainTypes
 
 def personaCreateHandler(persona, event):
     '''
-    Complete content type Persona setup on added event, generating 
+    Complete content type Persona setup on added event, generating
     missing folders, fields, etc.
 
     @param persona: Content item
@@ -13,13 +13,13 @@ def personaCreateHandler(persona, event):
     '''
 
     galleria = api.content.create(
-        type='Folder',
+        type='Document',
         title='Foto attività politica',
         container=persona
     )
 
     altre_cariche = api.content.create(
-        type='Folder',
+        type='Document',
         title='Altre cariche',
         container=persona
     )

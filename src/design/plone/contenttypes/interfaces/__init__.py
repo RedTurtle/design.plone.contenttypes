@@ -3,6 +3,6 @@
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
 
 
-class IKuteContenttypesLayer(IDefaultBrowserLayer):
+class IDesignPloneContenttypesLayer(IDefaultBrowserLayer):
     """Marker interface that defines a browser layer."""
 

@@ -38,19 +38,19 @@ TASSONOMIA_NEWS = ["Notizie", "Comunicati", "Eventi"]
 def folderSubstructureGenerator(container, title):
 
     tree_root = api.content.create(
-        container=container, type="Folder", id=title.lower(), title=title,
+        container=container, type="Document", id=title.lower(), title=title,
     )
     api.content.transition(obj=tree_root, transition="publish")
     if title == "Servizi":
         tree_rootConstraints = ISelectableConstrainTypes(tree_root)
         tree_rootConstraints.setConstrainTypesMode(1)
-        tree_rootConstraints.setLocallyAllowedTypes(("Folder",))
+        tree_rootConstraints.setLocallyAllowedTypes(("Document",))
         for ts in TASSONOMIA_SERVIZI:
             _ = ts.lower()
             _id = re.sub(r"[^a-z\s]", "", _)
             folder = api.content.create(
                 container=tree_root,
-                type="Folder",
+                type="Document",
                 id=re.sub(" ", "-", _id),
                 title=ts,
             )
@@ -62,14 +62,14 @@ def folderSubstructureGenerator(container, title):
     elif title == "Documenti e dati":
         tree_rootConstraints = ISelectableConstrainTypes(tree_root)
         tree_rootConstraints.setConstrainTypesMode(1)
-        tree_rootConstraints.setLocallyAllowedTypes(("Folder",))
+        tree_rootConstraints.setLocallyAllowedTypes(("Document",))
 
         for td in TASSONOMIA_DOCUMENTI:
             _ = td.lower()
             _id = re.sub(r"[^a-z\s]", "", _)
             folder = api.content.create(
                 container=tree_root,
-                type="Folder",
+                type="Document",
                 id=re.sub(" ", "-", _id),
                 title=td,
             )
@@ -84,13 +84,13 @@ def folderSubstructureGenerator(container, title):
     elif title == "Novità":
         tree_rootConstraints = ISelectableConstrainTypes(tree_root)
         tree_rootConstraints.setConstrainTypesMode(1)
-        tree_rootConstraints.setLocallyAllowedTypes(("Folder",))
+        tree_rootConstraints.setLocallyAllowedTypes(("Document",))
         for tn in TASSONOMIA_NEWS:
             _ = tn.lower()
             _id = re.sub(r"[^a-z\s]", "", _)
             folder = api.content.create(
                 container=tree_root,
-                type="Folder",
+                type="Document",
                 id=re.sub(" ", "-", _id),
                 title=tn,
             )
@@ -103,9 +103,6 @@ def folderSubstructureGenerator(container, title):
                 folderConstraints.setLocallyAllowedTypes(("News Item",))
 
     elif title == "Amministrazione":
-        import pdb
-
-        pdb.set_trace()
         tree_rootConstraints = ISelectableConstrainTypes(tree_root)
         tree_rootConstraints.setConstrainTypesMode(1)
         tree_rootConstraints.setLocallyAllowedTypes(

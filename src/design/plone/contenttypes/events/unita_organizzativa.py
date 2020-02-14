@@ -4,7 +4,7 @@ from Products.CMFPlone.interfaces import ISelectableConstrainTypes
 
 def unitaOrganizzativaCreateHandler(unitaOrganizzativa, event):
     '''
-    Complete content type Unita Organizzativa setup on added event, generating 
+    Complete content type Unita Organizzativa setup on added event, generating
     missing folders, fields, etc.
 
     @param unitaOrganizzativa: Content item
@@ -12,7 +12,7 @@ def unitaOrganizzativaCreateHandler(unitaOrganizzativa, event):
     @param event: Event that triggers the method (onAdded event)
     '''
     allegati = api.content.create(
-        type='Folder',
+        type='Document',
         title='Allegati',
         container=unitaOrganizzativa,
     )

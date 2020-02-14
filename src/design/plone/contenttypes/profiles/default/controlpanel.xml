@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<object
+    name="portal_controlpanel"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    i18n:domain="design.plone.contenttypes">
+
+    <configlet
+        title="Impostazione vocabolari design.plone.contenttypes"
+        action_id="design.plone.contenttypes.vocabularies"
+        appId="design.plone.contenttypes.vocabularies"
+        category="Products"
+        condition_expr=""
+        url_expr="string:${portal_url}/@@design.plone-vocabularies"
+        icon_expr=""
+        visible="True"
+        i18n:attributes="title">
+            <permission>Manage portal</permission>
+    </configlet>
+
+</object>
+

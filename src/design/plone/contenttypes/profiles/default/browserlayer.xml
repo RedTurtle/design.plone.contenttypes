@@ -2,6 +2,6 @@
 <layers>
   <layer
       name="design.plone.contenttypes"
-      interface="design.plone.contenttypes.interfaces.IKuteContenttypesLayer"
+      interface="design.plone.contenttypes.interfaces.IDesignPloneContenttypesLayer"
       />
 </layers>

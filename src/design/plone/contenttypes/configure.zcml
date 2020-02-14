@@ -13,21 +13,16 @@
   -->
   <!--<includeDependencies package="." />-->
 
-  <include package=".browser" />
-
-  <include package=".events" />
-
-  <include package=".vocabularies" />
     
-  <include package=".behaviors" />
-
-  <include package=".restapi" />
-
-  <include package=".adapters" />
-
   <include file="permissions.zcml" />
-
   <include file="upgrades.zcml" />
+  <include package=".adapters" />
+  <include package=".behaviors" />
+  <include package=".browser" />
+  <include package=".controlpanels" />
+  <include package=".events" />
+  <include package=".restapi" />
+  <include package=".vocabularies" />
 
   <genericsetup:registerProfile
       name="default"

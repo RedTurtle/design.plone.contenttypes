@@ -44,3 +44,14 @@ def add_index_to_search_dashboard(context):
 
 def import_portlets(context):
     update_profile(context, "portlets")
+
+def import_registry(context):
+    update_profile(context, "plone.app.registry")
+
+def import_registry(context):
+    update_profile(context, "controlpanel")
+
+def from_x_to_1004(context):
+    import_registry(context)
+    import_controlpanel(context)
+
