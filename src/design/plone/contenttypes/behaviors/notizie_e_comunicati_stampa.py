@@ -23,7 +23,7 @@ class INotizieEComunicatiStampa(model.Schema):
     model.fieldset(
         'other_information',
         label=_(u'other_information', default=u'Informazioni avanzate'),
-        fields=['numero_progressivo_cs', 'tassonomia_argomenti', 'dataset']
+        fields=['numero_progressivo_cs', 'tassonomia_argomenti', 'dataset', 'luoghi_notizia']
     )
     model.fieldset(
         'categorization',
@@ -115,6 +115,24 @@ class INotizieEComunicatiStampa(model.Schema):
         pattern_options={
             "maximumSelectionSize": 10,
             "selectableTypes": ["News Item"],
+        },
+    )
+
+    luoghi_notizia = RelationList(
+        title=u"Luoghi notizia",
+        default=[],
+        value_type=RelationChoice(
+            title=_(u"luoghi_notizia", default=u"Luoghi"),
+            vocabulary="plone.app.vocabularies.Catalog",
+        ),
+        required=False,
+    )
+    form.widget(
+        "luoghi_notizia",
+        RelatedItemsFieldWidget,
+        pattern_options={
+            "maximumSelectionSize": 10,
+            "selectableTypes": ["Venue"],
         },
     )
 

@@ -21,5 +21,14 @@
     handler=".upgrades.from_x_to_1004"
     />
 
+  <genericsetup:upgradeStep
+    source="1004"
+    destination="1005"
+    title="Reload GS profiles"
+    description=""
+    profile="design.plone.contenttypes:default"
+    handler=".upgrades.from_x_to_1004"
+    />
+
 
 </configure>

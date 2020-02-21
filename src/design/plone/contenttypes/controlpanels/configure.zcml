@@ -5,7 +5,7 @@
     i18n_domain="design.plone.contenttypes">
 
   <browser:page
-      name="design-plone-vocabularies"
+      name="design.plone-vocabularies"
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"
       class=".vocabularies.VocabulariesControlPanelView"
       permission="cmf.ManagePortal"

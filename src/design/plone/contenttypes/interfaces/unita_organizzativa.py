@@ -39,13 +39,13 @@ class IUnitaOrganizzativa(model.Schema):
         ),
         required=False,
     )
+
     form.widget(
         "legami_con_altre_strutture",
         RelatedItemsFieldWidget,
         pattern_options={
-            "maximumSelectionSize": 1,
-            "selectableTypes": ["Unita Organizzativa"],
-            # "basePath": "/amministrazione",
+            "maximumSelectionSize": 10,
+            "selectableTypes": ["Unita organizzativa"],
         },
     )
 
@@ -72,13 +72,15 @@ class IUnitaOrganizzativa(model.Schema):
             u"tipologia_organizzazione", default=u"Tipologia organizzazione"
         ),
         # vocabolario di rif sara' la lista delle tipologie di organizzazione
-        vocabulary="design.plone.contenttypes.Mockup",
+        vocabulary=""
+        "design.plone.contenttypes.tipologia_organizzazione_vocabulary",
         required=True,
     )
 
     assessore_riferimento = RelationList(
         title=u"Assessore di riferimento",
-        # vocabolario di riferimento sara' dinamico con i content type persona presenti all'interno della macro Amministrazione"
+        # vocabolario di riferimento sara' dinamico con i content type
+        # persona presenti all'interno della macro Amministrazione"
         value_type=RelationChoice(
             title=_(u"Assessore di riferimento"),
             vocabulary="plone.app.vocabularies.Catalog",

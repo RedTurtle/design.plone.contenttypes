@@ -41,7 +41,7 @@
 
 
     <utility
-        component=".tipologia_notizia.TipologiaNotiziaFactory"
+        component=".controlapanel_vocabularies.TipologiaNotiziaFactory"
         name="design.plone.contenttypes.TipologiaNotizia"
     />
 
@@ -57,5 +57,9 @@
         name="design.plone.contenttypes.ListaAzioniPratica"
     />
 
+    <utility
+        component=".controlapanel_vocabularies.TipologiaOrganizzazioneVocabularyFactory"
+        name="design.plone.contenttypes.tipologia_organizzazione_vocabulary"
+    />
 
 </configure>

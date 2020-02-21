@@ -5,11 +5,11 @@ from plone import api
 DEFAULT_PROFILE = "profile-design.plone.contenttypes:default"
 
 
-def import_registry(registry_id, dependencies=False):
-    setup_tool = api.portal.get_tool("portal_setup")
-    setup_tool.runImportStepFromProfile(
-        DEFAULT_PROFILE, registry_id, run_dependencies=dependencies
-    )
+# def import_registry(registry_id, dependencies=False):
+#     setup_tool = api.portal.get_tool("portal_setup")
+#     setup_tool.runImportStepFromProfile(
+#         DEFAULT_PROFILE, registry_id, run_dependencies=dependencies
+#     )
 
 
 def import_types_registry(context):
@@ -42,14 +42,18 @@ def upgrade_rolemap(context):
 def add_index_to_search_dashboard(context):
     add_indexes_to_catalog([], "KeywordIndex")
 
+
 def import_portlets(context):
     update_profile(context, "portlets")
+
 
 def import_registry(context):
     update_profile(context, "plone.app.registry")
 
-def import_registry(context):
+
+def import_controlpanel(context):
     update_profile(context, "controlpanel")
+
 
 def from_x_to_1004(context):
     import_registry(context)

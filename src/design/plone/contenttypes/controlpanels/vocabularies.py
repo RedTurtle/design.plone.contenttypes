@@ -10,22 +10,32 @@ from design.plone.contenttypes import _
 
 class IVocabulariesControlPanel(Interface):
     news_tipologia_notizia = schema.Text(
-        title=_(u'Tipologie notizia'),
-        description=_(u"Inserisci i valori utilizzabili per le tipologie di"
-            " notizia; inserisci i valori uno per riga"),
-        required=True
+        title=_(u"Tipologie notizia"),
+        description=_(
+            u"Inserisci i valori utilizzabili per le tipologie di"
+            " notizia; inserisci i valori uno per riga"
+        ),
+        required=True,
+    )
+    tipologia_unita_organizzativa = schema.Text(
+        title=_(u"Tipologie unita organizzativa"),
+        description=_(
+            u"Inserisci i valori utilizzabili per le tipologie di"
+            " unita organizzativa; inserisci i valori uno per riga"
+        ),
+        required=True,
     )
 
 
 class VocabulariesControlPanelForm(RegistryEditForm):
     form.extends(RegistryEditForm)
     schema = IVocabulariesControlPanel
-    id = 'design-plone-vocabularies-control-panel'
-    label = _(u'Vocabolari')
+    id = "design-plone-vocabularies-control-panel"
+    label = _(u"Vocabolari")
 
 
 VocabulariesControlPanelView = layout.wrap_form(
-        VocabulariesControlPanelForm,
-        ControlPanelFormWrapper)
+    VocabulariesControlPanelForm, ControlPanelFormWrapper
+)
 VocabulariesControlPanelView.label = _(u"Vocabolari")
 
