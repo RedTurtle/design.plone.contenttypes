@@ -3,30 +3,31 @@ from Products.CMFPlone.interfaces import ISelectableConstrainTypes
 
 
 def servizioCreateHandler(servizio, event):
-    '''
+    """
     Complete content type Servizio setup on added event, generating 
     missing folders, fields, etc.
 
     @param servizio: Content item
 
     @param event: Event that triggers the method (onAdded event)
-    '''
+    """
+    if "luoghi" not in servizio.keys():
+        luoghi = api.content.create(
+            type="Document", title="Luoghi", container=servizio
+        )
+    else:
+        luoghi = servizio["luoghi"]
+        luoghiConstraints = ISelectableConstrainTypes(luoghi)
+        luoghiConstraints.setConstrainTypesMode(1)
+        luoghiConstraints.setLocallyAllowedTypes(("Venue",))
 
-    luoghi = api.content.create(
-        type='Folder',
-        title='Luoghi',
-        container=servizio
-    )
+    if "sedi" not in servizio.keys():
+        sedi = api.content.create(
+            type="Document", title="Sedi", container=servizio
+        )
+    else:
+        sedi = servizio["sedi"]
+        sediConstraints = ISelectableConstrainTypes(sedi)
+        sediConstraints.setConstrainTypesMode(1)
+        sediConstraints.setLocallyAllowedTypes(("Venue",))
 
-    sedi = api.content.create(
-        type='Folder',
-        title='Sedi',
-        container=servizio
-    )
-
-    luoghiConstraints = ISelectableConstrainTypes(luoghi)
-    luoghiConstraints.setConstrainTypesMode(1)
-    luoghiConstraints.setLocallyAllowedTypes(('Venue',))
-    sediConstraints = ISelectableConstrainTypes(sedi)
-    sediConstraints.setConstrainTypesMode(1)
-    sediConstraints.setLocallyAllowedTypes(('Venue',))

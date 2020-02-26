@@ -19,8 +19,8 @@ class ILuogo(model.Schema):
     """
 
     argomenti_interesse_cittadino = RichText(
-        title=_(u"argomenti_interesse_cittadino"),
-        default=_(u"Argomenti di interesse per il cittadino"),
+        title=_(u"Argomenti di interesse per il cittadino"),
+        default="",
         required=True,
     )
 

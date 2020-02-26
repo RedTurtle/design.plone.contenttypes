@@ -13,6 +13,10 @@ class IUnitaOrganizzativa(model.Schema):
     """Marker interface for content type Unita Organizzativa
     """
 
+    model.fieldset(
+        "categorization", fields=["notizie_collegate", "servizi_offerti"]
+    )
+
     tassonomia_argomenti = schema.List(
         title=_(u"tassonomia_argomenti", default=u"Tassonomia argomenti"),
         default=[],
@@ -137,8 +141,27 @@ class IUnitaOrganizzativa(model.Schema):
         },
     )
 
+    # vocabolario di riferimento sara' da definire, probabilmente dinamico dai ct servizi presenti nella macro Amministrazione"
+    notizie_collegate = RelationList(
+        title=u"Notizie collegate",
+        default=[],
+        value_type=RelationChoice(
+            title=_(u"Notizia"), vocabulary="plone.app.vocabularies.Catalog",
+        ),
+        required=False,
+    )
+    form.widget(
+        "notizie_collegate",
+        RelatedItemsFieldWidget,
+        pattern_options={
+            "maximumSelectionSize": 10,
+            "selectableTypes": ["News Item"],
+            # "basePath": "/servizi",
+        },
+    )
+
     ulteriori_informazioni = RichText(
-        title=_(u"unteriori_informazioni", default=u"Ulteriori informazioni"),
+        title=_(u"unteriori_informazioni", default=u"Informazioni"),
         required=False,
     )
 
@@ -146,5 +169,21 @@ class IUnitaOrganizzativa(model.Schema):
         title=_(u"box_aiuto", default=u"Box di aiuto"), required=True,
     )
 
-    # come gestiamo i correlati servizi, documenti, novita'?
+    sedi = RelationList(
+        title=u"Sedi",
+        default=[],
+        value_type=RelationChoice(
+            title=_(u"Sede"), vocabulary="plone.app.vocabularies.Catalog",
+        ),
+        required=False,
+    )
+    form.widget(
+        "sedi",
+        RelatedItemsFieldWidget,
+        pattern_options={
+            "maximumSelectionSize": 10,
+            "selectableTypes": ["Venue"],
+            # "basePath": "/servizi",
+        },
+    )
 

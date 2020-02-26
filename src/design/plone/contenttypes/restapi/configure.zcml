@@ -13,4 +13,6 @@
         permission="cmf.ModifyPortalContent"
         />
 
+    <adapter factory=".converters.geolocation_converter" />
+
 </configure>
