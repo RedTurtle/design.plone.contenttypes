@@ -59,3 +59,6 @@ def from_x_to_1004(context):
     import_registry(context)
     import_controlpanel(context)
 
+def from_1005_to_1006(context):
+    import_registry(context)
+
