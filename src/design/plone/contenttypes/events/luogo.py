@@ -4,14 +4,16 @@ from Products.CMFPlone.interfaces import ISelectableConstrainTypes
 
 def luogoCreateHandler(luogo, event):
     '''
-    Complete content type luogo setup on added event, generating 
+    Complete content type luogo setup on added event, generating
     missing folders, fields, etc.
 
     @param luogo: Content item
 
     @param event: Event that triggers the method (onAdded event)
     '''
-
+    folder_id = 'galleria-immagini'
+    if folder_id in luogo:
+        return
     folder = _createObjectByType("Folder", luogo, 'galleria-immagini')
     folder.title = 'Galleria Immagini'
     folder.reindexObject(idxs=['Title'])
