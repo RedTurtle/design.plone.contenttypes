@@ -22,6 +22,10 @@ class IPersona(model.Schema):
         title=_(u"ruolo", default=u"Ruolo"), required=True,
     )
 
+    ruolo = schema.TextLine(
+        title=_(u"ruolo", default=u"Ruolo"), required=True,
+    )
+
     organizzazione_riferimento = RelationList(
         title=_(
             u"organizzazione_riferimento",
@@ -141,58 +145,62 @@ class IPersona(model.Schema):
     email = schema.TextLine(
         title=_(u"email", default=u"Indirizzo email"), required=False,
     )
+    informazioni_di_contatto = RichText(
+        title=_(
+            u"informazioni_di_contatto", default=u"Informazioni di contatto"
+        ),
+        required=False,
+    )
 
     curriculum_vitae = field.NamedBlobFile(
         title=_(u"curriculum_vitae", default=u"Curriculum vitae"),
         required=False,
     )
 
-    compensi = field.NamedBlobFile(
-        title=_(u"compensi", default=u"Compensi"), required=True,
-    )
+    # compensi = field.NamedBlobFile(
+    #     title=_(u"compensi", default=u"Compensi"), required=True,
+    # )
 
-    importi_viaggio_servizio = field.NamedBlobFile(
-        title=_(
-            u"importi_viaggio_servizio",
-            default=u"Importi di viaggio e/o servizio",
-        ),
-        required=True,
-    )
+    #    importi_viaggio_servizio = field.NamedBlobFile(
+    #        title=_(
+    #            u"importi_viaggio_servizio",
+    #            default=u"Importi di viaggio e/o servizio",
+    #        ),
+    #        required=True,
+    #    )
 
     atto_nomina = field.NamedFile(
         title=_(u"atto_nomina", default=u"Atto nomina"), required=False,
     )
 
-    situazione_patrimoniale = field.NamedFile(
-        title=_(
-            u"situazione_patrimoniale", default=u"Situazione patrimoniale"
-        ),
-        required=False,
-    )
+    #    situazione_patrimoniale = field.NamedFile(
+    #        title=_(
+    #            u"situazione_patrimoniale", default=u"Situazione patrimoniale"
+    #        ),
+    #        required=False,
+    #    )
 
-    dichiarazione_redditi = field.NamedFile(
-        title=_(
-            u"dichiarazione_redditi", default=u"Dichiarazione dei redditi"
-        ),
-        required=True,
-    )
-
-    spese_elettorali = field.NamedFile(
-        title=_(u"spese_elettorali", default=u"Spese elettorali"),
-        required=True,
-    )
-
-    variazioni_situazione_patrimoniale = field.NamedFile(
-        title=_(
-            u"variazioni_situazione_patrimoniale",
-            default=u"Variazioni situazione patrimoniale",
-        ),
-        required=True,
-    )
+    #    dichiarazione_redditi = field.NamedFile(
+    #        title=_(
+    #            u"dichiarazione_redditi", default=u"Dichiarazione dei redditi"
+    #        ),
+    #        required=True,
+    #    )
+    #
+    #    spese_elettorali = field.NamedFile(
+    #        title=_(u"spese_elettorali", default=u"Spese elettorali"),
+    #        required=True,
+    #    )
+    #
+    #    variazioni_situazione_patrimoniale = field.NamedFile(
+    #        title=_(
+    #            u"variazioni_situazione_patrimoniale",
+    #            default=u"Variazioni situazione patrimoniale",
+    #        ),
+    #        required=True,
+    #    )
 
     ulteriori_informazioni = RichText(
         title=_(u"ulteriori_informazioni", default=u"Ulteriori informazioni"),
         required=False,
     )
-
-    # come gestiamo i correlati novita'?
