@@ -62,3 +62,10 @@ def from_x_to_1004(context):
 def from_1005_to_1006(context):
     import_registry(context)
 
+def from_1006_to_1007(context):
+    add_indexes_to_catalog(['news_people'], "KeywordIndex")
+
+def from_1007_to_1008(context):
+    add_indexes_to_catalog(['tipologia_notizia'], "FieldIndex")
+    pc = api.portal.get_tool("portal_catalog")
+    pc.addColumn('tipologia_notizia')

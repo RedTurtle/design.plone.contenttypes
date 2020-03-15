@@ -37,6 +37,20 @@
     profile="design.plone.contenttypes:default"
     handler=".upgrades.from_1005_to_1006"
     />
-
-
+  <genericsetup:upgradeStep
+    source="1006"
+    destination="1007"
+    title="Add news people index to catalog"
+    description=""
+    profile="design.plone.contenttypes:default"
+    handler=".upgrades.from_1006_to_1007"
+    />
+  <genericsetup:upgradeStep
+    source="1007"
+    destination="1008"
+    title="Add news people index to catalog"
+    description=""
+    profile="design.plone.contenttypes:default"
+    handler=".upgrades.from_1007_to_1008"
+    />
 </configure>

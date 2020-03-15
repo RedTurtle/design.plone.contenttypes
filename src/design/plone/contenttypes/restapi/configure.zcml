@@ -3,6 +3,7 @@
     xmlns:plone="http://namespaces.plone.org/plone">
 
     <include package="plone.restapi" file="configure.zcml"/>
+    <include package=".serializers" />
 
     <plone:service
         method="GET"

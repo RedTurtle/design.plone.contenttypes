@@ -23,6 +23,7 @@
   <include package=".events" />
   <include package=".restapi" />
   <include package=".vocabularies" />
+  <include package=".indexers" />
 
   <genericsetup:registerProfile
       name="default"
