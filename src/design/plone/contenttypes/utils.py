@@ -98,7 +98,6 @@ def folderSubstructureGenerator(container, title):
             folderConstraints = ISelectableConstrainTypes(folder)
             folderConstraints.setConstrainTypesMode(1)
             if tn == "Eventi":
-                import pdb;pdb.set_trace()
                 folderConstraints.setLocallyAllowedTypes(("Event",))
             else:
                 folderConstraints.setLocallyAllowedTypes(("News Item",))
