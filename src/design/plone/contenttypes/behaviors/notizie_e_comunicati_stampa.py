@@ -21,15 +21,16 @@ class INotizieEComunicatiStampa(model.Schema):
     """
 
     model.fieldset(
-        'other_information',
-        label=_(u'other_information', default=u'Informazioni avanzate'),
-        fields=['numero_progressivo_cs', 'tassonomia_argomenti', 'dataset', 'luoghi_notizia']
+        "other_information",
+        label=_(u"other_information", default=u"Informazioni avanzate"),
+        fields=[
+            "numero_progressivo_cs",
+            "tassonomia_argomenti",
+            "dataset",
+            "luoghi_notizia",
+        ],
     )
-    model.fieldset(
-        'categorization',
-        fields=['related_news']
-    )
-
+    model.fieldset("categorization", fields=["related_news"])
 
     # TODO: vocabolario per le tipologie di notizie
     tipologia_notizia = schema.Choice(
@@ -61,19 +62,19 @@ class INotizieEComunicatiStampa(model.Schema):
         },
     )
     a_cura_di_persone = RelationList(
-        title=_(u'a_cura_di_persone', default=u'Persone'),
+        title=_(u"a_cura_di_persone", default=u"Persone"),
         default=[],
         value_type=RelationChoice(
-            title=u'Related', vocabulary='plone.app.vocabularies.Catalog'
+            title=u"Related", vocabulary="plone.app.vocabularies.Catalog"
         ),
         required=False,
     )
     form.widget(
-        'a_cura_di_persone',
+        "a_cura_di_persone",
         RelatedItemsFieldWidget,
-        vocabulary='plone.app.vocabularies.Catalog',
+        vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            'recentlyUsed': True,  # Just turn on. Config in plone.app.widgets.
+            "recentlyUsed": True,  # Just turn on. Config in plone.app.widgets.
             "selectableTypes": ["Persona"],
         },
     )
@@ -140,11 +141,31 @@ class INotizieEComunicatiStampa(model.Schema):
         title=_(u"dataset", default=u"Dataset"), required=False,
     )
 
-    # informazioni = RichText(
-    #     title=_(u"informazioni", default=u"Informazioni"), required=True,
-    # )
-
-    # TODO: come gestiamo i correlati?
+    servizi_collegati = RelationList(
+        title=_(
+            u"servizi_collegati", default=u"Servizi collegati alla notizia"
+        ),
+        description=_(
+            u"servizi_collegati_description",
+            default=u"Questi servizi non verranno mostrati nella news, ma"
+            " permetteranno di vedere la news associata quando si"
+            " visita il servizio",
+        ),
+        default=[],
+        value_type=RelationChoice(
+            title=u"Related", vocabulary="plone.app.vocabularies.Catalog"
+        ),
+        required=False,
+    )
+    form.widget(
+        "servizi_collegati",
+        RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
+        pattern_options={
+            "recentlyUsed": True,  # Just turn on. Config in plone.app.widgets.
+            "selectableTypes": ["Servizio"],
+        },
+    )
 
 
 @implementer(INotizieEComunicatiStampa)

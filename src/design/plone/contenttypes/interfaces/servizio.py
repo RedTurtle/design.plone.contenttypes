@@ -20,25 +20,25 @@ class IServizio(model.Schema):
     # TODO: stato servizio vuol dire si o no? Inoltre, deve essere visibile solo se il servizio
     # non e' attivo
     stato_servizio = schema.Bool(
-        title=_(u"stato_servizio", default=u"Stato del servizio"),
-        required=True,
+        title=_(u"stato_servizio", default=u"Servizio non attivo"),
+        required=False,
     )
 
     motivo_stato_servizio = RichText(
         title=_(
             u"motivo_stato_servizio",
-            default=u"Motivo dello stato del servizio",
+            default=u"Motivo dello stato del servizio nel caso non sia attivo",
         ),
-        required=True,
+        required=False,
     )
 
-    sottotitolo = schema.TextLine(
+    subtitle = schema.TextLine(
         title=_(u"sottotitolo", default=u"Sottotitolo"), required=False,
     )
 
-    immagine = field.NamedImage(
-        title=_(u"immagine", default=u"Immagine"), required=False,
-    )
+    # immagine = field.NamedImage(
+    #     title=_(u"immagine", default=u"Immagine"), required=False,
+    # )
 
     # tassonomia_argomenti = schema.Choice(
     #     title=_(u"tassonomia_argomenti", default=u"Tassonomia argomenti"),
@@ -82,18 +82,18 @@ class IServizio(model.Schema):
     )
 
     cosa_si_ottiene = RichText(
-        title=_(u"cosa_si_ottiene", default=u"Cosa si ottiene"), required=True,
+        title=_(u"cosa_si_ottiene", default=u"Cosa si ottiene"),
+        required=False,
     )
 
     procedure_collegate = RichText(
         title=_(
             u"procedure_collegate", default=u"Procedure collegate all'esito"
         ),
-        required=True,
+        required=False,
     )
 
-    # TODO: capire come gestirlo -> va benissimo cosi'
-    canale_digitale = schema.TextLine(
+    canale_digitale = schema.URI(
         title=_(u"canale_digitale", default=u"Canale digitale"),
         required=False,
     )
@@ -128,11 +128,9 @@ class IServizio(model.Schema):
         title=_(u"vincoli", default=u"Vincoli"), required=False,
     )
 
-    # TODO: capire come gestire e cosa vogliono dal campo "fasi e scadenze"
-
     casi_particolari = RichText(
         title=_(u"casi_particolari", default=u"Casi particolari"),
-        required=True,
+        required=False,
     )
 
     # vocabolario dalle unita' organizzative presenti a catalogo?
@@ -172,7 +170,7 @@ class IServizio(model.Schema):
     )
 
     altri_documenti = RelationList(
-        title=u"Altri documenti",
+        title=u"Documenti correlati",
         default=[],
         value_type=RelationChoice(
             title=_(u"Documento"), vocabulary="plone.app.vocabularies.Catalog",
@@ -191,7 +189,7 @@ class IServizio(model.Schema):
 
     link_siti_esterni = RichText(
         title=_(u"link_siti_esterni", default=u"Link a siti esterni"),
-        required=True,
+        required=False,
     )
 
     # come gestiamo "e' parte del life event"?
@@ -211,15 +209,55 @@ class IServizio(model.Schema):
     # classificazione basata sul catalogo dei servizi, stringa o lista?
     settore_merceologico = schema.TextLine(
         title=_(u"settore_merceologico", default=u"Settore merceologico"),
-        required=True,
+        required=False,
     )
 
     identificativo = schema.TextLine(
-        title=_(u"identificativo", default=u"Identificativo"), required=True,
+        title=_(u"identificativo", default=u"Identificativo"), required=False,
     )
 
     box_aiuto = RichText(
-        title=_(u"box_aiuto", default=u"Box di aiuto"), required=False,
+        title=_(u"box_aiuto", default=u"Ulteriori informazioni"),
+        required=False,
     )
 
-    # TODO: come gestiamo i correlati novita', documenti, amministrazione, servizi
+    servizi_collegati = RelationList(
+        title=u"Servizi collegati",
+        default=[],
+        value_type=RelationChoice(
+            title=_(u"Servizi collegati"),
+            vocabulary="plone.app.vocabularies.Catalog",
+        ),
+        required=False,
+    )
+    form.widget(
+        "servizi_collegati",
+        RelatedItemsFieldWidget,
+        pattern_options={
+            "maximumSelectionSize": 10,
+            "selectableTypes": ["Servizio"],
+            # "basePath": "/",
+        },
+    )
+    sedi_e_luoghi = RelationList(
+        title=u"Dove trovarci",
+        default=[],
+        value_type=RelationChoice(
+            title=_(u"Dove trovarci"),
+            vocabulary="plone.app.vocabularies.Catalog",
+        ),
+        required=False,
+    )
+    form.widget(
+        "sedi_e_luoghi",
+        RelatedItemsFieldWidget,
+        pattern_options={
+            "maximumSelectionSize": 10,
+            "selectableTypes": ["Venue"],
+            # "basePath": "/",
+        },
+    )
+
+    model.fieldset("categorization", fields=["servizi_collegati"])
+
+    # TODO: come gestiamo i correlati amministrazione

@@ -2,6 +2,9 @@
     xmlns="http://namespaces.zope.org/zope">
 
     <adapter name="news_people" factory=".news.news_people" />
+    <adapter name="news_service" factory=".news.news_service" />
+    <adapter name="ufficio_responsabile"
+             factory=".servizio.ufficio_responsabile" />
 
 </configure>
 

@@ -2,6 +2,9 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:zcml="http://namespaces.zope.org/zcml">
 
-    <adapter factory=".news.SerializeFolderToJson" />
+    <adapter factory=".news.PersonaSerializer" />
+    <adapter factory=".news.ServizioSerializer" />
+    <adapter factory=".servizi.UOSerializer" />
+
 
 </configure>

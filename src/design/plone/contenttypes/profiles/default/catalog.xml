@@ -3,6 +3,9 @@
  <index name="news_people" meta_type="KeywordIndex">
   <indexed_attr value="news_people"/>
  </index>
+<index name="news_service" meta_type="KeywordIndex">
+  <indexed_attr value="news_service"/>
+ </index>
  <index name="tipologia_notizia" meta_type="FieldIndex">
   <indexed_attr value="tipologia_notizia"/>
  </index>

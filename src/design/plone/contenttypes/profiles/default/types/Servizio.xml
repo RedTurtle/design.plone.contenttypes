@@ -19,7 +19,7 @@
 
   <!-- Hierarchy control -->
   <property name="global_allow">True</property>
-  <property name="filter_content_types">False</property>
+  <property name="filter_content_types">True</property>
   <property name="allowed_content_types">
   <!--
     <element value="Document" />
@@ -47,11 +47,11 @@
     <element value="plone.categorization"/>
     <element value="plone.basic"/>
     <element value="plone.locking" />
-    <element value="collective.address.behaviors.IAddress" />
-    <element value="collective.geolocationbehavior.geolocation.IGeolocatable"/>
+    <!-- <element value="collective.address.behaviors.IAddress" />
+    <element value="collective.geolocationbehavior.geolocation.IGeolocatable"/>-->
     <!--<element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />-->
-    <!--<element value="plone.leadimage"/>-->
-    <!--<element value="plone.relateditems"/>-->
+    <element value="plone.leadimage"/>
+    <element value="plone.relateditems"/>
     <!--<element value="plone.richtext"/>-->
     <!--<element value="plone.tableofcontents"/>-->
     <!--<element value="plone.versionable" />-->

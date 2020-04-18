@@ -13,9 +13,7 @@ class IUnitaOrganizzativa(model.Schema):
     """Marker interface for content type Unita Organizzativa
     """
 
-    model.fieldset(
-        "categorization", fields=["notizie_collegate", "servizi_offerti"]
-    )
+    model.fieldset("categorization", fields=["notizie_collegate"])
 
     tassonomia_argomenti = schema.List(
         title=_(u"tassonomia_argomenti", default=u"Tassonomia argomenti"),
@@ -122,24 +120,24 @@ class IUnitaOrganizzativa(model.Schema):
         },
     )
 
-    # vocabolario di riferimento sara' da definire, probabilmente dinamico dai ct servizi presenti nella macro Amministrazione"
-    servizi_offerti = RelationList(
-        title=u"Servizi offerti",
-        default=[],
-        value_type=RelationChoice(
-            title=_(u"Servizio"), vocabulary="plone.app.vocabularies.Catalog",
-        ),
-        required=False,
-    )
-    form.widget(
-        "servizi_offerti",
-        RelatedItemsFieldWidget,
-        pattern_options={
-            "maximumSelectionSize": 10,
-            "selectableTypes": ["Servizio"],
-            # "basePath": "/servizi",
-        },
-    )
+    # # vocabolario di riferimento sara' da definire, probabilmente dinamico dai ct servizi presenti nella macro Amministrazione"
+    # servizi_offerti = RelationList(
+    #     title=u"Servizi offerti",
+    #     default=[],
+    #     value_type=RelationChoice(
+    #         title=_(u"Servizio"), vocabulary="plone.app.vocabularies.Catalog",
+    #     ),
+    #     required=False,
+    # )
+    # form.widget(
+    #     "servizi_offerti",
+    #     RelatedItemsFieldWidget,
+    #     pattern_options={
+    #         "maximumSelectionSize": 10,
+    #         "selectableTypes": ["Servizio"],
+    #         # "basePath": "/servizi",
+    #     },
+    # )
 
     # vocabolario di riferimento sara' da definire, probabilmente dinamico dai ct servizi presenti nella macro Amministrazione"
     notizie_collegate = RelationList(
@@ -186,4 +184,3 @@ class IUnitaOrganizzativa(model.Schema):
             # "basePath": "/servizi",
         },
     )
-
