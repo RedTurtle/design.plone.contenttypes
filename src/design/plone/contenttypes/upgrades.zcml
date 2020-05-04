@@ -69,4 +69,13 @@
     profile="design.plone.contenttypes:default"
     handler=".upgrades.from_1009_to_1010"
     />
+
+  <genericsetup:upgradeStep
+    source="1010"
+    destination="1011"
+    title="Add blocks behavior to PaginaArgomento"
+    description=""
+    profile="design.plone.contenttypes:default"
+    handler=".upgrades.import_registry"
+    />
 </configure>
