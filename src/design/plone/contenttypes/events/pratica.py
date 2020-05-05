@@ -1,10 +1,11 @@
+# -*- coding: utf-8 -*-
 from plone import api
 from Products.CMFPlone.interfaces import ISelectableConstrainTypes
 
 
 def praticaCreateHandler(pratica, event):
     '''
-    Complete content type Pratica setup on added event, generating 
+    Complete content type Pratica setup on added event, generating
     missing folders, fields, etc.
 
     @param pratica: Content item
@@ -13,9 +14,7 @@ def praticaCreateHandler(pratica, event):
     '''
 
     allegati = api.content.create(
-        type='Folder',
-        title='Allegati',
-        container=pratica
+        type='Folder', title='Allegati', container=pratica
     )
 
     allegatiConstraints = ISelectableConstrainTypes(allegati)

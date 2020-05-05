@@ -1,11 +1,11 @@
-from z3c.form import form
-from Products.Five import BrowserView
-from zope.interface import Interface
-from zope import schema
-from plone.app.registry.browser.controlpanel import RegistryEditForm
-from plone.app.registry.browser.controlpanel import ControlPanelFormWrapper
-from plone.z3cform import layout
+# -*- coding: utf-8 -*-
 from design.plone.contenttypes import _
+from plone.app.registry.browser.controlpanel import ControlPanelFormWrapper
+from plone.app.registry.browser.controlpanel import RegistryEditForm
+from plone.z3cform import layout
+from z3c.form import form
+from zope import schema
+from zope.interface import Interface
 
 
 class IVocabulariesControlPanel(Interface):
@@ -38,4 +38,3 @@ VocabulariesControlPanelView = layout.wrap_form(
     VocabulariesControlPanelForm, ControlPanelFormWrapper
 )
 VocabulariesControlPanelView.label = _(u"Vocabolari")
-

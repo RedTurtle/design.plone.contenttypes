@@ -1,5 +1,6 @@
-from plone.restapi.interfaces import IJsonCompatible
+# -*- coding: utf-8 -*-
 from plone.formwidget.geolocation.interfaces import IGeolocation
+from plone.restapi.interfaces import IJsonCompatible
 from zope.component import adapter
 from zope.interface import implementer
 

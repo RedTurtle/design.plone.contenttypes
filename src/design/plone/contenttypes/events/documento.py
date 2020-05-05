@@ -1,10 +1,11 @@
+# -*- coding: utf-8 -*-
 from plone import api
 from Products.CMFPlone.interfaces import ISelectableConstrainTypes
 
 
 def documentoCreateHandler(documento, event):
     """
-    Complete content type Documento setup on added event, generating 
+    Complete content type Documento setup on added event, generating
     missing folders, fields, etc.
 
     @param documento: Content item
@@ -26,4 +27,3 @@ def documentoCreateHandler(documento, event):
     galleryConstraints = ISelectableConstrainTypes(galleria)
     galleryConstraints.setConstrainTypesMode(1)
     galleryConstraints.setLocallyAllowedTypes(("Image",))
-

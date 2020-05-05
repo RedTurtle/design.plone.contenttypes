@@ -1,4 +1,4 @@
-from plone.supermodel import model
+# -*- coding: utf-8 -*-
 from plone.app.contenttypes.interfaces import IFolder
 
 

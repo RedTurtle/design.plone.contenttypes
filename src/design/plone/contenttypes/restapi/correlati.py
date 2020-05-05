@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from plone import api
 from plone.restapi.services import Service
 from zope.interface import alsoProvides
@@ -9,9 +10,6 @@ class CorrelatiService(Service):
     """ Service to make action """
 
     def reply(self):
-        import pdb
-
-        pdb.set_trace()
         # Disable CSRF protection
         if "IDisableCSRFProtection" in dir(plone.protect.interfaces):
             alsoProvides(

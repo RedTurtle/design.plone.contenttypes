@@ -1,10 +1,11 @@
-from plone.supermodel import model
+# -*- coding: utf-8 -*-
+from design.plone.contenttypes import _
 from plone.app.textfield import RichText
-from zope import schema
+from plone.namedfile import field
+from plone.supermodel import model
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
-from plone.namedfile import field
-from design.plone.contenttypes import _
+from zope import schema
 
 
 class IDocumentoPersonale(model.Schema):
@@ -12,18 +13,15 @@ class IDocumentoPersonale(model.Schema):
     """
 
     protocollo = schema.TextLine(
-        title=_(u'protocollo', default=u'Protocollo'),
-        required=True,
+        title=_(u'protocollo', default=u'Protocollo'), required=True
     )
 
     data_protocollo = schema.Date(
-        title=_(u'data_protocollo', default=u'Data protocollo'),
-        required=True,
+        title=_(u'data_protocollo', default=u'Data protocollo'), required=True
     )
 
     immagine = field.NamedImage(
-        title=_(u'immagine', default=u'Immagine'),
-        required=False,
+        title=_(u'immagine', default=u'Immagine'), required=False
     )
 
     pratica_associata = field.NamedFile(
@@ -32,18 +30,22 @@ class IDocumentoPersonale(model.Schema):
     )
 
     servizio_origine = schema.Choice(
-        title=_(u'servizio_origine', default=u'Servizio che genera il documento'),
+        title=_(
+            u'servizio_origine', default=u'Servizio che genera il documento'
+        ),
         vocabulary='design.plone.contenttypes.Mockup',
-        required=True
+        required=True,
     )
 
-    # TODO: come gestiamo i campi "Tipologia del documento", "sottotipologia del documento" e "lingua del documento"?
+    # TODO: come gestiamo i campi "Tipologia del documento", "sottotipologia
+    # del documento" e "lingua del documento"?
 
-    # TODO: il vocabolario controllato da usare sara' "Argomenti di interesse pere gli utenti di un comune"
+    # TODO: il vocabolario controllato da usare sara' "Argomenti di interesse
+    #  pere gli utenti di un comune"
     argomenti_utenti = schema.Choice(
         title=_(u'argomenti_utenti', default=u'Argomenti utenti'),
         vocabulary='design.plone.contenttypes.Mockup',
-        required=True
+        required=True,
     )
 
     oggetto = RichText(
@@ -57,22 +59,26 @@ class IDocumentoPersonale(model.Schema):
         required=False,
     )
 
-    # TODO: decidere se "link al documento" sara' un folder o un file. Se e' un folder "formati disponibili" diventa un campo
-    # generato facendo una query dei file presenti all'interno di "link al documento"?
+    # TODO: decidere se "link al documento" sara' un folder o un file. Se e'
+    # un folder "formati disponibili" diventa un campo
+    # generato facendo una query dei file presenti all'interno di "link al
+    #  documento"?
     # Inserito come folder "Allegati" per il momento, magari si chiede
 
-    # TODO: usare vocabolario dinamico per le tipologie di uffici (dovrebbe rientrare nel content type "Unita' organizzativa")
+    # TODO: usare vocabolario dinamico per le tipologie di uffici (dovrebbe
+    # rientrare nel content type "Unita' organizzativa")
     ufficio_responsabile = schema.Choice(
         title=_(u'ufficio_responsabile', default=u'Ufficio responsabile'),
         required=True,
-        vocabulary='design.plone.contenttypes.Mockup'
+        vocabulary='design.plone.contenttypes.Mockup',
     )
 
-    # TODO: usare vocabolario dinamico per le tipologie di aree amministrative (dovrebbe rientrare nel content type "Unita' organizzativa")
+    # TODO: usare vocabolario dinamico per le tipologie di aree amministrative
+    # (dovrebbe rientrare nel content type "Unita' organizzativa")
     area_responsabile = schema.Choice(
         title=_(u'area_responsabile', default=u'Area responsabile'),
         required=True,
-        vocabulary='design.plone.contenttypes.Mockup'
+        vocabulary='design.plone.contenttypes.Mockup',
     )
 
     # TODO: usare vocabolario dinamico per le gli autori?
@@ -80,8 +86,7 @@ class IDocumentoPersonale(model.Schema):
         title=u'Autore/i',
         default=[],
         value_type=RelationChoice(
-            title=_(u'Autore'), 
-            vocabulary='plone.app.vocabularies.Catalog',
+            title=_(u'Autore'), vocabulary='plone.app.vocabularies.Catalog'
         ),
         required=False,
     )
@@ -96,20 +101,22 @@ class IDocumentoPersonale(model.Schema):
         title=u'Servizi collegati',
         default=[],
         value_type=RelationChoice(
-            title=_(u'Servizio collegato'), 
+            title=_(u'Servizio collegato'),
             vocabulary='plone.app.vocabularies.Catalog',
         ),
         required=False,
     )
 
     canale_digitale_servizio = schema.TextLine(
-        title=_(u'canale_digitale_servizio', default=u'Canale digitale servizio collegato'),
+        title=_(
+            u'canale_digitale_servizio',
+            default=u'Canale digitale servizio collegato',
+        ),
         required=False,
     )
 
     data_inizio = schema.Date(
-        title=_(u'data_inizio', default=u'Data inizio'),
-        required=False,
+        title=_(u'data_inizio', default=u'Data inizio'), required=False
     )
 
     data_e_fasi_intermedie = RichText(
@@ -118,8 +125,7 @@ class IDocumentoPersonale(model.Schema):
     )
 
     data_inizio = schema.Date(
-        title=_(u'data_inizio', default=u'Data inizio'),
-        required=False,
+        title=_(u'data_inizio', default=u'Data inizio'), required=False
     )
 
     # TODO: vocabolario per i dataset collegati ad un documento
@@ -130,7 +136,7 @@ class IDocumentoPersonale(model.Schema):
         value_type=RelationChoice(
             title=_(u'Dataset collegato'),
             vocabulary='plone.app.vocabularies.Catalog',
-        )
+        ),
     )
 
     informazioni = RichText(
@@ -144,6 +150,5 @@ class IDocumentoPersonale(model.Schema):
     )
 
     box_aiuto = RichText(
-        title=_(u'box_aiuto', default=u'Box di aiuto'),
-        required=True,
+        title=_(u'box_aiuto', default=u'Box di aiuto'), required=True
     )

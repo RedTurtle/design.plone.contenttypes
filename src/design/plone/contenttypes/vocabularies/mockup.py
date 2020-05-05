@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-
-# from plone import api
 from design.plone.contenttypes import _
 from plone.dexterity.interfaces import IDexterityContent
 from zope.globalrequest import getRequest
@@ -44,9 +42,7 @@ class Mockup(object):
         for item in items:
             terms.append(
                 SimpleTerm(
-                    value=item.token,
-                    token=str(item.token),
-                    title=item.value,
+                    value=item.token, token=str(item.token), title=item.value
                 )
             )
         # Create a SimpleVocabulary from the terms list and return it:

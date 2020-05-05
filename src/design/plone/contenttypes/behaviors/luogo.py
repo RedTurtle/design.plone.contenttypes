@@ -1,16 +1,17 @@
-from plone.supermodel import model
-from plone.autoform.interfaces import IFormFieldProvider
+# -*- coding: utf-8 -*-
+from design.plone.contenttypes import _
 from plone.app.textfield import RichText
-from zope import schema
-from zope.component import adapter
-from plone.dexterity.interfaces import IDexterityContent
-from plone.autoform import directives as form
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
+from plone.autoform import directives as form
+from plone.autoform.interfaces import IFormFieldProvider
+from plone.dexterity.interfaces import IDexterityContent
+from plone.namedfile import field
+from plone.supermodel import model
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
-from plone.namedfile import field
+from zope import schema
+from zope.component import adapter
 from zope.interface import provider, implementer
-from design.plone.contenttypes import _
 
 
 @provider(IFormFieldProvider)
@@ -25,7 +26,7 @@ class ILuogo(model.Schema):
     )
 
     immagine = field.NamedImage(
-        title=_(u"immagine", default=u"Immagine"), required=True,
+        title=_(u"immagine", default=u"Immagine"), required=True
     )
 
     descrizione_breve = RichText(
@@ -43,9 +44,7 @@ class ILuogo(model.Schema):
         required=True,
     )
 
-    video = schema.TextLine(
-        title=_(u"video", default=u"Video"), required=True,
-    )
+    video = schema.TextLine(title=_(u"video", default=u"Video"), required=True)
 
     servizi_in_luogo = RichText(
         title=_(u"servizi_in_luogo", default=u"Servizi presenti nel luogo"),
@@ -58,10 +57,10 @@ class ILuogo(model.Schema):
     )
 
     indirizzo = schema.TextLine(
-        title=_(u"indirizzo", default=u"Indirizzo"), required=False,
+        title=_(u"indirizzo", default=u"Indirizzo"), required=False
     )
 
-    cap = schema.TextLine(title=_(u"cap", default=u"CAP"), required=False,)
+    cap = schema.TextLine(title=_(u"cap", default=u"CAP"), required=False)
 
     riferimento_telefonico_luogo = schema.TextLine(
         title=_(
@@ -77,11 +76,11 @@ class ILuogo(model.Schema):
     )
 
     quartiere = schema.TextLine(
-        title=_(u"quartiere", default=u"Quartiere"), required=False,
+        title=_(u"quartiere", default=u"Quartiere"), required=False
     )
 
     circoscrizione = schema.TextLine(
-        title=_(u"circoscrizione", default=u"Circoscrizione"), required=False,
+        title=_(u"circoscrizione", default=u"Circoscrizione"), required=False
     )
 
     orario_pubblico = RichText(
@@ -120,8 +119,9 @@ class ILuogo(model.Schema):
         required=False,
     )
 
-    # TODO: aggiungere il vocabolario da https://dataportal.daf.teamdigitale.it/#/vocabularies/subject-disciplines
-    # quando ritornano i dati dopo la migrazione, bisognera' vedere dove sono finiti, link invalido al momento
+    # TODO: aggiungere il vocabolario da https://dataportal.daf.teamdigitale.it/#/vocabularies/subject-disciplines  # noqa
+    # quando ritornano i dati dopo la migrazione, bisognera' vedere dove sono
+    # finiti, link invalido al momento
     categoria_prevalente = schema.Choice(
         title=_(u"categoria_prevalente", default=u"Categoria prevalente"),
         required=False,
@@ -129,21 +129,22 @@ class ILuogo(model.Schema):
         missing_value=(),
     )
 
-    # TODO: importare il db del MIBAC, codice DBUnico / ISIL. Non compare nel frontend
+    # TODO: importare il db del MIBAC, codice DBUnico / ISIL.
+    # Non compare nel frontend
     identificativo_mibac = schema.TextLine(
         title=_(u"identificativo_mibac", default=u"Identificativo"),
         required=True,
     )
 
     box_aiuto = RichText(
-        title=_(u"box_aiuto", default=u"Box di aiuto"), required=True,
+        title=_(u"box_aiuto", default=u"Box di aiuto"), required=True
     )
 
     persone_da_contattare = RelationList(
         title=u"Persone da contattare",
         default=[],
         value_type=RelationChoice(
-            title=_(u"Persona"), vocabulary="plone.app.vocabularies.Catalog",
+            title=_(u"Persona"), vocabulary="plone.app.vocabularies.Catalog"
         ),
         required=False,
     )
@@ -157,8 +158,7 @@ class ILuogo(model.Schema):
     )
 
     riferimento_pec = schema.TextLine(
-        title=_(u"riferimento_pec", default=u"Riferimento pec"),
-        required=False,
+        title=_(u"riferimento_pec", default=u"Riferimento pec"), required=False
     )
 
     # TODO: gestione correlati: novita'

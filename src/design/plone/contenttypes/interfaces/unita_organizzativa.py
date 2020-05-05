@@ -1,12 +1,13 @@
-from plone.supermodel import model
+# -*- coding: utf-8 -*-
+from design.plone.contenttypes import _
 from plone.app.textfield import RichText
-from zope import schema
-from plone.namedfile import field
-from z3c.relationfield.schema import RelationChoice
-from z3c.relationfield.schema import RelationList
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
-from design.plone.contenttypes import _
+from plone.namedfile import field
+from plone.supermodel import model
+from z3c.relationfield.schema import RelationChoice
+from z3c.relationfield.schema import RelationList
+from zope import schema
 
 
 class IUnitaOrganizzativa(model.Schema):
@@ -26,18 +27,18 @@ class IUnitaOrganizzativa(model.Schema):
     )
 
     immagine = field.NamedImage(
-        title=_(u"immagine", default=u"Immagine"), required=False,
+        title=_(u"immagine", default=u"Immagine"), required=False
     )
 
     competenze = RichText(
-        title=_(u"competenze", default=u"Competenze"), required=False,
+        title=_(u"competenze", default=u"Competenze"), required=False
     )
 
     legami_con_altre_strutture = RelationList(
         title=u"Legami con altre strutture",
         default=[],
         value_type=RelationChoice(
-            title=_(u"Struttura"), vocabulary="plone.app.vocabularies.Catalog",
+            title=_(u"Struttura"), vocabulary="plone.app.vocabularies.Catalog"
         ),
         required=False,
     )
@@ -120,12 +121,13 @@ class IUnitaOrganizzativa(model.Schema):
         },
     )
 
-    # # vocabolario di riferimento sara' da definire, probabilmente dinamico dai ct servizi presenti nella macro Amministrazione"
+    # # vocabolario di riferimento sara' da definire, probabilmente dinamico
+    # dai ct servizi presenti nella macro Amministrazione"
     # servizi_offerti = RelationList(
     #     title=u"Servizi offerti",
     #     default=[],
     #     value_type=RelationChoice(
-    #         title=_(u"Servizio"), vocabulary="plone.app.vocabularies.Catalog",
+    #         title=_(u"Servizio"), vocabulary="plone.app.vocabularies.Catalog"
     #     ),
     #     required=False,
     # )
@@ -139,12 +141,13 @@ class IUnitaOrganizzativa(model.Schema):
     #     },
     # )
 
-    # vocabolario di riferimento sara' da definire, probabilmente dinamico dai ct servizi presenti nella macro Amministrazione"
+    # vocabolario di riferimento sara' da definire, probabilmente dinamico dai
+    # ct servizi presenti nella macro Amministrazione"
     notizie_collegate = RelationList(
         title=u"Notizie collegate",
         default=[],
         value_type=RelationChoice(
-            title=_(u"Notizia"), vocabulary="plone.app.vocabularies.Catalog",
+            title=_(u"Notizia"), vocabulary="plone.app.vocabularies.Catalog"
         ),
         required=False,
     )
@@ -164,14 +167,14 @@ class IUnitaOrganizzativa(model.Schema):
     )
 
     box_aiuto = RichText(
-        title=_(u"box_aiuto", default=u"Box di aiuto"), required=True,
+        title=_(u"box_aiuto", default=u"Box di aiuto"), required=True
     )
 
     sedi = RelationList(
         title=u"Sedi",
         default=[],
         value_type=RelationChoice(
-            title=_(u"Sede"), vocabulary="plone.app.vocabularies.Catalog",
+            title=_(u"Sede"), vocabulary="plone.app.vocabularies.Catalog"
         ),
         required=False,
     )

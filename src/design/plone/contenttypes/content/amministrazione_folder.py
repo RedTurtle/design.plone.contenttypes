@@ -8,7 +8,7 @@ from plone.app.contenttypes.content import Folder
 
 @implementer(IAmministrazioneFolder)
 class AmministrazioneFolder(Folder):
-    """ 
+    """
     """
 
     pass
