@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-
 from plone import api
-from design.plone.contenttypes import _
 from plone.dexterity.interfaces import IDexterityContent
 from zope.globalrequest import getRequest
 from zope.interface import implementer
@@ -32,15 +30,12 @@ class PeopleVocabulary(object):
         if not IDexterityContent.providedBy(context):
             req = getRequest()
             context = req.PARENTS[0]
-        import pdb
-
-        pdb.set_trace()
         # create a list of SimpleTerm items:
         terms = []
         for result in results:
             brain = result.getObject()
             uid = brain.UID()
-            terms.append(SimpleTerm(value=uid, token=uid, title=brain.title,))
+            terms.append(SimpleTerm(value=uid, token=uid, title=brain.title))
         # Create a SimpleVocabulary from the terms list and return it:
         return SimpleVocabulary(terms)
 

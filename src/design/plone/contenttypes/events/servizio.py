@@ -1,10 +1,11 @@
+# -*- coding: utf-8 -*-
 from plone import api
 from Products.CMFPlone.interfaces import ISelectableConstrainTypes
 
 
 def servizioCreateHandler(servizio, event):
     """
-    Complete content type Servizio setup on added event, generating 
+    Complete content type Servizio setup on added event, generating
     missing folders, fields, etc.
 
     @param servizio: Content item

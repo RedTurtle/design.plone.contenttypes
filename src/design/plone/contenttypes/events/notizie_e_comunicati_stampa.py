@@ -1,5 +1,6 @@
-from Products.CMFPlone.utils import _createObjectByType
+# -*- coding: utf-8 -*-
 from Products.CMFPlone.interfaces import ISelectableConstrainTypes
+from Products.CMFPlone.utils import _createObjectByType
 
 
 def notiziaCreateHandler(notizia, event):

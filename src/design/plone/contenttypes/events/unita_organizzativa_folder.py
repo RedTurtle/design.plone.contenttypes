@@ -1,9 +1,5 @@
-from plone import api
-from Products.CMFPlone.interfaces import ISelectableConstrainTypes
+# -*- coding: utf-8 -*-
 
 
 def unitaOrganizzativaFolderCreateHandler(unitaOrganizzativaFolder, event):
     """ set unitaOrganizzativa folder restrictions """
-    import pdb
-    pdb.set_trace()
-

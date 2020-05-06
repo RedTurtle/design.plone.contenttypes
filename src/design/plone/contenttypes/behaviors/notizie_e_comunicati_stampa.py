@@ -1,17 +1,15 @@
-from plone.supermodel import model
-from plone.app.textfield import RichText
-from zope import schema
-from plone.namedfile import field
-from zope.interface import provider, implementer
-from zope.component import adapter
-from plone.dexterity.interfaces import IDexterityContent
-from plone.autoform.interfaces import IFormFieldProvider
-from plone.autoform import directives as form
-from plone.app.z3cform.widget import RelatedItemsFieldWidget
-from z3c.relationfield.schema import RelationChoice, RelationList
-from plone.app.vocabularies.catalog import CatalogSource
-from plone.app.z3cform.widget import RelatedItemsFieldWidget
+# -*- coding: utf-8 -*-
 from design.plone.contenttypes import _
+from plone.app.textfield import RichText
+from plone.app.z3cform.widget import RelatedItemsFieldWidget
+from plone.autoform import directives as form
+from plone.autoform.interfaces import IFormFieldProvider
+from plone.dexterity.interfaces import IDexterityContent
+from plone.supermodel import model
+from z3c.relationfield.schema import RelationChoice, RelationList
+from zope import schema
+from zope.component import adapter
+from zope.interface import provider, implementer
 
 
 # TODO: merge with NEWS
@@ -80,7 +78,7 @@ class INotizieEComunicatiStampa(model.Schema):
     )
 
     # immagine = field.NamedImage(
-    #     title=_(u"immagine", default=u"Immagine in evidenza"), required=False,
+    #     title=_(u"immagine", default=u"Immagine in evidenza"), required=False
     # )
 
     tassonomia_argomenti = schema.List(
@@ -93,7 +91,8 @@ class INotizieEComunicatiStampa(model.Schema):
         required=False,
     )
 
-    # come trattiamo le back reference, ad esempio quelle a "Persone" e "Luoghi"?
+    # come trattiamo le back reference, ad esempio quelle a
+    # "Persone" e "Luoghi"?
     # multiref usando due cartelle come "buche"
     # non genera duplicazione? quei dati hanno gia' delle buche
 
@@ -137,9 +136,7 @@ class INotizieEComunicatiStampa(model.Schema):
         },
     )
 
-    dataset = RichText(
-        title=_(u"dataset", default=u"Dataset"), required=False,
-    )
+    dataset = RichText(title=_(u"dataset", default=u"Dataset"), required=False)
 
     servizi_collegati = RelationList(
         title=_(

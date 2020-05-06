@@ -1,7 +1,7 @@
+# -*- coding: utf-8 -*-
 from plone.supermodel import model
 from plone.app.textfield import RichText
 from zope import schema
-from plone.namedfile import field
 from design.plone.contenttypes import _
 
 
@@ -21,28 +21,30 @@ class IPratica(model.Schema):
         required=False,
     )
 
-    # questo viene gestito dal workflow di Plone ma fa riferimento ad una tassonomia "Lista stati di una pratica"
+    # questo viene gestito dal workflow di Plone ma fa riferimento ad una
+    # tassonomia "Lista stati di una pratica"
     stato_pratica = schema.TextLine(
         title=_(u'stato_pratica', default=u'Stato della pratica'),
-        required=True
+        required=True,
     )
 
     # TODO: aggiungere tassonomia e vocabolario rilevante
     servizio_origine = schema.Choice(
-        title=_(u'servizio_origine', default=u'Servizio che origina la pratica'),
-        # vocabolario di riferimento sara' il servizio che genera il task e permette di soddisfarlo
+        title=_(
+            u'servizio_origine', default=u'Servizio che origina la pratica'
+        ),
+        # vocabolario di riferimento sara' il servizio che genera il task e
+        # permette di soddisfarlo
         vocabulary='design.plone.contenttypes.Mockup',
         required=False,
     )
 
     contenuto = RichText(
-        title=_(u'contenuto', default=u'Contenuto'),
-        required=True,
+        title=_(u'contenuto', default=u'Contenuto'), required=True
     )
 
     contatti = RichText(
-        title=_(u'contatti', default=u'Contatti'),
-        required=True,
+        title=_(u'contatti', default=u'Contatti'), required=True
     )
 
     azioni_utente = schema.Choice(
@@ -51,4 +53,3 @@ class IPratica(model.Schema):
         vocabulary='design.plone.contenttypes.ListaAzioniPratica',
         required=True,
     )
-

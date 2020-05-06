@@ -1,5 +1,6 @@
-from zope.interface import Interface
+# -*- coding: utf-8 -*-
 from plone.restapi.deserializer import json_body
+from zope.interface import Interface
 
 
 class ICorrelati(Interface):

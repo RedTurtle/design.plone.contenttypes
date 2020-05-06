@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from plone import api
 from Products.CMFPlone.interfaces import ISelectableConstrainTypes
 
@@ -12,9 +13,7 @@ def unitaOrganizzativaCreateHandler(unitaOrganizzativa, event):
     @param event: Event that triggers the method (onAdded event)
     '''
     allegati = api.content.create(
-        type='Document',
-        title='Allegati',
-        container=unitaOrganizzativa,
+        type='Document', title='Allegati', container=unitaOrganizzativa
     )
 
     allegatiConstraints = ISelectableConstrainTypes(allegati)

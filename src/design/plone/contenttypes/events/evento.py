@@ -1,11 +1,11 @@
-# from plone import api
+# -*- coding: utf-8 -*-
 from Products.CMFPlone.utils import _createObjectByType
 from Products.CMFPlone.interfaces import ISelectableConstrainTypes
 
 
 def eventoCreateHandler(evento, event):
     '''
-    Complete content type evento setup on added event, generating 
+    Complete content type evento setup on added event, generating
     missing folders, fields, etc.
 
     @param evento: Content item

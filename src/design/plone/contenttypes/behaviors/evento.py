@@ -1,19 +1,20 @@
-from plone.supermodel import model
-from plone.autoform.interfaces import IFormFieldProvider
+# -*- coding: utf-8 -*-
+from design.plone.contenttypes import _
+from plone import api
 from plone.app.textfield import RichText
-from zope import schema
-from zope.component import adapter
+from plone.app.z3cform.widget import RelatedItemsFieldWidget
+from plone.autoform import directives as form
+from plone.autoform.interfaces import IFormFieldProvider
 from plone.dexterity.interfaces import IDexterityContent
+from plone.namedfile import field
+from plone.supermodel import model
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
-from plone.namedfile import field
+from zope import schema
+from zope.component import adapter
 from zope.interface import provider, implementer
-from plone.autoform import directives as form
-from plone.app.z3cform.widget import RelatedItemsFieldWidget
-from design.plone.contenttypes import _
 from zope.schema.interfaces import IContextSourceBinder
 from zope.schema.vocabulary import SimpleVocabulary
-from plone import api
 
 
 @implementer(IContextSourceBinder)
@@ -29,9 +30,7 @@ class SourceGeneratorTest(object):
             if item is not None:
                 obj = item.getObject()
                 terms.append(
-                    SimpleVocabulary.createTerm(
-                        obj.id, str(obj.id), obj.title,
-                    )
+                    SimpleVocabulary.createTerm(obj.id, str(obj.id), obj.title)
                 )
 
         return SimpleVocabulary(terms)
@@ -44,7 +43,7 @@ class IEvento(model.Schema):
 
     # questo deve essere progressivo!!
     identifier = schema.TextLine(
-        title=_(u"identifier", default=u"Identifier"), required=True,
+        title=_(u"identifier", default=u"Identifier"), required=True
     )
 
     # TODO: come trattare il campo tipologia dell'evento
@@ -52,7 +51,7 @@ class IEvento(model.Schema):
     # TODO: sottotitolo
 
     immagine = field.NamedImage(
-        title=_(u"immagine", default=u"Immagine"), required=False,
+        title=_(u"immagine", default=u"Immagine"), required=False
     )
 
     tassonomia_argomenti = schema.List(
@@ -66,12 +65,12 @@ class IEvento(model.Schema):
     )
 
     evento_genitore = schema.Bool(
-        title=_(u"evento_genitore", default=u"Evento genitore"), required=True,
+        title=_(u"evento_genitore", default=u"Evento genitore"), required=True
     )
 
     # ci sara un calendario eventi
     # calendario_eventi_link = RichText(
-    #     title=_(u'calendario_eventi_link', default=u'Vedi calendario eventi'),
+    #     title=_(u'calendario_eventi_link', default=u'Vedi calendario eventi')
     #     required=False,
     # )
 
@@ -90,7 +89,7 @@ class IEvento(model.Schema):
     # )
 
     introduzione = RichText(
-        title=_(u"introduzione", default=u"Introduzione"), required=False,
+        title=_(u"introduzione", default=u"Introduzione"), required=False
     )
 
     # TODO: decidere come implementare i video e i media
@@ -140,29 +139,29 @@ class IEvento(model.Schema):
     )
 
     indirizzo = schema.TextLine(
-        title=_(u"indirizzo", default=u"Indirizzo"), required=True,
+        title=_(u"indirizzo", default=u"Indirizzo"), required=True
     )
 
     quartiere = schema.TextLine(
-        title=_(u"quartiere", default=u"Quartiere"), required=False,
+        title=_(u"quartiere", default=u"Quartiere"), required=False
     )
 
     circoscrizione = schema.TextLine(
-        title=_(u"circoscrizione", default=u"Circoscrizione"), required=False,
+        title=_(u"circoscrizione", default=u"Circoscrizione"), required=False
     )
 
-    cap = schema.TextLine(title=_(u"cap", default=u"CAP"), required=True,)
+    cap = schema.TextLine(title=_(u"cap", default=u"CAP"), required=True)
 
     date_significative = RichText(
         title=_(u"date_significative", default=u"Date significative"),
         required=True,
     )
 
-    orari = RichText(title=_(u"orari", default=u"Orari"), required=True,)
+    orari = RichText(title=_(u"orari", default=u"Orari"), required=True)
 
     # TODO: come gestire il campo "Aggiungi al calendario"
 
-    prezzo = RichText(title=_(u"prezzo", default=u"Prezzo"), required=True,)
+    prezzo = RichText(title=_(u"prezzo", default=u"Prezzo"), required=True)
 
     organizzato_da_esterno = RichText(
         title=_(u"organizzato_da_esterno", default=u"Organizzato da"),
@@ -237,14 +236,15 @@ class IEvento(model.Schema):
 
     # buggatissimo con source=CatalogSource(portal_type=['Venue']),
     #   Module plone.app.vocabularies.principals, line 147, in getTerm
-    # Module plone.app.vocabularies.principals, line 113, in _get_term_from_source
+    # Module plone.app.vocabularies.principals, line 113, in
+    # _get_term_from_source
     # ValueError: value or token must be provided (only one of those)
 
     lista_eventi_figli = RelationList(
         title=u"Lista eventi figli",
         default=[],
         value_type=RelationChoice(
-            title=_(u"Evento figlio"), source=SourceGeneratorTest("Venue"),
+            title=_(u"Evento figlio"), source=SourceGeneratorTest("Venue")
         ),
         required=False,
     )
@@ -265,13 +265,11 @@ class IEvento(model.Schema):
     )
 
     patrocinato_da = schema.TextLine(
-        title=_(u"patrocinato_da", default=u"Patrocinato da"), required=False,
+        title=_(u"patrocinato_da", default=u"Patrocinato da"), required=False
     )
 
     # qui ci va anche loghi
-    sponsor = RichText(
-        title=_(u"sponsor", default=u"Sponsor"), required=False,
-    )
+    sponsor = RichText(title=_(u"sponsor", default=u"Sponsor"), required=False)
 
     # ref
     strutture_politiche = RelationList(
@@ -294,7 +292,7 @@ class IEvento(model.Schema):
     )
 
     box_aiuto = RichText(
-        title=_(u"box_aiuto", default=u"Box di aiuto"), required=True,
+        title=_(u"box_aiuto", default=u"Box di aiuto"), required=True
     )
 
     # TODO: come gestire correlati: novita'
@@ -308,4 +306,3 @@ class Evento(object):
 
     def __init__(self, context):
         self.context = context
-

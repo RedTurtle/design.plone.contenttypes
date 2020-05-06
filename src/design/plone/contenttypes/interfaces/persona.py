@@ -1,13 +1,13 @@
-from plone.supermodel import model
+# -*- coding: utf-8 -*-
+from design.plone.contenttypes import _
 from plone.app.textfield import RichText
-from zope import schema
-from plone.namedfile import field
-from z3c.relationfield.schema import RelationChoice
-from z3c.relationfield.schema import RelationList
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
-
-from design.plone.contenttypes import _
+from plone.namedfile import field
+from plone.supermodel import model
+from z3c.relationfield.schema import RelationChoice
+from z3c.relationfield.schema import RelationList
+from zope import schema
 
 
 class IPersona(model.Schema):
@@ -15,16 +15,12 @@ class IPersona(model.Schema):
     """
 
     foto_persona = field.NamedImage(
-        title=_(u"immagine", default=u"Immagine"), required=False,
+        title=_(u"immagine", default=u"Immagine"), required=False
     )
 
-    ruolo = schema.TextLine(
-        title=_(u"ruolo", default=u"Ruolo"), required=True,
-    )
+    ruolo = schema.TextLine(title=_(u"ruolo", default=u"Ruolo"), required=True)
 
-    ruolo = schema.TextLine(
-        title=_(u"ruolo", default=u"Ruolo"), required=True,
-    )
+    ruolo = schema.TextLine(title=_(u"ruolo", default=u"Ruolo"), required=True)
 
     organizzazione_riferimento = RelationList(
         title=_(
@@ -116,12 +112,10 @@ class IPersona(model.Schema):
     )
 
     competenze = RichText(
-        title=_(u"competenze", default=u"Competenze"), required=False,
+        title=_(u"competenze", default=u"Competenze"), required=False
     )
 
-    deleghe = RichText(
-        title=_(u"deleghe", default=u"Deleghe"), required=False,
-    )
+    deleghe = RichText(title=_(u"deleghe", default=u"Deleghe"), required=False)
 
     tipologia_persona = schema.Choice(
         title=_(u"tipologia_persona", default=u"Tipologia persona"),
@@ -135,15 +129,15 @@ class IPersona(model.Schema):
     )
 
     biografia = RichText(
-        title=_(u"biografia", default=u"Biografia"), required=False,
+        title=_(u"biografia", default=u"Biografia"), required=False
     )
 
     telefono = schema.TextLine(
-        title=_(u"telefono", default=u"Numero di telefono"), required=False,
+        title=_(u"telefono", default=u"Numero di telefono"), required=False
     )
 
     email = schema.TextLine(
-        title=_(u"email", default=u"Indirizzo email"), required=False,
+        title=_(u"email", default=u"Indirizzo email"), required=False
     )
     informazioni_di_contatto = RichText(
         title=_(
@@ -170,7 +164,7 @@ class IPersona(model.Schema):
     #    )
 
     atto_nomina = field.NamedFile(
-        title=_(u"atto_nomina", default=u"Atto nomina"), required=False,
+        title=_(u"atto_nomina", default=u"Atto nomina"), required=False
     )
 
     #    situazione_patrimoniale = field.NamedFile(

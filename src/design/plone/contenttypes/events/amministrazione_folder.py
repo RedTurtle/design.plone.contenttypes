@@ -1,8 +1,11 @@
-from plone import api
+# -*- coding: utf-8 -*-
+# from plone import api
 
 
 def amministrazioneFolderCreateHandler(amministrazione, event):
-    """ create Amministrazione, set constraints and create structure tree if necessary 
+    """
+    create Amministrazione, set constraints and create structure
+    tree if necessary
     """
 
     # api.content.create(
@@ -38,4 +41,3 @@ def amministrazioneFolderCreateHandler(amministrazione, event):
     # api.content.create(
     #     type="LuoghiFolder", title="Luoghi", container=amministrazione,
     # )
-

@@ -1,14 +1,16 @@
+# -*- coding: utf-8 -*-
 from plone.restapi.serializer.dxcontent import (
     SerializeFolderToJson as BaseSerializer,
 )
 from design.plone.contenttypes.interfaces.unita_organizzativa import (
     IUnitaOrganizzativa,
 )
+
+from plone import api
 from plone.restapi.interfaces import ISerializeToJson
 from zope.component import adapter
-from zope.interface import Interface
 from zope.interface import implementer
-from plone import api
+from zope.interface import Interface
 
 
 class SerializeFolderToJson(BaseSerializer):
