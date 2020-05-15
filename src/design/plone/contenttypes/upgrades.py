@@ -80,3 +80,7 @@ def from_1008_to_1009(context):
 
 def from_1009_to_1010(context):
     add_indexes_to_catalog(["ufficio_responsabile"], "KeywordIndex")
+
+
+def from_1011_to_1012(context):
+    add_indexes_to_catalog(["tassonomia_argomenti"], "KeywordIndex")

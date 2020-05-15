@@ -3,18 +3,25 @@ from design.plone.contenttypes import _
 from plone.app.textfield import RichText
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
-from plone.namedfile import field
 from plone.supermodel import model
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
+from zope import schema
 
 
 class IPaginaArgomento(model.Schema):
     """ Marker interface for PaginaArgomento
     """
 
-    immagine = field.NamedBlobImage(
-        title=_(u"immagine", default=u"Immagine"), required=False
+    tassonomia_argomenti = schema.Choice(
+        title=_(u"tassonomia_argomenti", default=u"Tassonomia argomenti"),
+        description=_(
+            u"tassonomia_description",
+            default=u"Scegli l'argomento di riferimento; utile per capire a"
+            " quali elementi del sito questo argomento è collegato",
+        ),
+        vocabulary="design.plone.contenttypes.TagsVocabulary",
+        required=True,
     )
 
     area_appartenenza = RelationList(
@@ -31,7 +38,7 @@ class IPaginaArgomento(model.Schema):
         RelatedItemsFieldWidget,
         pattern_options={
             "maximumSelectionSize": 10,
-            "selectableTypes": ["Folder", "UnitaOrganizzativaFolder"],
+            "selectableTypes": ["Unita organizzativa"],
             # "basePath": "/amministrazione/aree-amministrative",
         },
     )
@@ -52,7 +59,7 @@ class IPaginaArgomento(model.Schema):
         RelatedItemsFieldWidget,
         pattern_options={
             "maximumSelectionSize": 10,
-            "selectableTypes": ["Folder", "UnitaOrganizzativaFodler"],
+            "selectableTypes": ["Unita organizzativa"],
             # "basePath": "/amministrazione",
         },
     )

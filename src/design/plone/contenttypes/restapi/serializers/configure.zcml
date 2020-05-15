@@ -5,6 +5,7 @@
     <adapter factory=".news.PersonaSerializer" />
     <adapter factory=".news.ServizioSerializer" />
     <adapter factory=".servizi.UOSerializer" />
+    <adapter factory=".pagina_argomento.PaginaArgomentoSerializer" />
 
 
 </configure>
