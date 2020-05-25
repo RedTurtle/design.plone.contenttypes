@@ -6,5 +6,7 @@
     <adapter name="ufficio_responsabile"
              factory=".servizio.ufficio_responsabile" />
 
+    <adapter name="tassonomia_argomenti" 
+             factory=".common.tassonomia_argomenti" />
 </configure>
 

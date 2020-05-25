@@ -1,10 +1,9 @@
-from plone.dexterity.browser import add
+# -*- coding: utf-8 -*-
+from design.plone.contenttypes.adapters.interfaces import ICorrelati
 from plone.dexterity.browser import edit
 from Products.Five import BrowserView
-from design.plone.contenttypes.adapters.interfaces import ICorrelati
 from zope.component import getMultiAdapter
 from zope.component.interfaces import ComponentLookupError
-from plone.dexterity.browser import edit
 
 
 class Correlati(BrowserView):
@@ -12,9 +11,6 @@ class Correlati(BrowserView):
 
     def __call__(self):
         correlati = None
-        import pdb
-
-        pdb.set_trace()
         try:
             correlati = getMultiAdapter(
                 (self.context, self.context.REQUEST),

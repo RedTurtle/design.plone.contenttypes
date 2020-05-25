@@ -1,12 +1,13 @@
-from plone.supermodel import model
+# -*- coding: utf-8 -*-
+from design.plone.contenttypes import _
 from plone.app.textfield import RichText
-from zope import schema
-from plone.namedfile import field
-from z3c.relationfield.schema import RelationChoice
-from z3c.relationfield.schema import RelationList
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
-from design.plone.contenttypes import _
+from plone.namedfile import field
+from plone.supermodel import model
+from z3c.relationfield.schema import RelationChoice
+from z3c.relationfield.schema import RelationList
+from zope import schema
 
 
 class IDocumento(model.Schema):
@@ -19,15 +20,16 @@ class IDocumento(model.Schema):
     )
 
     immagine = field.NamedBlobImage(
-        title=_(u"immagine", default=u"Immagine"), required=False,
+        title=_(u"immagine", default=u"Immagine"), required=False
     )
 
     # TODO: come gestire la tipologia del documento
 
     # TODO: come gestire la sottotipologia del documento
 
-    # il vocabolario assiciato non e' completo. Avrebbe ben 4 livelli considerata la
-    # prima voce, serve un altro vocabolario per la prima voce, ma come farlo a 3 livelli
+    # il vocabolario assiciato non e' completo. Avrebbe ben 4 livelli
+    # considerata la prima voce, serve un altro vocabolario per la prima voce,
+    # ma come farlo a 3 livelli
     # tassonomia_argomenti = schema.Choice(
     #     title=_(u"tassonomia_argomenti", default=u"Tassonomia argomenti"),
     #     required=True,
@@ -69,7 +71,7 @@ class IDocumento(model.Schema):
         },
     )
 
-    # area amministrativa non e' un ct ma un' aggregazione di ct, come facciamo?
+    # area amministrativa non è un ct ma un' aggregazione di ct, come facciamo?
     area_responsabile = RelationList(
         title=_(
             u"area_responsabile", default=u"Area responsabile del documento"
@@ -95,7 +97,7 @@ class IDocumento(model.Schema):
         title=u"Autori",
         default=[],
         value_type=RelationChoice(
-            title=_(u"Autore"), vocabulary="plone.app.vocabularies.Catalog",
+            title=_(u"Autore"), vocabulary="plone.app.vocabularies.Catalog"
         ),
         required=False,
     )
@@ -135,7 +137,7 @@ class IDocumento(model.Schema):
     )
 
     canale_digitale_servizio_correlato = schema.TextLine(
-        title=_(u"Canale digitale al servizio collegato"), required=False,
+        title=_(u"Canale digitale al servizio collegato"), required=False
     )
 
     # questo potrebbe essere qualcosa piu complicato di una semplice data
@@ -153,7 +155,7 @@ class IDocumento(model.Schema):
         title=u"Dataset collegati",
         default=[],
         value_type=RelationChoice(
-            title=_(u"Dataset"), vocabulary="plone.app.vocabularies.Catalog",
+            title=_(u"Dataset"), vocabulary="plone.app.vocabularies.Catalog"
         ),
         required=False,
     )
@@ -171,15 +173,15 @@ class IDocumento(model.Schema):
         required=False,
     )
 
-    # i riferimenti normativi li deve linkare chi si occupa di caricare e/o fare
-    # la stesura del documento (secondo me)
+    # i riferimenti normativi li deve linkare chi si occupa di caricare e/o
+    # fare la stesura del documento (secondo me)
     riferimenti_normativi = RichText(
         title=_(u"riferimenti_normativi", default=u"Riferimenti normativi"),
         required=False,
     )
 
     protocollo = schema.TextLine(
-        title=_(u"protocollo", default=u"Protocollo"), required=True,
+        title=_(u"protocollo", default=u"Protocollo"), required=True
     )
 
     data_protocollo = schema.Date(
@@ -188,7 +190,7 @@ class IDocumento(model.Schema):
     )
 
     box_aiuto = RichText(
-        title=_(u"box_aiuto", default=u"Box di aiuto"), required=True,
+        title=_(u"box_aiuto", default=u"Box di aiuto"), required=True
     )
 
     # come gestiamo "e' parte del life event"?
@@ -200,4 +202,3 @@ class IDocumento(model.Schema):
         vocabulary="design.plone.contenttypes.AllLifeEventsVocabulary",
     )
     # come gestiamo correlati: novita, documenti, servizi?
-

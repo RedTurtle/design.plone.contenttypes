@@ -9,5 +9,8 @@
  <index name="tipologia_notizia" meta_type="FieldIndex">
   <indexed_attr value="tipologia_notizia"/>
  </index>
+  <index name="tassonomia_argomenti" meta_type="KeywordIndex">
+  <indexed_attr value="tassonomia_argomenti"/>
+ </index>
  <column value="tipologia_notizia"/>
 </object>

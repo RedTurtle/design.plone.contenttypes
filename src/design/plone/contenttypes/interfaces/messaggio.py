@@ -1,8 +1,9 @@
-from plone.supermodel import model
-from plone.app.textfield import RichText
-from zope import schema
-from plone.namedfile import field
+# -*- coding: utf-8 -*-
 from design.plone.contenttypes import _
+from plone.app.textfield import RichText
+from plone.namedfile import field
+from plone.supermodel import model
+from zope import schema
 
 
 class IMessaggio(model.Schema):
@@ -14,9 +15,11 @@ class IMessaggio(model.Schema):
         required=True,
     )
 
-    # "Titolo del messaggio" e "Descrizione" vengono lasciati in titolo e descrizione di Plone
+    # "Titolo del messaggio" e "Descrizione" vengono lasciati in titolo e
+    # descrizione di Plone
 
-    # TODO: aggiungere tassonomia delle tipologie di azioni richieste al cittadino
+    # TODO: aggiungere tassonomia delle tipologie di azioni richieste al
+    # cittadino
     azioni_richieste = schema.Choice(
         title=_(u'azioni_richieste', default=u'Azioni richieste'),
         required=True,
@@ -35,10 +38,14 @@ class IMessaggio(model.Schema):
         required=True,
     )
 
-    # come gestiamo "Servizio che genera il messaggio"? Link, ref, RichText con solo il link alla pagina?
+    # come gestiamo "Servizio che genera il messaggio"? Link, ref, RichText
+    # con solo il link alla pagina?
 
     data_scadenza_procedura = schema.Date(
-        title=_(u'data_scadenza_procedura', default=u'Data di scadenza della procedura'),
+        title=_(
+            u'data_scadenza_procedura',
+            default=u'Data di scadenza della procedura',
+        ),
         required=False,
     )
 
@@ -54,9 +61,7 @@ class IMessaggio(model.Schema):
         title=_(u'documenti_allegati', default=u'Documenti allegati'),
         required=False,
     )
-      
-    box_aiuto = RichText(
-        title=_(u'box_aiuto', default=u'Box di aiuto'),
-        required=True,
-    )
 
+    box_aiuto = RichText(
+        title=_(u'box_aiuto', default=u'Box di aiuto'), required=True
+    )

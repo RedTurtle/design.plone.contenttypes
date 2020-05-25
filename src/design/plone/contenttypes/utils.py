@@ -1,6 +1,6 @@
+# -*- coding: utf-8 -*-
 from plone import api
 from Products.CMFPlone.interfaces import ISelectableConstrainTypes
-import re
 
 TASSONOMIA_SERVIZI = [
     "Anagrafe e stato civile",
@@ -38,7 +38,7 @@ TASSONOMIA_NEWS = ["Notizie", "Comunicati", "Eventi"]
 def folderSubstructureGenerator(container, title):
 
     tree_root = api.content.create(
-        container=container, type="Document", id=title.lower(), title=title,
+        container=container, type="Document", title=title
     )
     api.content.transition(obj=tree_root, transition="publish")
     if title == "Servizi":
@@ -46,13 +46,8 @@ def folderSubstructureGenerator(container, title):
         tree_rootConstraints.setConstrainTypesMode(1)
         tree_rootConstraints.setLocallyAllowedTypes(("Document",))
         for ts in TASSONOMIA_SERVIZI:
-            _ = ts.lower()
-            _id = re.sub(r"[^a-z\s]", "", _)
             folder = api.content.create(
-                container=tree_root,
-                type="Document",
-                id=re.sub(" ", "-", _id),
-                title=ts,
+                container=tree_root, type="Document", title=ts
             )
 
             folderConstraints = ISelectableConstrainTypes(folder)
@@ -65,13 +60,8 @@ def folderSubstructureGenerator(container, title):
         tree_rootConstraints.setLocallyAllowedTypes(("Document",))
 
         for td in TASSONOMIA_DOCUMENTI:
-            _ = td.lower()
-            _id = re.sub(r"[^a-z\s]", "", _)
             folder = api.content.create(
-                container=tree_root,
-                type="Document",
-                id=re.sub(" ", "-", _id),
-                title=td,
+                container=tree_root, type="Document", title=td
             )
 
             folderConstraints = ISelectableConstrainTypes(folder)
@@ -86,13 +76,8 @@ def folderSubstructureGenerator(container, title):
         tree_rootConstraints.setConstrainTypesMode(1)
         tree_rootConstraints.setLocallyAllowedTypes(("Document",))
         for tn in TASSONOMIA_NEWS:
-            _ = tn.lower()
-            _id = re.sub(r"[^a-z\s]", "", _)
             folder = api.content.create(
-                container=tree_root,
-                type="Document",
-                id=re.sub(" ", "-", _id),
-                title=tn,
+                container=tree_root, type="Document", title=tn
             )
 
             folderConstraints = ISelectableConstrainTypes(folder)
@@ -106,11 +91,11 @@ def folderSubstructureGenerator(container, title):
         tree_rootConstraints = ISelectableConstrainTypes(tree_root)
         tree_rootConstraints.setConstrainTypesMode(1)
         tree_rootConstraints.setLocallyAllowedTypes(
-            ("PersoneFolder", "UnitaOrganizzativaFolder", "LuoghiFolder",)
+            ("PersoneFolder", "UnitaOrganizzativaFolder", "LuoghiFolder")
         )
 
         api.content.create(
-            type="PersoneFolder", title="Politici", container=tree_root,
+            type="PersoneFolder", title="Politici", container=tree_root
         )
         api.content.create(
             type="PersoneFolder",
@@ -138,5 +123,5 @@ def folderSubstructureGenerator(container, title):
             container=tree_root,
         )
         api.content.create(
-            type="LuoghiFolder", title="Luoghi", container=tree_root,
+            type="LuoghiFolder", title="Luoghi", container=tree_root
         )

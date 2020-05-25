@@ -7,7 +7,11 @@ from plone.app.testing import IntegrationTesting
 from plone.app.testing import PloneSandboxLayer
 from plone.testing import z2
 
+import collective.folderishtypes
 import design.plone.contenttypes
+import collective.venue
+import plone.formwidget.geolocation
+import plone.restapi
 
 
 class DesignPloneContenttypesLayer(PloneSandboxLayer):
@@ -18,8 +22,10 @@ class DesignPloneContenttypesLayer(PloneSandboxLayer):
         # Load any other ZCML that is required for your tests.
         # The z3c.autoinclude feature is disabled in the Plone fixture base
         # layer.
-        import plone.restapi
         self.loadZCML(package=plone.restapi)
+        self.loadZCML(package=collective.folderishtypes)
+        self.loadZCML(package=collective.venue)
+        self.loadZCML(package=plone.formwidget.geolocation)
         self.loadZCML(package=design.plone.contenttypes)
 
     def setUpPloneSite(self, portal):

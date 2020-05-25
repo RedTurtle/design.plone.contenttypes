@@ -82,10 +82,10 @@
   <genericsetup:upgradeStep
     source="1011"
     destination="1012"
-    title="Removed behaviors for CT Evento"
+    title="Add index for PaginaArgomento"
     description=""
     profile="design.plone.contenttypes:default"
-    handler=".upgrades.import_registry"
+    handler=".upgrades.from_1011_to_1012"
     />
 
   <genericsetup:upgradeStep
@@ -95,5 +95,6 @@
     description=""
     profile="design.plone.contenttypes:default"
     handler=".upgrades.import_registry"
+
     />
 </configure>
