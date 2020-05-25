@@ -8,5 +8,8 @@
     <element value="plone.eventlocation" remove="True"/>
     <element value="plone.eventattendees" remove="True"/>
     <element value="plone.richtext" remove="True"/>
+    <element value="collective.venue.behaviors.IOrganizer" remove="True"/>
+    <element value="collective.venue.behaviors.ILocation" remove="True"/>
+    <element value="plone.leadimage"/>
   </property>
 </object>

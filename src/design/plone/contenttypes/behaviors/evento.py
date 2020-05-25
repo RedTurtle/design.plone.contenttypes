@@ -51,10 +51,6 @@ class IEvento(model.Schema):
 
     # TODO: sottotitolo
 
-    immagine = field.NamedImage(
-        title=_(u"immagine", default=u"Immagine"), required=False,
-    )
-
     tassonomia_argomenti = schema.List(
         title=_(u"tassonomia_argomenti", default=u"Tassonomia argomenti"),
         default=[],
@@ -135,7 +131,7 @@ class IEvento(model.Schema):
         RelatedItemsFieldWidget,
         pattern_options={
             "maximumSelectionSize": 1,
-            "selectableTypes": ["Luogo"],
+            "selectableTypes": ["Venue"],
         },
     )
 
@@ -220,7 +216,7 @@ class IEvento(model.Schema):
     # ref
     evento_supportato_da = RelationList(
         title=_(u"supportato_da", default=u"Evento supportato da"),
-        required=True,
+        required=False,
         value_type=RelationChoice(
             title=_(u"Evento supportato da"),
             vocabulary="plone.app.vocabularies.Catalog",
@@ -308,4 +304,3 @@ class Evento(object):
 
     def __init__(self, context):
         self.context = context
-

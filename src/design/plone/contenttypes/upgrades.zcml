@@ -78,4 +78,22 @@
     profile="design.plone.contenttypes:default"
     handler=".upgrades.import_registry"
     />
+
+  <genericsetup:upgradeStep
+    source="1011"
+    destination="1012"
+    title="Removed behaviors for CT Evento"
+    description=""
+    profile="design.plone.contenttypes:default"
+    handler=".upgrades.import_registry"
+    />
+
+  <genericsetup:upgradeStep
+    source="1012"
+    destination="1013"
+    title="Changes for CT Evento, removed image field and added plone.leadimage behavior"
+    description=""
+    profile="design.plone.contenttypes:default"
+    handler=".upgrades.import_registry"
+    />
 </configure>
