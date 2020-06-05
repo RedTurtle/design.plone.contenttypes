@@ -107,7 +107,7 @@ class PaginaArgomentoSerializer(BaseSerializer):
         result["related_news"] = get_related_news(
             catalog, self.context.tassonomia_argomenti
         )
-        result["related_servizio"] = get_related_servizio(
+        result["related_services"] = get_related_servizio(
             catalog, self.context.tassonomia_argomenti
         )
 
@@ -115,7 +115,7 @@ class PaginaArgomentoSerializer(BaseSerializer):
             catalog, self.context.tassonomia_argomenti
         )
 
-        result["related_doc"] = get_related_doc(
+        result["related_docs"] = get_related_doc(
             catalog, self.context.tassonomia_argomenti
         )
 

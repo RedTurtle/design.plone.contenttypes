@@ -65,7 +65,8 @@ class IPaginaArgomento(model.Schema):
     )
 
     box_aiuto = RichText(
-        title=_(u"box_aiuto", default=u"Box di aiuto"), required=False
+        title=_(u"box_aiuto", default=u"Ulteriori informazioni"),
+        required=False,
     )
 
     # TODO: come gestire "in primo piano", "servizi", "novita'", "documenti",
