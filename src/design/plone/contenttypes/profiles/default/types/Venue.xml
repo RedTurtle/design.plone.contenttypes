@@ -6,9 +6,9 @@
 <property name="schema">collective.venue.interfaces.IVenue</property>
  <property name="behaviors" purge="False">
   <element value="design.plone.contenttypes.behaviors.luogo.ILuogo"/>
-  <element value="collective.address.behaviors.IAddress" remove="True"/>
-  <element value="collective.address.behaviors.IContact" remove="True"/>
+  <!-- <element value="collective.address.behaviors.IAddress" remove="True"/> -->
+  <!-- <element value="collective.address.behaviors.IContact" remove="True"/> -->
   <element value="collective.address.behaviors.ISocial" remove="True"/>
  </property>
- 
+
 </object>

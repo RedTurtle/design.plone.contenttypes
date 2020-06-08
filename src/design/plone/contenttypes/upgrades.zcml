@@ -97,4 +97,74 @@
     handler=".upgrades.import_registry"
 
     />
+
+  <genericsetup:upgradeStep
+    source="1013"
+    destination="1014"
+    title="Added IAddress again to Venue"
+    description=""
+    profile="design.plone.contenttypes:default"
+    handler=".upgrades.import_registry"
+
+    />
+
+  <genericsetup:upgradeStep
+    source="1014"
+    destination="1015"
+    title="Added IAddress to UO and Servizio"
+    description=""
+    profile="design.plone.contenttypes:default"
+    handler=".upgrades.import_registry"
+
+    />
+
+  <genericsetup:upgradeStep
+    source="1015"
+    destination="1016"
+    title="Added IContact to UO, Venue and Servizio"
+    description=""
+    profile="design.plone.contenttypes:default"
+    handler=".upgrades.import_registry"
+
+    />
+
+    <genericsetup:upgradeStep
+    source="1016"
+    destination="1017"
+    title="Added video_evento field to Evento"
+    description=""
+    profile="design.plone.contenttypes:default"
+    handler=".upgrades.import_registry"
+
+    />
+
+  <genericsetup:upgradeStep
+    source="1017"
+    destination="1018"
+    title="Added additional text block field to Pagina Argomento to store block contents"
+    description=""
+    profile="design.plone.contenttypes:default"
+    handler=".upgrades.import_registry"
+
+    />
+
+  <genericsetup:upgradeStep
+    source="1018"
+    destination="1019"
+    title="Removed video_evento field from Evento"
+    description=""
+    profile="design.plone.contenttypes:default"
+    handler=".upgrades.import_registry"
+
+    />
+
+  <genericsetup:upgradeStep
+    source="1019"
+    destination="1020"
+    title="Added Link as allowed type in multimedia folder on Evento creation"
+    description=""
+    profile="design.plone.contenttypes:default"
+    handler=".upgrades.import_registry"
+
+    />
 </configure>

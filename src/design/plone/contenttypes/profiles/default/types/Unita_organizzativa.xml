@@ -47,7 +47,8 @@
     <element value="plone.categorization"/>
     <element value="plone.basic"/>
     <element value="plone.locking" />
-    <!-- <element value="collective.address.behaviors.IAddress" /> -->
+    <element value="collective.address.behaviors.IAddress" />
+    <element value="collective.address.behaviors.IContact"/>
     <element value="collective.geolocationbehavior.geolocation.IGeolocatable"/>
     <!--<element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />-->
     <!--<element value="plone.leadimage"/>-->

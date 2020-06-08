@@ -88,8 +88,11 @@ class IEvento(model.Schema):
         title=_(u"introduzione", default=u"Introduzione"), required=False
     )
 
-    # TODO: decidere come implementare i video e i media
-    # video_evento = schema.TextLine()
+    # Usiamo i link nella cartella multimedia
+    # video_evento = schema.TextLine(
+    #     title=_(u"Video dell'evento", default=u"Video dell;evento"),
+    #     required=True,
+    # )
 
     descrizione_destinatari = RichText(
         title=_(
@@ -99,10 +102,10 @@ class IEvento(model.Schema):
     )
 
     persone_amministrazione = RelationList(
-        title=u"Persone dell'amministrazione",
+        title=u"Persone dell'amministrazione che partecipano all'evento",
         default=[],
         value_type=RelationChoice(
-            title=_(u"Persona dell'amminnistrazione"),
+            title=_(u"Persona dell'amministrazione"),
             vocabulary="plone.app.vocabularies.Catalog",
         ),
         required=False,

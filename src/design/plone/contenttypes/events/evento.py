@@ -32,13 +32,13 @@ def eventoCreateHandler(evento, event):
     # documentsConstraints.setConstrainTypesMode(1)
     # documentsConstraints.setLocallyAllowedTypes(('File',))
 
-    galleria = _createObjectByType("Folder", evento, 'galleria')
-    galleria.title = 'Galleria'
+    galleria = _createObjectByType("Folder", evento, 'multimedia')
+    galleria.title = 'Multimedia'
     galleria.reindexObject(idxs=['Title'])
     constraintsGalleria = ISelectableConstrainTypes(galleria)
     constraintsGalleria.setConstrainTypesMode(1)
     # scegliere le restrizioni
-    constraintsGalleria.setLocallyAllowedTypes(('Image',))
+    constraintsGalleria.setLocallyAllowedTypes(('Image', 'Link'))
 
     documenti = _createObjectByType("Folder", evento, 'documenti')
     documenti.title = 'Documenti'
