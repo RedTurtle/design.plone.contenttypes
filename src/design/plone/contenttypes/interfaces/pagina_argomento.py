@@ -17,8 +17,7 @@ class IPaginaArgomento(model.Schema):
         title=_(u"tassonomia_argomenti", default=u"Tassonomia argomenti"),
         description=_(
             u"tassonomia_description",
-            default=u"Scegli l'argomento di riferimento; utile per capire a"
-            " quali elementi del sito questo argomento è collegato",
+            default=u"Scegli l'argomento di riferimento; utile per capire a quali elementi del sito questo argomento è collegato",  # noqa
         ),
         vocabulary="design.plone.contenttypes.TagsVocabulary",
         required=True,
