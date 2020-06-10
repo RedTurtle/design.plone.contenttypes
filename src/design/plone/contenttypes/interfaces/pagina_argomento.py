@@ -13,16 +13,16 @@ class IPaginaArgomento(model.Schema):
     """ Marker interface for PaginaArgomento
     """
 
-    tassonomia_argomenti = schema.Choice(
-        title=_(u"tassonomia_argomenti", default=u"Tassonomia argomenti"),
-        description=_(
-            u"tassonomia_description",
-            default=u"Scegli l'argomento di riferimento; utile per capire a"
-            " quali elementi del sito questo argomento è collegato",
-        ),
-        vocabulary="design.plone.contenttypes.TagsVocabulary",
-        required=True,
-    )
+    # tassonomia_argomenti = schema.Choice(
+    #     title=_(u"tassonomia_argomenti", default=u"Tassonomia argomenti"),
+    #     description=_(
+    #         u"tassonomia_description",
+    #         default=u"Scegli l'argomento di riferimento; utile per capire a"
+    #         " quali elementi del sito questo argomento è collegato",
+    #     ),
+    #     vocabulary="design.plone.contenttypes.TagsVocabulary",
+    #     required=True,
+    # )
 
     area_appartenenza = RelationList(
         title=_(u"area_di_appartenenza", default=u"Area di appartenenza"),

@@ -87,4 +87,13 @@
     profile="design.plone.contenttypes:default"
     handler=".upgrades.from_1011_to_1012"
     />
+
+  <genericsetup:upgradeStep
+    source="*"
+    destination="1015"
+    title="Reload GS profiles"
+    description=""
+    profile="design.plone.contenttypes:default"
+    handler=".upgrades.import_registry"
+    />
 </configure>

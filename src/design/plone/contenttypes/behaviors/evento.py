@@ -54,14 +54,21 @@ class IEvento(model.Schema):
         title=_(u"immagine", default=u"Immagine"), required=False
     )
 
-    tassonomia_argomenti = schema.List(
-        title=_(u"tassonomia_argomenti", default=u"Tassonomia argomenti"),
+    tassonomia_argomenti = RelationList(
+        title=u"Tassonomia argomenti",
         default=[],
-        value_type=schema.Choice(
-            title=_(u"Argomenti"),
-            vocabulary="design.plone.contenttypes.TagsVocabulary",
+        value_type=RelationChoice(
+            title=_(u"Argomento"), vocabulary="plone.app.vocabularies.Catalog",
         ),
         required=False,
+    )
+    form.widget(
+        "tassonomia_argomenti",
+        RelatedItemsFieldWidget,
+        pattern_options={
+            "maximumSelectionSize": 10,
+            "selectableTypes": ["Pagina Argomento"],
+        },
     )
 
     evento_genitore = schema.Bool(
