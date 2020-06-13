@@ -22,6 +22,18 @@ Notizie e comunicati stampa
 - Alla creazione di una Notizia, vengono create automaticamente al suo interno due cartelle 
   "Multimedia" e "Documenti allegati" per poter organizzare meglio i contenuti
 
+Gestione vocabolari
+===================
+
+Per diversi tipi di contenuto servono dei vocabolari con una lista di valori predefiniti.
+
+Questi sono configurabili dal pannello di controllo "*Vocabolari Design Plone*".
+
+I vocabolari personalizzabili sono i seguenti:
+
+- Tipologie notizia
+- Tipologie unità organizzativa
+
 Installazione
 =============
 

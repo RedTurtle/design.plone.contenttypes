@@ -22,7 +22,7 @@ class INewsAdditionalFields(model.Schema):
             default="Seleziona la tipologia della notizia.",
         ),
         required=True,
-        vocabulary="design.plone.contenttypes.TipologiaNotizia",
+        vocabulary="design.plone.vocabularies.tipologie_notizia",
     )
 
     # numero progressivo del cs se esiste. Numero o stringa?

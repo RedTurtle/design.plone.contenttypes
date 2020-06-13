@@ -76,7 +76,7 @@ class IUnitaOrganizzativa(model.Schema):
         ),
         # vocabolario di rif sara' la lista delle tipologie di organizzazione
         vocabulary=""
-        "design.plone.contenttypes.tipologia_organizzazione_vocabulary",
+        "design.plone.vocabularies.tipologie_unita_organizzativa",
         required=True,
     )
 
