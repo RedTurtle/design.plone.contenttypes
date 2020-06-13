@@ -4,6 +4,7 @@
 
     <include package="plone.restapi" file="configure.zcml"/>
     <include package=".serializers" />
+    <include package=".services" />
 
     <plone:service
         method="GET"

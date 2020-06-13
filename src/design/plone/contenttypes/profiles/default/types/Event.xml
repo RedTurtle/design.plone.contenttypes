@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <object name="Event" meta_type="Dexterity FTI" i18n:domain="plone" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
-<property name="title" i18n:translate="">Evento</property>
-<property name="klass">design.plone.contenttypes.content.evento.Event</property>
-<property name="schema">plone.event.interfaces.IEvent</property>
   <property name="behaviors" purge="false">
-    <element value="design.plone.contenttypes.behaviors.evento.IEvento"/>
+    <element value="design.plone.contenttypes.behavior.evento"/>
     <element value="plone.eventlocation" remove="True"/>
     <element value="plone.eventattendees" remove="True"/>
-    <element value="plone.richtext" remove="True"/>
   </property>
 </object>
