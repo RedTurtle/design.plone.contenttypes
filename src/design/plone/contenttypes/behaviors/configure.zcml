@@ -26,12 +26,51 @@
 
     <plone:behavior
       title="Metadati news"
-      name="design.plone.contenttypes.behavior.notizie_e_comunicati_stampa"
+      name="design.plone.contenttypes.behavior.news"
       description="Adds fields."
-      provides=".notizie_e_comunicati_stampa.INotizieEComunicatiStampa"
-      factory=".notizie_e_comunicati_stampa.NotizieEComunicatiStampa"
+      provides=".news_additional_fields.INewsAdditionalFields"
+      factory=".news_additional_fields.NewsAdditionalFields"
       for="plone.app.contenttypes.interfaces.INewsItem"
-      marker=".notizie_e_comunicati_stampa.INotizieEComunicatiStampa"
+      marker=".news_additional_fields.INewsAdditionalFields"
       />
 
+    <plone:behavior
+      title="Argomenti"
+      name="design.plone.contenttypes.behavior.argomenti"
+      description="Tassonomia argomenti"
+      provides=".argomenti.IArgomenti"
+      factory=".argomenti.Argomenti"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      marker=".argomenti.IArgomenti"
+      />
+
+    <plone:behavior
+      title="Luoghi correlati"
+      name="design.plone.contenttypes.behavior.luoghi_correlati"
+      description=""
+      provides=".luoghi_correlati.ILuoghiCorrelati"
+      factory=".luoghi_correlati.LuoghiCorrelati"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      marker=".luoghi_correlati.ILuoghiCorrelati"
+      />
+    
+    <plone:behavior
+      title="Dataset correlati"
+      name="design.plone.contenttypes.behavior.dataset_correlati"
+      description=""
+      provides=".dataset_correlati.IDatasetCorrelati"
+      factory=".dataset_correlati.DatasetCorrelati"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      marker=".dataset_correlati.IDatasetCorrelati"
+      />
+
+    <plone:behavior
+      title="Servizi correlati"
+      name="design.plone.contenttypes.behavior.servizi_correlati"
+      description=""
+      provides=".servizi_correlati.IServiziCorrelati"
+      factory=".servizi_correlati.ServiziCorrelati"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      marker=".servizi_correlati.IServiziCorrelati"
+      />
 </configure>
