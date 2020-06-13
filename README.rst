@@ -40,6 +40,7 @@ Installazione
 Questo prodotto non è stato pensato per funzionare da solo, ma fa parte della suite "design.plone".
 
 Per utilizzare questo prodotto, fare riferimento a design.plone.policy_.
+
 .. _design.plone.policy: https://github.com/RedTurtle/design.plone.policy
 
 Contribuisci
