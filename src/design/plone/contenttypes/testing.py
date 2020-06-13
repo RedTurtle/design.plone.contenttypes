@@ -7,10 +7,13 @@ from plone.app.testing import PloneSandboxLayer
 from plone.restapi.testing import PloneRestApiDXLayer
 from plone.testing import z2
 
-import design.plone.contenttypes
+import collective.folderishtypes
 import collective.venue
+import collective.volto.cookieconsent
+import design.plone.contenttypes
 import plone.formwidget.geolocation
 import plone.restapi
+import redturtle.volto
 
 
 class DesignPloneContenttypesLayer(PloneSandboxLayer):
@@ -21,10 +24,13 @@ class DesignPloneContenttypesLayer(PloneSandboxLayer):
         # Load any other ZCML that is required for your tests.
         # The z3c.autoinclude feature is disabled in the Plone fixture base
         # layer.
-        self.loadZCML(package=plone.restapi)
+        self.loadZCML(package=collective.folderishtypes)
         self.loadZCML(package=collective.venue)
-        self.loadZCML(package=plone.formwidget.geolocation)
+        self.loadZCML(package=collective.volto.cookieconsent)
         self.loadZCML(package=design.plone.contenttypes)
+        self.loadZCML(package=plone.formwidget.geolocation)
+        self.loadZCML(package=plone.restapi)
+        self.loadZCML(package=redturtle.volto)
 
     def setUpPloneSite(self, portal):
         applyProfile(portal, "design.plone.contenttypes:default")
@@ -54,10 +60,13 @@ class DesignPloneContenttypesRestApiLayer(PloneRestApiDXLayer):
             app, configurationContext
         )
 
-        self.loadZCML(package=plone.restapi)
+        self.loadZCML(package=collective.folderishtypes)
         self.loadZCML(package=collective.venue)
-        self.loadZCML(package=plone.formwidget.geolocation)
+        self.loadZCML(package=collective.volto.cookieconsent)
         self.loadZCML(package=design.plone.contenttypes)
+        self.loadZCML(package=plone.formwidget.geolocation)
+        self.loadZCML(package=plone.restapi)
+        self.loadZCML(package=redturtle.volto)
 
     def setUpPloneSite(self, portal):
         applyProfile(portal, "design.plone.contenttypes:default")

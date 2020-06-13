@@ -48,5 +48,6 @@ class TestContentTypes(unittest.TestCase):
                 "dates",
                 "ownership",
                 "settings",
+                "layout",
             ],
         )

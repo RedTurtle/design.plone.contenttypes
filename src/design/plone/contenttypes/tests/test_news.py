@@ -19,29 +19,38 @@ class TestNews(unittest.TestCase):
 
     def test_behaviors_enabled_for_news(self):
         portal_types = api.portal.get_tool(name="portal_types")
-        self.assertIn(
-            "design.plone.contenttypes.behavior.news",
+
+        self.assertEqual(
             portal_types["News Item"].behaviors,
-        )
-        self.assertIn(
-            "design.plone.contenttypes.behavior.argomenti",
-            portal_types["News Item"].behaviors,
-        )
-        self.assertIn(
-            "design.plone.contenttypes.behavior.luoghi_correlati",
-            portal_types["News Item"].behaviors,
-        )
-        self.assertIn(
-            "design.plone.contenttypes.behavior.dataset_correlati",
-            portal_types["News Item"].behaviors,
-        )
-        self.assertIn(
-            "design.plone.contenttypes.behavior.servizi_correlati",
-            portal_types["News Item"].behaviors,
+            (
+                "plone.dublincore",
+                "plone.namefromtitle",
+                "plone.allowdiscussion",
+                "plone.shortname",
+                "plone.excludefromnavigation",
+                "plone.relateditems",
+                "plone.leadimage",
+                "plone.versioning",
+                "plone.locking",
+                "plone.constraintypes",
+                "volto.blocks",
+                "design.plone.contenttypes.behavior.news",
+                "design.plone.contenttypes.behavior.argomenti",
+                "design.plone.contenttypes.behavior.luoghi_correlati",
+                "design.plone.contenttypes.behavior.dataset_correlati",
+                "design.plone.contenttypes.behavior.servizi_correlati",
+            ),
         )
 
     def test_news_item_ct_title(self):
         portal_types = api.portal.get_tool(name="portal_types")
         self.assertEqual(
             "Notizie e comunicati stampa", portal_types["News Item"].title
+        )
+
+    def test_news_item_addable_types(self):
+        portal_types = api.portal.get_tool(name="portal_types")
+        self.assertEqual(
+            ("Image", "File", "Link", "Document"),
+            portal_types["News Item"].allowed_content_types,
         )

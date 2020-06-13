@@ -1,72 +1,52 @@
-.. This README is meant for consumption by humans and pypi. Pypi can render rst files so please do not use Sphinx features.
-   If you want to learn more about writing documentation, please check out: http://docs.plone.org/about/documentation_styleguide.html
-   This text does not appear on pypi or github. It is a comment.
+==========================
+Design Plone Content-types
+==========================
 
-=========================
-design.plone.contenttypes
-=========================
-
-Tell me what your product does
+Pacchetto per la gestione dei content-type per un sito Agid con Plone.
 
 Features
---------
+========
 
-- Can be bullet points
+Installando questo pacchetto, si rendono disponibili diversi content-type per la
+gestione di un sito Agid con Plone e Volto.
 
+Tipi di contenuto
+=================
 
-Examples
---------
+Notizie e comunicati stampa
+---------------------------
 
-This add-on can be seen in action at the following sites:
-- Is there a page on the internet where everybody can see the features?
+- Tipo base "Notizia" di Plone con alcuni campi aggiuntivi.
+- Folderish (grazie a redturtle.volto)
+- Può contenere Immagini, Collegamenti, File, Documenti (utile per strutturare i contenuti al suo interno)
+- Alla creazione di una Notizia, vengono create automaticamente al suo interno due cartelle 
+  "Multimedia" e "Documenti allegati" per poter organizzare meglio i contenuti
 
+Installazione
+=============
 
-Documentation
--------------
+Questo prodotto non è stato pensato per funzionare da solo, ma fa parte della suite "design.plone".
 
-Full documentation for end users can be found in the "docs" folder, and is also available online at http://docs.plone.org/foo/bar
+Per utilizzare questo prodotto, fare riferimento a design.plone.policy_.
+.. _design.plone.policy: https://github.com/RedTurtle/design.plone.policy
 
+Contribuisci
+============
 
-Translations
-------------
-
-This product has been translated into
-
-- Klingon (thanks, K'Plai)
-
-
-Installation
-------------
-
-Install design.plone.contenttypes by adding it to your buildout::
-
-    [buildout]
-
-    ...
-
-    eggs =
-        design.plone.contenttypes
+- Issue Tracker: https://github.com/redturtle/design.plone.contenttypes/issues
+- Codice sorgente: https://github.com/redturtle/design.plone.contenttypes
 
 
-and then running ``bin/buildout``
+Licenza
+=======
 
+Questo progetto è rilasciato con licenza GPLv2.
 
-Contribute
-----------
+Autori
+======
 
-- Issue Tracker: https://github.com/collective/design.plone.contenttypes/issues
-- Source Code: https://github.com/collective/design.plone.contenttypes
-- Documentation: https://docs.plone.org/foo/bar
+Questo progetto è stato sviluppato da **RedTurtle Technology**.
 
-
-Support
--------
-
-If you are having issues, please let us know.
-We have a mailing list located at: project@example.com
-
-
-License
--------
-
-The project is licensed under the GPLv2.
+.. image:: https://avatars1.githubusercontent.com/u/1087171?s=100&v=4
+   :alt: RedTurtle Technology Site
+   :target: http://www.redturtle.it/
