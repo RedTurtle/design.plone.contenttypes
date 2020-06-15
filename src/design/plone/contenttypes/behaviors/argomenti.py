@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from design.plone.contenttypes import _
+from plone.autoform import directives as form
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.dexterity.interfaces import IDexterityContent
 from plone.supermodel import model
@@ -28,6 +29,7 @@ class IArgomenti(model.Schema):
     )
 
     model.fieldset("categorization", fields=["tassonomia_argomenti"])
+    form.order_before(tassonomia_argomenti="IDublinCore.subjects")
 
 
 @implementer(IArgomenti)

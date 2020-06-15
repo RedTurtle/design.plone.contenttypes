@@ -104,6 +104,7 @@ class INewsAdditionalFields(model.Schema):
     )
 
     model.fieldset("categorization", fields=["tipologia_notizia"])
+    form.order_before(tipologia_notizia="IDublinCore.subjects")
     model.fieldset("settings", fields=["numero_progressivo_cs"])
 
 
