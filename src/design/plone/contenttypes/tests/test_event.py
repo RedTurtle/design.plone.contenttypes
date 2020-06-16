@@ -37,12 +37,11 @@ class TestEvent(unittest.TestCase):
                 "plone.relateditems",
                 "plone.versioning",
                 "plone.locking",
-                "collective.venue.behaviors.ILocation",
-                "collective.venue.behaviors.IOrganizer",
                 "plone.constraintypes",
                 "volto.blocks",
                 "design.plone.contenttypes.behavior.evento",
                 "design.plone.contenttypes.behavior.argomenti",
+                "plone.leadimage",
             ),
         )
 
