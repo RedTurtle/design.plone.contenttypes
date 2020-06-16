@@ -4,8 +4,6 @@
   <object name="Dataset" meta_type="Dexterity FTI"/>
   <object name="Documento Personale" meta_type="Dexterity FTI"/>
   <object name="Documento" meta_type="Dexterity FTI"/>
-  <object name="Evento" meta_type="Dexterity FTI" remove="True"/>
-  <object name="Luogo" meta_type="Dexterity FTI" remove="True"/>
   <object name="Messaggio" meta_type="Dexterity FTI"/>
   <object name="Pagina Argomento" meta_type="Dexterity FTI"/>
   <object name="Persona" meta_type="Dexterity FTI"/>
