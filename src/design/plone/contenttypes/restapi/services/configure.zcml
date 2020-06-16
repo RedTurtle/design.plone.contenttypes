@@ -1,0 +1,11 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone">
+
+    <include package=".types" />
+    
+    <adapter
+        factory=".controlpanel.VocabulariesControlpanel"
+        name="design-plone-vocabularies" />
+
+</configure>

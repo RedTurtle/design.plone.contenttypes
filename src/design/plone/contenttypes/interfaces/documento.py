@@ -27,24 +27,6 @@ class IDocumento(model.Schema):
 
     # TODO: come gestire la sottotipologia del documento
 
-    # il vocabolario assiciato non e' completo. Avrebbe ben 4 livelli
-    # considerata la prima voce, serve un altro vocabolario per la prima voce,
-    # ma come farlo a 3 livelli
-    # tassonomia_argomenti = schema.Choice(
-    #     title=_(u"tassonomia_argomenti", default=u"Tassonomia argomenti"),
-    #     required=True,
-    #     vocabulary="design.plone.contenttypes.DocumentTypesVocabular",
-    # )
-    tassonomia_argomenti = schema.List(
-        title=_(u"tassonomia_argomenti", default=u"Tassonomia argomenti"),
-        default=[],
-        value_type=schema.Choice(
-            title=_(u"Argomenti"),
-            vocabulary="design.plone.contenttypes.TagsVocabulary",
-        ),
-        required=False,
-    )
-
     descrizione_estesa = RichText(
         title=_(u"descrizione_estesa", default=u"Descrizione estesa"),
         required=False,
@@ -67,7 +49,7 @@ class IDocumento(model.Schema):
         RelatedItemsFieldWidget,
         pattern_options={
             "maximumSelectionSize": 1,
-            "selectableTypes": ["Unita organizzativa"],
+            "selectableTypes": ["Unita Organizzativa"],
         },
     )
 
@@ -87,7 +69,7 @@ class IDocumento(model.Schema):
         RelatedItemsFieldWidget,
         pattern_options={
             "maximumSelectionSize": 10,
-            "selectableTypes": ["Unita organizzativa"],
+            "selectableTypes": ["Unita Organizzativa"],
         },
     )
 

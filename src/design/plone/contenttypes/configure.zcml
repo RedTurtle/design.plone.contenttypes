@@ -24,7 +24,7 @@
   <include package=".restapi" />
   <include package=".vocabularies" />
   <include package=".indexers" />
-
+  
   <genericsetup:registerProfile
       name="default"
       title="design.plone.contenttypes"
@@ -48,7 +48,8 @@
       name="design.plone.contenttypes-hiddenprofiles"
       />
 
-  <!-- -*- extra stuff goes here -*- -->
+  <!-- schema customizations -->
+  <adapter factory=".schema_overrides.SchemaTweaks" name="schema.tweaks" />
 
 
 

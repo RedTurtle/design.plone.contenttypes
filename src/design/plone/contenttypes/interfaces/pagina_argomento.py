@@ -6,22 +6,11 @@ from plone.autoform import directives as form
 from plone.supermodel import model
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
-from zope import schema
 
 
 class IPaginaArgomento(model.Schema):
     """ Marker interface for PaginaArgomento
     """
-
-    tassonomia_argomenti = schema.Choice(
-        title=_(u"tassonomia_argomenti", default=u"Tassonomia argomenti"),
-        description=_(
-            u"tassonomia_description",
-            default=u"Scegli l'argomento di riferimento; utile per capire a quali elementi del sito questo argomento è collegato",  # noqa
-        ),
-        vocabulary="design.plone.contenttypes.TagsVocabulary",
-        required=True,
-    )
 
     area_appartenenza = RelationList(
         title=_(u"area_di_appartenenza", default=u"Area di appartenenza"),
@@ -37,7 +26,7 @@ class IPaginaArgomento(model.Schema):
         RelatedItemsFieldWidget,
         pattern_options={
             "maximumSelectionSize": 10,
-            "selectableTypes": ["Unita organizzativa"],
+            "selectableTypes": ["Unita Organizzativa"],
             # "basePath": "/amministrazione/aree-amministrative",
         },
     )
@@ -58,7 +47,7 @@ class IPaginaArgomento(model.Schema):
         RelatedItemsFieldWidget,
         pattern_options={
             "maximumSelectionSize": 10,
-            "selectableTypes": ["Unita organizzativa"],
+            "selectableTypes": ["Unita Organizzativa"],
             # "basePath": "/amministrazione",
         },
     )

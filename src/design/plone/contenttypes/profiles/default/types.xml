@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <object name="portal_types" meta_type="Plone Types Tool">
   <property name="title">Controls the available contenttypes in your portal</property>
-  <!--<object name="example_ct" meta_type="Dexterity FTI"/>-->
   <object name="Pratica" meta_type="Dexterity FTI"/>
   <object name="RicevutaPagamento" meta_type="Dexterity FTI"/>
   <object name="Dataset" meta_type="Dexterity FTI"/>
@@ -9,8 +8,7 @@
   <object name="Documento Personale" meta_type="Dexterity FTI"/>
   <object name="Luogo" meta_type="Dexterity FTI" remove="True"/>
   <object name="Messaggio" meta_type="Dexterity FTI"/>
-  <object name="Notizie e comunicati stampa" meta_type="Dexterity FTI" remove="True"/>
-  <object name="Unita organizzativa" meta_type="Dexterity FTI"/>
+  <object name="Unita Organizzativa" meta_type="Dexterity FTI"/>
   <object name="Persona" meta_type="Dexterity FTI"/>
   <object name="Evento" meta_type="Dexterity FTI" remove="True"/>
   <object name="Servizio" meta_type="Dexterity FTI"/>
