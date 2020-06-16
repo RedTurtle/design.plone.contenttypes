@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from design.plone.contenttypes import _
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import interfaces
 from plone.supermodel.model import Fieldset
@@ -19,7 +20,11 @@ class SchemaTweaks(object):
 
     def __call__(self):
         if self.schema.getName() == "IRelatedItems":
-            fieldset = Fieldset("correlati", fields=["relatedItems"])
+            fieldset = Fieldset(
+                "correlati",
+                label=_("correlati_label", default=u"Correlati"),
+                fields=["relatedItems"],
+            )
             self.schema._Element__tagged_values[
                 "plone.supermodel.fieldsets"
             ] = [fieldset]

@@ -75,7 +75,7 @@ class INewsAdditionalFields(model.Schema):
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "maximumSelectionSize": 1,
-            "selectableTypes": ["Unita organizzativa"],
+            "selectableTypes": ["Unita Organizzativa"],
         },
     )
     form.widget(

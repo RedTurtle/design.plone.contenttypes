@@ -33,8 +33,12 @@ class IArgomenti(model.Schema):
         pattern_options={"selectableTypes": ["Pagina Argomento"]},
     )
 
-    model.fieldset("categorization", fields=["tassonomia_argomenti"])
-    form.order_before(tassonomia_argomenti="IDublinCore.subjects")
+    model.fieldset(
+        "correlati",
+        label=_("correlati_label", default=u"Correlati"),
+        fields=["tassonomia_argomenti"],
+    )
+    # form.order_before(tassonomia_argomenti="IDublinCore.subjects")
 
 
 @implementer(IArgomenti)

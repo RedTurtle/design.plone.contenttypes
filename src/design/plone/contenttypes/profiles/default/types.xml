@@ -8,7 +8,7 @@
   <object name="Documento Personale" meta_type="Dexterity FTI"/>
   <object name="Luogo" meta_type="Dexterity FTI" remove="True"/>
   <object name="Messaggio" meta_type="Dexterity FTI"/>
-  <object name="Unita organizzativa" meta_type="Dexterity FTI"/>
+  <object name="Unita Organizzativa" meta_type="Dexterity FTI"/>
   <object name="Persona" meta_type="Dexterity FTI"/>
   <object name="Evento" meta_type="Dexterity FTI" remove="True"/>
   <object name="Servizio" meta_type="Dexterity FTI"/>

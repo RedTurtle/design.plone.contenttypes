@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
 <object xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-    name="Unita organizzativa"
+    name="Unita Organizzativa"
     meta_type="Dexterity FTI"
     i18n:domain="design.plone.contenttypes">
 
   <!-- Basic properties -->
   <property
       i18n:translate=""
-      name="title">Unita organizzativa</property>
+      name="title">Unita Organizzativa</property>
   <property
       i18n:translate=""
       name="description"></property>
 
   <property name="allow_discussion">False</property>
-  <property name="factory">Unita organizzativa</property>
+  <property name="factory">Unita Organizzativa</property>
   <property name="icon_expr"></property>
   <property name="link_target"></property>
 
@@ -47,23 +47,14 @@
     <element value="plone.categorization"/>
     <element value="plone.basic"/>
     <element value="plone.locking" />
-    <!-- <element value="collective.address.behaviors.IAddress" /> -->
     <element value="collective.geolocationbehavior.geolocation.IGeolocatable"/>
-    <!--<element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />-->
-    <!--<element value="plone.leadimage"/>-->
+    <element value="plone.leadimage"/>
     <element value="plone.relateditems"/>
-    <!--<element value="plone.richtext"/>-->
-    <!--<element value="plone.tableofcontents"/>-->
-    <!--<element value="plone.versionable" />-->
-    <!--<element value="plone.translatable" />-->
-    <!--<element value="plone.nextprevioustoggle" />-->
-    <!--<element value="plone.nextpreviousenabled" />-->
-    <!--<element value="plone.navigationroot" />-->
-    <!--<element value="plone.selectablecontrainstypes" />-->
+    <element value="design.plone.contenttypes.behavior.argomenti"/>
   </property>
 
   <!-- View information -->
-  <property name="add_view_expr">string:${folder_url}/++add++Unita organizzativa</property>
+  <property name="add_view_expr">string:${folder_url}/++add++Unita Organizzativa</property>
   <property name="default_view">view</property>
   <property name="default_view_fallback">False</property>
   <property name="immediate_view">view</property>

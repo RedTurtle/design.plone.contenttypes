@@ -54,7 +54,7 @@ def get_related_servizio(catalog, argomento):
 
 def get_related_uo(catalog, argomento):
     query = {
-        "portal_type": ["Unita organizzativa"],
+        "portal_type": ["Unita Organizzativa"],
         "sort_on": "sortable_title",
         "sort_order": "ascending",
         "tassonomia_argomenti": argomento,
