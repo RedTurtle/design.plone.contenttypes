@@ -95,11 +95,19 @@ class PaginaArgomentoSerializer(BaseSerializer):
         result = super(PaginaArgomentoSerializer, self).__call__(
             version=None, include_items=True
         )
+        # ptypes = api.portal.get_tool("portal_types")
+        # behaviours_argomenti = ptypes["Pagina Argomento"].behaviors
+        # result["is_using_blokcs"] = "volto.blocks" in behaviours_argomenti
+        # if result["is_using_blocks"]:
+        #     # don't waste your time: if we are using block, we don't need other
+        #     # info
+        #     return True
+
         catalog = api.portal.get_tool("portal_catalog")
         result["related_news"] = get_related_news(
             catalog, self.context.tassonomia_argomenti
         )
-        result["related_servizio"] = get_related_servizio(
+        result["related_services"] = get_related_servizio(
             catalog, self.context.tassonomia_argomenti
         )
 
@@ -107,7 +115,8 @@ class PaginaArgomentoSerializer(BaseSerializer):
             catalog, self.context.tassonomia_argomenti
         )
 
-        result["related_doc"] = get_related_doc(
+        result["related_docs"] = get_related_doc(
             catalog, self.context.tassonomia_argomenti
         )
+
         return result

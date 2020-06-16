@@ -25,7 +25,7 @@ class IPaginaArgomento(model.Schema):
 
     area_appartenenza = RelationList(
         title=_(u"area_di_appartenenza", default=u"Area di appartenenza"),
-        required=True,
+        required=False,
         default=[],
         value_type=RelationChoice(
             title=_(u"Area di appartenenza"),
@@ -46,7 +46,7 @@ class IPaginaArgomento(model.Schema):
         title=_(
             u"assessorati_riferimento", default=u"Assessorati di riferimento"
         ),
-        required=True,
+        required=False,
         default=[],
         value_type=RelationChoice(
             title=_(u"Assessorati di riferimento"),
@@ -64,7 +64,8 @@ class IPaginaArgomento(model.Schema):
     )
 
     box_aiuto = RichText(
-        title=_(u"box_aiuto", default=u"Box di aiuto"), required=True
+        title=_(u"box_aiuto", default=u"Ulteriori informazioni"),
+        required=False,
     )
 
     # TODO: come gestire "in primo piano", "servizi", "novita'", "documenti",
