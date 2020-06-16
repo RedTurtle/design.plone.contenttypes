@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <object name="Event" meta_type="Dexterity FTI" i18n:domain="plone" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+  <property name="global_allow">False</property>
   <property name="behaviors" purge="false">
     <element value="design.plone.contenttypes.behavior.evento"/>
     <element value="plone.eventlocation" remove="True"/>
