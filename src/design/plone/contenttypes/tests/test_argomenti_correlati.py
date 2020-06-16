@@ -37,10 +37,6 @@ class TestNews(unittest.TestCase):
             tassonomia_argomenti=[RelationValue(argomento_id)],
         )
 
-        pc = api.portal.get_tool('portal_catalog')
-        self.assertEqual(
-            pc.uniqueValuesFor('tassonomia_argomenti'), (self.argomento.UID(),)
-        )
         self.assertEqual(
             api.content.find(tassonomia_argomenti=self.argomento.UID())[0].UID,
             unita.UID(),
