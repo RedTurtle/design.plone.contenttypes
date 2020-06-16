@@ -34,15 +34,16 @@ class INewsAdditionalFields(model.Schema):
         required=False,
     )
 
-    a_cura_di = RelationChoice(
+    a_cura_di = RelationList(
         title=_("a_cura_di_label", default="A cura di"),
         description=_(
             "a_cura_di_help",
             default="Seleziona l'ufficio di comunicazione responsabile di "
             "questa notizia/comunicato stampa.",
         ),
-        required=True,
-        vocabulary="plone.app.vocabularies.Catalog",
+        required=False,
+        default=[],
+        value_type=RelationChoice(vocabulary="plone.app.vocabularies.Catalog"),
     )
 
     a_cura_di_persone = RelationList(
