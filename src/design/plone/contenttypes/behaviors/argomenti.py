@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 from design.plone.contenttypes import _
+from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.dexterity.interfaces import IDexterityContent
 from plone.supermodel import model
-from zope import schema
+from z3c.relationfield.schema import RelationChoice, RelationList
 from zope.component import adapter
 from zope.interface import provider, implementer
 
@@ -14,7 +15,7 @@ class IArgomenti(model.Schema):
     """ Marker interface for Argomenti
     """
 
-    tassonomia_argomenti = schema.List(
+    tassonomia_argomenti = RelationList(
         title=_("tassonomia_argomenti_label", default="Tassonomia argomenti"),
         description=_(
             "tassonomia_argomenti_help",
@@ -22,10 +23,14 @@ class IArgomenti(model.Schema):
             "contenuto.",
         ),
         default=[],
-        value_type=schema.Choice(
-            vocabulary="design.plone.contenttypes.TagsVocabulary"
-        ),
+        value_type=RelationChoice(vocabulary="plone.app.vocabularies.Catalog"),
         required=False,
+    )
+    form.widget(
+        "tassonomia_argomenti",
+        RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
+        pattern_options={"selectableTypes": ["Pagina Argomento"]},
     )
 
     model.fieldset("categorization", fields=["tassonomia_argomenti"])
