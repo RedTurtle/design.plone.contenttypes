@@ -45,6 +45,17 @@ class IEvento(model.Schema):
         title=_(u"identifier", default=u"Identifier"), required=False
     )
 
+
+    tassonomia_argomenti = schema.List(
+        title=_(u"tassonomia_argomenti", default=u"Tassonomia argomenti"),
+        default=[],
+        value_type=schema.Choice(
+            title=_(u"Argomenti"),
+            vocabulary="design.plone.contenttypes.TagsVocabulary",
+        ),
+        required=False,
+    )
+
     # siccome l'evento e' folderish, e' genitore se ha dei contenuti al suo interno
     # evento_genitore = schema.Bool(
     #     title=_(u"evento_genitore", default=u"Evento genitore"), required=True
@@ -55,6 +66,7 @@ class IEvento(model.Schema):
     #     title=_(u'calendario_eventi_link', default=u'Vedi calendario eventi')
     #     required=False,
     # )
+
 
     introduzione = RichText(
         title=_(u"introduzione", default=u"Introduzione"), required=False
@@ -88,7 +100,7 @@ class IEvento(model.Schema):
     # ref
     luogo_event = RelationList(
         title=_(u"luogo_evento", default=u"Luogo dell'evento"),
-        required=False,
+        required=True,
         value_type=RelationChoice(
             title=_(u"Luogo dell'evento"),
             vocabulary="plone.app.vocabularies.Catalog",

@@ -12,7 +12,6 @@ def eventoCreateHandler(evento, event):
 
     @param event: Event that triggers the method (onAdded event)
     """
-
     galleria = _createObjectByType("Folder", evento, "multimedia")
     galleria.title = "Multimedia"
     galleria.reindexObject(idxs=["Title"])
