@@ -10,7 +10,7 @@
       name="title">UnitaOrganizzativaFolder</property>
   <property
       i18n:translate=""
-      name="description">base folder for Unita Organizzativa content_types, for menu level 2</property>
+      name="description">base folder for UnitaOrganizzativa content_types, for menu level 2</property>
 
   <property name="allow_discussion">False</property>
   <property name="factory">UnitaOrganizzativaFolder</property>
@@ -21,7 +21,7 @@
   <property name="global_allow">True</property>
   <property name="filter_content_types">True</property>
   <property name="allowed_content_types">
-    <element value="Unita Organizzativa" />
+    <element value="UnitaOrganizzativa" />
   </property>
   <!-- Schema, class and security -->
   <property name="add_permission">design.plone.contenttypes.AddUnitaOrganizzativaFolder</property>

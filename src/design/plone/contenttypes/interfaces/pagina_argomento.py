@@ -26,7 +26,7 @@ class IPaginaArgomento(model.Schema):
         RelatedItemsFieldWidget,
         pattern_options={
             "maximumSelectionSize": 10,
-            "selectableTypes": ["Unita Organizzativa"],
+            "selectableTypes": ["UnitaOrganizzativa"],
             # "basePath": "/amministrazione/aree-amministrative",
         },
     )
@@ -47,7 +47,7 @@ class IPaginaArgomento(model.Schema):
         RelatedItemsFieldWidget,
         pattern_options={
             "maximumSelectionSize": 10,
-            "selectableTypes": ["Unita Organizzativa"],
+            "selectableTypes": ["UnitaOrganizzativa"],
             # "basePath": "/amministrazione",
         },
     )

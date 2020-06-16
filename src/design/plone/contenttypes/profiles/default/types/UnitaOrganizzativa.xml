@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <object xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-    name="Unita Organizzativa"
+    name="UnitaOrganizzativa"
     meta_type="Dexterity FTI"
     i18n:domain="design.plone.contenttypes">
 
@@ -13,7 +13,7 @@
       name="description"></property>
 
   <property name="allow_discussion">False</property>
-  <property name="factory">Unita Organizzativa</property>
+  <property name="factory">UnitaOrganizzativa</property>
   <property name="icon_expr"></property>
   <property name="link_target"></property>
 
@@ -35,9 +35,6 @@
 
   <!-- Enabled behaviors -->
   <property name="behaviors" purge="false">
-    <!-- Details about all standard behaviors following can be read at
-         https://docs.plone.org/external/plone.app.dexterity/docs/reference/standard-behaviours.html
-    -->
     <element value="plone.namefromtitle"/>
     <element value="plone.allowdiscussion"/>
     <element value="plone.excludefromnavigation"/>
@@ -54,7 +51,7 @@
   </property>
 
   <!-- View information -->
-  <property name="add_view_expr">string:${folder_url}/++add++Unita Organizzativa</property>
+  <property name="add_view_expr">string:${folder_url}/++add++UnitaOrganizzativa</property>
   <property name="default_view">view</property>
   <property name="default_view_fallback">False</property>
   <property name="immediate_view">view</property>

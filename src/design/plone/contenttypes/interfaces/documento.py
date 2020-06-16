@@ -49,7 +49,7 @@ class IDocumento(model.Schema):
         RelatedItemsFieldWidget,
         pattern_options={
             "maximumSelectionSize": 1,
-            "selectableTypes": ["Unita Organizzativa"],
+            "selectableTypes": ["UnitaOrganizzativa"],
         },
     )
 
@@ -69,7 +69,7 @@ class IDocumento(model.Schema):
         RelatedItemsFieldWidget,
         pattern_options={
             "maximumSelectionSize": 10,
-            "selectableTypes": ["Unita Organizzativa"],
+            "selectableTypes": ["UnitaOrganizzativa"],
         },
     )
 
@@ -88,7 +88,7 @@ class IDocumento(model.Schema):
         RelatedItemsFieldWidget,
         pattern_options={
             "maximumSelectionSize": 10,
-            "selectableTypes": ["Persona", "Unita Organizzativa"],
+            "selectableTypes": ["Persona", "UnitaOrganizzativa"],
             # "basePath": "/amministrazione",
         },
     )
