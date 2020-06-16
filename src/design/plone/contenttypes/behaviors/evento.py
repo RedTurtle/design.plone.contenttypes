@@ -42,12 +42,9 @@ class IEvento(model.Schema):
 
     # questo deve essere progressivo!!
     identifier = schema.TextLine(
-        title=_(u"identifier", default=u"Identifier"), required=True
+        title=_(u"identifier", default=u"Identifier"), required=False
     )
 
-    # TODO: come trattare il campo tipologia dell'evento
-
-    # TODO: sottotitolo
 
     tassonomia_argomenti = schema.List(
         title=_(u"tassonomia_argomenti", default=u"Tassonomia argomenti"),
@@ -59,9 +56,10 @@ class IEvento(model.Schema):
         required=False,
     )
 
-    evento_genitore = schema.Bool(
-        title=_(u"evento_genitore", default=u"Evento genitore"), required=True
-    )
+    # siccome l'evento e' folderish, e' genitore se ha dei contenuti al suo interno
+    # evento_genitore = schema.Bool(
+    #     title=_(u"evento_genitore", default=u"Evento genitore"), required=True
+    # )
 
     # ci sara un calendario eventi
     # calendario_eventi_link = RichText(
@@ -69,29 +67,10 @@ class IEvento(model.Schema):
     #     required=False,
     # )
 
-    # backref
-    # parte_di = schema.Choice(
-    #     title=_(u'parte_di', default=u'Parte di'),
-    #     required=False,
-    #     missing_value=(),
-    #     vocabulary='design.plone.contenttypes.Mockup',
-    # )
-
-    # publucation date di Plone (effective_date)
-    # data_pubblicazione = schema.Date(
-    #     title=_(u'data_pubblicazione', default=u'Data di pubblicazione'),
-    #     required=True,
-    # )
 
     introduzione = RichText(
         title=_(u"introduzione", default=u"Introduzione"), required=False
     )
-
-    # Usiamo i link nella cartella multimedia
-    # video_evento = schema.TextLine(
-    #     title=_(u"Video dell'evento", default=u"Video dell;evento"),
-    #     required=True,
-    # )
 
     descrizione_destinatari = RichText(
         title=_(
@@ -163,7 +142,7 @@ class IEvento(model.Schema):
 
     organizzato_da_esterno = RichText(
         title=_(u"organizzato_da_esterno", default=u"Organizzato da"),
-        required=True,
+        required=False,
     )
 
     organizzato_da_interno = RelationList(
