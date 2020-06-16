@@ -42,8 +42,6 @@ class TestNews(unittest.TestCase):
             pc.uniqueValuesFor('tassonomia_argomenti'), (self.argomento.UID(),)
         )
         self.assertEqual(
-            api.content.find(tassonomia_argomenti=self.argomento.UID())[
-                0
-            ].Title,
-            unita.Title(),
+            api.content.find(tassonomia_argomenti=self.argomento.UID())[0].UID,
+            unita.UID(),
         )
