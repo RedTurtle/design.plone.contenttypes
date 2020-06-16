@@ -1,21 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <object name="portal_types" meta_type="Plone Types Tool">
   <property name="title">Controls the available contenttypes in your portal</property>
-  <object name="Pratica" meta_type="Dexterity FTI"/>
-  <object name="RicevutaPagamento" meta_type="Dexterity FTI"/>
   <object name="Dataset" meta_type="Dexterity FTI"/>
-  <object name="Pagina Argomento" meta_type="Dexterity FTI"/>
   <object name="Documento Personale" meta_type="Dexterity FTI"/>
+  <object name="Documento" meta_type="Dexterity FTI"/>
+  <object name="Evento" meta_type="Dexterity FTI" remove="True"/>
   <object name="Luogo" meta_type="Dexterity FTI" remove="True"/>
   <object name="Messaggio" meta_type="Dexterity FTI"/>
-  <object name="UnitaOrganizzativa" meta_type="Dexterity FTI"/>
+  <object name="Pagina Argomento" meta_type="Dexterity FTI"/>
   <object name="Persona" meta_type="Dexterity FTI"/>
-  <object name="Evento" meta_type="Dexterity FTI" remove="True"/>
+  <object name="Pratica" meta_type="Dexterity FTI"/>
+  <object name="RicevutaPagamento" meta_type="Dexterity FTI"/>
   <object name="Servizio" meta_type="Dexterity FTI"/>
-  <object name="Documento" meta_type="Dexterity FTI"/>
-  <object name="AmministrazioneFolder" meta_type="Dexterity FTI" remove="True"/>
-  <object name="UnitaOrganizzativaFolder" meta_type="Dexterity FTI"/>
-  <object name="PersoneFolder" meta_type="Dexterity FTI"/>
-  <object name="LuoghiFolder" meta_type="Dexterity FTI"/>
-  <object name="NewsFolder" meta_type="Dexterity FTI" remove="True"/>
+  <object name="UnitaOrganizzativa" meta_type="Dexterity FTI"/>
 </object>
