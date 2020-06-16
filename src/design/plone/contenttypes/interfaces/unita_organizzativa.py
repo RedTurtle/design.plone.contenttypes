@@ -3,7 +3,6 @@ from design.plone.contenttypes import _
 from plone.app.textfield import RichText
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
-from plone.namedfile import field
 from plone.supermodel import model
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
@@ -15,20 +14,6 @@ class IUnitaOrganizzativa(model.Schema):
     """
 
     model.fieldset("categorization", fields=["notizie_collegate"])
-
-    tassonomia_argomenti = schema.List(
-        title=_(u"tassonomia_argomenti", default=u"Tassonomia argomenti"),
-        default=[],
-        value_type=schema.Choice(
-            title=_(u"Argomenti"),
-            vocabulary="design.plone.contenttypes.TagsVocabulary",
-        ),
-        required=False,
-    )
-
-    immagine = field.NamedImage(
-        title=_(u"immagine", default=u"Immagine"), required=False
-    )
 
     competenze = RichText(
         title=_(u"competenze", default=u"Competenze"), required=False
@@ -48,7 +33,7 @@ class IUnitaOrganizzativa(model.Schema):
         RelatedItemsFieldWidget,
         pattern_options={
             "maximumSelectionSize": 10,
-            "selectableTypes": ["Unita organizzativa"],
+            "selectableTypes": ["Unita Organizzativa"],
         },
     )
 
@@ -76,7 +61,7 @@ class IUnitaOrganizzativa(model.Schema):
         ),
         # vocabolario di rif sara' la lista delle tipologie di organizzazione
         vocabulary=""
-        "design.plone.contenttypes.tipologia_organizzazione_vocabulary",
+        "design.plone.vocabularies.tipologie_unita_organizzativa",
         required=True,
     )
 

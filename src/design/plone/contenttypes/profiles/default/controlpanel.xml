@@ -5,12 +5,12 @@
     i18n:domain="design.plone.contenttypes">
 
     <configlet
-        title="Impostazione vocabolari design.plone.contenttypes"
-        action_id="design.plone.contenttypes.vocabularies"
-        appId="design.plone.contenttypes.vocabularies"
+        title="Vocabolari Design Plone"
+        action_id="DesignPloneVocabularies"
+        appId="design.plone.vocabularies"
         category="Products"
         condition_expr=""
-        url_expr="string:${portal_url}/@@design.plone-vocabularies"
+        url_expr="string:${portal_url}/@@design-plone-vocabularies"
         icon_expr=""
         visible="True"
         i18n:attributes="title">

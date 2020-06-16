@@ -2,13 +2,15 @@
 <object name="News Item" meta_type="Dexterity FTI" i18n:domain="plone"
    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 <property name="title" i18n:translate="">Notizie e comunicati stampa</property>
-<property name="klass">design.plone.contenttypes.content.notizie_e_comunicati_stampa.NewsItem</property>
-<property name="schema">plone.app.contenttypes.interfaces.INewsItem</property>
+<property name="allowed_content_types" purge="False">
+    <element value="Document"/>
+ </property>
  <property name="behaviors" purge="False">
-  <element value="design.plone.contenttypes.behaviors.notizie_e_comunicati_stampa.INotizieEComunicatiStampa"/>
-  <!-- <element value="collective.address.behaviors.IAddress" remove="True"/>
-  <element value="collective.address.behaviors.IContact" remove="True"/>
-  <element value="collective.address.behaviors.ISocial" remove="True"/> -->
+  <element value="design.plone.contenttypes.behavior.news"/>
+  <element value="design.plone.contenttypes.behavior.argomenti"/>
+  <element value="design.plone.contenttypes.behavior.luoghi_correlati"/>
+  <element value="design.plone.contenttypes.behavior.dataset_correlati"/>
+  <element value="design.plone.contenttypes.behavior.servizi_correlati"/>
  </property>
  
 </object>
