@@ -48,7 +48,7 @@ class TestEvent(unittest.TestCase):
 
     def test_event_ct_title(self):
         portal_types = api.portal.get_tool(name="portal_types")
-        self.assertEqual("Event", portal_types["Event"].title)
+        self.assertEqual("Evento", portal_types["Event"].title)
 
     def test_event_addable_types(self):
         portal_types = api.portal.get_tool(name="portal_types")
@@ -71,10 +71,6 @@ class TestEventApi(unittest.TestCase):
         self.api_session = RelativeSession(self.portal_url)
         self.api_session.headers.update({"Accept": "application/json"})
         self.api_session.auth = (SITE_OWNER_NAME, SITE_OWNER_PASSWORD)
-
-        self.document = api.content.create(
-            container=self.portal, type="Document", title="Document"
-        )
 
         transaction.commit()
 
