@@ -100,7 +100,7 @@ class TestNewsApi(unittest.TestCase):
         self.assertEqual(400, response.status_code)
         message = response.json()["message"]
         self.assertIn("tipologia_notizia", message)
-        self.assertIn("a_cura_di", message)
+        # self.assertIn("a_cura_di", message)
 
         response = self.api_session.post(
             self.portal_url,
