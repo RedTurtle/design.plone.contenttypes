@@ -54,11 +54,9 @@ setup(
         # -*- Extra requirements: -*-
         "z3c.jbot",
         "plone.api>=1.8.4",
-        "plone.restapi",
         "plone.app.dexterity",
-        "collective.venue",
+        "collective.venue[geolocation]",
         "plone.formwidget.geolocation",
-        "collective.folderishtypes[dexterity]",
         "redturtle.volto",
     ],
     extras_require={
