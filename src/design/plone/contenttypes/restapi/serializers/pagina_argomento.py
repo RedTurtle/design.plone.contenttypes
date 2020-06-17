@@ -39,7 +39,7 @@ def get_relations(obj, attribute=None, backrefs=False, kw={}):
     if not relation_catalog:
         return []
 
-    query = {**kw}
+    query = {**kw}  # noqa
     if attribute:
         # Constrain the search for certain relation-types.
         query["from_attribute"] = attribute
