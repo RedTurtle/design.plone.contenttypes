@@ -38,7 +38,7 @@ class IPersona(model.Schema):
         RelatedItemsFieldWidget,
         pattern_options={
             "maximumSelectionSize": 1,
-            "selectableTypes": ["Unita Organizzativa"],
+            "selectableTypes": ["UnitaOrganizzativa"],
             "basePath": "/amministrazione",
         },
     )
@@ -57,7 +57,7 @@ class IPersona(model.Schema):
         RelatedItemsFieldWidget,
         pattern_options={
             "maximumSelectionSize": 1,
-            "selectableTypes": ["Unita Organizzativa"],
+            "selectableTypes": ["UnitaOrganizzativa"],
             # "basePath": "/amministrazione",
         },
     )
@@ -85,7 +85,7 @@ class IPersona(model.Schema):
         RelatedItemsFieldWidget,
         pattern_options={
             "maximumSelectionSize": 1,
-            "selectableTypes": ["Unita Organizzativa"],
+            "selectableTypes": ["UnitaOrganizzativa"],
             # "basePath": "/amministrazione",
         },
     )
@@ -106,7 +106,7 @@ class IPersona(model.Schema):
         RelatedItemsFieldWidget,
         pattern_options={
             "maximumSelectionSize": 1,
-            "selectableTypes": ["Unita Organizzativa"],
+            "selectableTypes": ["UnitaOrganizzativa"],
             # "basePath": "/amministrazione",
         },
     )

@@ -99,7 +99,7 @@ class PaginaArgomentoSerializer(BaseSerializer):
         )
 
         result["related_uo"] = get_related_contenttype(
-            relations, "Unita Organizzativa"
+            relations, "UnitaOrganizzativa"
         )
         result["related_news"] = get_related_contenttype(
             relations, "News Item", 4

@@ -10,7 +10,7 @@ from zope import schema
 
 
 class IUnitaOrganizzativa(model.Schema):
-    """Marker interface for content type Unita Organizzativa
+    """Marker interface for content type UnitaOrganizzativa
     """
 
     model.fieldset("categorization", fields=["notizie_collegate"])
@@ -33,7 +33,7 @@ class IUnitaOrganizzativa(model.Schema):
         RelatedItemsFieldWidget,
         pattern_options={
             "maximumSelectionSize": 10,
-            "selectableTypes": ["Unita Organizzativa"],
+            "selectableTypes": ["UnitaOrganizzativa"],
         },
     )
 

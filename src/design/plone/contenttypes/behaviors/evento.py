@@ -184,7 +184,7 @@ class IEvento(model.Schema):
         RelatedItemsFieldWidget,
         pattern_options={
             "maximumSelectionSize": 10,
-            "selectableTypes": ["Persona", "Unita Organizzativa", "Servizio"],
+            "selectableTypes": ["Persona", "UnitaOrganizzativa", "Servizio"],
         },
     )
     # using default event
@@ -230,7 +230,7 @@ class IEvento(model.Schema):
         RelatedItemsFieldWidget,
         pattern_options={
             "maximumSelectionSize": 1,
-            "selectableTypes": ["Unita Organizzativa"],
+            "selectableTypes": ["UnitaOrganizzativa"],
         },
     )
 
@@ -287,7 +287,7 @@ class IEvento(model.Schema):
         RelatedItemsFieldWidget,
         pattern_options={
             "maximumSelectionSize": 10,
-            "selectableTypes": ["Unita Organizzativa"],
+            "selectableTypes": ["UnitaOrganizzativa"],
         },
     )
 

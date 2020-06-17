@@ -32,7 +32,7 @@ class TestNews(unittest.TestCase):
 
         unita = api.content.create(
             container=self.portal,
-            type="Unita Organizzativa",
+            type="UnitaOrganizzativa",
             title="Unità 1",
             tassonomia_argomenti=[RelationValue(argomento_id)],
         )
