@@ -6,6 +6,7 @@
   <configure zcml:condition="installed AccessControl.security">
   <!-- -*- extra stuff goes here -*- -->
 
+    <include package="Products.CMFCore" file="permissions.zcml" />
     <permission
         id="design.plone.contenttypes.AddDocumento"
         title="design.plone.contenttypes: Add Documento"
