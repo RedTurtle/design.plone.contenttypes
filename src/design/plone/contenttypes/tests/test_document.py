@@ -17,24 +17,22 @@ class TestDocument(unittest.TestCase):
     def test_behaviors_enabled_for_document(self):
         portal_types = api.portal.get_tool(name="portal_types")
         self.assertEqual(
-            portal_types["Document"].behaviors,
+            portal_types["Documento"].behaviors,
             (
                 "plone.namefromtitle",
                 "plone.allowdiscussion",
                 "plone.excludefromnavigation",
                 "plone.shortname",
-                "plone.dublincore",
-                "plone.relateditems",
-                "plone.versioning",
-                "plone.tableofcontents",
+                "plone.ownership",
+                "plone.publication",
+                "plone.categorization",
+                "plone.basic",
                 "plone.locking",
-                "plone.constraintypes",
-                "volto.blocks",
                 "plone.leadimage",
-                "design.contenttypes.argomenti",
+                "design.plone.contenttypes.behavior.argomenti",
             ),
         )
 
     def test_document_ct_title(self):
         portal_types = api.portal.get_tool(name="portal_types")
-        self.assertEqual("Page", portal_types["Document"].title)
+        self.assertEqual("Documento", portal_types["Documento"].title)
