@@ -31,11 +31,13 @@ class IPersona(model.Schema):
             title=_(u"Organizzazione di riferimento"),
             vocabulary="plone.app.vocabularies.Catalog",
         ),
+        default=[],
         required=True,
     )
     form.widget(
         "organizzazione_riferimento",
         RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "maximumSelectionSize": 1,
             "selectableTypes": ["UnitaOrganizzativa"],
@@ -50,11 +52,12 @@ class IPersona(model.Schema):
             vocabulary="plone.app.vocabularies.Catalog",
         ),
         required=False,
-        missing_value=(),
+        default=[],
     )
     form.widget(
         "responsabile_di",
         RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "maximumSelectionSize": 1,
             "selectableTypes": ["UnitaOrganizzativa"],
@@ -83,6 +86,7 @@ class IPersona(model.Schema):
     form.widget(
         "collegamenti_organizzazione_l1",
         RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "maximumSelectionSize": 1,
             "selectableTypes": ["UnitaOrganizzativa"],
@@ -104,6 +108,7 @@ class IPersona(model.Schema):
     form.widget(
         "collegamenti_organizzazione_l2",
         RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "maximumSelectionSize": 1,
             "selectableTypes": ["UnitaOrganizzativa"],
