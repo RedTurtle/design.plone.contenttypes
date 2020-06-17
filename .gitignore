@@ -40,3 +40,5 @@ reports/
 !.gitkeep
 !.travis.yml
 !src/design
+pyvenv.cfg
+.Python
