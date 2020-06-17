@@ -30,7 +30,7 @@ class ILuoghiCorrelati(model.Schema):
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "recentlyUsed": True,  # Just turn on. Config in plone.app.widgets.
-            "selectableTypes": ["Persona"],
+            "selectableTypes": ["Venue"],
         },
     )
 
