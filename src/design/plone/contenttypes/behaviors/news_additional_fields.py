@@ -91,6 +91,7 @@ class INewsAdditionalFields(model.Schema):
     form.widget(
         "notizie_correlate",
         RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "maximumSelectionSize": 10,
             "selectableTypes": ["News Item"],

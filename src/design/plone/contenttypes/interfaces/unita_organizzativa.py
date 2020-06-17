@@ -31,6 +31,7 @@ class IUnitaOrganizzativa(model.Schema):
     form.widget(
         "legami_con_altre_strutture",
         RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "maximumSelectionSize": 10,
             "selectableTypes": ["UnitaOrganizzativa"],
@@ -43,11 +44,13 @@ class IUnitaOrganizzativa(model.Schema):
             title=_(u"Responsabile"),
             vocabulary="plone.app.vocabularies.Catalog",
         ),
+        default=[],
         required=False,
     )
     form.widget(
         "responsabile",
         RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "maximumSelectionSize": 1,
             "selectableTypes": ["Persona"],
@@ -74,11 +77,12 @@ class IUnitaOrganizzativa(model.Schema):
             vocabulary="plone.app.vocabularies.Catalog",
         ),
         required=False,
-        missing_value=(),
+        default=[],
     )
     form.widget(
         "assessore_riferimento",
         RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "maximumSelectionSize": 1,
             "selectableTypes": ["Persona"],
@@ -99,6 +103,7 @@ class IUnitaOrganizzativa(model.Schema):
     form.widget(
         "persone_struttura",
         RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "maximumSelectionSize": 10,
             "selectableTypes": ["Persona"],
@@ -139,6 +144,7 @@ class IUnitaOrganizzativa(model.Schema):
     form.widget(
         "notizie_collegate",
         RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "maximumSelectionSize": 10,
             "selectableTypes": ["News Item"],
@@ -166,6 +172,7 @@ class IUnitaOrganizzativa(model.Schema):
     form.widget(
         "sedi",
         RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "maximumSelectionSize": 10,
             "selectableTypes": ["Venue"],
