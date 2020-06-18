@@ -14,7 +14,7 @@ def news_people(context, **kw):
 
 @indexer(INewsItem)
 def news_service(context, **kw):
-    servizi = context.servizi_collegati
+    servizi = context.servizi_correlati
     return [
         servizio.UID()
         for servizio in filter(bool, [x.to_object for x in servizi])
