@@ -51,6 +51,10 @@
         name="design.plone.contenttypes.Mockup"
     />
 
+    <utility
+        component=".dataset.TemiDatasetFactory"
+        name="design.plone.contenttypes.temi_dataset"
+    />
 
     <utility
         component=".lista_azioni_pratica.ListaAzioniPraticaFactory"

@@ -13,7 +13,7 @@ class IDataset(model.Schema):
     # TODO: aggiungere tassonomia e vocabolario rilevante fornito nelle linee guida  # noqa
     temi = schema.Choice(
         title=_(u"temi", default=u"Temi"),
-        vocabulary="design.plone.contenttypes.Mockup",
+        vocabulary="design.plone.contenttypes.temi_dataset",
         required=True,
     )
 

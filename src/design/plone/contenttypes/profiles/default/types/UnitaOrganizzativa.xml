@@ -1,40 +1,40 @@
 <?xml version="1.0"?>
 <object xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-    name="LuoghiFolder"
+    name="UnitaOrganizzativa"
     meta_type="Dexterity FTI"
     i18n:domain="design.plone.contenttypes">
 
   <!-- Basic properties -->
   <property
       i18n:translate=""
-      name="title">LuoghiFolder</property>
+      name="title">Unita Organizzativa</property>
   <property
       i18n:translate=""
       name="description"></property>
 
   <property name="allow_discussion">False</property>
-  <property name="factory">LuoghiFolder</property>
+  <property name="factory">UnitaOrganizzativa</property>
   <property name="icon_expr"></property>
   <property name="link_target"></property>
 
   <!-- Hierarchy control -->
   <property name="global_allow">True</property>
-  <property name="filter_content_types">True</property>
+  <property name="filter_content_types">False</property>
   <property name="allowed_content_types">
-    <element value="Venue" />
+  <!--
+    <element value="Document" />
+    <element value="File" />
+  -->
   </property>
   <!-- Schema, class and security -->
-  <property name="add_permission">design.plone.contenttypes.AddLuoghiFolder</property>
-  <property name="klass">design.plone.contenttypes.content.luoghi_folder.LuoghiFolder</property>
+  <property name="add_permission">design.plone.contenttypes.AddUnitaOrganizzativa</property>
+  <property name="klass">design.plone.contenttypes.content.unita_organizzativa.UnitaOrganizzativa</property>
   <property name="model_file"></property>
   <property name="model_source"></property>
-  <property name="schema">design.plone.contenttypes.interfaces.luoghi_folder.ILuoghiFolder</property>
+  <property name="schema">design.plone.contenttypes.interfaces.unita_organizzativa.IUnitaOrganizzativa</property>
 
   <!-- Enabled behaviors -->
   <property name="behaviors" purge="false">
-    <!-- Details about all standard behaviors following can be read at
-         https://docs.plone.org/external/plone.app.dexterity/docs/reference/standard-behaviours.html
-    -->
     <element value="plone.namefromtitle"/>
     <element value="plone.allowdiscussion"/>
     <element value="plone.excludefromnavigation"/>
@@ -44,21 +44,14 @@
     <element value="plone.categorization"/>
     <element value="plone.basic"/>
     <element value="plone.locking" />
-    <!--<element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />-->
-    <!--<element value="plone.leadimage"/>-->
-    <!--<element value="plone.relateditems"/>-->
-    <!--<element value="plone.richtext"/>-->
-    <!--<element value="plone.tableofcontents"/>-->
-    <!--<element value="plone.versionable" />-->
-    <!--<element value="plone.translatable" />-->
-    <!--<element value="plone.nextprevioustoggle" />-->
-    <!--<element value="plone.nextpreviousenabled" />-->
-    <!--<element value="plone.navigationroot" />-->
-    <!--<element value="plone.selectablecontrainstypes" />-->
+    <element value="collective.geolocationbehavior.geolocation.IGeolocatable"/>
+    <element value="plone.leadimage"/>
+    <element value="plone.relateditems"/>
+    <element value="design.plone.contenttypes.behavior.argomenti"/>
   </property>
 
   <!-- View information -->
-  <property name="add_view_expr">string:${folder_url}/++add++LuoghiFolder</property>
+  <property name="add_view_expr">string:${folder_url}/++add++UnitaOrganizzativa</property>
   <property name="default_view">view</property>
   <property name="default_view_fallback">False</property>
   <property name="immediate_view">view</property>

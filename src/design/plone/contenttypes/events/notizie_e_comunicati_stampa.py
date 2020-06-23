@@ -35,7 +35,7 @@ def notiziaCreateHandler(notizia, event):
     constraintsMultimedia = ISelectableConstrainTypes(multimedia)
     constraintsMultimedia.setConstrainTypesMode(1)
     # scegliere le restrizioni
-    constraintsMultimedia.setLocallyAllowedTypes(("File", "Image"))
+    constraintsMultimedia.setLocallyAllowedTypes(("Link", "Image"))
 
     # ci serve? In teoria la macrobuca dovrebbe essere la sezione "Documenti"
     documentiAllegati = _createObjectByType(

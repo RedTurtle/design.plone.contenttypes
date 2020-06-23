@@ -13,7 +13,6 @@
   -->
   <!--<includeDependencies package="." />-->
 
-    
   <include file="permissions.zcml" />
   <include file="upgrades.zcml" />
   <include package=".adapters" />

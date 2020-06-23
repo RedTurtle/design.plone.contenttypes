@@ -20,7 +20,7 @@ class IArgomenti(model.Schema):
         description=_(
             "tassonomia_argomenti_help",
             default="Seleziona una lista di argomenti d'interesse per questo"
-            "contenuto.",
+            " contenuto.",
         ),
         default=[],
         value_type=RelationChoice(vocabulary="plone.app.vocabularies.Catalog"),

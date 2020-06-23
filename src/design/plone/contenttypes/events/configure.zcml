@@ -47,16 +47,6 @@
           zope.lifecycleevent.interfaces.IObjectAddedEvent"
       handler=".notizie_e_comunicati_stampa.notiziaCreateHandler"
     />
-    <subscriber
-      for="design.plone.contenttypes.interfaces.amministrazione_folder.IAmministrazioneFolder
-          zope.lifecycleevent.interfaces.IObjectAddedEvent"
-      handler=".amministrazione_folder.amministrazioneFolderCreateHandler"
-    />
-    <subscriber
-      for="design.plone.contenttypes.interfaces.news_folder.INewsFolder
-          zope.lifecycleevent.interfaces.IObjectAddedEvent"
-      handler=".news_folder.newsFolderCreateHandler"
-    />
 
     
 </configure>

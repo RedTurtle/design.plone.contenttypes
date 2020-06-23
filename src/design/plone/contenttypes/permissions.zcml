@@ -6,36 +6,7 @@
   <configure zcml:condition="installed AccessControl.security">
   <!-- -*- extra stuff goes here -*- -->
 
-    <permission
-        id="design.plone.contenttypes.AddNewsFolder"
-        title="design.plone.contenttypes: Add NewsFolder"
-    />
-
-
-    <permission
-        id="design.plone.contenttypes.AddLuoghiFolder"
-        title="design.plone.contenttypes: Add LuoghiFolder"
-    />
-
-
-    <permission
-        id="design.plone.contenttypes.AddPersoneFolder"
-        title="design.plone.contenttypes: Add PersoneFolder"
-    />
-
-
-    <permission
-        id="design.plone.contenttypes.AddUnitaOrganizzativaFolder"
-        title="design.plone.contenttypes: Add UnitaOrganizzativaFolder"
-    />
-
-
-    <permission
-        id="design.plone.contenttypes.AddAmministrazioneFolder"
-        title="design.plone.contenttypes: Add AmministrazioneFolder"
-    />
-
-
+    <include package="Products.CMFCore" file="permissions.zcml" />
     <permission
         id="design.plone.contenttypes.AddDocumento"
         title="design.plone.contenttypes: Add Documento"

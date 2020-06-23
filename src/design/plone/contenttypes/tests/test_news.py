@@ -100,7 +100,6 @@ class TestNewsApi(unittest.TestCase):
         self.assertEqual(400, response.status_code)
         message = response.json()["message"]
         self.assertIn("tipologia_notizia", message)
-        # self.assertIn("a_cura_di", message)
 
         response = self.api_session.post(
             self.portal_url,
@@ -132,7 +131,7 @@ class TestNewsApi(unittest.TestCase):
         self.assertEqual(news["multimedia"].portal_type, "Document")
         self.assertEqual(news["multimedia"].constrain_types_mode, 1)
         self.assertEqual(
-            news["multimedia"].locally_allowed_types, ("File", "Image")
+            news["multimedia"].locally_allowed_types, ("Link", "Image")
         )
 
         self.assertEqual(news["documenti-allegati"].portal_type, "Document")

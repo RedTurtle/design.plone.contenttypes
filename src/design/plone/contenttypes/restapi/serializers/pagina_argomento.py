@@ -39,7 +39,7 @@ def get_relations(obj, attribute=None, backrefs=False, kw={}):
     if not relation_catalog:
         return []
 
-    query = {**kw}
+    query = {**kw}  # noqa
     if attribute:
         # Constrain the search for certain relation-types.
         query["from_attribute"] = attribute
@@ -99,7 +99,7 @@ class PaginaArgomentoSerializer(BaseSerializer):
         )
 
         result["related_uo"] = get_related_contenttype(
-            relations, "Unita Organizzativa"
+            relations, "UnitaOrganizzativa"
         )
         result["related_news"] = get_related_contenttype(
             relations, "News Item", 4
