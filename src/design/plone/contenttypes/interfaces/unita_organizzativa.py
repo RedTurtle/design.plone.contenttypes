@@ -16,12 +16,22 @@ class IUnitaOrganizzativa(model.Schema):
     model.fieldset("categorization", fields=["notizie_collegate"])
 
     competenze = RichText(
-        title=_(u"competenze", default=u"Competenze"), required=False
+        title=_(u"competenze", default=u"Competenze"),
+        description=_(
+            "competenze_help",
+            default="Descrizione dei compiti assegnati alla struttura.",
+        ),
+        required=False,
     )
 
     legami_con_altre_strutture = RelationList(
         title=u"Legami con altre strutture",
         default=[],
+        description=_(
+            "legami_con_altre_strutture_help",
+            default="Selezionare la lista di strutture e/o uffici collegati"
+            " a questa unità organizzativa.",
+        ),
         value_type=RelationChoice(
             title=_(u"Struttura"), vocabulary="plone.app.vocabularies.Catalog"
         ),
@@ -44,6 +54,10 @@ class IUnitaOrganizzativa(model.Schema):
             title=_(u"Responsabile"),
             vocabulary="plone.app.vocabularies.Catalog",
         ),
+        description=_(
+            "responsabile_help",
+            default="Selezionare il/i responsabile/i della struttura.",
+        ),
         default=[],
         required=False,
     )
@@ -65,6 +79,11 @@ class IUnitaOrganizzativa(model.Schema):
         # vocabolario di rif sara' la lista delle tipologie di organizzazione
         vocabulary=""
         "design.plone.vocabularies.tipologie_unita_organizzativa",
+        description=_(
+            "tipologia_organizzazione_help",
+            default="Specificare la tipologia di organizzazione: politica,"
+            " amminsitrativa o di altro tipo.",
+        ),
         required=True,
     )
 
@@ -75,6 +94,11 @@ class IUnitaOrganizzativa(model.Schema):
         value_type=RelationChoice(
             title=_(u"Assessore di riferimento"),
             vocabulary="plone.app.vocabularies.Catalog",
+        ),
+        description=_(
+            "assessore_riferimento_help",
+            default="Inserire l'assessore di riferimento della struttura,"
+            " se esiste.",
         ),
         required=False,
         default=[],
@@ -97,6 +121,11 @@ class IUnitaOrganizzativa(model.Schema):
         value_type=RelationChoice(
             title=_(u"Persone della struttura"),
             vocabulary="plone.app.vocabularies.Catalog",
+        ),
+        description=_(
+            "persone_struttura_help",
+            default="Seleziona la lista delle persone che compongono"
+            " la struttura.",
         ),
         required=False,
     )
@@ -139,6 +168,11 @@ class IUnitaOrganizzativa(model.Schema):
         value_type=RelationChoice(
             title=_(u"Notizia"), vocabulary="plone.app.vocabularies.Catalog"
         ),
+        description=_(
+            "notizie_collegate_help",
+            default="Seleziona una lista di notizie correlate a"
+            " questa struttura.",
+        ),
         required=False,
     )
     form.widget(
@@ -155,15 +189,29 @@ class IUnitaOrganizzativa(model.Schema):
     ulteriori_informazioni = RichText(
         title=_(u"unteriori_informazioni", default=u"Informazioni"),
         required=False,
+        description=_(
+            "ulteriori_informazioni_help",
+            default="Ulteriori informazioni sulla struttura non contemplate"
+            " dai campi precedenti.",
+        ),
     )
 
     box_aiuto = RichText(
-        title=_(u"box_aiuto", default=u"Box di aiuto"), required=True
+        title=_(u"box_aiuto", default=u"Box di aiuto"),
+        required=True,
+        description=_(
+            "box_aiuto_help",
+            default="Eventuali contatti di supporto all'utente.",
+        ),
     )
 
     sedi = RelationList(
         title=u"Sedi",
         default=[],
+        description=_(
+            "sedi_help",
+            default="Seleziona una lista delle sedi di questa struttura.",
+        ),
         value_type=RelationChoice(
             title=_(u"Sede"), vocabulary="plone.app.vocabularies.Catalog"
         ),
