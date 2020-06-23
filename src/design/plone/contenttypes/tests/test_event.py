@@ -142,3 +142,10 @@ class TestEventApi(unittest.TestCase):
         self.assertEqual(
             event["documenti"].locally_allowed_types, ("File",),
         )
+
+        multimedia_wf = api.content.get_state(obj=event["multimedia"],)
+
+        documenti_wf = api.content.get_state(obj=event["documenti"],)
+
+        self.assertEqual(multimedia_wf, "published")
+        self.assertEqual(documenti_wf, "published")

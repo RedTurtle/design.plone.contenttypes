@@ -3,7 +3,7 @@
 <property name="title" i18n:translate="">Evento</property>
 <property name="klass">design.plone.contenttypes.content.evento.Event</property>
 <property name="schema">plone.event.interfaces.IEvent</property>
-  <property name="global_allow">False</property>
+  <!-- <property name="global_allow">False</property> -->
   <property name="behaviors" purge="false">
     <element value="design.plone.contenttypes.behavior.evento"/>
     <element value="design.plone.contenttypes.behavior.argomenti"/>

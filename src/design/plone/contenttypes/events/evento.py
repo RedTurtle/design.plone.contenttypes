@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from Products.CMFPlone.utils import _createObjectByType
 from Products.CMFPlone.interfaces import ISelectableConstrainTypes
+from plone import api
 
 
 def eventoCreateHandler(evento, event):
@@ -28,3 +29,7 @@ def eventoCreateHandler(evento, event):
     constraintsDocumenti.setConstrainTypesMode(1)
     # scegliere le restrizioni
     constraintsDocumenti.setLocallyAllowedTypes(("File",))
+
+    # add publish automation during creation
+    api.content.transition(obj=galleria, transition="publish")
+    api.content.transition(obj=documenti, transition="publish")
