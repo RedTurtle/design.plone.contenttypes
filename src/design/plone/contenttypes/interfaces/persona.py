@@ -289,4 +289,3 @@ class IPersona(model.Schema):
             default="Ulteriori informazioni relative alla persona.",
         ),
     )
-
