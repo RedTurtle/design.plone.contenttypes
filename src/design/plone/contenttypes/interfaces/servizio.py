@@ -243,6 +243,14 @@ class IServizio(model.Schema):
         },
     )
 
-    model.fieldset("correlati", fields=["servizi_collegati"])
+    model.fieldset(
+        "correlati",
+        fields=[
+            "servizi_collegati",
+            "ufficio_responsabile",
+            "area",
+            "altri_documenti",
+        ],
+    )
 
     # TODO: come gestiamo i correlati amministrazione
