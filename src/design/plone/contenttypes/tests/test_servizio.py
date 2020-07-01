@@ -66,4 +66,3 @@ class TestServizio(unittest.TestCase):
                 == WIDGET_PROPERTY_CHECKS[field]
             )
             self.assertTrue(properties[field]["type"] == "array")
-
