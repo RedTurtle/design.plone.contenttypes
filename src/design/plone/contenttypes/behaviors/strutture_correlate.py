@@ -30,6 +30,7 @@ class IStruttureCorrelate(model.Schema):
     form.widget(
         "strutture_politiche",
         RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "maximumSelectionSize": 10,
             "selectableTypes": ["UnitaOrganizzativa"],

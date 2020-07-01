@@ -55,6 +55,7 @@ class IEvento(model.Schema):
     form.widget(
         "persone_amministrazione",
         RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "maximumSelectionSize": 10,
             "selectableTypes": ["Persona"],
@@ -64,6 +65,7 @@ class IEvento(model.Schema):
     luogo_evento = RelationList(
         title=_(u"luogo_evento", default=u"Luogo dell'evento"),
         required=False,
+        default=[],
         value_type=RelationChoice(
             title=_(u"Luogo dell'evento"),
             vocabulary="plone.app.vocabularies.Catalog",
@@ -72,6 +74,7 @@ class IEvento(model.Schema):
     form.widget(
         "luogo_evento",
         RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "maximumSelectionSize": 1,
             "selectableTypes": ["Venue"],
@@ -151,6 +154,7 @@ class IEvento(model.Schema):
     form.widget(
         "organizzato_da_interno",
         RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "maximumSelectionSize": 10,
             "selectableTypes": ["Persona", "UnitaOrganizzativa", "Servizio"],
@@ -171,6 +175,7 @@ class IEvento(model.Schema):
     evento_supportato_da = RelationList(
         title=_(u"supportato_da", default=u"Evento supportato da"),
         required=False,
+        default=[],
         value_type=RelationChoice(
             title=_(u"Evento supportato da"),
             vocabulary="plone.app.vocabularies.Catalog",
@@ -184,6 +189,7 @@ class IEvento(model.Schema):
     form.widget(
         "evento_supportato_da",
         RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "maximumSelectionSize": 1,
             "selectableTypes": ["UnitaOrganizzativa"],
