@@ -41,13 +41,11 @@ class TestEvent(unittest.TestCase):
                 "volto.blocks",
                 "design.plone.contenttypes.behavior.evento",
                 "design.plone.contenttypes.behavior.argomenti",
+                "design.plone.contenttypes.behavior.strutture_correlate",
                 "plone.leadimage",
             ),
         )
 
-    def test_event_ct_title(self):
-        portal_types = api.portal.get_tool(name="portal_types")
-        self.assertEqual("Evento", portal_types["Event"].title)
 
     def test_event_addable_types(self):
         portal_types = api.portal.get_tool(name="portal_types")
@@ -70,8 +68,6 @@ class TestEventApi(unittest.TestCase):
         self.api_session = RelativeSession(self.portal_url)
         self.api_session.headers.update({"Accept": "application/json"})
         self.api_session.auth = (SITE_OWNER_NAME, SITE_OWNER_PASSWORD)
-
-        transaction.commit()
 
     def tearDown(self):
         self.api_session.close()

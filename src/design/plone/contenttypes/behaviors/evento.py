@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from design.plone.contenttypes import _
-from plone import api
 from plone.app.textfield import RichText
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
@@ -12,27 +11,6 @@ from z3c.relationfield.schema import RelationList
 from zope import schema
 from zope.component import adapter
 from zope.interface import provider, implementer
-from zope.schema.interfaces import IContextSourceBinder
-from zope.schema.vocabulary import SimpleVocabulary
-
-
-@implementer(IContextSourceBinder)
-class SourceGeneratorTest(object):
-    def __init__(self, portalType):
-        self.portalType = portalType
-
-    def __call__(self, context):
-        _ = api.content.find(context=context, portal_type=self.portalType)
-        terms = []
-
-        for item in _:
-            if item is not None:
-                obj = item.getObject()
-                terms.append(
-                    SimpleVocabulary.createTerm(obj.id, str(obj.id), obj.title)
-                )
-
-        return SimpleVocabulary(terms)
 
 
 @provider(IFormFieldProvider)
@@ -45,19 +23,8 @@ class IEvento(model.Schema):
         title=_(u"identifier", default=u"Identifier"), required=False
     )
 
-    # siccome l'evento e' folderish, e' genitore se ha dei contenuti al suo interno
-    # evento_genitore = schema.Bool(
-    #     title=_(u"evento_genitore", default=u"Evento genitore"), required=True
-    # )
-
-    # ci sara un calendario eventi
-    # calendario_eventi_link = RichText(
-    #     title=_(u'calendario_eventi_link', default=u'Vedi calendario eventi')
-    #     required=False,
-    # )
-
     introduzione = RichText(
-        title=_(u"introduzione", default=u"Introduzione"), required=False
+        title=_(u"introduzione", default=u"Introduzione"), required=False,
     )
 
     descrizione_destinatari = RichText(
@@ -65,6 +32,10 @@ class IEvento(model.Schema):
             u"descrizione_destinatari", default=u"Descrizione destinatari"
         ),
         required=True,
+        description=_(
+            "descrizione_destinatari_help",
+            default="Descrizione dei principali interlocutori dell'evento.",
+        ),
     )
 
     persone_amministrazione = RelationList(
@@ -73,6 +44,11 @@ class IEvento(model.Schema):
         value_type=RelationChoice(
             title=_(u"Persona dell'amministrazione"),
             vocabulary="plone.app.vocabularies.Catalog",
+        ),
+        description=_(
+            "persone_amministrazione_help",
+            default="Elenco delle persone dell'amministrazione che"
+            " parteciperanno all'evento.",
         ),
         required=False,
     )
@@ -85,8 +61,7 @@ class IEvento(model.Schema):
         },
     )
 
-    # ref
-    luogo_event = RelationList(
+    luogo_evento = RelationList(
         title=_(u"luogo_evento", default=u"Luogo dell'evento"),
         required=False,
         value_type=RelationChoice(
@@ -95,7 +70,7 @@ class IEvento(model.Schema):
         ),
     )
     form.widget(
-        "luogo_event",
+        "luogo_evento",
         RelatedItemsFieldWidget,
         pattern_options={
             "maximumSelectionSize": 1,
@@ -120,17 +95,41 @@ class IEvento(model.Schema):
     date_significative = RichText(
         title=_(u"date_significative", default=u"Date significative"),
         required=True,
+        description=_(
+            "date_significative_help",
+            default="Descrizione delle date signifcative dell'evento.",
+        ),
     )
 
-    orari = RichText(title=_(u"orari", default=u"Orari"), required=True)
+    orari = RichText(
+        title=_(u"orari", default=u"Orari"),
+        required=True,
+        description=_(
+            "orari_help",
+            default="Informazioni sugli orari di svolgimento dell'evento.",
+        ),
+    )
 
     # TODO: come gestire il campo "Aggiungi al calendario"
 
-    prezzo = RichText(title=_(u"prezzo", default=u"Prezzo"), required=True)
+    prezzo = RichText(
+        title=_(u"prezzo", default=u"Prezzo"),
+        required=True,
+        description=_(
+            "prezzo_help",
+            default="Indicare il prezzo dell'evento, se presente, specificando"
+            " se esistono formati diversi.",
+        ),
+    )
 
     organizzato_da_esterno = RichText(
         title=_(u"organizzato_da_esterno", default=u"Organizzato da"),
         required=False,
+        description=_(
+            "organizzato_da_esterno_help",
+            default="Se l'evento non è organizzato direttamente dal comune,"
+            " indicare l'organizzatore.",
+        ),
     )
 
     organizzato_da_interno = RelationList(
@@ -143,6 +142,11 @@ class IEvento(model.Schema):
             vocabulary="plone.app.vocabularies.Catalog",
         ),
         required=False,
+        description=_(
+            "organizzato_da_esterno_help",
+            default="Se l'evento è organizzato direttamente dal comune,"
+            " indicare l'ufficio/ente organizzatore.",
+        ),
     )
     form.widget(
         "organizzato_da_interno",
@@ -152,34 +156,16 @@ class IEvento(model.Schema):
             "selectableTypes": ["Persona", "UnitaOrganizzativa", "Servizio"],
         },
     )
-    # using default event
-    # contatto_persona = schema.TextLine(
-    #     title=_(u'contatto_persona', default=u'Contatto: persona'),
-    #     required=False,
-    # )
-
-    # using default event
-    # contatto_telefono = schema.TextLine(
-    #     title=_(u'contatto_telefono', default=u'Contatto: telefono'),
-    #     required=False,
-    # )
 
     contatto_reperibilita = schema.TextLine(
         title=_(u"contatto_reperibilita", default=u"Contatto: reperibilità"),
         required=False,
+        description=_(
+            "contatto_reperibilita_help",
+            default="Indicare gli orari in cui l'organizzatore è"
+            " telefonicamente reperibile.",
+        ),
     )
-
-    # using default event
-    # contatto_mail = schema.TextLine(
-    #     title=_(u'contatto_mail', default=u'Contatto: mail'),
-    #     required=False,
-    # )
-
-    # using default event
-    # sito_web = schema.TextLine(
-    #     title=_(u'sito_web', default=u'Sito web'),
-    #     required=False,
-    # )
 
     # ref
     evento_supportato_da = RelationList(
@@ -188,6 +174,11 @@ class IEvento(model.Schema):
         value_type=RelationChoice(
             title=_(u"Evento supportato da"),
             vocabulary="plone.app.vocabularies.Catalog",
+        ),
+        description=_(
+            "supportato_da_help",
+            default="Se l'evento è organizzato direttamente dal comune,"
+            " indicare l'ufficio/ente che supporta l'evento.",
         ),
     )
     form.widget(
@@ -199,28 +190,28 @@ class IEvento(model.Schema):
         },
     )
 
-    # buggatissimo con source=CatalogSource(portal_type=['Venue']),
-    #   Module plone.app.vocabularies.principals, line 147, in getTerm
-    # Module plone.app.vocabularies.principals, line 113, in
-    # _get_term_from_source
-    # ValueError: value or token must be provided (only one of those)
-
-    lista_eventi_figli = RelationList(
-        title=u"Lista eventi figli",
-        default=[],
-        value_type=RelationChoice(
-            title=_(u"Evento figlio"), source=SourceGeneratorTest("Venue")
-        ),
-        required=False,
-    )
-    form.widget(
-        "lista_eventi_figli",
-        RelatedItemsFieldWidget,
-        pattern_options={
-            "maximumSelectionSize": 10,
-            "selectableTypes": ["Venue"],
-        },
-    )
+    # no, gli eventi figli stanno dentro l'evento padre
+    # lista_eventi_figli = RelationList(
+    #     title=u"Lista eventi figli",
+    #     default=[],
+    #     value_type=RelationChoice(
+    #         title=_(u"Evento figlio"), source=SourceGeneratorTest("Venue")
+    #     ),
+    #     required=False,
+    #     description=_(
+    #         "lista_eventi_figli_help",
+    #         default="Se l'evento è composto da più date/sotto-eventi,"
+    #         " scegliere la lista dei sotto-eventi.",
+    #     ),
+    # )
+    # form.widget(
+    #     "lista_eventi_figli",
+    #     RelatedItemsFieldWidget,
+    #     pattern_options={
+    #         "maximumSelectionSize": 10,
+    #         "selectableTypes": ["Venue"],
+    #     },
+    # )
 
     # TODO: come fare il rating/recensione dell'evento
 
@@ -230,30 +221,23 @@ class IEvento(model.Schema):
     )
 
     patrocinato_da = schema.TextLine(
-        title=_(u"patrocinato_da", default=u"Patrocinato da"), required=False
+        title=_(u"patrocinato_da", default=u"Patrocinato da"),
+        required=False,
+        description=_(
+            "patrocinato_da_help",
+            default="Indicare l'ente che supporta l'evento, se presente.",
+        ),
     )
 
     # qui ci va anche loghi
-    sponsor = RichText(title=_(u"sponsor", default=u"Sponsor"), required=False)
-
-    # ref
-    strutture_politiche = RelationList(
-        title=u"Strutture politiche coinvolte",
-        default=[],
-        value_type=RelationChoice(
-            title=_(u"Struttura politica coinvolta"),
-            vocabulary="plone.app.vocabularies.Catalog",
-        ),
+    sponsor = RichText(
+        title=_(u"sponsor", default=u"Sponsor"),
         required=False,
-        missing_value=(),
-    )
-    form.widget(
-        "strutture_politiche",
-        RelatedItemsFieldWidget,
-        pattern_options={
-            "maximumSelectionSize": 10,
-            "selectableTypes": ["UnitaOrganizzativa"],
-        },
+        description=_(
+            "sponsor_help",
+            default="Campo dove inserire i loghi degli enti che hanno"
+            " patrocinato l'evento e/o degli sponsor.",
+        ),
     )
 
     box_aiuto = RichText(

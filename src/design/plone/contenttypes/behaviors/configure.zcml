@@ -53,7 +53,7 @@
       for="plone.dexterity.interfaces.IDexterityContent"
       marker=".luoghi_correlati.ILuoghiCorrelati"
       />
-    
+
     <plone:behavior
       title="Dataset correlati"
       name="design.plone.contenttypes.behavior.dataset_correlati"
@@ -72,5 +72,15 @@
       factory=".servizi_correlati.ServiziCorrelati"
       for="plone.dexterity.interfaces.IDexterityContent"
       marker=".servizi_correlati.IServiziCorrelati"
+      />
+
+    <plone:behavior
+      title="Strutture correlate"
+      name="design.plone.contenttypes.behavior.strutture_correlate"
+      description=""
+      provides=".strutture_correlate.IStruttureCorrelate"
+      factory=".strutture_correlate.StruttureCorrelate"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      marker=".strutture_correlate.IStruttureCorrelate"
       />
 </configure>
