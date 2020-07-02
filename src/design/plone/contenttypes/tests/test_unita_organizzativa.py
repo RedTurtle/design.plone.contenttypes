@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 """Setup tests for this package."""
 from plone import api
 from plone.app.testing import (
@@ -15,7 +16,12 @@ from z3c.relationfield import RelationValue
 from Products.CMFPlone.utils import getToolByName
 from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
+    DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING,
 )
+from design.plone.contenttypes.testing import (
+
+)
+
 import unittest
 
 
@@ -69,4 +75,42 @@ class TestServizio(unittest.TestCase):
         self.assertTrue(
             response.json()["servizi_offerti"][0]["@id"],
             self.service.absolute_url(),
+
+
+
+
+
+class TestUO(unittest.TestCase):
+    layer = DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING
+
+    def setUp(self):
+        """Custom shared utility setup for tests."""
+        self.portal = self.layer["portal"]
+
+    def test_behaviors_enabled_for_uo(self):
+        portal_types = api.portal.get_tool(name="portal_types")
+        self.assertEqual(
+            portal_types["UnitaOrganizzativa"].behaviors,
+            (
+                "plone.namefromtitle",
+                "plone.allowdiscussion",
+                "plone.excludefromnavigation",
+                "plone.shortname",
+                "plone.ownership",
+                "plone.publication",
+                "plone.categorization",
+                "plone.basic",
+                "plone.locking",
+                "collective.geolocationbehavior.geolocation.IGeolocatable",
+                "plone.leadimage",
+                "plone.relateditems",
+                "design.plone.contenttypes.behavior.argomenti",
+                "design.plone.contenttypes.behavior.additional_help_infos",
+            ),
+        )
+
+    def test_uo_ct_title(self):
+        portal_types = api.portal.get_tool(name="portal_types")
+        self.assertEqual(
+            "Unita Organizzativa", portal_types["UnitaOrganizzativa"].title
         )

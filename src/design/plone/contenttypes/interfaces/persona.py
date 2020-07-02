@@ -15,17 +15,31 @@ class IPersona(model.Schema):
     """
 
     foto_persona = field.NamedImage(
-        title=_(u"immagine", default=u"Immagine"), required=False
+        title=_(u"immagine", default=u"Immagine"),
+        required=False,
+        description=_(
+            "foto_persona_help", default="Foto da mostrare della persona.",
+        ),
     )
 
-    ruolo = schema.TextLine(title=_(u"ruolo", default=u"Ruolo"), required=True)
-
-    ruolo = schema.TextLine(title=_(u"ruolo", default=u"Ruolo"), required=True)
+    ruolo = schema.TextLine(
+        title=_(u"ruolo", default=u"Ruolo"),
+        description=_(
+            "ruolo_help",
+            default="Descrizione testuale del ruolo di questa persona.",
+        ),
+        required=True,
+    )
 
     organizzazione_riferimento = RelationList(
         title=_(
             u"organizzazione_riferimento",
             default=u"Organizzazione di riferimento",
+        ),
+        description=_(
+            "organizzazione_riferimento_help",
+            default="Seleziona una lista di organizzazioni a cui la persona"
+            " appartiene.",
         ),
         value_type=RelationChoice(
             title=_(u"Organizzazione di riferimento"),
@@ -47,6 +61,11 @@ class IPersona(model.Schema):
 
     responsabile_di = RelationList(
         title=_(u"responsabile_di", default=u"Responsabile di"),
+        description=_(
+            "responsabile_di_help",
+            default="Seleziona una lista di organizzazioni di cui"
+            " la persona è responsabile.",
+        ),
         value_type=RelationChoice(
             title=_(u"Responsabile di"),
             vocabulary="plone.app.vocabularies.Catalog",
@@ -69,6 +88,10 @@ class IPersona(model.Schema):
         title=_(
             u"data_conclusione_incarico", default=u"Data conclusione incarico"
         ),
+        description=_(
+            "data_conclusione_incarico_help",
+            default="Data di conclusione dell'incarico.",
+        ),
         required=False,
     )
 
@@ -76,6 +99,14 @@ class IPersona(model.Schema):
         title=_(
             u"collegamenti_organizzazione_l1",
             default=u"Collegamenti all'organizzazione di I livello",
+        ),
+        description=_(
+            "collegamenti_organizzazione_l1_help",
+            default="Seleziona l'organizzazione a cui la persona è collegata."
+            " Se si tratta di una persona politica, il collegamento è riferito"
+            " a una struttura politica. Se si tratta di una persona"
+            " amministrativa, il collegamento è riferito ad un'area"
+            " amministrativa.",
         ),
         default=[],
         value_type=RelationChoice(
@@ -100,6 +131,12 @@ class IPersona(model.Schema):
             u"collegamenti_organizzazione_l2",
             default=u"Collegamenti all'organizzazione di II livello",
         ),
+        description=_(
+            "collegamenti_organizzazione_l2_help",
+            default="Seleziona gli assessorati di cui la persona si occupa, "
+            " i gruppi politici, commissioni a cui appartiene, oppure gli"
+            " uffici di cui si occupa o di cui è responsabile.",
+        ),
         default=[],
         value_type=RelationChoice(
             title=_(u"Collegamenti organizzazione di II livello"),
@@ -119,36 +156,74 @@ class IPersona(model.Schema):
     )
 
     competenze = RichText(
-        title=_(u"competenze", default=u"Competenze"), required=False
+        title=_(u"competenze", default=u"Competenze"),
+        description=_(
+            "competenze_help",
+            default="Descrizione del ruolo e dei compiti della persona.",
+        ),
+        required=False,
     )
 
-    deleghe = RichText(title=_(u"deleghe", default=u"Deleghe"), required=False)
+    deleghe = RichText(
+        title=_(u"deleghe", default=u"Deleghe"),
+        description=_(
+            "deleghe_help",
+            default="Elenco delle deleghe a capo della persona.",
+        ),
+        required=False,
+    )
 
     tipologia_persona = schema.Choice(
         title=_(u"tipologia_persona", default=u"Tipologia persona"),
+        description=_(
+            "tipologia_persona_help",
+            default="Seleziona la tipologia di persona: politica,"
+            " amministrativa o di altro tipo.",
+        ),
         vocabulary="design.plone.contenttypes.TipologiaPersona",
         required=True,
     )
 
     data_insediamento = schema.Date(
         title=_(u"data_insediamento", default=u"Data insediamento"),
+        description=_(
+            "data_insediamento_help",
+            default="Solo per persona politica: specificare la data di"
+            " insediamento.",
+        ),
         required=False,
     )
 
     biografia = RichText(
-        title=_(u"biografia", default=u"Biografia"), required=False
+        title=_(u"biografia", default=u"Biografia"),
+        description=_(
+            "biografia_help",
+            default="Solo per persona politica: testo descrittivo che riporta"
+            " la biografia della persona.",
+        ),
+        required=False,
     )
 
     telefono = schema.TextLine(
-        title=_(u"telefono", default=u"Numero di telefono"), required=False
+        title=_(u"telefono", default=u"Numero di telefono"),
+        description=_(
+            "telefono_help", default="Contatto telefonico della persona.",
+        ),
+        required=False,
     )
 
     email = schema.TextLine(
-        title=_(u"email", default=u"Indirizzo email"), required=False
+        title=_(u"email", default=u"Indirizzo email"),
+        description=_("email_help", default="Contatto mail della persona.",),
+        required=False,
     )
     informazioni_di_contatto = RichText(
         title=_(
             u"informazioni_di_contatto", default=u"Informazioni di contatto"
+        ),
+        description=_(
+            "informazioni_di_contatto_help",
+            default="Altre informazioni di contatto.",
         ),
         required=False,
     )
@@ -156,6 +231,9 @@ class IPersona(model.Schema):
     curriculum_vitae = field.NamedBlobFile(
         title=_(u"curriculum_vitae", default=u"Curriculum vitae"),
         required=False,
+        description=_(
+            "curriculum_vitae_help", default="Curriculum vitae della persona.",
+        ),
     )
 
     # compensi = field.NamedBlobFile(
@@ -171,7 +249,11 @@ class IPersona(model.Schema):
     #    )
 
     atto_nomina = field.NamedFile(
-        title=_(u"atto_nomina", default=u"Atto nomina"), required=False
+        title=_(u"atto_nomina", default=u"Atto nomina"),
+        required=False,
+        description=_(
+            "atto_nomina_help", default="Atto di nomina della persona.",
+        ),
     )
 
     #    situazione_patrimoniale = field.NamedFile(
@@ -200,8 +282,3 @@ class IPersona(model.Schema):
     #        ),
     #        required=True,
     #    )
-
-    ulteriori_informazioni = RichText(
-        title=_(u"ulteriori_informazioni", default=u"Ulteriori informazioni"),
-        required=False,
-    )
