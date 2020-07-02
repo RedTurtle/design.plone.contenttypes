@@ -46,11 +46,10 @@ class TestEvent(unittest.TestCase):
             ),
         )
 
-
     def test_event_addable_types(self):
         portal_types = api.portal.get_tool(name="portal_types")
         self.assertEqual(
-            ("Image", "File", "Link",),
+            ("Image", "File", "Link", "Event"),
             portal_types["Event"].allowed_content_types,
         )
 
