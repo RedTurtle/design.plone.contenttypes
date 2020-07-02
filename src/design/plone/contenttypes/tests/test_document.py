@@ -30,6 +30,7 @@ class TestDocument(unittest.TestCase):
                 "plone.locking",
                 "plone.leadimage",
                 "design.plone.contenttypes.behavior.argomenti",
+                "design.plone.contenttypes.behavior.additional_help_infos",
             ),
         )
 

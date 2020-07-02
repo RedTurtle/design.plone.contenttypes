@@ -7,6 +7,7 @@ from plone.supermodel import model
 from zope.component import adapter
 from zope.interface import provider, implementer
 
+
 # TODO: valutare se aggiungere 'box_aiuto', in alcuni CT e' obbligatorio
 # e bisognerebbe metterlo unifrme per tutti in barba alle linee guida
 @provider(IFormFieldProvider)
