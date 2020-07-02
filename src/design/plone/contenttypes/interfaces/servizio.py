@@ -226,6 +226,7 @@ class IServizio(model.Schema):
             " di questo servizio.",
         ),
         required=True,
+        default=[],
         value_type=RelationChoice(
             title=_(u"Ufficio responsabile"),
             vocabulary="plone.app.vocabularies.Catalog",
@@ -234,6 +235,7 @@ class IServizio(model.Schema):
     form.widget(
         "ufficio_responsabile",
         RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "maximumSelectionSize": 1,
             "selectableTypes": ["UnitaOrganizzativa"],
@@ -255,6 +257,7 @@ class IServizio(model.Schema):
     form.widget(
         "area",
         RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "maximumSelectionSize": 1,
             "selectableTypes": ["UnitaOrganizzativa"],
@@ -278,6 +281,7 @@ class IServizio(model.Schema):
     form.widget(
         "altri_documenti",
         RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "maximumSelectionSize": 10,
             "selectableTypes": ["Documento"],
@@ -368,6 +372,7 @@ class IServizio(model.Schema):
     form.widget(
         "servizi_collegati",
         RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "maximumSelectionSize": 10,
             "selectableTypes": ["Servizio"],
@@ -391,6 +396,7 @@ class IServizio(model.Schema):
     form.widget(
         "sedi_e_luoghi",
         RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "maximumSelectionSize": 10,
             "selectableTypes": ["Venue"],
@@ -398,6 +404,14 @@ class IServizio(model.Schema):
         },
     )
 
-    model.fieldset("categorization", fields=["servizi_collegati"])
+    model.fieldset(
+        "correlati",
+        fields=[
+            "servizi_collegati",
+            "ufficio_responsabile",
+            "area",
+            "altri_documenti",
+        ],
+    )
 
     # TODO: come gestiamo i correlati amministrazione
