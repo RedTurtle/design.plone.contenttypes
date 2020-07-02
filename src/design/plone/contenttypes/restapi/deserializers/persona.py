@@ -29,12 +29,14 @@ class DeserializePersonaFromJson(DeserializeFromJson):
         if data:
             if (
                 "data_insediamento" in data
+                and data["data_insediamento"]
                 and len(data["data_insediamento"]) > 10
             ):
                 data["data_insediamento"] = data["data_insediamento"][0:10]
 
             if (
                 "data_conclusione_incarico" in data
+                and data["data_conclusione_incarico"]
                 and len(data["data_conclusione_incarico"]) > 10
             ):
                 data["data_conclusione_incarico"] = data[
