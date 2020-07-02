@@ -108,6 +108,7 @@ class IPersona(model.Schema):
             " amministrativa, il collegamento è riferito ad un'area"
             " amministrativa.",
         ),
+        default=[],
         value_type=RelationChoice(
             title=_(u"Collegamenti organizzazione di I livello"),
             vocabulary="plone.app.vocabularies.Catalog",
@@ -136,6 +137,7 @@ class IPersona(model.Schema):
             " i gruppi politici, commissioni a cui appartiene, oppure gli"
             " uffici di cui si occupa o di cui è responsabile.",
         ),
+        default=[],
         value_type=RelationChoice(
             title=_(u"Collegamenti organizzazione di II livello"),
             vocabulary="plone.app.vocabularies.Catalog",
