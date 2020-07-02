@@ -77,6 +77,7 @@ class IPersona(model.Schema):
             u"collegamenti_organizzazione_l1",
             default=u"Collegamenti all'organizzazione di I livello",
         ),
+        default=[],
         value_type=RelationChoice(
             title=_(u"Collegamenti organizzazione di I livello"),
             vocabulary="plone.app.vocabularies.Catalog",
@@ -99,6 +100,7 @@ class IPersona(model.Schema):
             u"collegamenti_organizzazione_l2",
             default=u"Collegamenti all'organizzazione di II livello",
         ),
+        default=[],
         value_type=RelationChoice(
             title=_(u"Collegamenti organizzazione di II livello"),
             vocabulary="plone.app.vocabularies.Catalog",

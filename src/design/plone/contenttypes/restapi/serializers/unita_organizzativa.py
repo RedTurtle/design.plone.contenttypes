@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from plone.restapi.serializer.dxcontent import (
-    SerializeFolderToJson as BaseSerializer,
+from .related_news_serializer import (
+    SerializeFolderToJson as RelatedNewsSerializer,
 )
 from design.plone.contenttypes.interfaces.unita_organizzativa import (
     IUnitaOrganizzativa,
@@ -13,11 +13,16 @@ from zope.interface import implementer
 from zope.interface import Interface
 
 
-class SerializeFolderToJson(BaseSerializer):
+@implementer(ISerializeToJson)
+@adapter(IUnitaOrganizzativa, Interface)
+class UOSerializer(RelatedNewsSerializer):
     def __call__(self, version=None, include_items=True):
-        result = super(SerializeFolderToJson, self).__call__(
+        self.index = "news_uo"
+        result = super(UOSerializer, self).__call__(
             version=None, include_items=True
         )
+
+        self.index = "ufficio_responsabile"
         catalog = api.portal.get_tool("portal_catalog")
         query = {
             self.index: result["UID"],
@@ -36,10 +41,5 @@ class SerializeFolderToJson(BaseSerializer):
             for x in brains
         ]
         result["servizi_offerti"] = servizi
+
         return result
-
-
-@implementer(ISerializeToJson)
-@adapter(IUnitaOrganizzativa, Interface)
-class UOSerializer(SerializeFolderToJson):
-    index = "ufficio_responsabile"

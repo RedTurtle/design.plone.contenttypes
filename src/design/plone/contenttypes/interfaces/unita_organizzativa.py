@@ -13,8 +13,6 @@ class IUnitaOrganizzativa(model.Schema):
     """Marker interface for content type UnitaOrganizzativa
     """
 
-    model.fieldset("categorization", fields=["notizie_collegate"])
-
     competenze = RichText(
         title=_(u"competenze", default=u"Competenze"), required=False
     )
@@ -130,27 +128,6 @@ class IUnitaOrganizzativa(model.Schema):
     #         # "basePath": "/servizi",
     #     },
     # )
-
-    # vocabolario di riferimento sara' da definire, probabilmente dinamico dai
-    # ct servizi presenti nella macro Amministrazione"
-    notizie_collegate = RelationList(
-        title=u"Notizie collegate",
-        default=[],
-        value_type=RelationChoice(
-            title=_(u"Notizia"), vocabulary="plone.app.vocabularies.Catalog"
-        ),
-        required=False,
-    )
-    form.widget(
-        "notizie_collegate",
-        RelatedItemsFieldWidget,
-        vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={
-            "maximumSelectionSize": 10,
-            "selectableTypes": ["News Item"],
-            # "basePath": "/servizi",
-        },
-    )
 
     ulteriori_informazioni = RichText(
         title=_(u"unteriori_informazioni", default=u"Informazioni"),
