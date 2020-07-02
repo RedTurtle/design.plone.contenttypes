@@ -7,17 +7,17 @@ from plone import api
 import unittest
 
 
-class TestDocument(unittest.TestCase):
+class TestUO(unittest.TestCase):
     layer = DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING
 
     def setUp(self):
         """Custom shared utility setup for tests."""
         self.portal = self.layer["portal"]
 
-    def test_behaviors_enabled_for_document(self):
+    def test_behaviors_enabled_for_uo(self):
         portal_types = api.portal.get_tool(name="portal_types")
         self.assertEqual(
-            portal_types["Documento"].behaviors,
+            portal_types["UnitaOrganizzativa"].behaviors,
             (
                 "plone.namefromtitle",
                 "plone.allowdiscussion",
@@ -28,12 +28,16 @@ class TestDocument(unittest.TestCase):
                 "plone.categorization",
                 "plone.basic",
                 "plone.locking",
+                "collective.geolocationbehavior.geolocation.IGeolocatable",
                 "plone.leadimage",
+                "plone.relateditems",
                 "design.plone.contenttypes.behavior.argomenti",
                 "design.plone.contenttypes.behavior.additional_help_infos",
             ),
         )
 
-    def test_document_ct_title(self):
+    def test_uo_ct_title(self):
         portal_types = api.portal.get_tool(name="portal_types")
-        self.assertEqual("Documento", portal_types["Documento"].title)
+        self.assertEqual(
+            "Unita Organizzativa", portal_types["UnitaOrganizzativa"].title
+        )

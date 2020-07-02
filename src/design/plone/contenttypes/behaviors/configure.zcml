@@ -82,5 +82,15 @@
       factory=".strutture_correlate.StruttureCorrelate"
       for="plone.dexterity.interfaces.IDexterityContent"
       marker=".strutture_correlate.IStruttureCorrelate"
+    />
+
+    <plone:behavior
+      title="Ulteriori campi aiuto testuali"
+      name="design.plone.contenttypes.behavior.additional_help_infos"
+      description=""
+      provides=".additional_help_infos.IAdditionalHelpInfos"
+      factory=".additional_help_infos.AdditionalHelpInfos"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      marker=".additional_help_infos.IAdditionalHelpInfos"
       />
 </configure>

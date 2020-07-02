@@ -114,11 +114,6 @@ class ILuogo(model.Schema):
         required=False,
     )
 
-    ulteriori_informazioni = RichText(
-        title=_(u"ulteriori_informazioni", default=u"Ulteriori informazioni"),
-        required=False,
-    )
-
     # TODO: aggiungere il vocabolario da https://dataportal.daf.teamdigitale.it/#/vocabularies/subject-disciplines  # noqa
     # quando ritornano i dati dopo la migrazione, bisognera' vedere dove sono
     # finiti, link invalido al momento

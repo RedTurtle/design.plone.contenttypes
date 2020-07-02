@@ -221,11 +221,6 @@ class IEvento(model.Schema):
 
     # TODO: come fare il rating/recensione dell'evento
 
-    ulteriori_informazioni = RichText(
-        title=_(u"ulteriori_informazioni", default=u"Ulteriori informazioni"),
-        required=False,
-    )
-
     patrocinato_da = schema.TextLine(
         title=_(u"patrocinato_da", default=u"Patrocinato da"),
         required=False,

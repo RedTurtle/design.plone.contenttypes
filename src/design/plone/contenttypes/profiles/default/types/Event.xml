@@ -7,6 +7,7 @@
   <property name="behaviors" purge="false">
     <element value="design.plone.contenttypes.behavior.evento"/>
     <element value="design.plone.contenttypes.behavior.argomenti"/>
+    <element value="design.plone.contenttypes.behavior.additional_help_infos"/>
     <element value="plone.eventlocation" remove="True"/>
     <element value="plone.eventattendees" remove="True"/>
     <element value="plone.richtext" remove="True"/>
