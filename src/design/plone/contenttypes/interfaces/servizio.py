@@ -306,8 +306,8 @@ class IServizio(model.Schema):
         title=_(u"life_event", default=u"Parte del life event"),
         description=_(
             "life_event_help",
-            default="Collegamento tra il servizio e un evento della vita di"
-            " una persona o di un'impresa. Ad esempio: il servizio 'Anagrafe' è"
+            default="Collegamento tra il servizio e un evento della vita di "
+            "una persona o di un'impresa. Ad esempio: il servizio 'Anagrafe' è"
             " collegato alla nascita di un bambino",
         ),
         required=False,

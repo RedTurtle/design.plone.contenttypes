@@ -186,16 +186,6 @@ class IUnitaOrganizzativa(model.Schema):
         },
     )
 
-    ulteriori_informazioni = RichText(
-        title=_(u"unteriori_informazioni", default=u"Informazioni"),
-        required=False,
-        description=_(
-            "ulteriori_informazioni_help",
-            default="Ulteriori informazioni sulla struttura non contemplate"
-            " dai campi precedenti.",
-        ),
-    )
-
     box_aiuto = RichText(
         title=_(u"box_aiuto", default=u"Box di aiuto"),
         required=True,

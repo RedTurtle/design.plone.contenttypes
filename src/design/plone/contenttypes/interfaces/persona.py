@@ -280,12 +280,3 @@ class IPersona(model.Schema):
     #        ),
     #        required=True,
     #    )
-
-    ulteriori_informazioni = RichText(
-        title=_(u"ulteriori_informazioni", default=u"Ulteriori informazioni"),
-        required=False,
-        description=_(
-            "ulteriori_informazioni_help",
-            default="Ulteriori informazioni relative alla persona.",
-        ),
-    )

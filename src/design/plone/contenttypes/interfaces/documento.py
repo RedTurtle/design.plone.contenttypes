@@ -150,11 +150,6 @@ class IDocumento(model.Schema):
         },
     )
 
-    ulteriori_informazioni = RichText(
-        title=_(u"ulteriori_informazioni", default=u"Ulteriori informazioni"),
-        required=False,
-    )
-
     # i riferimenti normativi li deve linkare chi si occupa di caricare e/o
     # fare la stesura del documento (secondo me)
     riferimenti_normativi = RichText(
