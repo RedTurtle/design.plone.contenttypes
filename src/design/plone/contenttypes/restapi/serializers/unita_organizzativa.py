@@ -7,8 +7,8 @@ from design.plone.contenttypes.interfaces.unita_organizzativa import (
 )
 
 from plone import api
-from plone.restapi.interfaces import ISerializeToJson
-from zope.component import adapter
+from plone.restapi.interfaces import ISerializeToJson, ISerializeToJsonSummary
+from zope.component import adapter, getMultiAdapter
 from zope.interface import implementer
 from zope.interface import Interface
 
@@ -32,12 +32,9 @@ class UOSerializer(RelatedNewsSerializer):
         }
 
         brains = catalog(**query)
+
         servizi = [
-            {
-                "title": x.Title or "",
-                "description": x.Description or "",
-                "@id": x.getURL() or "",
-            }
+            getMultiAdapter((x, self.request), ISerializeToJsonSummary)()
             for x in brains
         ]
         result["servizi_offerti"] = servizi
