@@ -115,6 +115,7 @@ class IServizio(model.Schema):
     ufficio_responsabile = RelationList(
         title=_(u"ufficio_responsabile", default=u"Ufficio resposabile"),
         required=True,
+        default=[],
         value_type=RelationChoice(
             title=_(u"Ufficio responsabile"),
             vocabulary="plone.app.vocabularies.Catalog",
@@ -123,6 +124,7 @@ class IServizio(model.Schema):
     form.widget(
         "ufficio_responsabile",
         RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "maximumSelectionSize": 1,
             "selectableTypes": ["UnitaOrganizzativa"],
@@ -133,6 +135,7 @@ class IServizio(model.Schema):
     area = RelationList(
         title=_(u"area", default=u"Area"),
         required=True,
+        default=[],
         value_type=RelationChoice(
             title=_(u"Area"), vocabulary="plone.app.vocabularies.Catalog"
         ),
@@ -140,6 +143,7 @@ class IServizio(model.Schema):
     form.widget(
         "area",
         RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "maximumSelectionSize": 1,
             "selectableTypes": ["UnitaOrganizzativa"],
@@ -158,6 +162,7 @@ class IServizio(model.Schema):
     form.widget(
         "altri_documenti",
         RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "maximumSelectionSize": 10,
             "selectableTypes": ["Documento"],
@@ -211,6 +216,7 @@ class IServizio(model.Schema):
     form.widget(
         "servizi_collegati",
         RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "maximumSelectionSize": 10,
             "selectableTypes": ["Servizio"],
@@ -229,6 +235,7 @@ class IServizio(model.Schema):
     form.widget(
         "sedi_e_luoghi",
         RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "maximumSelectionSize": 10,
             "selectableTypes": ["Venue"],
@@ -236,6 +243,6 @@ class IServizio(model.Schema):
         },
     )
 
-    model.fieldset("categorization", fields=["servizi_collegati"])
+    model.fieldset("correlati", fields=["servizi_collegati"])
 
     # TODO: come gestiamo i correlati amministrazione
