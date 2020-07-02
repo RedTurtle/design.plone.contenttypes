@@ -18,10 +18,6 @@ from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
     DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING,
 )
-from design.plone.contenttypes.testing import (
-
-)
-
 import unittest
 
 
@@ -75,9 +71,7 @@ class TestServizio(unittest.TestCase):
         self.assertTrue(
             response.json()["servizi_offerti"][0]["@id"],
             self.service.absolute_url(),
-
-
-
+        )
 
 
 class TestUO(unittest.TestCase):
