@@ -37,6 +37,13 @@ WIDGET_PROPERTY_CHECKS = {
     },
 }
 
+FIELDS_IN_CORRELATI_TAB = [
+    "servizi_collegati",
+    "ufficio_responsabile",
+    "area",
+    "altri_documenti",
+]
+
 
 class TestServizio(unittest.TestCase):
     """Test that design.plone.contenttypes is properly installed."""
@@ -66,3 +73,11 @@ class TestServizio(unittest.TestCase):
                 == WIDGET_PROPERTY_CHECKS[field]
             )
             self.assertTrue(properties[field]["type"] == "array")
+
+    def test_related_widgets_are_in_related_tab(self):
+        response = self.api_session.get("/@types/Servizio")
+        res = response.json()
+        for fieldset in res["fieldsets"]:
+            if fieldset["id"] == "correlati":
+                for field in FIELDS_IN_CORRELATI_TAB:
+                    self.assertTrue(field in fieldset["fields"])
