@@ -2,6 +2,7 @@
 """Setup tests for this package."""
 from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
+    DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING,
 )
 from plone.app.testing import (
     SITE_OWNER_NAME,
@@ -10,7 +11,7 @@ from plone.app.testing import (
     setRoles,
 )
 from plone.restapi.testing import RelativeSession
-
+from plone import api
 import unittest
 
 WIDGET_PROPERTY_CHECKS = {
@@ -46,6 +47,34 @@ FIELDS_IN_CORRELATI_TAB = [
 
 
 class TestServizio(unittest.TestCase):
+    layer = DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING
+
+    def setUp(self):
+        """Custom shared utility setup for tests."""
+        self.portal = self.layer["portal"]
+
+    def test_behaviors_enabled_for_servizio(self):
+        portal_types = api.portal.get_tool(name="portal_types")
+        self.assertEqual(
+            portal_types["Servizio"].behaviors,
+            (
+                "plone.namefromtitle",
+                "plone.allowdiscussion",
+                "plone.excludefromnavigation",
+                "plone.shortname",
+                "plone.ownership",
+                "plone.publication",
+                "plone.categorization",
+                "plone.basic",
+                "plone.locking",
+                "plone.leadimage",
+                "plone.relateditems",
+                "design.plone.contenttypes.behavior.argomenti",
+            ),
+        )
+
+
+class TestServizioApi(unittest.TestCase):
     """Test that design.plone.contenttypes is properly installed."""
 
     layer = DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING
