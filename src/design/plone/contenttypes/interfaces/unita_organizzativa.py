@@ -35,6 +35,11 @@ class IUnitaOrganizzativa(model.Schema):
         ),
         required=False,
     )
+    model.fieldset(
+        "correlati",
+        label=_("correlati_label", default=u"Correlati"),
+        fields=["legami_con_altre_strutture"],
+    )
 
     form.widget(
         "legami_con_altre_strutture",
