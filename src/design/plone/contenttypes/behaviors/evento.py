@@ -286,7 +286,6 @@ class IEvento(model.Schema):
         },
     )
 
-
     # TODO: come gestire correlati: novita'
 
 
