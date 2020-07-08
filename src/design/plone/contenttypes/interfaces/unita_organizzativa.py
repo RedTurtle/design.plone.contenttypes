@@ -158,20 +158,6 @@ class IUnitaOrganizzativa(model.Schema):
     #     },
     # )
 
-    ulteriori_informazioni = RichText(
-        title=_(u"unteriori_informazioni", default=u"Informazioni"),
-        required=False,
-    )
-
-    box_aiuto = RichText(
-        title=_(u"box_aiuto", default=u"Box di aiuto"),
-        required=True,
-        description=_(
-            "box_aiuto_help",
-            default="Eventuali contatti di supporto all'utente.",
-        ),
-    )
-
     sedi = RelationList(
         title=u"Sedi",
         default=[],

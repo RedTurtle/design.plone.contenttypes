@@ -22,6 +22,15 @@ class IAdditionalHelpInfos(model.Schema):
         ),
         required=False,
     )
+    box_aiuto = RichText(
+        title=_(u"box_aiuto", default=u"Box di aiuto"),
+        required=False,
+        description=_(
+            "box_aiuto_help",
+            default="Informazioni aggiuntive di aiuto per l'utente."
+            ,
+        ),
+    )
 
 
 @implementer(IAdditionalHelpInfos)

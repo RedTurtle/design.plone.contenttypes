@@ -63,5 +63,5 @@ class IMessaggio(model.Schema):
     )
 
     box_aiuto = RichText(
-        title=_(u'box_aiuto', default=u'Box di aiuto'), required=True
+        title=_(u'box_aiuto', default=u'Box di aiuto'), required=False
     )

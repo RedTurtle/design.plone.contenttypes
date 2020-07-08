@@ -131,10 +131,6 @@ class ILuogo(model.Schema):
         required=True,
     )
 
-    box_aiuto = RichText(
-        title=_(u"box_aiuto", default=u"Box di aiuto"), required=True
-    )
-
     persone_da_contattare = RelationList(
         title=u"Persone da contattare",
         default=[],
