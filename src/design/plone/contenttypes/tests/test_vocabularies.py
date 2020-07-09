@@ -33,6 +33,12 @@ class TestControlpanelVocabularies(unittest.TestCase):
             interface=IVocabulariesControlPanel,
         )
 
+        api.portal.set_registry_record(
+            "lead_image_dimension",
+            ["News Item|1920x600", "UnitaOrganizzativa|900x900"],
+            interface=IVocabulariesControlPanel,
+        )
+
     def test_tipologia_notizia_vocab(self):
         factory = getUtility(
             IVocabularyFactory, "design.plone.vocabularies.tipologie_notizia"
@@ -47,3 +53,14 @@ class TestControlpanelVocabularies(unittest.TestCase):
         )
         vocab = factory(self.portal)
         self.assertEqual(["", "foo", "bar"], [(x.value) for x in vocab])
+
+    def test_dimensioni_immagini(self):
+        factory = getUtility(
+            IVocabularyFactory,
+            "design.plone.vocabularies.leadimage_dimension",
+        )
+        vocab = factory(self.portal)
+        self.assertEqual(
+            ["", "News Item|1920x600", "UnitaOrganizzativa|900x900"],
+            [(x.value) for x in vocab],
+        )

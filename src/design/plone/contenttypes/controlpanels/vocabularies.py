@@ -31,6 +31,16 @@ class IVocabulariesControlPanel(Interface):
         value_type=TextLine(),
     )
 
+    lead_image_dimension = List(
+        title=_(u"Indicare le dimensioni delle lead image dei contenuti"),
+        description=_(
+            u"Inserire le dimensioni nella forma di esempio PortalType|900x900"
+        ),
+        required=True,
+        default=[],
+        value_type=TextLine(),
+    )
+
 
 class VocabulariesControlPanelForm(RegistryEditForm):
     form.extends(RegistryEditForm)
