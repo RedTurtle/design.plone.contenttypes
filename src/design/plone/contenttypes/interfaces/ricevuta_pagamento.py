@@ -34,7 +34,7 @@ class IRicevutaPagamento(model.Schema):
     # TODO: aggiungere tassonomia e vocabolario rilevante
     servizio_origine = schema.Choice(
         title=_(
-            u'servizio_origine', default=u'Servizio che origina la pratica'
+            u'servizio_origine_ricevuta', default=u'Servizio che origina la pratica'
         ),
         # vocabolario di riferimento sara' il servizio che genera il task e
         # permette di soddisfarlo
@@ -44,7 +44,7 @@ class IRicevutaPagamento(model.Schema):
 
     pratica_associata = field.NamedFile(
         title=_(
-            u'pratica_associata', default=u'Pratica associata al pagamento'
+            u'pratica_associata_ricevuta', default=u'Pratica associata al pagamento'
         ),
         required=True,
     )

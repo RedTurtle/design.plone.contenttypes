@@ -173,7 +173,7 @@ class IServizio(model.Schema):
         required=True,
         description=_(
             "fasi_scadenze_help",
-            default="Se esiste, prevedere una data di scadeza del servizio."
+            default="Prevedere una data di scadenza del servizio."
             " Se il servizio è diviso in fasi, descriverne modalità e"
             " tempistiche.",
         ),
@@ -219,7 +219,7 @@ class IServizio(model.Schema):
 
     # vocabolario dalle unita' organizzative presenti a catalogo?
     ufficio_responsabile = RelationList(
-        title=_(u"ufficio_responsabile", default=u"Ufficio resposabile"),
+        title=_(u"ufficio_responsabile_erogazione", default=u"Ufficio resposabile"),
         description=_(
             "ufficio_responsabile_help",
             default="Seleziona l'ufficio responsabile dell'erogazione"
@@ -346,7 +346,7 @@ class IServizio(model.Schema):
     )
 
     box_aiuto = RichText(
-        title=_(u"box_aiuto", default=u"Ulteriori informazioni"),
+        title=_(u"box_aiuto", default=u"Box di aiuto"),
         required=False,
         description=_(
             "box_aiuto_help",
