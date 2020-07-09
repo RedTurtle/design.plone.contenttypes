@@ -19,12 +19,6 @@ class ILuogo(model.Schema):
     """
     """
 
-    argomenti_interesse_cittadino = RichText(
-        title=_(u"Argomenti di interesse per il cittadino"),
-        default="",
-        required=True,
-    )
-
     immagine = field.NamedImage(
         title=_(u"immagine", default=u"Immagine"), required=True
     )
@@ -36,20 +30,16 @@ class ILuogo(model.Schema):
 
     nome_alternativo = schema.TextLine(
         title=_(u"nome_alternativo", default=u"Nome alternativo"),
-        required=True,
+        required=False,
     )
 
     elementi_di_interesse = RichText(
         title=_(u"elementi_di_interesse", default=u"Elementi di interesse"),
-        required=True,
+        required=False,
     )
 
-    video = schema.TextLine(title=_(u"video", default=u"Video"), required=True)
-
-    servizi_in_luogo = RichText(
-        title=_(u"servizi_in_luogo", default=u"Servizi presenti nel luogo"),
-        required=True,
-    )
+    # li lasciamo aggiungere all'interno di una cartella multimedia con le immagini
+    # video = schema.TextLine(title=_(u"video", default=u"Video"), required=True)
 
     modalita_accesso = RichText(
         title=_(u"modalita_accesso", default=u"Modalita' di accesso"),
@@ -57,10 +47,10 @@ class ILuogo(model.Schema):
     )
 
     indirizzo = schema.TextLine(
-        title=_(u"indirizzo", default=u"Indirizzo"), required=False
+        title=_(u"indirizzo", default=u"Indirizzo"), required=True
     )
 
-    cap = schema.TextLine(title=_(u"cap", default=u"CAP"), required=False)
+    cap = schema.TextLine(title=_(u"cap", default=u"CAP"), required=True)
 
     riferimento_telefonico_luogo = schema.TextLine(
         title=_(
@@ -91,6 +81,11 @@ class ILuogo(model.Schema):
     struttura_responsabile = RichText(
         title=_(u"struttura_responsabile", default=u"Struttura responsabile"),
         required=False,
+        description=_(
+            "struttura_responsabile_help",
+            default="Nome/link al sito web della struttura che gestisce il"
+            " luogo, se questa non è comunale.",
+        ),
     )
 
     riferimento_telefonico_struttura = schema.TextLine(
@@ -121,7 +116,8 @@ class ILuogo(model.Schema):
         title=_(u"categoria_prevalente", default=u"Categoria prevalente"),
         required=False,
         vocabulary="design.plone.contenttypes.Mockup",
-        missing_value=(),
+        missing_value=None,
+        default=None,
     )
 
     # TODO: importare il db del MIBAC, codice DBUnico / ISIL.
@@ -131,25 +127,37 @@ class ILuogo(model.Schema):
         required=True,
     )
 
-    box_aiuto = RichText(
-        title=_(u"box_aiuto", default=u"Box di aiuto"), required=True
-    )
+    # box_aiuto = RichText(
+    #     title=_(u"box_aiuto", default=u"Box di aiuto"), required=True
+    # )
 
-    persone_da_contattare = RelationList(
-        title=u"Persone da contattare",
+    struttura_responsabile_correlati = RelationList(
+        title=u"Struttura responsabile del luogo",
         default=[],
         value_type=RelationChoice(
-            title=_(u"Persona"), vocabulary="plone.app.vocabularies.Catalog"
+            title=_(u"Struttura responsabile"),
+            vocabulary="plone.app.vocabularies.Catalog",
+        ),
+        description=_(
+            "struttura_responsabile_help",
+            default="Struttura comunale che gestisce il luogo.",
         ),
         required=False,
     )
     form.widget(
-        "persone_da_contattare",
+        "struttura_responsabile_correlati",
         RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "maximumSelectionSize": 10,
-            "selectableTypes": ["Persona"],
+            "selectableTypes": ["Unita Orgaizzativa"],
         },
+    )
+
+    model.fieldset(
+        "correlati",
+        label=_("correlati_label", default=u"Correlati"),
+        fields=["struttura_responsabile_correlati"],
     )
 
     riferimento_pec = schema.TextLine(
