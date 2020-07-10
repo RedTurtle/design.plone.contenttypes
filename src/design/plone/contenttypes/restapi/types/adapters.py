@@ -20,10 +20,7 @@ class LeadImageJsonSchemaProvider(ObjectJsonSchemaProvider):
         )
 
         vocabulary = factory(self.context)._terms
-        terms = [term.token for term in vocabulary if term.token]
-        return {
-            term[0]: term[1] for term in [term.split("|") for term in terms]
-        }
+        return {term.token: term.title for term in vocabulary if term.token}
 
     def get_schema(self):
         schema = super(LeadImageJsonSchemaProvider, self).get_schema()

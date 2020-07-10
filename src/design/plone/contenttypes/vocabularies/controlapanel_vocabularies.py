@@ -41,6 +41,20 @@ class TipologieUnitaOrganizzativaVocabulary(BaseVocabulary):
 class LeadImageDimension(BaseVocabulary):
     field = "lead_image_dimension"
 
+    def __call__(self, context):
+
+        values = api.portal.get_registry_record(
+            self.field, interface=IVocabulariesControlPanel, default=[]
+        )
+        if not values:
+            return SimpleVocabulary([])
+
+        terms = []
+        for value in values:
+            token, title = value.split("|")
+            terms.append(SimpleTerm(value=token, token=token, title=title))
+        return SimpleVocabulary(terms)
+
 
 LeadImageDimensionFactory = LeadImageDimension()
 TipologieNotiziaFactory = TipologieNotizia()
