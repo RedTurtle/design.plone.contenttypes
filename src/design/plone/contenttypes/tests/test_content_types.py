@@ -9,8 +9,12 @@ from plone.app.testing import (
     TEST_USER_ID,
     setRoles,
 )
+from plone import api
 from plone.restapi.testing import RelativeSession
-
+from design.plone.contenttypes.controlpanels.vocabularies import (
+    IVocabulariesControlPanel,
+)
+from transaction import commit
 import unittest
 
 
@@ -28,6 +32,13 @@ class TestContentTypes(unittest.TestCase):
         self.api_session = RelativeSession(self.portal_url)
         self.api_session.headers.update({"Accept": "application/json"})
         self.api_session.auth = (SITE_OWNER_NAME, SITE_OWNER_PASSWORD)
+
+        api.portal.set_registry_record(
+            "lead_image_dimension",
+            ["News Item|1920x600"],
+            interface=IVocabulariesControlPanel,
+        )
+        commit()
 
     def tearDown(self):
         self.api_session.close()
@@ -50,4 +61,12 @@ class TestContentTypes(unittest.TestCase):
                 "settings",
                 "layout",
             ],
+        )
+
+    def test_image_field_description(self):
+        response = self.api_session.get("/@types/News%20Item")
+        res = response.json()
+        self.assertEqual(
+            res["properties"]["image"]["description"],
+            "Image dimension should be 1920x600 px",
         )
