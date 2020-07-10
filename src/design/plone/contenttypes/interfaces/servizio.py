@@ -242,7 +242,29 @@ class IServizio(model.Schema):
             # "basePath": "/amministrazione/uffici",
         },
     )
-
+    area_responsabile = RelationList(
+        title=_(u"area", default=u"Area"),
+        description=_(
+            "area_help",
+            default="Seleziona l'area da cui dipende questo servizio.",
+        ),
+        required=True,
+        default=[],
+        value_type=RelationChoice(
+            title=_(u"Area"),
+            vocabulary="plone.app.vocabularies.Catalog",
+        ),
+    )
+    form.widget(
+        "area_responsabile",
+        RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
+        pattern_options={
+            "maximumSelectionSize": 1,
+            "selectableTypes": ["UnitaOrganizzativa"],
+            # "basePath": "/amministrazione/uffici",
+        },
+    )
     area = RelationList(
         title=_(u"area", default=u"Area"),
         required=True,
