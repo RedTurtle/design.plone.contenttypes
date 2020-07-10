@@ -28,6 +28,13 @@ Luogo
 Esiste un deserializer per plone.restapi per il campo di tipo "GeolocationField" che si occupa di trasformare
 le coordinate in input, in un oggetto corretto per quel campo.
 
+Accetta un valore del tipo::
+
+    {
+      "latitude": 10.0000,
+      "longitude": 20.0000,
+    }
+
 Gestione vocabolari
 ===================
 
