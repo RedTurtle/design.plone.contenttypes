@@ -133,8 +133,10 @@ class IServizio(model.Schema):
     area = RelationList(
         title=_(u"area", default=u"Area"),
         required=True,
+        default=[],
         value_type=RelationChoice(
-            title=_(u"Area"), vocabulary="plone.app.vocabularies.Catalog"
+            title=_(u"Area"),
+            vocabulary="plone.app.vocabularies.Catalog",
         ),
     )
     form.widget(
