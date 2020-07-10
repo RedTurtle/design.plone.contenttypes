@@ -24,13 +24,11 @@ class ILuogo(model.Schema):
     )
 
     descrizione_breve = RichText(
-        title=_(u"descrizione_breve", default=u"Descrizione breve"),
-        required=True,
+        title=_(u"descrizione_breve", default=u"Descrizione breve"), required=True
     )
 
     nome_alternativo = schema.TextLine(
-        title=_(u"nome_alternativo", default=u"Nome alternativo"),
-        required=False,
+        title=_(u"nome_alternativo", default=u"Nome alternativo"), required=False
     )
 
     elementi_di_interesse = RichText(
@@ -42,8 +40,7 @@ class ILuogo(model.Schema):
     # video = schema.TextLine(title=_(u"video", default=u"Video"), required=True)
 
     modalita_accesso = RichText(
-        title=_(u"modalita_accesso", default=u"Modalita' di accesso"),
-        required=True,
+        title=_(u"modalita_accesso", default=u"Modalita' di accesso"), required=True
     )
 
     indirizzo = schema.TextLine(
@@ -54,8 +51,7 @@ class ILuogo(model.Schema):
 
     riferimento_telefonico_luogo = schema.TextLine(
         title=_(
-            u"riferimento_telefonico_luogo",
-            default=u"Riferimento telefonico luogo",
+            u"riferimento_telefonico_luogo", default=u"Riferimento telefonico luogo"
         ),
         required=False,
     )
@@ -74,8 +70,7 @@ class ILuogo(model.Schema):
     )
 
     orario_pubblico = RichText(
-        title=_(u"orario_pubblico", default=u"Orario per il pubblico"),
-        required=False,
+        title=_(u"orario_pubblico", default=u"Orario per il pubblico"), required=False
     )
 
     struttura_responsabile = RichText(
@@ -105,8 +100,7 @@ class ILuogo(model.Schema):
     )
 
     riferimento_web = schema.TextLine(
-        title=_(u"riferimento_web", default=u"Riferimento sito web"),
-        required=False,
+        title=_(u"riferimento_web", default=u"Riferimento sito web"), required=False
     )
 
     # TODO: aggiungere il vocabolario da https://dataportal.daf.teamdigitale.it/#/vocabularies/subject-disciplines  # noqa
@@ -123,8 +117,7 @@ class ILuogo(model.Schema):
     # TODO: importare il db del MIBAC, codice DBUnico / ISIL.
     # Non compare nel frontend
     identificativo_mibac = schema.TextLine(
-        title=_(u"identificativo_mibac", default=u"Identificativo"),
-        required=True,
+        title=_(u"identificativo_mibac", default=u"Identificativo"), required=True
     )
 
     # box_aiuto = RichText(
@@ -150,7 +143,7 @@ class ILuogo(model.Schema):
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "maximumSelectionSize": 10,
-            "selectableTypes": ["Unita Orgaizzativa"],
+            "selectableTypes": ["UnitaOrganizzativa"],
         },
     )
 
