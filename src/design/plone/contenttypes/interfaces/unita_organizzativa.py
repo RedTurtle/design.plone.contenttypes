@@ -170,7 +170,7 @@ class IUnitaOrganizzativa(model.Schema):
 
     box_aiuto = RichText(
         title=_(u"box_aiuto", default=u"Box di aiuto"),
-        required=True,
+        required=False,
         description=_(
             "uo_box_aiuto_help",
             default="Eventuali contatti di supporto all'utente.",
