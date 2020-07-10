@@ -8,14 +8,15 @@ from zope.publisher.interfaces import IPublishTraverse
 class TypesGet(BaseGet):
     def reply(self):
         result = super(TypesGet, self).reply()
+
         if "fieldsets" in result:
             ids = [x["id"] for x in result["fieldsets"]]
             if "correlati" in ids:
                 #  move correlati before categorization
-                categorization_index = ids.index("categorization")
+                default_index = ids.index("default")
                 correlati_index = ids.index("correlati")
                 result["fieldsets"].insert(
-                    categorization_index,
+                    default_index + 1,
                     result["fieldsets"].pop(correlati_index),
                 )
         return result
