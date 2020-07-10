@@ -22,6 +22,12 @@ Notizie e comunicati stampa
 - Alla creazione di una Notizia, vengono create automaticamente al suo interno due cartelle 
   "Multimedia" e "Documenti allegati" per poter organizzare meglio i contenuti
 
+Luogo
+-----
+
+Esiste un deserializer per plone.restapi per il campo di tipo "GeolocationField" che si occupa di trasformare
+le coordinate in input, in un oggetto corretto per quel campo.
+
 Gestione vocabolari
 ===================
 

@@ -10,6 +10,7 @@ from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import SITE_OWNER_PASSWORD
 from plone.app.testing import TEST_USER_ID
 from plone.restapi.testing import RelativeSession
+from transaction import commit
 
 import unittest
 
@@ -59,7 +60,7 @@ class TestLuogoApi(unittest.TestCase):
     def tearDown(self):
         self.api_session.close()
 
-    def test_newsitem_required_fields(self):
+    def test_venue_required_fields(self):
 
         response = self.api_session.post(
             self.portal_url, json={"@type": "Venue", "title": "Foo"}
@@ -73,3 +74,43 @@ class TestLuogoApi(unittest.TestCase):
         self.assertIn("immagine", message)
         self.assertIn("indirizzo", message)
         self.assertIn("cap", message)
+
+    def test_venue_geolocation_deserializer_wrong_structure(self):
+        venue = api.content.create(
+            container=self.portal, type="Venue", title="Example venue"
+        )
+
+        commit()
+        self.assertEqual(venue.geolocation, None)
+
+        response = self.api_session.patch(
+            venue.absolute_url(),
+            json={"@type": "Venue", "title": "Foo", "geolocation": {"foo": "bar"}},
+        )
+        message = response.json()["message"]
+
+        self.assertEqual(400, response.status_code)
+        self.assertIn("Invalid geolocation data", message)
+        self.assertEqual(venue.geolocation, None)
+
+    def test_venue_geolocation_deserializer_right_structure(self):
+        venue = api.content.create(
+            container=self.portal, type="Venue", title="Example venue"
+        )
+
+        commit()
+        self.assertEqual(venue.geolocation, None)
+
+        response = self.api_session.patch(
+            venue.absolute_url(),
+            json={
+                "@type": "Venue",
+                "title": "Foo",
+                "geolocation": {"latitude": 11.0, "longitude": 10.0},
+            },
+        )
+        commit()
+
+        self.assertEqual(204, response.status_code)
+        self.assertEqual(venue.geolocation.latitude, 11.0)
+        self.assertEqual(venue.geolocation.longitude, 10.0)
