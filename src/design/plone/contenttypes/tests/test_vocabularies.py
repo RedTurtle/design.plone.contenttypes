@@ -60,7 +60,9 @@ class TestControlpanelVocabularies(unittest.TestCase):
             "design.plone.vocabularies.leadimage_dimension",
         )
         vocab = factory(self.portal)
-        self.assertEqual(
-            ["", "News Item|1920x600", "UnitaOrganizzativa|900x900"],
-            [(x.value) for x in vocab],
-        )
+
+        terms = {x.token: x.title for x in vocab}
+        self.assertTrue("News Item" in terms)
+        self.assertTrue(terms["News Item"] == "1920x600")
+        self.assertTrue("UnitaOrganizzativa" in terms)
+        self.assertTrue(terms["UnitaOrganizzativa"] == "900x900")
