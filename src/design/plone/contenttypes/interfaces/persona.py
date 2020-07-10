@@ -18,7 +18,7 @@ class IPersona(model.Schema):
         title=_(u"immagine", default=u"Immagine"),
         required=False,
         description=_(
-            "foto_persona_help", default="Foto da mostrare della persona.",
+            u"foto_persona_help", default=u"Foto da mostrare della persona; la dimensione suggerita è 180x100 px",
         ),
     )
 
@@ -82,6 +82,16 @@ class IPersona(model.Schema):
             "selectableTypes": ["UnitaOrganizzativa"],
             # "basePath": "/amministrazione",
         },
+    )
+
+    data_insediamento = schema.Date(
+        title=_(u"data_insediamento", default=u"Data insediamento"),
+        description=_(
+            "data_insediamento_help",
+            default="Solo per persona politica: specificare la data di"
+            " insediamento.",
+        ),
+        required=False,
     )
 
     data_conclusione_incarico = schema.Date(
@@ -182,16 +192,6 @@ class IPersona(model.Schema):
         ),
         vocabulary="design.plone.contenttypes.TipologiaPersona",
         required=True,
-    )
-
-    data_insediamento = schema.Date(
-        title=_(u"data_insediamento", default=u"Data insediamento"),
-        description=_(
-            "data_insediamento_help",
-            default="Solo per persona politica: specificare la data di"
-            " insediamento.",
-        ),
-        required=False,
     )
 
     biografia = RichText(
