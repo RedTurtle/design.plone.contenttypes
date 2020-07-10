@@ -15,7 +15,7 @@ class IDocumento(model.Schema):
     """
 
     identificativo = schema.TextLine(
-        title=_(u"identificativo", default=u"Identificativo del documento"),
+        title=_(u"identificativo_documento", default=u"Identificativo del documento"),
         required=True,
     )
 
@@ -40,7 +40,7 @@ class IDocumento(model.Schema):
         ),
         required=True,
         value_type=RelationChoice(
-            title=_(u"Ufficio responsabile"),
+            title=_(u""),
             vocabulary="plone.app.vocabularies.Catalog",
         ),
     )
@@ -148,11 +148,6 @@ class IDocumento(model.Schema):
             "maximumSelectionSize": 10,
             "selectableTypes": ["Dataset"],
         },
-    )
-
-    ulteriori_informazioni = RichText(
-        title=_(u"ulteriori_informazioni", default=u"Ulteriori informazioni"),
-        required=False,
     )
 
     # i riferimenti normativi li deve linkare chi si occupa di caricare e/o

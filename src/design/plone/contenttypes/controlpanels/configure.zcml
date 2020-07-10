@@ -4,6 +4,8 @@
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="design.plone.contenttypes">
 
+  <include package="Products.CMFCore" file="permissions.zcml" />
+
   <browser:page
       name="design-plone-vocabularies"
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"

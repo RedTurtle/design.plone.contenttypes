@@ -17,7 +17,7 @@ class IDocumentoPersonale(model.Schema):
     )
 
     data_protocollo = schema.Date(
-        title=_(u'data_protocollo', default=u'Data protocollo'), required=True
+        title=_(u'data_protocollo', default=u'Data del protocollo'), required=True
     )
 
     immagine = field.NamedImage(
@@ -68,7 +68,7 @@ class IDocumentoPersonale(model.Schema):
     # TODO: usare vocabolario dinamico per le tipologie di uffici (dovrebbe
     # rientrare nel content type "Unita' organizzativa")
     ufficio_responsabile = schema.Choice(
-        title=_(u'ufficio_responsabile', default=u'Ufficio responsabile'),
+        title=_(u'ufficio_responsabile_documento_personale', default=u'Ufficio responsabile'),
         required=True,
         vocabulary='design.plone.contenttypes.Mockup',
     )
@@ -76,7 +76,7 @@ class IDocumentoPersonale(model.Schema):
     # TODO: usare vocabolario dinamico per le tipologie di aree amministrative
     # (dovrebbe rientrare nel content type "Unita' organizzativa")
     area_responsabile = schema.Choice(
-        title=_(u'area_responsabile', default=u'Area responsabile'),
+        title=_(u'area_responsabile_documento_personale', default=u'Area responsabile'),
         required=True,
         vocabulary='design.plone.contenttypes.Mockup',
     )
@@ -116,7 +116,7 @@ class IDocumentoPersonale(model.Schema):
     )
 
     data_inizio = schema.Date(
-        title=_(u'data_inizio', default=u'Data inizio'), required=False
+        title=_(u'data_inizio', default=u'Data di inizio'), required=False
     )
 
     data_e_fasi_intermedie = RichText(
@@ -125,7 +125,7 @@ class IDocumentoPersonale(model.Schema):
     )
 
     data_inizio = schema.Date(
-        title=_(u'data_inizio', default=u'Data inizio'), required=False
+        title=_(u'data_inizio', default=u'Data di inizio'), required=False
     )
 
     # TODO: vocabolario per i dataset collegati ad un documento

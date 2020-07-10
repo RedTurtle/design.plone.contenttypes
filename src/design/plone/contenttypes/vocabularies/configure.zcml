@@ -45,6 +45,10 @@
         name="design.plone.vocabularies.tipologie_notizia"
     />
 
+    <utility
+        component=".controlapanel_vocabularies.LeadImageDimensionFactory"
+        name="design.plone.vocabularies.leadimage_dimension"
+    />
 
     <utility
         component=".mockup.MockupFactory"
