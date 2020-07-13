@@ -5,7 +5,6 @@ from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.dexterity.interfaces import IDexterityContent
-from plone.namedfile import field
 from plone.supermodel import model
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
@@ -19,8 +18,12 @@ class ILuogo(model.Schema):
     """
     """
 
-    immagine = field.NamedImage(
-        title=_(u"immagine", default=u"Immagine"), required=True
+    quartiere = schema.TextLine(
+        title=_(u"quartiere", default=u"Quartiere"), required=False
+    )
+
+    circoscrizione = schema.TextLine(
+        title=_(u"circoscrizione", default=u"Circoscrizione"), required=False
     )
 
     descrizione_breve = RichText(
@@ -36,18 +39,9 @@ class ILuogo(model.Schema):
         required=False,
     )
 
-    # li lasciamo aggiungere all'interno di una cartella multimedia con le immagini
-    # video = schema.TextLine(title=_(u"video", default=u"Video"), required=True)
-
     modalita_accesso = RichText(
         title=_(u"modalita_accesso", default=u"Modalita' di accesso"), required=True
     )
-
-    indirizzo = schema.TextLine(
-        title=_(u"indirizzo", default=u"Indirizzo"), required=True
-    )
-
-    cap = schema.TextLine(title=_(u"cap", default=u"CAP"), required=True)
 
     riferimento_telefonico_luogo = schema.TextLine(
         title=_(
@@ -59,14 +53,6 @@ class ILuogo(model.Schema):
     riferimento_mail_luogo = schema.TextLine(
         title=_(u"riferimento_mail_luogo", default=u"Riferimento mail luogo"),
         required=False,
-    )
-
-    quartiere = schema.TextLine(
-        title=_(u"quartiere", default=u"Quartiere"), required=False
-    )
-
-    circoscrizione = schema.TextLine(
-        title=_(u"circoscrizione", default=u"Circoscrizione"), required=False
     )
 
     orario_pubblico = RichText(
@@ -120,23 +106,25 @@ class ILuogo(model.Schema):
         title=_(u"identificativo_mibac", default=u"Identificativo"), required=True
     )
 
-    # box_aiuto = RichText(
-    #     title=_(u"box_aiuto", default=u"Box di aiuto"), required=True
-    # )
-
     struttura_responsabile_correlati = RelationList(
         title=u"Struttura responsabile del luogo",
-        default=[],
-        value_type=RelationChoice(
-            title=_(u"Struttura responsabile"),
-            vocabulary="plone.app.vocabularies.Catalog",
-        ),
         description=_(
             "struttura_responsabile_help",
             default="Struttura comunale che gestisce il luogo.",
         ),
+        value_type=RelationChoice(
+            title=_(u"Struttura responsabile"),
+            vocabulary="plone.app.vocabularies.Catalog",
+        ),
         required=False,
+        default=[],
     )
+
+    riferimento_pec = schema.TextLine(
+        title=_(u"riferimento_pec", default=u"Riferimento pec"), required=False
+    )
+
+    # custom widgets
     form.widget(
         "struttura_responsabile_correlati",
         RelatedItemsFieldWidget,
@@ -147,17 +135,28 @@ class ILuogo(model.Schema):
         },
     )
 
+    # custom fieldsets and order
+    form.order_after(circoscrizione="IAddress.city")
+    form.order_after(quartiere="IAddress.city")
+
     model.fieldset(
         "correlati",
         label=_("correlati_label", default=u"Correlati"),
         fields=["struttura_responsabile_correlati"],
     )
-
-    riferimento_pec = schema.TextLine(
-        title=_(u"riferimento_pec", default=u"Riferimento pec"), required=False
+    model.fieldset(
+        "contatti",
+        label=_("contatti_label", default=u"Contatti"),
+        fields=[
+            "riferimento_telefonico_luogo",
+            "riferimento_mail_luogo",
+            "struttura_responsabile",
+            "riferimento_telefonico_struttura",
+            "riferimento_mail_struttura",
+            "riferimento_pec",
+            "riferimento_web",
+        ],
     )
-
-    # TODO: gestione correlati: novita'
 
 
 @implementer(ILuogo)

@@ -35,6 +35,16 @@ Accetta un valore del tipo::
       "longitude": 20.0000,
     }
 
+Alcuni campi della geolocalizzazione hanno dei valori predefiniti quando viene richiesto lo schema mediante plone.restapi:
+
+- city
+- street
+- geolocation
+- country
+
+Sono pre-popolati con la sede di AGID a Roma.
+
+
 Gestione vocabolari
 ===================
 

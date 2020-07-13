@@ -30,11 +30,13 @@ class TestLuogo(unittest.TestCase):
                 "plone.app.content.interfaces.INameFromTitle",
                 "plone.app.dexterity.behaviors.metadata.IBasic",
                 "plone.app.dexterity.behaviors.metadata.ICategorization",
+                "collective.address.behaviors.IAddress",
                 "collective.geolocationbehavior.geolocation.IGeolocatable",
                 "design.plone.contenttypes.behaviors.luogo.ILuogo",
                 "design.plone.contenttypes.behavior.additional_help_infos",
                 "design.plone.contenttypes.behavior.servizi_correlati",
                 "design.plone.contenttypes.behavior.argomenti",
+                "plone.leadimage",
             ),
         )
 
@@ -71,9 +73,6 @@ class TestLuogoApi(unittest.TestCase):
         self.assertIn("descrizione_breve", message)
         self.assertIn("modalita_accesso", message)
         self.assertIn("identificativo_mibac", message)
-        self.assertIn("immagine", message)
-        self.assertIn("indirizzo", message)
-        self.assertIn("cap", message)
 
     def test_venue_geolocation_deserializer_wrong_structure(self):
         venue = api.content.create(
@@ -114,3 +113,14 @@ class TestLuogoApi(unittest.TestCase):
         self.assertEqual(204, response.status_code)
         self.assertEqual(venue.geolocation.latitude, 11.0)
         self.assertEqual(venue.geolocation.longitude, 10.0)
+
+    def test_venue_default_values_for_location(self):
+        response = self.api_session.get("/@types/Venue")
+        schema = response.json()["properties"]
+        self.assertEqual(schema["country"]["default"], "380")
+        self.assertEqual(schema["city"]["default"], "Roma")
+        self.assertEqual(schema["street"]["default"], "Via Liszt, 21")
+        self.assertEqual(
+            schema["geolocation"]["default"],
+            {"latitude": 41.8337833, "longitude": 12.4677863},
+        )
