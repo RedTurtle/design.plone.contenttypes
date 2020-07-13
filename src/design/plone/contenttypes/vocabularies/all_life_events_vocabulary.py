@@ -47,7 +47,6 @@ class AllLifeEventsVocabulary(object):
                 ),
             ),
             VocabItem(u"L9.0", _(u"Cambio di residenza/domicilio")),
-            VocabItem(u"L10.0", _(u"Cambio di residenza/domicilio")),
             VocabItem(
                 u"L11.0",
                 _(
@@ -110,7 +109,7 @@ class AllLifeEventsVocabulary(object):
 
         # create a list of SimpleTerm items:
         terms = []
-        for item in items:
+        for item in sorted(items, key=lambda k: k.value):
             terms.append(
                 SimpleTerm(
                     value=item.token, token=str(item.token), title=item.value,
