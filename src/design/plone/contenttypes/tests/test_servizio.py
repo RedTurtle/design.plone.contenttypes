@@ -40,8 +40,6 @@ WIDGET_PROPERTY_CHECKS = {
 
 FIELDS_IN_CORRELATI_TAB = [
     "servizi_collegati",
-    "ufficio_responsabile",
-    "area",
     "altri_documenti",
 ]
 

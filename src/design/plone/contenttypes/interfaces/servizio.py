@@ -407,7 +407,7 @@ class IServizio(model.Schema):
     )
 
     model.fieldset(
-        "correlati", fields=["servizi_collegati", "altri_documenti",],
+        "correlati", fields=["servizi_collegati", "altri_documenti"],
     )
 
     # TODO: come gestiamo i correlati amministrazione
