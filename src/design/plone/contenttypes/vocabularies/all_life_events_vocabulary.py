@@ -98,13 +98,10 @@ class AllLifeEventsVocabulary(object):
             context = req.PARENTS[0]
 
         # create a list of SimpleTerm items:
-        terms = []
-        for item in sorted(items, key=lambda k: k.value):
-            terms.append(
-                SimpleTerm(
-                    value=item.token, token=str(item.token), title=item.value,
-                )
-            )
+        terms = [
+            SimpleTerm(value=item[0], token=item[0], title=item[1])
+            for item in sorted(items, key=lambda k: k[1])
+        ]
         # Create a SimpleVocabulary from the terms list and return it:
         return SimpleVocabulary(terms)
 
