@@ -6,6 +6,7 @@
     <include package=".serializers" />
     <include package=".deserializers" />
     <include package=".services" />
+    <include package=".types" />
 
     <plone:service
         method="GET"

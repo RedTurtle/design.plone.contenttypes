@@ -16,7 +16,7 @@ class IUnitaOrganizzativa(model.Schema):
     competenze = RichText(
         title=_(u"competenze", default=u"Competenze"),
         description=_(
-            "competenze_help",
+            "uo_competenze_help",
             default="Descrizione dei compiti assegnati alla struttura.",
         ),
         required=False,
@@ -170,9 +170,9 @@ class IUnitaOrganizzativa(model.Schema):
 
     box_aiuto = RichText(
         title=_(u"box_aiuto", default=u"Box di aiuto"),
-        required=True,
+        required=False,
         description=_(
-            "box_aiuto_help",
+            "uo_box_aiuto_help",
             default="Eventuali contatti di supporto all'utente.",
         ),
     )

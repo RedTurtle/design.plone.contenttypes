@@ -407,6 +407,7 @@ msgid "Notifiche autorità"
 msgstr ""
 
 #. Default: "Organizzato da (interno)"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/evento.py:172
 msgid "Organizzato da_interno"
 msgstr ""
@@ -673,55 +674,356 @@ msgid "Vocabolari"
 msgstr ""
 
 #: design/plone/contenttypes/profiles/default/controlpanel.xml
+=======
+#: ../behaviors/evento.py:172
+msgid "Organizzato da_interno"
+msgstr ""
+
+#: ../behaviors/evento.py:177
+msgid "Organizzatore"
+msgstr ""
+
+#: ../interfaces/persona.py:45
+msgid "Organizzazione di riferimento"
+msgstr ""
+
+#: ../vocabularies/all_life_events_vocabulary.py:88
+msgid "Pagamento tasse, iva e dogane"
+msgstr ""
+
+#: ../vocabularies/lista_azioni_pratica.py:26
+msgid "Pagare"
+msgstr ""
+
+#: ../profiles/default/types/Pagina_Argomento.xml
+msgid "Pagina Argomento"
+msgstr ""
+
+#: ../vocabularies/mockup.py:30
+msgid "Paperino"
+msgstr ""
+
+#: ../vocabularies/all_life_events_vocabulary.py:99
+msgid "Partecipazione ad appalti pubblici nazionali e trasfrontalieri"
+msgstr ""
+
+#: ../vocabularies/all_life_events_vocabulary.py:39
+msgid "Pensionamento"
+msgstr ""
+
+#: ../behaviors/luogo.py:142
+#: ../profiles/default/types/Persona.xml
+msgid "Persona"
+msgstr ""
+
+#: ../behaviors/evento.py:109
+msgid "Persona dell'amminnistrazione"
+msgstr ""
+
+#: ../interfaces/unita_organizzativa.py:125
+msgid "Persone della struttura"
+msgstr ""
+
+#: ../vocabularies/mockup.py:28
+msgid "Pippo"
+msgstr ""
+
+#: ../vocabularies/mockup.py:29
+msgid "Pluto"
+msgstr ""
+
+#: ../vocabularies/tipologia_persona.py:26
+msgid "Politica"
+msgstr ""
+
+#: ../vocabularies/dataset.py:50
+msgid "Popolazione e società"
+msgstr ""
+
+#: ../vocabularies/all_life_events_vocabulary.py:73
+msgid "Possesso, cura, smarrimento animale da compagnia"
+msgstr ""
+
+#: ../profiles/default/types/Pratica.xml
+msgid "Pratica"
+msgstr ""
+
+#: ../vocabularies/all_life_events_vocabulary.py:62
+msgid "Prenotazione e disdetta visite/esami"
+msgstr ""
+
+#: ../vocabularies/tags_vocabulary.py:36
+msgid "Protezione sociale"
+msgstr ""
+
+#: ../vocabularies/dataset.py:49
+msgid "Regioni e città"
+msgstr ""
+
+#: ../vocabularies/all_life_events_vocabulary.py:84
+msgid "Registrazione impresa transfrontalier"
+msgstr ""
+
+#: ../vocabularies/all_life_events_vocabulary.py:41
+msgid "Registrazione/possesso veicolo"
+msgstr ""
+
+#: ../interfaces/unita_organizzativa.py:57
+msgid "Responsabile"
+msgstr ""
+
+#: ../interfaces/persona.py:70
+msgid "Responsabile di"
+msgstr ""
+
+#: ../vocabularies/all_life_events_vocabulary.py:37
+msgid "Ricerca di lavoro, avvio nuovo lavoro, disoccupazione"
+msgstr ""
+
+#: ../profiles/default/types/RicevutaPagamento.xml
+msgid "RicevutaPagamento"
+msgstr ""
+
+#: ../vocabularies/lista_azioni_pratica.py:28
+msgid "Richiedere"
+msgstr ""
+
+#: ../vocabularies/all_life_events_vocabulary.py:83
+msgid "Richiesta licenze/permessi/certificati"
+msgstr ""
+
+#: ../vocabularies/all_life_events_vocabulary.py:40
+msgid "Richiesta o rinnovo patente"
+msgstr ""
+
+#: ../vocabularies/all_life_events_vocabulary.py:53
+msgid "Richiesta passaporto, visto e assistenza viaggi internazionali"
+msgstr ""
+
+#: ../vocabularies/all_life_events_vocabulary.py:94
+msgid "Ristrutturazione impresa"
+msgstr ""
+
+#: ../vocabularies/dataset.py:41
+#: ../vocabularies/tags_vocabulary.py:57
+msgid "Salute"
+msgstr ""
+
+#: ../vocabularies/dataset.py:51
+msgid "Scienza e tecnologia"
+msgstr ""
+
+#: ../interfaces/unita_organizzativa.py:188
+msgid "Sede"
+msgstr ""
+
+#: ../interfaces/servizio.py:363
+msgid "Servizi collegati"
+msgstr ""
+
+#: ../behaviors/configure.zcml:75
+msgid "Servizi correlati"
+msgstr ""
+
+#: ../profiles/default/types/Servizio.xml
+msgid "Servizio"
+msgstr ""
+
+#: ../interfaces/documento.py:106
+#: ../interfaces/documento_personale.py:104
+msgid "Servizio collegato"
+msgstr ""
+
+#: ../vocabularies/tags_vocabulary.py:60
+msgid "Sicurezza internazionale"
+msgstr ""
+
+#: ../vocabularies/tags_vocabulary.py:58
+msgid "Sicurezza pubblica"
+msgstr ""
+
+#: ../vocabularies/mockup.py:26
+msgid "Sony Aplha 7R III"
+msgstr ""
+
+#: ../vocabularies/tags_vocabulary.py:62
+msgid "Spazio verde"
+msgstr ""
+
+#: ../vocabularies/tags_vocabulary.py:63
+msgid "Sport"
+msgstr ""
+
+#: ../interfaces/unita_organizzativa.py:34
+msgid "Struttura"
+msgstr ""
+
+#: ../behaviors/evento.py:274
+msgid "Struttura politica coinvolta"
+msgstr ""
+
+#: ../vocabularies/tags_vocabulary.py:30
+msgid "Studente"
+msgstr ""
+
+#: ../behaviors/configure.zcml:45
+msgid "Tassonomia argomenti"
+msgstr ""
+
+#: ../vocabularies/dataset.py:43
+msgid "Tematiche internazionali"
+msgstr ""
+
+#: ../vocabularies/tags_vocabulary.py:49
+msgid "Tempo libero"
+msgstr ""
+
+#: ../controlpanels/vocabularies.py:13
+msgid "Tipologie notizia"
+msgstr ""
+
+#: ../controlpanels/vocabularies.py:24
+msgid "Tipologie unita organizzativa"
+msgstr ""
+
+#: ../vocabularies/tags_vocabulary.py:54
+msgid "Traffico urbano"
+msgstr ""
+
+#: ../vocabularies/tags_vocabulary.py:46
+msgid "Trasporto"
+msgstr ""
+
+#: ../vocabularies/tags_vocabulary.py:64
+msgid "Trasporto stradale"
+msgstr ""
+
+#: ../vocabularies/tags_vocabulary.py:65
+msgid "Turismo"
+msgstr ""
+
+#: ../interfaces/servizio.py:231
+msgid "Ufficio responsabile"
+msgstr ""
+
+#: ../behaviors/configure.zcml:85
+msgid "Ulteriori campi aiuto testuali"
+msgstr ""
+
+#: ../configure.zcml:43
+msgid "Uninstalls the design.plone.contenttypes add-on."
+msgstr ""
+
+#: ../profiles/default/types/UnitaOrganizzativa.xml
+msgid "Unita Organizzativa"
+msgstr ""
+
+#: ../vocabularies/tags_vocabulary.py:38
+msgid "Urbanistica ed edilizia"
+msgstr ""
+
+#: ../vocabularies/all_life_events_vocabulary.py:95
+msgid "Vendita impresa"
+msgstr ""
+
+#: ../profiles/default/types/Dataset.xml
+#: ../profiles/default/types/Documento.xml
+#: ../profiles/default/types/Documento_Personale.xml
+msgid "View"
+msgstr ""
+
+#: ../controlpanels/vocabularies.py:49
+msgid "Vocabolari"
+msgstr ""
+
+#: ../profiles/default/controlpanel.xml
+>>>>>>> master
 msgid "Vocabolari Design Plone"
 msgstr ""
 
 #. Default: "Seleziona l'ufficio di comunicazione responsabile di questa notizia/comunicato stampa."
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/news_additional_fields.py:39
+=======
+#: ../behaviors/news_additional_fields.py:39
+>>>>>>> master
 msgid "a_cura_di_help"
 msgstr ""
 
 #. Default: "A cura di"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/news_additional_fields.py:38
+=======
+#: ../behaviors/news_additional_fields.py:38
+>>>>>>> master
 msgid "a_cura_di_label"
 msgstr ""
 
 #. Default: "Seleziona una lista di persone dell'amministrazione citate in questa notizia/comunicato stampa."
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/news_additional_fields.py:51
+=======
+#: ../behaviors/news_additional_fields.py:51
+>>>>>>> master
 msgid "a_cura_di_persone_help"
 msgstr ""
 
 #. Default: "Persone"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/news_additional_fields.py:50
+=======
+#: ../behaviors/news_additional_fields.py:50
+>>>>>>> master
 msgid "a_cura_di_persone_label"
 msgstr ""
 
 #. Default: "Allegato"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/ricevuta_pagamento.py:62
+=======
+#: ../interfaces/ricevuta_pagamento.py:62
+>>>>>>> master
 msgid "allegato"
 msgstr ""
 
 #. Default: "Seleziona la lista dei documenti di supporto collegati a questo servizio."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:271
+=======
+#: ../interfaces/servizio.py:271
+>>>>>>> master
 msgid "altri_documenti_help"
 msgstr ""
 
 #. Default: "Area"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:247
+=======
+#: ../interfaces/servizio.py:247
+>>>>>>> master
 msgid "area"
 msgstr ""
 
 #. Default: "Area di appartenenza"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/pagina_argomento.py:16
+=======
+#: ../interfaces/pagina_argomento.py:16
+>>>>>>> master
 msgid "area_di_appartenenza"
 msgstr ""
 
 #. Default: "Seleziona l'area da cui dipende questo servizio."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:249
+=======
+#: ../interfaces/servizio.py:249
+>>>>>>> master
 msgid "area_help"
 msgstr ""
 
 #. Default: "Area responsabile del documento"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/documento.py:58
 #: design/plone/contenttypes/interfaces/documento_personale.py:79
 msgid "area_responsabile"
@@ -729,384 +1031,698 @@ msgstr ""
 
 #. Default: "Argomenti utenti"
 #: design/plone/contenttypes/interfaces/documento_personale.py:46
+=======
+#: ../interfaces/documento.py:58
+msgid "area_responsabile"
+msgstr ""
+
+#. Default: "Area responsabile"
+#: ../interfaces/documento_personale.py:79
+msgid "area_responsabile_documento_personale"
+msgstr ""
+
+#. Default: "Argomenti utenti"
+#: ../interfaces/documento_personale.py:46
+>>>>>>> master
 msgid "argomenti_utenti"
 msgstr ""
 
 #. Default: "Assessorati di riferimento"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/pagina_argomento.py:35
+=======
+#: ../interfaces/pagina_argomento.py:35
+>>>>>>> master
 msgid "assessorati_riferimento"
 msgstr ""
 
 #. Default: "Inserire l'assessore di riferimento della struttura, se esiste."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/unita_organizzativa.py:101
+=======
+#: ../interfaces/unita_organizzativa.py:101
+>>>>>>> master
 msgid "assessore_riferimento_help"
 msgstr ""
 
 #. Default: "Atto nomina"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/persona.py:252
+=======
+#: ../interfaces/persona.py:252
+>>>>>>> master
 msgid "atto_nomina"
 msgstr ""
 
 #. Default: "Atto di nomina della persona."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/persona.py:254
+=======
+#: ../interfaces/persona.py:254
+>>>>>>> master
 msgid "atto_nomina_help"
 msgstr ""
 
 #. Default: "Autenticazione"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:139
+=======
+#: ../interfaces/servizio.py:139
+>>>>>>> master
 msgid "autenticazione"
 msgstr ""
 
 #. Default: "Indicare, se previste, le modalità di autenticazione necessarie per poter accedere al servizio."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:140
+=======
+#: ../interfaces/servizio.py:140
+>>>>>>> master
 msgid "autenticazione_help"
 msgstr ""
 
 #. Default: "Azioni"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/messaggio.py:30
+=======
+#: ../interfaces/messaggio.py:30
+>>>>>>> master
 msgid "azioni_pratica"
 msgstr ""
 
 #. Default: "Azioni richieste"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/messaggio.py:24
+=======
+#: ../interfaces/messaggio.py:24
+>>>>>>> master
 msgid "azioni_richieste"
 msgstr ""
 
 #. Default: "Azioni utente"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/pratica.py:51
+=======
+#: ../interfaces/pratica.py:51
+>>>>>>> master
 msgid "azioni_utente"
 msgstr ""
 
 #. Default: "Biografia"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/persona.py:198
+=======
+#: ../interfaces/persona.py:198
+>>>>>>> master
 msgid "biografia"
 msgstr ""
 
 #. Default: "Solo per persona politica: testo descrittivo che riporta la biografia della persona."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/persona.py:199
+=======
+#: ../interfaces/persona.py:199
+>>>>>>> master
 msgid "biografia_help"
 msgstr ""
 
 #. Default: "Box di aiuto"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/evento.py:290
 #: design/plone/contenttypes/interfaces/documento.py:170
 #: design/plone/contenttypes/interfaces/documento_personale.py:153
+=======
+#: ../behaviors/evento.py:290
+#: ../behaviors/luogo.py:135
+#: ../interfaces/documento.py:170
+>>>>>>> master
 msgid "box_aiuto"
 msgstr ""
 
 #. Default: "Ulteriori informazioni sul Servizio, FAQ, eventuali riferimenti normativi ed eventuali contatti di supporto all'utente."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:351
 #: design/plone/contenttypes/interfaces/unita_organizzativa.py:174
+=======
+#: ../interfaces/servizio.py:351
+>>>>>>> master
 msgid "box_aiuto_help"
 msgstr ""
 
 #. Default: "Canale digitale"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:129
+=======
+#: ../interfaces/servizio.py:129
+>>>>>>> master
 msgid "canale_digitale"
 msgstr ""
 
 #. Default: "Collegamento con l'eventuale canale digitale di attivazione del servizio."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:130
+=======
+#: ../interfaces/servizio.py:130
+>>>>>>> master
 msgid "canale_digitale_help"
 msgstr ""
 
 #. Default: "Canale digitale servizio collegato"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/documento_personale.py:111
+=======
+#: ../interfaces/documento_personale.py:111
+>>>>>>> master
 msgid "canale_digitale_servizio"
 msgstr ""
 
 #. Default: "Canale fisico"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:149
+=======
+#: ../interfaces/servizio.py:149
+>>>>>>> master
 msgid "canale_fisico"
 msgstr ""
 
 #. Default: "Indica le sedi dove è possibile usufruire del servizio."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:150
+=======
+#: ../interfaces/servizio.py:150
+>>>>>>> master
 msgid "canale_fisico_help"
 msgstr ""
 
 #. Default: "Canale fisico - prenotazione"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:158
+=======
+#: ../interfaces/servizio.py:158
+>>>>>>> master
 msgid "canale_fisico_prenotazione"
 msgstr ""
 
 #. Default: "Se è possibile prenotare un'appuntamento, indicare il collegamento al servizio di prenotazione appuntamenti del Comune."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:162
+=======
+#: ../interfaces/servizio.py:162
+>>>>>>> master
 msgid "canale_fisico_prenotazione_help"
 msgstr ""
 
 #. Default: "CAP"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/evento.py:153
 #: design/plone/contenttypes/behaviors/luogo.py:50
+=======
+#: ../behaviors/evento.py:153
+#: ../behaviors/luogo.py:63
+>>>>>>> master
 msgid "cap"
 msgstr ""
 
 #. Default: "Casi particolari"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:211
+=======
+#: ../interfaces/servizio.py:211
+>>>>>>> master
 msgid "casi_particolari"
 msgstr ""
 
 #. Default: "Descrizione degli evetuali casi particolari riferiti alla fruibilità di questo servizio."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:213
+=======
+#: ../interfaces/servizio.py:213
+>>>>>>> master
 msgid "casi_particolari_help"
 msgstr ""
 
 #. Default: "Categoria prevalente"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/luogo.py:110
+=======
+#: ../behaviors/luogo.py:121
+>>>>>>> master
 msgid "categoria_prevalente"
 msgstr ""
 
 #. Default: "Chi può presentare"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:76
+=======
+#: ../interfaces/servizio.py:76
+>>>>>>> master
 msgid "chi_puo_presentare"
 msgstr ""
 
 #. Default: "Descrizione di chi può presentare domanda per usufruire del servizio e delle diverse casistiche."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:78
+=======
+#: ../interfaces/servizio.py:78
+>>>>>>> master
 msgid "chi_puo_presentare_help"
 msgstr ""
 
 #. Default: "Circoscrizione"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/evento.py:150
 #: design/plone/contenttypes/behaviors/luogo.py:69
+=======
+#: ../behaviors/evento.py:150
+#: ../behaviors/luogo.py:83
+>>>>>>> master
 msgid "circoscrizione"
 msgstr ""
 
 #. Default: "Codice dell'ente erogatore (ipa)"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:318
+=======
+#: ../interfaces/servizio.py:318
+>>>>>>> master
 msgid "codice_ipa"
 msgstr ""
 
 #. Default: "Specificare il nome dell’organizzazione, come indicato nell’Indice della Pubblica Amministrazione (IPA), che esercita uno specifico ruolo sul Servizio."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:320
+=======
+#: ../interfaces/servizio.py:320
+>>>>>>> master
 msgid "codice_ipa_help"
 msgstr ""
 
 #. Default: "Collegamenti all'organizzazione di I livello"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/persona.py:99
+=======
+#: ../interfaces/persona.py:99
+>>>>>>> master
 msgid "collegamenti_organizzazione_l1"
 msgstr ""
 
 #. Default: "Seleziona l'organizzazione a cui la persona è collegata. Se si tratta di una persona politica, il collegamento è riferito a una struttura politica. Se si tratta di una persona amministrativa, il collegamento è riferito ad un'area amministrativa."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/persona.py:103
+=======
+#: ../interfaces/persona.py:103
+>>>>>>> master
 msgid "collegamenti_organizzazione_l1_help"
 msgstr ""
 
 #. Default: "Collegamenti all'organizzazione di II livello"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/persona.py:130
+=======
+#: ../interfaces/persona.py:130
+>>>>>>> master
 msgid "collegamenti_organizzazione_l2"
 msgstr ""
 
 #. Default: "Seleziona gli assessorati di cui la persona si occupa,  i gruppi politici, commissioni a cui appartiene, oppure gli uffici di cui si occupa o di cui è responsabile."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/persona.py:134
+=======
+#: ../interfaces/persona.py:134
+>>>>>>> master
 msgid "collegamenti_organizzazione_l2_help"
 msgstr ""
 
 #. Default: "Come si fa"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:96
+=======
+#: ../interfaces/servizio.py:96
+>>>>>>> master
 msgid "come_si_fa"
 msgstr ""
 
 #. Default: "Descrizione della procedura da seguire per poter usufruire del servizio."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:98
+=======
+#: ../interfaces/servizio.py:98
+>>>>>>> master
 msgid "come_si_fa_help"
 msgstr ""
 
 #. Default: "Competenze"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/persona.py:159
 #: design/plone/contenttypes/interfaces/unita_organizzativa.py:17
+=======
+#: ../interfaces/persona.py:159
+#: ../interfaces/unita_organizzativa.py:17
+>>>>>>> master
 msgid "competenze"
 msgstr ""
 
 #. Default: "Descrizione del ruolo e dei compiti della persona."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/persona.py:160
 #: design/plone/contenttypes/interfaces/unita_organizzativa.py:18
+=======
+#: ../interfaces/persona.py:160
+>>>>>>> master
 msgid "competenze_help"
 msgstr ""
 
 #. Default: "Contatti"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/pratica.py:47
+=======
+#: ../interfaces/pratica.py:47
+>>>>>>> master
 msgid "contatti"
 msgstr ""
 
 #. Default: "Contatto: reperibilità"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/evento.py:203
+=======
+#: ../behaviors/evento.py:203
+>>>>>>> master
 msgid "contatto_reperibilita"
 msgstr ""
 
 #. Default: "Contenuto"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/pratica.py:43
+=======
+#: ../interfaces/pratica.py:43
+>>>>>>> master
 msgid "contenuto"
 msgstr ""
 
 #. Default: "Copertura geografica"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:86
+=======
+#: ../interfaces/servizio.py:86
+>>>>>>> master
 msgid "copertura_geografica"
 msgstr ""
 
 #. Default: "Indicare se il servizio si riferisce ad una particolare area geografica o all'intero territorio di riferimento."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:88
+=======
+#: ../interfaces/servizio.py:88
+>>>>>>> master
 msgid "copertura_geografica_help"
 msgstr ""
 
 #. Default: "Correlati"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/argomenti.py:38
 #: design/plone/contenttypes/behaviors/dataset_correlati.py:40
 #: design/plone/contenttypes/behaviors/luoghi_correlati.py:39
+=======
+#: ../behaviors/argomenti.py:38
+#: ../behaviors/dataset_correlati.py:40
+#: ../behaviors/luoghi_correlati.py:39
+>>>>>>> master
 msgid "correlati_label"
 msgstr ""
 
 #. Default: "Cosa serve"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:183
+=======
+#: ../interfaces/servizio.py:183
+>>>>>>> master
 msgid "cosa_serve"
 msgstr ""
 
 #. Default: "Descrizione delle istruzioni per usufruire del servizio."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:185
+=======
+#: ../interfaces/servizio.py:185
+>>>>>>> master
 msgid "cosa_serve_help"
 msgstr ""
 
 #. Default: "Cosa si ottiene"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:106
+=======
+#: ../interfaces/servizio.py:106
+>>>>>>> master
 msgid "cosa_si_ottiene"
 msgstr ""
 
 #. Default: "Indicare cosa si può ottenere dal servizio, ad esempio 'carta di identità elettronica', 'certificato di residenza'."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:107
+=======
+#: ../interfaces/servizio.py:107
+>>>>>>> master
 msgid "cosa_si_ottiene_help"
 msgstr ""
 
 #. Default: "Costi"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:192
+=======
+#: ../interfaces/servizio.py:192
+>>>>>>> master
 msgid "costi"
 msgstr ""
 
 #. Default: "Descrizione delle condizioni e dei termini economici per completare la procedura di richiesta del servizio."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:194
+=======
+#: ../interfaces/servizio.py:194
+>>>>>>> master
 msgid "costi_help"
 msgstr ""
 
 #. Default: "Curriculum vitae"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/persona.py:232
+=======
+#: ../interfaces/persona.py:232
+>>>>>>> master
 msgid "curriculum_vitae"
 msgstr ""
 
 #. Default: "Curriculum vitae della persona."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/persona.py:234
+=======
+#: ../interfaces/persona.py:234
+>>>>>>> master
 msgid "curriculum_vitae_help"
 msgstr ""
 
 #. Default: "Data conclusione incarico"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/persona.py:88
+=======
+#: ../interfaces/persona.py:88
+>>>>>>> master
 msgid "data_conclusione_incarico"
 msgstr ""
 
 #. Default: "Data di conclusione dell'incarico."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/persona.py:91
+=======
+#: ../interfaces/persona.py:91
+>>>>>>> master
 msgid "data_conclusione_incarico_help"
 msgstr ""
 
 #. Default: "Data e fasi intermedie"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/documento_personale.py:123
+=======
+#: ../interfaces/documento_personale.py:123
+>>>>>>> master
 msgid "data_e_fasi_intermedie"
 msgstr ""
 
 #. Default: "Data di scadenza"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/documento.py:133
+=======
+#: ../interfaces/documento.py:133
+>>>>>>> master
 msgid "data_fine"
 msgstr ""
 
 #. Default: "Data di inizio"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/documento.py:127
 #: design/plone/contenttypes/interfaces/documento_personale.py:119
+=======
+#: ../interfaces/documento.py:127
+#: ../interfaces/documento_personale.py:119
+>>>>>>> master
 msgid "data_inizio"
 msgstr ""
 
 #. Default: "Data insediamento"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/persona.py:188
+=======
+#: ../interfaces/persona.py:188
+>>>>>>> master
 msgid "data_insediamento"
 msgstr ""
 
 #. Default: "Solo per persona politica: specificare la data di insediamento."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/persona.py:189
+=======
+#: ../interfaces/persona.py:189
+>>>>>>> master
 msgid "data_insediamento_help"
 msgstr ""
 
 #. Default: "Data del messaggio"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/messaggio.py:14
+=======
+#: ../interfaces/messaggio.py:14
+>>>>>>> master
 msgid "data_messaggio"
 msgstr ""
 
 #. Default: "Data pagamento"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/ricevuta_pagamento.py:22
+=======
+#: ../interfaces/ricevuta_pagamento.py:22
+>>>>>>> master
 msgid "data_pagamento"
 msgstr ""
 
 #. Default: "Data del protocollo"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/documento.py:165
 #: design/plone/contenttypes/interfaces/documento_personale.py:20
+=======
+#: ../interfaces/documento.py:165
+#: ../interfaces/documento_personale.py:20
+>>>>>>> master
 msgid "data_protocollo"
 msgstr ""
 
 #. Default: "Data di scadenza della procedura"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/messaggio.py:45
+=======
+#: ../interfaces/messaggio.py:45
+>>>>>>> master
 msgid "data_scadenza_procedura"
 msgstr ""
 
 #. Default: "Dataset"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/dataset.py:31
+=======
+#: ../interfaces/dataset.py:31
+>>>>>>> master
 msgid "dataset"
 msgstr ""
 
 #. Default: "Seleziona una lista di schede dataset collegate a questo contenuto."
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/dataset_correlati.py:19
+=======
+#: ../behaviors/dataset_correlati.py:19
+>>>>>>> master
 msgid "dataset_correlati_help"
 msgstr ""
 
 #. Default: "Dataset correlati"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/dataset_correlati.py:18
+=======
+#: ../behaviors/dataset_correlati.py:18
+>>>>>>> master
 msgid "dataset_correlati_label"
 msgstr ""
 
 #. Default: "Date significative"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/evento.py:156
+=======
+#: ../behaviors/evento.py:156
+>>>>>>> master
 msgid "date_significative"
 msgstr ""
 
 #. Default: "Deleghe"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/persona.py:168
+=======
+#: ../interfaces/persona.py:168
+>>>>>>> master
 msgid "deleghe"
 msgstr ""
 
 #. Default: "Elenco delle deleghe a capo della persona."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/persona.py:169
+=======
+#: ../interfaces/persona.py:169
+>>>>>>> master
 msgid "deleghe_help"
 msgstr ""
 
 #. Default: "Descrizione breve"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/luogo.py:27
+=======
+#: ../behaviors/luogo.py:33
+>>>>>>> master
 msgid "descrizione_breve"
 msgstr ""
 
 #. Default: "Descrizione destinatari"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/evento.py:99
 #: design/plone/contenttypes/interfaces/servizio.py:64
+=======
+#: ../behaviors/evento.py:99
+#: ../interfaces/servizio.py:64
+>>>>>>> master
 msgid "descrizione_destinatari"
 msgstr ""
 
 #. Default: "Descrizione dei principali interlocutori del servizio: a chi si rivolge e chi può usufruirne."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:68
+=======
+#: ../interfaces/servizio.py:68
+>>>>>>> master
 msgid "descrizione_destinatari_help"
 msgstr ""
 
 #. Default: "Descrizione estesa"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/documento.py:31
 #: design/plone/contenttypes/interfaces/documento_personale.py:58
 #: design/plone/contenttypes/interfaces/servizio.py:55
+=======
+#: ../interfaces/documento.py:31
+#: ../interfaces/documento_personale.py:58
+#: ../interfaces/servizio.py:55
+>>>>>>> master
 msgid "descrizione_estesa"
 msgstr ""
 
 #. Default: "Descrizione dettagliata e completa del servizio."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:57
 msgid "descrizione_estesa_help"
 msgstr ""
@@ -1116,60 +1732,113 @@ msgid "design.plone.contenttypes"
 msgstr ""
 
 #: design/plone/contenttypes/configure.zcml:43
+=======
+#: ../interfaces/servizio.py:57
+msgid "descrizione_estesa_help"
+msgstr ""
+
+#: ../configure.zcml:34
+msgid "design.plone.contenttypes"
+msgstr ""
+
+#: ../configure.zcml:43
+>>>>>>> master
 msgid "design.plone.contenttypes (uninstall)"
 msgstr ""
 
 #. Default: "Distribuzione"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/dataset.py:23
+=======
+#: ../interfaces/dataset.py:23
+>>>>>>> master
 msgid "distribuzione"
 msgstr ""
 
 #. Default: "Documenti allegati"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/messaggio.py:61
+=======
+#: ../interfaces/messaggio.py:61
+>>>>>>> master
 msgid "documenti_allegati"
 msgstr ""
 
 #. Default: "Elementi di interesse"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/luogo.py:35
+=======
+#: ../behaviors/luogo.py:43
+>>>>>>> master
 msgid "elementi_di_interesse"
 msgstr ""
 
 #. Default: "Indirizzo email"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/persona.py:216
+=======
+#: ../interfaces/persona.py:216
+>>>>>>> master
 msgid "email"
 msgstr ""
 
 #. Default: "Contatto mail della persona."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/persona.py:217
+=======
+#: ../interfaces/persona.py:217
+>>>>>>> master
 msgid "email_help"
 msgstr ""
 
 #. Default: "Esito"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/ricevuta_pagamento.py:56
+=======
+#: ../interfaces/ricevuta_pagamento.py:56
+>>>>>>> master
 msgid "esito"
 msgstr ""
 
 #. Default: "Evento genitore"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/evento.py:68
+=======
+#: ../behaviors/evento.py:68
+>>>>>>> master
 msgid "evento_genitore"
 msgstr ""
 
 #. Default: "Fasi e scadenze"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:172
 msgid "fasi_scadenze"
 msgstr ""
 
 #. Default: "Se esiste, prevedere una data di scadeza del servizio. Se il servizio è diviso in fasi, descriverne modalità e tempistiche."
 #: design/plone/contenttypes/interfaces/servizio.py:174
+=======
+#: ../interfaces/servizio.py:172
+msgid "fasi_scadenze"
+msgstr ""
+
+#. Default: "Prevedere una data di scadenza del servizio. Se il servizio è diviso in fasi, descriverne modalità e tempistiche."
+#: ../interfaces/servizio.py:174
+>>>>>>> master
 msgid "fasi_scadenze_help"
 msgstr ""
 
 #. Default: "Foto da mostrare della persona."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/persona.py:20
+=======
+#: ../interfaces/persona.py:20
+>>>>>>> master
 msgid "foto_persona_help"
 msgstr ""
 
 #. Default: "Frequenza di aggiornamento"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/dataset.py:39
 msgid "frequenza_aggiornamento"
 msgstr ""
@@ -1187,196 +1856,365 @@ msgstr ""
 
 #. Default: "Eventuale codice identificativo del servizio."
 #: design/plone/contenttypes/interfaces/servizio.py:342
+=======
+#: ../interfaces/dataset.py:39
+msgid "frequenza_aggiornamento"
+msgstr ""
+
+#. Default: "Identificativo"
+#: ../interfaces/servizio.py:340
+msgid "identificativo"
+msgstr ""
+
+#. Default: "Identificativo del documento"
+#: ../interfaces/documento.py:18
+msgid "identificativo_documento"
+msgstr ""
+
+#. Default: "Eventuale codice identificativo del servizio."
+#: ../interfaces/servizio.py:342
+>>>>>>> master
 msgid "identificativo_help"
 msgstr ""
 
 #. Default: "Identificativo"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/luogo.py:120
+=======
+#: ../behaviors/luogo.py:130
+>>>>>>> master
 msgid "identificativo_mibac"
 msgstr ""
 
 #. Default: "Identifier"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/evento.py:46
+=======
+#: ../behaviors/evento.py:46
+>>>>>>> master
 msgid "identifier"
 msgstr ""
 
 #. Default: "Immagine"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/evento.py:54
 #: design/plone/contenttypes/behaviors/luogo.py:23
 #: design/plone/contenttypes/interfaces/documento.py:23
+=======
+#: ../behaviors/evento.py:54
+#: ../behaviors/luogo.py:29
+#: ../interfaces/documento.py:23
+>>>>>>> master
 msgid "immagine"
 msgstr ""
 
 #. Default: "Importo pagato"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/ricevuta_pagamento.py:26
+=======
+#: ../interfaces/ricevuta_pagamento.py:26
+>>>>>>> master
 msgid "importo_pagato"
 msgstr ""
 
 #. Default: "Indirizzo"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/evento.py:142
 #: design/plone/contenttypes/behaviors/luogo.py:47
+=======
+#: ../behaviors/evento.py:142
+#: ../behaviors/luogo.py:60
+>>>>>>> master
 msgid "indirizzo"
 msgstr ""
 
 #. Default: "Ulteriori informazioni"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/documento_personale.py:143
+=======
+#: ../interfaces/documento_personale.py:143
+>>>>>>> master
 msgid "informazioni"
 msgstr ""
 
 #. Default: "Informazioni di contatto"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/persona.py:221
+=======
+#: ../interfaces/persona.py:221
+>>>>>>> master
 msgid "informazioni_di_contatto"
 msgstr ""
 
 #. Default: "Altre informazioni di contatto."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/persona.py:224
+=======
+#: ../interfaces/persona.py:224
+>>>>>>> master
 msgid "informazioni_di_contatto_help"
 msgstr ""
 
 #. Default: "Introduzione"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/evento.py:92
+=======
+#: ../behaviors/evento.py:92
+>>>>>>> master
 msgid "introduzione"
 msgstr ""
 
 #. Default: "Selezionare la lista di strutture e/o uffici collegati a questa unità organizzativa."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/unita_organizzativa.py:28
+=======
+#: ../interfaces/unita_organizzativa.py:28
+>>>>>>> master
 msgid "legami_con_altre_strutture_help"
 msgstr ""
 
 #. Default: "Licenza"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/dataset.py:27
+=======
+#: ../interfaces/dataset.py:27
+>>>>>>> master
 msgid "licenza"
 msgstr ""
 
 #. Default: "Licenza di distribuzione"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/documento.py:97
 #: design/plone/contenttypes/interfaces/documento_personale.py:95
+=======
+#: ../interfaces/documento.py:97
+#: ../interfaces/documento_personale.py:95
+>>>>>>> master
 msgid "licenza_distribuzione"
 msgstr ""
 
 #. Default: "Parte del life event"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/documento.py:177
 #: design/plone/contenttypes/interfaces/servizio.py:306
+=======
+#: ../interfaces/documento.py:177
+#: ../interfaces/servizio.py:306
+>>>>>>> master
 msgid "life_event"
 msgstr ""
 
 #. Default: "Collegamento tra il servizio e un evento della vita di una persona o di un'impresa. Ad esempio: il servizio 'Anagrafe' è collegato alla nascita di un bambino"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:307
+=======
+#: ../interfaces/servizio.py:307
+>>>>>>> master
 msgid "life_event_help"
 msgstr ""
 
 #. Default: "Link a siti esterni"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:293
+=======
+#: ../interfaces/servizio.py:293
+>>>>>>> master
 msgid "link_siti_esterni"
 msgstr ""
 
 #. Default: "Eventuali collegamenti a pagine web, siti, servizi esterni all'ambito Comunale utili all'erogazione del servizio."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:295
+=======
+#: ../interfaces/servizio.py:295
+>>>>>>> master
 msgid "link_siti_esterni_help"
 msgstr ""
 
 #. Default: "Seleziona una lista di luoghi citati."
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/luoghi_correlati.py:19
+=======
+#: ../behaviors/luoghi_correlati.py:19
+>>>>>>> master
 msgid "luoghi_correlati_help"
 msgstr ""
 
 #. Default: "Luoghi correlati"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/luoghi_correlati.py:18
+=======
+#: ../behaviors/luoghi_correlati.py:18
+>>>>>>> master
 msgid "luoghi_correlati_label"
 msgstr ""
 
 #. Default: "Luogo dell'evento"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/evento.py:125
+=======
+#: ../behaviors/evento.py:125
+>>>>>>> master
 msgid "luogo_evento"
 msgstr ""
 
 #. Default: "Modalita' di accesso"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/luogo.py:43
+=======
+#: ../behaviors/luogo.py:55
+>>>>>>> master
 msgid "modalita_accesso"
 msgstr ""
 
 #. Default: "Modalità pagamento"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/ricevuta_pagamento.py:30
+=======
+#: ../interfaces/ricevuta_pagamento.py:30
+>>>>>>> master
 msgid "modalita_pagamento"
 msgstr ""
 
 #. Default: "Motivo dello stato del servizio nel caso non sia attivo"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:33
+=======
+#: ../interfaces/servizio.py:33
+>>>>>>> master
 msgid "motivo_stato_servizio"
 msgstr ""
 
 #. Default: "Descrizione del motivo per cui il servizio non è attivo."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:38
+=======
+#: ../interfaces/servizio.py:38
+>>>>>>> master
 msgid "motivo_stato_servizio_help"
 msgstr ""
 
 #. Default: "Nome alternativo"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/luogo.py:31
+=======
+#: ../behaviors/luogo.py:38
+>>>>>>> master
 msgid "nome_alternativo"
 msgstr ""
 
 #. Default: "Seleziona una lista di notizie correlate a questa."
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/news_additional_fields.py:63
+=======
+#: ../behaviors/news_additional_fields.py:63
+>>>>>>> master
 msgid "notizie_correlate_help"
 msgstr ""
 
 #. Default: "Notizie correlate"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/news_additional_fields.py:62
+=======
+#: ../behaviors/news_additional_fields.py:62
+>>>>>>> master
 msgid "notizie_correlate_label"
 msgstr ""
 
 #. Default: "Numero progressivo del comunicato stampa"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/news_additional_fields.py:30
+=======
+#: ../behaviors/news_additional_fields.py:30
+>>>>>>> master
 msgid "numero_progressivo_cs_label"
 msgstr ""
 
 #. Default: "Numero protocollo"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/pratica.py:13
 #: design/plone/contenttypes/interfaces/ricevuta_pagamento.py:13
+=======
+#: ../interfaces/pratica.py:13
+#: ../interfaces/ricevuta_pagamento.py:13
+>>>>>>> master
 msgid "numero_protocollo"
 msgstr ""
 
 #. Default: "Oggetto"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/documento_personale.py:52
+=======
+#: ../interfaces/documento_personale.py:52
+>>>>>>> master
 msgid "oggetto"
 msgstr ""
 
 #. Default: "Orari"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/evento.py:160
+=======
+#: ../behaviors/evento.py:160
+>>>>>>> master
 msgid "orari"
 msgstr ""
 
 #. Default: "Orario per il pubblico"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/luogo.py:73
+=======
+#: ../behaviors/luogo.py:87
+>>>>>>> master
 msgid "orario_pubblico"
 msgstr ""
 
 #. Default: "Organizzato da"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/evento.py:167
+=======
+#: ../behaviors/evento.py:167
+>>>>>>> master
 msgid "organizzato_da_esterno"
 msgstr ""
 
 #. Default: "Organizzazione di riferimento"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/persona.py:35
+=======
+#: ../interfaces/persona.py:35
+>>>>>>> master
 msgid "organizzazione_riferimento"
 msgstr ""
 
 #. Default: "Seleziona una lista di organizzazioni a cui la persona appartiene."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/persona.py:39
+=======
+#: ../interfaces/persona.py:39
+>>>>>>> master
 msgid "organizzazione_riferimento_help"
 msgstr ""
 
 #. Default: "Patrocinato da"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/evento.py:263
+=======
+#: ../behaviors/evento.py:263
+>>>>>>> master
 msgid "patrocinato_da"
 msgstr ""
 
 #. Default: "Seleziona la lista delle persone che compongono la struttura."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/unita_organizzativa.py:128
+=======
+#: ../interfaces/unita_organizzativa.py:128
+>>>>>>> master
 msgid "persone_struttura_help"
 msgstr ""
 
 #. Default: "Pratica associata"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/documento_personale.py:28
 #: design/plone/contenttypes/interfaces/messaggio.py:37
 #: design/plone/contenttypes/interfaces/ricevuta_pagamento.py:46
@@ -1385,113 +2223,211 @@ msgstr ""
 
 #. Default: "Prezzo"
 #: design/plone/contenttypes/behaviors/evento.py:164
+=======
+#: ../interfaces/documento_personale.py:28
+#: ../interfaces/messaggio.py:37
+msgid "pratica_associata"
+msgstr ""
+
+#. Default: "Pratica associata al pagamento"
+#: ../interfaces/ricevuta_pagamento.py:46
+msgid "pratica_associata_ricevuta"
+msgstr ""
+
+#. Default: "Prezzo"
+#: ../behaviors/evento.py:164
+>>>>>>> master
 msgid "prezzo"
 msgstr ""
 
 #. Default: "Procedure collegate all'esito"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:116
+=======
+#: ../interfaces/servizio.py:116
+>>>>>>> master
 msgid "procedure_collegate"
 msgstr ""
 
 #. Default: "Indicare cosa deve fare l'utente del servizio per conoscere l'esito della procedura, e dove eventualmente poter ritirare l'esito."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:120
+=======
+#: ../interfaces/servizio.py:120
+>>>>>>> master
 msgid "procedure_collegate_help"
 msgstr ""
 
 #. Default: "Protocollo"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/documento.py:161
 #: design/plone/contenttypes/interfaces/documento_personale.py:16
+=======
+#: ../interfaces/documento.py:161
+#: ../interfaces/documento_personale.py:16
+>>>>>>> master
 msgid "protocollo"
 msgstr ""
 
 #. Default: "Quartiere"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/evento.py:146
 #: design/plone/contenttypes/behaviors/luogo.py:65
+=======
+#: ../behaviors/evento.py:146
+#: ../behaviors/luogo.py:79
+>>>>>>> master
 msgid "quartiere"
 msgstr ""
 
 #. Default: "Responsabile di"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/persona.py:63
+=======
+#: ../interfaces/persona.py:63
+>>>>>>> master
 msgid "responsabile_di"
 msgstr ""
 
 #. Default: "Seleziona una lista di organizzazioni di cui la persona è responsabile."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/persona.py:64
+=======
+#: ../interfaces/persona.py:64
+>>>>>>> master
 msgid "responsabile_di_help"
 msgstr ""
 
 #. Default: "Selezionare il/i responsabile/i della struttura."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/unita_organizzativa.py:60
+=======
+#: ../interfaces/unita_organizzativa.py:60
+>>>>>>> master
 msgid "responsabile_help"
 msgstr ""
 
 #. Default: "Riferimenti normativi"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/documento.py:156
 #: design/plone/contenttypes/interfaces/documento_personale.py:148
+=======
+#: ../interfaces/documento.py:156
+#: ../interfaces/documento_personale.py:148
+>>>>>>> master
 msgid "riferimenti_normativi"
 msgstr ""
 
 #. Default: "Riferimento mail luogo"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/luogo.py:60
+=======
+#: ../behaviors/luogo.py:74
+>>>>>>> master
 msgid "riferimento_mail_luogo"
 msgstr ""
 
 #. Default: "Riferimento mail struttura responsabile"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/luogo.py:95
+=======
+#: ../behaviors/luogo.py:105
+>>>>>>> master
 msgid "riferimento_mail_struttura"
 msgstr ""
 
 #. Default: "Riferimento pec"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/luogo.py:157
+=======
+#: ../behaviors/luogo.py:156
+>>>>>>> master
 msgid "riferimento_pec"
 msgstr ""
 
 #. Default: "Riferimento telefonico luogo"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/luogo.py:53
+=======
+#: ../behaviors/luogo.py:66
+>>>>>>> master
 msgid "riferimento_telefonico_luogo"
 msgstr ""
 
 #. Default: "Riferimento telefonico struttura responsabile"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/luogo.py:87
+=======
+#: ../behaviors/luogo.py:97
+>>>>>>> master
 msgid "riferimento_telefonico_struttura"
 msgstr ""
 
 #. Default: "Riferimento sito web"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/luogo.py:103
+=======
+#: ../behaviors/luogo.py:113
+>>>>>>> master
 msgid "riferimento_web"
 msgstr ""
 
 #. Default: "Ruolo"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/persona.py:26
+=======
+#: ../interfaces/persona.py:26
+>>>>>>> master
 msgid "ruolo"
 msgstr ""
 
 #. Default: "Descrizione testuale del ruolo di questa persona."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/persona.py:27
+=======
+#: ../interfaces/persona.py:27
+>>>>>>> master
 msgid "ruolo_help"
 msgstr ""
 
 #. Default: "Seleziona la lista delle sedi e dei luoghi collegati a questo servizio."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:390
+=======
+#: ../interfaces/servizio.py:390
+>>>>>>> master
 msgid "sedi_e_luoghi_help"
 msgstr ""
 
 #. Default: "Seleziona una lista delle sedi di questa struttura."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/unita_organizzativa.py:183
+=======
+#: ../interfaces/unita_organizzativa.py:183
+>>>>>>> master
 msgid "sedi_help"
 msgstr ""
 
 #. Default: "Seleziona la lista dei servizi collegati a questo."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:367
+=======
+#: ../interfaces/servizio.py:367
+>>>>>>> master
 msgid "servizi_collegati_help"
 msgstr ""
 
 #. Default: "Questi servizi non verranno mostrati nel contenuto, ma permetteranno di vedere questo contenuto associato quando si visita il servizio"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/servizi_correlati.py:19
+=======
+#: ../behaviors/servizi_correlati.py:19
+>>>>>>> master
 msgid "servizi_correlati_description"
 msgstr ""
 
 #. Default: "Servizi correlati"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/servizi_correlati.py:18
 msgid "servizi_correlati_label"
 msgstr ""
@@ -1505,45 +2441,102 @@ msgstr ""
 
 #. Default: "Settore merceologico"
 #: design/plone/contenttypes/interfaces/servizio.py:330
+=======
+#: ../behaviors/servizi_correlati.py:18
+msgid "servizi_correlati_label"
+msgstr ""
+
+#. Default: "Servizi presenti nel luogo"
+#: ../behaviors/luogo.py:50
+msgid "servizi_in_luogo"
+msgstr ""
+
+#. Default: "Servizio che genera il documento"
+#: ../interfaces/documento_personale.py:33
+msgid "servizio_origine"
+msgstr ""
+
+#. Default: "Servizio che origina la pratica"
+#: ../interfaces/pratica.py:33
+msgid "servizio_origine_pratica"
+msgstr ""
+
+#. Default: "Servizio che origina la pratica"
+#: ../interfaces/ricevuta_pagamento.py:36
+msgid "servizio_origine_ricevuta"
+msgstr ""
+
+#. Default: "Settore merceologico"
+#: ../interfaces/servizio.py:330
+>>>>>>> master
 msgid "settore_merceologico"
 msgstr ""
 
 #. Default: "Classificazione del servizio basata su catalogo dei servizi (Classificazione NACE)."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:332
+=======
+#: ../interfaces/servizio.py:332
+>>>>>>> master
 msgid "settore_merceologico_help"
 msgstr ""
 
 #. Default: "Sottotitolo"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:45
+=======
+#: ../interfaces/servizio.py:45
+>>>>>>> master
 msgid "sottotitolo"
 msgstr ""
 
 #. Default: "Sponsor"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/evento.py:267
+=======
+#: ../behaviors/evento.py:267
+>>>>>>> master
 msgid "sponsor"
 msgstr ""
 
 #. Default: "Stampa ricevuta"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/ricevuta_pagamento.py:18
+=======
+#: ../interfaces/ricevuta_pagamento.py:18
+>>>>>>> master
 msgid "stampa_ricevuta"
 msgstr ""
 
 #. Default: "Stato della pratica"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/pratica.py:27
+=======
+#: ../interfaces/pratica.py:27
+>>>>>>> master
 msgid "stato_pratica"
 msgstr ""
 
 #. Default: "Servizio non attivo"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:24
+=======
+#: ../interfaces/servizio.py:24
+>>>>>>> master
 msgid "stato_servizio"
 msgstr ""
 
 #. Default: "Indica se il servizio è effettivamente fruibile."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:26
+=======
+#: ../interfaces/servizio.py:26
+>>>>>>> master
 msgid "stato_servizio_help"
 msgstr ""
 
 #. Default: "Struttura responsabile"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/luogo.py:77
 msgid "struttura_responsabile"
 msgstr ""
@@ -1555,85 +2548,154 @@ msgstr ""
 
 #. Default: "Indica un eventuale sottotitolo/titolo alternativo per questo servizio."
 #: design/plone/contenttypes/interfaces/servizio.py:46
+=======
+#: ../behaviors/luogo.py:92
+msgid "struttura_responsabile"
+msgstr ""
+
+#. Default: "Indica un eventuale sottotitolo/titolo alternativo per questo servizio."
+#: ../interfaces/servizio.py:46
+>>>>>>> master
 msgid "subtitle_help"
 msgstr ""
 
 #. Default: "Evento supportato da"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/evento.py:221
+=======
+#: ../behaviors/evento.py:221
+>>>>>>> master
 msgid "supportato_da"
 msgstr ""
 
 #. Default: "Tassonomia argomenti"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/evento.py:58
+=======
+#: ../behaviors/evento.py:58
+>>>>>>> master
 msgid "tassonomia_argomenti"
 msgstr ""
 
 #. Default: "Seleziona una lista di argomenti d'interesse per questo contenuto."
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/argomenti.py:20
+=======
+#: ../behaviors/argomenti.py:20
+>>>>>>> master
 msgid "tassonomia_argomenti_help"
 msgstr ""
 
 #. Default: "Tassonomia argomenti"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/argomenti.py:19
+=======
+#: ../behaviors/argomenti.py:19
+>>>>>>> master
 msgid "tassonomia_argomenti_label"
 msgstr ""
 
 #. Default: "Numero di telefono"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/persona.py:208
+=======
+#: ../interfaces/persona.py:208
+>>>>>>> master
 msgid "telefono"
 msgstr ""
 
 #. Default: "Contatto telefonico della persona."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/persona.py:209
+=======
+#: ../interfaces/persona.py:209
+>>>>>>> master
 msgid "telefono_help"
 msgstr ""
 
 #. Default: "Temi"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/dataset.py:15
+=======
+#: ../interfaces/dataset.py:15
+>>>>>>> master
 msgid "temi"
 msgstr ""
 
 #. Default: "Tipologia documento"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/messaggio.py:54
+=======
+#: ../interfaces/messaggio.py:54
+>>>>>>> master
 msgid "tipologia_documento"
 msgstr ""
 
 #. Default: "Seleziona la tipologia della notizia."
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/news_additional_fields.py:20
+=======
+#: ../behaviors/news_additional_fields.py:20
+>>>>>>> master
 msgid "tipologia_notizia_help"
 msgstr ""
 
 #. Default: "Tipologia notizia"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/news_additional_fields.py:19
+=======
+#: ../behaviors/news_additional_fields.py:19
+>>>>>>> master
 msgid "tipologia_notizia_label"
 msgstr ""
 
 #. Default: "Tipologia organizzazione"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/unita_organizzativa.py:79
+=======
+#: ../interfaces/unita_organizzativa.py:79
+>>>>>>> master
 msgid "tipologia_organizzazione"
 msgstr ""
 
 #. Default: "Specificare la tipologia di organizzazione: politica, amminsitrativa o di altro tipo."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/unita_organizzativa.py:85
+=======
+#: ../interfaces/unita_organizzativa.py:85
+>>>>>>> master
 msgid "tipologia_organizzazione_help"
 msgstr ""
 
 #. Default: "Tipologia persona"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/persona.py:177
+=======
+#: ../interfaces/persona.py:177
+>>>>>>> master
 msgid "tipologia_persona"
 msgstr ""
 
 #. Default: "Seleziona la tipologia di persona: politica, amministrativa o di altro tipo."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/persona.py:178
+=======
+#: ../interfaces/persona.py:178
+>>>>>>> master
 msgid "tipologia_persona_help"
 msgstr ""
 
 #. Default: "Titolare"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/dataset.py:35
+=======
+#: ../interfaces/dataset.py:35
+>>>>>>> master
 msgid "titolare"
 msgstr ""
 
 #. Default: "Ufficio responsabile del documento"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/documento.py:37
 #: design/plone/contenttypes/interfaces/documento_personale.py:71
 #: design/plone/contenttypes/interfaces/servizio.py:222
@@ -1642,35 +2704,93 @@ msgstr ""
 
 #. Default: "Seleziona l'ufficio responsabile dell'erogazione di questo servizio."
 #: design/plone/contenttypes/interfaces/servizio.py:223
+=======
+#: ../interfaces/documento.py:37
+msgid "ufficio_responsabile"
+msgstr ""
+
+#. Default: "Ufficio responsabile"
+#: ../interfaces/documento_personale.py:71
+msgid "ufficio_responsabile_documento_personale"
+msgstr ""
+
+#. Default: "Ufficio resposabile"
+#: ../interfaces/servizio.py:222
+msgid "ufficio_responsabile_erogazione"
+msgstr ""
+
+#. Default: "Seleziona l'ufficio responsabile dell'erogazione di questo servizio."
+#: ../interfaces/servizio.py:223
+>>>>>>> master
 msgid "ufficio_responsabile_help"
 msgstr ""
 
 #. Default: "Ufficio di riferimento"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/pratica.py:18
+=======
+#: ../interfaces/pratica.py:18
+>>>>>>> master
 msgid "ufficio_riferimento"
 msgstr ""
 
 #. Default: "Ulteriori informazioni"
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/additional_help_infos.py:17
+=======
+#: ../behaviors/additional_help_infos.py:17
+>>>>>>> master
 msgid "ulteriori_informazioni"
 msgstr ""
 
 #. Default: "Ulteriori informazioni non contemplate dai campi precedenti."
+<<<<<<< HEAD
 #: design/plone/contenttypes/behaviors/additional_help_infos.py:18
+=======
+#: ../behaviors/additional_help_infos.py:18
+>>>>>>> master
 msgid "ulteriori_informazioni_help"
 msgstr ""
 
 #. Default: "Informazioni"
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/unita_organizzativa.py:167
 msgid "unteriori_informazioni"
 msgstr ""
 
 #. Default: "Vincoli"
 #: design/plone/contenttypes/interfaces/servizio.py:202
+=======
+#: ../interfaces/unita_organizzativa.py:167
+msgid "unteriori_informazioni"
+msgstr ""
+
+#. Default: "Eventuali contatti di supporto all'utente."
+#: ../interfaces/unita_organizzativa.py:174
+msgid "uo_box_aiuto_help"
+msgstr ""
+
+#. Default: "Descrizione dei compiti assegnati alla struttura."
+#: ../interfaces/unita_organizzativa.py:18
+msgid "uo_competenze_help"
+msgstr ""
+
+#. Default: "Video"
+#: ../behaviors/luogo.py:47
+msgid "video"
+msgstr ""
+
+#. Default: "Vincoli"
+#: ../interfaces/servizio.py:202
+>>>>>>> master
 msgid "vincoli"
 msgstr ""
 
 #. Default: "Descrizione degli eventuali vincoli presenti."
+<<<<<<< HEAD
 #: design/plone/contenttypes/interfaces/servizio.py:204
+=======
+#: ../interfaces/servizio.py:204
+>>>>>>> master
 msgid "vincoli_help"
 msgstr ""
