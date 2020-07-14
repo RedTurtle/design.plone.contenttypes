@@ -66,6 +66,16 @@ Per utilizzare questo prodotto, fare riferimento a design.plone.policy_.
 
 .. _design.plone.policy: https://github.com/RedTurtle/design.plone.policy
 
+Traduzioni
+==========
+
+Per aggiornare le traduzioni, basta usare lo script `update_locales` dentro alla cartella bin::
+
+  > bin/update_locales
+
+**N.B.: lo script va chiamato due volte perché al primo giro non aggiorna i file.**
+
+
 Contribuisci
 ============
 

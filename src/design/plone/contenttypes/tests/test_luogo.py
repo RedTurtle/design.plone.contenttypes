@@ -117,7 +117,9 @@ class TestLuogoApi(unittest.TestCase):
     def test_venue_default_values_for_location(self):
         response = self.api_session.get("/@types/Venue")
         schema = response.json()["properties"]
-        self.assertEqual(schema["country"]["default"], "380")
+        self.assertEqual(
+            schema["country"]["default"], {"title": "Italia", "token": "380"}
+        )
         self.assertEqual(schema["city"]["default"], "Roma")
         self.assertEqual(schema["street"]["default"], "Via Liszt, 21")
         self.assertEqual(

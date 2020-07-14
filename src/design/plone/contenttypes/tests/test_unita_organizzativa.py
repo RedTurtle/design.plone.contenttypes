@@ -57,20 +57,15 @@ class TestServizio(unittest.TestCase):
         self.api_session.close()
 
     def test_uo_service_related_news(self):
-        response = self.api_session.get(
-            self.uo.absolute_url() + "?fullobjects",
-        )
+        response = self.api_session.get(self.uo.absolute_url() + "?fullobjects")
         self.assertTrue(
             response.json()["related_news"][0]["@id"], self.news.absolute_url()
         )
 
     def test_uo_service_related_service(self):
-        response = self.api_session.get(
-            self.uo.absolute_url() + "?fullobjects",
-        )
+        response = self.api_session.get(self.uo.absolute_url() + "?fullobjects")
         self.assertTrue(
-            response.json()["servizi_offerti"][0]["@id"],
-            self.service.absolute_url(),
+            response.json()["servizi_offerti"][0]["@id"], self.service.absolute_url()
         )
 
 
@@ -95,11 +90,11 @@ class TestUO(unittest.TestCase):
                 "plone.categorization",
                 "plone.basic",
                 "plone.locking",
+                "collective.address.address",
                 "collective.geolocationbehavior.geolocation.IGeolocatable",
                 "plone.leadimage",
                 "plone.relateditems",
                 "design.plone.contenttypes.behavior.argomenti",
-                "design.plone.contenttypes.behavior.additional_help_infos",
             ),
         )
 
