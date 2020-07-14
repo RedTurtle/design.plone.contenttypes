@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2020-07-14 14:59+0000\n"
+"POT-Creation-Date: 2020-07-14 15:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -139,6 +139,10 @@ msgstr ""
 msgid "Bancarotta"
 msgstr ""
 
+#: design/plone/contenttypes/controlpanels/geolocation_defaults.py:15
+msgid "CAP"
+msgstr ""
+
 #: design/plone/contenttypes/vocabularies/all_life_events_vocabulary.py:49
 msgid "Cambio di residenza/domicilio"
 msgstr ""
@@ -159,6 +163,10 @@ msgstr ""
 msgid "Chiusura impresa e attività professionale"
 msgstr ""
 
+#: design/plone/contenttypes/controlpanels/geolocation_defaults.py:16
+msgid "Città"
+msgstr ""
+
 #: design/plone/contenttypes/interfaces/persona.py:123
 msgid "Collegamenti organizzazione di I livello"
 msgstr ""
@@ -177,6 +185,10 @@ msgstr ""
 
 #: design/plone/contenttypes/vocabularies/tags_vocabulary.py:44
 msgid "Condizioni e organizzazione del lavoro"
+msgstr ""
+
+#: design/plone/contenttypes/controlpanels/geolocation_defaults.py:23
+msgid "Coordinate"
 msgstr ""
 
 #: design/plone/contenttypes/vocabularies/tags_vocabulary.py:50
@@ -287,6 +299,11 @@ msgstr ""
 
 #: design/plone/contenttypes/vocabularies/tags_vocabulary.py:40
 msgid "Formazione professionale"
+msgstr ""
+
+#: design/plone/contenttypes/controlpanels/geolocation_defaults.py:33
+#: design/plone/contenttypes/profiles/default/controlpanel.xml
+msgid "Geolocation default"
 msgstr ""
 
 #: design/plone/contenttypes/vocabularies/tags_vocabulary.py:56
@@ -427,6 +444,10 @@ msgstr ""
 
 #: design/plone/contenttypes/vocabularies/all_life_events_vocabulary.py:58
 msgid "Nascita di un bambino, richiesta adozioni"
+msgstr ""
+
+#: design/plone/contenttypes/controlpanels/geolocation_defaults.py:18
+msgid "Nazione"
 msgstr ""
 
 #: design/plone/contenttypes/vocabularies/all_life_events_vocabulary.py:89
@@ -686,6 +707,10 @@ msgstr ""
 
 #: design/plone/contenttypes/vocabularies/all_life_events_vocabulary.py:95
 msgid "Vendita impresa"
+msgstr ""
+
+#: design/plone/contenttypes/controlpanels/geolocation_defaults.py:13
+msgid "Via"
 msgstr ""
 
 #: design/plone/contenttypes/profiles/default/types/Dataset.xml
@@ -949,6 +974,11 @@ msgstr ""
 #. Default: "Descrizione del ruolo e dei compiti della persona."
 #: design/plone/contenttypes/interfaces/persona.py:170
 msgid "competenze_help"
+msgstr ""
+
+#. Default: "Informazioni di contatto generiche"
+#: design/plone/contenttypes/interfaces/unita_organizzativa.py:203
+msgid "contact_info"
 msgstr ""
 
 #. Default: "Contatti"
@@ -1720,6 +1750,11 @@ msgstr ""
 #. Default: "Descrizione dei compiti assegnati alla struttura."
 #: design/plone/contenttypes/interfaces/unita_organizzativa.py:18
 msgid "uo_competenze_help"
+msgstr ""
+
+#. Default: "Eventuali informazioni di contatto generiche"
+#: design/plone/contenttypes/interfaces/unita_organizzativa.py:207
+msgid "uo_contact_info_description"
 msgstr ""
 
 #. Default: "Vincoli"
