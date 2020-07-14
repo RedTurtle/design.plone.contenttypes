@@ -199,3 +199,13 @@ class IUnitaOrganizzativa(model.Schema):
             # "basePath": "/servizi",
         },
     )
+    contact_info = RichText(
+        title=_(
+            u"contact_info", default=u"Informazioni di contatto generiche"
+        ),
+        required=False,
+        description=_(
+            "uo_contact_info_description",
+            default="Eventuali informazioni di contatto generiche",
+        ),
+    )

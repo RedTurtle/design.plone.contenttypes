@@ -11,7 +11,7 @@
     Be careful if you use general includeDependencies, it can have sideffects!
     Better import explicite packages or configurations ;)
   -->
-  <!--<includeDependencies package="." />-->
+  <!-- <includeDependencies package="." /> -->
 
   <include file="permissions.zcml" />
   <include file="upgrades.zcml" />
@@ -26,7 +26,7 @@
   
   <genericsetup:registerProfile
       name="default"
-      title="design.plone.contenttypes"
+      title="Design Plone: Content-types"
       directory="profiles/default"
       description="Installs the design.plone.contenttypes add-on."
       provides="Products.GenericSetup.interfaces.EXTENSION"
@@ -35,7 +35,7 @@
 
   <genericsetup:registerProfile
       name="uninstall"
-      title="design.plone.contenttypes (uninstall)"
+      title="Design Plone: Content-types (uninstall)"
       directory="profiles/uninstall"
       description="Uninstalls the design.plone.contenttypes add-on."
       provides="Products.GenericSetup.interfaces.EXTENSION"

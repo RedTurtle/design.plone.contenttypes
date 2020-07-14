@@ -22,6 +22,29 @@ Notizie e comunicati stampa
 - Alla creazione di una Notizia, vengono create automaticamente al suo interno due cartelle 
   "Multimedia" e "Documenti allegati" per poter organizzare meglio i contenuti
 
+Luogo
+-----
+
+Esiste un deserializer per plone.restapi per il campo di tipo "GeolocationField" che si occupa di trasformare
+le coordinate in input, in un oggetto corretto per quel campo.
+
+Accetta un valore del tipo::
+
+    {
+      "latitude": 10.0000,
+      "longitude": 20.0000,
+    }
+
+Alcuni campi della geolocalizzazione hanno dei valori predefiniti quando viene richiesto lo schema mediante plone.restapi:
+
+- city
+- street
+- geolocation
+- country
+
+Sono pre-popolati con la sede di AGID a Roma.
+
+
 Gestione vocabolari
 ===================
 
@@ -42,6 +65,16 @@ Questo prodotto non è stato pensato per funzionare da solo, ma fa parte della s
 Per utilizzare questo prodotto, fare riferimento a design.plone.policy_.
 
 .. _design.plone.policy: https://github.com/RedTurtle/design.plone.policy
+
+Traduzioni
+==========
+
+Per aggiornare le traduzioni, basta usare lo script `update_locales` dentro alla cartella bin::
+
+  > bin/update_locales
+
+**N.B.: lo script va chiamato due volte perché al primo giro non aggiorna i file.**
+
 
 Contribuisci
 ============

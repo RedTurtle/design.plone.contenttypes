@@ -3,5 +3,5 @@
     xmlns:zcml="http://namespaces.zope.org/zcml">
 
     <adapter factory=".persona.DeserializePersonaFromJson" />
-
+    <adapter factory=".dxfields.GeolocationFieldDeserializer" />
 </configure>
