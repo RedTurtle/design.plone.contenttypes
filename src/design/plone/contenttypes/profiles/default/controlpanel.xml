@@ -17,5 +17,17 @@
             <permission>Manage portal</permission>
     </configlet>
 
+    <configlet
+        title="Geolocation default"
+        action_id="geolocation-defaults"
+        appId="design.plone.geolocationdefaults"
+        category="Products"
+        condition_expr=""
+        url_expr="string:${portal_url}/@@geolocation-defaults"
+        icon_expr=""
+        visible="True"
+        i18n:attributes="title">
+            <permission>Manage portal</permission>
+    </configlet>
 </object>
 

@@ -12,6 +12,11 @@
       class=".vocabularies.VocabulariesControlPanelView"
       permission="cmf.ManagePortal"
       />
-
+  <browser:page
+      name="geolocation-defaults"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      class=".geolocation_defaults.GeolocationDefaultControlPanellView"
+      permission="cmf.ManagePortal"
+      />
 </configure>
 

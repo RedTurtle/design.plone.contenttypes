@@ -2,6 +2,10 @@
 from plone.restapi.services.types.get import TypesGet as BaseGet
 from zope.interface import implementer
 from zope.publisher.interfaces import IPublishTraverse
+from design.plone.contenttypes.controlpanels.geolocation_defaults import (
+    IGeolocationDefaults,
+)
+from plone import api
 
 
 @implementer(IPublishTraverse)
@@ -19,20 +23,42 @@ class TypesGet(BaseGet):
                     default_index + 1, result["fieldsets"].pop(correlati_index)
                 )
         if "properties" in result:
+
             if "country" in result["properties"]:
                 if not result["properties"]["country"].get("default", ""):
-                    result["properties"]["country"]["default"] = "380"
+                    result["properties"]["country"]["default"] = {
+                        "title": "Italia",
+                        "token": "380",
+                    }
             if "city" in result["properties"]:
                 if not result["properties"]["city"].get("default", ""):
-                    result["properties"]["city"]["default"] = "Roma"
+                    result["properties"]["city"][
+                        "default"
+                    ] = api.portal.get_registry_record(
+                        "city", interface=IGeolocationDefaults
+                    )
+            if "zip_code" in result["properties"]:
+                if not result["properties"]["zip_code"].get("default", ""):
+                    result["properties"]["zip_code"][
+                        "default"
+                    ] = api.portal.get_registry_record(
+                        "zip_code", interface=IGeolocationDefaults
+                    )
+
             if "street" in result["properties"]:
                 if not result["properties"]["street"].get("default", ""):
-                    result["properties"]["street"]["default"] = "Via Liszt, 21"
+                    result["properties"]["street"][
+                        "default"
+                    ] = api.portal.get_registry_record(
+                        "street", interface=IGeolocationDefaults
+                    )
+
             if "geolocation" in result["properties"]:
                 if not result["properties"]["geolocation"].get("default", {}):
-                    result["properties"]["geolocation"]["default"] = {
-                        "latitude": 41.8337833,
-                        "longitude": 12.4677863,
-                    }
+                    result["properties"]["geolocation"]["default"] = eval(
+                        api.portal.get_registry_record(
+                            "geolocation", interface=IGeolocationDefaults
+                        )
+                    )
 
         return result
