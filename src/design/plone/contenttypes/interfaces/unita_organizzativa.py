@@ -178,7 +178,7 @@ class IUnitaOrganizzativa(model.Schema):
     )
 
     sedi = RelationList(
-        title=u"Sedi",
+        title=u"Altre sedi",
         default=[],
         description=_(
             "sedi_help",

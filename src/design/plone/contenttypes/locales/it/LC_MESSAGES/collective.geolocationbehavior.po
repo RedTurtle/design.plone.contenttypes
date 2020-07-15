@@ -26,3 +26,6 @@ msgstr "Clicca sulla mappa per selezionare un luogo o usa il campo testo per ric
 msgid "label_geolocation"
 msgstr "Coordinate"
 
+msgid "help_geolocation"
+msgstr "Compilare i campi 'Via', 'CAP', 'Città' e 'Nazione' dopo di ché premere 'Cerca nella mappa' per impostare la posizione. Altrimenti è possibile cliccare sul marker e spostarlo sulla mappa"
+
