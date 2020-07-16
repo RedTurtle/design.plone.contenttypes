@@ -91,17 +91,19 @@ class AllLifeEventsVocabulary(object):
                 ),
             ),
         ]
+        req = getRequest()
 
         # Fix context if you are using the vocabulary in DataGridField.
         # See https://github.com/collective/collective.z3cform.datagridfield/issues/31:  # NOQA: 501
         if not IDexterityContent.providedBy(context):
-            req = getRequest()
             context = req.PARENTS[0]
 
         # create a list of SimpleTerm items:
         terms = [
             SimpleTerm(
-                value=item[0], token=item[0], title=translate(item[1], req)
+                value=item[0],
+                token=item[0],
+                title=translate(item[1], context=req),
             )
             for item in sorted(items, key=lambda k: k[1])
         ]
