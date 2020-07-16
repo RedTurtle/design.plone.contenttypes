@@ -13,27 +13,27 @@ class IDocumentoPersonale(model.Schema):
     """
 
     protocollo = schema.TextLine(
-        title=_(u'protocollo', default=u'Protocollo'), required=True
+        title=_(u"protocollo", default=u"Protocollo"), required=True
     )
 
     data_protocollo = schema.Date(
-        title=_(u'data_protocollo', default=u'Data protocollo'), required=True
+        title=_(u"data_protocollo", default=u"Data protocollo"), required=True
     )
 
     immagine = field.NamedImage(
-        title=_(u'immagine', default=u'Immagine'), required=False
+        title=_(u"immagine", default=u"Immagine"), required=False
     )
 
     pratica_associata = field.NamedFile(
-        title=_(u'pratica_associata', default=u'Pratica associata'),
+        title=_(u"pratica_associata", default=u"Pratica associata"),
         required=True,
     )
 
     servizio_origine = schema.Choice(
         title=_(
-            u'servizio_origine', default=u'Servizio che genera il documento'
+            u"servizio_origine", default=u"Servizio che genera il documento"
         ),
-        vocabulary='design.plone.contenttypes.Mockup',
+        vocabulary="design.plone.contenttypes.Mockup",
         required=True,
     )
 
@@ -43,19 +43,19 @@ class IDocumentoPersonale(model.Schema):
     # TODO: il vocabolario controllato da usare sara' "Argomenti di interesse
     #  pere gli utenti di un comune"
     argomenti_utenti = schema.Choice(
-        title=_(u'argomenti_utenti', default=u'Argomenti utenti'),
-        vocabulary='design.plone.contenttypes.Mockup',
+        title=_(u"argomenti_utenti", default=u"Argomenti utenti"),
+        vocabulary="design.plone.contenttypes.Mockup",
         required=True,
     )
 
     oggetto = RichText(
-        title=_(u'oggetto', default=u'Oggetto'),
+        title=_(u"oggetto", default=u"Oggetto"),
         # non viene specificato se il campo e' obbligatorio o meno
         required=False,
     )
 
     descrizione_estesa = RichText(
-        title=_(u'descrizione_estesa', default=u'Descrizione estesa'),
+        title=_(u"descrizione_estesa", default=u"Descrizione estesa"),
         required=False,
     )
 
@@ -68,87 +68,83 @@ class IDocumentoPersonale(model.Schema):
     # TODO: usare vocabolario dinamico per le tipologie di uffici (dovrebbe
     # rientrare nel content type "Unita' organizzativa")
     ufficio_responsabile = schema.Choice(
-        title=_(u'ufficio_responsabile', default=u'Ufficio responsabile'),
+        title=_(u"ufficio_responsabile", default=u"Ufficio responsabile"),
         required=True,
-        vocabulary='design.plone.contenttypes.Mockup',
+        vocabulary="design.plone.contenttypes.Mockup",
     )
 
     # TODO: usare vocabolario dinamico per le tipologie di aree amministrative
     # (dovrebbe rientrare nel content type "Unita' organizzativa")
     area_responsabile = schema.Choice(
-        title=_(u'area_responsabile', default=u'Area responsabile'),
+        title=_(u"area_responsabile", default=u"Area responsabile"),
         required=True,
-        vocabulary='design.plone.contenttypes.Mockup',
+        vocabulary="design.plone.contenttypes.Mockup",
     )
 
     # TODO: usare vocabolario dinamico per le gli autori?
     autori = RelationList(
-        title=u'Autore/i',
+        title=u"Autore/i",
         default=[],
         value_type=RelationChoice(
-            title=_(u'Autore'), vocabulary='plone.app.vocabularies.Catalog'
+            title=_(u"Autore"), vocabulary="plone.app.vocabularies.Catalog"
         ),
         required=False,
     )
 
     licenza_distribuzione = schema.TextLine(
-        title=_(u'licenza_distribuzione', default=u'Licenza di distribuzione'),
+        title=_(u"licenza_distribuzione", default=u"Licenza di distribuzione"),
         required=False,
     )
 
     # TODO: usare vocabolario dinamico per i servizi collegati?
     servizi_collegati = RelationList(
-        title=u'Servizi collegati',
+        title=u"Servizi collegati",
         default=[],
         value_type=RelationChoice(
-            title=_(u'Servizio collegato'),
-            vocabulary='plone.app.vocabularies.Catalog',
+            title=_(u"Servizio collegato"),
+            vocabulary="plone.app.vocabularies.Catalog",
         ),
         required=False,
     )
 
     canale_digitale_servizio = schema.TextLine(
         title=_(
-            u'canale_digitale_servizio',
-            default=u'Canale digitale servizio collegato',
+            u"canale_digitale_servizio",
+            default=u"Canale digitale servizio collegato",
         ),
         required=False,
     )
 
     data_inizio = schema.Date(
-        title=_(u'data_inizio', default=u'Data inizio'), required=False
+        title=_(u"data_inizio", default=u"Data inizio"), required=False
     )
 
     data_e_fasi_intermedie = RichText(
-        title=_(u'data_e_fasi_intermedie', default=u'Data e fasi intermedie'),
+        title=_(u"data_e_fasi_intermedie", default=u"Data e fasi intermedie"),
         required=False,
     )
 
     data_inizio = schema.Date(
-        title=_(u'data_inizio', default=u'Data inizio'), required=False
+        title=_(u"data_inizio", default=u"Data inizio"), required=False
     )
 
     # TODO: vocabolario per i dataset collegati ad un documento
     dataset = RelationList(
-        title=_(u'Dataset'),
+        title=_(u"Dataset"),
         required=False,
         default=[],
         value_type=RelationChoice(
-            title=_(u'Dataset collegato'),
-            vocabulary='plone.app.vocabularies.Catalog',
+            title=_(u"Dataset collegato"),
+            vocabulary="plone.app.vocabularies.Catalog",
         ),
     )
 
     informazioni = RichText(
-        title=_(u'informazioni', default=u'Ulteriori informazioni'),
+        title=_(u"informazioni", default=u"Ulteriori informazioni"),
         required=False,
     )
 
     riferimenti_normativi = RichText(
-        title=_(u'riferimenti_normativi', default=u'Riferimenti normativi'),
+        title=_(u"riferimenti_normativi", default=u"Riferimenti normativi"),
         required=False,
-    )
-
-    box_aiuto = RichText(
-        title=_(u'box_aiuto', default=u'Box di aiuto'), required=False
     )
