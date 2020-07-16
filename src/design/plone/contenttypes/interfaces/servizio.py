@@ -220,7 +220,7 @@ class IServizio(model.Schema):
     # vocabolario dalle unita' organizzative presenti a catalogo?
     ufficio_responsabile = RelationList(
         title=_(
-            u"ufficio_responsabile_erogazione", default=u"Ufficio resposabile"
+            u"ufficio_responsabile_erogazione", default=u"Ufficio responsabile"
         ),
         description=_(
             "ufficio_responsabile_help",

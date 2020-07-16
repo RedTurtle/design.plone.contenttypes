@@ -8,6 +8,7 @@ from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
+from zope.i18n import translate
 
 
 @implementer(IVocabularyFactory)
@@ -99,7 +100,9 @@ class AllLifeEventsVocabulary(object):
 
         # create a list of SimpleTerm items:
         terms = [
-            SimpleTerm(value=item[0], token=item[0], title=item[1])
+            SimpleTerm(
+                value=item[0], token=item[0], title=translate(item[1], req)
+            )
             for item in sorted(items, key=lambda k: k[1])
         ]
         # Create a SimpleVocabulary from the terms list and return it:
