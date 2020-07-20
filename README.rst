@@ -27,6 +27,7 @@ Elenco tipi implementati
 ------------------------
 
 - Notizia: |check|
+
   - Definizione campi: |check|
   - Ordine campi: |check|
   - Indicizzazione testo: |uncheck|
