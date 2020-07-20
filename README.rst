@@ -1,8 +1,18 @@
+.. |check| raw:: html
+
+    <input checked=""  disabled="" type="checkbox">
+
+.. |uncheck| raw:: html
+
+    <input disabled="" type="checkbox">
+
 ==========================
 Design Plone Content-types
 ==========================
 
 Pacchetto per la gestione dei content-type per un sito Agid con Plone.
+
+.. contents::
 
 Features
 ========
@@ -12,6 +22,25 @@ gestione di un sito Agid con Plone e Volto.
 
 Tipi di contenuto
 =================
+
+Elenco tipi implementati
+------------------------
+
+- Notizia: |check|
+  - Definizione campi: |check|
+  - Ordine campi: |check|
+  - Indicizzazione testo: |uncheck|
+
+- Luogo: |uncheck|
+  - Definizione campi: |check|
+  - Ordine campi: |uncheck|
+  - Indicizzazione testo: |uncheck|
+
+- Servizio: |uncheck|
+  - Definizione campi: |check|
+  - Ordine campi: |uncheck|
+  - Indicizzazione testo: |uncheck|
+
 
 Notizie e comunicati stampa
 ---------------------------
