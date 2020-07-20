@@ -11,23 +11,103 @@ gestione di un sito Agid con Plone e Volto.
 
 ## Elenco tipi implementati
 
-- [ ] Notizia:
+- [ ] **Dataset**
+
+  - [ ] Definizione campi
+  - [ ] Ordine campi
+  - [ ] Indicizzazione testo
+  - [ ] Vista su Volto completata
+
+- [ ] **Documento**
+
+  - [ ] Definizione campi
+  - [ ] Ordine campi
+  - [ ] Indicizzazione testo
+  - [ ] Vista su Volto completata
+
+- [ ] **Documento Personale**
+
+  - [ ] Definizione campi
+  - [ ] Ordine campi
+  - [ ] Indicizzazione testo
+  - [ ] Vista su Volto completata
+
+- [ ] **Evento**
+
+  - [ ] Definizione campi
+  - [ ] Ordine campi
+  - [ ] Indicizzazione testo
+  - [ ] Vista su Volto completata
+
+- [ ] **Collegamento**
+
+  - [ ] Definizione campi
+  - [ ] Ordine campi
+  - [ ] Indicizzazione testo
+  - [ ] Vista su Volto completata
+
+- [ ] **Messaggio**
+
+  - [ ] Definizione campi
+  - [ ] Ordine campi
+  - [ ] Indicizzazione testo
+  - [ ] Vista su Volto completata
+
+- [ ] **Notizia**
 
   - [x] Definizione campi
   - [x] Ordine campi
   - [ ] Indicizzazione testo
+  - [ ] Vista su Volto completata
 
-- [ ] Luogo
-
-  - [x] Definizione campi
-  - [ ] Ordine campi
-  - [ ] Indicizzazione testo
-
-- [ ] Servizio
+- [ ] **Luogo**
 
   - [x] Definizione campi
   - [ ] Ordine campi
   - [ ] Indicizzazione testo
+  - [ ] Vista su Volto completata
+
+- [ ] **Pagina Argomento**
+
+  - [ ] Definizione campi
+  - [ ] Ordine campi
+  - [ ] Indicizzazione testo
+  - [ ] Vista su Volto completata
+
+- [ ] **Persona**
+
+  - [ ] Definizione campi
+  - [ ] Ordine campi
+  - [ ] Indicizzazione testo
+  - [ ] Vista su Volto completata
+
+- [ ] **Pratica**
+
+  - [ ] Definizione campi
+  - [ ] Ordine campi
+  - [ ] Indicizzazione testo
+  - [ ] Vista su Volto completata
+
+- [ ] **Ricevuta Pagamento**
+
+  - [ ] Definizione campi
+  - [ ] Ordine campi
+  - [ ] Indicizzazione testo
+  - [ ] Vista su Volto completata
+
+- [ ] **Servizio**
+
+  - [x] Definizione campi
+  - [ ] Ordine campi
+  - [ ] Indicizzazione testo
+  - [ ] Vista su Volto completata
+
+- [ ] **Unità Organizzativa**
+
+  - [ ] Definizione campi
+  - [ ] Ordine campi
+  - [ ] Indicizzazione testo
+  - [ ] Vista su Volto completata
 
 ## Notizie e comunicati stampa
 
