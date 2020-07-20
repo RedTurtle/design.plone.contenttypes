@@ -1,62 +1,43 @@
-
-==========================
-Design Plone Content-types
-==========================
+# Design Plone Content-types
 
 Pacchetto per la gestione dei content-type per un sito Agid con Plone.
 
-.. contents::
-
-Features
-========
+# Features
 
 Installando questo pacchetto, si rendono disponibili diversi content-type per la
 gestione di un sito Agid con Plone e Volto.
 
-Tipi di contenuto
-=================
+# Tipi di contenuto
 
-Elenco tipi implementati
-------------------------
+## Elenco tipi implementati
 
-.. |check| raw:: html
+- [] Notizia:
 
-    <input checked=""  disabled="" type="checkbox">
+  - [x] Definizione campi
+  - [x] Ordine campi
+  - [] Indicizzazione testo
 
-.. |uncheck| raw:: html
+- [] Luogo
 
-    <input disabled="" type="checkbox">
+  - [x] Definizione campi
+  - [] Ordine campi
+  - [] Indicizzazione testo
 
-- Notizia: |check|
+- [] Servizio
 
-  - Definizione campi: |check|
-  - Ordine campi: |check|
-  - Indicizzazione testo: |uncheck|
+  - [x] Definizione campi
+  - [] Ordine campi
+  - [] Indicizzazione testo
 
-- Luogo: |uncheck|
-
-  - Definizione campi: |check|
-  - Ordine campi: |uncheck|
-  - Indicizzazione testo: |uncheck|
-
-- Servizio: |uncheck|
-
-  - Definizione campi: |check|
-  - Ordine campi: |uncheck|
-  - Indicizzazione testo: |uncheck|
-
-
-Notizie e comunicati stampa
----------------------------
+## Notizie e comunicati stampa
 
 - Tipo base "Notizia" di Plone con alcuni campi aggiuntivi.
 - Folderish (grazie a redturtle.volto)
 - Può contenere Immagini, Collegamenti, File, Documenti (utile per strutturare i contenuti al suo interno)
-- Alla creazione di una Notizia, vengono create automaticamente al suo interno due cartelle 
+- Alla creazione di una Notizia, vengono create automaticamente al suo interno due cartelle
   "Multimedia" e "Documenti allegati" per poter organizzare meglio i contenuti
 
-Luogo
------
+## Luogo
 
 Esiste un deserializer per plone.restapi per il campo di tipo "GeolocationField" che si occupa di trasformare
 le coordinate in input, in un oggetto corretto per quel campo.
@@ -77,55 +58,46 @@ Alcuni campi della geolocalizzazione hanno dei valori predefiniti quando viene r
 
 Sono pre-popolati con la sede di AGID a Roma.
 
-
-Gestione vocabolari
-===================
+# Gestione vocabolari
 
 Per diversi tipi di contenuto servono dei vocabolari con una lista di valori predefiniti.
 
-Questi sono configurabili dal pannello di controllo "*Vocabolari Design Plone*".
+Questi sono configurabili dal pannello di controllo "_Vocabolari Design Plone_".
 
 I vocabolari personalizzabili sono i seguenti:
 
 - Tipologie notizia
 - Tipologie unità organizzativa
 
-Installazione
-=============
+# Installazione
 
 Questo prodotto non è stato pensato per funzionare da solo, ma fa parte della suite "design.plone".
 
-Per utilizzare questo prodotto, fare riferimento a design.plone.policy_.
+Per utilizzare questo prodotto, fare riferimento a design.plone.policy\_.
 
-.. _design.plone.policy: https://github.com/RedTurtle/design.plone.policy
+.. \_design.plone.policy: https://github.com/RedTurtle/design.plone.policy
 
-Traduzioni
-==========
+# Traduzioni
 
 Per aggiornare le traduzioni, basta usare lo script `update_locales` dentro alla cartella bin::
 
-  > bin/update_locales
+> bin/update_locales
 
 **N.B.: lo script va chiamato due volte perché al primo giro non aggiorna i file.**
 
-
-Contribuisci
-============
+# Contribuisci
 
 - Issue Tracker: https://github.com/redturtle/design.plone.contenttypes/issues
 - Codice sorgente: https://github.com/redturtle/design.plone.contenttypes
 
-
-Licenza
-=======
+# Licenza
 
 Questo progetto è rilasciato con licenza GPLv2.
 
-Autori
-======
+# Autori
 
 Questo progetto è stato sviluppato da **RedTurtle Technology**.
 
 .. image:: https://avatars1.githubusercontent.com/u/1087171?s=100&v=4
-   :alt: RedTurtle Technology Site
-   :target: http://www.redturtle.it/
+:alt: RedTurtle Technology Site
+:target: http://www.redturtle.it/
