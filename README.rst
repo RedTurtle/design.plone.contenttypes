@@ -1,10 +1,3 @@
-.. |check| raw:: html
-
-    <input checked=""  disabled="" type="checkbox">
-
-.. |uncheck| raw:: html
-
-    <input disabled="" type="checkbox">
 
 ==========================
 Design Plone Content-types
@@ -26,6 +19,14 @@ Tipi di contenuto
 Elenco tipi implementati
 ------------------------
 
+.. |check| raw:: html
+
+    <input checked=""  disabled="" type="checkbox">
+
+.. |uncheck| raw:: html
+
+    <input disabled="" type="checkbox">
+
 - Notizia: |check|
 
   - Definizione campi: |check|
@@ -33,11 +34,13 @@ Elenco tipi implementati
   - Indicizzazione testo: |uncheck|
 
 - Luogo: |uncheck|
+
   - Definizione campi: |check|
   - Ordine campi: |uncheck|
   - Indicizzazione testo: |uncheck|
 
 - Servizio: |uncheck|
+
   - Definizione campi: |check|
   - Ordine campi: |uncheck|
   - Indicizzazione testo: |uncheck|
