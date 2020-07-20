@@ -11,23 +11,23 @@ gestione di un sito Agid con Plone e Volto.
 
 ## Elenco tipi implementati
 
-- [] Notizia:
+- [ ] Notizia:
 
   - [x] Definizione campi
   - [x] Ordine campi
-  - [] Indicizzazione testo
+  - [ ] Indicizzazione testo
 
-- [] Luogo
-
-  - [x] Definizione campi
-  - [] Ordine campi
-  - [] Indicizzazione testo
-
-- [] Servizio
+- [ ] Luogo
 
   - [x] Definizione campi
-  - [] Ordine campi
-  - [] Indicizzazione testo
+  - [ ] Ordine campi
+  - [ ] Indicizzazione testo
+
+- [ ] Servizio
+
+  - [x] Definizione campi
+  - [ ] Ordine campi
+  - [ ] Indicizzazione testo
 
 ## Notizie e comunicati stampa
 
