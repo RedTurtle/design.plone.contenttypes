@@ -20,10 +20,16 @@ class IPaginaArgomento(model.Schema):
             title=_(u"Area di appartenenza"),
             vocabulary="plone.app.vocabularies.Catalog",
         ),
+        description=_(
+            "area_appartenenza_help",
+            default="Seleziona la lista delle aree amministrative collegate"
+            " a questo argomento.",
+        ),
     )
     form.widget(
         "area_appartenenza",
         RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "maximumSelectionSize": 10,
             "selectableTypes": ["UnitaOrganizzativa"],
@@ -41,10 +47,16 @@ class IPaginaArgomento(model.Schema):
             title=_(u"Assessorati di riferimento"),
             vocabulary="plone.app.vocabularies.Catalog",
         ),
+        description=_(
+            "assessorati_riferimento_help",
+            default="Seleziona la lista degli assessorati di riferimento"
+            " per questo argomento.",
+        ),
     )
     form.widget(
         "assessorati_riferimento",
         RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "maximumSelectionSize": 10,
             "selectableTypes": ["UnitaOrganizzativa"],
@@ -55,7 +67,8 @@ class IPaginaArgomento(model.Schema):
     box_aiuto = RichText(
         title=_(u"box_aiuto", default=u"Box di aiuto"),
         required=False,
+        description=_(
+            "box_aiuto_help",
+            default="Eventuali contatti di supporto all'utente.",
+        ),
     )
-
-    # TODO: come gestire "in primo piano", "servizi", "novita'", "documenti",
-    # "amministrazione"?
