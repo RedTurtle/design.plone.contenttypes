@@ -16,6 +16,9 @@ class SerializeFolderToJson(BaseSerializer):
         result = super(SerializeFolderToJson, self).__call__(
             version=None, include_items=True
         )
+        import pdb
+
+        pdb.set_trace()
         catalog = api.portal.get_tool("portal_catalog")
         limit = 3
         query = {

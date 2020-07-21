@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from plone.indexer.decorator import indexer
 from design.plone.contenttypes.behaviors.argomenti import IArgomenti
 

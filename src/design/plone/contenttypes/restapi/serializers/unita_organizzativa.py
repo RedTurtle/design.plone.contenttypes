@@ -30,7 +30,9 @@ class UOSerializer(RelatedNewsSerializer):
             "sort_on": "sortable_title",
             "sort_order": "ascending",
         }
+        import pdb
 
+        pdb.set_trace()
         brains = catalog(**query)
 
         servizi = [
