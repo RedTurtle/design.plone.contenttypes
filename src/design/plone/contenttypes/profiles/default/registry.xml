@@ -21,4 +21,17 @@
        <value key="vocabulary">design.plone.vocabularies.tipologie_notizia</value>
        <value key="group" i18n:translate="">Text</value>
     </records>
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+             prefix="plone.app.querystring.field.argomenti_correlati">
+        <value key="title" i18n:translate="">Argomenti correlati</value>
+        <value key="description" i18n:translate="">Argomenti correlati</value>
+        <value key="enabled">True</value>
+        <value key="sortable">False</value>
+        <value key="operations">
+            <element>plone.app.querystring.operation.selection.any</element>
+            <element>plone.app.querystring.operation.selection.all</element>
+        </value>
+       <value key="vocabulary">design.plone.vocabularies.argomenti</value>
+       <value key="group" i18n:translate="">Text</value>
+    </records>
 </registry>
