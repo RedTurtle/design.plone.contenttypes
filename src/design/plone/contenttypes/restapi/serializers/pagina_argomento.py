@@ -24,7 +24,7 @@ class PaginaArgomentoSerializer(BaseSerializer):
         catalog = api.portal.get_tool("portal_catalog")
         query = {
             self.index: result["UID"],
-            "portal_type": ["UnitaOrganizzativa",],
+            "portal_type": ["UnitaOrganizzativa"],
             "sort_on": "sortable_title",
             "sort_order": "ascending",
         }
