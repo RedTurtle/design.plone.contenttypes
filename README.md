@@ -138,6 +138,19 @@ Alcuni campi della geolocalizzazione hanno dei valori predefiniti quando viene r
 
 Sono pre-popolati con la sede di AGID a Roma.
 
+## Servizio
+
+### Campi indicizzati nel SearchableText
+
+- descrizione_estesa
+- sottotitolo
+- descrizione_destinatari
+- chi_puo_presentare
+- come_si_fa
+- cosa_si_ottiene
+- cosa_serve
+- box_aiuto
+
 # Gestione vocabolari
 
 Per diversi tipi di contenuto servono dei vocabolari con una lista di valori predefiniti.
