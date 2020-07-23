@@ -13,8 +13,8 @@ from zope.interface import Interface
 
 class SerializeFolderToJson(BaseSerializer):
     def __call__(self, version=None, include_items=True):
-        if include_items:
-            self.request.form = {"fullobjects": ""}
+        # if include_items:
+        #     self.request.form = {"fullobjects": ""}
         result = super(SerializeFolderToJson, self).__call__(
             version=None, include_items=include_items
         )
