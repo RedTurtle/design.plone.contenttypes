@@ -1,3 +1,24 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+
+- [Design Plone Content-types](#design-plone-content-types)
+- [Features](#features)
+- [Tipi di contenuto](#tipi-di-contenuto)
+  - [Elenco tipi implementati](#elenco-tipi-implementati)
+  - [Notizie e comunicati stampa](#notizie-e-comunicati-stampa)
+  - [Luogo](#luogo)
+  - [Servizio](#servizio)
+    - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext)
+- [Gestione vocabolari](#gestione-vocabolari)
+- [Installazione](#installazione)
+- [Traduzioni](#traduzioni)
+- [Contribuisci](#contribuisci)
+- [Licenza](#licenza)
+- [Autori](#autori)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Design Plone Content-types
 
 Pacchetto per la gestione dei content-type per un sito Agid con Plone.
