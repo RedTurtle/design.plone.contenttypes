@@ -14,10 +14,10 @@ class TestDocument(unittest.TestCase):
         """Custom shared utility setup for tests."""
         self.portal = self.layer["portal"]
 
-    def test_behaviors_enabled_for_document(self):
+    def test_behaviors_enabled_for_documento_personale(self):
         portal_types = api.portal.get_tool(name="portal_types")
         self.assertEqual(
-            portal_types["Documento"].behaviors,
+            portal_types["Documento Personale"].behaviors,
             (
                 "plone.namefromtitle",
                 "plone.allowdiscussion",
@@ -29,9 +29,6 @@ class TestDocument(unittest.TestCase):
                 "plone.basic",
                 "design.plone.contenttypes.behavior.descrizione_estesa",
                 "plone.locking",
-                "plone.leadimage",
-                "design.plone.contenttypes.behavior.argomenti",
-                "design.plone.contenttypes.behavior.additional_help_infos",
             ),
         )
 
