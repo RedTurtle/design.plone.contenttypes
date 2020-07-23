@@ -20,28 +20,13 @@ WIDGET_PROPERTY_CHECKS = {
         "maximumSelectionSize": 1,
         "selectableTypes": ["UnitaOrganizzativa"],
     },
-    "area": {
-        "maximumSelectionSize": 1,
-        "selectableTypes": ["UnitaOrganizzativa"],
-    },
-    "altri_documenti": {
-        "maximumSelectionSize": 10,
-        "selectableTypes": ["Documento"],
-    },
-    "servizi_collegati": {
-        "maximumSelectionSize": 10,
-        "selectableTypes": ["Servizio"],
-    },
-    "sedi_e_luoghi": {
-        "maximumSelectionSize": 10,
-        "selectableTypes": ["Venue"],
-    },
+    "area": {"maximumSelectionSize": 1, "selectableTypes": ["UnitaOrganizzativa"]},
+    "altri_documenti": {"maximumSelectionSize": 10, "selectableTypes": ["Documento"]},
+    "servizi_collegati": {"maximumSelectionSize": 10, "selectableTypes": ["Servizio"]},
+    "sedi_e_luoghi": {"maximumSelectionSize": 10, "selectableTypes": ["Venue"]},
 }
 
-FIELDS_IN_CORRELATI_TAB = [
-    "servizi_collegati",
-    "altri_documenti",
-]
+FIELDS_IN_CORRELATI_TAB = ["servizi_collegati", "altri_documenti"]
 
 
 class TestServizio(unittest.TestCase):
@@ -50,6 +35,7 @@ class TestServizio(unittest.TestCase):
     def setUp(self):
         """Custom shared utility setup for tests."""
         self.portal = self.layer["portal"]
+        setRoles(self.portal, TEST_USER_ID, ["Manager"])
 
     def test_behaviors_enabled_for_servizio(self):
         portal_types = api.portal.get_tool(name="portal_types")
@@ -64,12 +50,29 @@ class TestServizio(unittest.TestCase):
                 "plone.publication",
                 "plone.categorization",
                 "plone.basic",
+                "design.plone.contenttypes.behavior.descrizione_estesa",
                 "plone.locking",
                 "plone.leadimage",
                 "plone.relateditems",
                 "design.plone.contenttypes.behavior.argomenti",
+                "collective.dexteritytextindexer",
             ),
         )
+
+    def test_sottotitolo_indexed_in_searchabletext(self):
+
+        #  Servizio is the only ct with this field
+        servizio = api.content.create(
+            container=self.portal,
+            type="Servizio",
+            title="Test servizio",
+            sottotitolo="sotto1",
+        )
+
+        res = api.content.find(SearchableText="sotto1")
+
+        self.assertEqual(len(res), 1)
+        self.assertEqual(res[0].UID, servizio.UID())
 
 
 class TestServizioApi(unittest.TestCase):

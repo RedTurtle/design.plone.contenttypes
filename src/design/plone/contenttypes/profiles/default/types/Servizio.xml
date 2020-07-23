@@ -43,10 +43,12 @@
     <element value="plone.publication"/>
     <element value="plone.categorization"/>
     <element value="plone.basic"/>
+    <element value="design.plone.contenttypes.behavior.descrizione_estesa" />
     <element value="plone.locking" />
     <element value="plone.leadimage"/>
     <element value="plone.relateditems"/>
     <element value="design.plone.contenttypes.behavior.argomenti"/>
+    <element value="collective.dexteritytextindexer"/>
   </property>
 
   <!-- View information -->
