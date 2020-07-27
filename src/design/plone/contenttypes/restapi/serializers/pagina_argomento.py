@@ -31,17 +31,19 @@ class PaginaArgomentoSerializer(BaseSerializer):
 
         brains = catalog(**query)
         responsible_UOs = []
-        for x in brains:
-            obj = x.getObject()
-            responsible_UOs.append(
-                {
-                    "title": x.Title or "",
-                    "description": x.Description or "",
-                    "@id": x.getURL() or "",
-                    "street": obj.street,
-                    "zip_code": obj.zip_code,
-                }
-            )
-        result["unita_amministrativa_responsabile"] = responsible_UOs
+        if len(brains) > 0:
+            for x in brains:
+                obj = x.getObject()
+                responsible_UOs.append(
+                    {
+                        "title": x.Title or "",
+                        "description": x.Description or "",
+                        "@id": x.getURL() or "",
+                        "street": obj.street,
+                        "zip_code": obj.zip_code,
+                    }
+                )
+
+            result["unita_amministrativa_responsabile"] = responsible_UOs
 
         return result
