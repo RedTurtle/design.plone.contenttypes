@@ -70,4 +70,10 @@
         name="design.plone.vocabularies.tipologie_unita_organizzativa"
     />
 
+    <utility
+        component=".argomenti_vocabulary.ArgomentiVocabularyFactory"
+        name="design.plone.vocabularies.argomenti"
+    />
+
+
 </configure>
