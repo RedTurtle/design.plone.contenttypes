@@ -1,14 +1,16 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
+
 - [Design Plone Content-types](#design-plone-content-types)
 - [Features](#features)
 - [Tipi di contenuto](#tipi-di-contenuto)
   - [Elenco tipi implementati](#elenco-tipi-implementati)
   - [Notizie e comunicati stampa](#notizie-e-comunicati-stampa)
   - [Luogo](#luogo)
-  - [Servizio](#servizio)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext)
+  - [Servizio](#servizio)
+    - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-1)
 - [Gestione vocabolari](#gestione-vocabolari)
 - [Installazione](#installazione)
 - [Traduzioni](#traduzioni)
