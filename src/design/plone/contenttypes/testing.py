@@ -7,6 +7,7 @@ from plone.app.testing import PloneSandboxLayer
 from plone.restapi.testing import PloneRestApiDXLayer
 from plone.testing import z2
 
+import collective.address
 import collective.dexteritytextindexer
 import collective.folderishtypes
 import collective.venue
@@ -33,6 +34,7 @@ class DesignPloneContenttypesLayer(PloneSandboxLayer):
         self.loadZCML(package=plone.formwidget.geolocation)
         self.loadZCML(package=plone.restapi)
         self.loadZCML(package=redturtle.volto)
+        self.loadZCML(name="overrides.zcml", package=design.plone.contenttypes)
 
     def setUpPloneSite(self, portal):
         applyProfile(portal, "design.plone.contenttypes:default")
@@ -67,6 +69,7 @@ class DesignPloneContenttypesRestApiLayer(PloneRestApiDXLayer):
         self.loadZCML(package=collective.venue)
         self.loadZCML(package=collective.volto.cookieconsent)
         self.loadZCML(package=design.plone.contenttypes)
+        self.loadZCML(name="overrides.zcml", package=design.plone.contenttypes)
         self.loadZCML(package=plone.formwidget.geolocation)
         self.loadZCML(package=plone.restapi)
         self.loadZCML(package=redturtle.volto)
