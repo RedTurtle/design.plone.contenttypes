@@ -60,6 +60,7 @@ setup(
         "collective.venue[geolocation]",
         "plone.formwidget.geolocation",
         "redturtle.volto",
+        "z3c.unconfigure",
     ],
     extras_require={
         "test": [

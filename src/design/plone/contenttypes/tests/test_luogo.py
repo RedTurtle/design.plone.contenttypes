@@ -32,11 +32,12 @@ class TestLuogo(unittest.TestCase):
                 "plone.app.dexterity.behaviors.metadata.ICategorization",
                 "collective.address.behaviors.IAddress",
                 "collective.geolocationbehavior.geolocation.IGeolocatable",
-                "design.plone.contenttypes.behaviors.luogo.ILuogo",
+                "design.plone.contenttypes.behavior.luogo",
                 "design.plone.contenttypes.behavior.additional_help_infos",
                 "design.plone.contenttypes.behavior.servizi_correlati",
                 "design.plone.contenttypes.behavior.argomenti",
                 "plone.leadimage",
+                "collective.dexteritytextindexer",
             ),
         )
 

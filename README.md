@@ -1,7 +1,6 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
 - [Design Plone Content-types](#design-plone-content-types)
 - [Features](#features)
 - [Tipi di contenuto](#tipi-di-contenuto)
@@ -158,6 +157,18 @@ Alcuni campi della geolocalizzazione hanno dei valori predefiniti quando viene r
 - country
 
 Sono pre-popolati con la sede di AGID a Roma.
+
+### Campi indicizzati nel SearchableText
+
+- street
+- city
+- zip_code
+- country
+- quartiere
+- circoscrizione
+- descrizione_breve
+- orario_pubblico
+- identificativo_mibac
 
 ## Servizio
 
