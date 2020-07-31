@@ -1,7 +1,6 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
 - [Design Plone Content-types](#design-plone-content-types)
 - [Features](#features)
 - [Tipi di contenuto](#tipi-di-contenuto)
@@ -173,6 +172,18 @@ Sono pre-popolati con la sede di AGID a Roma.
 - descrizione_breve
 - orario_pubblico
 - identificativo_mibac
+
+## Persona
+
+### Campi indicizzati nel SearchableText
+
+- ruolo
+- competenze
+- deleghe
+- tipologia_persona
+- telefono
+- email
+- informazioni_di_contatto
 
 ## Servizio
 

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from collective import dexteritytextindexer
 from design.plone.contenttypes import _
 from plone.app.textfield import RichText
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
@@ -161,6 +162,15 @@ class IPersona(model.Schema):
         },
     )
 
+    competenze = RichText(
+        title=_(u"competenze", default=u"Competenze"),
+        description=_(
+            "competenze_help",
+            default="Descrizione del ruolo e dei compiti della persona.",
+        ),
+        required=False,
+    )
+
     deleghe = RichText(
         title=_(u"deleghe", default=u"Deleghe"),
         description=_(
@@ -261,3 +271,12 @@ class IPersona(model.Schema):
     #        ),
     #        required=True,
     #    )
+
+    # SearchableText fields
+    dexteritytextindexer.searchable("ruolo")
+    dexteritytextindexer.searchable("competenze")
+    dexteritytextindexer.searchable("deleghe")
+    dexteritytextindexer.searchable("tipologia_persona")
+    dexteritytextindexer.searchable("telefono")
+    dexteritytextindexer.searchable("email")
+    dexteritytextindexer.searchable("informazioni_di_contatto")
