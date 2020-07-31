@@ -10,5 +10,7 @@
     name = "correlati-servizi"
   />
 
+  <adapter factory=".searchabletext_indexers.RelationChoiceFieldConverter" />
+  <adapter factory=".searchabletext_indexers.RelationListFieldConverter" />
 
 </configure>
