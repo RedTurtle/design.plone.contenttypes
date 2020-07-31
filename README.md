@@ -183,6 +183,19 @@ Sono pre-popolati con la sede di AGID a Roma.
 - cosa_serve
 - box_aiuto
 
+## Unità Organizzativa
+
+### Campi indicizzati nel SearchableText
+
+- competenze
+- tipologia_organizzazione
+- assessore_riferimento
+- responsabile
+- street
+- city
+- zip_code
+- country
+
 # Gestione vocabolari
 
 Per diversi tipi di contenuto servono dei vocabolari con una lista di valori predefiniti.

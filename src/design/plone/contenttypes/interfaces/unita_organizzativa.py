@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from collective import dexteritytextindexer
 from design.plone.contenttypes import _
 from plone.app.textfield import RichText
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
@@ -54,8 +55,7 @@ class IUnitaOrganizzativa(model.Schema):
     responsabile = RelationList(
         title=u"Responsabile",
         value_type=RelationChoice(
-            title=_(u"Responsabile"),
-            vocabulary="plone.app.vocabularies.Catalog",
+            title=_(u"Responsabile"), vocabulary="plone.app.vocabularies.Catalog"
         ),
         description=_(
             "responsabile_help",
@@ -76,12 +76,9 @@ class IUnitaOrganizzativa(model.Schema):
     )
 
     tipologia_organizzazione = schema.Choice(
-        title=_(
-            u"tipologia_organizzazione", default=u"Tipologia organizzazione"
-        ),
+        title=_(u"tipologia_organizzazione", default=u"Tipologia organizzazione"),
         # vocabolario di rif sara' la lista delle tipologie di organizzazione
-        vocabulary=""
-        "design.plone.vocabularies.tipologie_unita_organizzativa",
+        vocabulary="" "design.plone.vocabularies.tipologie_unita_organizzativa",
         description=_(
             "tipologia_organizzazione_help",
             default="Specificare la tipologia di organizzazione: politica,"
@@ -127,8 +124,7 @@ class IUnitaOrganizzativa(model.Schema):
         ),
         description=_(
             "persone_struttura_help",
-            default="Seleziona la lista delle persone che compongono"
-            " la struttura.",
+            default="Seleziona la lista delle persone che compongono" " la struttura.",
         ),
         required=False,
     )
@@ -164,16 +160,14 @@ class IUnitaOrganizzativa(model.Schema):
     # )
 
     ulteriori_informazioni = RichText(
-        title=_(u"unteriori_informazioni", default=u"Informazioni"),
-        required=False,
+        title=_(u"unteriori_informazioni", default=u"Informazioni"), required=False
     )
 
     box_aiuto = RichText(
         title=_(u"box_aiuto", default=u"Box di aiuto"),
         required=False,
         description=_(
-            "uo_box_aiuto_help",
-            default="Eventuali contatti di supporto all'utente.",
+            "uo_box_aiuto_help", default="Eventuali contatti di supporto all'utente."
         ),
     )
 
@@ -181,8 +175,7 @@ class IUnitaOrganizzativa(model.Schema):
         title=u"Altre sedi",
         default=[],
         description=_(
-            "sedi_help",
-            default="Seleziona una lista delle sedi di questa struttura.",
+            "sedi_help", default="Seleziona una lista delle sedi di questa struttura."
         ),
         value_type=RelationChoice(
             title=_(u"Sede"), vocabulary="plone.app.vocabularies.Catalog"
@@ -200,12 +193,16 @@ class IUnitaOrganizzativa(model.Schema):
         },
     )
     contact_info = RichText(
-        title=_(
-            u"contact_info", default=u"Informazioni di contatto generiche"
-        ),
+        title=_(u"contact_info", default=u"Informazioni di contatto generiche"),
         required=False,
         description=_(
             "uo_contact_info_description",
             default="Eventuali informazioni di contatto generiche",
         ),
     )
+
+    # SearchableText indexers
+    dexteritytextindexer.searchable("competenze")
+    dexteritytextindexer.searchable("tipologia_organizzazione")
+    dexteritytextindexer.searchable("assessore_riferimento")
+    dexteritytextindexer.searchable("responsabile")

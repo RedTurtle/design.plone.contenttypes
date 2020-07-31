@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
 
 """Setup tests for this package."""
+from design.plone.contenttypes.testing import (
+    DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
+    DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING,
+    # DESIGN_PLONE_CONTENTTYPES_FUNCTIONAL_TESTING,
+)
 from plone import api
 from plone.app.testing import (
     SITE_OWNER_NAME,
@@ -8,16 +13,14 @@ from plone.app.testing import (
     TEST_USER_ID,
     setRoles,
 )
+# from plone.app.textfield.value import RichTextValue
 from plone.restapi.testing import RelativeSession
+from Products.CMFPlone.utils import getToolByName
 from transaction import commit
+from z3c.relationfield import RelationValue
 from zope.component import getUtility
 from zope.intid.interfaces import IIntIds
-from z3c.relationfield import RelationValue
-from Products.CMFPlone.utils import getToolByName
-from design.plone.contenttypes.testing import (
-    DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
-    DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING,
-)
+
 import unittest
 
 
@@ -95,6 +98,7 @@ class TestUO(unittest.TestCase):
                 "plone.leadimage",
                 "plone.relateditems",
                 "design.plone.contenttypes.behavior.argomenti",
+                "collective.dexteritytextindexer",
             ),
         )
 
@@ -103,3 +107,42 @@ class TestUO(unittest.TestCase):
         self.assertEqual(
             "Unita Organizzativa", portal_types["UnitaOrganizzativa"].title
         )
+
+
+#  DISABILITATO perchè nei test non indicizza niente nel searchabletext, non so perché
+# class TestUOSearchableText(unittest.TestCase):
+#     layer = DESIGN_PLONE_CONTENTTYPES_FUNCTIONAL_TESTING
+
+#     def setUp(self):
+#         """Custom shared utility setup for tests."""
+#         self.portal = self.layer["portal"]
+#         self.catalog = api.portal.get_tool(name="portal_catalog")
+#         setRoles(self.portal, TEST_USER_ID, ["Manager"])
+
+#         self.person = api.content.create(
+#             container=self.portal, type="Persona", title="John Doe"
+#         )
+
+# def test_competenze_indexed(self):
+#     uo = api.content.create(
+#         container=self.portal,
+#         type="UnitaOrganizzativa",
+#         title="UO",
+#         # competenze=RichTextValue(
+#         #     raw="destinatari",
+#         #     mimeType="text/html",
+#         #     outputMimeType="text/html",
+#         #     encoding="utf-8",
+#         # ),
+#     )
+#     res = api.content.find(UID=uo.UID())
+#     rid = res[0].getRID()
+#     index_data = self.catalog.getIndexDataForRID(rid)
+
+#     import pdb
+
+#     pdb.set_trace()
+#     res = api.content.find(SearchableText="destinatari")
+
+#     self.assertEqual(len(res), 1)
+#     self.assertEqual(res[0].UID, servizio.UID())
