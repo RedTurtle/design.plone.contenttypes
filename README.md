@@ -1,6 +1,7 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
+
 - [Design Plone Content-types](#design-plone-content-types)
 - [Features](#features)
 - [Tipi di contenuto](#tipi-di-contenuto)
@@ -8,10 +9,12 @@
   - [Notizie e comunicati stampa](#notizie-e-comunicati-stampa)
   - [Luogo](#luogo)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext)
-  - [Servizio](#servizio)
+  - [Persona](#persona)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-1)
-  - [Unità Organizzativa](#unit%C3%A0-organizzativa)
+  - [Servizio](#servizio)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-2)
+  - [Unità Organizzativa](#unit%C3%A0-organizzativa)
+    - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-3)
 - [Gestione vocabolari](#gestione-vocabolari)
 - [Installazione](#installazione)
 - [Traduzioni](#traduzioni)
