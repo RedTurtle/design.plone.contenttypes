@@ -11,6 +11,8 @@
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext)
   - [Servizio](#servizio)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-1)
+  - [Unità Organizzativa](#unit%C3%A0-organizzativa)
+    - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-2)
 - [Gestione vocabolari](#gestione-vocabolari)
 - [Installazione](#installazione)
 - [Traduzioni](#traduzioni)
