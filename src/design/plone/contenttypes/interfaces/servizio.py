@@ -64,7 +64,7 @@ class IServizio(model.Schema):
         title=_(
             u"descrizione_destinatari", default=u"Descrizione destinatari"
         ),
-        required=True,
+        required=False,
         description=_(
             "descrizione_destinatari_help",
             default="Descrizione dei principali interlocutori del servizio:"
@@ -94,7 +94,7 @@ class IServizio(model.Schema):
 
     come_si_fa = RichText(
         title=_(u"come_si_fa", default=u"Come si fa"),
-        required=True,
+        required=False,
         description=_(
             "come_si_fa_help",
             default="Descrizione della procedura da seguire per poter"
@@ -125,7 +125,7 @@ class IServizio(model.Schema):
         ),
     )
 
-    canale_digitale = schema.URI(
+    canale_digitale = RichText(
         title=_(u"canale_digitale", default=u"Canale digitale"),
         description=_(
             "canale_digitale_help",
@@ -151,10 +151,10 @@ class IServizio(model.Schema):
             "canale_fisico_help",
             default="Indica le sedi dove è possibile usufruire del servizio.",
         ),
-        required=True,
+        required=False,
     )
 
-    canale_fisico_prenotazione = schema.TextLine(
+    canale_fisico_prenotazione = RichText(
         title=_(
             u"canale_fisico_prenotazione",
             default=u"Canale fisico - prenotazione",
@@ -170,10 +170,10 @@ class IServizio(model.Schema):
 
     fasi_scadenze = RichText(
         title=_(u"fasi_scadenze", default=u"Fasi e scadenze"),
-        required=True,
+        required=False,
         description=_(
             "fasi_scadenze_help",
-            default="Se esiste, prevedere una data di scadeza del servizio."
+            default="Prevedere una data di scadenza del servizio."
             " Se il servizio è diviso in fasi, descriverne modalità e"
             " tempistiche.",
         ),
@@ -219,7 +219,9 @@ class IServizio(model.Schema):
 
     # vocabolario dalle unita' organizzative presenti a catalogo?
     ufficio_responsabile = RelationList(
-        title=_(u"ufficio_responsabile", default=u"Ufficio resposabile"),
+        title=_(
+            u"ufficio_responsabile_erogazione", default=u"Ufficio responsabile"
+        ),
         description=_(
             "ufficio_responsabile_help",
             default="Seleziona l'ufficio responsabile dell'erogazione"
@@ -242,16 +244,16 @@ class IServizio(model.Schema):
             # "basePath": "/amministrazione/uffici",
         },
     )
-
     area = RelationList(
         title=_(u"area", default=u"Area"),
         required=True,
+        default=[],
         description=_(
             "area_help",
             default="Seleziona l'area da cui dipende questo servizio.",
         ),
         value_type=RelationChoice(
-            title=_(u"Area"), vocabulary="plone.app.vocabularies.Catalog"
+            title=_(u"Area"), vocabulary="plone.app.vocabularies.Catalog",
         ),
     )
     form.widget(
@@ -316,7 +318,7 @@ class IServizio(model.Schema):
 
     codice_ipa = schema.TextLine(
         title=_(u"codice_ipa", default=u"Codice dell'ente erogatore (ipa)"),
-        required=True,
+        required=False,
         description=_(
             "codice_ipa_help",
             default="Specificare il nome dell’organizzazione, come indicato"
@@ -346,7 +348,7 @@ class IServizio(model.Schema):
     )
 
     box_aiuto = RichText(
-        title=_(u"box_aiuto", default=u"Ulteriori informazioni"),
+        title=_(u"box_aiuto", default=u"Box di aiuto"),
         required=False,
         description=_(
             "box_aiuto_help",
@@ -405,13 +407,7 @@ class IServizio(model.Schema):
     )
 
     model.fieldset(
-        "correlati",
-        fields=[
-            "servizi_collegati",
-            "ufficio_responsabile",
-            "area",
-            "altri_documenti",
-        ],
+        "correlati", fields=["servizi_collegati", "altri_documenti"],
     )
 
     # TODO: come gestiamo i correlati amministrazione

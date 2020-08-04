@@ -13,6 +13,17 @@ def news_people(context, **kw):
 
 
 @indexer(INewsItem)
+def news_uo(context, **kw):
+    unita_organizzative = context.a_cura_di
+    return [
+        unita_organizzativa.UID()
+        for unita_organizzativa in filter(
+            bool, [x.to_object for x in unita_organizzative]
+        )
+    ]
+
+
+@indexer(INewsItem)
 def news_service(context, **kw):
     servizi = context.servizi_correlati
     return [

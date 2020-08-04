@@ -13,12 +13,10 @@ class IUnitaOrganizzativa(model.Schema):
     """Marker interface for content type UnitaOrganizzativa
     """
 
-    model.fieldset("categorization", fields=["notizie_collegate"])
-
     competenze = RichText(
         title=_(u"competenze", default=u"Competenze"),
         description=_(
-            "competenze_help",
+            "uo_competenze_help",
             default="Descrizione dei compiti assegnati alla struttura.",
         ),
         required=False,
@@ -36,6 +34,11 @@ class IUnitaOrganizzativa(model.Schema):
             title=_(u"Struttura"), vocabulary="plone.app.vocabularies.Catalog"
         ),
         required=False,
+    )
+    model.fieldset(
+        "correlati",
+        label=_("correlati_label", default=u"Correlati"),
+        fields=["legami_con_altre_strutture"],
     )
 
     form.widget(
@@ -160,43 +163,22 @@ class IUnitaOrganizzativa(model.Schema):
     #     },
     # )
 
-    # vocabolario di riferimento sara' da definire, probabilmente dinamico dai
-    # ct servizi presenti nella macro Amministrazione"
-    notizie_collegate = RelationList(
-        title=u"Notizie collegate",
-        default=[],
-        value_type=RelationChoice(
-            title=_(u"Notizia"), vocabulary="plone.app.vocabularies.Catalog"
-        ),
-        description=_(
-            "notizie_collegate_help",
-            default="Seleziona una lista di notizie correlate a"
-            " questa struttura.",
-        ),
+    ulteriori_informazioni = RichText(
+        title=_(u"unteriori_informazioni", default=u"Informazioni"),
         required=False,
-    )
-    form.widget(
-        "notizie_collegate",
-        RelatedItemsFieldWidget,
-        vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={
-            "maximumSelectionSize": 10,
-            "selectableTypes": ["News Item"],
-            # "basePath": "/servizi",
-        },
     )
 
     box_aiuto = RichText(
         title=_(u"box_aiuto", default=u"Box di aiuto"),
-        required=True,
+        required=False,
         description=_(
-            "box_aiuto_help",
+            "uo_box_aiuto_help",
             default="Eventuali contatti di supporto all'utente.",
         ),
     )
 
     sedi = RelationList(
-        title=u"Sedi",
+        title=u"Altre sedi",
         default=[],
         description=_(
             "sedi_help",
@@ -216,4 +198,14 @@ class IUnitaOrganizzativa(model.Schema):
             "selectableTypes": ["Venue"],
             # "basePath": "/servizi",
         },
+    )
+    contact_info = RichText(
+        title=_(
+            u"contact_info", default=u"Informazioni di contatto generiche"
+        ),
+        required=False,
+        description=_(
+            "uo_contact_info_description",
+            default="Eventuali informazioni di contatto generiche",
+        ),
     )

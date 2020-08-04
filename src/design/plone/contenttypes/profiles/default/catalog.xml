@@ -3,11 +3,17 @@
  <index name="news_people" meta_type="KeywordIndex">
   <indexed_attr value="news_people"/>
  </index>
+<index name="news_uo" meta_type="KeywordIndex">
+  <indexed_attr value="news_uo"/>
+ </index>
 <index name="news_service" meta_type="KeywordIndex">
   <indexed_attr value="news_service"/>
  </index>
  <index name="tipologia_notizia" meta_type="FieldIndex">
   <indexed_attr value="tipologia_notizia"/>
+ </index>
+ <index name="argomenti_correlati" meta_type="KeywordIndex">
+  <indexed_attr value="argomenti_correlati"/>
  </index>
  <index name="tassonomia_argomenti" meta_type="KeywordIndex">
   <indexed_attr value="tassonomia_argomenti"/>
@@ -15,6 +21,7 @@
  <index name="ufficio_responsabile" meta_type="KeywordIndex">
   <indexed_attr value="ufficio_responsabile"/>
  </index>
- 
+
  <column value="tipologia_notizia"/>
+ <column value="argomenti_correlati"/>
 </object>

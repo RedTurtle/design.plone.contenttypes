@@ -38,6 +38,7 @@ class IArgomenti(model.Schema):
         label=_("correlati_label", default=u"Correlati"),
         fields=["tassonomia_argomenti"],
     )
+
     # form.order_before(tassonomia_argomenti="IDublinCore.subjects")
 
 

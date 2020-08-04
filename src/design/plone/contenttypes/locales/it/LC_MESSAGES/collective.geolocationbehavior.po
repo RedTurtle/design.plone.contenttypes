@@ -1,0 +1,31 @@
+# Giorgio Borelli 2014
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.2\n"
+"POT-Creation-Date: 2014-01-29 16:50+0000\n"
+"PO-Revision-Date: 2014-01-29 16:50+0000\n"
+"Last-Translator: Giorgio  Borelli\n"
+"Language-Team: Plone italian translation project <plone-italian-translation-discussion@lists.coactivate.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: it\n"
+"Language-Name: Italian\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: collective.geolocationbehavior\n"
+"X-Is-Fallback-For: it-ch it-it\n"
+
+#. Default: "Click on the map to select a location, or use the text input to search by address."
+#: collective/geolocationbehavior/geolocation.py:17
+msgid "help_geolocation"
+msgstr "Clicca sulla mappa per selezionare un luogo o usa il campo testo per ricercare un indirizzo."
+
+#. Default: "Geolocation"
+#: collective/geolocationbehavior/geolocation.py:16
+msgid "label_geolocation"
+msgstr "Coordinate"
+
+msgid "help_geolocation"
+msgstr "Compilare i campi 'Via', 'CAP', 'Città' e 'Nazione' dopo di ché premere 'Cerca nella mappa' per impostare la posizione. Altrimenti è possibile cliccare sul marker e spostarlo sulla mappa"
+

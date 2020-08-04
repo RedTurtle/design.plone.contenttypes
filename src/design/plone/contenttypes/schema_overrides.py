@@ -25,11 +25,6 @@ class SchemaTweaks(object):
                 label=_("correlati_label", default=u"Correlati"),
                 fields=["relatedItems"],
             )
-            self.schema._Element__tagged_values[
-                "plone.supermodel.fieldsets"
-            ] = [fieldset]
-        # if self.schema.getName() == "ICategorization":
-        #     import pdb
-
-        #     pdb.set_trace()
-        #     # ownership
+            self.schema._Element__tagged_values["plone.supermodel.fieldsets"] = [
+                fieldset
+            ]

@@ -7,7 +7,7 @@ from setuptools import setup
 
 long_description = "\n\n".join(
     [
-        open("README.rst").read(),
+        open("README.md").read(),
         open("CONTRIBUTORS.rst").read(),
         open("CHANGES.rst").read(),
     ]
@@ -19,6 +19,7 @@ setup(
     version="1.0a1",
     description="DesignItalia contenty types",
     long_description=long_description,
+    long_description_content_type="text/markdown",
     # Get more from https://pypi.org/classifiers/
     classifiers=[
         "Environment :: Web Environment",

@@ -12,39 +12,27 @@ class IPaginaArgomento(model.Schema):
     """ Marker interface for PaginaArgomento
     """
 
-    area_appartenenza = RelationList(
-        title=_(u"area_di_appartenenza", default=u"Area di appartenenza"),
-        required=False,
-        default=[],
-        value_type=RelationChoice(
-            title=_(u"Area di appartenenza"),
-            vocabulary="plone.app.vocabularies.Catalog",
-        ),
-    )
-    form.widget(
-        "area_appartenenza",
-        RelatedItemsFieldWidget,
-        pattern_options={
-            "maximumSelectionSize": 10,
-            "selectableTypes": ["UnitaOrganizzativa"],
-            # "basePath": "/amministrazione/aree-amministrative",
-        },
-    )
-
-    assessorati_riferimento = RelationList(
+    unita_amministrativa_responsabile = RelationList(
         title=_(
-            u"assessorati_riferimento", default=u"Assessorati di riferimento"
+            u"unita_amministrativa_responsabile",
+            default=u"Unità amministrativa responsabile",
         ),
         required=False,
         default=[],
         value_type=RelationChoice(
-            title=_(u"Assessorati di riferimento"),
+            title=_(u"Unità amministrativa responsabile"),
             vocabulary="plone.app.vocabularies.Catalog",
+        ),
+        description=_(
+            "unita_amministrativa_responsabile_help",
+            default="Seleziona la lista delle unità amministrative"
+            " responsabili di questo argomento.",
         ),
     )
     form.widget(
-        "assessorati_riferimento",
+        "unita_amministrativa_responsabile",
         RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "maximumSelectionSize": 10,
             "selectableTypes": ["UnitaOrganizzativa"],
@@ -53,9 +41,10 @@ class IPaginaArgomento(model.Schema):
     )
 
     box_aiuto = RichText(
-        title=_(u"box_aiuto", default=u"Ulteriori informazioni"),
+        title=_(u"box_aiuto", default=u"Box di aiuto"),
         required=False,
+        description=_(
+            "box_aiuto_help",
+            default="Eventuali contatti di supporto all'utente.",
+        ),
     )
-
-    # TODO: come gestire "in primo piano", "servizi", "novita'", "documenti",
-    # "amministrazione"?
