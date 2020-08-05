@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <object name="Event" meta_type="Dexterity FTI" i18n:domain="plone" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+<property
+      i18n:translate=""
+      name="title">Evento</property>
+  <property
+      i18n:translate=""
+      name="description"></property>
+<property name="global_allow">True</property>
 <property name="allowed_content_types" purge="False">
     <element value="Event"/>
  </property>
@@ -8,13 +15,12 @@
     <element value="design.plone.contenttypes.behavior.evento"/>
     <element value="design.plone.contenttypes.behavior.argomenti"/>
     <element value="design.plone.contenttypes.behavior.additional_help_infos"/>
-    <element value="plone.eventlocation" remove="True"/>
-    <element value="plone.eventattendees" remove="True"/>
-    <element value="plone.richtext" remove="True"/>
+    <element value="design.plone.contenttypes.behavior.strutture_correlate"/>
+    <element value="design.plone.contenttypes.behavior.luoghi_correlati"/>
+    <element value="plone.leadimage"/>
     <element value="collective.venue.behaviors.IOrganizer" remove="True"/>
     <element value="collective.venue.behaviors.ILocation" remove="True"/>
-    <element value="design.plone.contenttypes.behavior.strutture_correlate"/>
-    <element value="plone.leadimage"/>
-
+    <element value="plone.eventlocation" remove="True"/>
+    <element value="plone.eventattendees" remove="True"/>
   </property>
 </object>

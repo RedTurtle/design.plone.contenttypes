@@ -62,25 +62,6 @@ class IEvento(model.Schema):
         },
     )
 
-    luogo_evento = RelationList(
-        title=_(u"luogo_evento", default=u"Luogo dell'evento"),
-        required=False,
-        default=[],
-        value_type=RelationChoice(
-            title=_(u"Luogo dell'evento"),
-            vocabulary="plone.app.vocabularies.Catalog",
-        ),
-    )
-    form.widget(
-        "luogo_evento",
-        RelatedItemsFieldWidget,
-        vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={
-            "maximumSelectionSize": 1,
-            "selectableTypes": ["Venue"],
-        },
-    )
-
     indirizzo = schema.TextLine(
         title=_(u"indirizzo", default=u"Indirizzo"), required=True
     )
@@ -195,29 +176,6 @@ class IEvento(model.Schema):
             "selectableTypes": ["UnitaOrganizzativa"],
         },
     )
-
-    # no, gli eventi figli stanno dentro l'evento padre
-    # lista_eventi_figli = RelationList(
-    #     title=u"Lista eventi figli",
-    #     default=[],
-    #     value_type=RelationChoice(
-    #         title=_(u"Evento figlio"), source=SourceGeneratorTest("Venue")
-    #     ),
-    #     required=False,
-    #     description=_(
-    #         "lista_eventi_figli_help",
-    #         default="Se l'evento è composto da più date/sotto-eventi,"
-    #         " scegliere la lista dei sotto-eventi.",
-    #     ),
-    # )
-    # form.widget(
-    #     "lista_eventi_figli",
-    #     RelatedItemsFieldWidget,
-    #     pattern_options={
-    #         "maximumSelectionSize": 10,
-    #         "selectableTypes": ["Venue"],
-    #     },
-    # )
 
     # TODO: come fare il rating/recensione dell'evento
 
