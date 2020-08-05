@@ -43,6 +43,7 @@ class TestEvent(unittest.TestCase):
                 "design.plone.contenttypes.behavior.argomenti",
                 "design.plone.contenttypes.behavior.additional_help_infos",
                 "design.plone.contenttypes.behavior.strutture_correlate",
+                "design.plone.contenttypes.behavior.luoghi_correlati",
                 "plone.leadimage",
             ),
         )
