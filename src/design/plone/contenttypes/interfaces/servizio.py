@@ -399,3 +399,5 @@ class IServizio(model.Schema):
     dexteritytextindexer.searchable("cosa_si_ottiene")
     dexteritytextindexer.searchable("cosa_serve")
     dexteritytextindexer.searchable("box_aiuto")
+    dexteritytextindexer.searchable("area")
+    dexteritytextindexer.searchable("ufficio_responsabile")
