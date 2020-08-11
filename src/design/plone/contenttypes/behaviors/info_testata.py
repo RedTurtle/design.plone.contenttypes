@@ -29,6 +29,7 @@ class IInfoTestata(model.Schema):
     ricerca_in_testata = schema.Bool(
         title=_(u"ricerca_in_testata_label", default=u"Ricerca in testata"),
         default=False,
+        required=False,
         description=_(
             "ricerca_in_testata_help",
             default="Seleziona se mostrare o meno il campo di ricerca in testata.",
@@ -38,6 +39,7 @@ class IInfoTestata(model.Schema):
     mostra_navigazione = schema.Bool(
         title=_(u"mostra_navigazione_label", default=u"Mostra la navigazione"),
         default=False,
+        required=False,
         description=_(
             "mostra_navigazione_help",
             default="Seleziona se mostrare o meno la navigazione laterale nella testata.",  # noqa
