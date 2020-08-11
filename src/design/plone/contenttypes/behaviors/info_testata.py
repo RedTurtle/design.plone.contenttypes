@@ -16,7 +16,8 @@ class IInfoTestata(model.Schema):
 
     info_testata = RichText(
         title=_(
-            u"info_testata_label", default=u"Informazioni aggiuntive per la testata"
+            u"info_testata_label",
+            default=u"Informazioni aggiuntive per la testata",
         ),
         required=False,
         description=_(
@@ -46,7 +47,7 @@ class IInfoTestata(model.Schema):
     model.fieldset(
         "testata",
         label=_("testata_fieldset_label", default=u"Testata"),
-        fields=["info_testata", "ricerca_in_testata"],
+        fields=["info_testata", "ricerca_in_testata", "mostra_navigazione"],
     )
 
 
