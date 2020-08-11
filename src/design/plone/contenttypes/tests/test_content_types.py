@@ -70,3 +70,22 @@ class TestContentTypes(unittest.TestCase):
             res["properties"]["image"]["description"],
             "Image dimension should be 1920x600 px",
         )
+
+    def test_testata_fieldset_order(self):
+        response = self.api_session.get("/@types/Document")
+        res = response.json()
+
+        ids = [x["id"] for x in res["fieldsets"]]
+        self.assertIn("testata", ids)
+        self.assertEqual(
+            ids,
+            [
+                "default",
+                "testata",
+                "settings",
+                "categorization",
+                "dates",
+                "ownership",
+                "layout",
+            ],
+        )

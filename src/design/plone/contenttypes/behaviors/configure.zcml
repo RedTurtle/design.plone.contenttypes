@@ -83,4 +83,14 @@
       for="plone.dexterity.interfaces.IDexterityContent"
       marker=".additional_help_infos.IAdditionalHelpInfos"
       />
+
+    <plone:behavior
+      title="Info per la testata"
+      name="design.plone.contenttypes.behavior.info_testata"
+      description=""
+      provides=".info_testata.IInfoTestata"
+      factory=".info_testata.InfoTestata"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      marker=".info_testata.IInfoTestata"
+      />
 </configure>
