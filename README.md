@@ -6,6 +6,7 @@
 - [Features](#features)
 - [Tipi di contenuto](#tipi-di-contenuto)
   - [Elenco tipi implementati](#elenco-tipi-implementati)
+  - [Pagina](#pagina)
   - [Notizie e comunicati stampa](#notizie-e-comunicati-stampa)
   - [Luogo](#luogo)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext)
