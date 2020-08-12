@@ -137,6 +137,11 @@ gestione di un sito Agid con Plone e Volto.
   - [x] Indicizzazione testo
   - [x] Vista su Volto completata
 
+## Pagina
+
+- Può essere usata anche come pagina di disambiguazione. C'è una behavior attivata (_design.plone.contenttypes.behavior.info_testata_)
+  per impostare informazioni aggiuntive per la testata delle pagine di disambiguazione.
+
 ## Notizie e comunicati stampa
 
 - Tipo base "Notizia" di Plone con alcuni campi aggiuntivi.

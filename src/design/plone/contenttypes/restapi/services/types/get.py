@@ -22,6 +22,13 @@ class TypesGet(BaseGet):
                 result["fieldsets"].insert(
                     default_index + 1, result["fieldsets"].pop(correlati_index)
                 )
+            if "testata" in ids:
+                #  move testata after default
+                default_index = ids.index("default")
+                testata_index = ids.index("testata")
+                result["fieldsets"].insert(
+                    default_index + 1, result["fieldsets"].pop(testata_index)
+                )
             if "default" in ids:
                 # move sedi after geolocation
                 idx = ids.index("default")
@@ -29,18 +36,12 @@ class TypesGet(BaseGet):
                     "sedi" in result["fieldsets"][idx]["fields"]
                     and "geolocation" in result["fieldsets"][idx]["fields"]
                 ):
-                    geo_index = result["fieldsets"][idx]["fields"].index(
-                        "geolocation"
-                    )
-                    sedi_index = result["fieldsets"][idx]["fields"].index(
-                        "sedi"
-                    )
+                    geo_index = result["fieldsets"][idx]["fields"].index("geolocation")
+                    sedi_index = result["fieldsets"][idx]["fields"].index("sedi")
                     result["fieldsets"][idx]["fields"].insert(
-                        geo_index,
-                        result["fieldsets"][idx]["fields"].pop(sedi_index),
+                        geo_index, result["fieldsets"][idx]["fields"].pop(sedi_index)
                     )
         if "properties" in result:
-
             if "country" in result["properties"]:
                 if not result["properties"]["country"].get("default", ""):
                     result["properties"]["country"]["default"] = {
