@@ -85,6 +85,16 @@
       />
 
     <plone:behavior
+      title="Descrizione estesa"
+      name="design.plone.contenttypes.behavior.descrizione_estesa"
+      description=""
+      provides=".descrizione_estesa.IDescrizioneEstesa"
+      factory=".descrizione_estesa.DescrizioneEstesa"
+      marker=".descrizione_estesa.IDescrizioneEstesa"
+      />
+
+
+    <plone:behavior
       title="Info per la testata"
       name="design.plone.contenttypes.behavior.info_testata"
       description=""

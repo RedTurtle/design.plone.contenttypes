@@ -49,6 +49,7 @@
     <element value="plone.leadimage"/>
     <element value="plone.relateditems"/>
     <element value="design.plone.contenttypes.behavior.argomenti"/>
+    <element value="collective.dexteritytextindexer"/>
   </property>
 
   <!-- View information -->

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from collective import dexteritytextindexer
 from design.plone.contenttypes import _
 from plone.app.textfield import RichText
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
@@ -18,23 +19,22 @@ class IPersona(model.Schema):
         title=_(u"immagine", default=u"Immagine"),
         required=False,
         description=_(
-            u"foto_persona_help", default=u"Foto da mostrare della persona; la dimensione suggerita è 180x100 px",
+            u"foto_persona_help",
+            default=u"Foto da mostrare della persona; la dimensione suggerita è 180x100 px",
         ),
     )
 
     ruolo = schema.TextLine(
         title=_(u"ruolo", default=u"Ruolo"),
         description=_(
-            "ruolo_help",
-            default="Descrizione testuale del ruolo di questa persona.",
+            "ruolo_help", default="Descrizione testuale del ruolo di questa persona."
         ),
         required=True,
     )
 
     organizzazione_riferimento = RelationList(
         title=_(
-            u"organizzazione_riferimento",
-            default=u"Organizzazione di riferimento",
+            u"organizzazione_riferimento", default=u"Organizzazione di riferimento"
         ),
         description=_(
             "organizzazione_riferimento_help",
@@ -67,8 +67,7 @@ class IPersona(model.Schema):
             " la persona è responsabile.",
         ),
         value_type=RelationChoice(
-            title=_(u"Responsabile di"),
-            vocabulary="plone.app.vocabularies.Catalog",
+            title=_(u"Responsabile di"), vocabulary="plone.app.vocabularies.Catalog"
         ),
         required=False,
         default=[],
@@ -95,9 +94,7 @@ class IPersona(model.Schema):
     )
 
     data_conclusione_incarico = schema.Date(
-        title=_(
-            u"data_conclusione_incarico", default=u"Data conclusione incarico"
-        ),
+        title=_(u"data_conclusione_incarico", default=u"Data conclusione incarico"),
         description=_(
             "data_conclusione_incarico_help",
             default="Data di conclusione dell'incarico.",
@@ -177,8 +174,7 @@ class IPersona(model.Schema):
     deleghe = RichText(
         title=_(u"deleghe", default=u"Deleghe"),
         description=_(
-            "deleghe_help",
-            default="Elenco delle deleghe a capo della persona.",
+            "deleghe_help", default="Elenco delle deleghe a capo della persona."
         ),
         required=False,
     )
@@ -206,24 +202,19 @@ class IPersona(model.Schema):
 
     telefono = schema.TextLine(
         title=_(u"telefono", default=u"Numero di telefono"),
-        description=_(
-            "telefono_help", default="Contatto telefonico della persona.",
-        ),
+        description=_("telefono_help", default="Contatto telefonico della persona."),
         required=False,
     )
 
     email = schema.TextLine(
         title=_(u"email", default=u"Indirizzo email"),
-        description=_("email_help", default="Contatto mail della persona.",),
+        description=_("email_help", default="Contatto mail della persona."),
         required=False,
     )
     informazioni_di_contatto = RichText(
-        title=_(
-            u"informazioni_di_contatto", default=u"Informazioni di contatto"
-        ),
+        title=_(u"informazioni_di_contatto", default=u"Informazioni di contatto"),
         description=_(
-            "informazioni_di_contatto_help",
-            default="Altre informazioni di contatto.",
+            "informazioni_di_contatto_help", default="Altre informazioni di contatto."
         ),
         required=False,
     )
@@ -232,7 +223,7 @@ class IPersona(model.Schema):
         title=_(u"curriculum_vitae", default=u"Curriculum vitae"),
         required=False,
         description=_(
-            "curriculum_vitae_help", default="Curriculum vitae della persona.",
+            "curriculum_vitae_help", default="Curriculum vitae della persona."
         ),
     )
 
@@ -251,9 +242,7 @@ class IPersona(model.Schema):
     atto_nomina = field.NamedFile(
         title=_(u"atto_nomina", default=u"Atto nomina"),
         required=False,
-        description=_(
-            "atto_nomina_help", default="Atto di nomina della persona.",
-        ),
+        description=_("atto_nomina_help", default="Atto di nomina della persona."),
     )
 
     #    situazione_patrimoniale = field.NamedFile(
@@ -282,3 +271,12 @@ class IPersona(model.Schema):
     #        ),
     #        required=True,
     #    )
+
+    # SearchableText fields
+    dexteritytextindexer.searchable("ruolo")
+    dexteritytextindexer.searchable("competenze")
+    dexteritytextindexer.searchable("deleghe")
+    dexteritytextindexer.searchable("tipologia_persona")
+    dexteritytextindexer.searchable("telefono")
+    dexteritytextindexer.searchable("email")
+    dexteritytextindexer.searchable("informazioni_di_contatto")

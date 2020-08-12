@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from Products.CMFPlone.interfaces import ISelectableConstrainTypes
-from Products.CMFPlone.utils import _createObjectByType
+from plone import api
 
 
 def notiziaCreateHandler(notizia, event):
@@ -13,37 +13,18 @@ def notiziaCreateHandler(notizia, event):
     @param event: Event that triggers the method (onAdded event)
     """
 
-    # persone = _createObjectByType("Folder", notizia, "persone")
-    # persone.title = "Persone"
-    # persone.reindexObject(idxs=["Title"])
-    # constraintsPersone = ISelectableConstrainTypes(persone)
-    # constraintsPersone.setConstrainTypesMode(1)
-    # scegliere le restrizioni
-    # constraintsPersone.setLocallyAllowedTypes(("Persona",))
+    if "multimedia" not in notizia.keys():
+        multimedia = api.content.create(
+            type="Document", title="Multimedia", container=notizia
+        )
+        constraintsMultimedia = ISelectableConstrainTypes(multimedia)
+        constraintsMultimedia.setConstrainTypesMode(1)
+        constraintsMultimedia.setLocallyAllowedTypes(("Link", "Image"))
 
-    # luogo = _createObjectByType("Folder", notizia, "luogo")
-    # luogo.title = "Luoghi"
-    # luogo.reindexObject(idxs=["Title"])
-    # constraintsLuoghi = ISelectableConstrainTypes(luogo)
-    # constraintsLuoghi.setConstrainTypesMode(1)
-    # # scegliere le restrizioni
-    # constraintsLuoghi.setLocallyAllowedTypes(("Venue",))
-
-    multimedia = _createObjectByType("Document", notizia, "multimedia")
-    multimedia.title = "Multimedia"
-    multimedia.reindexObject(idxs=["Title"])
-    constraintsMultimedia = ISelectableConstrainTypes(multimedia)
-    constraintsMultimedia.setConstrainTypesMode(1)
-    # scegliere le restrizioni
-    constraintsMultimedia.setLocallyAllowedTypes(("Link", "Image"))
-
-    # ci serve? In teoria la macrobuca dovrebbe essere la sezione "Documenti"
-    documentiAllegati = _createObjectByType(
-        "Document", notizia, "documenti-allegati"
-    )
-    documentiAllegati.title = "Documenti allegati"
-    documentiAllegati.reindexObject(idxs=["Title"])
-    constraintsDocumentiAllegati = ISelectableConstrainTypes(documentiAllegati)
-    constraintsDocumentiAllegati.setConstrainTypesMode(1)
-    # scegliere le restrizioni
-    constraintsDocumentiAllegati.setLocallyAllowedTypes(("File", "Image"))
+    if "documenti-allegati" not in notizia.keys():
+        multimedia = api.content.create(
+            type="Document", title="Documenti allegati", container=notizia
+        )
+        constraintsMultimedia = ISelectableConstrainTypes(multimedia)
+        constraintsMultimedia.setConstrainTypesMode(1)
+        constraintsMultimedia.setLocallyAllowedTypes(("File", "Image"))

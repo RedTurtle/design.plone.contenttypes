@@ -1,3 +1,29 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+
+- [Design Plone Content-types](#design-plone-content-types)
+- [Features](#features)
+- [Tipi di contenuto](#tipi-di-contenuto)
+  - [Elenco tipi implementati](#elenco-tipi-implementati)
+  - [Notizie e comunicati stampa](#notizie-e-comunicati-stampa)
+  - [Luogo](#luogo)
+    - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext)
+  - [Persona](#persona)
+    - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-1)
+  - [Servizio](#servizio)
+    - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-2)
+  - [Unità Organizzativa](#unit%C3%A0-organizzativa)
+    - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-3)
+- [Gestione vocabolari](#gestione-vocabolari)
+- [Installazione](#installazione)
+- [Traduzioni](#traduzioni)
+- [Contribuisci](#contribuisci)
+- [Licenza](#licenza)
+- [Autori](#autori)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Design Plone Content-types
 
 Pacchetto per la gestione dei content-type per un sito Agid con Plone.
@@ -144,6 +170,56 @@ Alcuni campi della geolocalizzazione hanno dei valori predefiniti quando viene r
 - country
 
 Sono pre-popolati con la sede di AGID a Roma.
+
+### Campi indicizzati nel SearchableText
+
+- street
+- city
+- zip_code
+- country
+- quartiere
+- circoscrizione
+- descrizione_breve
+- orario_pubblico
+- identificativo_mibac
+
+## Persona
+
+### Campi indicizzati nel SearchableText
+
+- ruolo
+- competenze
+- deleghe
+- tipologia_persona
+- telefono
+- email
+- informazioni_di_contatto
+
+## Servizio
+
+### Campi indicizzati nel SearchableText
+
+- descrizione_estesa
+- sottotitolo
+- descrizione_destinatari
+- chi_puo_presentare
+- come_si_fa
+- cosa_si_ottiene
+- cosa_serve
+- box_aiuto
+
+## Unità Organizzativa
+
+### Campi indicizzati nel SearchableText
+
+- competenze
+- tipologia_organizzazione
+- assessore_riferimento
+- responsabile
+- street
+- city
+- zip_code
+- country
 
 # Gestione vocabolari
 
