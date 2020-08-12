@@ -60,17 +60,18 @@ gestione di un sito Agid con Plone e Volto.
 
 - [ ] **Evento**
 
-  - [ ] Definizione campi
+  - [x] Definizione campi
   - [ ] Ordine campi
   - [ ] Indicizzazione testo
   - [ ] Vista su Volto completata
 
 - [ ] **Collegamento**
 
-  - [ ] Definizione campi
-  - [ ] Ordine campi
-  - [ ] Indicizzazione testo
-  - [ ] Vista su Volto completata
+  - [x] Definizione campi
+  - [x] Ordine campi
+  - [x] Indicizzazione testo
+  - [x] Vista su Volto completata
+  - [ ] Selezione link interno
 
 - [ ] **Messaggio**
 
@@ -79,18 +80,19 @@ gestione di un sito Agid con Plone e Volto.
   - [ ] Indicizzazione testo
   - [ ] Vista su Volto completata
 
-- [ ] **Notizia**
+- [x] **Notizia**
 
   - [x] Definizione campi
   - [x] Ordine campi
-  - [ ] Indicizzazione testo
-  - [ ] Vista su Volto completata
+  - [x] Indicizzazione testo
+  - [x] Vista su Volto completata
 
 - [ ] **Luogo**
 
   - [x] Definizione campi
+  - [ ] Abilitare behavior collective.address.address
   - [ ] Ordine campi
-  - [ ] Indicizzazione testo
+  - [x] Indicizzazione testo
   - [ ] Vista su Volto completata
 
 - [ ] **Pagina Argomento**
@@ -102,10 +104,10 @@ gestione di un sito Agid con Plone e Volto.
 
 - [ ] **Persona**
 
-  - [ ] Definizione campi
+  - [x] Definizione campi
   - [ ] Ordine campi
-  - [ ] Indicizzazione testo
-  - [ ] Vista su Volto completata
+  - [x] Indicizzazione testo
+  - [x] Vista su Volto completata
 
 - [ ] **Pratica**
 
@@ -126,14 +128,14 @@ gestione di un sito Agid con Plone e Volto.
   - [x] Definizione campi
   - [ ] Ordine campi
   - [ ] Indicizzazione testo
-  - [ ] Vista su Volto completata
+  - [x] Vista su Volto completata
 
-- [ ] **Unità Organizzativa**
+- [x] **Unità Organizzativa**
 
-  - [ ] Definizione campi
-  - [ ] Ordine campi
-  - [ ] Indicizzazione testo
-  - [ ] Vista su Volto completata
+  - [x] Definizione campi
+  - [x] Ordine campi
+  - [x] Indicizzazione testo
+  - [x] Vista su Volto completata
 
 ## Notizie e comunicati stampa
 
