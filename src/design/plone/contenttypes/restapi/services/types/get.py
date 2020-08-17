@@ -105,4 +105,3 @@ class TypesGet(BaseGet):
         if "title" in result and result["title"] == "Persona":
             result = self.customize_persona_schema(result)
         return result
-
