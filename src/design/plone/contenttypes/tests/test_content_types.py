@@ -43,7 +43,26 @@ class TestContentTypes(unittest.TestCase):
     def tearDown(self):
         self.api_session.close()
 
-    def test_correlati_fieldset_order(self):
+    def test_persona_correlati_fieldset_order(self):
+        response = self.api_session.get("/@types/Persona")
+        res = response.json()
+
+        ids = [x["id"] for x in res["fieldsets"]]
+
+        self.assertIn("correlati", ids)
+        self.assertEqual(
+            ids,
+            [
+                "default",
+                "correlati",
+                "categorization",
+                "settings",
+                "ownership",
+                "dates",
+            ],
+        )
+
+    def test_news_correlati_fieldset_order(self):
         response = self.api_session.get("/@types/News%20Item")
         res = response.json()
 
