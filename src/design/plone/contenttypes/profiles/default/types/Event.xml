@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <object name="Event" meta_type="Dexterity FTI" i18n:domain="plone" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
-<property
-      i18n:translate=""
-      name="title">Evento</property>
-  <property
-      i18n:translate=""
-      name="description"></property>
 <property name="global_allow">True</property>
 <property name="allowed_content_types" purge="False">
     <element value="Event"/>
  </property>
-  <!-- <property name="global_allow">False</property> -->
   <property name="behaviors" purge="false">
     <element value="design.plone.contenttypes.behavior.evento"/>
     <element value="design.plone.contenttypes.behavior.argomenti"/>
