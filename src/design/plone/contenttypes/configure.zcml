@@ -51,6 +51,4 @@
   <adapter factory=".schema_overrides.SchemaTweaks" name="schema.tweaks" />
 
 
-
-
 </configure>

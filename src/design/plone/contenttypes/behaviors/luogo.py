@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from collective import dexteritytextindexer
 from design.plone.contenttypes import _
 from plone.app.textfield import RichText
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
@@ -157,6 +158,13 @@ class ILuogo(model.Schema):
             "riferimento_web",
         ],
     )
+
+    # searchabletext indexer
+    dexteritytextindexer.searchable("quartiere")
+    dexteritytextindexer.searchable("circoscrizione")
+    dexteritytextindexer.searchable("descrizione_breve")
+    dexteritytextindexer.searchable("orario_pubblico")
+    dexteritytextindexer.searchable("identificativo_mibac")
 
 
 @implementer(ILuogo)

@@ -27,21 +27,12 @@ class IDocumento(model.Schema):
 
     # TODO: come gestire la sottotipologia del documento
 
-    descrizione_estesa = RichText(
-        title=_(u"descrizione_estesa", default=u"Descrizione estesa"),
-        required=False,
-    )
-
     # vocabolario costruito da catalogo, prendendo le unita' organizzative
     ufficio_responsabile = RelationList(
-        title=_(
-            u"ufficio_responsabile",
-            default=u"Ufficio responsabile del documento",
-        ),
+        title=_(u"ufficio_responsabile", default=u"Ufficio responsabile del documento"),
         required=True,
         value_type=RelationChoice(
-            title=_(u""),
-            vocabulary="plone.app.vocabularies.Catalog",
+            title=_(u""), vocabulary="plone.app.vocabularies.Catalog"
         ),
     )
     form.widget(
@@ -55,13 +46,10 @@ class IDocumento(model.Schema):
 
     # area amministrativa non è un ct ma un' aggregazione di ct, come facciamo?
     area_responsabile = RelationList(
-        title=_(
-            u"area_responsabile", default=u"Area responsabile del documento"
-        ),
+        title=_(u"area_responsabile", default=u"Area responsabile del documento"),
         required=True,
         value_type=RelationChoice(
-            title=_(u"Area responsabile"),
-            vocabulary="plone.app.vocabularies.Catalog",
+            title=_(u"Area responsabile"), vocabulary="plone.app.vocabularies.Catalog"
         ),
     )
     form.widget(
@@ -103,8 +91,7 @@ class IDocumento(model.Schema):
         title=u"Servizi collegati",
         default=[],
         value_type=RelationChoice(
-            title=_(u"Servizio collegato"),
-            vocabulary="plone.app.vocabularies.Catalog",
+            title=_(u"Servizio collegato"), vocabulary="plone.app.vocabularies.Catalog"
         ),
         required=False,
     )
@@ -144,10 +131,7 @@ class IDocumento(model.Schema):
     form.widget(
         "dataset",
         RelatedItemsFieldWidget,
-        pattern_options={
-            "maximumSelectionSize": 10,
-            "selectableTypes": ["Dataset"],
-        },
+        pattern_options={"maximumSelectionSize": 10, "selectableTypes": ["Dataset"]},
     )
 
     # i riferimenti normativi li deve linkare chi si occupa di caricare e/o
@@ -162,13 +146,10 @@ class IDocumento(model.Schema):
     )
 
     data_protocollo = schema.Date(
-        title=_(u"data_protocollo", default=u"Data del protocollo"),
-        required=False,
+        title=_(u"data_protocollo", default=u"Data del protocollo"), required=False
     )
 
-    box_aiuto = RichText(
-        title=_(u"box_aiuto", default=u"Box di aiuto"), required=True
-    )
+    box_aiuto = RichText(title=_(u"box_aiuto", default=u"Box di aiuto"), required=True)
 
     # come gestiamo "e' parte del life event"?
     # per ora gigavocabolario statico prendendo i valori da github e

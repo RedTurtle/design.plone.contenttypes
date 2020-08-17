@@ -48,6 +48,8 @@
     <element value="plone.basic"/>
     <element value="plone.locking" />
     <element value="design.plone.contenttypes.behavior.additional_help_infos"/>
+    <element value="collective.dexteritytextindexer"/>
+    
     <!--<element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />-->
     <!--<element value="plone.leadimage"/>-->
     <!--<element value="plone.relateditems"/>-->

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<object name="Document" meta_type="Dexterity FTI" i18n:domain="plone"
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+ <property name="behaviors" purge="False">
+  <element value="design.plone.contenttypes.behavior.info_testata"/>
+ </property>
+ 
+</object>

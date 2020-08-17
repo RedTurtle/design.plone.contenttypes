@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from collective import dexteritytextindexer
 from design.plone.contenttypes import _
 from plone.app.textfield import RichText
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
@@ -16,6 +17,15 @@ class IServizio(model.Schema):
     # TODO: capire come gestire le tipologie di un servizio, FS o da u
     # vocabolario o entrambi?
     # tipologia_servizio
+    sottotitolo = schema.TextLine(
+        title=_(u"sottotitolo", default=u"Sottotitolo"),
+        description=_(
+            "sottotitolo_help",
+            default="Indica un eventuale sottotitolo/titolo alternativo per"
+            " questo servizio.",
+        ),
+        required=False,
+    )
 
     # TODO: stato servizio vuol dire si o no? Inoltre, deve essere visibile
     # solo se il servizio
@@ -41,29 +51,8 @@ class IServizio(model.Schema):
         ),
     )
 
-    subtitle = schema.TextLine(
-        title=_(u"sottotitolo", default=u"Sottotitolo"),
-        description=_(
-            "subtitle_help",
-            default="Indica un eventuale sottotitolo/titolo alternativo per"
-            " questo servizio.",
-        ),
-        required=False,
-    )
-
-    descrizione_estesa = RichText(
-        title=_(u"descrizione_estesa", default=u"Descrizione estesa"),
-        required=False,
-        description=_(
-            "descrizione_estesa_help",
-            default="Descrizione dettagliata e completa del servizio.",
-        ),
-    )
-
     descrizione_destinatari = RichText(
-        title=_(
-            u"descrizione_destinatari", default=u"Descrizione destinatari"
-        ),
+        title=_(u"descrizione_destinatari", default=u"Descrizione destinatari"),
         required=False,
         description=_(
             "descrizione_destinatari_help",
@@ -113,9 +102,7 @@ class IServizio(model.Schema):
     )
 
     procedure_collegate = RichText(
-        title=_(
-            u"procedure_collegate", default=u"Procedure collegate all'esito"
-        ),
+        title=_(u"procedure_collegate", default=u"Procedure collegate all'esito"),
         required=False,
         description=_(
             "procedure_collegate_help",
@@ -155,10 +142,7 @@ class IServizio(model.Schema):
     )
 
     canale_fisico_prenotazione = RichText(
-        title=_(
-            u"canale_fisico_prenotazione",
-            default=u"Canale fisico - prenotazione",
-        ),
+        title=_(u"canale_fisico_prenotazione", default=u"Canale fisico - prenotazione"),
         description=_(
             "canale_fisico_prenotazione_help",
             default="Se è possibile prenotare un'appuntamento, indicare"
@@ -202,8 +186,7 @@ class IServizio(model.Schema):
         title=_(u"vincoli", default=u"Vincoli"),
         required=False,
         description=_(
-            "vincoli_help",
-            default="Descrizione degli eventuali vincoli presenti.",
+            "vincoli_help", default="Descrizione degli eventuali vincoli presenti."
         ),
     )
 
@@ -219,9 +202,7 @@ class IServizio(model.Schema):
 
     # vocabolario dalle unita' organizzative presenti a catalogo?
     ufficio_responsabile = RelationList(
-        title=_(
-            u"ufficio_responsabile_erogazione", default=u"Ufficio responsabile"
-        ),
+        title=_(u"ufficio_responsabile_erogazione", default=u"Ufficio responsabile"),
         description=_(
             "ufficio_responsabile_help",
             default="Seleziona l'ufficio responsabile dell'erogazione"
@@ -234,37 +215,17 @@ class IServizio(model.Schema):
             vocabulary="plone.app.vocabularies.Catalog",
         ),
     )
-    form.widget(
-        "ufficio_responsabile",
-        RelatedItemsFieldWidget,
-        vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={
-            "maximumSelectionSize": 1,
-            "selectableTypes": ["UnitaOrganizzativa"],
-            # "basePath": "/amministrazione/uffici",
-        },
-    )
+
     area = RelationList(
         title=_(u"area", default=u"Area"),
         required=True,
         default=[],
         description=_(
-            "area_help",
-            default="Seleziona l'area da cui dipende questo servizio.",
+            "area_help", default="Seleziona l'area da cui dipende questo servizio."
         ),
         value_type=RelationChoice(
-            title=_(u"Area"), vocabulary="plone.app.vocabularies.Catalog",
+            title=_(u"Area"), vocabulary="plone.app.vocabularies.Catalog"
         ),
-    )
-    form.widget(
-        "area",
-        RelatedItemsFieldWidget,
-        vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={
-            "maximumSelectionSize": 1,
-            "selectableTypes": ["UnitaOrganizzativa"],
-            # "basePath": "/amministrazione/aree-amministrative",
-        },
     )
 
     altri_documenti = RelationList(
@@ -279,16 +240,6 @@ class IServizio(model.Schema):
             title=_(u"Documento"), vocabulary="plone.app.vocabularies.Catalog"
         ),
         required=False,
-    )
-    form.widget(
-        "altri_documenti",
-        RelatedItemsFieldWidget,
-        vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={
-            "maximumSelectionSize": 10,
-            "selectableTypes": ["Documento"],
-            # "basePath": "/",
-        },
     )
 
     link_siti_esterni = RichText(
@@ -362,14 +313,69 @@ class IServizio(model.Schema):
         title=u"Servizi collegati",
         default=[],
         value_type=RelationChoice(
-            title=_(u"Servizi collegati"),
-            vocabulary="plone.app.vocabularies.Catalog",
+            title=_(u"Servizi collegati"), vocabulary="plone.app.vocabularies.Catalog"
         ),
         required=False,
         description=_(
             "servizi_collegati_help",
             default="Seleziona la lista dei servizi collegati" " a questo.",
         ),
+    )
+
+    sedi_e_luoghi = RelationList(
+        title=u"Dove trovarci",
+        default=[],
+        value_type=RelationChoice(
+            title=_(u"Dove trovarci"), vocabulary="plone.app.vocabularies.Catalog"
+        ),
+        required=False,
+        description=_(
+            "sedi_e_luoghi_help",
+            default="Seleziona la lista delle sedi e dei luoghi collegati"
+            " a questo servizio.",
+        ),
+    )
+
+    # custom widgets
+    form.widget(
+        "sedi_e_luoghi",
+        RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
+        pattern_options={
+            "maximumSelectionSize": 10,
+            "selectableTypes": ["Venue"],
+            # "basePath": "/",
+        },
+    )
+    form.widget(
+        "area",
+        RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
+        pattern_options={
+            "maximumSelectionSize": 1,
+            "selectableTypes": ["UnitaOrganizzativa"],
+            # "basePath": "/amministrazione/aree-amministrative",
+        },
+    )
+    form.widget(
+        "ufficio_responsabile",
+        RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
+        pattern_options={
+            "maximumSelectionSize": 1,
+            "selectableTypes": ["UnitaOrganizzativa"],
+            # "basePath": "/amministrazione/uffici",
+        },
+    )
+    form.widget(
+        "altri_documenti",
+        RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
+        pattern_options={
+            "maximumSelectionSize": 10,
+            "selectableTypes": ["Documento"],
+            # "basePath": "/",
+        },
     )
     form.widget(
         "servizi_collegati",
@@ -381,33 +387,17 @@ class IServizio(model.Schema):
             # "basePath": "/",
         },
     )
-    sedi_e_luoghi = RelationList(
-        title=u"Dove trovarci",
-        default=[],
-        value_type=RelationChoice(
-            title=_(u"Dove trovarci"),
-            vocabulary="plone.app.vocabularies.Catalog",
-        ),
-        required=False,
-        description=_(
-            "sedi_e_luoghi_help",
-            default="Seleziona la lista delle sedi e dei luoghi collegati"
-            " a questo servizio.",
-        ),
-    )
-    form.widget(
-        "sedi_e_luoghi",
-        RelatedItemsFieldWidget,
-        vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={
-            "maximumSelectionSize": 10,
-            "selectableTypes": ["Venue"],
-            # "basePath": "/",
-        },
-    )
 
-    model.fieldset(
-        "correlati", fields=["servizi_collegati", "altri_documenti"],
-    )
+    # custom fieldset and order
+    model.fieldset("correlati", fields=["servizi_collegati", "altri_documenti"])
 
-    # TODO: come gestiamo i correlati amministrazione
+    # SearchableText fields
+    dexteritytextindexer.searchable("sottotitolo")
+    dexteritytextindexer.searchable("descrizione_destinatari")
+    dexteritytextindexer.searchable("chi_puo_presentare")
+    dexteritytextindexer.searchable("come_si_fa")
+    dexteritytextindexer.searchable("cosa_si_ottiene")
+    dexteritytextindexer.searchable("cosa_serve")
+    dexteritytextindexer.searchable("box_aiuto")
+    dexteritytextindexer.searchable("area")
+    dexteritytextindexer.searchable("ufficio_responsabile")

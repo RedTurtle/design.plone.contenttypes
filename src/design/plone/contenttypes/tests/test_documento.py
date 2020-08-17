@@ -14,7 +14,7 @@ class TestDocument(unittest.TestCase):
         """Custom shared utility setup for tests."""
         self.portal = self.layer["portal"]
 
-    def test_behaviors_enabled_for_document(self):
+    def test_behaviors_enabled_for_documento(self):
         portal_types = api.portal.get_tool(name="portal_types")
         self.assertEqual(
             portal_types["Documento"].behaviors,
