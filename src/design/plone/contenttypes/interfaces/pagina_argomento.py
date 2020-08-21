@@ -6,11 +6,23 @@ from plone.autoform import directives as form
 from plone.supermodel import model
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
+from zope.schema import TextLine
 
 
 class IPaginaArgomento(model.Schema):
     """ Marker interface for PaginaArgomento
     """
+
+    icona = TextLine(
+        title=_(u"icona", default=u"Icona"),
+        description=_(
+            "icona_help",
+            default="Puoi selezionare un’icona fra quelle proposte nel menu a"
+            " tendina oppure puoi scrivere/incollare nel campo di testo il"
+            " nome di un’icona di fontawsome 5",
+        ),
+        required=False,
+    )
 
     unita_amministrativa_responsabile = RelationList(
         title=_(
