@@ -3,6 +3,7 @@
 <property name="global_allow">True</property>
 <property name="allowed_content_types" purge="False">
     <element value="Event"/>
+    <element value="Document" />
  </property>
   <property name="behaviors" purge="false">
     <element value="design.plone.contenttypes.behavior.evento"/>

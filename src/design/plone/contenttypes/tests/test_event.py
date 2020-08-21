@@ -126,13 +126,17 @@ class TestEventApi(unittest.TestCase):
 
         event = self.portal["bar"]
 
-        self.assertEqual(["multimedia", "documenti"], event.keys())
+        self.assertEqual(["multimedia", "documenti", "sponsor"], event.keys())
 
         self.assertEqual(event["multimedia"].portal_type, "Folder")
         self.assertEqual(event["multimedia"].constrain_types_mode, 1)
         self.assertEqual(
             event["multimedia"].locally_allowed_types, ("Image", "Link")
         )
+
+        self.assertEqual(event["sponsor"].portal_type, "Folder")
+        self.assertEqual(event["sponsor"].constrain_types_mode, 1)
+        self.assertEqual(event["sponsor"].locally_allowed_types, ("Link",))
 
         self.assertEqual(event["documenti"].portal_type, "Folder")
         self.assertEqual(event["documenti"].constrain_types_mode, 1)
@@ -141,8 +145,9 @@ class TestEventApi(unittest.TestCase):
         )
 
         multimedia_wf = api.content.get_state(obj=event["multimedia"],)
-
+        sponsor_wf = api.content.get_state(obj=event["sponsor"],)
         documenti_wf = api.content.get_state(obj=event["documenti"],)
 
         self.assertEqual(multimedia_wf, "published")
+        self.assertEqual(sponsor_wf, "published")
         self.assertEqual(documenti_wf, "published")

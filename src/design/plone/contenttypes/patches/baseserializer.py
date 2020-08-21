@@ -77,7 +77,6 @@ def design_italia_serialize_folder_to_json_call(
         result["items_total"] = batch.items_total
         if batch.links:
             result["batching"] = batch.links
-
         if "fullobjects" in list(self.request.form):
             result["items"] = getMultiAdapter(
                 (brains, self.request), ISerializeToJson

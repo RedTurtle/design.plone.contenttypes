@@ -14,30 +14,42 @@ def eventoCreateHandler(evento, event):
     @param event: Event that triggers the method (onAdded event)
     """
 
-    galleria = _createObjectByType("Folder", evento, "multimedia")
-    galleria.title = "Multimedia"
-    galleria.reindexObject(idxs=["Title"])
+    constraintsEvento = ISelectableConstrainTypes(evento)
+    constraintsEvento.setConstrainTypesMode(1)
+    constraintsEvento.setLocallyAllowedTypes(("Event", "Document"))
 
-    # galleria = api.content.create(
-    #     container=event, type="Folder", title="Multimedia"
-    # )
+    galleria = api.content.create(
+        container=evento, type="Document", title="Multimedia", id="multimedia"
+    )
+
+    sponsor = api.content.create(
+        container=evento,
+        type="Document",
+        title="Sponsor Evento",
+        id="sponsor_evento",
+    )
+
+    documenti = api.content.create(
+        container=evento, type="Document", title="Documenti", id="documenti"
+    )
+
+    # select  constraints
     constraintsGalleria = ISelectableConstrainTypes(galleria)
     constraintsGalleria.setConstrainTypesMode(1)
-    # scegliere le restrizioni
     constraintsGalleria.setLocallyAllowedTypes(("Image", "Link"))
 
-    documenti = _createObjectByType("Folder", evento, "documenti")
-    documenti.title = "Documenti"
-    documenti.reindexObject(idxs=["Title"])
+    constraintsSponsor = ISelectableConstrainTypes(sponsor)
+    constraintsSponsor.setConstrainTypesMode(1)
 
-    # documenti = api.content.create(
-    #     container=event, type="Folder", title="Documenti"
-    # )
+    constraintsSponsor.setLocallyAllowedTypes(("Link",))
+
     constraintsDocumenti = ISelectableConstrainTypes(documenti)
     constraintsDocumenti.setConstrainTypesMode(1)
-    # scegliere le restrizioni
     constraintsDocumenti.setLocallyAllowedTypes(("File",))
+
+    constraintsEvento.setLocallyAllowedTypes(("Event",))
 
     # add publish automation during creation
     api.content.transition(obj=galleria, transition="publish")
+    api.content.transition(obj=sponsor, transition="publish")
     api.content.transition(obj=documenti, transition="publish")
