@@ -51,7 +51,7 @@ class TestEvent(unittest.TestCase):
     def test_event_addable_types(self):
         portal_types = api.portal.get_tool(name="portal_types")
         self.assertEqual(
-            ("Image", "File", "Link", "Event"),
+            ("Image", "File", "Link", "Event", "Document"),
             portal_types["Event"].allowed_content_types,
         )
 
@@ -126,26 +126,31 @@ class TestEventApi(unittest.TestCase):
 
         event = self.portal["bar"]
 
-        self.assertEqual(["multimedia", "documenti", "sponsor"], event.keys())
+        self.assertEqual(
+            sorted(["multimedia", "documenti", "sponsor_evento"]),
+            sorted(event.keys()),
+        )
 
-        self.assertEqual(event["multimedia"].portal_type, "Folder")
+        self.assertEqual(event["multimedia"].portal_type, "Document")
         self.assertEqual(event["multimedia"].constrain_types_mode, 1)
         self.assertEqual(
             event["multimedia"].locally_allowed_types, ("Image", "Link")
         )
 
-        self.assertEqual(event["sponsor"].portal_type, "Folder")
-        self.assertEqual(event["sponsor"].constrain_types_mode, 1)
-        self.assertEqual(event["sponsor"].locally_allowed_types, ("Link",))
+        self.assertEqual(event["sponsor_evento"].portal_type, "Document")
+        self.assertEqual(event["sponsor_evento"].constrain_types_mode, 1)
+        self.assertEqual(
+            event["sponsor_evento"].locally_allowed_types, ("Link",)
+        )
 
-        self.assertEqual(event["documenti"].portal_type, "Folder")
+        self.assertEqual(event["documenti"].portal_type, "Document")
         self.assertEqual(event["documenti"].constrain_types_mode, 1)
         self.assertEqual(
             event["documenti"].locally_allowed_types, ("File",),
         )
 
         multimedia_wf = api.content.get_state(obj=event["multimedia"],)
-        sponsor_wf = api.content.get_state(obj=event["sponsor"],)
+        sponsor_wf = api.content.get_state(obj=event["sponsor_evento"],)
         documenti_wf = api.content.get_state(obj=event["documenti"],)
 
         self.assertEqual(multimedia_wf, "published")

@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from Products.CMFPlone.interfaces import ISelectableConstrainTypes
-from Products.CMFPlone.utils import _createObjectByType
 from plone import api
 
 
