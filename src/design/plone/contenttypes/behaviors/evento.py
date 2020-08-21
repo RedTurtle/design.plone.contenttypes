@@ -188,16 +188,16 @@ class IEvento(model.Schema):
         ),
     )
 
-    # qui ci va anche loghi
-    sponsor = RichText(
-        title=_(u"sponsor", default=u"Sponsor"),
-        required=False,
-        description=_(
-            "sponsor_help",
-            default="Campo dove inserire i loghi degli enti che hanno"
-            " patrocinato l'evento e/o degli sponsor.",
-        ),
-    )
+    # gestiamo gli sponsor come collegamenti con immagine o blocchi
+    # sponsor = RichText(
+    #     title=_(u"sponsor", default=u"Sponsor"),
+    #     required=False,
+    #     description=_(
+    #         "sponsor_help",
+    #         default="Campo dove inserire i loghi degli enti che hanno"
+    #         " patrocinato l'evento e/o degli sponsor.",
+    #     ),
+    # )
 
     box_aiuto = RichText(
         title=_(u"box_aiuto", default=u"Box di aiuto"), required=True
