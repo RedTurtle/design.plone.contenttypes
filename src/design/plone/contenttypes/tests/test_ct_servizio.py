@@ -22,10 +22,22 @@ WIDGET_PROPERTY_CHECKS = {
         "maximumSelectionSize": 1,
         "selectableTypes": ["UnitaOrganizzativa"],
     },
-    "area": {"maximumSelectionSize": 1, "selectableTypes": ["UnitaOrganizzativa"]},
-    "altri_documenti": {"maximumSelectionSize": 10, "selectableTypes": ["Documento"]},
-    "servizi_collegati": {"maximumSelectionSize": 10, "selectableTypes": ["Servizio"]},
-    "sedi_e_luoghi": {"maximumSelectionSize": 10, "selectableTypes": ["Venue"]},
+    "area": {
+        "maximumSelectionSize": 1,
+        "selectableTypes": ["UnitaOrganizzativa"],
+    },
+    "altri_documenti": {
+        "maximumSelectionSize": 10,
+        "selectableTypes": ["Documento"],
+    },
+    "servizi_collegati": {
+        "maximumSelectionSize": 10,
+        "selectableTypes": ["Servizio"],
+    },
+    "sedi_e_luoghi": {
+        "maximumSelectionSize": 10,
+        "selectableTypes": ["Venue"],
+    },
 }
 
 FIELDS_IN_CORRELATI_TAB = ["servizi_collegati", "altri_documenti"]

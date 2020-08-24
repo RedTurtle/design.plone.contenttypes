@@ -10,6 +10,10 @@ from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import SITE_OWNER_PASSWORD
 from plone.app.testing import TEST_USER_ID
 from plone.restapi.testing import RelativeSession
+from z3c.relationfield import RelationValue
+from zope.component import getUtility
+from zope.intid.interfaces import IIntIds
+from Products.CMFPlone.utils import getToolByName
 from transaction import commit
 
 import unittest
@@ -30,14 +34,13 @@ class TestLuogo(unittest.TestCase):
                 "plone.app.content.interfaces.INameFromTitle",
                 "plone.app.dexterity.behaviors.metadata.IBasic",
                 "plone.app.dexterity.behaviors.metadata.ICategorization",
-                "collective.address.behaviors.IAddress",
                 "collective.geolocationbehavior.geolocation.IGeolocatable",
-                "design.plone.contenttypes.behavior.luogo",
                 "design.plone.contenttypes.behavior.additional_help_infos",
-                "design.plone.contenttypes.behavior.servizi_correlati",
                 "design.plone.contenttypes.behavior.argomenti",
                 "plone.leadimage",
                 "collective.dexteritytextindexer",
+                "collective.address.behaviors.IAddress",
+                "design.plone.contenttypes.behavior.luogo",
             ),
         )
 
@@ -60,20 +63,33 @@ class TestLuogoApi(unittest.TestCase):
         self.api_session.headers.update({"Accept": "application/json"})
         self.api_session.auth = (SITE_OWNER_NAME, SITE_OWNER_PASSWORD)
 
-    def tearDown(self):
-        self.api_session.close()
-
-    def test_venue_required_fields(self):
-
-        response = self.api_session.post(
-            self.portal_url, json={"@type": "Venue", "title": "Foo"}
+        self.news = api.content.create(
+            container=self.portal, type="News Item", title="TestNews"
+        )
+        self.service = api.content.create(
+            container=self.portal, type="Servizio", title="TestService"
+        )
+        self.uo = api.content.create(
+            container=self.portal, type="UnitaOrganizzativa", title="TestUO"
         )
 
-        self.assertEqual(400, response.status_code)
-        message = response.json()["message"]
-        self.assertIn("descrizione_breve", message)
-        self.assertIn("modalita_accesso", message)
-        self.assertIn("identificativo_mibac", message)
+        self.venue = api.content.create(
+            container=self.portal, type="Venue", title="TestVenue"
+        )
+        intids = getUtility(IIntIds)
+
+        venue = RelationValue(intids.getId(self.venue))
+        self.news.luoghi_correlati = [venue]
+        self.service.luoghi_correlati = [venue]
+        self.uo.luoghi_correlati = [venue]
+        pcatalog = getToolByName(self.portal, "portal_catalog")
+        pcatalog.manage_reindexIndex(
+            ids=["service_venue", "office_venue", "news_venue"]
+        )
+        commit()
+
+    def tearDown(self):
+        self.api_session.close()
 
     def test_venue_geolocation_deserializer_wrong_structure(self):
         venue = api.content.create(
@@ -85,7 +101,11 @@ class TestLuogoApi(unittest.TestCase):
 
         response = self.api_session.patch(
             venue.absolute_url(),
-            json={"@type": "Venue", "title": "Foo", "geolocation": {"foo": "bar"}},
+            json={
+                "@type": "Venue",
+                "title": "Foo",
+                "geolocation": {"foo": "bar"},
+            },
         )
         message = response.json()["message"]
 
@@ -126,4 +146,30 @@ class TestLuogoApi(unittest.TestCase):
         self.assertEqual(
             schema["geolocation"]["default"],
             {"latitude": 41.8337833, "longitude": 12.4677863},
+        )
+
+    def test_venue_services(self):
+        response = self.api_session.get(
+            self.venue.absolute_url() + "?fullobjects"
+        )
+        self.assertTrue(
+            response.json()["venue_services"][0]["@id"],
+            self.service.absolute_url(),
+        )
+
+    def test_venue_news(self):
+        response = self.api_session.get(
+            self.venue.absolute_url() + "?fullobjects"
+        )
+
+        self.assertTrue(
+            response.json()["related_news"][0]["@id"], self.news.absolute_url()
+        )
+
+    def test_venue_offices(self):
+        response = self.api_session.get(
+            self.venue.absolute_url() + "?fullobjects"
+        )
+        self.assertTrue(
+            response.json()["venue_offices"][0]["@id"], self.uo.absolute_url()
         )
