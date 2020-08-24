@@ -27,6 +27,7 @@ class TestDocument(unittest.TestCase):
                 "plone.publication",
                 "plone.categorization",
                 "plone.basic",
+                "design.plone.contenttypes.behavior.descrizione_estesa",
                 "plone.locking",
                 "plone.leadimage",
                 "design.plone.contenttypes.behavior.argomenti",
