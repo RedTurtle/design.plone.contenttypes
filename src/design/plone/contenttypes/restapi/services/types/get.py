@@ -5,11 +5,14 @@ from zope.publisher.interfaces import IPublishTraverse
 from design.plone.contenttypes.controlpanels.geolocation_defaults import (
     IGeolocationDefaults,
 )
+from zope.i18n import translate
 from plone import api
+from design.plone.contenttypes import _
 
 
 @implementer(IPublishTraverse)
 class TypesGet(BaseGet):
+<<<<<<< HEAD
     def customize_venue_schema(self, result):
         if "fieldsets" in result:
             ids = [x["id"] for x in result["fieldsets"]]
@@ -17,6 +20,20 @@ class TypesGet(BaseGet):
             contatti_index = ids.index("contatti")
             result["fieldsets"].insert(
                 correlati_index + 1, result["fieldsets"].pop(contatti_index),
+=======
+    def customize_persona_schema(self, result):
+        msgid = _(u"Nome e Cognome", default="Nome e cognome")
+        result["properties"]["title"]["title"] = translate(
+            msgid, context=self.request
+        )
+        if "fieldsets" in result:
+            ids = [x["id"] for x in result["fieldsets"]]
+            correlati_index = ids.index("correlati")
+            categorization_index = ids.index("categorization")
+            result["fieldsets"].insert(
+                correlati_index + 1,
+                result["fieldsets"].pop(categorization_index),
+>>>>>>> master
             )
         return result
 
@@ -98,4 +115,7 @@ class TypesGet(BaseGet):
         pt = self.request.PATH_INFO.split("/")[-1]
         if "title" in result and pt == "Venue":
             result = self.customize_venue_schema(result)
+
+        if "title" in result and pt == "Persona":
+            result = self.customize_persona_schema(result)
         return result
