@@ -10,6 +10,16 @@ from plone import api
 
 @implementer(IPublishTraverse)
 class TypesGet(BaseGet):
+    def customize_venue_schema(self, result):
+        if "fieldsets" in result:
+            ids = [x["id"] for x in result["fieldsets"]]
+            correlati_index = ids.index("correlati")
+            contatti_index = ids.index("contatti")
+            result["fieldsets"].insert(
+                correlati_index + 1, result["fieldsets"].pop(contatti_index),
+            )
+        return result
+
     def reply(self):
         result = super(TypesGet, self).reply()
 
@@ -36,10 +46,15 @@ class TypesGet(BaseGet):
                     "sedi" in result["fieldsets"][idx]["fields"]
                     and "geolocation" in result["fieldsets"][idx]["fields"]
                 ):
-                    geo_index = result["fieldsets"][idx]["fields"].index("geolocation")
-                    sedi_index = result["fieldsets"][idx]["fields"].index("sedi")
+                    geo_index = result["fieldsets"][idx]["fields"].index(
+                        "geolocation"
+                    )
+                    sedi_index = result["fieldsets"][idx]["fields"].index(
+                        "sedi"
+                    )
                     result["fieldsets"][idx]["fields"].insert(
-                        geo_index, result["fieldsets"][idx]["fields"].pop(sedi_index)
+                        geo_index,
+                        result["fieldsets"][idx]["fields"].pop(sedi_index),
                     )
         if "properties" in result:
             if "country" in result["properties"]:
@@ -78,5 +93,9 @@ class TypesGet(BaseGet):
                             "geolocation", interface=IGeolocationDefaults
                         )
                     )
-
+        # be careful: result could be dict or list. If list it will not contains
+        # title. And this is ok for us.
+        pt = self.request.PATH_INFO.split("/")[-1]
+        if "title" in result and pt == "Venue":
+            result = self.customize_venue_schema(result)
         return result

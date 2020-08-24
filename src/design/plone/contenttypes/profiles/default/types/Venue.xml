@@ -7,12 +7,13 @@
  <property name="behaviors" purge="False">
   <element value="collective.address.behaviors.IContact" remove="True"/>
   <element value="collective.address.behaviors.ISocial" remove="True"/>
-  <element value="design.plone.contenttypes.behavior.luogo"/>
   <element value="design.plone.contenttypes.behavior.additional_help_infos"/>
-  <element value="design.plone.contenttypes.behavior.servizi_correlati"/>
+  <element value="design.plone.contenttypes.behavior.servizi_correlati" remove="True"/>
   <element value="design.plone.contenttypes.behavior.argomenti"/>
   <element value="plone.leadimage"/>
   <element value="collective.dexteritytextindexer"/>
+  <element value="collective.address.behaviors.IAddress"/>
+  <element value="design.plone.contenttypes.behavior.luogo"/>
  </property>
 
 </object>
