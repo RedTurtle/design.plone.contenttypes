@@ -232,7 +232,6 @@ class ILuogo(model.Schema):
     dexteritytextindexer.searchable("circoscrizione")
     dexteritytextindexer.searchable("descrizione_breve")
     dexteritytextindexer.searchable("orario_pubblico")
-    dexteritytextindexer.searchable("identificativo_mibac")
 
 
 @implementer(ILuogo)

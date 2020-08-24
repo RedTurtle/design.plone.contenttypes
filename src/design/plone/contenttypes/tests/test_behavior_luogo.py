@@ -25,9 +25,16 @@ class LuogoBehaviorIndexerFunctionalTest(unittest.TestCase):
         self.portal.portal_types._setObject("venueitem", fti)
         fti.klass = "plone.dexterity.content.Item"
         fti.behaviors = (
+            "plone.app.content.interfaces.INameFromTitle",
             "plone.app.dexterity.behaviors.metadata.IBasic",
-            "design.plone.contenttypes.behavior.luogo",
+            "plone.app.dexterity.behaviors.metadata.ICategorization",
+            "collective.geolocationbehavior.geolocation.IGeolocatable",
+            "design.plone.contenttypes.behavior.additional_help_infos",
+            "design.plone.contenttypes.behavior.argomenti",
+            "plone.leadimage",
             "collective.dexteritytextindexer",
+            "collective.address.behaviors.IAddress",
+            "design.plone.contenttypes.behavior.luogo",
         )
         self.fti = fti
 
@@ -57,7 +64,6 @@ class LuogoBehaviorIndexerFunctionalTest(unittest.TestCase):
             outputMimeType="text/html",
             encoding="utf-8",
         )
-        self.venue.identificativo_mibac = "123456"
         self.venue.reindexObject(idxs="SearchableText")
         commit()
 
@@ -65,12 +71,11 @@ class LuogoBehaviorIndexerFunctionalTest(unittest.TestCase):
         self.assertIn("quartiere", index_data["SearchableText"])
         self.assertIn("nord", index_data["SearchableText"])
         self.assertIn("ovest", index_data["SearchableText"])
-        self.assertIn("breve", index_data["SearchableText"])
+        # self.assertIn("breve", index_data["SearchableText"])
         self.assertIn("orario", index_data["SearchableText"])
-        self.assertIn("123456", index_data["SearchableText"])
         self.assertEqual(
             index_data["SearchableText"],
-            ["venue", "quartiere", "nord", "ovest", "breve", "orario", "123456"],
+            ["venue", "quartiere", "nord", "ovest", "breve", "orario"],
         )
 
         res = api.content.find(SearchableText="breve")
