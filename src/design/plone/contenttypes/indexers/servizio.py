@@ -14,7 +14,7 @@ def ufficio_responsabile(context, **kw):
 
 @indexer(IServizio)
 def service_venue(context, **kw):
-    luoghi = context.luoghi_correlati
+    luoghi = context.sedi_e_luoghi
     return [
         luogo.UID() for luogo in filter(bool, [x.to_object for x in luoghi])
     ]
