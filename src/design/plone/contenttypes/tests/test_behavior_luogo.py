@@ -71,7 +71,7 @@ class LuogoBehaviorIndexerFunctionalTest(unittest.TestCase):
         self.assertIn("quartiere", index_data["SearchableText"])
         self.assertIn("nord", index_data["SearchableText"])
         self.assertIn("ovest", index_data["SearchableText"])
-        # self.assertIn("breve", index_data["SearchableText"])
+        self.assertIn("breve", index_data["SearchableText"])
         self.assertIn("orario", index_data["SearchableText"])
         self.assertEqual(
             index_data["SearchableText"],
