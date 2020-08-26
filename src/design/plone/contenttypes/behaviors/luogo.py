@@ -230,7 +230,7 @@ class ILuogo(model.Schema):
     # searchabletext indexer
     dexteritytextindexer.searchable("quartiere")
     dexteritytextindexer.searchable("circoscrizione")
-    dexteritytextindexer.searchable("descrizione_breve")
+    dexteritytextindexer.searchable("descrizione_completa")
     dexteritytextindexer.searchable("orario_pubblico")
 
 
