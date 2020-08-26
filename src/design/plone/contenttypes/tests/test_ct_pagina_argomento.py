@@ -28,8 +28,8 @@ class TestPaginaArgomento(unittest.TestCase):
                 "plone.categorization",
                 "plone.basic",
                 "plone.locking",
-                "volto.blocks",
                 "plone.leadimage",
                 "collective.dexteritytextindexer",
+                "volto.blocks",
             ),
         )

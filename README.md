@@ -9,12 +9,14 @@
   - [Notizie e comunicati stampa](#notizie-e-comunicati-stampa)
   - [Luogo](#luogo)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext)
-  - [Persona](#persona)
+  - [Pagina Argomento](#pagina-argomento)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-1)
-  - [Servizio](#servizio)
+  - [Persona](#persona)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-2)
-  - [Unità Organizzativa](#unità-organizzativa)
+  - [Servizio](#servizio)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-3)
+  - [Unità Organizzativa](#unità-organizzativa)
+    - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-4)
 - [Gestione vocabolari](#gestione-vocabolari)
 - [Installazione](#installazione)
 - [Traduzioni](#traduzioni)
@@ -183,6 +185,21 @@ Sono pre-popolati con la sede di AGID a Roma.
 - orario_pubblico
 - identificativo_mibac
 
+## Pagina Argomento
+
+Le pagine argomento hanno i blocchi. plone.restapi ha un indexer per _SearchableText_ per poter indicizzare i blocchi.
+
+Questo va in conflitto con le personalizzazioni fatte con `collective.dexteritytextindexer` perché Plone prende come buono il primo
+adapter di SearchableText che trova. Per ovviare a questo problema, abbiamo messo la behavior "volto.blocks" come ultima, in modo
+che venisse ignorato il suo indexer, e poi abbiamo registrato un adapter per `IDynamicTextIndexExtender` per replicare l'indicizzazione
+dei blocchi anche per le pagine argomento.
+
+### Campi indicizzati nel SearchableText
+
+- blocchi Volto
+- unita_amministrativa_responsabile
+- box_aiuto
+
 ## Persona
 
 ### Campi indicizzati nel SearchableText
@@ -207,6 +224,11 @@ Sono pre-popolati con la sede di AGID a Roma.
 - cosa_si_ottiene
 - cosa_serve
 - box_aiuto
+- tassonomia_argomenti
+- copertura_geografica
+- costi
+- life_event
+- servizi_collegati
 
 ## Unità Organizzativa
 
