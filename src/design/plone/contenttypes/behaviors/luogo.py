@@ -53,7 +53,9 @@ class ILuogo(model.Schema):
         title=_(u"nome_alternativo", default=u"Nome alternativo"),
         description=_(
             u"help_nome_alternativo",
-            default=u"Indicare, se esiste, un nome alternativo per il luogo",
+            default=u"Indicare, se esiste, un nome alternativo per il luogo;"
+            " questo sarà mostrato tra parentesi affiancato al titolo della"
+            " scheda",
         ),
         required=False,
     )
