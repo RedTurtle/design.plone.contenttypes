@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 from plone.indexer.decorator import indexer
-from design.plone.contenttypes.interfaces.servizio import IServizio
+from design.plone.contenttypes.interfaces.unita_organizzativa import (
+    IUnitaOrganizzativa,
+)
 
 
-@indexer(IServizio)
+@indexer(IUnitaOrganizzativa)
 def office_venue(context, **kw):
     luoghi = context.luoghi_correlati
     return [
