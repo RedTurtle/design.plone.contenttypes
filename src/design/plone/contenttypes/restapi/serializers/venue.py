@@ -2,9 +2,8 @@
 from .related_news_serializer import (
     SerializeFolderToJson as RelatedNewsSerializer,
 )
-from design.plone.contenttypes.interfaces.unita_organizzativa import (
-    IUnitaOrganizzativa,
-)
+
+from collective.venue.interfaces import IVenue
 
 from plone import api
 from plone.restapi.interfaces import ISerializeToJson, ISerializeToJsonSummary
@@ -14,8 +13,8 @@ from zope.interface import Interface
 
 
 @implementer(ISerializeToJson)
-@adapter(IUnitaOrganizzativa, Interface)
-class UOSerializer(RelatedNewsSerializer):
+@adapter(IVenue, Interface)
+class VenueSerializer(RelatedNewsSerializer):
     def search(self, index, UID):
         catalog = api.portal.get_tool("portal_catalog")
         query = {
@@ -27,19 +26,29 @@ class UOSerializer(RelatedNewsSerializer):
 
         return catalog(**query)
 
-    def get_office_services(self, result):
-        brains = self.search("ufficio_responsabile", result["UID"])
+    def get_venue_services(self, result):
+        brains = self.search("service_venue", result["UID"])
         servizi = [
             getMultiAdapter((x, self.request), ISerializeToJsonSummary)()
             for x in brains
         ]
-        result["servizi_offerti"] = servizi
+        result["venue_services"] = servizi
+        return result
+
+    def get_venue_offices(self, result):
+        brains = self.search("office_venue", result["UID"])
+        offices = [
+            getMultiAdapter((x, self.request), ISerializeToJsonSummary)()
+            for x in brains
+        ]
+        result["venue_offices"] = offices
         return result
 
     def __call__(self, version=None, include_items=True):
-        self.index = "news_uo"
-        result = super(UOSerializer, self).__call__(
+        self.index = "news_venue"
+        result = super(VenueSerializer, self).__call__(
             version=None, include_items=True
         )
-        result = self.get_office_services(result)
+        result = self.get_venue_services(result)
+        result = self.get_venue_offices(result)
         return result
