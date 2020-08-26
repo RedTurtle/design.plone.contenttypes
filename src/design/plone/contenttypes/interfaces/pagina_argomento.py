@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from collective import dexteritytextindexer
 from design.plone.contenttypes import _
 from plone.app.textfield import RichText
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
@@ -56,7 +57,10 @@ class IPaginaArgomento(model.Schema):
         title=_(u"box_aiuto", default=u"Box di aiuto"),
         required=False,
         description=_(
-            "box_aiuto_help",
-            default="Eventuali contatti di supporto all'utente.",
+            "box_aiuto_help", default="Eventuali contatti di supporto all'utente."
         ),
     )
+
+    # SearchableText fields
+    dexteritytextindexer.searchable("unita_amministrativa_responsabile")
+    dexteritytextindexer.searchable("box_aiuto")
