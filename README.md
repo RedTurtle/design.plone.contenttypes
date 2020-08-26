@@ -1,7 +1,6 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
 - [Design Plone Content-types](#design-plone-content-types)
 - [Features](#features)
 - [Tipi di contenuto](#tipi-di-contenuto)
@@ -14,7 +13,7 @@
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-1)
   - [Servizio](#servizio)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-2)
-  - [Unità Organizzativa](#unit%C3%A0-organizzativa)
+  - [Unità Organizzativa](#unità-organizzativa)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-3)
 - [Gestione vocabolari](#gestione-vocabolari)
 - [Installazione](#installazione)
@@ -100,7 +99,7 @@ gestione di un sito Agid con Plone e Volto.
 
   - [ ] Definizione campi
   - [ ] Ordine campi
-  - [ ] Indicizzazione testo
+  - [x] Indicizzazione testo
   - [ ] Vista su Volto completata
 
 - [ ] **Persona**
@@ -128,7 +127,7 @@ gestione di un sito Agid con Plone e Volto.
 
   - [x] Definizione campi
   - [ ] Ordine campi
-  - [ ] Indicizzazione testo
+  - [x] Indicizzazione testo
   - [x] Vista su Volto completata
 
 - [x] **Unità Organizzativa**
