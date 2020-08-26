@@ -5,11 +5,28 @@ from zope.publisher.interfaces import IPublishTraverse
 from design.plone.contenttypes.controlpanels.geolocation_defaults import (
     IGeolocationDefaults,
 )
+from zope.i18n import translate
 from plone import api
+from design.plone.contenttypes import _
 
 
 @implementer(IPublishTraverse)
 class TypesGet(BaseGet):
+    def customize_persona_schema(self, result):
+        msgid = _(u"Nome e Cognome", default="Nome e cognome")
+        result["properties"]["title"]["title"] = translate(
+            msgid, context=self.request
+        )
+        if "fieldsets" in result:
+            ids = [x["id"] for x in result["fieldsets"]]
+            correlati_index = ids.index("correlati")
+            categorization_index = ids.index("categorization")
+            result["fieldsets"].insert(
+                correlati_index + 1,
+                result["fieldsets"].pop(categorization_index),
+            )
+        return result
+
     def reply(self):
         result = super(TypesGet, self).reply()
 
@@ -36,10 +53,15 @@ class TypesGet(BaseGet):
                     "sedi" in result["fieldsets"][idx]["fields"]
                     and "geolocation" in result["fieldsets"][idx]["fields"]
                 ):
-                    geo_index = result["fieldsets"][idx]["fields"].index("geolocation")
-                    sedi_index = result["fieldsets"][idx]["fields"].index("sedi")
+                    geo_index = result["fieldsets"][idx]["fields"].index(
+                        "geolocation"
+                    )
+                    sedi_index = result["fieldsets"][idx]["fields"].index(
+                        "sedi"
+                    )
                     result["fieldsets"][idx]["fields"].insert(
-                        geo_index, result["fieldsets"][idx]["fields"].pop(sedi_index)
+                        geo_index,
+                        result["fieldsets"][idx]["fields"].pop(sedi_index),
                     )
         if "properties" in result:
             if "country" in result["properties"]:
@@ -78,5 +100,8 @@ class TypesGet(BaseGet):
                             "geolocation", interface=IGeolocationDefaults
                         )
                     )
-
+        # be careful: result could be dict or list. If list it will not contains
+        # title. And this is ok for us.
+        if "title" in result and result["title"] == "Persona":
+            result = self.customize_persona_schema(result)
         return result

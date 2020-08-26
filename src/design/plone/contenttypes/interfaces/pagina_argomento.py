@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from collective import dexteritytextindexer
 from design.plone.contenttypes import _
 from plone.app.textfield import RichText
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
@@ -6,11 +7,23 @@ from plone.autoform import directives as form
 from plone.supermodel import model
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
+from zope.schema import TextLine
 
 
 class IPaginaArgomento(model.Schema):
     """ Marker interface for PaginaArgomento
     """
+
+    icona = TextLine(
+        title=_(u"icona", default=u"Icona"),
+        description=_(
+            "icona_help",
+            default="Puoi selezionare un’icona fra quelle proposte nel menu a"
+            " tendina oppure puoi scrivere/incollare nel campo di testo il"
+            " nome di un’icona di fontawsome 5",
+        ),
+        required=False,
+    )
 
     unita_amministrativa_responsabile = RelationList(
         title=_(
@@ -44,7 +57,10 @@ class IPaginaArgomento(model.Schema):
         title=_(u"box_aiuto", default=u"Box di aiuto"),
         required=False,
         description=_(
-            "box_aiuto_help",
-            default="Eventuali contatti di supporto all'utente.",
+            "box_aiuto_help", default="Eventuali contatti di supporto all'utente."
         ),
     )
+
+    # SearchableText fields
+    dexteritytextindexer.searchable("unita_amministrativa_responsabile")
+    dexteritytextindexer.searchable("box_aiuto")

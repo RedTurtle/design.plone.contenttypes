@@ -11,5 +11,10 @@
              factory=".common.tassonomia_argomenti" />
     <adapter name="argomenti_correlati"
              factory=".argomento.argomenti_correlati" />
+
+    <adapter factory=".pagina_argomento.SearchableTextExtender"
+             name="IPaginaArgomento"
+    />
+
 </configure>
 

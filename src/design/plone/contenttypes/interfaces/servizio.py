@@ -401,3 +401,7 @@ class IServizio(model.Schema):
     dexteritytextindexer.searchable("box_aiuto")
     dexteritytextindexer.searchable("area")
     dexteritytextindexer.searchable("ufficio_responsabile")
+    dexteritytextindexer.searchable("copertura_geografica")
+    dexteritytextindexer.searchable("costi")
+    dexteritytextindexer.searchable("life_event")
+    dexteritytextindexer.searchable("servizi_collegati")
