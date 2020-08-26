@@ -75,6 +75,16 @@
       />
 
     <plone:behavior
+      title="Strutture correlate"
+      name="design.plone.contenttypes.behavior.strutture_correlate"
+      description=""
+      provides=".strutture_correlate.IStruttureCorrelate"
+      factory=".strutture_correlate.StruttureCorrelate"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      marker=".strutture_correlate.IStruttureCorrelate"
+    />
+
+    <plone:behavior
       title="Ulteriori campi aiuto testuali"
       name="design.plone.contenttypes.behavior.additional_help_infos"
       description=""

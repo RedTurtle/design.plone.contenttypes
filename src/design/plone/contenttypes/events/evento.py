@@ -1,49 +1,54 @@
 # -*- coding: utf-8 -*-
-from Products.CMFPlone.utils import _createObjectByType
 from Products.CMFPlone.interfaces import ISelectableConstrainTypes
+from plone import api
 
 
 def eventoCreateHandler(evento, event):
-    '''
+    """
     Complete content type evento setup on added event, generating
     missing folders, fields, etc.
 
     @param evento: Content item
 
     @param event: Event that triggers the method (onAdded event)
-    '''
+    """
 
-    # galleria = api.content.create(
-    #     type='Folder',
-    #     title='Galleria immagini',
-    #     container=evento
-    # )
+    constraintsEvento = ISelectableConstrainTypes(evento)
+    constraintsEvento.setConstrainTypesMode(1)
+    constraintsEvento.setLocallyAllowedTypes(("Event", "Document"))
 
-    # documenti = api.content.create(
-    #     type='Folder',
-    #     title='Documenti',
-    #     container=evento
-    # )
+    galleria = api.content.create(
+        container=evento, type="Document", title="Multimedia", id="multimedia"
+    )
 
-    # galleryConstraints = ISelectableConstrainTypes(galleria)
-    # galleryConstraints.setConstrainTypesMode(1)
-    # galleryConstraints.setLocallyAllowedTypes(('Image',))
-    # documentsConstraints = ISelectableConstrainTypes(documenti)
-    # documentsConstraints.setConstrainTypesMode(1)
-    # documentsConstraints.setLocallyAllowedTypes(('File',))
+    sponsor = api.content.create(
+        container=evento,
+        type="Document",
+        title="Sponsor Evento",
+        id="sponsor_evento",
+    )
 
-    galleria = _createObjectByType("Folder", evento, 'galleria')
-    galleria.title = 'Galleria'
-    galleria.reindexObject(idxs=['Title'])
+    documenti = api.content.create(
+        container=evento, type="Document", title="Documenti", id="documenti"
+    )
+
+    # select  constraints
     constraintsGalleria = ISelectableConstrainTypes(galleria)
     constraintsGalleria.setConstrainTypesMode(1)
-    # scegliere le restrizioni
-    constraintsGalleria.setLocallyAllowedTypes(('Image',))
+    constraintsGalleria.setLocallyAllowedTypes(("Image", "Link"))
 
-    documenti = _createObjectByType("Folder", evento, 'documenti')
-    documenti.title = 'Documenti'
-    documenti.reindexObject(idxs=['Title'])
+    constraintsSponsor = ISelectableConstrainTypes(sponsor)
+    constraintsSponsor.setConstrainTypesMode(1)
+
+    constraintsSponsor.setLocallyAllowedTypes(("Link",))
+
     constraintsDocumenti = ISelectableConstrainTypes(documenti)
     constraintsDocumenti.setConstrainTypesMode(1)
-    # scegliere le restrizioni
-    constraintsDocumenti.setLocallyAllowedTypes(('File',))
+    constraintsDocumenti.setLocallyAllowedTypes(("File",))
+
+    constraintsEvento.setLocallyAllowedTypes(("Event",))
+
+    # add publish automation during creation
+    api.content.transition(obj=galleria, transition="publish")
+    api.content.transition(obj=sponsor, transition="publish")
+    api.content.transition(obj=documenti, transition="publish")
