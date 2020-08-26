@@ -61,9 +61,6 @@ class IPaginaArgomento(model.Schema):
         ),
     )
 
-    ciccio = TextLine(title="ciccio")
-
     # SearchableText fields
     dexteritytextindexer.searchable("unita_amministrativa_responsabile")
     dexteritytextindexer.searchable("box_aiuto")
-    dexteritytextindexer.searchable("ciccio")
