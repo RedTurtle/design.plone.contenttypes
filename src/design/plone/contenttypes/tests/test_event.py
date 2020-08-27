@@ -73,39 +73,6 @@ class TestEventApi(unittest.TestCase):
     def tearDown(self):
         self.api_session.close()
 
-    def test_event_required_fields(self):
-        response = self.api_session.post(
-            self.portal_url, json={"@type": "Event", "title": "Bar"}
-        )
-
-        self.assertEqual(400, response.status_code)
-        message = response.json()["message"]
-        self.assertIn("date_significative", message)
-        self.assertIn("descrizione_destinatari", message)
-        self.assertIn("indirizzo", message)
-        self.assertIn("cap", message)
-        self.assertIn("orari", message)
-        self.assertIn("prezzo", message)
-        self.assertIn("cap", message)
-        self.assertIn("box_aiuto", message)
-
-        response = self.api_session.post(
-            self.portal_url,
-            json={
-                "@type": "Event",
-                "title": "Bar",
-                "descrizione_destinatari": "pippo,pluto,paperino",
-                "date_significative": "xxx",
-                "indirizzo": "xxx",
-                "cap": "11111",
-                "orari": "lorem ipsum",
-                "prezzo": "lorem ipsum",
-                "box_aiuto": "lorem ipsum",
-            },
-        )
-
-        self.assertEqual(201, response.status_code)
-
     def test_event_substructure_created(self):
         self.api_session.post(
             self.portal_url,
