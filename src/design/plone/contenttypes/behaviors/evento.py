@@ -19,19 +19,19 @@ class IEvento(model.Schema):
     """
 
     # questo deve essere progressivo!!
-    identifier = schema.TextLine(
-        title=_(u"identifier", default=u"Identifier"), required=False
-    )
+    # identifier = schema.TextLine(
+    #     title=_(u"identifier", default=u"Identifier"), required=False
+    # )
 
-    introduzione = RichText(
-        title=_(u"introduzione", default=u"Introduzione"), required=False,
-    )
+    # introduzione = RichText(
+    #     title=_(u"introduzione", default=u"Introduzione"), required=False,
+    # )
 
     descrizione_destinatari = RichText(
         title=_(
             u"descrizione_destinatari", default=u"Descrizione destinatari"
         ),
-        required=True,
+        required=False,
         description=_(
             "descrizione_destinatari_help",
             default="Descrizione dei principali interlocutori dell'evento.",
@@ -62,32 +62,30 @@ class IEvento(model.Schema):
         },
     )
 
-    indirizzo = schema.TextLine(
-        title=_(u"indirizzo", default=u"Indirizzo"), required=True
-    )
+    # model.fieldset(
+    #     "correlati",
+    #     label=_("correlati_label", default=u"Correlati"),
+    #     fields=["luoghi_correlati"],
+    # )
 
-    quartiere = schema.TextLine(
-        title=_(u"quartiere", default=u"Quartiere"), required=False
-    )
+    # non vengono mostrati
+    # indirizzo = schema.TextLine(
+    #     title=_(u"indirizzo", default=u"Indirizzo"), required=True
+    # )
 
-    circoscrizione = schema.TextLine(
-        title=_(u"circoscrizione", default=u"Circoscrizione"), required=False
-    )
+    # quartiere = schema.TextLine(
+    #     title=_(u"quartiere", default=u"Quartiere"), required=False
+    # )
 
-    cap = schema.TextLine(title=_(u"cap", default=u"CAP"), required=True)
+    # circoscrizione = schema.TextLine(
+    #     title=_(u"circoscrizione", default=u"Circoscrizione"), required=False
+    # )
 
-    date_significative = RichText(
-        title=_(u"date_significative", default=u"Date significative"),
-        required=True,
-        description=_(
-            "date_significative_help",
-            default="Descrizione delle date signifcative dell'evento.",
-        ),
-    )
+    # cap = schema.TextLine(title=_(u"cap", default=u"CAP"), required=True)
 
     orari = RichText(
-        title=_(u"orari", default=u"Orari"),
-        required=True,
+        title=_(u"orari", default=u"Informazioni sugli orari"),
+        required=False,
         description=_(
             "orari_help",
             default="Informazioni sugli orari di svolgimento dell'evento.",
@@ -98,7 +96,7 @@ class IEvento(model.Schema):
 
     prezzo = RichText(
         title=_(u"prezzo", default=u"Prezzo"),
-        required=True,
+        required=False,
         description=_(
             "prezzo_help",
             default="Indicare il prezzo dell'evento, se presente, specificando"
@@ -113,6 +111,18 @@ class IEvento(model.Schema):
             "organizzato_da_esterno_help",
             default="Se l'evento non è organizzato direttamente dal comune,"
             " indicare l'organizzatore.",
+        ),
+    )
+
+    contatto_reperibilita = schema.TextLine(
+        title=_(
+            u"contatto_reperibilita", default=u"Reperibilità organizzatore"
+        ),
+        required=False,
+        description=_(
+            "contatto_reperibilita_help",
+            default="Indicare gli orari in cui l'organizzatore è"
+            " telefonicamente reperibile.",
         ),
     )
 
@@ -140,16 +150,6 @@ class IEvento(model.Schema):
             "maximumSelectionSize": 10,
             "selectableTypes": ["Persona", "UnitaOrganizzativa", "Servizio"],
         },
-    )
-
-    contatto_reperibilita = schema.TextLine(
-        title=_(u"contatto_reperibilita", default=u"Contatto: reperibilità"),
-        required=False,
-        description=_(
-            "contatto_reperibilita_help",
-            default="Indicare gli orari in cui l'organizzatore è"
-            " telefonicamente reperibile.",
-        ),
     )
 
     # ref
@@ -188,19 +188,8 @@ class IEvento(model.Schema):
         ),
     )
 
-    # gestiamo gli sponsor come collegamenti con immagine o blocchi
-    # sponsor = RichText(
-    #     title=_(u"sponsor", default=u"Sponsor"),
-    #     required=False,
-    #     description=_(
-    #         "sponsor_help",
-    #         default="Campo dove inserire i loghi degli enti che hanno"
-    #         " patrocinato l'evento e/o degli sponsor.",
-    #     ),
-    # )
-
     box_aiuto = RichText(
-        title=_(u"box_aiuto", default=u"Box di aiuto"), required=True
+        title=_(u"box_aiuto", default=u"Box di aiuto"), required=False
     )
 
     # TODO: come gestire correlati: novita'
