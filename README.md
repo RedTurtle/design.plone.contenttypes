@@ -93,10 +93,11 @@ gestione di un sito Agid con Plone e Volto.
 - [ ] **Luogo**
 
   - [x] Definizione campi
-  - [ ] Abilitare behavior collective.address.address
+  - [x] Abilitare behavior collective.address.address
   - [ ] Ordine campi
   - [x] Indicizzazione testo
   - [ ] Vista su Volto completata
+  - [ ] gestione di "è sede di" 
 
 - [ ] **Pagina Argomento**
 

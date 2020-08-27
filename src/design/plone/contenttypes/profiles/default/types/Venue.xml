@@ -5,14 +5,19 @@
 <property name="klass">design.plone.contenttypes.content.luogo.Venue</property>
 <property name="schema">collective.venue.interfaces.IVenue</property>
  <property name="behaviors" purge="False">
+   <element value="plone.app.content.interfaces.INameFromTitle"/>
+   <element value="plone.app.dexterity.behaviors.metadata.IBasic"/>
+   <element value="plone.app.dexterity.behaviors.metadata.ICategorization"/>
+   <element value="design.plone.contenttypes.behavior.argomenti"/>
+   <element value="plone.leadimage"/>
+   <element value="collective.address.behaviors.IAddress"/>
+   <element value="collective.geolocationbehavior.geolocation.IGeolocatable"/>
+   <element value="design.plone.contenttypes.behavior.luogo"/>
+   <element value="design.plone.contenttypes.behavior.additional_help_infos"/>
+   <element value="collective.dexteritytextindexer"/>
   <element value="collective.address.behaviors.IContact" remove="True"/>
   <element value="collective.address.behaviors.ISocial" remove="True"/>
-  <element value="design.plone.contenttypes.behavior.luogo"/>
-  <element value="design.plone.contenttypes.behavior.additional_help_infos"/>
-  <element value="design.plone.contenttypes.behavior.servizi_correlati"/>
-  <element value="design.plone.contenttypes.behavior.argomenti"/>
-  <element value="plone.leadimage"/>
-  <element value="collective.dexteritytextindexer"/>
+  <element value="design.plone.contenttypes.behavior.servizi_correlati" remove="True"/>
  </property>
 
 </object>

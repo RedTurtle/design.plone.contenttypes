@@ -20,44 +20,123 @@ class ILuogo(model.Schema):
     """
 
     quartiere = schema.TextLine(
-        title=_(u"quartiere", default=u"Quartiere"), required=False
+        title=_(u"quartiere", default=u"Quartiere"),
+        description=_(
+            u"help_quartiere",
+            default=u"Indicare l'eventuale"
+            " quartiere in cui si trova questo luogo",
+        ),
+        required=False,
     )
 
     circoscrizione = schema.TextLine(
-        title=_(u"circoscrizione", default=u"Circoscrizione"), required=False
+        title=_(u"circoscrizione", default=u"Circoscrizione"),
+        description=_(
+            u"help_circoscrizione",
+            default=u"Indicare l'eventuale"
+            " circoscrizione in cui si trova questo luogo",
+        ),
+        required=False,
     )
 
-    descrizione_breve = RichText(
-        title=_(u"descrizione_breve", default=u"Descrizione breve"), required=True
+    descrizione_completa = RichText(
+        title=_(u"descrizione_completa", default=u"Descrizione completa"),
+        description=_(
+            u"help_descrizione_completa",
+            default=u"Indicare una descrizione completa, inserendo tutte le"
+            " informazioni rilevanti relative al luogo",
+        ),
+        required=False,
     )
 
     nome_alternativo = schema.TextLine(
-        title=_(u"nome_alternativo", default=u"Nome alternativo"), required=False
+        title=_(u"nome_alternativo", default=u"Nome alternativo"),
+        description=_(
+            u"help_nome_alternativo",
+            default=u"Indicare, se esiste, un nome alternativo per il luogo;"
+            " questo sarà mostrato tra parentesi affiancato al titolo della"
+            " scheda",
+        ),
+        required=False,
     )
 
     elementi_di_interesse = RichText(
         title=_(u"elementi_di_interesse", default=u"Elementi di interesse"),
+        description=_(
+            u"help_elementi_di_interesse",
+            default=u"Indicare eventuali elementi di interesse relativi al"
+            " luogo",
+        ),
         required=False,
     )
 
     modalita_accesso = RichText(
-        title=_(u"modalita_accesso", default=u"Modalita' di accesso"), required=True
+        title=_(u"modalita_accesso", default=u"Modalita' di accesso"),
+        description=_(
+            u"help_modalita_accesso",
+            default=u"Indicare tutte le informazioni relative alla modalità di"
+            " accesso al luogo",
+        ),
+        required=False,
     )
 
     riferimento_telefonico_luogo = schema.TextLine(
         title=_(
-            u"riferimento_telefonico_luogo", default=u"Riferimento telefonico luogo"
+            u"riferimento_telefonico_luogo",
+            default=u"Riferimento telefonico luogo",
+        ),
+        description=_(
+            u"help_riferimento_telefonico_luogo",
+            default=u"Indicare un riferimento telefonico per poter contattare"
+            " i referenti del luogo",
         ),
         required=False,
     )
 
     riferimento_mail_luogo = schema.TextLine(
         title=_(u"riferimento_mail_luogo", default=u"Riferimento mail luogo"),
+        description=_(
+            u"help_riferimento_mail_luogo",
+            default=u"Indicare un indirizzo mail per poter contattare"
+            " i referenti del luogo",
+        ),
         required=False,
     )
 
     orario_pubblico = RichText(
-        title=_(u"orario_pubblico", default=u"Orario per il pubblico"), required=False
+        title=_(u"orario_pubblico", default=u"Orario per il pubblico"),
+        description=_(
+            u"help_orario_pubblico",
+            default=u"Indicare eventuali orari di accesso al pubblico",
+        ),
+        required=False,
+    )
+
+    struttura_responsabile_correlati = RelationList(
+        title=u"Struttura responsabile del luogo",
+        description=_(
+            "struttura_responsabile_help",
+            default="Indicare la struttura responsabile del luogo qualora sia"
+            " fra unità organizzative del comune inserite nel sito; altrimenti"
+            " compilare i campi testuali relativi alla struttura responsabile",
+        ),
+        value_type=RelationChoice(
+            title=_(u"Struttura responsabile"),
+            vocabulary="plone.app.vocabularies.Catalog",
+        ),
+        required=False,
+        default=[],
+    )
+
+    # custom widgets
+    form.widget(
+        "struttura_responsabile_correlati",
+        RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
+        pattern_options={
+            "maximumSelectionSize": 10,
+            "selectableTypes": ["UnitaOrganizzativa"],
+        },
     )
 
     struttura_responsabile = RichText(
@@ -73,7 +152,12 @@ class ILuogo(model.Schema):
     riferimento_telefonico_struttura = schema.TextLine(
         title=_(
             u"riferimento_telefonico_struttura",
-            default=u"Riferimento telefonico struttura responsabile",
+            default=u"Riferimento telefonico della struttura responsabile",
+        ),
+        description=_(
+            "help_riferimento_telefonico_struttura",
+            default="Indicare il riferimento telefonico per poter contattare"
+            " i referenti della struttura responsabile",
         ),
         required=False,
     )
@@ -81,80 +165,66 @@ class ILuogo(model.Schema):
     riferimento_mail_struttura = schema.TextLine(
         title=_(
             u"riferimento_mail_struttura",
-            default=u"Riferimento mail struttura responsabile",
+            default=u"Riferimento mail della struttura responsabile",
+        ),
+        description=_(
+            "help_riferimento_mail_struttura",
+            default="Indicare un indirizzo mail per poter contattare"
+            " i referenti della struttura responsabile",
         ),
         required=False,
     )
 
     riferimento_web = schema.TextLine(
-        title=_(u"riferimento_web", default=u"Riferimento sito web"), required=False
+        title=_(u"riferimento_web", default=u"Riferimento sito web"),
+        description=_(
+            "help_riferimento_web",
+            default="Indicare un indirizzo web utile per ottenere i contatti"
+            " del luogo",
+        ),
+        required=False,
     )
 
-    # TODO: aggiungere il vocabolario da https://dataportal.daf.teamdigitale.it/#/vocabularies/subject-disciplines  # noqa
-    # quando ritornano i dati dopo la migrazione, bisognera' vedere dove sono
-    # finiti, link invalido al momento
-    categoria_prevalente = schema.Choice(
-        title=_(u"categoria_prevalente", default=u"Categoria prevalente"),
-        required=False,
-        vocabulary="design.plone.contenttypes.Mockup",
-        missing_value=None,
-        default=None,
-    )
+    # Decisono con Baio di toglierlo: visto il vocabolario, che in realtà sta
+    # qui: https://github.com/italia/daf-ontologie-vocabolari-controllati/tree/master/VocabolariControllati/classifications-for-culture/subject-disciplines
+    # riteniamo che possa non fregare nulla a nessuno di questa categorizzazione.
+    #  # TODO: aggiungere il vocabolario da https://dataportal.daf.teamdigitale.it/#/vocabularies/subject-disciplines  # noqa
+    # # quando ritornano i dati dopo la migrazione, bisognera' vedere dove sono
+    # # finiti, link invalido al momento
+    # categoria_prevalente = schema.Choice(
+    #     title=_(u"categoria_prevalente", default=u"Categoria prevalente"),
+    #     required=False,
+    #     vocabulary="design.plone.contenttypes.Mockup",
+    #     missing_value=None,
+    #     default=None,
+    # )
 
     # TODO: importare il db del MIBAC, codice DBUnico / ISIL.
     # Non compare nel frontend
-    identificativo_mibac = schema.TextLine(
-        title=_(u"identificativo_mibac", default=u"Identificativo"), required=True
-    )
-
-    struttura_responsabile_correlati = RelationList(
-        title=u"Struttura responsabile del luogo",
-        description=_(
-            "struttura_responsabile_help",
-            default="Struttura comunale che gestisce il luogo.",
-        ),
-        value_type=RelationChoice(
-            title=_(u"Struttura responsabile"),
-            vocabulary="plone.app.vocabularies.Catalog",
-        ),
-        required=False,
-        default=[],
-    )
-
-    riferimento_pec = schema.TextLine(
-        title=_(u"riferimento_pec", default=u"Riferimento pec"), required=False
-    )
-
-    # custom widgets
-    form.widget(
-        "struttura_responsabile_correlati",
-        RelatedItemsFieldWidget,
-        vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={
-            "maximumSelectionSize": 10,
-            "selectableTypes": ["UnitaOrganizzativa"],
-        },
-    )
+    # identificativo_mibac = schema.TextLine(
+    #     title=_(u"identificativo_mibac", default=u"Identificativo"),
+    #     required=False,
+    # )
 
     # custom fieldsets and order
-    form.order_after(circoscrizione="IAddress.city")
-    form.order_after(quartiere="IAddress.city")
+    form.order_after(circoscrizione="IGeolocatable.coordinates")
+    form.order_after(quartiere="IGeolocatable.coordinates")
 
-    model.fieldset(
-        "correlati",
-        label=_("correlati_label", default=u"Correlati"),
-        fields=["struttura_responsabile_correlati"],
-    )
+    # model.fieldset(
+    #     "correlati",
+    #     label=_("correlati_label", default=u"Correlati"),
+    #     fields=["struttura_responsabile_correlati"],
+    # )
     model.fieldset(
         "contatti",
         label=_("contatti_label", default=u"Contatti"),
         fields=[
             "riferimento_telefonico_luogo",
             "riferimento_mail_luogo",
+            "struttura_responsabile_correlati",
             "struttura_responsabile",
             "riferimento_telefonico_struttura",
             "riferimento_mail_struttura",
-            "riferimento_pec",
             "riferimento_web",
         ],
     )
@@ -162,9 +232,8 @@ class ILuogo(model.Schema):
     # searchabletext indexer
     dexteritytextindexer.searchable("quartiere")
     dexteritytextindexer.searchable("circoscrizione")
-    dexteritytextindexer.searchable("descrizione_breve")
+    dexteritytextindexer.searchable("descrizione_completa")
     dexteritytextindexer.searchable("orario_pubblico")
-    dexteritytextindexer.searchable("identificativo_mibac")
 
 
 @implementer(ILuogo)

@@ -4,6 +4,9 @@
     <adapter name="news_people" factory=".news.news_people" />
     <adapter name="news_uo" factory=".news.news_uo" />
     <adapter name="news_service" factory=".news.news_service" />
+    <adapter name="news_venue" factory=".news.news_venue" />
+    <adapter name="service_venue" factory=".servizio.service_venue" />
+    <!--adapter name="office_venue" factory=".uo.office_venue" /-->
     <adapter name="ufficio_responsabile"
              factory=".servizio.ufficio_responsabile" />
 
