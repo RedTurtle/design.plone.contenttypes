@@ -19,19 +19,19 @@ class IEvento(model.Schema):
     """
 
     # questo deve essere progressivo!!
-    identifier = schema.TextLine(
-        title=_(u"identifier", default=u"Identifier"), required=False
-    )
+    # identifier = schema.TextLine(
+    #     title=_(u"identifier", default=u"Identifier"), required=False
+    # )
 
-    introduzione = RichText(
-        title=_(u"introduzione", default=u"Introduzione"), required=False,
-    )
+    # introduzione = RichText(
+    #     title=_(u"introduzione", default=u"Introduzione"), required=False,
+    # )
 
     descrizione_destinatari = RichText(
         title=_(
             u"descrizione_destinatari", default=u"Descrizione destinatari"
         ),
-        required=True,
+        required=False,
         description=_(
             "descrizione_destinatari_help",
             default="Descrizione dei principali interlocutori dell'evento.",

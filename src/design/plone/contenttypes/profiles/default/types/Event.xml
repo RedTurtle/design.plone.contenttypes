@@ -16,5 +16,6 @@
     <element value="collective.venue.behaviors.ILocation" remove="True"/>
     <element value="plone.eventlocation" remove="True"/>
     <element value="plone.eventattendees" remove="True"/>
+    <!-- <element value="plone.eventcontact" remove="True"/> -->
   </property>
 </object>
