@@ -25,6 +25,32 @@ class SchemaTweaks(object):
                 label=_("correlati_label", default=u"Correlati"),
                 fields=["relatedItems"],
             )
-            self.schema._Element__tagged_values["plone.supermodel.fieldsets"] = [
-                fieldset
-            ]
+            self.schema._Element__tagged_values[
+                "plone.supermodel.fieldsets"
+            ] = [fieldset]
+
+        # fieldsets = []
+        # if self.schema.getName() == "IRelatedItems":
+        #     fieldset_correlati = Fieldset(
+        #         "correlati",
+        #         label=_("correlati_label", default=u"Correlati"),
+        #         fields=["relatedItems"],
+        #     )
+        #     fieldsets.append(fieldset_correlati)
+        # if self.schema.getName() in ("IEventBasic", "IEventRecurrence"):
+        #     fieldset_evento_date = Fieldset(
+        #         "date_evento",
+        #         label=_("date_evento_label", default=u"Date dell'evento"),
+        #         fields=[
+        #             "start",
+        #             "end",
+        #             "whole_day",
+        #             "open_end",
+        #             "sync_uid",
+        #             "recurrence",
+        #         ],
+        #     )
+        #     fieldsets.append(fieldset_evento_date)
+        # self.schema._Element__tagged_values[
+        #     "plone.supermodel.fieldsets"
+        # ] = fieldsets

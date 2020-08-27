@@ -62,11 +62,11 @@ class IEvento(model.Schema):
         },
     )
 
-    model.fieldset(
-        "correlati",
-        label=_("correlati_label", default=u"Correlati"),
-        fields=["luoghi_correlati"],
-    )
+    # model.fieldset(
+    #     "correlati",
+    #     label=_("correlati_label", default=u"Correlati"),
+    #     fields=["luoghi_correlati"],
+    # )
 
     # non vengono mostrati
     # indirizzo = schema.TextLine(
