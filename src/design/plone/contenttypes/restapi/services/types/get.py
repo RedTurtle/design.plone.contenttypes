@@ -37,6 +37,18 @@ class TypesGet(BaseGet):
             )
         return result
 
+    def customize_evento_schema(self, result):
+        result["properties"].pop("contact_email")
+        result["properties"].pop("contact_name")
+        result["properties"].pop("contact_phone")
+        if "fieldsets" in result:
+
+            result["fieldsets"][0]["fields"].remove("contact_email")
+            result["fieldsets"][0]["fields"].remove("contact_name")
+            result["fieldsets"][0]["fields"].remove("contact_phone")
+
+        return result
+
     def reply(self):
         result = super(TypesGet, self).reply()
 
@@ -118,4 +130,7 @@ class TypesGet(BaseGet):
 
         if "title" in result and pt == "Persona":
             result = self.customize_persona_schema(result)
+
+        if "title" in result and pt == "Event":
+            result = self.customize_evento_schema(result)
         return result
