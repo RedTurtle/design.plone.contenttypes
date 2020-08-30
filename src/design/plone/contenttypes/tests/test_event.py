@@ -40,10 +40,10 @@ class TestEvent(unittest.TestCase):
                 "plone.constraintypes",
                 "volto.blocks",
                 "design.plone.contenttypes.behavior.evento",
-                "design.plone.contenttypes.behavior.argomenti",
-                "design.plone.contenttypes.behavior.additional_help_infos",
+                "design.plone.contenttypes.behavior.argomenti_evento",
+                "design.plone.contenttypes.behavior.additional_help_infos_evento",  # noqa
                 "design.plone.contenttypes.behavior.strutture_correlate",
-                "design.plone.contenttypes.behavior.luoghi_correlati",
+                "design.plone.contenttypes.behavior.luoghi_correlati_evento",
                 "plone.leadimage",
             ),
         )
@@ -69,6 +69,10 @@ class TestEventApi(unittest.TestCase):
         self.api_session = RelativeSession(self.portal_url)
         self.api_session.headers.update({"Accept": "application/json"})
         self.api_session.auth = (SITE_OWNER_NAME, SITE_OWNER_PASSWORD)
+        self.event = api.content.create(
+            container=self.portal, type="Event", title="Evento"
+        )
+        transaction.commit()
 
     def tearDown(self):
         self.api_session.close()
@@ -123,3 +127,102 @@ class TestEventApi(unittest.TestCase):
         self.assertEqual(multimedia_wf, "published")
         self.assertEqual(sponsor_wf, "published")
         self.assertEqual(documenti_wf, "published")
+
+    def test_fieldsets(self):
+        response = self.api_session.get("/@types/Event")
+        fieldsets = response.json()["fieldsets"]
+        self.assertEqual(
+            fieldsets,
+            [
+                {
+                    "fields": [
+                        "title",
+                        "description",
+                        "start",
+                        "end",
+                        "whole_day",
+                        "open_end",
+                        "sync_uid",
+                        "recurrence",
+                        "ulteriori_informazioni",
+                        "event_url",
+                        "image",
+                        "image_caption",
+                        "changeNote",
+                    ],
+                    "id": "default",
+                    "title": "Default",
+                },
+                {
+                    "fields": ["orari"],
+                    "id": "date_evento",
+                    "title": "Date dell'evento",
+                },
+                {
+                    "fields": [
+                        "descrizione_destinatari",
+                        "persone_amministrazione",
+                    ],
+                    "id": "partecipanti",
+                    "title": "Partecipanti",
+                },
+                {
+                    "fields": ["luoghi_correlati"],
+                    "id": "dove",
+                    "title": "Dove",
+                },
+                {"fields": ["prezzo"], "id": "costi", "title": "Costi"},
+                {
+                    "fields": [
+                        "organizzato_da_esterno",
+                        "organizzato_da_interno",
+                        "contatto_reperibilita",
+                        "evento_supportato_da",
+                    ],
+                    "id": "contatti",
+                    "title": "Contatti",
+                },
+                {
+                    "fields": ["patrocinato_da", "box_aiuto"],
+                    "id": "informazioni",
+                    "title": "Informazioni",
+                },
+                {"fields": [], "id": "correlati", "title": "Correlati"},
+                {
+                    "fields": [
+                        "tassonomia_argomenti",
+                        "subjects",
+                        "language",
+                        "strutture_politiche",
+                        "relatedItems",
+                    ],
+                    "id": "categorization",
+                    "title": "Categorization",
+                },
+                {
+                    "fields": ["effective", "expires"],
+                    "id": "dates",
+                    "title": "Dates",
+                },
+                {
+                    "fields": ["blocks", "blocks_layout"],
+                    "id": "layout",
+                    "title": "Layout",
+                },
+                {
+                    "fields": ["creators", "contributors", "rights"],
+                    "id": "ownership",
+                    "title": "Ownership",
+                },
+                {
+                    "fields": [
+                        "allow_discussion",
+                        "exclude_from_nav",
+                        "id",
+                        "versioning_enabled",
+                    ],
+                    "id": "settings",
+                    "title": "Settings",
+                },
+            ],
+        )

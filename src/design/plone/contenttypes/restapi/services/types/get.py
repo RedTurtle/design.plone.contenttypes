@@ -47,97 +47,33 @@ class TypesGet(BaseGet):
             result["fieldsets"][0]["fields"].remove("contact_name")
             result["fieldsets"][0]["fields"].remove("contact_phone")
 
-        result["fieldsets"] = [
-            {
-                "fields": [
-                    "title",
-                    "description",
-                    "image",
-                    "image_caption",
-                    # "changeNote",
-                ],
-                "id": "default",
-                "title": "Default",
-            },
-            {
-                "fields": [
-                    "start",
-                    "end",
-                    "whole_day",
-                    "open_end",
-                    "sync_uid",
-                    "recurrence",
-                    "orari",
-                ],
-                "id": "date_evento",
-                "title": "Date dell'evento",
-            },
-            {
-                "fields": [
-                    "descrizione_destinatari",
-                    "persone_amministrazione",
-                ],
-                "id": "partecipanti",
-                "title": "Partecipanti",
-            },
-            {"fields": ["luoghi_correlati"], "id": "dove", "title": "Dove"},
-            {"fields": ["prezzo"], "id": "costi", "title": "Costi"},
-            {
-                "fields": [
-                    "organizzato_da_esterno",
-                    "contatto_reperibilita",
-                    "organizzato_da_interno",
-                    "evento_supportato_da",
-                ],
-                "id": "contatti",
-                "title": "Contatti",
-            },
-            {
-                "fields": [
-                    "ulteriori_informazioni",
-                    "event_url",
-                    "patrocinato_da",
-                    "box_aiuto",
-                ],
-                "id": "informazioni",
-                "title": "Informazioni",
-            },
-            {
-                "fields": ["relatedItems", "strutture_politiche"],
-                "id": "correlati",
-                "title": "Correlati",
-            },
-            {
-                "fields": ["tassonomia_argomenti", "subjects", "language"],
-                "id": "categorization",
-                "title": "Categorizzazione",
-            },
-            {
-                "fields": ["effective", "expires"],
-                "id": "dates",
-                "title": "Date",
-            },
-            {
-                "fields": ["creators", "contributors", "rights"],
-                "id": "ownership",
-                "title": "Proprietà",
-            },
-            {
-                "fields": [
-                    "allow_discussion",
-                    "exclude_from_nav",
-                    "id",
-                    "versioning_enabled",
-                ],
-                "id": "settings",
-                "title": "Impostazioni",
-            },
-            {
-                "fields": ["blocks", "blocks_layout"],
-                "id": "layout",
-                "title": "Layout",
-            },
-        ]
+            # Esteso i behavior per farli specifici per evento, ma mette il
+            # campo in due fieldset. Lo togliamo da dove non serve.
+            ids = [x["id"] for x in result["fieldsets"]]
+            correlati_index = ids.index("correlati")
+            result["fieldsets"][correlati_index]["fields"].remove(
+                "tassonomia_argomenti"
+            )
+            result["fieldsets"][correlati_index]["fields"].remove(
+                "luoghi_correlati"
+            )
+
+            fieldsets_weight = {
+                "default": 0,
+                "date_evento": 1,
+                "partecipanti": 2,
+                "dove": 3,
+                "costi": 4,
+                "contatti": 5,
+                "informazioni": 6,
+                "correlati": 7,
+                "categorization": 8,
+            }
+            # sort against above dictionary. In case of fieldset not in this
+            # dict, apply 100 and sort by title
+            result["fieldsets"].sort(
+                key=lambda x: (fieldsets_weight.get(x["id"], 100), x["title"])
+            )
         return result
 
     def reply(self):

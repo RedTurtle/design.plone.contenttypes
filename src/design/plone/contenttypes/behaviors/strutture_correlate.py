@@ -43,6 +43,8 @@ class IStruttureCorrelate(model.Schema):
         fields=["strutture_politiche"],
     )
 
+    form.order_before(strutture_politiche="IRelatedItems.relatedItems")
+
 
 @implementer(IStruttureCorrelate)
 @adapter(IDexterityContent)

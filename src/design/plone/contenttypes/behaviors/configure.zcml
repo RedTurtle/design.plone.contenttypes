@@ -43,7 +43,15 @@
       for="plone.dexterity.interfaces.IDexterityContent"
       marker=".argomenti.IArgomenti"
       />
-
+    <plone:behavior
+      title="Argomenti"
+      name="design.plone.contenttypes.behavior.argomenti_evento"
+      description="Tassonomia argomenti"
+      provides=".argomenti.IArgomentiEvento"
+      factory=".argomenti.ArgomentiEvento"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      marker=".argomenti.IArgomentiEvento"
+      />
     <plone:behavior
       title="Luoghi correlati"
       name="design.plone.contenttypes.behavior.luoghi_correlati"
@@ -52,6 +60,15 @@
       factory=".luoghi_correlati.LuoghiCorrelati"
       for="plone.dexterity.interfaces.IDexterityContent"
       marker=".luoghi_correlati.ILuoghiCorrelati"
+      />
+    <plone:behavior
+      title="Luoghi correlati"
+      name="design.plone.contenttypes.behavior.luoghi_correlati_evento"
+      description=""
+      provides=".luoghi_correlati.ILuoghiCorrelatiEvento"
+      factory=".luoghi_correlati.LuoghiCorrelatiEvento"
+      for="plone.app.contenttypes.interfaces.IEvent"
+      marker=".luoghi_correlati.ILuoghiCorrelatiEvento"
       />
 
     <plone:behavior
@@ -92,6 +109,15 @@
       factory=".additional_help_infos.AdditionalHelpInfos"
       for="plone.dexterity.interfaces.IDexterityContent"
       marker=".additional_help_infos.IAdditionalHelpInfos"
+      />
+    <plone:behavior
+      title="Ulteriori campi aiuto testuali"
+      name="design.plone.contenttypes.behavior.additional_help_infos_evento"
+      description=""
+      provides=".additional_help_infos.IAdditionalHelpInfosEvento"
+      factory=".additional_help_infos.AdditionalHelpInfosEvento"
+      for="plone.app.contenttypes.interfaces.IEvent"
+      marker=".additional_help_infos.IAdditionalHelpInfosEvento"
       />
 
     <plone:behavior
