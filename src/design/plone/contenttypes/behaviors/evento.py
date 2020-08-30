@@ -214,13 +214,8 @@ class IEvento(model.Schema):
     model.fieldset(
         "informazioni",
         label=_("informazioni_label", default=u"Informazioni"),
-        fields=["patrocinato_da", "box_aiuto",],
+        fields=["patrocinato_da", "box_aiuto"],
     )
-    # model.fieldset(
-    #     "categorization",
-    #     label=_("categorization_label", default=u"Categorizzazione"),
-    #     fields=["tassonomia_argomenti", "subjects", "language"],
-    # )
     model.fieldset(
         "date_evento",
         label=_("date_evento_label", default=u"Date dell'evento"),
