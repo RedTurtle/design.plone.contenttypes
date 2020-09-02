@@ -193,6 +193,34 @@ class IEvento(model.Schema):
     )
 
     # TODO: come gestire correlati: novita'
+    model.fieldset(
+        "partecipanti",
+        label=_("partecipanti_label", default=u"Partecipanti"),
+        fields=["descrizione_destinatari", "persone_amministrazione"],
+    )
+    model.fieldset(
+        "costi", label=_("costi_label", default=u"Costi"), fields=["prezzo"],
+    )
+    model.fieldset(
+        "contatti",
+        label=_("contatti_label", default=u"Contatti"),
+        fields=[
+            "organizzato_da_esterno",
+            "organizzato_da_interno",
+            "contatto_reperibilita",
+            "evento_supportato_da",
+        ],
+    )
+    model.fieldset(
+        "informazioni",
+        label=_("informazioni_label", default=u"Informazioni"),
+        fields=["patrocinato_da", "box_aiuto"],
+    )
+    model.fieldset(
+        "date_evento",
+        label=_("date_evento_label", default=u"Date dell'evento"),
+        fields=["orari"],
+    )
 
 
 @implementer(IEvento)

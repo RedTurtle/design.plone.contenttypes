@@ -17,7 +17,10 @@ from plone.restapi.testing import RelativeSession
 import unittest
 
 WIDGET_PROPERTY_CHECKS = {
-    "tassonomia_argomenti": {"selectableTypes": ["Pagina Argomento"]},
+    "tassonomia_argomenti": {
+        "maximumSelectionSize": 10,
+        "selectableTypes": ["Pagina Argomento"],
+    },
     "ufficio_responsabile": {
         "maximumSelectionSize": 1,
         "selectableTypes": ["UnitaOrganizzativa"],
@@ -96,6 +99,7 @@ class TestServizioApi(unittest.TestCase):
         response = self.api_session.get("/@types/Servizio")
         res = response.json()
         properties = res["properties"]
+
         for field in WIDGET_PROPERTY_CHECKS:
             self.assertTrue(
                 properties[field]["widgetOptions"]["pattern_options"]

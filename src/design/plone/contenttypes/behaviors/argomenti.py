@@ -23,15 +23,21 @@ class IArgomenti(model.Schema):
             default="Seleziona una lista di argomenti d'interesse per questo"
             " contenuto.",
         ),
-        default=[],
-        value_type=RelationChoice(vocabulary="plone.app.vocabularies.Catalog"),
+        value_type=RelationChoice(
+            title=_(u"Argomenti correlati"),
+            vocabulary="plone.app.vocabularies.Catalog",
+        ),
         required=False,
+        default=[],
     )
     form.widget(
         "tassonomia_argomenti",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={"selectableTypes": ["Pagina Argomento"]},
+        pattern_options={
+            "maximumSelectionSize": 10,
+            "selectableTypes": ["Pagina Argomento"],
+        },
     )
 
     model.fieldset(
@@ -46,6 +52,26 @@ class IArgomenti(model.Schema):
 @implementer(IArgomenti)
 @adapter(IDexterityContent)
 class Argomenti(object):
+    """
+    """
+
+    def __init__(self, context):
+        self.context = context
+
+
+@provider(IFormFieldProvider)
+class IArgomentiEvento(IArgomenti):
+    model.fieldset(
+        "categorization",
+        label=_(u"label_schema_categorization", default=u"Categorization"),
+        fields=["tassonomia_argomenti"],
+    )
+    form.order_before(tassonomia_argomenti="IDublinCore.subjects")
+
+
+@implementer(IArgomentiEvento)
+@adapter(IDexterityContent)
+class ArgomentiEvento(object):
     """
     """
 

@@ -16,6 +16,7 @@ import design.plone.contenttypes
 import plone.formwidget.geolocation
 import plone.restapi
 import redturtle.volto
+from zope.configuration import xmlconfig
 
 
 class DesignPloneContenttypesLayer(PloneSandboxLayer):
@@ -30,11 +31,18 @@ class DesignPloneContenttypesLayer(PloneSandboxLayer):
         self.loadZCML(package=collective.folderishtypes)
         self.loadZCML(package=collective.venue)
         self.loadZCML(package=collective.volto.cookieconsent)
-        self.loadZCML(package=design.plone.contenttypes)
+        self.loadZCML(
+            package=design.plone.contenttypes, context=configurationContext
+        )
         self.loadZCML(package=plone.formwidget.geolocation)
         self.loadZCML(package=plone.restapi)
         self.loadZCML(package=redturtle.volto)
         self.loadZCML(name="overrides.zcml", package=design.plone.contenttypes)
+        xmlconfig.file(
+            "configure.zcml",
+            design.plone.contenttypes,
+            context=configurationContext,
+        )
 
     def setUpPloneSite(self, portal):
         applyProfile(portal, "design.plone.contenttypes:default")

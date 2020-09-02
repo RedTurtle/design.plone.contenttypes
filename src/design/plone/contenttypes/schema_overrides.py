@@ -19,6 +19,7 @@ class SchemaTweaks(object):
         self.schema = schema
 
     def __call__(self):
+
         if self.schema.getName() == "IRelatedItems":
             fieldset = Fieldset(
                 "correlati",
@@ -28,29 +29,31 @@ class SchemaTweaks(object):
             self.schema._Element__tagged_values[
                 "plone.supermodel.fieldsets"
             ] = [fieldset]
+        if self.schema.getName() == "IEventBasic":
+            fieldset = Fieldset(
+                "date_evento",
+                label=_("date_evento_label", default=u"Date dell'evento"),
+                fields=["start", "end", "whole_day", "open_end", "sync_uid"],
+            )
+            self.schema._Element__tagged_values[
+                "plone.supermodel.fieldsets"
+            ] = [fieldset]
+        if self.schema.getName() == "IEventRecurrence":
+            fieldset = Fieldset(
+                "date_evento",
+                label=_("date_evento_label", default=u"Date dell'evento"),
+                fields=["recurrence"],
+            )
+            self.schema._Element__tagged_values[
+                "plone.supermodel.fieldsets"
+            ] = [fieldset]
 
-        # fieldsets = []
-        # if self.schema.getName() == "IRelatedItems":
-        #     fieldset_correlati = Fieldset(
-        #         "correlati",
-        #         label=_("correlati_label", default=u"Correlati"),
-        #         fields=["relatedItems"],
-        #     )
-        #     fieldsets.append(fieldset_correlati)
-        # if self.schema.getName() in ("IEventBasic", "IEventRecurrence"):
-        #     fieldset_evento_date = Fieldset(
-        #         "date_evento",
-        #         label=_("date_evento_label", default=u"Date dell'evento"),
-        #         fields=[
-        #             "start",
-        #             "end",
-        #             "whole_day",
-        #             "open_end",
-        #             "sync_uid",
-        #             "recurrence",
-        #         ],
-        #     )
-        #     fieldsets.append(fieldset_evento_date)
-        # self.schema._Element__tagged_values[
-        #     "plone.supermodel.fieldsets"
-        # ] = fieldsets
+        if self.schema.getName() == "IEventContact":
+            fieldset_informazioni = Fieldset(
+                "informazioni",
+                label=_("informazioni_label", default=u"Informazioni"),
+                fields=["event_url"],
+            )
+            self.schema._Element__tagged_values[
+                "plone.supermodel.fieldsets"
+            ] = [fieldset_informazioni]

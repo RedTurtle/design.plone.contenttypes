@@ -9,7 +9,9 @@ from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import SITE_OWNER_PASSWORD
 from plone.app.testing import TEST_USER_ID
 from plone.restapi.testing import RelativeSession
-
+from design.plone.contenttypes.schema_overrides import SchemaTweaks
+from zope.component import provideAdapter
+from plone.autoform.interfaces import IFormFieldProvider
 import transaction
 import unittest
 
@@ -40,10 +42,10 @@ class TestEvent(unittest.TestCase):
                 "plone.constraintypes",
                 "volto.blocks",
                 "design.plone.contenttypes.behavior.evento",
-                "design.plone.contenttypes.behavior.argomenti",
-                "design.plone.contenttypes.behavior.additional_help_infos",
+                "design.plone.contenttypes.behavior.argomenti_evento",
+                "design.plone.contenttypes.behavior.additional_help_infos_evento",  # noqa
                 "design.plone.contenttypes.behavior.strutture_correlate",
-                "design.plone.contenttypes.behavior.luoghi_correlati",
+                "design.plone.contenttypes.behavior.luoghi_correlati_evento",
                 "plone.leadimage",
             ),
         )
@@ -69,6 +71,13 @@ class TestEventApi(unittest.TestCase):
         self.api_session = RelativeSession(self.portal_url)
         self.api_session.headers.update({"Accept": "application/json"})
         self.api_session.auth = (SITE_OWNER_NAME, SITE_OWNER_PASSWORD)
+        self.event = api.content.create(
+            container=self.portal, type="Event", title="Evento"
+        )
+        provideAdapter(
+            SchemaTweaks, (IFormFieldProvider,), name="schema.tweaks",
+        )
+        transaction.commit()
 
     def tearDown(self):
         self.api_session.close()
@@ -123,3 +132,27 @@ class TestEventApi(unittest.TestCase):
         self.assertEqual(multimedia_wf, "published")
         self.assertEqual(sponsor_wf, "published")
         self.assertEqual(documenti_wf, "published")
+
+    def test_fieldsets(self):
+        response = self.api_session.get("/@types/Event")
+        fieldsets = response.json()["fieldsets"]
+        # can't provide schema.tweaks adapter... let's check if we have all
+        # expected fieldsets...
+        self.assertEqual(
+            [x["id"] for x in fieldsets],
+            [
+                "default",
+                "date_evento",
+                "partecipanti",
+                "dove",
+                "costi",
+                "contatti",
+                "informazioni",
+                "correlati",
+                "categorization",
+                "dates",
+                "layout",
+                "ownership",
+                "settings",
+            ],
+        )

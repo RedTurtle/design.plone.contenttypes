@@ -33,7 +33,7 @@ class IServiziCorrelati(model.Schema):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "recentlyUsed": True,
+            "maximumSelectionSize": 10,
             "selectableTypes": ["Servizio"],
         },
     )
