@@ -208,11 +208,6 @@ class ILuogo(model.Schema):
     form.order_after(circoscrizione="IGeolocatable.coordinates")
     form.order_after(quartiere="IGeolocatable.coordinates")
 
-    # model.fieldset(
-    #     "correlati",
-    #     label=_("correlati_label", default=u"Correlati"),
-    #     fields=["struttura_responsabile_correlati"],
-    # )
     model.fieldset(
         "dove",
         label=_("dove_label", default=u"Dove"),

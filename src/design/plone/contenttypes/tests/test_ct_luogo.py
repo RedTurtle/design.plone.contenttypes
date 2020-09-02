@@ -183,5 +183,5 @@ class TestLuogoApi(unittest.TestCase):
         # expected fieldsets...
         self.assertEqual(
             [x["id"] for x in fieldsets],
-            ["default", "dove", "contatti", "categorization",],
+            ["default", "dove", "contatti", "categorization"],
         )
