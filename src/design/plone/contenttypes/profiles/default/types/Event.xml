@@ -16,5 +16,10 @@
     <element value="collective.venue.behaviors.ILocation" remove="True"/>
     <element value="plone.eventlocation" remove="True"/>
     <element value="plone.eventattendees" remove="True"/>
+    <element value="design.plone.contenttypes.behavior.argomenti" remove="True"/>
+    <element value="design.plone.contenttypes.behavior.additional_help_infos" remove="True"/>
+    <element value="design.plone.contenttypes.behavior.luoghi_correlati" remove="True"/>
+    
+
   </property>
 </object>
