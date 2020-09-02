@@ -77,3 +77,23 @@ class ArgomentiEvento(object):
 
     def __init__(self, context):
         self.context = context
+
+
+@provider(IFormFieldProvider)
+class IArgomentiLuogo(IArgomenti):
+    model.fieldset(
+        "categorization",
+        label=_(u"label_schema_categorization", default=u"Categorization"),
+        fields=["tassonomia_argomenti"],
+    )
+    form.order_before(tassonomia_argomenti="ICategorization.subjects")
+
+
+@implementer(IArgomentiLuogo)
+@adapter(IDexterityContent)
+class ArgomentiLuogo(object):
+    """
+    """
+
+    def __init__(self, context):
+        self.context = context

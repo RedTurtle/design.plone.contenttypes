@@ -12,16 +12,6 @@ from design.plone.contenttypes import _
 
 @implementer(IPublishTraverse)
 class TypesGet(BaseGet):
-    def customize_venue_schema(self, result):
-        if "fieldsets" in result:
-            ids = [x["id"] for x in result["fieldsets"]]
-            correlati_index = ids.index("correlati")
-            contatti_index = ids.index("contatti")
-            result["fieldsets"].insert(
-                correlati_index + 1, result["fieldsets"].pop(contatti_index),
-            )
-        return result
-
     def customize_persona_schema(self, result):
         msgid = _(u"Nome e Cognome", default="Nome e cognome")
         result["properties"]["title"]["title"] = translate(
@@ -76,6 +66,41 @@ class TypesGet(BaseGet):
             )
         return result
 
+    def customize_luogo_schema(self, result):
+
+        if "fieldsets" in result:
+            # Esteso i behavior per farli specifici per il luogo, ma mette il
+            # campo in due fieldset. Lo togliamo da dove non serve.
+            ids = [x["id"] for x in result["fieldsets"]]
+            correlati_index = ids.index("correlati")
+            result["fieldsets"].pop(correlati_index)
+            fieldsets_weight = {
+                "default": 0,
+                "dove": 1,
+                "contatti": 2,
+                "categorizzazion": 3,
+            }
+            # sort against above dictionary. In case of fieldset not in this
+            # dict, apply 100 and sort by title
+            result["fieldsets"].sort(
+                key=lambda x: (fieldsets_weight.get(x["id"], 100), x["title"])
+            )
+            result["fieldsets"][ids.index("default")]["fields"] = [
+                "title",
+                "nome_alternativo",
+                "description",
+                "image",
+                "image_caption",
+                "descrizione_completa",
+                "elementi_di_interesse",
+                "modalita_accesso",
+                "orario_pubblico",
+                "ulteriori_informazioni",
+            ]
+            result["properties"].pop("notes")
+
+        return result
+
     def reply(self):
         result = super(TypesGet, self).reply()
 
@@ -112,6 +137,7 @@ class TypesGet(BaseGet):
                         geo_index,
                         result["fieldsets"][idx]["fields"].pop(sedi_index),
                     )
+
         if "properties" in result:
             if "country" in result["properties"]:
                 if not result["properties"]["country"].get("default", ""):
@@ -153,7 +179,7 @@ class TypesGet(BaseGet):
         # contains title. And this is ok for us.
         pt = self.request.PATH_INFO.split("/")[-1]
         if "title" in result and pt == "Venue":
-            result = self.customize_venue_schema(result)
+            result = self.customize_luogo_schema(result)
 
         if "title" in result and pt == "Persona":
             result = self.customize_persona_schema(result)

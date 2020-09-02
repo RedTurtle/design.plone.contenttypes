@@ -57,3 +57,22 @@ class SchemaTweaks(object):
             self.schema._Element__tagged_values[
                 "plone.supermodel.fieldsets"
             ] = [fieldset_informazioni]
+        if self.schema.getName() == "IAddress":
+            fieldset = Fieldset(
+                "dove",
+                label=_("dove_label", default=u"Dove"),
+                fields=["street", "zip_code", "city", "country"],
+            )
+            self.schema._Element__tagged_values[
+                "plone.supermodel.fieldsets"
+            ] = [fieldset]
+        if self.schema.getName() == "IGeolocatable":
+
+            fieldset = Fieldset(
+                "dove",
+                label=_("dove_label", default=u"Dove"),
+                fields=["geolocation"],
+            )
+            self.schema._Element__tagged_values[
+                "plone.supermodel.fieldsets"
+            ] = [fieldset]

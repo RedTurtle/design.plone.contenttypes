@@ -17,7 +17,8 @@ class IDescrizioneEstesa(model.Schema):
         title=_(u"descrizione_estesa", default=u"Descrizione estesa"),
         required=False,
         description=_(
-            "descrizione_estesa_help", default="Descrizione dettagliata e completa."
+            "descrizione_estesa_help",
+            default="Descrizione dettagliata e completa.",
         ),
     )
 

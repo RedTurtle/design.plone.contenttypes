@@ -39,6 +39,7 @@ class ILuogo(model.Schema):
         required=False,
     )
 
+    # moved to behavior under field name descrizione_estesa?
     descrizione_completa = RichText(
         title=_(u"descrizione_completa", default=u"Descrizione completa"),
         description=_(
@@ -81,10 +82,7 @@ class ILuogo(model.Schema):
     )
 
     riferimento_telefonico_luogo = schema.TextLine(
-        title=_(
-            u"riferimento_telefonico_luogo",
-            default=u"Riferimento telefonico luogo",
-        ),
+        title=_(u"riferimento_telefonico_luogo", default=u"Telefono",),
         description=_(
             u"help_riferimento_telefonico_luogo",
             default=u"Indicare un riferimento telefonico per poter contattare"
@@ -94,7 +92,7 @@ class ILuogo(model.Schema):
     )
 
     riferimento_mail_luogo = schema.TextLine(
-        title=_(u"riferimento_mail_luogo", default=u"Riferimento mail luogo"),
+        title=_(u"riferimento_mail_luogo", default=u"E-mail"),
         description=_(
             u"help_riferimento_mail_luogo",
             default=u"Indicare un indirizzo mail per poter contattare"
@@ -152,7 +150,7 @@ class ILuogo(model.Schema):
     riferimento_telefonico_struttura = schema.TextLine(
         title=_(
             u"riferimento_telefonico_struttura",
-            default=u"Riferimento telefonico della struttura responsabile",
+            default=u"Telefono della struttura responsabile",
         ),
         description=_(
             "help_riferimento_telefonico_struttura",
@@ -165,7 +163,7 @@ class ILuogo(model.Schema):
     riferimento_mail_struttura = schema.TextLine(
         title=_(
             u"riferimento_mail_struttura",
-            default=u"Riferimento mail della struttura responsabile",
+            default=u"E-mail della struttura responsabile",
         ),
         description=_(
             "help_riferimento_mail_struttura",
@@ -176,7 +174,7 @@ class ILuogo(model.Schema):
     )
 
     riferimento_web = schema.TextLine(
-        title=_(u"riferimento_web", default=u"Riferimento sito web"),
+        title=_(u"riferimento_web", default=u"Indirizzo web"),
         description=_(
             "help_riferimento_web",
             default="Indicare un indirizzo web utile per ottenere i contatti"
@@ -215,6 +213,12 @@ class ILuogo(model.Schema):
     #     label=_("correlati_label", default=u"Correlati"),
     #     fields=["struttura_responsabile_correlati"],
     # )
+    model.fieldset(
+        "dove",
+        label=_("dove_label", default=u"Dove"),
+        fields=["quartiere", "circoscrizione"],
+    )
+
     model.fieldset(
         "contatti",
         label=_("contatti_label", default=u"Contatti"),
