@@ -18,7 +18,7 @@ import unittest
 
 WIDGET_PROPERTY_CHECKS = {
     "tassonomia_argomenti": {
-        "maximumSelectionSize": 10,
+        "maximumSelectionSize": 20,
         "selectableTypes": ["Pagina Argomento"],
     },
     "ufficio_responsabile": {
