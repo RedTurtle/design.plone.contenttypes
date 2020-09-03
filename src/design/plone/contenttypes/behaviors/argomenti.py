@@ -35,7 +35,7 @@ class IArgomenti(model.Schema):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "maximumSelectionSize": 10,
+            "maximumSelectionSize": 20,
             "selectableTypes": ["Pagina Argomento"],
         },
     )
