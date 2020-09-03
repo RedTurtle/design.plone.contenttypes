@@ -35,7 +35,7 @@ class TestLuogo(unittest.TestCase):
                 "plone.app.content.interfaces.INameFromTitle",
                 "plone.app.dexterity.behaviors.metadata.IBasic",
                 "plone.app.dexterity.behaviors.metadata.ICategorization",
-                "design.plone.contenttypes.behavior.argomenti",
+                "design.plone.contenttypes.behavior.argomenti_luogo",
                 "plone.leadimage",
                 "collective.address.behaviors.IAddress",
                 "collective.geolocationbehavior.geolocation.IGeolocatable",
