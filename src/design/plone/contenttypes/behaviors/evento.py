@@ -59,7 +59,7 @@ class IEvento(model.Schema):
 
     # model.fieldset(
     #     "correlati",
-    #     label=_("correlati_label", default=u"Correlati"),
+    #     label=_("correlati_label", default="Contenuti collegati"),
     #     fields=["luoghi_correlati"],
     # )
 
@@ -126,7 +126,7 @@ class IEvento(model.Schema):
         ),
         required=False,
         description=_(
-            "organizzato_da_esterno_help",
+            "organizzato_da_interno_help",
             default="Se l'evento è organizzato direttamente dal comune,"
             " indicare l'ufficio/ente organizzatore.",
         ),
@@ -196,7 +196,7 @@ class IEvento(model.Schema):
     )
     model.fieldset(
         "informazioni",
-        label=_("informazioni_label", default=u"Informazioni"),
+        label=_("informazioni_label", default=u"Ulteriori informazioni"),
         fields=["patrocinato_da"],
     )
     model.fieldset(

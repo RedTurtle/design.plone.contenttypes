@@ -32,15 +32,12 @@ class IServiziCorrelati(model.Schema):
         "servizi_correlati",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={
-            "maximumSelectionSize": 10,
-            "selectableTypes": ["Servizio"],
-        },
+        pattern_options={"maximumSelectionSize": 10, "selectableTypes": ["Servizio"]},
     )
 
     model.fieldset(
         "correlati",
-        label=_("correlati_label", default=u"Correlati"),
+        label=_("correlati_label", default="Contenuti collegati"),
         fields=["servizi_correlati"],
     )
 

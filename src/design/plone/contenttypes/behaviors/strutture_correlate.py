@@ -39,7 +39,7 @@ class IStruttureCorrelate(model.Schema):
 
     model.fieldset(
         "correlati",
-        label=_("correlati_label", default=u"Correlati"),
+        label=_("correlati_label", default="Contenuti collegati"),
         fields=["strutture_politiche"],
     )
 

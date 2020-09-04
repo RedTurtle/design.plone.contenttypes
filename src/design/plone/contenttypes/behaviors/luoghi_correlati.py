@@ -17,8 +17,7 @@ class ILuoghiCorrelati(model.Schema):
     luoghi_correlati = RelationList(
         title=_("luoghi_correlati_label", default="Luoghi correlati"),
         description=_(
-            "luoghi_correlati_help",
-            default="Seleziona una lista di luoghi citati.",
+            "luoghi_correlati_help", default="Seleziona una lista di luoghi citati."
         ),
         default=[],
         value_type=RelationChoice(vocabulary="plone.app.vocabularies.Catalog"),
@@ -36,7 +35,7 @@ class ILuoghiCorrelati(model.Schema):
 
     model.fieldset(
         "correlati",
-        label=_("correlati_label", default=u"Correlati"),
+        label=_("correlati_label", default="Contenuti collegati"),
         fields=["luoghi_correlati"],
     )
 
@@ -56,17 +55,14 @@ class ILuoghiCorrelatiEvento(ILuoghiCorrelati):
     luoghi_correlati = RelationList(
         title=_("luoghi_correlati_evento_label", default="Luoghi dell'evento"),
         description=_(
-            "luoghi_correlati_help",
-            default="Seleziona una lista di luoghi citati.",
+            "luoghi_correlati_help", default="Seleziona una lista di luoghi citati."
         ),
         default=[],
         value_type=RelationChoice(vocabulary="plone.app.vocabularies.Catalog"),
         required=False,
     )
     model.fieldset(
-        "dove",
-        label=_("dove_label", default=u"Dove"),
-        fields=["luoghi_correlati"],
+        "dove", label=_("dove_label", default=u"Dove"), fields=["luoghi_correlati"]
     )
 
 

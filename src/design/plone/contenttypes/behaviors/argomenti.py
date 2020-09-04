@@ -24,8 +24,7 @@ class IArgomenti(model.Schema):
             " contenuto.",
         ),
         value_type=RelationChoice(
-            title=_(u"Argomenti correlati"),
-            vocabulary="plone.app.vocabularies.Catalog",
+            title=_(u"Argomenti correlati"), vocabulary="plone.app.vocabularies.Catalog"
         ),
         required=False,
         default=[],
@@ -42,7 +41,7 @@ class IArgomenti(model.Schema):
 
     model.fieldset(
         "correlati",
-        label=_("correlati_label", default=u"Correlati"),
+        label=_("correlati_label", default="Contenuti collegati"),
         fields=["tassonomia_argomenti"],
     )
 

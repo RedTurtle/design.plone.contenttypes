@@ -169,7 +169,7 @@ class IUnitaOrganizzativa(model.Schema):
     # custom fieldsets and order
     model.fieldset(
         "correlati",
-        label=_("correlati_label", default=u"Correlati"),
+        label=_("correlati_label", default="Contenuti collegati"),
         fields=["legami_con_altre_strutture"],
     )
 
