@@ -23,8 +23,7 @@ class ILuogo(model.Schema):
         title=_(u"quartiere", default=u"Quartiere"),
         description=_(
             u"help_quartiere",
-            default=u"Indicare l'eventuale"
-            " quartiere in cui si trova questo luogo",
+            default=u"Indicare l'eventuale" " quartiere in cui si trova questo luogo",
         ),
         required=False,
     )
@@ -64,8 +63,7 @@ class ILuogo(model.Schema):
         title=_(u"elementi_di_interesse", default=u"Elementi di interesse"),
         description=_(
             u"help_elementi_di_interesse",
-            default=u"Indicare eventuali elementi di interesse relativi al"
-            " luogo",
+            default=u"Indicare eventuali elementi di interesse relativi al" " luogo",
         ),
         required=False,
     )
@@ -82,8 +80,7 @@ class ILuogo(model.Schema):
 
     riferimento_telefonico_luogo = schema.TextLine(
         title=_(
-            u"riferimento_telefonico_luogo",
-            default=u"Riferimento telefonico luogo",
+            u"riferimento_telefonico_luogo", default=u"Riferimento telefonico luogo"
         ),
         description=_(
             u"help_riferimento_telefonico_luogo",
@@ -113,9 +110,12 @@ class ILuogo(model.Schema):
     )
 
     struttura_responsabile_correlati = RelationList(
-        title=u"Struttura responsabile del luogo",
+        title=_(
+            "struttura_responsabile_correlati",
+            default=u"Struttura responsabile del luogo",
+        ),
         description=_(
-            "struttura_responsabile_help",
+            "struttura_responsabile_correlati_help",
             default="Indicare la struttura responsabile del luogo qualora sia"
             " fra unità organizzative del comune inserite nel sito; altrimenti"
             " compilare i campi testuali relativi alla struttura responsabile",
@@ -212,7 +212,7 @@ class ILuogo(model.Schema):
 
     # model.fieldset(
     #     "correlati",
-    #     label=_("correlati_label", default=u"Correlati"),
+    #     label=_("correlati_label", default="Contenuti collegati"),
     #     fields=["struttura_responsabile_correlati"],
     # )
     model.fieldset(

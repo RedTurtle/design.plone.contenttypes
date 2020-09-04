@@ -37,7 +37,7 @@ class IDatasetCorrelati(model.Schema):
 
     model.fieldset(
         "correlati",
-        label=_("correlati_label", default=u"Correlati"),
+        label=_("correlati_label", default="Contenuti collegati"),
         fields=["dataset_correlati"],
     )
 

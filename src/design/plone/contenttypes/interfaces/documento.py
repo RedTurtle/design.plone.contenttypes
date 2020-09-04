@@ -149,8 +149,6 @@ class IDocumento(model.Schema):
         title=_(u"data_protocollo", default=u"Data del protocollo"), required=False
     )
 
-    box_aiuto = RichText(title=_(u"box_aiuto", default=u"Box di aiuto"), required=True)
-
     # come gestiamo "e' parte del life event"?
     # per ora gigavocabolario statico prendendo i valori da github e
     # accumunandoli in una mega lista

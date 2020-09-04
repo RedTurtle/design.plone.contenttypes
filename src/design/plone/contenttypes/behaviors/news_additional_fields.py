@@ -18,8 +18,7 @@ class INewsAdditionalFields(model.Schema):
     tipologia_notizia = schema.Choice(
         title=_("tipologia_notizia_label", default="Tipologia notizia"),
         description=_(
-            "tipologia_notizia_help",
-            default="Seleziona la tipologia della notizia.",
+            "tipologia_notizia_help", default="Seleziona la tipologia della notizia."
         ),
         required=True,
         vocabulary="design.plone.vocabularies.tipologie_notizia",
@@ -92,16 +91,13 @@ class INewsAdditionalFields(model.Schema):
         "notizie_correlate",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={
-            "maximumSelectionSize": 10,
-            "selectableTypes": ["News Item"],
-        },
+        pattern_options={"maximumSelectionSize": 10, "selectableTypes": ["News Item"]},
     )
 
     # custom fieldsets
     model.fieldset(
         "correlati",
-        label=_("correlati_label", default=u"Correlati"),
+        label=_("correlati_label", default="Contenuti collegati"),
         fields=["notizie_correlate"],
     )
 
