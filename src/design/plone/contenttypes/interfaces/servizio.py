@@ -18,7 +18,7 @@ class IServizio(model.Schema):
     # vocabolario o entrambi?
     # tipologia_servizio
     sottotitolo = schema.TextLine(
-        title=_(u"sottotitolo", default=u"Sottotitolo"),
+        title=_(u"sottotitolo_label", default=u"Sottotitolo"),
         description=_(
             "sottotitolo_help",
             default="Indica un eventuale sottotitolo/titolo alternativo per"
@@ -31,7 +31,7 @@ class IServizio(model.Schema):
     # solo se il servizio
     # non e' attivo
     stato_servizio = schema.Bool(
-        title=_(u"stato_servizio", default=u"Servizio non attivo"),
+        title=_(u"stato_servizio_label", default=u"Servizio non attivo"),
         required=False,
         description=_(
             "stato_servizio_help",
@@ -41,7 +41,7 @@ class IServizio(model.Schema):
 
     motivo_stato_servizio = RichText(
         title=_(
-            u"motivo_stato_servizio",
+            u"motivo_stato_servizio_label",
             default=u"Motivo dello stato del servizio nel caso non sia attivo",
         ),
         required=False,
@@ -51,18 +51,17 @@ class IServizio(model.Schema):
         ),
     )
 
-    descrizione_destinatari = RichText(
-        title=_(u"descrizione_destinatari", default=u"Descrizione destinatari"),
+    a_chi_si_rivolge = RichText(
+        title=_(u"a_chi_si_rivolge_label", default=u"A chi si rivolge"),
         required=False,
         description=_(
-            "descrizione_destinatari_help",
-            default="Descrizione dei principali interlocutori del servizio:"
-            " a chi si rivolge e chi può usufruirne.",
+            "a_chi_si_rivolge_help",
+            default="A chi si rivolge questo servizio e chi può usufruirne.",
         ),
     )
 
     chi_puo_presentare = RichText(
-        title=_(u"chi_puo_presentare", default=u"Chi può presentare"),
+        title=_(u"chi_puo_presentare_label", default=u"Chi può presentare"),
         required=False,
         description=_(
             "chi_puo_presentare_help",
@@ -72,7 +71,7 @@ class IServizio(model.Schema):
     )
 
     copertura_geografica = RichText(
-        title=_(u"copertura_geografica", default=u"Copertura geografica"),
+        title=_(u"copertura_geografica_label", default=u"Copertura geografica"),
         required=False,
         description=_(
             "copertura_geografica_help",
@@ -132,34 +131,49 @@ class IServizio(model.Schema):
         required=False,
     )
 
-    canale_fisico = RichText(
-        title=_(u"canale_fisico", default=u"Canale fisico"),
+    dove_rivolgersi = RelationList(
+        title=u"Dove rivolgersi",
+        default=[],
+        value_type=RelationChoice(vocabulary="plone.app.vocabularies.Catalog"),
+        required=False,
         description=_(
-            "canale_fisico_help",
-            default="Indica le sedi dove è possibile usufruire del servizio.",
+            "dove_rivolgersi_help",
+            default="Seleziona una lista delle sedi e dei luoghi in cui è presente"
+            " questo servizio.",
+        ),
+    )
+
+    dove_rivolgersi_extra = RichText(
+        title=_(
+            u"dove_rivolgersi_extra",
+            default=u"Dove rivolgersi: informazioni aggiuntive",
+        ),
+        description=_(
+            "dove_rivolgersi_extra_help",
+            default="Indicare eventuali informazioni aggiuntive riguardo al dove "
+            "rivolgersi per questo servizio.",
         ),
         required=False,
     )
 
-    canale_fisico_prenotazione = RichText(
-        title=_(u"canale_fisico_prenotazione", default=u"Canale fisico - prenotazione"),
+    prenota_appuntamento = RichText(
+        title=_(u"prenota_appuntamento", default=u"Prenota un appuntamento"),
         description=_(
-            "canale_fisico_prenotazione_help",
+            "prenota_appuntamento_help",
             default="Se è possibile prenotare un'appuntamento, indicare"
-            " il collegamento al servizio di prenotazione appuntamenti"
-            " del Comune.",
+            " le informazioni necessarie e il collegamento al servizio di "
+            "prenotazione appuntamenti del Comune.",
         ),
         required=False,
     )
 
-    fasi_scadenze = RichText(
-        title=_(u"fasi_scadenze", default=u"Fasi e scadenze"),
+    tempi_e_scadenze = RichText(
+        title=_(u"tempi_e_scadenze", default=u"Tempi e scadenze"),
         required=False,
         description=_(
-            "fasi_scadenze_help",
-            default="Prevedere una data di scadenza del servizio."
-            " Se il servizio è diviso in fasi, descriverne modalità e"
-            " tempistiche.",
+            "tempi_e_scadenze_help",
+            default="Descrivere le informazioni dettagliate riguardo eventuali tempi"
+            " e scadenze di questo servizio.",
         ),
     )
 
@@ -218,7 +232,7 @@ class IServizio(model.Schema):
 
     area = RelationList(
         title=_(u"area", default=u"Area"),
-        required=True,
+        required=False,
         default=[],
         description=_(
             "area_help", default="Seleziona l'area da cui dipende questo servizio."
@@ -298,17 +312,6 @@ class IServizio(model.Schema):
         ),
     )
 
-    box_aiuto = RichText(
-        title=_(u"box_aiuto", default=u"Box di aiuto"),
-        required=False,
-        description=_(
-            "box_aiuto_help",
-            default="Ulteriori informazioni sul Servizio, FAQ, eventuali"
-            " riferimenti normativi ed eventuali contatti di supporto"
-            " all'utente.",
-        ),
-    )
-
     servizi_collegati = RelationList(
         title=u"Servizi collegati",
         default=[],
@@ -322,31 +325,17 @@ class IServizio(model.Schema):
         ),
     )
 
-    sedi_e_luoghi = RelationList(
-        title=u"Dove trovarci",
-        default=[],
-        value_type=RelationChoice(
-            title=_(u"Dove trovarci"), vocabulary="plone.app.vocabularies.Catalog"
-        ),
-        required=False,
-        description=_(
-            "sedi_e_luoghi_help",
-            default="Seleziona la lista delle sedi e dei luoghi collegati"
-            " a questo servizio.",
-        ),
-    )
-
     # custom widgets
     form.widget(
-        "sedi_e_luoghi",
+        "dove_rivolgersi",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "maximumSelectionSize": 10,
-            "selectableTypes": ["Venue"],
-            # "basePath": "/",
+            "selectableTypes": ["Venue", "UnitaOrganizzativa"],
         },
     )
+
     form.widget(
         "area",
         RelatedItemsFieldWidget,
@@ -389,16 +378,83 @@ class IServizio(model.Schema):
     )
 
     # custom fieldset and order
-    model.fieldset("correlati", fields=["servizi_collegati", "altri_documenti"])
+    model.fieldset(
+        "a_chi_si_rivolge",
+        label=_("a_chi_si_rivolge_label", default=u"A chi si rivolge"),
+        fields=["a_chi_si_rivolge", "chi_puo_presentare", "copertura_geografica"],
+    )
+    model.fieldset(
+        "accedi_al_servizio",
+        label=_("accedi_al_servizio_label", default=u"Accedi al servizio"),
+        fields=[
+            "come_si_fa",
+            "cosa_si_ottiene",
+            "procedure_collegate",
+            "canale_digitale",
+            "autenticazione",
+            "dove_rivolgersi",
+            "dove_rivolgersi_extra",
+            "prenota_appuntamento",
+        ],
+    )
+    model.fieldset(
+        "cosa_serve",
+        label=_("cosa_serve_label", default=u"Cosa serve"),
+        fields=["cosa_serve"],
+    )
+    model.fieldset(
+        "costi_e_vincoli",
+        label=_("costi_e_vincoli_label", default=u"Costi e vincoli"),
+        fields=["costi", "vincoli"],
+    )
+
+    model.fieldset(
+        "tempi_e_scadenze",
+        label=_("tempi_e_scadenze_label", default=u"Tempi e scadenze"),
+        fields=["tempi_e_scadenze"],
+    )
+
+    model.fieldset(
+        "casi_particolari",
+        label=_("casi_particolari_label", default=u"Casi particolari"),
+        fields=["casi_particolari"],
+    )
+
+    model.fieldset(
+        "contatti",
+        label=_("contatti_label", default=u"Contatti"),
+        fields=["ufficio_responsabile", "area"],
+    )
+    model.fieldset(
+        "documenti",
+        label=_("documenti_label", default=u"Documenti"),
+        fields=["altri_documenti"],
+    )
+    model.fieldset(
+        "link_utili",
+        label=_("link_utili_label", default=u"Link utili"),
+        fields=["link_siti_esterni"],
+    )
+
+    model.fieldset(
+        "correlati",
+        label=_("correlati_label", default=u"Contenuti collegati"),
+        fields=["servizi_collegati", "altri_documenti"],
+    )
+
+    model.fieldset(
+        "categorization",
+        fields=["life_event", "codice_ipa", "settore_merceologico", "identificativo"],
+    )
 
     # SearchableText fields
     dexteritytextindexer.searchable("sottotitolo")
-    dexteritytextindexer.searchable("descrizione_destinatari")
+    dexteritytextindexer.searchable("a_chi_si_rivolge")
     dexteritytextindexer.searchable("chi_puo_presentare")
     dexteritytextindexer.searchable("come_si_fa")
     dexteritytextindexer.searchable("cosa_si_ottiene")
     dexteritytextindexer.searchable("cosa_serve")
-    dexteritytextindexer.searchable("box_aiuto")
+    dexteritytextindexer.searchable("ulteriori_informazioni")
     dexteritytextindexer.searchable("area")
     dexteritytextindexer.searchable("ufficio_responsabile")
     dexteritytextindexer.searchable("copertura_geografica")

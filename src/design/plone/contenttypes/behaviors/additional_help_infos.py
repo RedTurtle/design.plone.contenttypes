@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from collective import dexteritytextindexer
 from design.plone.contenttypes import _
 from plone.app.textfield import RichText
 from plone.autoform.interfaces import IFormFieldProvider
@@ -18,11 +19,18 @@ class IAdditionalHelpInfos(model.Schema):
         title=_(u"ulteriori_informazioni", default=u"Ulteriori informazioni"),
         description=_(
             "ulteriori_informazioni_help",
-            default="Ulteriori informazioni non contemplate"
-            " dai campi precedenti.",
+            default="Ulteriori informazioni non contemplate" " dai campi precedenti.",
         ),
         required=False,
     )
+
+    model.fieldset(
+        "informazioni",
+        label=_("informazioni_label", default=u"Ulteriori informazioni"),
+        fields=["ulteriori_informazioni"],
+    )
+
+    dexteritytextindexer.searchable("ulteriori_informazioni")
 
 
 @implementer(IAdditionalHelpInfos)
@@ -38,11 +46,6 @@ class AdditionalHelpInfos(object):
 @provider(IFormFieldProvider)
 class IAdditionalHelpInfosEvento(IAdditionalHelpInfos):
 
-    model.fieldset(
-        "informazioni",
-        label=_("informazioni_label", default=u"Informazioni"),
-        fields=["ulteriori_informazioni"],
-    )
     form.order_before(ulteriori_informazioni="IEventContact.event_url")
 
 

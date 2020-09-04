@@ -36,21 +36,6 @@ class IUnitaOrganizzativa(model.Schema):
         ),
         required=False,
     )
-    model.fieldset(
-        "correlati",
-        label=_("correlati_label", default=u"Correlati"),
-        fields=["legami_con_altre_strutture"],
-    )
-
-    form.widget(
-        "legami_con_altre_strutture",
-        RelatedItemsFieldWidget,
-        vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={
-            "maximumSelectionSize": 10,
-            "selectableTypes": ["UnitaOrganizzativa"],
-        },
-    )
 
     responsabile = RelationList(
         title=u"Responsabile",
@@ -63,16 +48,6 @@ class IUnitaOrganizzativa(model.Schema):
         ),
         default=[],
         required=False,
-    )
-    form.widget(
-        "responsabile",
-        RelatedItemsFieldWidget,
-        vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={
-            "maximumSelectionSize": 1,
-            "selectableTypes": ["Persona"],
-            # "basePath": "/amministrazione",
-        },
     )
 
     tipologia_organizzazione = schema.Choice(
@@ -103,16 +78,6 @@ class IUnitaOrganizzativa(model.Schema):
         required=False,
         default=[],
     )
-    form.widget(
-        "assessore_riferimento",
-        RelatedItemsFieldWidget,
-        vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={
-            "maximumSelectionSize": 1,
-            "selectableTypes": ["Persona"],
-            # "basePath": "/amministrazione",
-        },
-    )
 
     # vocabolario di riferimento sara' dinamico con i content type persona
     persone_struttura = RelationList(
@@ -128,47 +93,9 @@ class IUnitaOrganizzativa(model.Schema):
         ),
         required=False,
     )
-    form.widget(
-        "persone_struttura",
-        RelatedItemsFieldWidget,
-        vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={
-            "maximumSelectionSize": 10,
-            "selectableTypes": ["Persona"],
-            # "basePath": "/amministrazione",
-        },
-    )
-
-    # # vocabolario di riferimento sara' da definire, probabilmente dinamico
-    # dai ct servizi presenti nella macro Amministrazione"
-    # servizi_offerti = RelationList(
-    #     title=u"Servizi offerti",
-    #     default=[],
-    #     value_type=RelationChoice(
-    #         title=_(u"Servizio"), vocabulary="plone.app.vocabularies.Catalog"
-    #     ),
-    #     required=False,
-    # )
-    # form.widget(
-    #     "servizi_offerti",
-    #     RelatedItemsFieldWidget,
-    #     pattern_options={
-    #         "maximumSelectionSize": 10,
-    #         "selectableTypes": ["Servizio"],
-    #         # "basePath": "/servizi",
-    #     },
-    # )
 
     ulteriori_informazioni = RichText(
         title=_(u"unteriori_informazioni", default=u"Informazioni"), required=False
-    )
-
-    box_aiuto = RichText(
-        title=_(u"box_aiuto", default=u"Box di aiuto"),
-        required=False,
-        description=_(
-            "uo_box_aiuto_help", default="Eventuali contatti di supporto all'utente."
-        ),
     )
 
     sedi = RelationList(
@@ -182,6 +109,52 @@ class IUnitaOrganizzativa(model.Schema):
         ),
         required=False,
     )
+
+    contact_info = RichText(
+        title=_(u"contact_info", default=u"Informazioni di contatto generiche"),
+        required=False,
+        description=_(
+            "uo_contact_info_description",
+            default="Eventuali informazioni di contatto generiche",
+        ),
+    )
+
+    #  custom widgets
+    form.widget(
+        "persone_struttura",
+        RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
+        pattern_options={"maximumSelectionSize": 10, "selectableTypes": ["Persona"]},
+    )
+    form.widget(
+        "legami_con_altre_strutture",
+        RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
+        pattern_options={
+            "maximumSelectionSize": 10,
+            "selectableTypes": ["UnitaOrganizzativa"],
+        },
+    )
+    form.widget(
+        "responsabile",
+        RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
+        pattern_options={
+            "maximumSelectionSize": 1,
+            "selectableTypes": ["Persona"],
+            # "basePath": "/amministrazione",
+        },
+    )
+    form.widget(
+        "assessore_riferimento",
+        RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
+        pattern_options={
+            "maximumSelectionSize": 1,
+            "selectableTypes": ["Persona"],
+            # "basePath": "/amministrazione",
+        },
+    )
     form.widget(
         "sedi",
         RelatedItemsFieldWidget,
@@ -192,14 +165,15 @@ class IUnitaOrganizzativa(model.Schema):
             # "basePath": "/servizi",
         },
     )
-    contact_info = RichText(
-        title=_(u"contact_info", default=u"Informazioni di contatto generiche"),
-        required=False,
-        description=_(
-            "uo_contact_info_description",
-            default="Eventuali informazioni di contatto generiche",
-        ),
+
+    # custom fieldsets and order
+    model.fieldset(
+        "correlati",
+        label=_("correlati_label", default=u"Correlati"),
+        fields=["legami_con_altre_strutture"],
     )
+
+    form.order_after(sedi="IGeolocatable.geolocation")
 
     # SearchableText indexers
     dexteritytextindexer.searchable("competenze")

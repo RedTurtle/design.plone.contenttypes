@@ -43,10 +43,11 @@ class TestEvent(unittest.TestCase):
                 "volto.blocks",
                 "design.plone.contenttypes.behavior.evento",
                 "design.plone.contenttypes.behavior.argomenti_evento",
-                "design.plone.contenttypes.behavior.additional_help_infos_evento",  # noqa
+                "design.plone.contenttypes.behavior.additional_help_infos_evento",
                 "design.plone.contenttypes.behavior.strutture_correlate",
                 "design.plone.contenttypes.behavior.luoghi_correlati_evento",
                 "plone.leadimage",
+                "design.plone.contenttypes.behavior.additional_help_infos",
             ),
         )
 
@@ -74,9 +75,7 @@ class TestEventApi(unittest.TestCase):
         self.event = api.content.create(
             container=self.portal, type="Event", title="Evento"
         )
-        provideAdapter(
-            SchemaTweaks, (IFormFieldProvider,), name="schema.tweaks",
-        )
+        provideAdapter(SchemaTweaks, (IFormFieldProvider,), name="schema.tweaks")
         transaction.commit()
 
     def tearDown(self):
@@ -103,56 +102,25 @@ class TestEventApi(unittest.TestCase):
         event = self.portal["bar"]
 
         self.assertEqual(
-            sorted(["multimedia", "documenti", "sponsor_evento"]),
-            sorted(event.keys()),
+            sorted(["multimedia", "documenti", "sponsor_evento"]), sorted(event.keys())
         )
 
         self.assertEqual(event["multimedia"].portal_type, "Document")
         self.assertEqual(event["multimedia"].constrain_types_mode, 1)
-        self.assertEqual(
-            event["multimedia"].locally_allowed_types, ("Image", "Link")
-        )
+        self.assertEqual(event["multimedia"].locally_allowed_types, ("Image", "Link"))
 
         self.assertEqual(event["sponsor_evento"].portal_type, "Document")
         self.assertEqual(event["sponsor_evento"].constrain_types_mode, 1)
-        self.assertEqual(
-            event["sponsor_evento"].locally_allowed_types, ("Link",)
-        )
+        self.assertEqual(event["sponsor_evento"].locally_allowed_types, ("Link",))
 
         self.assertEqual(event["documenti"].portal_type, "Document")
         self.assertEqual(event["documenti"].constrain_types_mode, 1)
-        self.assertEqual(
-            event["documenti"].locally_allowed_types, ("File",),
-        )
+        self.assertEqual(event["documenti"].locally_allowed_types, ("File",))
 
-        multimedia_wf = api.content.get_state(obj=event["multimedia"],)
-        sponsor_wf = api.content.get_state(obj=event["sponsor_evento"],)
-        documenti_wf = api.content.get_state(obj=event["documenti"],)
+        multimedia_wf = api.content.get_state(obj=event["multimedia"])
+        sponsor_wf = api.content.get_state(obj=event["sponsor_evento"])
+        documenti_wf = api.content.get_state(obj=event["documenti"])
 
         self.assertEqual(multimedia_wf, "published")
         self.assertEqual(sponsor_wf, "published")
         self.assertEqual(documenti_wf, "published")
-
-    def test_fieldsets(self):
-        response = self.api_session.get("/@types/Event")
-        fieldsets = response.json()["fieldsets"]
-        # can't provide schema.tweaks adapter... let's check if we have all
-        # expected fieldsets...
-        self.assertEqual(
-            [x["id"] for x in fieldsets],
-            [
-                "default",
-                "date_evento",
-                "partecipanti",
-                "dove",
-                "costi",
-                "contatti",
-                "informazioni",
-                "correlati",
-                "categorization",
-                "dates",
-                "layout",
-                "ownership",
-                "settings",
-            ],
-        )

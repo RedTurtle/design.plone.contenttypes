@@ -25,21 +25,12 @@ WIDGET_PROPERTY_CHECKS = {
         "maximumSelectionSize": 1,
         "selectableTypes": ["UnitaOrganizzativa"],
     },
-    "area": {
-        "maximumSelectionSize": 1,
-        "selectableTypes": ["UnitaOrganizzativa"],
-    },
-    "altri_documenti": {
+    "area": {"maximumSelectionSize": 1, "selectableTypes": ["UnitaOrganizzativa"]},
+    "altri_documenti": {"maximumSelectionSize": 10, "selectableTypes": ["Documento"]},
+    "servizi_collegati": {"maximumSelectionSize": 10, "selectableTypes": ["Servizio"]},
+    "dove_rivolgersi": {
         "maximumSelectionSize": 10,
-        "selectableTypes": ["Documento"],
-    },
-    "servizi_collegati": {
-        "maximumSelectionSize": 10,
-        "selectableTypes": ["Servizio"],
-    },
-    "sedi_e_luoghi": {
-        "maximumSelectionSize": 10,
-        "selectableTypes": ["Venue"],
+        "selectableTypes": ["Venue", "UnitaOrganizzativa"],
     },
 }
 
@@ -72,6 +63,7 @@ class TestServizio(unittest.TestCase):
                 "plone.leadimage",
                 "plone.relateditems",
                 "design.plone.contenttypes.behavior.argomenti",
+                "design.plone.contenttypes.behavior.additional_help_infos",
                 "collective.dexteritytextindexer",
             ),
         )
@@ -129,14 +121,14 @@ class TestServizioApi(unittest.TestCase):
         self.assertEqual(len(res), 1)
         self.assertEqual(res[0].UID, servizio.UID())
 
-    def test_descrizione_destinatari_indexed_in_searchabletext(self):
+    def test_a_chi_si_rivolge_indexed_in_searchabletext(self):
 
         #  Servizio is the only ct with this field
         servizio = api.content.create(
             container=self.portal,
             type="Servizio",
             title="Test servizio",
-            descrizione_destinatari=RichTextValue(
+            a_chi_si_rivolge=RichTextValue(
                 raw="destinatari",
                 mimeType="text/html",
                 outputMimeType="text/html",
@@ -229,14 +221,14 @@ class TestServizioApi(unittest.TestCase):
         self.assertEqual(len(res), 1)
         self.assertEqual(res[0].UID, servizio.UID())
 
-    def test_box_aiuto_indexed_in_searchabletext(self):
+    def test_ulteriori_informazioni_indexed_in_searchabletext(self):
 
         #  Servizio is the only ct with this field
         servizio = api.content.create(
             container=self.portal,
             type="Servizio",
             title="Test servizio",
-            box_aiuto=RichTextValue(
+            ulteriori_informazioni=RichTextValue(
                 raw="aiuto",
                 mimeType="text/html",
                 outputMimeType="text/html",

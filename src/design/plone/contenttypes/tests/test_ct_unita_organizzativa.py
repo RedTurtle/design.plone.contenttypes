@@ -99,6 +99,7 @@ class TestUO(unittest.TestCase):
                 "plone.relateditems",
                 "design.plone.contenttypes.behavior.argomenti",
                 "collective.dexteritytextindexer",
+                "design.plone.contenttypes.behavior.additional_help_infos",
             ),
         )
 

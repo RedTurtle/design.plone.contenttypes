@@ -102,11 +102,7 @@ class TestLuogoApi(unittest.TestCase):
 
         response = self.api_session.patch(
             venue.absolute_url(),
-            json={
-                "@type": "Venue",
-                "title": "Foo",
-                "geolocation": {"foo": "bar"},
-            },
+            json={"@type": "Venue", "title": "Foo", "geolocation": {"foo": "bar"}},
         )
         message = response.json()["message"]
 
@@ -150,35 +146,14 @@ class TestLuogoApi(unittest.TestCase):
         )
 
     def test_venue_services(self):
-        response = self.api_session.get(
-            self.venue.absolute_url() + "?fullobjects"
-        )
+        response = self.api_session.get(self.venue.absolute_url() + "?fullobjects")
         self.assertTrue(
-            response.json()["venue_services"][0]["@id"],
-            self.service.absolute_url(),
+            response.json()["venue_services"][0]["@id"], self.service.absolute_url()
         )
 
     def test_venue_news(self):
-        response = self.api_session.get(
-            self.venue.absolute_url() + "?fullobjects"
-        )
+        response = self.api_session.get(self.venue.absolute_url() + "?fullobjects")
 
         self.assertTrue(
             response.json()["related_news"][0]["@id"], self.news.absolute_url()
         )
-
-    # def test_venue_offices(self):
-    # Per ora non gestiamo ma gestiremo nel prossimo futuro
-    #     response = self.api_session.get(
-    #         self.venue.absolute_url() + "?fullobjects"
-    #     )
-    #     self.assertTrue(
-    #         response.json()["venue_offices"][0]["@id"], self.uo.absolute_url()
-    #     )
-
-    def test_venue_fieldsets(self):
-        response = self.api_session.get("/@types/Venue")
-        fieldsets = response.json()["fieldsets"]
-        self.assertEqual(fieldsets[0]["id"], "default")
-        self.assertEqual(fieldsets[1]["id"], "correlati")
-        self.assertEqual(fieldsets[2]["id"], "contatti")
