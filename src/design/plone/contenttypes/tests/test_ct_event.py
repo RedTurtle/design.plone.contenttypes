@@ -30,7 +30,6 @@ class TestEvent(unittest.TestCase):
             (
                 "plone.eventbasic",
                 "plone.eventrecurrence",
-                "plone.eventcontact",
                 "plone.dublincore",
                 "plone.namefromtitle",
                 "plone.allowdiscussion",
@@ -42,10 +41,10 @@ class TestEvent(unittest.TestCase):
                 "plone.constraintypes",
                 "volto.blocks",
                 "design.plone.contenttypes.behavior.evento",
-                "design.plone.contenttypes.behavior.additional_help_infos_evento",
                 "design.plone.contenttypes.behavior.strutture_correlate",
                 "design.plone.contenttypes.behavior.luoghi_correlati_evento",
                 "plone.leadimage",
+                "design.plone.contenttypes.behavior.argomenti",
                 "design.plone.contenttypes.behavior.additional_help_infos",
             ),
         )

@@ -7,7 +7,6 @@
  </property>
   <property name="behaviors" purge="false">
     <element value="design.plone.contenttypes.behavior.evento"/>
-    <element value="design.plone.contenttypes.behavior.additional_help_infos_evento"/>
     <element value="design.plone.contenttypes.behavior.strutture_correlate"/>
     <element value="design.plone.contenttypes.behavior.luoghi_correlati_evento"/>
     <element value="plone.leadimage"/>

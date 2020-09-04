@@ -38,6 +38,7 @@ def to_1001(context):
     to_remove = [
         "design.plone.contenttypes.behavior.luoghi_correlati",
         "design.plone.contenttypes.behavior.argomenti_evento",
+        "design.plone.contenttypes.behavior.additional_help_infos",
     ]
     portal_types["Event"].behaviors = tuple(
         [x for x in behaviors if x not in to_remove]

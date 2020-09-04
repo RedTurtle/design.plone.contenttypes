@@ -101,15 +101,6 @@
       for="plone.dexterity.interfaces.IDexterityContent"
       marker=".additional_help_infos.IAdditionalHelpInfos"
       />
-    <plone:behavior
-      title="Ulteriori campi aiuto testuali"
-      name="design.plone.contenttypes.behavior.additional_help_infos_evento"
-      description=""
-      provides=".additional_help_infos.IAdditionalHelpInfosEvento"
-      factory=".additional_help_infos.AdditionalHelpInfosEvento"
-      for="plone.app.contenttypes.interfaces.IEvent"
-      marker=".additional_help_infos.IAdditionalHelpInfosEvento"
-      />
 
     <plone:behavior
       title="Descrizione estesa"

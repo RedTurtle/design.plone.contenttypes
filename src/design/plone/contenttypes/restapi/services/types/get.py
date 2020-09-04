@@ -86,7 +86,7 @@ FIELDSETS_ORDER = {
         "dates",
         "categorization",
     ],
-    "Venue": ["default", "informazioni", "correlati", "contatti", "categorization"],
+    "Venue": ["default", "informazioni", "contatti", "categorization"],
 }
 
 

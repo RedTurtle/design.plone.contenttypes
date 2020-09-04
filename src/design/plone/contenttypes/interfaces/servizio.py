@@ -439,7 +439,7 @@ class IServizio(model.Schema):
     model.fieldset(
         "correlati",
         label=_("correlati_label", default=u"Contenuti collegati"),
-        fields=["servizi_collegati", "altri_documenti"],
+        fields=["servizi_collegati"],
     )
 
     model.fieldset(
@@ -454,7 +454,6 @@ class IServizio(model.Schema):
     dexteritytextindexer.searchable("come_si_fa")
     dexteritytextindexer.searchable("cosa_si_ottiene")
     dexteritytextindexer.searchable("cosa_serve")
-    dexteritytextindexer.searchable("ulteriori_informazioni")
     dexteritytextindexer.searchable("area")
     dexteritytextindexer.searchable("ufficio_responsabile")
     dexteritytextindexer.searchable("copertura_geografica")

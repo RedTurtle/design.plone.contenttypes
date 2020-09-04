@@ -34,8 +34,6 @@ WIDGET_PROPERTY_CHECKS = {
     },
 }
 
-FIELDS_IN_CORRELATI_TAB = ["servizi_collegati", "altri_documenti"]
-
 
 class TestServizio(unittest.TestCase):
     layer = DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING
@@ -98,14 +96,6 @@ class TestServizioApi(unittest.TestCase):
                 == WIDGET_PROPERTY_CHECKS[field]
             )
             self.assertTrue(properties[field]["type"] == "array")
-
-    def test_related_widgets_are_in_related_tab(self):
-        response = self.api_session.get("/@types/Servizio")
-        res = response.json()
-        for fieldset in res["fieldsets"]:
-            if fieldset["id"] == "correlati":
-                for field in FIELDS_IN_CORRELATI_TAB:
-                    self.assertTrue(field in fieldset["fields"])
 
     def test_sottotitolo_indexed_in_searchabletext(self):
         #  Servizio is the only ct with this field

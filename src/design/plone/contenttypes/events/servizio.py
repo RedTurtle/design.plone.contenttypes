@@ -14,14 +14,13 @@ def servizioCreateHandler(servizio, event):
     """
 
     for folder in [
-        {"id": "modulistica", "title": "Modulistica", "contains": ("File",)},
-        {"id": "allegati", "title": "Allegati", "contains": ("File",)},
+        {"id": "modulistica", "title": "Modulistica", "contains": ("File", "Link")},
+        {"id": "allegati", "title": "Allegati", "contains": ("File", "Link")},
     ]:
         if folder["id"] not in servizio.keys():
             child = api.content.create(
                 type="Document", title=folder["title"], container=servizio
             )
-        else:
             child = servizio[folder["id"]]
             childConstraints = ISelectableConstrainTypes(child)
             childConstraints.setConstrainTypesMode(1)

@@ -94,10 +94,6 @@ class IUnitaOrganizzativa(model.Schema):
         required=False,
     )
 
-    ulteriori_informazioni = RichText(
-        title=_(u"unteriori_informazioni", default=u"Informazioni"), required=False
-    )
-
     sedi = RelationList(
         title=u"Altre sedi",
         default=[],
