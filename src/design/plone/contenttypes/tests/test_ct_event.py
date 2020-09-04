@@ -42,7 +42,6 @@ class TestEvent(unittest.TestCase):
                 "plone.constraintypes",
                 "volto.blocks",
                 "design.plone.contenttypes.behavior.evento",
-                "design.plone.contenttypes.behavior.argomenti_evento",
                 "design.plone.contenttypes.behavior.additional_help_infos_evento",
                 "design.plone.contenttypes.behavior.strutture_correlate",
                 "design.plone.contenttypes.behavior.luoghi_correlati_evento",

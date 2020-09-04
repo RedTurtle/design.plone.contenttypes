@@ -193,7 +193,7 @@ msgstr ""
 msgid "Dataset collegato"
 msgstr ""
 
-#: design/plone/contenttypes/behaviors/configure.zcml:82
+#: design/plone/contenttypes/behaviors/configure.zcml:73
 msgid "Dataset correlati"
 msgstr ""
 
@@ -205,7 +205,7 @@ msgstr ""
 msgid "Denuncia crimini"
 msgstr ""
 
-#: design/plone/contenttypes/behaviors/configure.zcml:130
+#: design/plone/contenttypes/behaviors/configure.zcml:121
 msgid "Descrizione estesa"
 msgstr ""
 
@@ -326,7 +326,7 @@ msgstr ""
 msgid "Indicare le dimensioni delle lead image dei contenuti"
 msgstr ""
 
-#: design/plone/contenttypes/behaviors/configure.zcml:141
+#: design/plone/contenttypes/behaviors/configure.zcml:132
 msgid "Info per la testata"
 msgstr ""
 
@@ -390,7 +390,7 @@ msgstr ""
 msgid "Leggere"
 msgstr ""
 
-#: design/plone/contenttypes/behaviors/configure.zcml:63
+#: design/plone/contenttypes/behaviors/configure.zcml:54
 msgid "Luoghi correlati"
 msgstr ""
 
@@ -435,7 +435,7 @@ msgid "Nazione"
 msgstr ""
 
 #. Default: "Nome e cognome"
-#: design/plone/contenttypes/restapi/services/types/get.py:106
+#: design/plone/contenttypes/restapi/services/types/get.py:96
 msgid "Nome e Cognome"
 msgstr ""
 
@@ -589,7 +589,7 @@ msgstr ""
 msgid "Servizi collegati"
 msgstr ""
 
-#: design/plone/contenttypes/behaviors/configure.zcml:92
+#: design/plone/contenttypes/behaviors/configure.zcml:83
 msgid "Servizi correlati"
 msgstr ""
 
@@ -634,7 +634,7 @@ msgstr ""
 msgid "Struttura responsabile"
 msgstr ""
 
-#: design/plone/contenttypes/behaviors/configure.zcml:102
+#: design/plone/contenttypes/behaviors/configure.zcml:93
 msgid "Strutture correlate"
 msgstr ""
 
@@ -682,7 +682,7 @@ msgstr ""
 msgid "Ufficio responsabile"
 msgstr ""
 
-#: design/plone/contenttypes/behaviors/configure.zcml:112
+#: design/plone/contenttypes/behaviors/configure.zcml:103
 msgid "Ulteriori campi aiuto testuali"
 msgstr ""
 
@@ -983,9 +983,9 @@ msgid "copertura_geografica_label"
 msgstr ""
 
 #. Default: "Contenuti collegati"
-#: design/plone/contenttypes/behaviors/argomenti.py:44
 #: design/plone/contenttypes/behaviors/dataset_correlati.py:40
 #: design/plone/contenttypes/behaviors/luoghi_correlati.py:38
+#: design/plone/contenttypes/behaviors/news_additional_fields.py:100
 msgid "correlati_label"
 msgstr ""
 
@@ -1354,11 +1354,6 @@ msgstr ""
 #: design/plone/contenttypes/behaviors/evento.py:199
 #: design/plone/contenttypes/schema_overrides.py:54
 msgid "informazioni_label"
-msgstr ""
-
-#. Default: "Categorization"
-#: design/plone/contenttypes/behaviors/argomenti.py:65
-msgid "label_schema_categorization"
 msgstr ""
 
 #. Default: "Selezionare la lista di strutture e/o uffici collegati a questa unità organizzativa."

@@ -31,6 +31,18 @@ def update_controlpanel(context):
 def to_1001(context):
 
     update_types(context)
+
+    # cleanup event behaviors
+    portal_types = api.portal.get_tool(name="portal_types")
+    behaviors = portal_types["Event"].behaviors
+    to_remove = [
+        "design.plone.contenttypes.behavior.luoghi_correlati",
+        "design.plone.contenttypes.behavior.argomenti_evento",
+    ]
+    portal_types["Event"].behaviors = tuple(
+        [x for x in behaviors if x not in to_remove]
+    )
+
     pc = api.portal.get_tool(name="portal_catalog")
     brains = pc()
     mapping = {

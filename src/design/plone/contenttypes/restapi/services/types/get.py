@@ -97,43 +97,6 @@ class TypesGet(BaseGet):
         result["properties"]["title"]["title"] = translate(msgid, context=self.request)
         return result
 
-    def customize_evento_schema(self, result):
-        result["properties"].pop("contact_email")
-        result["properties"].pop("contact_name")
-        result["properties"].pop("contact_phone")
-        if "fieldsets" in result:
-
-            result["fieldsets"][0]["fields"].remove("contact_email")
-            result["fieldsets"][0]["fields"].remove("contact_name")
-            result["fieldsets"][0]["fields"].remove("contact_phone")
-
-            # Esteso i behavior per farli specifici per evento, ma mette il
-            # campo in due fieldset. Lo togliamo da dove non serve.
-            ids = [x["id"] for x in result["fieldsets"]]
-            correlati_index = ids.index("correlati")
-            result["fieldsets"][correlati_index]["fields"].remove(
-                "tassonomia_argomenti"
-            )
-            result["fieldsets"][correlati_index]["fields"].remove("luoghi_correlati")
-
-            fieldsets_weight = {
-                "default": 0,
-                "date_evento": 1,
-                "partecipanti": 2,
-                "dove": 3,
-                "costi": 4,
-                "contatti": 5,
-                "informazioni": 6,
-                "correlati": 7,
-                "categorization": 8,
-            }
-            # sort against above dictionary. In case of fieldset not in this
-            # dict, apply 100 and sort by title
-            result["fieldsets"].sort(
-                key=lambda x: (fieldsets_weight.get(x["id"], 100), x["title"])
-            )
-        return result
-
     def reply(self):
         result = super(TypesGet, self).reply()
 
@@ -177,14 +140,12 @@ class TypesGet(BaseGet):
                             "geolocation", interface=IGeolocationDefaults
                         )
                     )
+
         # be careful: result could be dict or list. If list it will not
         # contains title. And this is ok for us.
         pt = self.request.PATH_INFO.split("/")[-1]
         if "title" in result and pt == "Persona":
             result = self.customize_persona_schema(result)
-
-        # if "title" in result and pt == "Event":
-        #     result = self.customize_evento_schema(result)
         return result
 
     def reorder_fieldsets(self, original):

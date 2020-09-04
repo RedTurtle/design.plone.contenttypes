@@ -44,15 +44,6 @@
       marker=".argomenti.IArgomenti"
       />
     <plone:behavior
-      title="Argomenti"
-      name="design.plone.contenttypes.behavior.argomenti_evento"
-      description="Tassonomia argomenti"
-      provides=".argomenti.IArgomentiEvento"
-      factory=".argomenti.ArgomentiEvento"
-      for="plone.dexterity.interfaces.IDexterityContent"
-      marker=".argomenti.IArgomentiEvento"
-      />
-    <plone:behavior
       title="Luoghi correlati"
       name="design.plone.contenttypes.behavior.luoghi_correlati"
       description=""

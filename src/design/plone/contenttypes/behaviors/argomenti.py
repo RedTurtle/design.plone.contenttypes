@@ -39,11 +39,7 @@ class IArgomenti(model.Schema):
         },
     )
 
-    model.fieldset(
-        "correlati",
-        label=_("correlati_label", default="Contenuti collegati"),
-        fields=["tassonomia_argomenti"],
-    )
+    model.fieldset("categorization", fields=["tassonomia_argomenti"])
 
     dexteritytextindexer.searchable("tassonomia_argomenti")
 
@@ -51,26 +47,6 @@ class IArgomenti(model.Schema):
 @implementer(IArgomenti)
 @adapter(IDexterityContent)
 class Argomenti(object):
-    """
-    """
-
-    def __init__(self, context):
-        self.context = context
-
-
-@provider(IFormFieldProvider)
-class IArgomentiEvento(IArgomenti):
-    model.fieldset(
-        "categorization",
-        label=_(u"label_schema_categorization", default=u"Categorization"),
-        fields=["tassonomia_argomenti"],
-    )
-    form.order_before(tassonomia_argomenti="IDublinCore.subjects")
-
-
-@implementer(IArgomentiEvento)
-@adapter(IDexterityContent)
-class ArgomentiEvento(object):
     """
     """
 
