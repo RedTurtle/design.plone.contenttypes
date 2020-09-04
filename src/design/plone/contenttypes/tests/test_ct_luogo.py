@@ -81,7 +81,7 @@ class TestLuogoApi(unittest.TestCase):
 
         venue = RelationValue(intids.getId(self.venue))
         self.news.luoghi_correlati = [venue]
-        self.service.sedi_e_luoghi = [venue]
+        self.service.dove_rivolgersi = [venue]
         self.uo.luoghi_correlati = [venue]
         pcatalog = getToolByName(self.portal, "portal_catalog")
         pcatalog.manage_reindexIndex(
