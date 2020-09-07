@@ -23,7 +23,8 @@ class ILuogo(model.Schema):
         title=_(u"quartiere", default=u"Quartiere"),
         description=_(
             u"help_quartiere",
-            default=u"Indicare l'eventuale" " quartiere in cui si trova questo luogo",
+            default=u"Indicare l'eventuale"
+            " quartiere in cui si trova questo luogo",
         ),
         required=False,
     )
@@ -38,6 +39,7 @@ class ILuogo(model.Schema):
         required=False,
     )
 
+    # moved to behavior under field name descrizione_estesa?
     descrizione_completa = RichText(
         title=_(u"descrizione_completa", default=u"Descrizione completa"),
         description=_(
@@ -63,7 +65,8 @@ class ILuogo(model.Schema):
         title=_(u"elementi_di_interesse", default=u"Elementi di interesse"),
         description=_(
             u"help_elementi_di_interesse",
-            default=u"Indicare eventuali elementi di interesse relativi al" " luogo",
+            default=u"Indicare eventuali elementi di interesse relativi al"
+            " luogo",
         ),
         required=False,
     )
@@ -79,9 +82,7 @@ class ILuogo(model.Schema):
     )
 
     riferimento_telefonico_luogo = schema.TextLine(
-        title=_(
-            u"riferimento_telefonico_luogo", default=u"Riferimento telefonico luogo"
-        ),
+        title=_(u"riferimento_telefonico_luogo", default=u"Telefono",),
         description=_(
             u"help_riferimento_telefonico_luogo",
             default=u"Indicare un riferimento telefonico per poter contattare"
@@ -91,7 +92,7 @@ class ILuogo(model.Schema):
     )
 
     riferimento_mail_luogo = schema.TextLine(
-        title=_(u"riferimento_mail_luogo", default=u"Riferimento mail luogo"),
+        title=_(u"riferimento_mail_luogo", default=u"E-mail"),
         description=_(
             u"help_riferimento_mail_luogo",
             default=u"Indicare un indirizzo mail per poter contattare"
@@ -152,7 +153,7 @@ class ILuogo(model.Schema):
     riferimento_telefonico_struttura = schema.TextLine(
         title=_(
             u"riferimento_telefonico_struttura",
-            default=u"Riferimento telefonico della struttura responsabile",
+            default=u"Telefono della struttura responsabile",
         ),
         description=_(
             "help_riferimento_telefonico_struttura",
@@ -165,7 +166,7 @@ class ILuogo(model.Schema):
     riferimento_mail_struttura = schema.TextLine(
         title=_(
             u"riferimento_mail_struttura",
-            default=u"Riferimento mail della struttura responsabile",
+            default=u"E-mail della struttura responsabile",
         ),
         description=_(
             "help_riferimento_mail_struttura",
@@ -176,7 +177,7 @@ class ILuogo(model.Schema):
     )
 
     riferimento_web = schema.TextLine(
-        title=_(u"riferimento_web", default=u"Riferimento sito web"),
+        title=_(u"riferimento_web", default=u"Indirizzo web"),
         description=_(
             "help_riferimento_web",
             default="Indicare un indirizzo web utile per ottenere i contatti"
@@ -209,12 +210,18 @@ class ILuogo(model.Schema):
     # custom fieldsets and order
     form.order_after(circoscrizione="IGeolocatable.coordinates")
     form.order_after(quartiere="IGeolocatable.coordinates")
+    form.order_after(nome_alternativo="IBasic.title")
+    form.order_after(orario_pubblico="ILeadImageBehavior.image_caption")
+    form.order_after(modalita_accesso="ILeadImageBehavior.image_caption")
+    form.order_after(elementi_di_interesse="ILeadImageBehavior.image_caption")
+    form.order_after(descrizione_completa="ILeadImageBehavior.image_caption")
 
-    # model.fieldset(
-    #     "correlati",
-    #     label=_("correlati_label", default="Contenuti collegati"),
-    #     fields=["struttura_responsabile_correlati"],
-    # )
+    model.fieldset(
+        "dove",
+        label=_("dove_label", default=u"Dove"),
+        fields=["quartiere", "circoscrizione"],
+    )
+
     model.fieldset(
         "contatti",
         label=_("contatti_label", default=u"Contatti"),

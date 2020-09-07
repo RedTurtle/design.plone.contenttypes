@@ -86,7 +86,7 @@ FIELDSETS_ORDER = {
         "dates",
         "categorization",
     ],
-    "Venue": ["default", "informazioni", "contatti", "categorization"],
+    "Venue": ["default", "dove", "contatti", "informazioni", "categorization"],
 }
 
 
@@ -94,14 +94,18 @@ FIELDSETS_ORDER = {
 class TypesGet(BaseGet):
     def customize_persona_schema(self, result):
         msgid = _(u"Nome e Cognome", default="Nome e cognome")
-        result["properties"]["title"]["title"] = translate(msgid, context=self.request)
+        result["properties"]["title"]["title"] = translate(
+            msgid, context=self.request
+        )
         return result
 
     def reply(self):
         result = super(TypesGet, self).reply()
 
         if "fieldsets" in result:
-            result["fieldsets"] = self.reorder_fieldsets(original=result["fieldsets"])
+            result["fieldsets"] = self.reorder_fieldsets(
+                original=result["fieldsets"]
+            )
 
         if "properties" in result:
             if "country" in result["properties"]:
@@ -144,6 +148,7 @@ class TypesGet(BaseGet):
         # be careful: result could be dict or list. If list it will not
         # contains title. And this is ok for us.
         pt = self.request.PATH_INFO.split("/")[-1]
+
         if "title" in result and pt == "Persona":
             result = self.customize_persona_schema(result)
         return result

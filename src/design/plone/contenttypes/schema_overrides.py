@@ -26,34 +26,55 @@ class SchemaTweaks(object):
                 label=_("correlati_label", default="Contenuti collegati"),
                 fields=["relatedItems"],
             )
-            self.schema._Element__tagged_values["plone.supermodel.fieldsets"] = [
-                fieldset
-            ]
+            self.schema._Element__tagged_values[
+                "plone.supermodel.fieldsets"
+            ] = [fieldset]
         if self.schema.getName() == "IEventBasic":
             fieldset = Fieldset(
                 "date_evento",
                 label=_("date_evento_label", default=u"Date dell'evento"),
                 fields=["start", "end", "whole_day", "open_end", "sync_uid"],
             )
-            self.schema._Element__tagged_values["plone.supermodel.fieldsets"] = [
-                fieldset
-            ]
+            self.schema._Element__tagged_values[
+                "plone.supermodel.fieldsets"
+            ] = [fieldset]
         if self.schema.getName() == "IEventRecurrence":
             fieldset = Fieldset(
                 "date_evento",
                 label=_("date_evento_label", default=u"Date dell'evento"),
                 fields=["recurrence"],
             )
-            self.schema._Element__tagged_values["plone.supermodel.fieldsets"] = [
-                fieldset
-            ]
+            self.schema._Element__tagged_values[
+                "plone.supermodel.fieldsets"
+            ] = [fieldset]
 
         if self.schema.getName() == "IEventContact":
             fieldset_informazioni = Fieldset(
                 "informazioni",
-                label=_("informazioni_label", default=u"Ulteriori informazioni"),
+                label=_(
+                    "informazioni_label", default=u"Ulteriori informazioni"
+                ),
                 fields=["event_url"],
             )
-            self.schema._Element__tagged_values["plone.supermodel.fieldsets"] = [
-                fieldset_informazioni
-            ]
+            self.schema._Element__tagged_values[
+                "plone.supermodel.fieldsets"
+            ] = [fieldset_informazioni]
+        if self.schema.getName() == "IAddress":
+            fieldset = Fieldset(
+                "dove",
+                label=_("dove_label", default=u"Dove"),
+                fields=["street", "zip_code", "city", "country"],
+            )
+            self.schema._Element__tagged_values[
+                "plone.supermodel.fieldsets"
+            ] = [fieldset]
+        if self.schema.getName() == "IGeolocatable":
+
+            fieldset = Fieldset(
+                "dove",
+                label=_("dove_label", default=u"Dove"),
+                fields=["geolocation"],
+            )
+            self.schema._Element__tagged_values[
+                "plone.supermodel.fieldsets"
+            ] = [fieldset]
