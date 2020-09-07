@@ -3,7 +3,9 @@
 from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
 )
-from design.plone.contenttypes.restapi.services.types.get import FIELDSETS_ORDER
+from design.plone.contenttypes.restapi.services.types.get import (
+    FIELDSETS_ORDER,
+)
 from plone.app.testing import (
     SITE_OWNER_NAME,
     SITE_OWNER_PASSWORD,
@@ -106,15 +108,4 @@ class TestContentTypes(unittest.TestCase):
 
         ids = [x["id"] for x in res["fieldsets"]]
         self.assertIn("testata", ids)
-        self.assertEqual(
-            ids,
-            [
-                "default",
-                "testata",
-                "settings",
-                "categorization",
-                "dates",
-                "ownership",
-                "layout",
-            ],
-        )
+        self.assertEqual(ids, FIELDSETS_ORDER["Document"])

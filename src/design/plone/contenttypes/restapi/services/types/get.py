@@ -25,6 +25,7 @@ FIELDSETS_ORDER = {
         "dates",
         "ownership",
         "layout",
+        "correlati",
     ],
     "Event": [
         "default",
