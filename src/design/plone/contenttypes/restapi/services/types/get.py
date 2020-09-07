@@ -21,11 +21,11 @@ FIELDSETS_ORDER = {
         "default",
         "testata",
         "settings",
+        "correlati",
         "categorization",
         "dates",
         "ownership",
         "layout",
-        "correlati",
     ],
     "Event": [
         "default",
