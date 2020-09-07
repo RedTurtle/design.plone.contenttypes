@@ -210,6 +210,11 @@ class ILuogo(model.Schema):
     # custom fieldsets and order
     form.order_after(circoscrizione="IGeolocatable.coordinates")
     form.order_after(quartiere="IGeolocatable.coordinates")
+    form.order_after(nome_alternativo="IBasic.title")
+    form.order_after(orario_pubblico="ILeadImageBehavior.image_caption")
+    form.order_after(modalita_accesso="ILeadImageBehavior.image_caption")
+    form.order_after(elementi_di_interesse="ILeadImageBehavior.image_caption")
+    form.order_after(descrizione_completa="ILeadImageBehavior.image_caption")
 
     model.fieldset(
         "dove",

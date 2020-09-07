@@ -99,26 +99,6 @@ class TypesGet(BaseGet):
         )
         return result
 
-    def customize_luogo_schema(self, result):
-
-        if "fieldsets" in result:
-            ids = [x["id"] for x in result["fieldsets"]]
-
-            result["fieldsets"][ids.index("default")]["fields"] = [
-                "title",
-                "nome_alternativo",
-                "description",
-                "image",
-                "image_caption",
-                "descrizione_completa",
-                "elementi_di_interesse",
-                "modalita_accesso",
-                "orario_pubblico",
-            ]
-            result["properties"].pop("notes")
-
-        return result
-
     def reply(self):
         result = super(TypesGet, self).reply()
 
@@ -168,8 +148,6 @@ class TypesGet(BaseGet):
         # be careful: result could be dict or list. If list it will not
         # contains title. And this is ok for us.
         pt = self.request.PATH_INFO.split("/")[-1]
-        if "title" in result and pt == "Venue":
-            result = self.customize_luogo_schema(result)
 
         if "title" in result and pt == "Persona":
             result = self.customize_persona_schema(result)
