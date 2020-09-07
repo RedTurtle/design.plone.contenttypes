@@ -24,8 +24,7 @@ class IArgomenti(model.Schema):
             " contenuto.",
         ),
         value_type=RelationChoice(
-            title=_(u"Argomenti correlati"),
-            vocabulary="plone.app.vocabularies.Catalog",
+            title=_(u"Argomenti correlati"), vocabulary="plone.app.vocabularies.Catalog"
         ),
         required=False,
         default=[],
@@ -35,16 +34,12 @@ class IArgomenti(model.Schema):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "maximumSelectionSize": 10,
+            "maximumSelectionSize": 20,
             "selectableTypes": ["Pagina Argomento"],
         },
     )
 
-    model.fieldset(
-        "correlati",
-        label=_("correlati_label", default=u"Correlati"),
-        fields=["tassonomia_argomenti"],
-    )
+    model.fieldset("categorization", fields=["tassonomia_argomenti"])
 
     dexteritytextindexer.searchable("tassonomia_argomenti")
 
@@ -52,46 +47,6 @@ class IArgomenti(model.Schema):
 @implementer(IArgomenti)
 @adapter(IDexterityContent)
 class Argomenti(object):
-    """
-    """
-
-    def __init__(self, context):
-        self.context = context
-
-
-@provider(IFormFieldProvider)
-class IArgomentiEvento(IArgomenti):
-    model.fieldset(
-        "categorization",
-        label=_(u"label_schema_categorization", default=u"Categorization"),
-        fields=["tassonomia_argomenti"],
-    )
-    form.order_before(tassonomia_argomenti="IDublinCore.subjects")
-
-
-@implementer(IArgomentiEvento)
-@adapter(IDexterityContent)
-class ArgomentiEvento(object):
-    """
-    """
-
-    def __init__(self, context):
-        self.context = context
-
-
-@provider(IFormFieldProvider)
-class IArgomentiLuogo(IArgomenti):
-    model.fieldset(
-        "categorization",
-        label=_(u"label_schema_categorization", default=u"Categorization"),
-        fields=["tassonomia_argomenti"],
-    )
-    form.order_before(tassonomia_argomenti="ICategorization.subjects")
-
-
-@implementer(IArgomentiLuogo)
-@adapter(IDexterityContent)
-class ArgomentiLuogo(object):
     """
     """
 

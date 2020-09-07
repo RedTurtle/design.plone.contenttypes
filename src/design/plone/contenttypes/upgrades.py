@@ -1,55 +1,71 @@
 # -*- coding: utf-8 -*-
 from plone import api
 
+import logging
+
+logger = logging.getLogger(__name__)
 
 DEFAULT_PROFILE = "profile-design.plone.contenttypes:default"
-
-
-# def import_registry(registry_id, dependencies=False):
-#     setup_tool = api.portal.get_tool("portal_setup")
-#     setup_tool.runImportStepFromProfile(
-#         DEFAULT_PROFILE, registry_id, run_dependencies=dependencies
-#     )
-
-
-def import_types_registry(context):
-    "Import types registry configuration"
-    import_registry("typeinfo")
 
 
 def update_profile(context, profile):
     context.runImportStepFromProfile(DEFAULT_PROFILE, profile)
 
 
-def add_indexes_to_catalog(index_to_add, indextype):
-    pc = api.portal.get_tool("portal_catalog")
-    indexes = pc.indexes()
-    added = 0
-
-    for index in index_to_add:
-        if index not in indexes:
-            pc.addIndex(name=index, type=indextype)
-            added = 1
-
-    if added:
-        pc.refreshCatalog()
+def update_types(context):
+    update_profile(context, "typeinfo")
 
 
-def upgrade_rolemap(context):
+def update_rolemap(context):
     update_profile(context, "rolemap")
 
 
-def add_index_to_search_dashboard(context):
-    add_indexes_to_catalog([], "KeywordIndex")
-
-
-def import_portlets(context):
-    update_profile(context, "portlets")
-
-
-def import_registry(context):
+def update_registry(context):
     update_profile(context, "plone.app.registry")
 
 
-def import_controlpanel(context):
+def update_controlpanel(context):
     update_profile(context, "controlpanel")
+
+
+def to_1001(context):
+
+    update_types(context)
+
+    # cleanup event behaviors
+    portal_types = api.portal.get_tool(name="portal_types")
+    behaviors = portal_types["Event"].behaviors
+    to_remove = [
+        "design.plone.contenttypes.behavior.luoghi_correlati",
+        "design.plone.contenttypes.behavior.argomenti_evento",
+        "design.plone.contenttypes.behavior.additional_help_infos_evento",
+    ]
+    portal_types["Event"].behaviors = tuple(
+        [x for x in behaviors if x not in to_remove]
+    )
+
+    pc = api.portal.get_tool(name="portal_catalog")
+    brains = pc()
+    mapping = {
+        "descrizione_destinatari": "a_chi_si_rivolge",
+        "canale_fisico": "dove_rivolgersi_extra",
+        "canale_fisico_prenotazione": "prenota_appuntamento",
+        "fasi_scadenze": "tempi_e_scadenze",
+        "sedi_e_luoghi": "dove_rivolgersi",
+        "box_aiuto": "ulteriori_informazioni",
+    }
+    tot = len(brains)
+    logger.info("Trovati {} elementi da sistemare.".format(tot))
+    # remap fields
+    for brain in brains:
+        item = brain.getObject()
+        for old, new in mapping.items():
+            value = getattr(item, old, None)
+            if value:
+                setattr(item, new, value)
+                setattr(item, old, None)
+                logger.info(
+                    "- {url}: {old} -> {new}".format(
+                        url=brain.getURL(), old=old, new=new
+                    )
+                )

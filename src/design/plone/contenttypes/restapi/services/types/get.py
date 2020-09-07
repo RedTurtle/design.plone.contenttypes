@@ -10,6 +10,86 @@ from plone import api
 from design.plone.contenttypes import _
 
 
+class FieldsetsMismatchError(Exception):
+    """Exception thrown when we try to reorder fieldsets, but the order list is
+    different from the fieldsets returned from Plone
+    """
+
+
+FIELDSETS_ORDER = {
+    "Document": [
+        "default",
+        "testata",
+        "settings",
+        "categorization",
+        "dates",
+        "ownership",
+        "layout",
+    ],
+    "Event": [
+        "default",
+        "date_evento",
+        "partecipanti",
+        "dove",
+        "costi",
+        "contatti",
+        "informazioni",
+        "correlati",
+        "categorization",
+        "dates",
+        "settings",
+        "layout",
+        "ownership",
+    ],
+    "News Item": [
+        "default",
+        "correlati",
+        "categorization",
+        "dates",
+        "ownership",
+        "settings",
+        "layout",
+    ],
+    "Persona": [
+        "default",
+        "informazioni",
+        "correlati",
+        "categorization",
+        "settings",
+        "ownership",
+        "dates",
+    ],
+    "Servizio": [
+        "default",
+        "a_chi_si_rivolge",
+        "accedi_al_servizio",
+        "cosa_serve",
+        "costi_e_vincoli",
+        "tempi_e_scadenze",
+        "casi_particolari",
+        "contatti",
+        "documenti",
+        "link_utili",
+        "informazioni",
+        "correlati",
+        "categorization",
+        "settings",
+        "ownership",
+        "dates",
+    ],
+    "UnitaOrganizzativa": [
+        "default",
+        "informazioni",
+        "correlati",
+        "settings",
+        "ownership",
+        "dates",
+        "categorization",
+    ],
+    "Venue": ["default", "dove", "contatti", "informazioni", "categorization"],
+}
+
+
 @implementer(IPublishTraverse)
 class TypesGet(BaseGet):
     def customize_persona_schema(self, result):
@@ -17,74 +97,13 @@ class TypesGet(BaseGet):
         result["properties"]["title"]["title"] = translate(
             msgid, context=self.request
         )
-        if "fieldsets" in result:
-            ids = [x["id"] for x in result["fieldsets"]]
-            correlati_index = ids.index("correlati")
-            categorization_index = ids.index("categorization")
-            result["fieldsets"].insert(
-                correlati_index + 1,
-                result["fieldsets"].pop(categorization_index),
-            )
-        return result
-
-    def customize_evento_schema(self, result):
-        result["properties"].pop("contact_email")
-        result["properties"].pop("contact_name")
-        result["properties"].pop("contact_phone")
-        if "fieldsets" in result:
-
-            result["fieldsets"][0]["fields"].remove("contact_email")
-            result["fieldsets"][0]["fields"].remove("contact_name")
-            result["fieldsets"][0]["fields"].remove("contact_phone")
-
-            # Esteso i behavior per farli specifici per evento, ma mette il
-            # campo in due fieldset. Lo togliamo da dove non serve.
-            ids = [x["id"] for x in result["fieldsets"]]
-            correlati_index = ids.index("correlati")
-            result["fieldsets"][correlati_index]["fields"].remove(
-                "tassonomia_argomenti"
-            )
-            result["fieldsets"][correlati_index]["fields"].remove(
-                "luoghi_correlati"
-            )
-
-            fieldsets_weight = {
-                "default": 0,
-                "date_evento": 1,
-                "partecipanti": 2,
-                "dove": 3,
-                "costi": 4,
-                "contatti": 5,
-                "informazioni": 6,
-                "correlati": 7,
-                "categorization": 8,
-            }
-            # sort against above dictionary. In case of fieldset not in this
-            # dict, apply 100 and sort by title
-            result["fieldsets"].sort(
-                key=lambda x: (fieldsets_weight.get(x["id"], 100), x["title"])
-            )
         return result
 
     def customize_luogo_schema(self, result):
 
         if "fieldsets" in result:
-            # Esteso i behavior per farli specifici per il luogo, ma mette il
-            # campo in due fieldset. Lo togliamo da dove non serve.
             ids = [x["id"] for x in result["fieldsets"]]
-            correlati_index = ids.index("correlati")
-            result["fieldsets"].pop(correlati_index)
-            fieldsets_weight = {
-                "default": 0,
-                "dove": 1,
-                "contatti": 2,
-                "categorizzazion": 3,
-            }
-            # sort against above dictionary. In case of fieldset not in this
-            # dict, apply 100 and sort by title
-            result["fieldsets"].sort(
-                key=lambda x: (fieldsets_weight.get(x["id"], 100), x["title"])
-            )
+
             result["fieldsets"][ids.index("default")]["fields"] = [
                 "title",
                 "nome_alternativo",
@@ -95,7 +114,6 @@ class TypesGet(BaseGet):
                 "elementi_di_interesse",
                 "modalita_accesso",
                 "orario_pubblico",
-                "ulteriori_informazioni",
             ]
             result["properties"].pop("notes")
 
@@ -105,38 +123,9 @@ class TypesGet(BaseGet):
         result = super(TypesGet, self).reply()
 
         if "fieldsets" in result:
-            ids = [x["id"] for x in result["fieldsets"]]
-            if "correlati" in ids:
-                #  move correlati before categorization
-                default_index = ids.index("default")
-                correlati_index = ids.index("correlati")
-                result["fieldsets"].insert(
-                    default_index + 1, result["fieldsets"].pop(correlati_index)
-                )
-            if "testata" in ids:
-                #  move testata after default
-                default_index = ids.index("default")
-                testata_index = ids.index("testata")
-                result["fieldsets"].insert(
-                    default_index + 1, result["fieldsets"].pop(testata_index)
-                )
-            if "default" in ids:
-                # move sedi after geolocation
-                idx = ids.index("default")
-                if (
-                    "sedi" in result["fieldsets"][idx]["fields"]
-                    and "geolocation" in result["fieldsets"][idx]["fields"]
-                ):
-                    geo_index = result["fieldsets"][idx]["fields"].index(
-                        "geolocation"
-                    )
-                    sedi_index = result["fieldsets"][idx]["fields"].index(
-                        "sedi"
-                    )
-                    result["fieldsets"][idx]["fields"].insert(
-                        geo_index,
-                        result["fieldsets"][idx]["fields"].pop(sedi_index),
-                    )
+            result["fieldsets"] = self.reorder_fieldsets(
+                original=result["fieldsets"]
+            )
 
         if "properties" in result:
             if "country" in result["properties"]:
@@ -175,6 +164,7 @@ class TypesGet(BaseGet):
                             "geolocation", interface=IGeolocationDefaults
                         )
                     )
+
         # be careful: result could be dict or list. If list it will not
         # contains title. And this is ok for us.
         pt = self.request.PATH_INFO.split("/")[-1]
@@ -183,7 +173,23 @@ class TypesGet(BaseGet):
 
         if "title" in result and pt == "Persona":
             result = self.customize_persona_schema(result)
-
-        if "title" in result and pt == "Event":
-            result = self.customize_evento_schema(result)
         return result
+
+    def reorder_fieldsets(self, original):
+        pt = self.request.PATH_INFO.split("/")[-1]
+        order = FIELDSETS_ORDER.get(pt, [])
+        if not order:
+            # no match
+            return original
+        if set(order) != set([x["id"] for x in original]):
+            # list mismatch
+            raise FieldsetsMismatchError("Fieldset mismatch for {}".format(pt))
+        new = []
+        for id in order:
+            for fieldset in original:
+                if fieldset["id"] == id:
+                    new.append(fieldset)
+        if not new:
+            # no match
+            new = original
+        return new

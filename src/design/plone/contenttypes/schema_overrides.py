@@ -23,7 +23,7 @@ class SchemaTweaks(object):
         if self.schema.getName() == "IRelatedItems":
             fieldset = Fieldset(
                 "correlati",
-                label=_("correlati_label", default=u"Correlati"),
+                label=_("correlati_label", default="Contenuti collegati"),
                 fields=["relatedItems"],
             )
             self.schema._Element__tagged_values[
@@ -51,7 +51,9 @@ class SchemaTweaks(object):
         if self.schema.getName() == "IEventContact":
             fieldset_informazioni = Fieldset(
                 "informazioni",
-                label=_("informazioni_label", default=u"Informazioni"),
+                label=_(
+                    "informazioni_label", default=u"Ulteriori informazioni"
+                ),
                 fields=["event_url"],
             )
             self.schema._Element__tagged_values[

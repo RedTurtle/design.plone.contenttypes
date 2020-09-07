@@ -138,5 +138,3 @@ class IDocumentoPersonale(model.Schema):
         title=_(u"riferimenti_normativi", default=u"Riferimenti normativi"),
         required=False,
     )
-
-    box_aiuto = RichText(title=_(u"box_aiuto", default=u"Box di aiuto"), required=True)

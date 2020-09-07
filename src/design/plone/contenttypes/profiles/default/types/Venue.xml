@@ -8,8 +8,7 @@
   <element value="plone.app.content.interfaces.INameFromTitle"/>
   <element value="plone.app.dexterity.behaviors.metadata.IBasic"/>
   <element value="plone.app.dexterity.behaviors.metadata.ICategorization"/>
-  <element value="design.plone.contenttypes.behavior.argomenti" remove="True"/>
-  <element value="design.plone.contenttypes.behavior.argomenti_luogo"/>
+  <element value="design.plone.contenttypes.behavior.argomenti"/>
   <element value="plone.leadimage"/>
   <element value="collective.address.behaviors.IAddress"/>
   <element value="collective.geolocationbehavior.geolocation.IGeolocatable"/>

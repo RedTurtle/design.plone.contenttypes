@@ -28,6 +28,7 @@ class TestDocument(unittest.TestCase):
                 "plone.categorization",
                 "plone.basic",
                 "design.plone.contenttypes.behavior.descrizione_estesa",
+                "design.plone.contenttypes.behavior.additional_help_infos",
                 "plone.locking",
             ),
         )

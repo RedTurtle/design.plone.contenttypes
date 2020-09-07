@@ -35,7 +35,7 @@ class TestLuogo(unittest.TestCase):
                 "plone.app.content.interfaces.INameFromTitle",
                 "plone.app.dexterity.behaviors.metadata.IBasic",
                 "plone.app.dexterity.behaviors.metadata.ICategorization",
-                "design.plone.contenttypes.behavior.argomenti_luogo",
+                "design.plone.contenttypes.behavior.argomenti",
                 "plone.leadimage",
                 "collective.address.behaviors.IAddress",
                 "collective.geolocationbehavior.geolocation.IGeolocatable",
@@ -81,7 +81,7 @@ class TestLuogoApi(unittest.TestCase):
 
         venue = RelationValue(intids.getId(self.venue))
         self.news.luoghi_correlati = [venue]
-        self.service.sedi_e_luoghi = [venue]
+        self.service.dove_rivolgersi = [venue]
         self.uo.luoghi_correlati = [venue]
         pcatalog = getToolByName(self.portal, "portal_catalog")
         pcatalog.manage_reindexIndex(
@@ -183,5 +183,5 @@ class TestLuogoApi(unittest.TestCase):
         # expected fieldsets...
         self.assertEqual(
             [x["id"] for x in fieldsets],
-            ["default", "dove", "contatti", "categorization"],
+            ["default", "dove", "contatti", "categorization", "informazioni"],
         )

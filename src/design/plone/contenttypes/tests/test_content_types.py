@@ -3,6 +3,7 @@
 from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
 )
+from design.plone.contenttypes.restapi.services.types.get import FIELDSETS_ORDER
 from plone.app.testing import (
     SITE_OWNER_NAME,
     SITE_OWNER_PASSWORD,
@@ -43,44 +44,53 @@ class TestContentTypes(unittest.TestCase):
     def tearDown(self):
         self.api_session.close()
 
-    def test_persona_correlati_fieldset_order(self):
+    def test_persona_fieldset_order(self):
         response = self.api_session.get("/@types/Persona")
         res = response.json()
 
         ids = [x["id"] for x in res["fieldsets"]]
 
-        self.assertIn("correlati", ids)
-        self.assertEqual(
-            ids,
-            [
-                "default",
-                "correlati",
-                "categorization",
-                "settings",
-                "ownership",
-                "dates",
-            ],
-        )
+        self.assertEqual(ids, FIELDSETS_ORDER["Persona"])
 
-    def test_news_correlati_fieldset_order(self):
+    def test_news_item_fieldset_order(self):
         response = self.api_session.get("/@types/News%20Item")
         res = response.json()
 
         ids = [x["id"] for x in res["fieldsets"]]
 
-        self.assertIn("correlati", ids)
-        self.assertEqual(
-            ids,
-            [
-                "default",
-                "correlati",
-                "categorization",
-                "dates",
-                "ownership",
-                "settings",
-                "layout",
-            ],
-        )
+        self.assertEqual(ids, FIELDSETS_ORDER["News Item"])
+
+    def test_event_fieldset_order(self):
+        response = self.api_session.get("/@types/Event")
+        res = response.json()
+
+        ids = [x["id"] for x in res["fieldsets"]]
+
+        self.assertEqual(ids, FIELDSETS_ORDER["Event"])
+
+    def test_servizio_fieldset_order(self):
+        response = self.api_session.get("/@types/Servizio")
+        res = response.json()
+
+        ids = [x["id"] for x in res["fieldsets"]]
+
+        self.assertEqual(ids, FIELDSETS_ORDER["Servizio"])
+
+    def test_unitaorganizzativa_fieldset_order(self):
+        response = self.api_session.get("/@types/UnitaOrganizzativa")
+        res = response.json()
+
+        ids = [x["id"] for x in res["fieldsets"]]
+
+        self.assertEqual(ids, FIELDSETS_ORDER["UnitaOrganizzativa"])
+
+    def test_venue_fieldset_order(self):
+        response = self.api_session.get("/@types/Venue")
+        res = response.json()
+
+        ids = [x["id"] for x in res["fieldsets"]]
+
+        self.assertEqual(ids, FIELDSETS_ORDER["Venue"])
 
     def test_image_field_description(self):
         response = self.api_session.get("/@types/News%20Item")

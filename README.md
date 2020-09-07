@@ -40,34 +40,6 @@ gestione di un sito Agid con Plone e Volto.
 
 ## Elenco tipi implementati
 
-- [ ] **Dataset**
-
-  - [ ] Definizione campi
-  - [ ] Ordine campi
-  - [ ] Indicizzazione testo
-  - [ ] Vista su Volto completata
-
-- [ ] **Documento**
-
-  - [ ] Definizione campi
-  - [ ] Ordine campi
-  - [ ] Indicizzazione testo
-  - [ ] Vista su Volto completata
-
-- [ ] **Documento Personale**
-
-  - [ ] Definizione campi
-  - [ ] Ordine campi
-  - [ ] Indicizzazione testo
-  - [ ] Vista su Volto completata
-
-- [ ] **Evento**
-
-  - [x] Definizione campi
-  - [ ] Ordine campi
-  - [ ] Indicizzazione testo
-  - [ ] Vista su Volto completata
-
 - [ ] **Collegamento**
 
   - [x] Definizione campi
@@ -76,17 +48,52 @@ gestione di un sito Agid con Plone e Volto.
   - [x] Vista su Volto completata
   - [ ] Selezione link interno
 
+
+- [ ] **Dataset**
+
+  - [ ] Definizione campi
+  - [ ] Ordine campi
+  - [ ] Ordine fieldsets
+  - [ ] Indicizzazione testo
+  - [ ] Vista su Volto completata
+
+- [ ] **Documento**
+
+  - [ ] Definizione campi
+  - [ ] Ordine campi
+  - [ ] Ordine fieldsets
+  - [ ] Indicizzazione testo
+  - [ ] Vista su Volto completata
+
+- [ ] **Documento Personale**
+
+  - [ ] Definizione campi
+  - [ ] Ordine campi
+  - [ ] Ordine fieldsets
+  - [ ] Indicizzazione testo
+  - [ ] Vista su Volto completata
+
+- [ ] **Evento**
+
+  - [x] Definizione campi
+  - [ ] Ordine campi
+  - [ ] Ordine fieldsets
+  - [ ] Indicizzazione testo
+  - [ ] Vista su Volto completata
+
 - [ ] **Messaggio**
 
   - [ ] Definizione campi
   - [ ] Ordine campi
+  - [ ] Ordine fieldsets
   - [ ] Indicizzazione testo
   - [ ] Vista su Volto completata
 
-- [x] **Notizia**
+- [ ] **Notizia**
 
   - [x] Definizione campi
   - [x] Ordine campi
+  - [ ] Ordine fieldsets
   - [x] Indicizzazione testo
   - [x] Vista su Volto completata
 
@@ -95,6 +102,7 @@ gestione di un sito Agid con Plone e Volto.
   - [x] Definizione campi
   - [x] Abilitare behavior collective.address.address
   - [ ] Ordine campi
+  - [ ] Ordine fieldsets
   - [x] Indicizzazione testo
   - [ ] Vista su Volto completata
   - [ ] gestione di "è sede di" 
@@ -103,6 +111,7 @@ gestione di un sito Agid con Plone e Volto.
 
   - [ ] Definizione campi
   - [ ] Ordine campi
+  - [ ] Ordine fieldsets
   - [x] Indicizzazione testo
   - [ ] Vista su Volto completata
 
@@ -110,6 +119,7 @@ gestione di un sito Agid con Plone e Volto.
 
   - [x] Definizione campi
   - [ ] Ordine campi
+  - [ ] Ordine fieldsets
   - [x] Indicizzazione testo
   - [x] Vista su Volto completata
 
@@ -117,6 +127,7 @@ gestione di un sito Agid con Plone e Volto.
 
   - [ ] Definizione campi
   - [ ] Ordine campi
+  - [ ] Ordine fieldsets
   - [ ] Indicizzazione testo
   - [ ] Vista su Volto completata
 
@@ -124,13 +135,15 @@ gestione di un sito Agid con Plone e Volto.
 
   - [ ] Definizione campi
   - [ ] Ordine campi
+  - [ ] Ordine fieldsets
   - [ ] Indicizzazione testo
   - [ ] Vista su Volto completata
 
-- [ ] **Servizio**
+- [x] **Servizio**
 
   - [x] Definizione campi
-  - [ ] Ordine campi
+  - [x] Ordine campi
+  - [x] Ordine fieldsets
   - [x] Indicizzazione testo
   - [x] Vista su Volto completata
 
@@ -138,6 +151,7 @@ gestione di un sito Agid con Plone e Volto.
 
   - [x] Definizione campi
   - [x] Ordine campi
+  - [x] Ordine fieldsets
   - [x] Indicizzazione testo
   - [x] Vista su Volto completata
 
@@ -200,7 +214,7 @@ dei blocchi anche per le pagine argomento.
 
 - blocchi Volto
 - unita_amministrativa_responsabile
-- box_aiuto
+- ulteriori_informazioni
 
 ## Persona
 
@@ -225,7 +239,7 @@ dei blocchi anche per le pagine argomento.
 - come_si_fa
 - cosa_si_ottiene
 - cosa_serve
-- box_aiuto
+- ulteriori_informazioni
 - tassonomia_argomenti
 - copertura_geografica
 - costi

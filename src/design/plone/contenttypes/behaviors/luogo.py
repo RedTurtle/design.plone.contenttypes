@@ -111,9 +111,12 @@ class ILuogo(model.Schema):
     )
 
     struttura_responsabile_correlati = RelationList(
-        title=u"Struttura responsabile del luogo",
+        title=_(
+            "struttura_responsabile_correlati",
+            default=u"Struttura responsabile del luogo",
+        ),
         description=_(
-            "struttura_responsabile_help",
+            "struttura_responsabile_correlati_help",
             default="Indicare la struttura responsabile del luogo qualora sia"
             " fra unità organizzative del comune inserite nel sito; altrimenti"
             " compilare i campi testuali relativi alla struttura responsabile",
