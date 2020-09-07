@@ -163,9 +163,6 @@ class TypesGet(BaseGet):
             return original
         if set(order) != set([x["id"] for x in original]):
             # list mismatch
-            import pdb
-
-            pdb.set_trace()
             raise FieldsetsMismatchError("Fieldset mismatch for {}".format(pt))
         new = []
         for id in order:
