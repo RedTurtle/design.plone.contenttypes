@@ -21,6 +21,7 @@ FIELDSETS_ORDER = {
         "default",
         "testata",
         "settings",
+        "correlati",
         "categorization",
         "dates",
         "ownership",
@@ -79,6 +80,7 @@ FIELDSETS_ORDER = {
     ],
     "UnitaOrganizzativa": [
         "default",
+        "dove",
         "informazioni",
         "correlati",
         "settings",
