@@ -186,6 +186,29 @@ class ILuogo(model.Schema):
         required=False,
     )
 
+    sede_di = RelationList(
+        title=_("sede_di", default=u"Questo luogo è sede di",),
+        description=_(
+            "sede_di_help",
+            default="Indicare gli eventuali luoghi o uffici di cui questo"
+            " luogo è sede",
+        ),
+        value_type=RelationChoice(
+            title=_(u"Sede di"), vocabulary="plone.app.vocabularies.Catalog",
+        ),
+        required=False,
+        default=[],
+    )
+    form.widget(
+        "sede_di",
+        RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
+        pattern_options={
+            "maximumSelectionSize": 10,
+            "selectableTypes": ["UnitaOrganizzativa", "Venue"],
+        },
+    )
+
     # Decisono con Baio di toglierlo: visto il vocabolario, che in realtà sta
     # qui: https://github.com/italia/daf-ontologie-vocabolari-controllati/tree/master/VocabolariControllati/classifications-for-culture/subject-disciplines
     # riteniamo che possa non fregare nulla a nessuno di questa categorizzazione.
@@ -213,6 +236,7 @@ class ILuogo(model.Schema):
     form.order_after(nome_alternativo="IBasic.title")
     form.order_after(orario_pubblico="ILeadImageBehavior.image_caption")
     form.order_after(modalita_accesso="ILeadImageBehavior.image_caption")
+    form.order_after(sede_di="ILeadImageBehavior.image_caption")
     form.order_after(elementi_di_interesse="ILeadImageBehavior.image_caption")
     form.order_after(descrizione_completa="ILeadImageBehavior.image_caption")
 
