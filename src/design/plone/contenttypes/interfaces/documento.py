@@ -15,7 +15,10 @@ class IDocumento(model.Schema):
     """
 
     identificativo = schema.TextLine(
-        title=_(u"identificativo_documento", default=u"Identificativo del documento"),
+        title=_(
+            u"identificativo_documento",
+            default=u"Identificativo del documento",
+        ),
         required=True,
     )
 
@@ -29,7 +32,10 @@ class IDocumento(model.Schema):
 
     # vocabolario costruito da catalogo, prendendo le unita' organizzative
     ufficio_responsabile = RelationList(
-        title=_(u"ufficio_responsabile", default=u"Ufficio responsabile del documento"),
+        title=_(
+            u"ufficio_responsabile",
+            default=u"Ufficio responsabile del documento",
+        ),
         required=True,
         value_type=RelationChoice(
             title=_(u""), vocabulary="plone.app.vocabularies.Catalog"
@@ -46,10 +52,13 @@ class IDocumento(model.Schema):
 
     # area amministrativa non è un ct ma un' aggregazione di ct, come facciamo?
     area_responsabile = RelationList(
-        title=_(u"area_responsabile", default=u"Area responsabile del documento"),
+        title=_(
+            u"area_responsabile", default=u"Area responsabile del documento"
+        ),
         required=True,
         value_type=RelationChoice(
-            title=_(u"Area responsabile"), vocabulary="plone.app.vocabularies.Catalog"
+            title=_(u"Area responsabile"),
+            vocabulary="plone.app.vocabularies.Catalog",
         ),
     )
     form.widget(
@@ -91,7 +100,8 @@ class IDocumento(model.Schema):
         title=u"Servizi collegati",
         default=[],
         value_type=RelationChoice(
-            title=_(u"Servizio collegato"), vocabulary="plone.app.vocabularies.Catalog"
+            title=_(u"Servizio collegato"),
+            vocabulary="plone.app.vocabularies.Catalog",
         ),
         required=False,
     )
@@ -131,7 +141,10 @@ class IDocumento(model.Schema):
     form.widget(
         "dataset",
         RelatedItemsFieldWidget,
-        pattern_options={"maximumSelectionSize": 10, "selectableTypes": ["Dataset"]},
+        pattern_options={
+            "maximumSelectionSize": 10,
+            "selectableTypes": ["Dataset"],
+        },
     )
 
     # i riferimenti normativi li deve linkare chi si occupa di caricare e/o
@@ -146,15 +159,6 @@ class IDocumento(model.Schema):
     )
 
     data_protocollo = schema.Date(
-        title=_(u"data_protocollo", default=u"Data del protocollo"), required=False
-    )
-
-    # come gestiamo "e' parte del life event"?
-    # per ora gigavocabolario statico prendendo i valori da github e
-    # accumunandoli in una mega lista
-    life_event = schema.Choice(
-        title=_(u"life_event", default=u"Parte del life event"),
+        title=_(u"data_protocollo", default=u"Data del protocollo"),
         required=False,
-        vocabulary="design.plone.contenttypes.AllLifeEventsVocabulary",
     )
-    # come gestiamo correlati: novita, documenti, servizi?

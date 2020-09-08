@@ -71,7 +71,9 @@ class IServizio(model.Schema):
     )
 
     copertura_geografica = RichText(
-        title=_(u"copertura_geografica_label", default=u"Copertura geografica"),
+        title=_(
+            u"copertura_geografica_label", default=u"Copertura geografica"
+        ),
         required=False,
         description=_(
             "copertura_geografica_help",
@@ -101,7 +103,9 @@ class IServizio(model.Schema):
     )
 
     procedure_collegate = RichText(
-        title=_(u"procedure_collegate", default=u"Procedure collegate all'esito"),
+        title=_(
+            u"procedure_collegate", default=u"Procedure collegate all'esito"
+        ),
         required=False,
         description=_(
             "procedure_collegate_help",
@@ -200,7 +204,8 @@ class IServizio(model.Schema):
         title=_(u"vincoli", default=u"Vincoli"),
         required=False,
         description=_(
-            "vincoli_help", default="Descrizione degli eventuali vincoli presenti."
+            "vincoli_help",
+            default="Descrizione degli eventuali vincoli presenti.",
         ),
     )
 
@@ -216,7 +221,9 @@ class IServizio(model.Schema):
 
     # vocabolario dalle unita' organizzative presenti a catalogo?
     ufficio_responsabile = RelationList(
-        title=_(u"ufficio_responsabile_erogazione", default=u"Ufficio responsabile"),
+        title=_(
+            u"ufficio_responsabile_erogazione", default=u"Ufficio responsabile"
+        ),
         description=_(
             "ufficio_responsabile_help",
             default="Seleziona l'ufficio responsabile dell'erogazione"
@@ -235,7 +242,8 @@ class IServizio(model.Schema):
         required=False,
         default=[],
         description=_(
-            "area_help", default="Seleziona l'area da cui dipende questo servizio."
+            "area_help",
+            default="Seleziona l'area da cui dipende questo servizio.",
         ),
         value_type=RelationChoice(
             title=_(u"Area"), vocabulary="plone.app.vocabularies.Catalog"
@@ -264,21 +272,6 @@ class IServizio(model.Schema):
             default="Eventuali collegamenti a pagine web, siti, servizi"
             " esterni all'ambito Comunale utili all'erogazione del servizio.",
         ),
-    )
-
-    # come gestiamo "e' parte del life event"?
-    # per ora gigavocabolario statico prendendo i valori da github e
-    # accumunandoli in una mega lista
-    life_event = schema.Choice(
-        title=_(u"life_event", default=u"Parte del life event"),
-        description=_(
-            "life_event_help",
-            default="Collegamento tra il servizio e un evento della vita di "
-            "una persona o di un'impresa. Ad esempio: il servizio 'Anagrafe' è"
-            " collegato alla nascita di un bambino",
-        ),
-        required=False,
-        vocabulary="design.plone.contenttypes.AllLifeEventsVocabulary",
     )
 
     codice_ipa = schema.TextLine(
@@ -316,7 +309,8 @@ class IServizio(model.Schema):
         title=u"Servizi collegati",
         default=[],
         value_type=RelationChoice(
-            title=_(u"Servizi collegati"), vocabulary="plone.app.vocabularies.Catalog"
+            title=_(u"Servizi collegati"),
+            vocabulary="plone.app.vocabularies.Catalog",
         ),
         required=False,
         description=_(
@@ -381,7 +375,11 @@ class IServizio(model.Schema):
     model.fieldset(
         "a_chi_si_rivolge",
         label=_("a_chi_si_rivolge_label", default=u"A chi si rivolge"),
-        fields=["a_chi_si_rivolge", "chi_puo_presentare", "copertura_geografica"],
+        fields=[
+            "a_chi_si_rivolge",
+            "chi_puo_presentare",
+            "copertura_geografica",
+        ],
     )
     model.fieldset(
         "accedi_al_servizio",
@@ -444,7 +442,7 @@ class IServizio(model.Schema):
 
     model.fieldset(
         "categorization",
-        fields=["life_event", "codice_ipa", "settore_merceologico", "identificativo"],
+        fields=["codice_ipa", "settore_merceologico", "identificativo"],
     )
 
     # SearchableText fields
@@ -458,5 +456,4 @@ class IServizio(model.Schema):
     dexteritytextindexer.searchable("ufficio_responsabile")
     dexteritytextindexer.searchable("copertura_geografica")
     dexteritytextindexer.searchable("costi")
-    dexteritytextindexer.searchable("life_event")
     dexteritytextindexer.searchable("servizi_collegati")
