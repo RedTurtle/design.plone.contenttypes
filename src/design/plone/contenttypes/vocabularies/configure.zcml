@@ -2,12 +2,13 @@
     xmlns="http://namespaces.zope.org/zope"
     i18n_domain="design.plone.contenttypes">
 
-    <!-- -*- extra stuff goes here -*- -->
-
-    <utility
+    <!-- Vocabolario attualmente inutile. Lasciato per memoria storica e per
+        non rifare il lavoro se ce lo chiedessero in futuro.
+    -->
+    <!-- <utility
         component=".all_life_events_vocabulary.AllLifeEventsVocabularyFactory"
         name="design.plone.contenttypes.AllLifeEventsVocabulary"
-    />
+    /> -->
 
 
     <utility

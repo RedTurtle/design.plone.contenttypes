@@ -17,8 +17,10 @@ class AllLifeEventsVocabulary(object):
     """
 
     def __call__(self, context):
-        # Just an example list of content for our vocabulary,
-        # this can be any static or dynamic data, a catalog result for example.
+        """
+        Vocabolario attualmente inutile. Lasciato per memoria storica e per
+        non rifare il lavoro se ce lo chiedessero in futuro.
+        """
         items = [
             (
                 u"L1.0",
@@ -51,7 +53,7 @@ class AllLifeEventsVocabulary(object):
             (u"L12.0", _(u"Nascita di un bambino, richiesta adozioni")),
             (u"L13.0", _(u"Matrimonio e/o cambio stato civile")),
             (u"L14.0", _(u"Morte ed eredità")),
-            (u"L15.0", _(u"Prenotazione e disdetta visite/esami"),),
+            (u"L15.0", _(u"Prenotazione e disdetta visite/esami")),
             (u"L16.0", _(u"Denuncia crimini")),
             (
                 u"L17.0",
@@ -60,10 +62,7 @@ class AllLifeEventsVocabulary(object):
                 ),
             ),
             (u"L18.0", _(u"Accesso luoghi della cultura")),
-            (
-                u"L19.0",
-                _(u"Possesso, cura, smarrimento animale da compagnia"),
-            ),
+            (u"L19.0", _(u"Possesso, cura, smarrimento animale da compagnia")),
             (
                 u"B1.0",
                 _(
@@ -83,7 +82,7 @@ class AllLifeEventsVocabulary(object):
             (u"B12.0", _(u"Chiusura filiale")),
             (u"B13.0", _(u"Ristrutturazione impresa")),
             (u"B14.0", _(u"Vendita impresa")),
-            (u"B15.0", _(u"Bancarotta"),),
+            (u"B15.0", _(u"Bancarotta")),
             (
                 u"B16.0",
                 _(
