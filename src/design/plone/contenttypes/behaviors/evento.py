@@ -28,7 +28,9 @@ class IEvento(model.Schema):
     # )
 
     descrizione_destinatari = RichText(
-        title=_(u"descrizione_destinatari", default=u"Descrizione destinatari"),
+        title=_(
+            u"descrizione_destinatari", default=u"Descrizione destinatari"
+        ),
         required=False,
         description=_(
             "descrizione_destinatari_help",
@@ -54,7 +56,10 @@ class IEvento(model.Schema):
         "persone_amministrazione",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={"maximumSelectionSize": 10, "selectableTypes": ["Persona"]},
+        pattern_options={
+            "maximumSelectionSize": 10,
+            "selectableTypes": ["Persona"],
+        },
     )
 
     # model.fieldset(
@@ -82,7 +87,8 @@ class IEvento(model.Schema):
         title=_(u"orari", default=u"Informazioni sugli orari"),
         required=False,
         description=_(
-            "orari_help", default="Informazioni sugli orari di svolgimento dell'evento."
+            "orari_help",
+            default="Informazioni sugli orari di svolgimento dell'evento.",
         ),
     )
 
@@ -109,7 +115,9 @@ class IEvento(model.Schema):
     )
 
     contatto_reperibilita = schema.TextLine(
-        title=_(u"contatto_reperibilita", default=u"Reperibilità organizzatore"),
+        title=_(
+            u"contatto_reperibilita", default=u"Reperibilità organizzatore"
+        ),
         required=False,
         description=_(
             "contatto_reperibilita_help",
@@ -119,10 +127,13 @@ class IEvento(model.Schema):
     )
 
     organizzato_da_interno = RelationList(
-        title=_(u"Organizzato da_interno", default=u"Organizzato da (interno)"),
+        title=_(
+            u"Organizzato da_interno", default=u"Organizzato da (interno)"
+        ),
         default=[],
         value_type=RelationChoice(
-            title=_(u"Organizzatore"), vocabulary="plone.app.vocabularies.Catalog"
+            title=_(u"Organizzatore"),
+            vocabulary="plone.app.vocabularies.Catalog",
         ),
         required=False,
         description=_(
@@ -152,8 +163,7 @@ class IEvento(model.Schema):
         ),
         description=_(
             "supportato_da_help",
-            default="Se l'evento è organizzato direttamente dal comune,"
-            " indicare l'ufficio/ente che supporta l'evento.",
+            default="Indicare l'ufficio/ente che supporta l'evento.",
         ),
     )
     form.widget(
@@ -183,7 +193,9 @@ class IEvento(model.Schema):
         label=_("partecipanti_label", default=u"Partecipanti"),
         fields=["descrizione_destinatari", "persone_amministrazione"],
     )
-    model.fieldset("costi", label=_("costi_label", default=u"Costi"), fields=["prezzo"])
+    model.fieldset(
+        "costi", label=_("costi_label", default=u"Costi"), fields=["prezzo"]
+    )
     model.fieldset(
         "contatti",
         label=_("contatti_label", default=u"Contatti"),
