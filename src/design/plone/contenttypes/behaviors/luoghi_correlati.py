@@ -11,13 +11,13 @@ from zope.interface import provider, implementer
 
 
 # TODO: merge with NEWS
-@provider(IFormFieldProvider)
-class ILuoghiCorrelati(model.Schema):
+class ILuoghiCorrelatiSchema(model.Schema):
 
     luoghi_correlati = RelationList(
         title=_("luoghi_correlati_label", default="Luoghi correlati"),
         description=_(
-            "luoghi_correlati_help", default="Seleziona una lista di luoghi citati."
+            "luoghi_correlati_help",
+            default="Seleziona una lista di luoghi citati.",
         ),
         default=[],
         value_type=RelationChoice(vocabulary="plone.app.vocabularies.Catalog"),
@@ -33,9 +33,29 @@ class ILuoghiCorrelati(model.Schema):
         },
     )
 
+
+@provider(IFormFieldProvider)
+class ILuoghiCorrelati(ILuoghiCorrelatiSchema):
+    """
+    Default fieldset
+    """
+
     model.fieldset(
         "correlati",
         label=_("correlati_label", default="Contenuti collegati"),
+        fields=["luoghi_correlati"],
+    )
+
+
+@provider(IFormFieldProvider)
+class ILuoghiCorrelatiEvento(ILuoghiCorrelatiSchema):
+    """
+    Events have a differente fieldset for this field
+    """
+
+    model.fieldset(
+        "luogo",
+        label=_("luogo_label", default=u"Luogo"),
         fields=["luoghi_correlati"],
     )
 
@@ -48,22 +68,6 @@ class LuoghiCorrelati(object):
 
     def __init__(self, context):
         self.context = context
-
-
-@provider(IFormFieldProvider)
-class ILuoghiCorrelatiEvento(ILuoghiCorrelati):
-    luoghi_correlati = RelationList(
-        title=_("luoghi_correlati_evento_label", default="Luoghi dell'evento"),
-        description=_(
-            "luoghi_correlati_help", default="Seleziona una lista di luoghi citati."
-        ),
-        default=[],
-        value_type=RelationChoice(vocabulary="plone.app.vocabularies.Catalog"),
-        required=False,
-    )
-    model.fieldset(
-        "dove", label=_("dove_label", default=u"Dove"), fields=["luoghi_correlati"]
-    )
 
 
 @implementer(ILuoghiCorrelatiEvento)

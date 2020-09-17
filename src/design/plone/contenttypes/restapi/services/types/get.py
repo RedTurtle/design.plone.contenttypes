@@ -31,7 +31,7 @@ FIELDSETS_ORDER = {
         "default",
         "date_evento",
         "partecipanti",
-        "dove",
+        "luogo",
         "costi",
         "contatti",
         "informazioni",
@@ -161,9 +161,14 @@ class TypesGet(BaseGet):
         if not order:
             # no match
             return original
-        if set(order) != set([x["id"] for x in original]):
+        actual = [x["id"] for x in original]
+        if set(order) != set(actual):
             # list mismatch
-            raise FieldsetsMismatchError("Fieldset mismatch for {}".format(pt))
+            raise FieldsetsMismatchError(
+                "Fieldset mismatch for {}. expected: {} get: {}".format(
+                    pt, order, actual
+                )
+            )
         new = []
         for id in order:
             for fieldset in original:

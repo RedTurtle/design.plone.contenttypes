@@ -10,4 +10,12 @@
     profile="design.plone.contenttypes:default"
     handler=".upgrades.to_1001"
     />
+  <genericsetup:upgradeStep
+    source="1001"
+    destination="1002"
+    title="Upgrade to 1002"
+    description=""
+    profile="design.plone.contenttypes:default"
+    handler=".upgrades.update_types"
+    />
 </configure>

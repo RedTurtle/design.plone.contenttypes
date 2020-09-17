@@ -38,12 +38,10 @@ class IStruttureCorrelate(model.Schema):
     )
 
     model.fieldset(
-        "correlati",
-        label=_("correlati_label", default="Contenuti collegati"),
+        "informazioni",
+        label=_("informazioni_label", default=u"Ulteriori informazioni"),
         fields=["strutture_politiche"],
     )
-
-    form.order_before(strutture_politiche="IRelatedItems.relatedItems")
 
 
 @implementer(IStruttureCorrelate)
