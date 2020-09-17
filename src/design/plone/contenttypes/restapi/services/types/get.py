@@ -81,6 +81,7 @@ FIELDSETS_ORDER = {
     "UnitaOrganizzativa": [
         "default",
         "dove",
+        "contatti_e_informazioni",
         "informazioni",
         "correlati",
         "settings",

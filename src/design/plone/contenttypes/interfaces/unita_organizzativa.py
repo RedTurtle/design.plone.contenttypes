@@ -40,7 +40,8 @@ class IUnitaOrganizzativa(model.Schema):
     responsabile = RelationList(
         title=u"Responsabile",
         value_type=RelationChoice(
-            title=_(u"Responsabile"), vocabulary="plone.app.vocabularies.Catalog"
+            title=_(u"Responsabile"),
+            vocabulary="plone.app.vocabularies.Catalog",
         ),
         description=_(
             "responsabile_help",
@@ -51,9 +52,12 @@ class IUnitaOrganizzativa(model.Schema):
     )
 
     tipologia_organizzazione = schema.Choice(
-        title=_(u"tipologia_organizzazione", default=u"Tipologia organizzazione"),
+        title=_(
+            u"tipologia_organizzazione", default=u"Tipologia organizzazione"
+        ),
         # vocabolario di rif sara' la lista delle tipologie di organizzazione
-        vocabulary="" "design.plone.vocabularies.tipologie_unita_organizzativa",
+        vocabulary=""
+        "design.plone.vocabularies.tipologie_unita_organizzativa",
         description=_(
             "tipologia_organizzazione_help",
             default="Specificare la tipologia di organizzazione: politica,"
@@ -89,7 +93,8 @@ class IUnitaOrganizzativa(model.Schema):
         ),
         description=_(
             "persone_struttura_help",
-            default="Seleziona la lista delle persone che compongono" " la struttura.",
+            default="Seleziona la lista delle persone che compongono"
+            " la struttura.",
         ),
         required=False,
     )
@@ -98,7 +103,8 @@ class IUnitaOrganizzativa(model.Schema):
         title=u"Altre sedi",
         default=[],
         description=_(
-            "sedi_help", default="Seleziona una lista delle sedi di questa struttura."
+            "sedi_help",
+            default="Seleziona una lista delle sedi di questa struttura.",
         ),
         value_type=RelationChoice(
             title=_(u"Sede"), vocabulary="plone.app.vocabularies.Catalog"
@@ -107,7 +113,9 @@ class IUnitaOrganizzativa(model.Schema):
     )
 
     contact_info = RichText(
-        title=_(u"contact_info", default=u"Informazioni di contatto generiche"),
+        title=_(
+            u"contact_info", default=u"Informazioni di contatto generiche"
+        ),
         required=False,
         description=_(
             "uo_contact_info_description",
@@ -120,7 +128,10 @@ class IUnitaOrganizzativa(model.Schema):
         "persone_struttura",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={"maximumSelectionSize": 10, "selectableTypes": ["Persona"]},
+        pattern_options={
+            "maximumSelectionSize": 10,
+            "selectableTypes": ["Persona"],
+        },
     )
     form.widget(
         "legami_con_altre_strutture",
@@ -170,6 +181,85 @@ class IUnitaOrganizzativa(model.Schema):
     )
 
     form.order_after(sedi="IGeolocatable.geolocation")
+
+    orario_pubblico_sede = RichText(
+        title=_(
+            u"orario_pubblico_sede_label", default=u"Orario per il pubblico"
+        ),
+        description=_(
+            "orario_pubblico_help",
+            default=u"Indicare gli orari di accesso al pubblico",
+        ),
+        required=False,
+    )
+    riferimento_telefonico_sede = schema.TextLine(
+        title=_(
+            u"riferimento_telefonico_sede_label",
+            default=u"Riferimento telefonico",
+        ),
+        description=_(
+            "riferimento_telefonico_sede_help",
+            default="Indicare il riferimento telefonico per la sede principale"
+            " di questo ufficio.",
+        ),
+        required=False,
+    )
+    riferimento_email_sede = schema.TextLine(
+        title=_(u"riferimento_email_sede_label", default=u"Riferimento email"),
+        description=_(
+            "riferimento_email_sede_help",
+            default="Indicare il riferimento email per la sede principale"
+            " di questo ufficio.",
+        ),
+        required=False,
+    )
+    riferimento_pec_sede = schema.TextLine(
+        title=_(u"riferimento_pec_sede_label", default=u"Riferimento pec"),
+        description=_(
+            "riferimento_pec_sede_help",
+            default="Indicare il riferimento email certificata per la sede"
+            "  principale di questo ufficio.",
+        ),
+        required=False,
+    )
+
+    persone_contatto = RelationList(
+        default=[],
+        title=_(u"persone_contatto_label", default=u"Persone da contattare"),
+        description=_(
+            "persone_contatto_help",
+            default="Indicare i contatti delle persone di riferimento per"
+            " questo ufficio.",
+        ),
+        required=False,
+        value_type=RelationChoice(
+            title=_(u"Persona"), vocabulary="plone.app.vocabularies.Catalog"
+        ),
+    )
+
+    form.widget(
+        "persone_contatto",
+        RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
+        pattern_options={
+            "maximumSelectionSize": 10,
+            "selectableTypes": ["Persona"],
+        },
+    )
+
+    model.fieldset(
+        "contatti_e_informazioni",
+        label=_(
+            "contatti_e_informazioni_label", default="Contatti e informazioni"
+        ),
+        fields=[
+            "orario_pubblico_sede",
+            "riferimento_telefonico_sede",
+            "riferimento_email_sede",
+            "riferimento_pec_sede",
+            "persone_contatto",
+        ],
+    )
 
     # SearchableText indexers
     dexteritytextindexer.searchable("competenze")
