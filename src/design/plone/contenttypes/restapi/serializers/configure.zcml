@@ -6,6 +6,6 @@
     <adapter factory=".related_news_serializer.ServizioSerializer" />
     <adapter factory=".unita_organizzativa.UOSerializer" />
     <adapter factory=".venue.VenueSerializer" />
-
+    <adapter factory=".relationfield.RelationListFieldSerializer" />
 
 </configure>
