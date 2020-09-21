@@ -48,17 +48,6 @@ class SchemaTweaks(object):
                 "plone.supermodel.fieldsets"
             ] = [fieldset]
 
-        if self.schema.getName() == "IEventContact":
-            fieldset_informazioni = Fieldset(
-                "informazioni",
-                label=_(
-                    "informazioni_label", default=u"Ulteriori informazioni"
-                ),
-                fields=["event_url"],
-            )
-            self.schema._Element__tagged_values[
-                "plone.supermodel.fieldsets"
-            ] = [fieldset_informazioni]
         if self.schema.getName() == "IAddress":
             fieldset = Fieldset(
                 "dove",
