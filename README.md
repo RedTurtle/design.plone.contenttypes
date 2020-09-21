@@ -16,9 +16,11 @@
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-2)
   - [Servizio](#servizio)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-3)
-  - [Unità Organizzativa](#unit%C3%A0-organizzativa)
+  - [Unità Organizzativa](#unità-organizzativa)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-4)
 - [Gestione vocabolari](#gestione-vocabolari)
+- [Endpoint restapi](#endpoint-restapi)
+  - [Customizzazione dati relation field](#customizzazione-dati-relation-field)
 - [Installazione](#installazione)
 - [Traduzioni](#traduzioni)
 - [Contribuisci](#contribuisci)
@@ -269,6 +271,14 @@ I vocabolari personalizzabili sono i seguenti:
 
 - Tipologie notizia
 - Tipologie unità organizzativa
+
+# Endpoint restapi
+
+## Customizzazione dati relation field
+
+C'è una customizzazione dei dati ritornati dal serializer per i relation field (correlati)
+per ritornare oltre alle informazioni standard, anche la data di pubblicazione e l'inizio e fine evento.
+
 
 # Installazione
 
