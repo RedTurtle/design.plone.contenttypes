@@ -81,7 +81,7 @@ gestione di un sito Agid con Plone e Volto.
   - [x] Ordine campi
   - [x] Ordine fieldsets
   - [ ] Indicizzazione testo
-  - [ ] Vista su Volto completata
+  - [x] Vista su Volto completata
 
 - [ ] **Messaggio**
 
@@ -111,11 +111,11 @@ gestione di un sito Agid con Plone e Volto.
 
 - [ ] **Pagina Argomento**
 
-  - [ ] Definizione campi
+  - [x] Definizione campi
   - [ ] Ordine campi
   - [ ] Ordine fieldsets
   - [x] Indicizzazione testo
-  - [ ] Vista su Volto completata
+  - [x] Vista su Volto completata
 
 - [ ] **Persona**
 
@@ -123,7 +123,7 @@ gestione di un sito Agid con Plone e Volto.
   - [ ] Ordine campi
   - [ ] Ordine fieldsets
   - [x] Indicizzazione testo
-  - [x] Vista su Volto completata
+  - [ ] Vista su Volto completata
 
 - [ ] **Pratica**
 
@@ -155,7 +155,7 @@ gestione di un sito Agid con Plone e Volto.
   - [x] Ordine campi
   - [x] Ordine fieldsets
   - [x] Indicizzazione testo
-  - [x] Vista su Volto completata
+  - [ ] Vista su Volto completata
 
 ## Pagina
 
