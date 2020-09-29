@@ -80,13 +80,16 @@ FIELDSETS_ORDER = {
     ],
     "UnitaOrganizzativa": [
         "default",
+        "cosa_fa",
+        "struttura",
+        "persone",
         "dove",
-        "informazioni",
         "correlati",
+        "categorization",
+        "informazioni",
         "settings",
         "ownership",
         "dates",
-        "categorization",
     ],
     "Venue": ["default", "dove", "contatti", "informazioni", "categorization"],
 }
