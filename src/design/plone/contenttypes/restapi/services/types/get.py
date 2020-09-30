@@ -83,7 +83,7 @@ FIELDSETS_ORDER = {
         "cosa_fa",
         "struttura",
         "persone",
-        "dove",
+        "contatti",
         "correlati",
         "categorization",
         "informazioni",
@@ -91,7 +91,16 @@ FIELDSETS_ORDER = {
         "ownership",
         "dates",
     ],
-    "Venue": ["default", "dove", "contatti", "informazioni", "categorization"],
+    "Venue": [
+        "default",
+        "descrizione",
+        "accesso",
+        "dove",
+        "orari",
+        "contatti",
+        "informazioni",
+        "categorization",
+    ],
 }
 
 
@@ -102,6 +111,24 @@ class TypesGet(BaseGet):
         result["properties"]["title"]["title"] = translate(
             msgid, context=self.request
         )
+        return result
+
+    def customize_venue_schema(self, result):
+        """
+        Unico modo per spostare il campo "notes"
+        """
+        for fieldset in result["fieldsets"]:
+            if (
+                fieldset.get("id") == "default"
+                and "notes" in fieldset["fields"]
+            ):
+                fieldset["fields"].remove("notes")
+            if (
+                fieldset.get("id") == "dove"
+                and "notes" not in fieldset["fields"]
+            ):
+                fieldset["fields"].append("notes")
+
         return result
 
     def reply(self):
@@ -154,8 +181,11 @@ class TypesGet(BaseGet):
         # contains title. And this is ok for us.
         pt = self.request.PATH_INFO.split("/")[-1]
 
-        if "title" in result and pt == "Persona":
-            result = self.customize_persona_schema(result)
+        if "title" in result:
+            if pt == "Persona":
+                result = self.customize_persona_schema(result)
+            if pt == "Venue":
+                result = self.customize_venue_schema(result)
         return result
 
     def reorder_fieldsets(self, original):

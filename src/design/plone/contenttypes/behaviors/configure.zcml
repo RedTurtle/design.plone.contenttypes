@@ -121,4 +121,5 @@
       for="plone.dexterity.interfaces.IDexterityContent"
       marker=".info_testata.IInfoTestata"
       />
+  
 </configure>

@@ -47,7 +47,6 @@ class SchemaTweaks(object):
             self.schema._Element__tagged_values[
                 "plone.supermodel.fieldsets"
             ] = [fieldset]
-
         if self.schema.getName() == "IAddress":
             fieldset = Fieldset(
                 "dove",

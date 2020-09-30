@@ -3,13 +3,22 @@ from .related_news_serializer import (
     SerializeFolderToJson as RelatedNewsSerializer,
 )
 
+from Acquisition import aq_inner
 from collective.venue.interfaces import IVenue
-
 from plone import api
-from plone.restapi.interfaces import ISerializeToJson, ISerializeToJsonSummary
+from plone.app.textfield.value import RichTextValue
+from plone.restapi.interfaces import ISerializeToJson
+from plone.restapi.interfaces import ISerializeToJsonSummary
+from plone.restapi.serializer.converters import json_compatible
+from plone.restapi.serializer.summary import DefaultJSONSummarySerializer
+from zc.relation.interfaces import ICatalog
 from zope.component import adapter, getMultiAdapter
+from zope.component import getUtility
+from zope.globalrequest import getRequest
 from zope.interface import implementer
 from zope.interface import Interface
+from zope.intid.interfaces import IIntIds
+from zope.security import checkPermission
 
 
 @implementer(ISerializeToJson)
@@ -32,23 +41,63 @@ class VenueSerializer(RelatedNewsSerializer):
             getMultiAdapter((x, self.request), ISerializeToJsonSummary)()
             for x in brains
         ]
-        result["venue_services"] = servizi
-        return result
+        return servizi
 
     def get_venue_offices(self, result):
-        brains = self.search("office_venue", result["UID"])
-        offices = [
-            getMultiAdapter((x, self.request), ISerializeToJsonSummary)()
-            for x in brains
-        ]
-        result["venue_offices"] = offices
-        return result
+        catalog = getUtility(ICatalog)
+        intids = getUtility(IIntIds)
+        offices = []
+        for attr in ["sede", "sedi_secondarie"]:
+            relations = catalog.findRelations(
+                dict(
+                    to_id=intids.getId(aq_inner(self.context)),
+                    from_attribute=attr,
+                )
+            )
+
+            for rel in relations:
+                obj = intids.queryObject(rel.from_id)
+                if obj is not None and checkPermission("zope2.View", obj):
+                    summary = getMultiAdapter(
+                        (obj, getRequest()), ISerializeToJsonSummary
+                    )()
+                    offices.append(summary)
+        return offices
 
     def __call__(self, version=None, include_items=True):
         self.index = "news_venue"
         result = super(VenueSerializer, self).__call__(
             version=None, include_items=True
         )
-        result = self.get_venue_services(result)
-        result = self.get_venue_offices(result)
+        result["venue_services"] = self.get_venue_services(result)
+        result["sede_di"] = self.get_venue_offices(result)
         return result
+
+
+@implementer(ISerializeToJsonSummary)
+@adapter(IVenue, Interface)
+class SerializeVenueToJsonSummary(DefaultJSONSummarySerializer):
+    def __call__(self, version=None, include_items=True):
+        summary = super(SerializeVenueToJsonSummary, self).__call__()
+        fields = [
+            "street",
+            "zip_code",
+            "city",
+            "country",
+            "orario_pubblico",
+            "riferimento_telefonico_luogo",
+            "riferimento_mail_luogo",
+            "riferimento_pec_luogo",
+            "riferimento_telefonico_struttura",
+            "riferimento_mail_struttura",
+            "riferimento_pec_struttura",
+            "riferimento_web",
+        ]
+        for field in fields:
+            value = getattr(self.context, field, None)
+            if callable(value):
+                value = value()
+            if isinstance(value, RichTextValue):
+                value = value.output
+            summary[field] = json_compatible(value)
+        return summary

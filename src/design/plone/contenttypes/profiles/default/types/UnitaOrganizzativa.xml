@@ -34,7 +34,7 @@
   <property name="schema">design.plone.contenttypes.interfaces.unita_organizzativa.IUnitaOrganizzativa</property>
 
   <!-- Enabled behaviors -->
-  <property name="behaviors" purge="false">
+  <property name="behaviors" purge="true">
     <element value="plone.namefromtitle"/>
     <element value="plone.allowdiscussion"/>
     <element value="plone.excludefromnavigation"/>
@@ -44,8 +44,6 @@
     <element value="plone.categorization"/>
     <element value="plone.basic"/>
     <element value="plone.locking" />
-    <element value="collective.address.address" />
-    <element value="collective.geolocationbehavior.geolocation.IGeolocatable"/>
     <element value="plone.leadimage"/>
     <element value="plone.relateditems"/>
     <element value="design.plone.contenttypes.behavior.argomenti"/>

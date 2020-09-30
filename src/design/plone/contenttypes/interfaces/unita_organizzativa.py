@@ -99,12 +99,26 @@ class IUnitaOrganizzativa(model.Schema):
         required=False,
     )
 
-    sedi = RelationList(
-        title=u"Altre sedi",
+    sede = RelationList(
+        title=u"Sede principale",
         default=[],
         description=_(
-            "sedi_help",
-            default="Seleziona una lista delle sedi di questa struttura.",
+            "sede_help",
+            default="Seleziona il Luogo in cui questa struttura ha sede.",
+        ),
+        value_type=RelationChoice(
+            title=_(u"Sede"), vocabulary="plone.app.vocabularies.Catalog"
+        ),
+        required=True,
+    )
+
+    sedi_secondarie = RelationList(
+        title=u"Sedi secondarie",
+        default=[],
+        description=_(
+            "sedi_secondarie_help",
+            default="Seleziona una lista di eventuali sedi secondarie di"
+            " questa struttura.",
         ),
         value_type=RelationChoice(
             title=_(u"Sede"), vocabulary="plone.app.vocabularies.Catalog"
@@ -119,7 +133,11 @@ class IUnitaOrganizzativa(model.Schema):
         required=False,
         description=_(
             "uo_contact_info_description",
-            default="Eventuali informazioni di contatto generiche",
+            default="Inserisci eventuali informazioni di contatto aggiuntive. "
+            "Utilizza questo campo se ci sono dei contatti aggiuntivi rispetto"
+            " ai contatti della sede principale. Se inserisci un collegamento "
+            'con un indirizzo email, aggiungi "mailto:" prima dell\'indirizzo'
+            ", per farlo aprire direttamente nel client di posta.",
         ),
     )
 
@@ -163,7 +181,16 @@ class IUnitaOrganizzativa(model.Schema):
         },
     )
     form.widget(
-        "sedi",
+        "sede",
+        RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
+        pattern_options={
+            "maximumSelectionSize": 1,
+            "selectableTypes": ["Venue"],
+        },
+    )
+    form.widget(
+        "sedi_secondarie",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
@@ -194,8 +221,11 @@ class IUnitaOrganizzativa(model.Schema):
         label=_("persone_label", default="Persone"),
         fields=["persone_struttura"],
     )
-
-    form.order_after(sedi="IGeolocatable.geolocation")
+    model.fieldset(
+        "contatti",
+        label=_("contatti_label", default="Contatti"),
+        fields=["sede", "sedi_secondarie", "contact_info"],
+    )
 
     # SearchableText indexers
     dexteritytextindexer.searchable("competenze")

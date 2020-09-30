@@ -39,19 +39,41 @@ class TestServizio(unittest.TestCase):
         self.api_session.headers.update({"Accept": "application/json"})
         self.api_session.auth = (SITE_OWNER_NAME, SITE_OWNER_PASSWORD)
 
+        intids = getUtility(IIntIds)
         self.news = api.content.create(
             container=self.portal, type="News Item", title="TestNews"
         )
-        self.service = api.content.create(
-            container=self.portal, type="Servizio", title="TestService"
+        self.luogo = api.content.create(
+            container=self.portal, type="Venue", title="Luogo",
+            street="Street Foo",
+            zip_code="1234",
+            city="Rome",
+            country="Italy",
+            orario_pubblico="",
+            riferimento_telefonico_luogo="123456",
+            riferimento_mail_luogo="foo@foo.com",
+            riferimento_pec_luogo="foo@pec.com",
+            riferimento_telefonico_struttura="9876",
+            riferimento_mail_struttura="bar@bar.com",
+            riferimento_pec_struttura="bar@pec.com",
+            riferimento_web="http://www.plone.org",
         )
+        luogo = RelationValue(intids.getId(self.luogo))
+
         self.uo = api.content.create(
-            container=self.portal, type="UnitaOrganizzativa", title="TestUO"
+            container=self.portal, type="UnitaOrganizzativa", title="TestUO",
+            sede=[luogo]
         )
-        intids = getUtility(IIntIds)
         uo = RelationValue(intids.getId(self.uo))
+
+        self.service = api.content.create(
+            container=self.portal,
+            type="Servizio",
+            title="TestService",
+            ufficio_responsabile=[uo]
+        )
+
         self.news.a_cura_di = [uo]
-        self.service.ufficio_responsabile = [uo]
         pcatalog = getToolByName(self.portal, "portal_catalog")
         pcatalog.manage_reindexIndex(ids=["ufficio_responsabile", "news_uo"])
         commit()
@@ -68,8 +90,32 @@ class TestServizio(unittest.TestCase):
     def test_uo_service_related_service(self):
         response = self.api_session.get(self.uo.absolute_url() + "?fullobjects")
         self.assertTrue(
-            response.json()["servizi_offerti"][0]["@id"], self.service.absolute_url()
+            response.json()["servizi_offerti"][0]["@id"],
+            self.service.absolute_url()
         )
+
+    def test_uo_sede_data(self):
+        response = self.api_session.get(self.uo.absolute_url() + "?fullobjects")
+        sede = response.json()["sede"][0]
+        fields = [
+            "street",
+            "zip_code",
+            "city",
+            "country",
+            "orario_pubblico",
+            "riferimento_telefonico_luogo",
+            "riferimento_mail_luogo",
+            "riferimento_pec_luogo",
+            "riferimento_telefonico_struttura",
+            "riferimento_mail_struttura",
+            "riferimento_pec_struttura",
+            "riferimento_web"
+        ]
+        for field in fields:
+            self.assertEqual(
+                sede[field],
+                getattr(self.luogo, field, '')
+            )
 
 
 class TestUO(unittest.TestCase):
@@ -93,8 +139,6 @@ class TestUO(unittest.TestCase):
                 "plone.categorization",
                 "plone.basic",
                 "plone.locking",
-                "collective.address.address",
-                "collective.geolocationbehavior.geolocation.IGeolocatable",
                 "plone.leadimage",
                 "plone.relateditems",
                 "design.plone.contenttypes.behavior.argomenti",
