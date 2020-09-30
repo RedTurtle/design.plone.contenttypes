@@ -28,6 +28,27 @@ def update_controlpanel(context):
     update_profile(context, "controlpanel")
 
 
+def remap_fields(context, mapping):
+    pc = api.portal.get_tool(name="portal_catalog")
+    brains = pc()
+    tot = len(brains)
+    logger.info("Trovati {} elementi da sistemare.".format(tot))
+    # remap fields
+    for brain in brains:
+        item = brain.getObject()
+        for old, new in mapping.items():
+            value = getattr(item, old, None)
+            if value:
+                setattr(item, new, value)
+                setattr(item, old, None)
+                logger.info(
+                    "- {url}: {old} -> {new}".format(
+                        url=brain.getURL(), old=old, new=new
+                    )
+                )
+                delattr(item, old)
+
+
 def to_1001(context):
 
     update_types(context)
@@ -44,8 +65,6 @@ def to_1001(context):
         [x for x in behaviors if x not in to_remove]
     )
 
-    pc = api.portal.get_tool(name="portal_catalog")
-    brains = pc()
     mapping = {
         "descrizione_destinatari": "a_chi_si_rivolge",
         "canale_fisico": "dove_rivolgersi_extra",
@@ -54,18 +73,16 @@ def to_1001(context):
         "sedi_e_luoghi": "dove_rivolgersi",
         "box_aiuto": "ulteriori_informazioni",
     }
-    tot = len(brains)
-    logger.info("Trovati {} elementi da sistemare.".format(tot))
-    # remap fields
-    for brain in brains:
-        item = brain.getObject()
-        for old, new in mapping.items():
-            value = getattr(item, old, None)
-            if value:
-                setattr(item, new, value)
-                setattr(item, old, None)
-                logger.info(
-                    "- {url}: {old} -> {new}".format(
-                        url=brain.getURL(), old=old, new=new
-                    )
-                )
+    remap_fields(mapping=mapping)
+
+
+def to_1003(context):
+
+    update_types(context)
+
+    mapping = {
+        "elementi_di_interesse": "argomenti_di_interesse",
+        "sedi": "sede",
+    }
+
+    remap_fields(mapping=mapping)
