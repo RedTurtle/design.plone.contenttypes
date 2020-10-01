@@ -62,7 +62,7 @@ class VenueSerializer(RelatedNewsSerializer):
                         (obj, getRequest()), ISerializeToJsonSummary
                     )()
                     offices.append(summary)
-        return offices
+        return sorted(offices, key=lambda k: k["title"])
 
     def __call__(self, version=None, include_items=True):
         self.index = "news_venue"
@@ -84,6 +84,7 @@ class SerializeVenueToJsonSummary(DefaultJSONSummarySerializer):
             "zip_code",
             "city",
             "country",
+            "geolocation",
             "orario_pubblico",
             "telefono",
             "email",

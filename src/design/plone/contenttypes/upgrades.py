@@ -72,6 +72,8 @@ def to_1001(context):
         "fasi_scadenze": "tempi_e_scadenze",
         "sedi_e_luoghi": "dove_rivolgersi",
         "box_aiuto": "ulteriori_informazioni",
+        "riferimento_telefonico_luogo": "telefono",
+        "riferimento_mail_luogo": "email",
     }
     remap_fields(mapping=mapping)
 

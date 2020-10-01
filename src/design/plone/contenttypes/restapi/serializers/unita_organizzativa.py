@@ -42,7 +42,7 @@ class UOSerializer(RelatedNewsSerializer):
                         (obj, getRequest()), ISerializeToJsonSummary
                     )()
                     services.append(summary)
-        return services
+        return sorted(services, key=lambda k: k["title"])
 
     def __call__(self, version=None, include_items=True):
         self.index = "news_uo"
