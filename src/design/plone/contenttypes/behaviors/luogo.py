@@ -19,26 +19,6 @@ class ILuogo(model.Schema):
     """
     """
 
-    quartiere = schema.TextLine(
-        title=_(u"quartiere", default=u"Quartiere"),
-        description=_(
-            u"help_quartiere",
-            default=u"Indicare l'eventuale"
-            " quartiere in cui si trova questo luogo",
-        ),
-        required=False,
-    )
-
-    circoscrizione = schema.TextLine(
-        title=_(u"circoscrizione", default=u"Circoscrizione"),
-        description=_(
-            u"help_circoscrizione",
-            default=u"Indicare l'eventuale"
-            " circoscrizione in cui si trova questo luogo",
-        ),
-        required=False,
-    )
-
     # moved to behavior under field name descrizione_estesa?
     descrizione_completa = RichText(
         title=_(u"descrizione_completa", default=u"Descrizione completa"),
@@ -92,45 +72,6 @@ class ILuogo(model.Schema):
             u"help_modalita_accesso",
             default=u"Indicare tutte le informazioni relative alla modalità di"
             " accesso al luogo",
-        ),
-        required=False,
-    )
-
-    riferimento_telefonico_luogo = schema.TextLine(
-        title=_(u"riferimento_telefonico_luogo", default=u"Telefono"),
-        description=_(
-            u"help_riferimento_telefonico_luogo",
-            default=u"Indicare un riferimento telefonico per poter contattare"
-            " i referenti del luogo.",
-        ),
-        required=False,
-    )
-
-    riferimento_mail_luogo = schema.TextLine(
-        title=_(u"riferimento_mail_luogo", default=u"E-mail"),
-        description=_(
-            u"help_riferimento_mail_luogo",
-            default=u"Indicare un indirizzo mail per poter contattare"
-            " i referenti del luogo.",
-        ),
-        required=False,
-    )
-
-    riferimento_pec_luogo = schema.TextLine(
-        title=_(u"riferimento_pec_luogo", default=u"Pec"),
-        description=_(
-            u"help_riferimento_pec_luogo",
-            default=u"Indicare un indirizzo pec per poter contattare"
-            " i referenti del luogo.",
-        ),
-        required=False,
-    )
-
-    orario_pubblico = RichText(
-        title=_(u"orario_pubblico", default=u"Orario per il pubblico"),
-        description=_(
-            u"help_orario_pubblico",
-            default=u"Indicare eventuali orari di accesso al pubblico",
         ),
         required=False,
     )
@@ -203,16 +144,6 @@ class ILuogo(model.Schema):
         required=False,
     )
 
-    riferimento_web = schema.TextLine(
-        title=_(u"riferimento_web", default=u"Indirizzo web"),
-        description=_(
-            "help_riferimento_web",
-            default="Indicare un indirizzo web utile per ottenere i contatti"
-            " del luogo.",
-        ),
-        required=False,
-    )
-
     # Decisono con Baio di toglierlo: visto il vocabolario, che in realtà sta
     # qui: https://github.com/italia/daf-ontologie-vocabolari-controllati/tree/master/VocabolariControllati/classifications-for-culture/subject-disciplines
     # riteniamo che possa non fregare nulla a nessuno di questa categorizzazione.
@@ -235,11 +166,8 @@ class ILuogo(model.Schema):
     # )
 
     # custom fieldsets and order
-    form.order_after(circoscrizione="IAddress.city")
-    form.order_after(quartiere="IAddress.city")
     form.order_after(nome_alternativo="IBasic.title")
     form.order_before(argomenti_di_interesse="ILeadImageBehavior.image")
-    # form.order_after(orario_pubblico="ILeadImageBehavior.image_caption")
     # form.order_after(modalita_accesso="ILeadImageBehavior.image_caption")
     # form.order_after(argomenti_di_interesse="ILeadImageBehavior.image_caption")
     # form.order_after(descrizione_completa="ILeadImageBehavior.image_caption")
@@ -254,30 +182,16 @@ class ILuogo(model.Schema):
         label=_("accesso_label", default=u"Modalità di accesso"),
         fields=["modalita_accesso"],
     )
-    model.fieldset(
-        "dove",
-        label=_("dove_label", default=u"Dove"),
-        fields=["quartiere", "circoscrizione"],
-    )
-    model.fieldset(
-        "orari",
-        label=_("orari_label", default=u"Orari di apertura"),
-        fields=["orario_pubblico"],
-    )
 
     model.fieldset(
         "contatti",
         label=_("contatti_label", default=u"Contatti"),
         fields=[
-            "riferimento_telefonico_luogo",
-            "riferimento_mail_luogo",
-            "riferimento_pec_luogo",
             "struttura_responsabile_correlati",
             "struttura_responsabile",
             "riferimento_telefonico_struttura",
             "riferimento_mail_struttura",
             "riferimento_pec_struttura",
-            "riferimento_web",
         ],
     )
 
@@ -301,10 +215,7 @@ class ILuogo(model.Schema):
         },
     )
     # searchabletext indexer
-    dexteritytextindexer.searchable("quartiere")
-    dexteritytextindexer.searchable("circoscrizione")
     dexteritytextindexer.searchable("descrizione_completa")
-    dexteritytextindexer.searchable("orario_pubblico")
 
 
 @implementer(ILuogo)

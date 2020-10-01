@@ -50,13 +50,13 @@ class TestServizio(unittest.TestCase):
             city="Rome",
             country="Italy",
             orario_pubblico="",
-            riferimento_telefonico_luogo="123456",
-            riferimento_mail_luogo="foo@foo.com",
-            riferimento_pec_luogo="foo@pec.com",
+            telefono="123456",
+            email="foo@foo.com",
+            pec="foo@pec.com",
             riferimento_telefonico_struttura="9876",
             riferimento_mail_struttura="bar@bar.com",
             riferimento_pec_struttura="bar@pec.com",
-            riferimento_web="http://www.plone.org",
+            web="http://www.plone.org",
         )
         luogo = RelationValue(intids.getId(self.luogo))
 
@@ -103,13 +103,13 @@ class TestServizio(unittest.TestCase):
             "city",
             "country",
             "orario_pubblico",
-            "riferimento_telefonico_luogo",
-            "riferimento_mail_luogo",
-            "riferimento_pec_luogo",
+            "telefono",
+            "email",
+            "pec",
+            "web",
             "riferimento_telefonico_struttura",
             "riferimento_mail_struttura",
             "riferimento_pec_struttura",
-            "riferimento_web"
         ]
         for field in fields:
             self.assertEqual(
@@ -141,6 +141,9 @@ class TestUO(unittest.TestCase):
                 "plone.locking",
                 "plone.leadimage",
                 "plone.relateditems",
+                "design.plone.contenttypes.behavior.address_uo",
+                "design.plone.contenttypes.behavior.geolocation_uo",
+                "design.plone.contenttypes.behavior.contatti_uo",
                 "design.plone.contenttypes.behavior.argomenti",
                 "collective.dexteritytextindexer",
                 "design.plone.contenttypes.behavior.additional_help_infos",

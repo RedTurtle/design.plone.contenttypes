@@ -46,6 +46,9 @@
     <element value="plone.locking" />
     <element value="plone.leadimage"/>
     <element value="plone.relateditems"/>
+    <element value="design.plone.contenttypes.behavior.address_uo"/>
+    <element value="design.plone.contenttypes.behavior.geolocation_uo"/>
+    <element value="design.plone.contenttypes.behavior.contatti_uo"/>
     <element value="design.plone.contenttypes.behavior.argomenti"/>
     <element value="collective.dexteritytextindexer"/>
     <element value="design.plone.contenttypes.behavior.additional_help_infos"/>

@@ -24,7 +24,7 @@ class IUnitaOrganizzativa(model.Schema):
     )
 
     legami_con_altre_strutture = RelationList(
-        title=u"Legami con altre strutture",
+        title=u"Servizi o uffici di riferimento",
         default=[],
         description=_(
             "legami_con_altre_strutture_help",
@@ -63,7 +63,7 @@ class IUnitaOrganizzativa(model.Schema):
             default="Specificare la tipologia di organizzazione: politica,"
             " amminsitrativa o di altro tipo.",
         ),
-        required=True,
+        required=False,
     )
 
     assessore_riferimento = RelationList(
@@ -104,12 +104,16 @@ class IUnitaOrganizzativa(model.Schema):
         default=[],
         description=_(
             "sede_help",
-            default="Seleziona il Luogo in cui questa struttura ha sede.",
+            default="Seleziona il Luogo in cui questa struttura ha sede. "
+            "Se non è presente un contenuto di tipo Luogo a cui far "
+            "riferimento, puoi compilare i campi seguenti. Se selezioni un "
+            "Luogo, puoi usare comunque i campi seguenti per sovrascrivere "
+            "alcune informazioni.",
         ),
         value_type=RelationChoice(
             title=_(u"Sede"), vocabulary="plone.app.vocabularies.Catalog"
         ),
-        required=True,
+        required=False,
     )
 
     sedi_secondarie = RelationList(
@@ -117,8 +121,11 @@ class IUnitaOrganizzativa(model.Schema):
         default=[],
         description=_(
             "sedi_secondarie_help",
-            default="Seleziona una lista di eventuali sedi secondarie di"
-            " questa struttura.",
+            default="Seleziona una lista di eventuali contenuti di tipo Luogo"
+            " che sono sedi secondarie di questa struttura. "
+            "Per queste sedi non sarà possibile sovrascrivere i dati. "
+            "Nel caso servano informazioni diverse, è possibile usare il campo"
+            " sottostante.",
         ),
         value_type=RelationChoice(
             title=_(u"Sede"), vocabulary="plone.app.vocabularies.Catalog"
@@ -133,7 +140,8 @@ class IUnitaOrganizzativa(model.Schema):
         required=False,
         description=_(
             "uo_contact_info_description",
-            default="Inserisci eventuali informazioni di contatto aggiuntive. "
+            default="Inserisci eventuali informazioni di contatto aggiuntive "
+            "non contemplate nei campi precedenti. "
             "Utilizza questo campo se ci sono dei contatti aggiuntivi rispetto"
             " ai contatti della sede principale. Se inserisci un collegamento "
             'con un indirizzo email, aggiungi "mailto:" prima dell\'indirizzo'
@@ -226,6 +234,10 @@ class IUnitaOrganizzativa(model.Schema):
         label=_("contatti_label", default="Contatti"),
         fields=["sede", "sedi_secondarie", "contact_info"],
     )
+    form.order_after(
+        sedi_secondarie="IContattiUnitaOrganizzativa.orario_pubblico"
+    )
+    form.order_after(contact_info="sedi_secondarie")
 
     # SearchableText indexers
     dexteritytextindexer.searchable("competenze")
