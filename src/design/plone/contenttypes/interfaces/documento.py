@@ -19,7 +19,7 @@ class IDocumento(model.Schema):
             u"identificativo_documento",
             default=u"Identificativo del documento",
         ),
-        required=True,
+        required=False,
     )
 
     immagine = field.NamedBlobImage(
