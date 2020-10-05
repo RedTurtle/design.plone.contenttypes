@@ -1,7 +1,6 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
 - [Design Plone Content-types](#design-plone-content-types)
 - [Features](#features)
 - [Tipi di contenuto](#tipi-di-contenuto)
@@ -16,7 +15,7 @@
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-2)
   - [Servizio](#servizio)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-3)
-  - [Unità Organizzativa](#unit%C3%A0-organizzativa)
+  - [Unità Organizzativa](#unità-organizzativa)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-4)
 - [Gestione vocabolari](#gestione-vocabolari)
 - [Endpoint restapi](#endpoint-restapi)
@@ -50,7 +49,6 @@ gestione di un sito Agid con Plone e Volto.
   - [x] Vista su Volto completata
   - [ ] Selezione link interno
 
-
 - [ ] **Dataset**
 
   - [ ] Definizione campi
@@ -75,12 +73,12 @@ gestione di un sito Agid con Plone e Volto.
   - [ ] Indicizzazione testo
   - [ ] Vista su Volto completata
 
-- [ ] **Evento**
+- [x] **Evento**
 
   - [x] Definizione campi
   - [x] Ordine campi
   - [x] Ordine fieldsets
-  - [ ] Indicizzazione testo
+  - [x] Indicizzazione testo
   - [x] Vista su Volto completata
 
 - [ ] **Messaggio**
@@ -107,7 +105,7 @@ gestione di un sito Agid con Plone e Volto.
   - [ ] Ordine fieldsets
   - [x] Indicizzazione testo
   - [ ] Vista su Volto completata
-  - [ ] gestione di "è sede di" 
+  - [ ] gestione di "è sede di"
 
 - [ ] **Pagina Argomento**
 
@@ -278,7 +276,6 @@ I vocabolari personalizzabili sono i seguenti:
 
 C'è una customizzazione dei dati ritornati dal serializer per i relation field (correlati)
 per ritornare oltre alle informazioni standard, anche la data di pubblicazione e l'inizio e fine evento.
-
 
 # Installazione
 
