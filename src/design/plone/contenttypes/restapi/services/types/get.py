@@ -53,12 +53,14 @@ FIELDSETS_ORDER = {
     ],
     "Persona": [
         "default",
+        "ruolo",
+        "contatti",
+        "documenti",
         "informazioni",
-        "correlati",
         "categorization",
-        "settings",
-        "ownership",
         "dates",
+        "ownership",
+        "settings",
     ],
     "Servizio": [
         "default",

@@ -2,7 +2,7 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:zcml="http://namespaces.zope.org/zcml">
 
-    <adapter factory=".related_news_serializer.PersonaSerializer" />
+    <adapter factory=".persona.PersonaSerializer" />
     <adapter factory=".related_news_serializer.ServizioSerializer" />
     <adapter factory=".unita_organizzativa.UOSerializer" />
     <adapter factory=".venue.VenueSerializer" />

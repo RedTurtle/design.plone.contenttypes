@@ -1,7 +1,6 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
 - [Design Plone Content-types](#design-plone-content-types)
 - [Features](#features)
 - [Tipi di contenuto](#tipi-di-contenuto)
@@ -16,7 +15,7 @@
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-2)
   - [Servizio](#servizio)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-3)
-  - [Unità Organizzativa](#unit%C3%A0-organizzativa)
+  - [Unità Organizzativa](#unità-organizzativa)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-4)
 - [Gestione vocabolari](#gestione-vocabolari)
 - [Endpoint restapi](#endpoint-restapi)
@@ -49,7 +48,6 @@ gestione di un sito Agid con Plone e Volto.
   - [x] Indicizzazione testo
   - [x] Vista su Volto completata
   - [ ] Selezione link interno
-
 
 - [ ] **Dataset**
 
@@ -107,7 +105,7 @@ gestione di un sito Agid con Plone e Volto.
   - [ ] Ordine fieldsets
   - [x] Indicizzazione testo
   - [ ] Vista su Volto completata
-  - [ ] gestione di "è sede di" 
+  - [ ] gestione di "è sede di"
 
 - [ ] **Pagina Argomento**
 
@@ -120,8 +118,8 @@ gestione di un sito Agid con Plone e Volto.
 - [ ] **Persona**
 
   - [x] Definizione campi
-  - [ ] Ordine campi
-  - [ ] Ordine fieldsets
+  - [x] Ordine campi
+  - [x] Ordine fieldsets
   - [x] Indicizzazione testo
   - [ ] Vista su Volto completata
 
@@ -220,6 +218,12 @@ dei blocchi anche per le pagine argomento.
 
 ## Persona
 
+Il serializer della persona, ritorna anche i seguenti valori calcolati:
+
+- **strutture_correlate**: elenco di Unità Organizzative in cui la persona è stata aggiunta nel campo "Persone che compongono la struttura"
+- **responsabile_di**: elenco di Unità Organizzative in cui la persona è stata aggiunta nel campo "Responsabile"
+- **assessore_di**: elenco di Unità Organizzative in cui la persona è stata aggiunta nel campo "Assessore di riferimento"
+
 ### Campi indicizzati nel SearchableText
 
 - ruolo
@@ -278,7 +282,6 @@ I vocabolari personalizzabili sono i seguenti:
 
 C'è una customizzazione dei dati ritornati dal serializer per i relation field (correlati)
 per ritornare oltre alle informazioni standard, anche la data di pubblicazione e l'inizio e fine evento.
-
 
 # Installazione
 
