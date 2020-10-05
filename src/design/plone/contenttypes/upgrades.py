@@ -28,6 +28,27 @@ def update_controlpanel(context):
     update_profile(context, "controlpanel")
 
 
+def remap_fields(context, mapping):
+    pc = api.portal.get_tool(name="portal_catalog")
+    brains = pc()
+    tot = len(brains)
+    logger.info("Trovati {} elementi da sistemare.".format(tot))
+    # remap fields
+    for brain in brains:
+        item = brain.getObject()
+        for old, new in mapping.items():
+            value = getattr(item, old, None)
+            if value:
+                setattr(item, new, value)
+                setattr(item, old, None)
+                logger.info(
+                    "- {url}: {old} -> {new}".format(
+                        url=brain.getURL(), old=old, new=new
+                    )
+                )
+                delattr(item, old)
+
+
 def to_1001(context):
 
     update_types(context)
@@ -69,3 +90,11 @@ def to_1001(context):
                         url=brain.getURL(), old=old, new=new
                     )
                 )
+
+
+def to_1003(context):
+
+    mapping = {
+        "unita_amministrativa_responsabile": "unita_amministrative_responsabili"  # noqa
+    }
+    remap_fields(mapping=mapping)

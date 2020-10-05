@@ -1,7 +1,6 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
 - [Design Plone Content-types](#design-plone-content-types)
 - [Features](#features)
 - [Tipi di contenuto](#tipi-di-contenuto)
@@ -49,7 +48,6 @@ gestione di un sito Agid con Plone e Volto.
   - [x] Indicizzazione testo
   - [x] Vista su Volto completata
   - [ ] Selezione link interno
-
 
 - [ ] **Dataset**
 
@@ -107,7 +105,7 @@ gestione di un sito Agid con Plone e Volto.
   - [ ] Ordine fieldsets
   - [x] Indicizzazione testo
   - [ ] Vista su Volto completata
-  - [ ] gestione di "è sede di" 
+  - [ ] gestione di "è sede di"
 
 - [ ] **Pagina Argomento**
 
@@ -215,7 +213,7 @@ dei blocchi anche per le pagine argomento.
 ### Campi indicizzati nel SearchableText
 
 - blocchi Volto
-- unita_amministrativa_responsabile
+- unita_amministrative_responsabili
 - ulteriori_informazioni
 
 ## Persona
@@ -278,7 +276,6 @@ I vocabolari personalizzabili sono i seguenti:
 
 C'è una customizzazione dei dati ritornati dal serializer per i relation field (correlati)
 per ritornare oltre alle informazioni standard, anche la data di pubblicazione e l'inizio e fine evento.
-
 
 # Installazione
 
