@@ -7,7 +7,7 @@
   <!-- Basic properties -->
   <property
       i18n:translate=""
-      name="title">Pagina Argomento</property>
+      name="title">Argomento</property>
   <property
       i18n:translate=""
       name="description"></property>

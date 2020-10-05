@@ -94,6 +94,8 @@ def to_1001(context):
 
 def to_1003(context):
 
+    update_types(context)
+
     mapping = {
         "unita_amministrativa_responsabile": "unita_amministrative_responsabili"  # noqa
     }
