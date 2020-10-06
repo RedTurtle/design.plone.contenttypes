@@ -9,6 +9,7 @@
   - [Pagina](#pagina)
   - [Notizie e comunicati stampa](#notizie-e-comunicati-stampa)
   - [Luogo](#luogo)
+  - [Unità Organizzativa](#unità-organizzativa)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext)
   - [Pagina Argomento](#pagina-argomento)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-1)
@@ -16,7 +17,7 @@
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-2)
   - [Servizio](#servizio)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-3)
-  - [Unità Organizzativa](#unit%C3%A0-organizzativa)
+  - [Unità Organizzativa](#unità-organizzativa-1)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-4)
 - [Gestione vocabolari](#gestione-vocabolari)
 - [Endpoint restapi](#endpoint-restapi)
@@ -189,6 +190,12 @@ Alcuni campi della geolocalizzazione hanno dei valori predefiniti quando viene r
 - country
 
 Sono pre-popolati con la sede di AGID a Roma.
+
+Il campo "**sede_di**" ritornato da restapi è calcolato in base alle Unità Operative che lo referenziano come sede principale o secondaria.
+
+## Unità Organizzativa
+
+La get di questo content-type, ritorna (nell'attributo "**servizi_offerti**") anche la lista di Servizi che la referenziano nei campi "**ufficio_responsabile**" e "**area**".
 
 ### Campi indicizzati nel SearchableText
 
