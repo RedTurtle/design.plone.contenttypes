@@ -16,7 +16,7 @@
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-2)
   - [Servizio](#servizio)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-3)
-  - [Unità Organizzativa](#unità-organizzativa)
+  - [Unità Organizzativa](#unità-organizzativa-1)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-4)
 - [Gestione vocabolari](#gestione-vocabolari)
 - [Endpoint restapi](#endpoint-restapi)
@@ -102,11 +102,11 @@ gestione di un sito Agid con Plone e Volto.
 
   - [x] Definizione campi
   - [x] Abilitare behavior collective.address.address
-  - [ ] Ordine campi
-  - [ ] Ordine fieldsets
+  - [x] Ordine campi
+  - [x] Ordine fieldsets
   - [x] Indicizzazione testo
   - [ ] Vista su Volto completata
-  - [ ] gestione di "è sede di"
+  - [x] gestione di "è sede di"
 
 - [x] **Pagina Argomento**
 
