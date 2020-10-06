@@ -119,8 +119,8 @@ gestione di un sito Agid con Plone e Volto.
 - [ ] **Persona**
 
   - [x] Definizione campi
-  - [ ] Ordine campi
-  - [ ] Ordine fieldsets
+  - [x] Ordine campi
+  - [x] Ordine fieldsets
   - [x] Indicizzazione testo
   - [ ] Vista su Volto completata
 
@@ -224,6 +224,12 @@ dei blocchi anche per le pagine argomento.
 - ulteriori_informazioni
 
 ## Persona
+
+Il serializer della persona, ritorna anche i seguenti valori calcolati:
+
+- **strutture_correlate**: elenco di Unità Organizzative in cui la persona è stata aggiunta nel campo "Persone che compongono la struttura"
+- **responsabile_di**: elenco di Unità Organizzative in cui la persona è stata aggiunta nel campo "Responsabile"
+- **assessore_di**: elenco di Unità Organizzative in cui la persona è stata aggiunta nel campo "Assessore di riferimento"
 
 ### Campi indicizzati nel SearchableText
 
