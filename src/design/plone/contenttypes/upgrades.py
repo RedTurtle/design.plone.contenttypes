@@ -83,7 +83,7 @@ def to_1003(context):
     update_types(context)
 
     mapping = {
-        "unita_amministrativa_responsabile": "unita_amministrative_responsabili"  # noqa
+        "unita_amministrativa_responsabile": "unita_amministrative_responsabili",  # noqa
         "elementi_di_interesse": "argomenti_di_interesse",
         "sedi": "sede",
     }
