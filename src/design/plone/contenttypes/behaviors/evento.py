@@ -18,17 +18,19 @@ class IEvento(model.Schema):
     """Marker inteerface for content type Evento
     """
 
-    # questo deve essere progressivo!!
-    # identifier = schema.TextLine(
-    #     title=_(u"identifier", default=u"Identifier"), required=False
-    # )
-
-    # introduzione = RichText(
-    #     title=_(u"introduzione", default=u"Introduzione"), required=False,
-    # )
+    sottotitolo = schema.TextLine(
+        title=_(u"sottotitolo_label", default=u"Sottotitolo"),
+        description=_(
+            "sottotitolo_help",
+            default="Indica un eventuale sottotitolo/titolo alternativo.",
+        ),
+        required=False,
+    )
 
     descrizione_destinatari = RichText(
-        title=_(u"descrizione_destinatari", default=u"Descrizione destinatari"),
+        title=_(
+            u"descrizione_destinatari", default=u"Descrizione destinatari"
+        ),
         required=False,
         description=_(
             "descrizione_destinatari_help",
@@ -54,7 +56,10 @@ class IEvento(model.Schema):
         "persone_amministrazione",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={"maximumSelectionSize": 10, "selectableTypes": ["Persona"]},
+        pattern_options={
+            "maximumSelectionSize": 10,
+            "selectableTypes": ["Persona"],
+        },
     )
 
     # model.fieldset(
@@ -82,7 +87,8 @@ class IEvento(model.Schema):
         title=_(u"orari", default=u"Informazioni sugli orari"),
         required=False,
         description=_(
-            "orari_help", default="Informazioni sugli orari di svolgimento dell'evento."
+            "orari_help",
+            default="Informazioni sugli orari di svolgimento dell'evento.",
         ),
     )
 
@@ -109,7 +115,9 @@ class IEvento(model.Schema):
     )
 
     contatto_reperibilita = schema.TextLine(
-        title=_(u"contatto_reperibilita", default=u"Reperibilità organizzatore"),
+        title=_(
+            u"contatto_reperibilita", default=u"Reperibilità organizzatore"
+        ),
         required=False,
         description=_(
             "contatto_reperibilita_help",
@@ -119,10 +127,13 @@ class IEvento(model.Schema):
     )
 
     organizzato_da_interno = RelationList(
-        title=_(u"Organizzato da_interno", default=u"Organizzato da (interno)"),
+        title=_(
+            u"Organizzato da_interno", default=u"Organizzato da (interno)"
+        ),
         default=[],
         value_type=RelationChoice(
-            title=_(u"Organizzatore"), vocabulary="plone.app.vocabularies.Catalog"
+            title=_(u"Organizzatore"),
+            vocabulary="plone.app.vocabularies.Catalog",
         ),
         required=False,
         description=_(
@@ -156,15 +167,6 @@ class IEvento(model.Schema):
             " indicare l'ufficio/ente che supporta l'evento.",
         ),
     )
-    form.widget(
-        "evento_supportato_da",
-        RelatedItemsFieldWidget,
-        vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={
-            "maximumSelectionSize": 1,
-            "selectableTypes": ["UnitaOrganizzativa"],
-        },
-    )
 
     # TODO: come fare il rating/recensione dell'evento
 
@@ -177,33 +179,46 @@ class IEvento(model.Schema):
         ),
     )
 
-    # TODO: come gestire correlati: novita'
-    model.fieldset(
-        "partecipanti",
-        label=_("partecipanti_label", default=u"Partecipanti"),
-        fields=["descrizione_destinatari", "persone_amministrazione"],
+    # custom widgets
+    form.widget(
+        "evento_supportato_da",
+        RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
+        pattern_options={
+            "maximumSelectionSize": 1,
+            "selectableTypes": ["UnitaOrganizzativa"],
+        },
     )
-    model.fieldset("costi", label=_("costi_label", default=u"Costi"), fields=["prezzo"])
-    model.fieldset(
-        "contatti",
-        label=_("contatti_label", default=u"Contatti"),
-        fields=[
-            "organizzato_da_esterno",
-            "organizzato_da_interno",
-            "contatto_reperibilita",
-            "evento_supportato_da",
-        ],
-    )
-    model.fieldset(
-        "informazioni",
-        label=_("informazioni_label", default=u"Ulteriori informazioni"),
-        fields=["patrocinato_da"],
-    )
-    model.fieldset(
-        "date_evento",
-        label=_("date_evento_label", default=u"Date dell'evento"),
-        fields=["orari"],
-    )
+
+    # custom fieldsets
+    # model.fieldset(
+    #     "partecipanti",
+    #     label=_("partecipanti_label", default=u"Partecipanti"),
+    #     fields=["descrizione_destinatari", "persone_amministrazione"],
+    # )
+    # model.fieldset(
+    #     "costi", label=_("costi_label", default=u"Costi"), fields=["prezzo"]
+    # )
+    # model.fieldset(
+    #     "contatti",
+    #     label=_("contatti_label", default=u"Contatti"),
+    #     fields=[
+    #         "organizzato_da_esterno",
+    #         "organizzato_da_interno",
+    #         "contatto_reperibilita",
+    #         "evento_supportato_da",
+    #     ],
+    # )
+    # model.fieldset(
+    #     "informazioni",
+    #     label=_("informazioni_label", default=u"Ulteriori informazioni"),
+    #     fields=["patrocinato_da"],
+    # )
+    # model.fieldset(
+    #     "date_evento",
+    #     label=_("date_evento_label", default=u"Date dell'evento"),
+    #     fields=["orari"],
+    # )
 
 
 @implementer(IEvento)

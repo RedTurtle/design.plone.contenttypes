@@ -14,15 +14,11 @@ class IServizio(model.Schema):
     """Marker interface for content type Servizio
     """
 
-    # TODO: capire come gestire le tipologie di un servizio, FS o da u
-    # vocabolario o entrambi?
-    # tipologia_servizio
     sottotitolo = schema.TextLine(
         title=_(u"sottotitolo_label", default=u"Sottotitolo"),
         description=_(
             "sottotitolo_help",
-            default="Indica un eventuale sottotitolo/titolo alternativo per"
-            " questo servizio.",
+            default="Indica un eventuale sottotitolo/titolo alternativo.",
         ),
         required=False,
     )
