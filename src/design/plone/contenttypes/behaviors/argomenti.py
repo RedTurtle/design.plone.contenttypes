@@ -11,8 +11,7 @@ from zope.component import adapter
 from zope.interface import provider, implementer
 
 
-@provider(IFormFieldProvider)
-class IArgomenti(model.Schema):
+class IArgomentiSchema(model.Schema):
     """ Marker interface for Argomenti
     """
 
@@ -24,7 +23,8 @@ class IArgomenti(model.Schema):
             " contenuto.",
         ),
         value_type=RelationChoice(
-            title=_(u"Argomenti correlati"), vocabulary="plone.app.vocabularies.Catalog"
+            title=_(u"Argomenti correlati"),
+            vocabulary="plone.app.vocabularies.Catalog",
         ),
         required=False,
         default=[],
@@ -39,14 +39,32 @@ class IArgomenti(model.Schema):
         },
     )
 
+    dexteritytextindexer.searchable("tassonomia_argomenti")
+
+
+@provider(IFormFieldProvider)
+class IArgomenti(IArgomentiSchema):
     model.fieldset("categorization", fields=["tassonomia_argomenti"])
 
-    dexteritytextindexer.searchable("tassonomia_argomenti")
+
+@provider(IFormFieldProvider)
+class IArgomentiNews(IArgomentiSchema):
+    """ """
 
 
 @implementer(IArgomenti)
 @adapter(IDexterityContent)
 class Argomenti(object):
+    """
+    """
+
+    def __init__(self, context):
+        self.context = context
+
+
+@implementer(IArgomentiNews)
+@adapter(IDexterityContent)
+class ArgomentiNews(object):
     """
     """
 

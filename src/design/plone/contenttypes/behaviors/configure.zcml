@@ -44,6 +44,15 @@
       marker=".argomenti.IArgomenti"
       />
     <plone:behavior
+      title="Argomenti News"
+      name="design.plone.contenttypes.behavior.argomenti_news"
+      description="Tassonomia argomenti per le News"
+      provides=".argomenti.IArgomentiNews"
+      factory=".argomenti.ArgomentiNews"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      marker=".argomenti.IArgomentiNews"
+      />
+    <plone:behavior
       title="Luoghi correlati"
       name="design.plone.contenttypes.behavior.luoghi_correlati"
       description=""
@@ -121,4 +130,5 @@
       for="plone.dexterity.interfaces.IDexterityContent"
       marker=".info_testata.IInfoTestata"
       />
+    
 </configure>

@@ -40,12 +40,6 @@ class ILuoghiCorrelati(ILuoghiCorrelatiSchema):
     Default fieldset
     """
 
-    model.fieldset(
-        "correlati",
-        label=_("correlati_label", default="Contenuti collegati"),
-        fields=["luoghi_correlati"],
-    )
-
 
 @provider(IFormFieldProvider)
 class ILuoghiCorrelatiEvento(ILuoghiCorrelatiSchema):

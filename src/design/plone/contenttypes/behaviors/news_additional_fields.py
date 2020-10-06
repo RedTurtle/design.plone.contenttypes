@@ -14,17 +14,16 @@ from zope.interface import provider, implementer
 @provider(IFormFieldProvider)
 class INewsAdditionalFields(model.Schema):
 
-    # TODO: vocabolario per le tipologie di notizie
     tipologia_notizia = schema.Choice(
         title=_("tipologia_notizia_label", default="Tipologia notizia"),
         description=_(
-            "tipologia_notizia_help", default="Seleziona la tipologia della notizia."
+            "tipologia_notizia_help",
+            default="Seleziona la tipologia della notizia.",
         ),
         required=True,
         vocabulary="design.plone.vocabularies.tipologie_notizia",
     )
 
-    # numero progressivo del cs se esiste. Numero o stringa?
     numero_progressivo_cs = schema.TextLine(
         title=_(
             "numero_progressivo_cs_label",
@@ -51,6 +50,17 @@ class INewsAdditionalFields(model.Schema):
             "a_cura_di_persone_help",
             default="Seleziona una lista di persone dell'amministrazione "
             "citate in questa notizia/comunicato stampa.",
+        ),
+        default=[],
+        value_type=RelationChoice(vocabulary="plone.app.vocabularies.Catalog"),
+        required=False,
+    )
+
+    luoghi_correlati = RelationList(
+        title=_("luoghi_correlati_label", default="Luoghi correlati"),
+        description=_(
+            "luoghi_correlati_help",
+            default="Seleziona una lista di luoghi citati.",
         ),
         default=[],
         value_type=RelationChoice(vocabulary="plone.app.vocabularies.Catalog"),
@@ -91,19 +101,25 @@ class INewsAdditionalFields(model.Schema):
         "notizie_correlate",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={"maximumSelectionSize": 10, "selectableTypes": ["News Item"]},
+        pattern_options={
+            "maximumSelectionSize": 10,
+            "selectableTypes": ["News Item"],
+        },
+    )
+    form.widget(
+        "luoghi_correlati",
+        RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
+        pattern_options={
+            "recentlyUsed": True,  # Just turn on. Config in plone.app.widgets.
+            "selectableTypes": ["Venue"],
+        },
     )
 
-    # custom fieldsets
-    model.fieldset(
-        "correlati",
-        label=_("correlati_label", default="Contenuti collegati"),
-        fields=["notizie_correlate"],
-    )
-
-    model.fieldset("categorization", fields=["tipologia_notizia"])
-    form.order_before(tipologia_notizia="IDublinCore.subjects")
-    model.fieldset("settings", fields=["numero_progressivo_cs"])
+    # custom fieldsets and order
+    form.order_before(tipologia_notizia="ILeadImageBehavior.image")
+    form.order_before(numero_progressivo_cs="ILeadImageBehavior.image")
+    form.order_before(a_cura_di="ILeadImageBehavior.image")
 
 
 @implementer(INewsAdditionalFields)

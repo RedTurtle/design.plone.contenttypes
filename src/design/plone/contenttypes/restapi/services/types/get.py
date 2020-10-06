@@ -44,11 +44,11 @@ FIELDSETS_ORDER = {
     ],
     "News Item": [
         "default",
+        "dates",
         "correlati",
         "categorization",
-        "dates",
-        "ownership",
         "settings",
+        "ownership",
         "layout",
     ],
     "Persona": [
