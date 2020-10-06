@@ -89,11 +89,11 @@ gestione di un sito Agid con Plone e Volto.
   - [ ] Indicizzazione testo
   - [ ] Vista su Volto completata
 
-- [ ] **Notizia**
+- [x] **Notizia**
 
   - [x] Definizione campi
   - [x] Ordine campi
-  - [ ] Ordine fieldsets
+  - [x] Ordine fieldsets
   - [x] Indicizzazione testo
   - [x] Vista su Volto completata
 
