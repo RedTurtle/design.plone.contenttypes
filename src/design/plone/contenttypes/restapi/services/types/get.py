@@ -101,6 +101,25 @@ class TypesGet(BaseGet):
         )
         return result
 
+    def customize_versioning_fields_fieldset(self, result):
+        """
+        Unico modo per spostare i campi del versioning.
+        Perché changeNotes ha l'order after="*" che vince su tutto.
+        """
+        versioning_fields = ["versioning_enabled", "changeNote"]
+        for fieldset in result["fieldsets"]:
+            if fieldset.get("id") == "default":
+                for field in versioning_fields:
+                    # remove from default fieldset
+                    if field in fieldset["fields"]:
+                        fieldset["fields"].remove(field)
+            if fieldset.get("id") == "settings":
+                for field in versioning_fields:
+                    if field not in fieldset["fields"]:
+                        fieldset["fields"].append(field)
+
+        return result
+
     def reply(self):
         result = super(TypesGet, self).reply()
 
@@ -151,8 +170,10 @@ class TypesGet(BaseGet):
         # contains title. And this is ok for us.
         pt = self.request.PATH_INFO.split("/")[-1]
 
-        if "title" in result and pt == "Persona":
-            result = self.customize_persona_schema(result)
+        if "title" in result:
+            if pt == "Persona":
+                result = self.customize_persona_schema(result)
+            result = self.customize_versioning_fields_fieldset(result)
         return result
 
     def reorder_fieldsets(self, original):
