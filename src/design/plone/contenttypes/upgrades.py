@@ -66,7 +66,7 @@ def to_1001(context):
     )
 
     mapping = {
-        "descrizione_destinatari": "a_chi_si_rivolge",
+        # "descrizione_destinatari": "a_chi_si_rivolge",
         "canale_fisico": "dove_rivolgersi_extra",
         "canale_fisico_prenotazione": "prenota_appuntamento",
         "fasi_scadenze": "tempi_e_scadenze",
@@ -88,7 +88,5 @@ def to_1003(context):
         "sedi": "sede",
         "contatto_reperibilita": "reperibilita",
         "evento_supportato_da": "supportato_da",
-        "riferimento_telefonico_luogo": "telefono",
-        "riferimento_mail_luogo": "email",
     }
     remap_fields(mapping=mapping)

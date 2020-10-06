@@ -171,17 +171,6 @@ class IPersona(model.Schema):
         ),
         required=False,
     )
-    informazioni_di_contatto = RichText(
-        title=_(
-            "informazioni_di_contatto_label",
-            default="Informazioni di contatto",
-        ),
-        description=_(
-            "informazioni_di_contatto_help",
-            default="Altre informazioni di contatto.",
-        ),
-        required=False,
-    )
 
     atto_nomina = field.NamedFile(
         title=_("atto_nomina_label", default="Atto di nomina"),
@@ -278,7 +267,6 @@ class IPersona(model.Schema):
             "compensi",
             "importi_viaggio_servizio",
             "altre_cariche",
-            "informazioni_di_contatto",
             "atto_nomina",
             "situazione_patrimoniale",
             "dichiarazione_redditi",
@@ -293,4 +281,3 @@ class IPersona(model.Schema):
     dexteritytextindexer.searchable("tipologia_persona")
     dexteritytextindexer.searchable("telefono")
     dexteritytextindexer.searchable("email")
-    dexteritytextindexer.searchable("informazioni_di_contatto")
