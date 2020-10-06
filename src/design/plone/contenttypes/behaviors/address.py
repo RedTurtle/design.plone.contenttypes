@@ -69,6 +69,24 @@ class IAddressVenue(IAddress, IAddressLocal):
     )
 
 
+@provider(IFormFieldProvider)
+class IAddressEvent(IAddress, IAddressLocal):
+    """"""
+
+    model.fieldset(
+        "luogo",
+        label=_("luogo_label", default=u"Luogo"),
+        fields=[
+            "street",
+            "zip_code",
+            "city",
+            "quartiere",
+            "circoscrizione",
+            "country",
+        ],
+    )
+
+
 @implementer(IAddressUnitaOrganizzativa)
 @adapter(IUnitaOrganizzativa)
 class AddressUnitaOrganizzativa(object):
@@ -82,6 +100,16 @@ class AddressUnitaOrganizzativa(object):
 @implementer(IAddressVenue)
 @adapter(IDexterityContent)
 class AddressVenue(object):
+    """
+    """
+
+    def __init__(self, context):
+        self.context = context
+
+
+@implementer(IAddressEvent)
+@adapter(IDexterityContent)
+class AddressEvent(object):
     """
     """
 

@@ -31,8 +31,8 @@ class SchemaTweaks(object):
             ] = [fieldset]
         if self.schema.getName() == "IEventBasic":
             fieldset = Fieldset(
-                "date_evento",
-                label=_("date_evento_label", default=u"Date dell'evento"),
+                "date_e_orari",
+                label=_("date_e_orari_label", default=u"Date e orari"),
                 fields=["start", "end", "whole_day", "open_end", "sync_uid"],
             )
             self.schema._Element__tagged_values[
@@ -40,8 +40,8 @@ class SchemaTweaks(object):
             ] = [fieldset]
         if self.schema.getName() == "IEventRecurrence":
             fieldset = Fieldset(
-                "date_evento",
-                label=_("date_evento_label", default=u"Date dell'evento"),
+                "date_e_orari",
+                label=_("date_e_orari_label", default=u"Date e orari"),
                 fields=["recurrence"],
             )
             self.schema._Element__tagged_values[

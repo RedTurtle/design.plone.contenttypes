@@ -27,21 +27,21 @@ FIELDSETS_ORDER = {
         "ownership",
         "layout",
     ],
-    # "Event": [
-    #     "default",
-    #     "date_evento",
-    #     "partecipanti",
-    #     "luogo",
-    #     "costi",
-    #     "contatti",
-    #     "informazioni",
-    #     "correlati",
-    #     "categorization",
-    #     "dates",
-    #     "settings",
-    #     "layout",
-    #     "ownership",
-    # ],
+    "Event": [
+        "default",
+        "cose",
+        "luogo",
+        "date_e_orari",
+        "costi",
+        "contatti",
+        "informazioni",
+        "correlati",
+        "categorization",
+        "dates",
+        "settings",
+        "layout",
+        "ownership",
+    ],
     "News Item": [
         "default",
         "dates",
@@ -142,6 +142,25 @@ class TypesGet(BaseGet):
 
         return result
 
+    def customize_versioning_fields_fieldset(self, result):
+        """
+        Unico modo per spostare i campi del versioning.
+        Perché changeNotes ha l'order after="*" che vince su tutto.
+        """
+        versioning_fields = ["versioning_enabled", "changeNote"]
+        for fieldset in result["fieldsets"]:
+            if fieldset.get("id") == "default":
+                for field in versioning_fields:
+                    # remove from default fieldset
+                    if field in fieldset["fields"]:
+                        fieldset["fields"].remove(field)
+            if fieldset.get("id") == "settings":
+                for field in versioning_fields:
+                    if field not in fieldset["fields"]:
+                        fieldset["fields"].append(field)
+
+        return result
+
     def reply(self):
         result = super(TypesGet, self).reply()
 
@@ -149,44 +168,48 @@ class TypesGet(BaseGet):
             result["fieldsets"] = self.reorder_fieldsets(
                 original=result["fieldsets"]
             )
+        pt = self.request.PATH_INFO.split("/")[-1]
 
         if "properties" in result:
-            if "country" in result["properties"]:
-                if not result["properties"]["country"].get("default", ""):
-                    result["properties"]["country"]["default"] = {
-                        "title": "Italia",
-                        "token": "380",
-                    }
-            if "city" in result["properties"]:
-                if not result["properties"]["city"].get("default", ""):
-                    result["properties"]["city"][
-                        "default"
-                    ] = api.portal.get_registry_record(
-                        "city", interface=IGeolocationDefaults
-                    )
-            if "zip_code" in result["properties"]:
-                if not result["properties"]["zip_code"].get("default", ""):
-                    result["properties"]["zip_code"][
-                        "default"
-                    ] = api.portal.get_registry_record(
-                        "zip_code", interface=IGeolocationDefaults
-                    )
-
-            if "street" in result["properties"]:
-                if not result["properties"]["street"].get("default", ""):
-                    result["properties"]["street"][
-                        "default"
-                    ] = api.portal.get_registry_record(
-                        "street", interface=IGeolocationDefaults
-                    )
-
-            if "geolocation" in result["properties"]:
-                if not result["properties"]["geolocation"].get("default", {}):
-                    result["properties"]["geolocation"]["default"] = eval(
-                        api.portal.get_registry_record(
-                            "geolocation", interface=IGeolocationDefaults
+            if pt == "Venue":
+                if "country" in result["properties"]:
+                    if not result["properties"]["country"].get("default", ""):
+                        result["properties"]["country"]["default"] = {
+                            "title": "Italia",
+                            "token": "380",
+                        }
+                if "city" in result["properties"]:
+                    if not result["properties"]["city"].get("default", ""):
+                        result["properties"]["city"][
+                            "default"
+                        ] = api.portal.get_registry_record(
+                            "city", interface=IGeolocationDefaults
                         )
-                    )
+                if "zip_code" in result["properties"]:
+                    if not result["properties"]["zip_code"].get("default", ""):
+                        result["properties"]["zip_code"][
+                            "default"
+                        ] = api.portal.get_registry_record(
+                            "zip_code", interface=IGeolocationDefaults
+                        )
+
+                if "street" in result["properties"]:
+                    if not result["properties"]["street"].get("default", ""):
+                        result["properties"]["street"][
+                            "default"
+                        ] = api.portal.get_registry_record(
+                            "street", interface=IGeolocationDefaults
+                        )
+
+                if "geolocation" in result["properties"]:
+                    if not result["properties"]["geolocation"].get(
+                        "default", {}
+                    ):
+                        result["properties"]["geolocation"]["default"] = eval(
+                            api.portal.get_registry_record(
+                                "geolocation", interface=IGeolocationDefaults
+                            )
+                        )
 
         # be careful: result could be dict or list. If list it will not
         # contains title. And this is ok for us.
@@ -197,6 +220,7 @@ class TypesGet(BaseGet):
                 result = self.customize_persona_schema(result)
             if pt == "Venue":
                 result = self.customize_venue_schema(result)
+            result = self.customize_versioning_fields_fieldset(result)
         return result
 
     def reorder_fieldsets(self, original):

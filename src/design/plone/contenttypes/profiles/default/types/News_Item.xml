@@ -9,7 +9,7 @@
    <element value="plone.dublincore"/>
    <element value="plone.leadimage"/>
    <element value="design.plone.contenttypes.behavior.news"/>
-   <element value="design.plone.contenttypes.behavior.argomenti_news"/>
+   <element value="design.plone.contenttypes.behavior.argomenti"/>
    <element value="plone.namefromtitle"/>
    <element value="plone.allowdiscussion"/>
    <element value="plone.shortname"/>
@@ -19,8 +19,6 @@
    <element value="plone.locking"/>
    <element value="plone.constraintypes"/>
    <element value="volto.blocks"/>
-   <!-- <element value="design.plone.contenttypes.behavior.dataset_correlati"/> -->
-   <!-- <element value="design.plone.contenttypes.behavior.servizi_correlati"/>   -->
  </property>
  
 </object>

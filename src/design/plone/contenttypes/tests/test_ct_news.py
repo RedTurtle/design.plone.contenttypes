@@ -33,7 +33,7 @@ class TestNews(unittest.TestCase):
                 "plone.dublincore",
                 "plone.leadimage",
                 "design.plone.contenttypes.behavior.news",
-                "design.plone.contenttypes.behavior.argomenti_news",
+                "design.plone.contenttypes.behavior.argomenti",
                 "plone.namefromtitle",
                 "plone.allowdiscussion",
                 "plone.shortname",

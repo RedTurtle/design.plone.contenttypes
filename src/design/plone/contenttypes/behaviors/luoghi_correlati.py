@@ -42,10 +42,32 @@ class ILuoghiCorrelati(ILuoghiCorrelatiSchema):
 
 
 @provider(IFormFieldProvider)
-class ILuoghiCorrelatiEvento(ILuoghiCorrelatiSchema):
+class ILuoghiCorrelatiEvento(model.Schema):
     """
     Events have a differente fieldset for this field
     """
+
+    luoghi_correlati = RelationList(
+        title=_("luoghi_correlati_label", default="Luoghi correlati"),
+        description=_(
+            "luoghi_correlati_event_help",
+            default="Seleziona una lista di luoghi citati. Se il luogo "
+            "dell'evento non è presente sul sito, inserisci le sue "
+            "informazioni nei campi seguenti.",
+        ),
+        default=[],
+        value_type=RelationChoice(vocabulary="plone.app.vocabularies.Catalog"),
+        required=False,
+    )
+    form.widget(
+        "luoghi_correlati",
+        RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
+        pattern_options={
+            "recentlyUsed": True,  # Just turn on. Config in plone.app.widgets.
+            "selectableTypes": ["Venue"],
+        },
+    )
 
     model.fieldset(
         "luogo",

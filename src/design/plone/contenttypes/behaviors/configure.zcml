@@ -44,15 +44,6 @@
       marker=".argomenti.IArgomenti"
       />
     <plone:behavior
-      title="Argomenti News"
-      name="design.plone.contenttypes.behavior.argomenti_news"
-      description="Tassonomia argomenti per le News"
-      provides=".argomenti.IArgomentiNews"
-      factory=".argomenti.ArgomentiNews"
-      for="plone.dexterity.interfaces.IDexterityContent"
-      marker=".argomenti.IArgomentiNews"
-      />
-    <plone:behavior
       title="Luoghi correlati"
       name="design.plone.contenttypes.behavior.luoghi_correlati"
       description=""
@@ -131,7 +122,7 @@
       marker=".info_testata.IInfoTestata"
       />
     <plone:behavior
-      title="Address"
+      title="Address UO"
       name="design.plone.contenttypes.behavior.address_uo"
       description="Behavior address per UO."
       provides=".address.IAddressUnitaOrganizzativa"
@@ -139,12 +130,20 @@
       marker=".address.IAddressUnitaOrganizzativa"
       />
     <plone:behavior
-      title="Address"
+      title="Address Venue"
       name="design.plone.contenttypes.behavior.address_venue"
       description="Behavior address per Venue."
       provides=".address.IAddressVenue"
       factory=".address.AddressVenue"
       marker=".address.IAddressVenue"
+      />
+    <plone:behavior
+      title="Address Event"
+      name="design.plone.contenttypes.behavior.address_event"
+      description="Behavior address per Event."
+      provides=".address.IAddressEvent"
+      factory=".address.AddressEvent"
+      marker=".address.IAddressEvent"
       />
     <plone:behavior
       title="Contatti"
@@ -178,5 +177,13 @@
       factory=".geolocation.GeolocatableVenue"
       marker=".geolocation.IGeolocatableVenue"
       />
- 
+    <plone:behavior
+      title="Geolocatable"
+      name="design.plone.contenttypes.behavior.geolocation_event"
+      description="Behavior geolocatable per Event."
+      provides=".geolocation.IGeolocatableEvent"
+      factory=".geolocation.GeolocatableEvent"
+      marker=".geolocation.IGeolocatableEvent"
+      />
+
 </configure>

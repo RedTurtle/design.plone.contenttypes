@@ -52,36 +52,6 @@ class IEvento(model.Schema):
         ),
         required=False,
     )
-    form.widget(
-        "persone_amministrazione",
-        RelatedItemsFieldWidget,
-        vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={
-            "maximumSelectionSize": 10,
-            "selectableTypes": ["Persona"],
-        },
-    )
-
-    # model.fieldset(
-    #     "correlati",
-    #     label=_("correlati_label", default="Contenuti collegati"),
-    #     fields=["luoghi_correlati"],
-    # )
-
-    # non vengono mostrati
-    # indirizzo = schema.TextLine(
-    #     title=_(u"indirizzo", default=u"Indirizzo"), required=True
-    # )
-
-    # quartiere = schema.TextLine(
-    #     title=_(u"quartiere", default=u"Quartiere"), required=False
-    # )
-
-    # circoscrizione = schema.TextLine(
-    #     title=_(u"circoscrizione", default=u"Circoscrizione"), required=False
-    # )
-
-    # cap = schema.TextLine(title=_(u"cap", default=u"CAP"), required=True)
 
     orari = RichText(
         title=_(u"orari", default=u"Informazioni sugli orari"),
@@ -92,8 +62,6 @@ class IEvento(model.Schema):
         ),
     )
 
-    # TODO: come gestire il campo "Aggiungi al calendario"
-
     prezzo = RichText(
         title=_(u"prezzo", default=u"Prezzo"),
         required=False,
@@ -103,64 +71,74 @@ class IEvento(model.Schema):
             " se esistono formati diversi.",
         ),
     )
-
-    organizzato_da_esterno = RichText(
-        title=_(u"organizzato_da_esterno", default=u"Organizzato da"),
-        required=False,
-        description=_(
-            "organizzato_da_esterno_help",
-            default="Se l'evento non è organizzato direttamente dal comune,"
-            " indicare l'organizzatore.",
-        ),
-    )
-
-    contatto_reperibilita = schema.TextLine(
-        title=_(
-            u"contatto_reperibilita", default=u"Reperibilità organizzatore"
-        ),
-        required=False,
-        description=_(
-            "contatto_reperibilita_help",
-            default="Indicare gli orari in cui l'organizzatore è"
-            " telefonicamente reperibile.",
-        ),
-    )
-
     organizzato_da_interno = RelationList(
-        title=_(
-            u"Organizzato da_interno", default=u"Organizzato da (interno)"
-        ),
+        title=_(u"organizzato_da_interno_label", default=u"Organizzato da"),
         default=[],
-        value_type=RelationChoice(
-            title=_(u"Organizzatore"),
-            vocabulary="plone.app.vocabularies.Catalog",
-        ),
+        value_type=RelationChoice(vocabulary="plone.app.vocabularies.Catalog"),
         required=False,
         description=_(
             "organizzato_da_interno_help",
             default="Se l'evento è organizzato direttamente dal comune,"
-            " indicare l'ufficio/ente organizzatore.",
+            " indicare l'ufficio/ente organizzatore. I dati di contatto "
+            "verranno presi direttamente dall'ufficio selezionato. Se l'evento"
+            " non è organizzato direttamente dal comune, o si vogliono "
+            "sovrascrivere alcuni dati di contatto, utilizzare i seguenti campi.",  # noqa
         ),
-    )
-    form.widget(
-        "organizzato_da_interno",
-        RelatedItemsFieldWidget,
-        vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={
-            "maximumSelectionSize": 10,
-            "selectableTypes": ["Persona", "UnitaOrganizzativa", "Servizio"],
-        },
     )
 
-    # ref
-    evento_supportato_da = RelationList(
-        title=_(u"supportato_da", default=u"Evento supportato da"),
+    organizzato_da_esterno = RichText(
+        title=_(
+            u"organizzato_da_esterno_label", default=u"Organizzatore esterno"
+        ),
+        required=False,
+        description=_(
+            "organizzato_da_esterno_help",
+            default="Se l'evento non è organizzato direttamente dal comune,"
+            " indicare il nome del contatto.",
+        ),
+    )
+    telefono = schema.TextLine(
+        title=_(u"telefono", default=u"Telefono"),
+        description=_(
+            u"help_telefono",
+            default=u"Indicare un riferimento telefonico per poter contattare"
+            " gli organizzatori.",
+        ),
+        required=False,
+    )
+    reperibilita = schema.TextLine(
+        title=_(u"reperibilita", default=u"Reperibilità organizzatore"),
+        required=False,
+        description=_(
+            "reperibilita_help",
+            default="Indicare gli orari in cui l'organizzatore è"
+            " telefonicamente reperibile.",
+        ),
+    )
+    email = schema.TextLine(
+        title=_(u"email", default=u"E-mail"),
+        description=_(
+            u"help_email",
+            default=u"Indicare un indirizzo mail per poter contattare"
+            " gli organizzatori.",
+        ),
+        required=False,
+    )
+
+    web = schema.TextLine(
+        title=_(u"web", default=u"Sito web"),
+        description=_(
+            "help_web",
+            default="Indicare un indirizzo web di riferimento a "
+            "questo evento.",
+        ),
+        required=False,
+    )
+    supportato_da = RelationList(
+        title=_(u"supportato_da_label", default=u"Evento supportato da"),
         required=False,
         default=[],
-        value_type=RelationChoice(
-            title=_(u"Evento supportato da"),
-            vocabulary="plone.app.vocabularies.Catalog",
-        ),
+        value_type=RelationChoice(vocabulary="plone.app.vocabularies.Catalog"),
         description=_(
             "supportato_da_help",
             default="Se l'evento è organizzato direttamente dal comune,"
@@ -181,7 +159,7 @@ class IEvento(model.Schema):
 
     # custom widgets
     form.widget(
-        "evento_supportato_da",
+        "supportato_da",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
@@ -189,36 +167,58 @@ class IEvento(model.Schema):
             "selectableTypes": ["UnitaOrganizzativa"],
         },
     )
+    form.widget(
+        "organizzato_da_interno",
+        RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
+        pattern_options={
+            "maximumSelectionSize": 10,
+            "selectableTypes": ["Persona", "UnitaOrganizzativa", "Servizio"],
+        },
+    )
+    form.widget(
+        "persone_amministrazione",
+        RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
+        pattern_options={
+            "maximumSelectionSize": 10,
+            "selectableTypes": ["Persona"],
+        },
+    )
 
-    # custom fieldsets
-    # model.fieldset(
-    #     "partecipanti",
-    #     label=_("partecipanti_label", default=u"Partecipanti"),
-    #     fields=["descrizione_destinatari", "persone_amministrazione"],
-    # )
-    # model.fieldset(
-    #     "costi", label=_("costi_label", default=u"Costi"), fields=["prezzo"]
-    # )
-    # model.fieldset(
-    #     "contatti",
-    #     label=_("contatti_label", default=u"Contatti"),
-    #     fields=[
-    #         "organizzato_da_esterno",
-    #         "organizzato_da_interno",
-    #         "contatto_reperibilita",
-    #         "evento_supportato_da",
-    #     ],
-    # )
-    # model.fieldset(
-    #     "informazioni",
-    #     label=_("informazioni_label", default=u"Ulteriori informazioni"),
-    #     fields=["patrocinato_da"],
-    # )
-    # model.fieldset(
-    #     "date_evento",
-    #     label=_("date_evento_label", default=u"Date dell'evento"),
-    #     fields=["orari"],
-    # )
+    # custom fieldsets and order
+    form.order_before(sottotitolo="ILeadImageBehavior.image")
+    model.fieldset(
+        "cose",
+        label=_("cose_label", default=u"Cos'è"),
+        fields=["descrizione_destinatari", "persone_amministrazione"],
+    )
+    model.fieldset(
+        "date_e_orari",
+        label=_("date_e_orari_label", default=u"Date e orari"),
+        fields=["orari"],
+    )
+    model.fieldset(
+        "costi", label=_("costi_label", default=u"Costi"), fields=["prezzo"]
+    )
+    model.fieldset(
+        "contatti",
+        label=_("contatti_label", default=u"Contatti"),
+        fields=[
+            "organizzato_da_interno",
+            "organizzato_da_esterno",
+            "telefono",
+            "reperibilita",
+            "email",
+            "web",
+            "supportato_da",
+        ],
+    )
+    model.fieldset(
+        "informazioni",
+        label=_("informazioni_label", default=u"Ulteriori informazioni"),
+        fields=["patrocinato_da"],
+    )
 
 
 @implementer(IEvento)

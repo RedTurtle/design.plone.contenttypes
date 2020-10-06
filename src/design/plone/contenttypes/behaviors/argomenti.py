@@ -44,27 +44,12 @@ class IArgomentiSchema(model.Schema):
 
 @provider(IFormFieldProvider)
 class IArgomenti(IArgomentiSchema):
-    model.fieldset("categorization", fields=["tassonomia_argomenti"])
-
-
-@provider(IFormFieldProvider)
-class IArgomentiNews(IArgomentiSchema):
     """ """
 
 
 @implementer(IArgomenti)
 @adapter(IDexterityContent)
 class Argomenti(object):
-    """
-    """
-
-    def __init__(self, context):
-        self.context = context
-
-
-@implementer(IArgomentiNews)
-@adapter(IDexterityContent)
-class ArgomentiNews(object):
     """
     """
 

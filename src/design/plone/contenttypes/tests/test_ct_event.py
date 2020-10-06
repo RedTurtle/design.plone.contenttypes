@@ -29,7 +29,15 @@ class TestEvent(unittest.TestCase):
             portal_types["Event"].behaviors,
             (
                 "plone.eventbasic",
+                "plone.leadimage",
+                "design.plone.contenttypes.behavior.argomenti",
                 "plone.eventrecurrence",
+                "design.plone.contenttypes.behavior.additional_help_infos",
+                "design.plone.contenttypes.behavior.evento",
+                "design.plone.contenttypes.behavior.luoghi_correlati_evento",
+                "design.plone.contenttypes.behavior.address_event",
+                "design.plone.contenttypes.behavior.geolocation_event",
+                "design.plone.contenttypes.behavior.strutture_correlate",
                 "plone.dublincore",
                 "plone.namefromtitle",
                 "plone.allowdiscussion",
@@ -40,12 +48,6 @@ class TestEvent(unittest.TestCase):
                 "plone.locking",
                 "plone.constraintypes",
                 "volto.blocks",
-                "design.plone.contenttypes.behavior.additional_help_infos",
-                "design.plone.contenttypes.behavior.evento",
-                "design.plone.contenttypes.behavior.strutture_correlate",
-                "design.plone.contenttypes.behavior.luoghi_correlati_evento",
-                "plone.leadimage",
-                "design.plone.contenttypes.behavior.argomenti",
             ),
         )
 
