@@ -51,6 +51,15 @@ FIELDSETS_ORDER = {
         "settings",
         "layout",
     ],
+    "Pagina Argomento": [
+        "default",
+        "informazioni",
+        "categorization",
+        "dates",
+        "settings",
+        "layout",
+        "ownership",
+    ],
     "Persona": [
         "default",
         "informazioni",

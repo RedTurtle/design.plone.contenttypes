@@ -1,7 +1,6 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
 - [Design Plone Content-types](#design-plone-content-types)
 - [Features](#features)
 - [Tipi di contenuto](#tipi-di-contenuto)
@@ -17,7 +16,7 @@
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-2)
   - [Servizio](#servizio)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-3)
-  - [Unità Organizzativa](#unità-organizzativa-1)
+  - [Unità Organizzativa](#unità-organizzativa)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-4)
 - [Gestione vocabolari](#gestione-vocabolari)
 - [Endpoint restapi](#endpoint-restapi)
@@ -109,11 +108,11 @@ gestione di un sito Agid con Plone e Volto.
   - [ ] Vista su Volto completata
   - [ ] gestione di "è sede di"
 
-- [ ] **Pagina Argomento**
+- [x] **Pagina Argomento**
 
   - [x] Definizione campi
-  - [ ] Ordine campi
-  - [ ] Ordine fieldsets
+  - [x] Ordine campi
+  - [x] Ordine fieldsets
   - [x] Indicizzazione testo
   - [x] Vista su Volto completata
 
@@ -221,7 +220,7 @@ dei blocchi anche per le pagine argomento.
 ### Campi indicizzati nel SearchableText
 
 - blocchi Volto
-- unita_amministrativa_responsabile
+- unita_amministrative_responsabili
 - ulteriori_informazioni
 
 ## Persona

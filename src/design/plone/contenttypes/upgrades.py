@@ -28,7 +28,7 @@ def update_controlpanel(context):
     update_profile(context, "controlpanel")
 
 
-def remap_fields(context, mapping):
+def remap_fields(mapping):
     pc = api.portal.get_tool(name="portal_catalog")
     brains = pc()
     tot = len(brains)
@@ -83,8 +83,8 @@ def to_1003(context):
     update_types(context)
 
     mapping = {
+        "unita_amministrativa_responsabile": "unita_amministrative_responsabili",  # noqa
         "elementi_di_interesse": "argomenti_di_interesse",
         "sedi": "sede",
     }
-
     remap_fields(mapping=mapping)
