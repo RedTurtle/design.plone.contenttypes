@@ -35,11 +35,12 @@ class TestLuogo(unittest.TestCase):
                 "plone.app.content.interfaces.INameFromTitle",
                 "plone.app.dexterity.behaviors.metadata.IBasic",
                 "plone.app.dexterity.behaviors.metadata.ICategorization",
-                "design.plone.contenttypes.behavior.argomenti",
                 "plone.leadimage",
-                "collective.address.behaviors.IAddress",
-                "collective.geolocationbehavior.geolocation.IGeolocatable",
+                "design.plone.contenttypes.behavior.contatti_venue",
                 "design.plone.contenttypes.behavior.luogo",
+                "design.plone.contenttypes.behavior.argomenti",
+                "design.plone.contenttypes.behavior.address_venue",
+                "design.plone.contenttypes.behavior.geolocation_venue",
                 "design.plone.contenttypes.behavior.additional_help_infos",
                 "collective.dexteritytextindexer",
             ),
@@ -183,5 +184,14 @@ class TestLuogoApi(unittest.TestCase):
         # expected fieldsets...
         self.assertEqual(
             [x["id"] for x in fieldsets],
-            ["default", "dove", "contatti", "informazioni", "categorization"],
+            [
+                "default",
+                "descrizione",
+                "accesso",
+                "dove",
+                "orari",
+                "contatti",
+                "informazioni",
+                "categorization",
+            ],
         )

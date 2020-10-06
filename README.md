@@ -8,6 +8,7 @@
   - [Pagina](#pagina)
   - [Notizie e comunicati stampa](#notizie-e-comunicati-stampa)
   - [Luogo](#luogo)
+  - [Unità Organizzativa](#unità-organizzativa)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext)
   - [Pagina Argomento](#pagina-argomento)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-1)
@@ -73,12 +74,12 @@ gestione di un sito Agid con Plone e Volto.
   - [ ] Indicizzazione testo
   - [ ] Vista su Volto completata
 
-- [ ] **Evento**
+- [x] **Evento**
 
   - [x] Definizione campi
   - [x] Ordine campi
   - [x] Ordine fieldsets
-  - [ ] Indicizzazione testo
+  - [x] Indicizzazione testo
   - [x] Vista su Volto completata
 
 - [ ] **Messaggio**
@@ -188,6 +189,12 @@ Alcuni campi della geolocalizzazione hanno dei valori predefiniti quando viene r
 - country
 
 Sono pre-popolati con la sede di AGID a Roma.
+
+Il campo "**sede_di**" ritornato da restapi è calcolato in base alle Unità Operative che lo referenziano come sede principale o secondaria.
+
+## Unità Organizzativa
+
+La get di questo content-type, ritorna (nell'attributo "**servizi_offerti**") anche la lista di Servizi che la referenziano nei campi "**ufficio_responsabile**" e "**area**".
 
 ### Campi indicizzati nel SearchableText
 
