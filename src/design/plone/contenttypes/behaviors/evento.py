@@ -87,13 +87,11 @@ class IEvento(model.Schema):
     )
 
     organizzato_da_esterno = RichText(
-        title=_(
-            u"organizzato_da_esterno_label", default=u"Organizzatore esterno"
-        ),
+        title=_(u"organizzato_da_esterno_label", default=u"Organizzatore"),
         required=False,
         description=_(
             "organizzato_da_esterno_help",
-            default="Se l'evento non è organizzato direttamente dal comune,"
+            default="Se l'evento non è organizzato direttamente dal comune oppure ha anche un organizzatore esterno,"
             " indicare il nome del contatto.",
         ),
     )
@@ -141,8 +139,7 @@ class IEvento(model.Schema):
         value_type=RelationChoice(vocabulary="plone.app.vocabularies.Catalog"),
         description=_(
             "supportato_da_help",
-            default="Se l'evento è organizzato direttamente dal comune,"
-            " indicare l'ufficio/ente che supporta l'evento.",
+            default="Indicare gli uffici/enti che supportano l'evento.",
         ),
     )
 
