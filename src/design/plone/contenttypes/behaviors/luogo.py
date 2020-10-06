@@ -31,9 +31,9 @@ class ILuogo(model.Schema):
     )
 
     luoghi_correlati = RelationList(
-        title=_("luoghi_correlati", default=u"Luoghi correlati"),
+        title=_("luoghi_correlati_luogo_label", default=u"Luoghi correlati"),
         description=_(
-            "luoghi_correlati_help",
+            "luoghi_correlati_luogo__help",
             default="Indicare una serie di eventuali luoghi di interesse per "
             "il cittadino correlati a questo.",
         ),

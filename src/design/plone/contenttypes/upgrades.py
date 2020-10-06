@@ -88,5 +88,7 @@ def to_1003(context):
         "sedi": "sede",
         "contatto_reperibilita": "reperibilita",
         "evento_supportato_da": "supportato_da",
+        "riferimento_telefonico_luogo": "telefono",
+        "riferimento_mail_luogo": "email",
     }
     remap_fields(mapping=mapping)

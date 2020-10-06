@@ -98,9 +98,9 @@ class IEvento(model.Schema):
         ),
     )
     telefono = schema.TextLine(
-        title=_(u"telefono", default=u"Telefono"),
+        title=_(u"telefono_event_help", default=u"Telefono"),
         description=_(
-            u"help_telefono",
+            u"telefono_event_label",
             default=u"Indicare un riferimento telefonico per poter contattare"
             " gli organizzatori.",
         ),
@@ -116,9 +116,9 @@ class IEvento(model.Schema):
         ),
     )
     email = schema.TextLine(
-        title=_(u"email", default=u"E-mail"),
+        title=_(u"email_event_label", default=u"E-mail"),
         description=_(
-            u"help_email",
+            u"email_event_help",
             default=u"Indicare un indirizzo mail per poter contattare"
             " gli organizzatori.",
         ),
@@ -126,9 +126,9 @@ class IEvento(model.Schema):
     )
 
     web = schema.TextLine(
-        title=_(u"web", default=u"Sito web"),
+        title=_(u"web_event_label", default=u"Sito web"),
         description=_(
-            "help_web",
+            "web_event_help",
             default="Indicare un indirizzo web di riferimento a "
             "questo evento.",
         ),
@@ -149,7 +149,7 @@ class IEvento(model.Schema):
     # TODO: come fare il rating/recensione dell'evento
 
     patrocinato_da = schema.TextLine(
-        title=_(u"patrocinato_da", default=u"Patrocinato da"),
+        title=_(u"patrocinato_da_label", default=u"Patrocinato da"),
         required=False,
         description=_(
             "patrocinato_da_help",

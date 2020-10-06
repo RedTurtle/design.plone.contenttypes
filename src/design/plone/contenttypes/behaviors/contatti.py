@@ -18,9 +18,9 @@ class IContatti(model.Schema):
     """
 
     telefono = schema.TextLine(
-        title=_(u"telefono", default=u"Telefono"),
+        title=_(u"telefono_label", default=u"Telefono"),
         description=_(
-            u"help_telefono",
+            u"telefono_help",
             default=u"Indicare un riferimento telefonico per poter contattare"
             " i referenti.",
         ),
@@ -28,9 +28,9 @@ class IContatti(model.Schema):
     )
 
     email = schema.TextLine(
-        title=_(u"email", default=u"E-mail"),
+        title=_(u"email_label", default=u"E-mail"),
         description=_(
-            u"help_email",
+            u"email_help",
             default=u"Indicare un indirizzo mail per poter contattare"
             " i referenti.",
         ),
@@ -38,9 +38,9 @@ class IContatti(model.Schema):
     )
 
     pec = schema.TextLine(
-        title=_(u"pec", default=u"Pec"),
+        title=_(u"pec_label", default=u"Pec"),
         description=_(
-            u"help_pec",
+            u"pec_help",
             default=u"Indicare un indirizzo pec per poter contattare"
             " i referenti.",
         ),
@@ -48,17 +48,17 @@ class IContatti(model.Schema):
     )
 
     web = schema.TextLine(
-        title=_(u"web", default=u"Sito web"),
+        title=_(u"web_label", default=u"Sito web"),
         description=_(
-            "help_web", default="Indicare un indirizzo web di riferimento."
+            "web_help", default="Indicare un indirizzo web di riferimento."
         ),
         required=False,
     )
 
     orario_pubblico = RichText(
-        title=_(u"orario_pubblico", default=u"Orario per il pubblico"),
+        title=_(u"orario_pubblico_label", default=u"Orario per il pubblico"),
         description=_(
-            u"help_orario_pubblico",
+            u"orario_pubblico_help",
             default=u"Indicare eventuali orari di accesso al pubblico",
         ),
         required=False,

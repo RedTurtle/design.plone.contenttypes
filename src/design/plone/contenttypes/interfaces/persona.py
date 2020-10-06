@@ -112,16 +112,19 @@ class IPersona(model.Schema):
     )
 
     telefono = schema.TextLine(
-        title=_("telefono_label", default="Numero di telefono"),
+        title=_("telefono_persona_label", default="Numero di telefono"),
         description=_(
-            "telefono_help", default="Contatto telefonico della persona."
+            "telefono_persona_help",
+            default="Contatto telefonico della persona.",
         ),
         required=False,
     )
 
     email = schema.TextLine(
-        title=_("email_label", default="Indirizzo email"),
-        description=_("email_help", default="Contatto mail della persona."),
+        title=_("email_persona_label", default="Indirizzo email"),
+        description=_(
+            "email_persona_help", default="Contatto mail della persona."
+        ),
         required=False,
     )
     curriculum_vitae = field.NamedBlobFile(
