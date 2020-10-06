@@ -24,33 +24,36 @@ class IPaginaArgomento(model.Schema):
         required=False,
     )
 
-    unita_amministrativa_responsabile = RelationList(
+    unita_amministrative_responsabili = RelationList(
         title=_(
-            u"unita_amministrativa_responsabile",
-            default=u"Unità amministrativa responsabile",
+            u"unita_amministrative_responsabili",
+            default=u"Unità amministrative responsabili",
         ),
         required=False,
         default=[],
         value_type=RelationChoice(
-            title=_(u"Unità amministrativa responsabile"),
+            title=_(u"Unità amministrative responsabili"),
             vocabulary="plone.app.vocabularies.Catalog",
         ),
         description=_(
-            "unita_amministrativa_responsabile_help",
+            "unita_amministrative_responsabili_help",
             default="Seleziona la lista delle unità amministrative"
             " responsabili di questo argomento.",
         ),
     )
     form.widget(
-        "unita_amministrativa_responsabile",
+        "unita_amministrative_responsabili",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "maximumSelectionSize": 10,
             "selectableTypes": ["UnitaOrganizzativa"],
-            # "basePath": "/amministrazione",
         },
     )
 
+    form.order_after(
+        unita_amministrative_responsabili="ILeadImageBehavior.image_caption"
+    )
+
     # SearchableText fields
-    dexteritytextindexer.searchable("unita_amministrativa_responsabile")
+    dexteritytextindexer.searchable("unita_amministrative_responsabili")

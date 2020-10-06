@@ -8,6 +8,7 @@
   - [Pagina](#pagina)
   - [Notizie e comunicati stampa](#notizie-e-comunicati-stampa)
   - [Luogo](#luogo)
+  - [Unità Organizzativa](#unità-organizzativa)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext)
   - [Pagina Argomento](#pagina-argomento)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-1)
@@ -107,19 +108,19 @@ gestione di un sito Agid con Plone e Volto.
   - [ ] Vista su Volto completata
   - [ ] gestione di "è sede di"
 
-- [ ] **Pagina Argomento**
+- [x] **Pagina Argomento**
 
   - [x] Definizione campi
-  - [ ] Ordine campi
-  - [ ] Ordine fieldsets
+  - [x] Ordine campi
+  - [x] Ordine fieldsets
   - [x] Indicizzazione testo
   - [x] Vista su Volto completata
 
 - [ ] **Persona**
 
   - [x] Definizione campi
-  - [ ] Ordine campi
-  - [ ] Ordine fieldsets
+  - [x] Ordine campi
+  - [x] Ordine fieldsets
   - [x] Indicizzazione testo
   - [ ] Vista su Volto completata
 
@@ -189,6 +190,12 @@ Alcuni campi della geolocalizzazione hanno dei valori predefiniti quando viene r
 
 Sono pre-popolati con la sede di AGID a Roma.
 
+Il campo "**sede_di**" ritornato da restapi è calcolato in base alle Unità Operative che lo referenziano come sede principale o secondaria.
+
+## Unità Organizzativa
+
+La get di questo content-type, ritorna (nell'attributo "**servizi_offerti**") anche la lista di Servizi che la referenziano nei campi "**ufficio_responsabile**" e "**area**".
+
 ### Campi indicizzati nel SearchableText
 
 - street
@@ -213,10 +220,16 @@ dei blocchi anche per le pagine argomento.
 ### Campi indicizzati nel SearchableText
 
 - blocchi Volto
-- unita_amministrativa_responsabile
+- unita_amministrative_responsabili
 - ulteriori_informazioni
 
 ## Persona
+
+Il serializer della persona, ritorna anche i seguenti valori calcolati:
+
+- **strutture_correlate**: elenco di Unità Organizzative in cui la persona è stata aggiunta nel campo "Persone che compongono la struttura"
+- **responsabile_di**: elenco di Unità Organizzative in cui la persona è stata aggiunta nel campo "Responsabile"
+- **assessore_di**: elenco di Unità Organizzative in cui la persona è stata aggiunta nel campo "Assessore di riferimento"
 
 ### Campi indicizzati nel SearchableText
 

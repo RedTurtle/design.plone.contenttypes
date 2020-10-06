@@ -130,5 +130,53 @@
       for="plone.dexterity.interfaces.IDexterityContent"
       marker=".info_testata.IInfoTestata"
       />
-    
+    <plone:behavior
+      title="Address"
+      name="design.plone.contenttypes.behavior.address_uo"
+      description="Behavior address per UO."
+      provides=".address.IAddressUnitaOrganizzativa"
+      factory=".address.AddressUnitaOrganizzativa"
+      marker=".address.IAddressUnitaOrganizzativa"
+      />
+    <plone:behavior
+      title="Address"
+      name="design.plone.contenttypes.behavior.address_venue"
+      description="Behavior address per Venue."
+      provides=".address.IAddressVenue"
+      factory=".address.AddressVenue"
+      marker=".address.IAddressVenue"
+      />
+    <plone:behavior
+      title="Contatti"
+      name="design.plone.contenttypes.behavior.contatti_uo"
+      description="Behavior contatti per UO."
+      provides=".contatti.IContattiUnitaOrganizzativa"
+      factory=".contatti.ContattiUnitaOrganizzativa"
+      marker=".contatti.IContattiUnitaOrganizzativa"
+      />
+    <plone:behavior
+      title="Contatti"
+      name="design.plone.contenttypes.behavior.contatti_venue"
+      description="Behavior contatti per Venue."
+      provides=".contatti.IContattiVenue"
+      factory=".contatti.ContattiVenue"
+      marker=".contatti.IContattiVenue"
+      />
+    <plone:behavior
+      title="Geolocatable"
+      name="design.plone.contenttypes.behavior.geolocation_uo"
+      description="Behavior geolocatable per UO."
+      provides=".geolocation.IGeolocatableUnitaOrganizzativa"
+      factory=".geolocation.GeolocatableUnitaOrganizzativa"
+      marker=".geolocation.IGeolocatableUnitaOrganizzativa"
+      />
+    <plone:behavior
+      title="Geolocatable"
+      name="design.plone.contenttypes.behavior.geolocation_venue"
+      description="Behavior geolocatable per Venue."
+      provides=".geolocation.IGeolocatableVenue"
+      factory=".geolocation.GeolocatableVenue"
+      marker=".geolocation.IGeolocatableVenue"
+      />
+ 
 </configure>

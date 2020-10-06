@@ -1887,12 +1887,12 @@ msgstr ""
 
 #. Default: "Unità amministrativa responsabile"
 #: design/plone/contenttypes/interfaces/pagina_argomento.py:28
-msgid "unita_amministrativa_responsabile"
+msgid "unita_amministrative_responsabili"
 msgstr ""
 
 #. Default: "Seleziona la lista delle unità amministrative responsabili di questo argomento."
 #: design/plone/contenttypes/interfaces/pagina_argomento.py:38
-msgid "unita_amministrativa_responsabile_help"
+msgid "unita_amministrative_responsabili_help"
 msgstr ""
 
 #. Default: "Descrizione dei compiti assegnati alla struttura."
