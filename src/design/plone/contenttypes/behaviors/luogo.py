@@ -152,15 +152,11 @@ class ILuogo(model.Schema):
 
     # custom fieldsets and order
     form.order_after(nome_alternativo="IBasic.title")
-    form.order_before(elementi_di_interesse="ILeadImageBehavior.image")
-    # form.order_after(modalita_accesso="ILeadImageBehavior.image_caption")
-    # form.order_after(elementi_di_interesse="ILeadImageBehavior.image_caption")
-    # form.order_after(descrizione_completa="ILeadImageBehavior.image_caption")
 
     model.fieldset(
         "descrizione",
         label=_("descrizione_label", default=u"Descrizione"),
-        fields=["descrizione_completa"],
+        fields=["descrizione_completa", "elementi_di_interesse"],
     )
     model.fieldset(
         "accesso",
