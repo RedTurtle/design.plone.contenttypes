@@ -13,6 +13,7 @@
   - [Pagina Argomento](#pagina-argomento)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-1)
   - [Persona](#persona)
+    - [Evento di creazione](#evento-di-creazione)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-2)
   - [Servizio](#servizio)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-3)
@@ -230,6 +231,19 @@ Il serializer della persona, ritorna anche i seguenti valori calcolati:
 - **strutture_correlate**: elenco di Unità Organizzative in cui la persona è stata aggiunta nel campo "Persone che compongono la struttura"
 - **responsabile_di**: elenco di Unità Organizzative in cui la persona è stata aggiunta nel campo "Responsabile"
 - **assessore_di**: elenco di Unità Organizzative in cui la persona è stata aggiunta nel campo "Assessore di riferimento"
+
+### Evento di creazione
+
+Alla creazione di una Persona, viene creata anche una struttura predefinita per contenere diversi documenti:
+
+- Foto e attività politica
+- Compensi
+- Importi di viaggio e/o servizi
+- Situazione patrimoniale
+- Dichiarazione dei redditi
+- Spese elettorali
+- Variazione situazione patrimoniale
+- Altre cariche
 
 ### Campi indicizzati nel SearchableText
 

@@ -136,41 +136,6 @@ class IPersona(model.Schema):
             "curriculum vitae della persona.",
         ),
     )
-    compensi = field.NamedBlobFile(
-        title=_("compensi_label", default="Compensi"),
-        description=_(
-            "compensi_help",
-            default="Allega un file contenente la lista dei compensi di "
-            "qualsiasi natura connessi all'assunzione della carica. Solo per "
-            "persona politica.",
-        ),
-        required=False,
-    )
-
-    importi_viaggio_servizio = field.NamedBlobFile(
-        title=_(
-            "importi_viaggio_servizio_label",
-            default="Importi di viaggio e/o servizio",
-        ),
-        description=_(
-            "importi_viaggio_servizio_help",
-            default="Allega un file contenente la lista degli importi di "
-            "viaggio di servizio e missioni pagati con fondi pubblici. "
-            "Solo per persona politica.",
-        ),
-        required=False,
-    )
-    altre_cariche = field.NamedBlobFile(
-        title=_("altre_cariche_label", default="Altre cariche"),
-        description=_(
-            "altre_cariche_help",
-            default="Allega un file contenente i dati relativi all'assunzione"
-            " di altre cariche, presso enti pubblici o privati, e relativi "
-            "compensi a qualsiasi titolo corrisposti. "
-            "Solo per persona politica.",
-        ),
-        required=False,
-    )
 
     atto_nomina = field.NamedFile(
         title=_("atto_nomina_label", default="Atto di nomina"),
@@ -179,51 +144,6 @@ class IPersona(model.Schema):
             "atto_nomina_help",
             default="Inserire un file contenente l'atto di nomina della"
             " persona.",
-        ),
-    )
-    situazione_patrimoniale = field.NamedFile(
-        title=_(
-            "situazione_patrimoniale_label", default="Situazione patrimoniale"
-        ),
-        required=False,
-        description=_(
-            "situazione_patrimoniale_help",
-            default="Inserire un file contenente la situazione patrimoniale "
-            "della persona. Solo per persona politica.",
-        ),
-    )
-    dichiarazione_redditi = field.NamedFile(
-        title=_(
-            "dichiarazione_redditi_label", default="Dichiarazione dei redditi"
-        ),
-        required=False,
-        description=_(
-            "dichiarazione_redditi_help",
-            default="Inserire un file contenente la copia dell'ultima "
-            "dichiarazione dei redditi. Solo per persona politica.",
-        ),
-    )
-    spese_elettorali = field.NamedFile(
-        title=_("spese_elettorali_label", default="Spese elettorali"),
-        required=False,
-        description=_(
-            "spese_elettorali_help",
-            default="Inserire un file contenente la dichiarazione concernente"
-            " le spese sostenute e le obbligazioni assunte per la propaganda "
-            "elettorale. Solo per persona politica.",
-        ),
-    )
-    variazioni_situazione_patrimoniale = field.NamedFile(
-        title=_(
-            "variazioni_situazione_patrimoniale_label",
-            default="Variazioni situazione partimoniale",
-        ),
-        required=False,
-        description=_(
-            "variazioni_situazione_patrimoniale_help",
-            default="Inserire un file contenente le variazioni della "
-            "situazione patrimoniale intervenute nell'anno precedente e copia "
-            "della dichiarazione dei redditi. Solo per persona politica.",
         ),
     )
 
@@ -262,17 +182,7 @@ class IPersona(model.Schema):
     model.fieldset(
         "documenti",
         label=_("documenti_label", default="Documenti"),
-        fields=[
-            "curriculum_vitae",
-            "compensi",
-            "importi_viaggio_servizio",
-            "altre_cariche",
-            "atto_nomina",
-            "situazione_patrimoniale",
-            "dichiarazione_redditi",
-            "spese_elettorali",
-            "variazioni_situazione_patrimoniale",
-        ],
+        fields=["curriculum_vitae", "atto_nomina"],
     )
     # SearchableText fields
     dexteritytextindexer.searchable("ruolo")
