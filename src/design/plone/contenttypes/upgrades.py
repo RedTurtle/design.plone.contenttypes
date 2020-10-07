@@ -84,7 +84,6 @@ def to_1003(context):
 
     mapping = {
         "unita_amministrativa_responsabile": "unita_amministrative_responsabili",  # noqa
-        "elementi_di_interesse": "argomenti_di_interesse",
         "sedi": "sede",
         "contatto_reperibilita": "reperibilita",
         "evento_supportato_da": "supportato_da",

@@ -657,7 +657,7 @@ msgstr ""
 msgid "Struttura politica coinvolta"
 msgstr ""
 
-#: design/plone/contenttypes/behaviors/luogo.py:41
+#: design/plone/contenttypes/behaviors/luogo.py:76
 msgid "Struttura responsabile"
 msgstr ""
 
@@ -787,23 +787,13 @@ msgid "accedi_al_servizio_label"
 msgstr ""
 
 #. Default: "Modalità di accesso"
-#: design/plone/contenttypes/behaviors/luogo.py:182
+#: design/plone/contenttypes/behaviors/luogo.py:167
 msgid "accesso_label"
 msgstr ""
 
 #. Default: "Allegato"
 #: design/plone/contenttypes/interfaces/ricevuta_pagamento.py:62
 msgid "allegato"
-msgstr ""
-
-#. Default: "Allega un file contenente i dati relativi all'assunzione di altre cariche, presso enti pubblici o privati, e relativi compensi a qualsiasi titolo corrisposti. Solo per persona politica."
-#: design/plone/contenttypes/interfaces/persona.py:162
-msgid "altre_cariche_help"
-msgstr ""
-
-#. Default: "Altre cariche"
-#: design/plone/contenttypes/interfaces/persona.py:161
-msgid "altre_cariche_label"
 msgstr ""
 
 #. Default: "Seleziona la lista dei documenti di supporto collegati a questo servizio."
@@ -831,11 +821,6 @@ msgstr ""
 msgid "area_responsabile_documento_personale"
 msgstr ""
 
-#. Default: "Argomenti di interesse"
-#: design/plone/contenttypes/behaviors/luogo.py:60
-msgid "argomenti_di_interesse"
-msgstr ""
-
 #. Default: "Argomenti utenti"
 #: design/plone/contenttypes/interfaces/documento_personale.py:43
 msgid "argomenti_utenti"
@@ -847,12 +832,12 @@ msgid "assessore_riferimento_help"
 msgstr ""
 
 #. Default: "Inserire un file contenente l'atto di nomina della persona."
-#: design/plone/contenttypes/interfaces/persona.py:186
+#: design/plone/contenttypes/interfaces/persona.py:143
 msgid "atto_nomina_help"
 msgstr ""
 
 #. Default: "Atto di nomina"
-#: design/plone/contenttypes/interfaces/persona.py:184
+#: design/plone/contenttypes/interfaces/persona.py:141
 msgid "atto_nomina_label"
 msgstr ""
 
@@ -956,16 +941,6 @@ msgstr ""
 msgid "come_si_fa_help"
 msgstr ""
 
-#. Default: "Allega un file contenente la lista dei compensi di qualsiasi natura connessi all'assunzione della carica. Solo per persona politica."
-#: design/plone/contenttypes/interfaces/persona.py:138
-msgid "compensi_help"
-msgstr ""
-
-#. Default: "Compensi"
-#: design/plone/contenttypes/interfaces/persona.py:137
-msgid "compensi_label"
-msgstr ""
-
 #. Default: "Competenze"
 #: design/plone/contenttypes/interfaces/unita_organizzativa.py:18
 msgid "competenze"
@@ -994,7 +969,7 @@ msgstr ""
 #. Default: "Contatti"
 #: design/plone/contenttypes/behaviors/address.py:42
 #: design/plone/contenttypes/behaviors/contatti.py:74
-#: design/plone/contenttypes/behaviors/evento.py:206
+#: design/plone/contenttypes/behaviors/evento.py:203
 msgid "contatti_label"
 msgstr ""
 
@@ -1051,7 +1026,7 @@ msgid "cosa_si_ottiene_help"
 msgstr ""
 
 #. Default: "Cos'è"
-#: design/plone/contenttypes/behaviors/evento.py:193
+#: design/plone/contenttypes/behaviors/evento.py:190
 msgid "cose_label"
 msgstr ""
 
@@ -1071,17 +1046,17 @@ msgid "costi_help"
 msgstr ""
 
 #. Default: "Costi"
-#: design/plone/contenttypes/behaviors/evento.py:202
+#: design/plone/contenttypes/behaviors/evento.py:199
 msgid "costi_label"
 msgstr ""
 
 #. Default: "Allega un file contenente il curriculum vitae della persona."
-#: design/plone/contenttypes/interfaces/persona.py:130
+#: design/plone/contenttypes/interfaces/persona.py:133
 msgid "curriculum_vitae_help"
 msgstr ""
 
 #. Default: "Curriculum vitae"
-#: design/plone/contenttypes/interfaces/persona.py:128
+#: design/plone/contenttypes/interfaces/persona.py:131
 msgid "curriculum_vitae_label"
 msgstr ""
 
@@ -1158,7 +1133,7 @@ msgid "dataset_correlati_label"
 msgstr ""
 
 #. Default: "Date e orari"
-#: design/plone/contenttypes/behaviors/evento.py:198
+#: design/plone/contenttypes/behaviors/evento.py:195
 #: design/plone/contenttypes/schema_overrides.py:35
 msgid "date_e_orari_label"
 msgstr ""
@@ -1199,18 +1174,8 @@ msgid "descrizione_estesa_help"
 msgstr ""
 
 #. Default: "Descrizione"
-#: design/plone/contenttypes/behaviors/luogo.py:177
+#: design/plone/contenttypes/behaviors/luogo.py:162
 msgid "descrizione_label"
-msgstr ""
-
-#. Default: "Inserire un file contenente la copia dell'ultima dichiarazione dei redditi. Solo per persona politica."
-#: design/plone/contenttypes/interfaces/persona.py:208
-msgid "dichiarazione_redditi_help"
-msgstr ""
-
-#. Default: "Dichiarazione dei redditi"
-#: design/plone/contenttypes/interfaces/persona.py:204
-msgid "dichiarazione_redditi_label"
 msgstr ""
 
 #. Default: "Distribuzione"
@@ -1224,7 +1189,7 @@ msgid "documenti_allegati"
 msgstr ""
 
 #. Default: "Documenti"
-#: design/plone/contenttypes/interfaces/persona.py:272
+#: design/plone/contenttypes/interfaces/persona.py:184
 #: design/plone/contenttypes/interfaces/servizio.py:424
 msgid "documenti_label"
 msgstr ""
@@ -1250,26 +1215,39 @@ msgstr ""
 msgid "dove_rivolgersi_help"
 msgstr ""
 
+#. Default: "Elementi di interesse"
+#: design/plone/contenttypes/behaviors/luogo.py:45
+msgid "elementi_di_interesse"
+msgstr ""
+
 #. Default: "Indicare un indirizzo mail per poter contattare gli organizzatori."
-#: design/plone/contenttypes/behaviors/evento.py:120
+#: design/plone/contenttypes/behaviors/evento.py:118
 msgid "email_event_help"
 msgstr ""
 
 #. Default: "E-mail"
-#: design/plone/contenttypes/behaviors/evento.py:119
+#: design/plone/contenttypes/behaviors/evento.py:117
 msgid "email_event_label"
 msgstr ""
 
 #. Default: "Indicare un indirizzo mail per poter contattare i referenti."
 #: design/plone/contenttypes/behaviors/contatti.py:32
-#: design/plone/contenttypes/interfaces/persona.py:124
 msgid "email_help"
 msgstr ""
 
 #. Default: "E-mail"
 #: design/plone/contenttypes/behaviors/contatti.py:31
-#: design/plone/contenttypes/interfaces/persona.py:123
 msgid "email_label"
+msgstr ""
+
+#. Default: "Contatto mail della persona."
+#: design/plone/contenttypes/interfaces/persona.py:125
+msgid "email_persona_help"
+msgstr ""
+
+#. Default: "Indirizzo email"
+#: design/plone/contenttypes/interfaces/persona.py:124
+msgid "email_persona_label"
 msgstr ""
 
 #. Default: "Esito"
@@ -1297,11 +1275,6 @@ msgstr ""
 msgid "geolocation_field_validator_label"
 msgstr ""
 
-#. Default: "Indicare eventuali argomenti di interesse per il cittadino."
-#: design/plone/contenttypes/behaviors/luogo.py:61
-msgid "help_argomenti_di_interesse"
-msgstr ""
-
 #. Default: "Indicare l'eventuale circoscrizione in cui si trova questo luogo"
 #: design/plone/contenttypes/behaviors/address.py:28
 msgid "help_circoscrizione"
@@ -1312,13 +1285,18 @@ msgstr ""
 msgid "help_descrizione_completa"
 msgstr ""
 
+#. Default: "Indicare eventuali elementi di interesse per il cittadino."
+#: design/plone/contenttypes/behaviors/luogo.py:46
+msgid "help_elementi_di_interesse"
+msgstr ""
+
 #. Default: "Indicare tutte le informazioni relative alla modalità di accesso al luogo"
-#: design/plone/contenttypes/behaviors/luogo.py:71
+#: design/plone/contenttypes/behaviors/luogo.py:56
 msgid "help_modalita_accesso"
 msgstr ""
 
 #. Default: "Indicare, se esiste, un nome alternativo per il luogo; questo sarà mostrato tra parentesi affiancato al titolo della scheda"
-#: design/plone/contenttypes/behaviors/luogo.py:50
+#: design/plone/contenttypes/behaviors/luogo.py:35
 msgid "help_nome_alternativo"
 msgstr ""
 
@@ -1328,17 +1306,17 @@ msgid "help_quartiere"
 msgstr ""
 
 #. Default: "Indicare un indirizzo mail per poter contattare i referenti della struttura responsabile."
-#: design/plone/contenttypes/behaviors/luogo.py:126
+#: design/plone/contenttypes/behaviors/luogo.py:111
 msgid "help_riferimento_mail_struttura"
 msgstr ""
 
 #. Default: "Indicare un indirizzo pec per poter contattare i referenti della struttura responsabile."
-#: design/plone/contenttypes/behaviors/luogo.py:139
+#: design/plone/contenttypes/behaviors/luogo.py:124
 msgid "help_riferimento_pec_struttura"
 msgstr ""
 
 #. Default: "Indicare il riferimento telefonico per poter contattare i referenti della struttura responsabile."
-#: design/plone/contenttypes/behaviors/luogo.py:113
+#: design/plone/contenttypes/behaviors/luogo.py:98
 msgid "help_riferimento_telefonico_struttura"
 msgstr ""
 
@@ -1373,16 +1351,6 @@ msgstr ""
 msgid "immagine"
 msgstr ""
 
-#. Default: "Allega un file contenente la lista degli importi di viaggio di servizio e missioni pagati con fondi pubblici. Solo per persona politica."
-#: design/plone/contenttypes/interfaces/persona.py:152
-msgid "importi_viaggio_servizio_help"
-msgstr ""
-
-#. Default: "Importi di viaggio e/o servizio"
-#: design/plone/contenttypes/interfaces/persona.py:148
-msgid "importi_viaggio_servizio_label"
-msgstr ""
-
 #. Default: "Importo pagato"
 #: design/plone/contenttypes/interfaces/ricevuta_pagamento.py:26
 msgid "importo_pagato"
@@ -1403,19 +1371,9 @@ msgstr ""
 msgid "informazioni"
 msgstr ""
 
-#. Default: "Altre informazioni di contatto."
-#: design/plone/contenttypes/interfaces/persona.py:176
-msgid "informazioni_di_contatto_help"
-msgstr ""
-
-#. Default: "Informazioni di contatto"
-#: design/plone/contenttypes/interfaces/persona.py:172
-msgid "informazioni_di_contatto_label"
-msgstr ""
-
 #. Default: "Ulteriori informazioni"
 #: design/plone/contenttypes/behaviors/additional_help_infos.py:28
-#: design/plone/contenttypes/behaviors/evento.py:219
+#: design/plone/contenttypes/behaviors/evento.py:216
 #: design/plone/contenttypes/behaviors/strutture_correlate.py:42
 msgid "informazioni_label"
 msgstr ""
@@ -1468,16 +1426,6 @@ msgstr ""
 msgid "luoghi_correlati_label"
 msgstr ""
 
-#. Default: "Indicare una serie di eventuali luoghi di interesse per il cittadino correlati a questo."
-#: design/plone/contenttypes/behaviors/luogo.py:35
-msgid "luoghi_correlati_luogo__help"
-msgstr ""
-
-#. Default: "Luoghi correlati"
-#: design/plone/contenttypes/behaviors/luogo.py:34
-msgid "luoghi_correlati_luogo_label"
-msgstr ""
-
 #. Default: "Luogo"
 #: design/plone/contenttypes/behaviors/address.py:78
 #: design/plone/contenttypes/behaviors/geolocation.py:38
@@ -1486,7 +1434,7 @@ msgid "luogo_label"
 msgstr ""
 
 #. Default: "Modalita' di accesso"
-#: design/plone/contenttypes/behaviors/luogo.py:70
+#: design/plone/contenttypes/behaviors/luogo.py:55
 msgid "modalita_accesso"
 msgstr ""
 
@@ -1516,7 +1464,7 @@ msgid "motivo_stato_servizio_label"
 msgstr ""
 
 #. Default: "Nome alternativo"
-#: design/plone/contenttypes/behaviors/luogo.py:49
+#: design/plone/contenttypes/behaviors/luogo.py:34
 msgid "nome_alternativo"
 msgstr ""
 
@@ -1571,12 +1519,12 @@ msgstr ""
 msgid "orario_pubblico_label"
 msgstr ""
 
-#. Default: "Se l'evento non è organizzato direttamente dal comune, indicare il nome del contatto."
-#: design/plone/contenttypes/behaviors/evento.py:94
+#. Default: "Se l'evento non è organizzato direttamente dal comune oppure ha anche un organizzatore esterno, indicare il nome del contatto."
+#: design/plone/contenttypes/behaviors/evento.py:92
 msgid "organizzato_da_esterno_help"
 msgstr ""
 
-#. Default: "Organizzatore esterno"
+#. Default: "Organizzatore"
 #: design/plone/contenttypes/behaviors/evento.py:90
 msgid "organizzato_da_esterno_label"
 msgstr ""
@@ -1602,12 +1550,12 @@ msgid "organizzazione_riferimento_label"
 msgstr ""
 
 #. Default: "Indicare l'ente che supporta l'evento, se presente."
-#: design/plone/contenttypes/behaviors/evento.py:154
+#: design/plone/contenttypes/behaviors/evento.py:151
 msgid "patrocinato_da_help"
 msgstr ""
 
 #. Default: "Patrocinato da"
-#: design/plone/contenttypes/behaviors/evento.py:152
+#: design/plone/contenttypes/behaviors/evento.py:149
 msgid "patrocinato_da_label"
 msgstr ""
 
@@ -1689,12 +1637,12 @@ msgid "quartiere"
 msgstr ""
 
 #. Default: "Reperibilità organizzatore"
-#: design/plone/contenttypes/behaviors/evento.py:110
+#: design/plone/contenttypes/behaviors/evento.py:108
 msgid "reperibilita"
 msgstr ""
 
 #. Default: "Indicare gli orari in cui l'organizzatore è telefonicamente reperibile."
-#: design/plone/contenttypes/behaviors/evento.py:112
+#: design/plone/contenttypes/behaviors/evento.py:110
 msgid "reperibilita_help"
 msgstr ""
 
@@ -1720,17 +1668,17 @@ msgid "riferimenti_normativi"
 msgstr ""
 
 #. Default: "E-mail struttura responsabile"
-#: design/plone/contenttypes/behaviors/luogo.py:122
+#: design/plone/contenttypes/behaviors/luogo.py:107
 msgid "riferimento_mail_struttura"
 msgstr ""
 
 #. Default: "Pec della struttura responsabile"
-#: design/plone/contenttypes/behaviors/luogo.py:135
+#: design/plone/contenttypes/behaviors/luogo.py:120
 msgid "riferimento_pec_struttura"
 msgstr ""
 
 #. Default: "Telefono della struttura responsabile"
-#: design/plone/contenttypes/behaviors/luogo.py:109
+#: design/plone/contenttypes/behaviors/luogo.py:94
 msgid "riferimento_telefonico_struttura"
 msgstr ""
 
@@ -1745,7 +1693,7 @@ msgid "ruolo_help"
 msgstr ""
 
 #. Default: "Ruolo"
-#: design/plone/contenttypes/interfaces/persona.py:253
+#: design/plone/contenttypes/interfaces/persona.py:165
 msgid "ruolo_label"
 msgstr ""
 
@@ -1799,16 +1747,6 @@ msgstr ""
 msgid "settore_merceologico_help"
 msgstr ""
 
-#. Default: "Inserire un file contenente la situazione patrimoniale della persona. Solo per persona politica."
-#: design/plone/contenttypes/interfaces/persona.py:197
-msgid "situazione_patrimoniale_help"
-msgstr ""
-
-#. Default: "Situazione patrimoniale"
-#: design/plone/contenttypes/interfaces/persona.py:193
-msgid "situazione_patrimoniale_label"
-msgstr ""
-
 #. Default: "Indica un eventuale sottotitolo/titolo alternativo."
 #: design/plone/contenttypes/behaviors/evento.py:23
 #: design/plone/contenttypes/interfaces/servizio.py:19
@@ -1819,16 +1757,6 @@ msgstr ""
 #: design/plone/contenttypes/behaviors/evento.py:22
 #: design/plone/contenttypes/interfaces/servizio.py:18
 msgid "sottotitolo_label"
-msgstr ""
-
-#. Default: "Inserire un file contenente la dichiarazione concernente le spese sostenute e le obbligazioni assunte per la propaganda elettorale. Solo per persona politica."
-#: design/plone/contenttypes/interfaces/persona.py:217
-msgid "spese_elettorali_help"
-msgstr ""
-
-#. Default: "Spese elettorali"
-#: design/plone/contenttypes/interfaces/persona.py:215
-msgid "spese_elettorali_label"
 msgstr ""
 
 #. Default: "Stampa ricevuta"
@@ -1857,22 +1785,22 @@ msgid "struttura_label"
 msgstr ""
 
 #. Default: "Struttura responsabile"
-#: design/plone/contenttypes/behaviors/luogo.py:99
+#: design/plone/contenttypes/behaviors/luogo.py:84
 msgid "struttura_responsabile"
 msgstr ""
 
 #. Default: "Struttura responsabile del luogo."
-#: design/plone/contenttypes/behaviors/luogo.py:80
+#: design/plone/contenttypes/behaviors/luogo.py:65
 msgid "struttura_responsabile_correlati"
 msgstr ""
 
 #. Default: "Indicare la struttura responsabile del luogo qualora sia fra unità organizzative del comune inserite nel sito; altrimenti compilare i campi testuali relativi alla struttura responsabile"
-#: design/plone/contenttypes/behaviors/luogo.py:84
+#: design/plone/contenttypes/behaviors/luogo.py:69
 msgid "struttura_responsabile_correlati_help"
 msgstr ""
 
 #. Default: "Nome/link al sito web della struttura che gestisce il luogo, se questa non è comunale."
-#: design/plone/contenttypes/behaviors/luogo.py:101
+#: design/plone/contenttypes/behaviors/luogo.py:86
 msgid "struttura_responsabile_help"
 msgstr ""
 
@@ -1881,13 +1809,13 @@ msgstr ""
 msgid "strutture_politiche_help"
 msgstr ""
 
-#. Default: "Se l'evento è organizzato direttamente dal comune, indicare l'ufficio/ente che supporta l'evento."
-#: design/plone/contenttypes/behaviors/evento.py:142
+#. Default: "Indicare gli uffici/enti che supportano l'evento."
+#: design/plone/contenttypes/behaviors/evento.py:140
 msgid "supportato_da_help"
 msgstr ""
 
 #. Default: "Evento supportato da"
-#: design/plone/contenttypes/behaviors/evento.py:138
+#: design/plone/contenttypes/behaviors/evento.py:136
 msgid "supportato_da_label"
 msgstr ""
 
@@ -1902,25 +1830,33 @@ msgid "tassonomia_argomenti_label"
 msgstr ""
 
 #. Default: "Telefono"
-#: design/plone/contenttypes/behaviors/evento.py:101
+#: design/plone/contenttypes/behaviors/evento.py:99
 msgid "telefono_event_help"
 msgstr ""
 
 #. Default: "Indicare un riferimento telefonico per poter contattare gli organizzatori."
-#: design/plone/contenttypes/behaviors/evento.py:102
+#: design/plone/contenttypes/behaviors/evento.py:100
 msgid "telefono_event_label"
 msgstr ""
 
 #. Default: "Indicare un riferimento telefonico per poter contattare i referenti."
 #: design/plone/contenttypes/behaviors/contatti.py:22
-#: design/plone/contenttypes/interfaces/persona.py:116
 msgid "telefono_help"
 msgstr ""
 
 #. Default: "Telefono"
 #: design/plone/contenttypes/behaviors/contatti.py:21
-#: design/plone/contenttypes/interfaces/persona.py:115
 msgid "telefono_label"
+msgstr ""
+
+#. Default: "Contatto telefonico della persona."
+#: design/plone/contenttypes/interfaces/persona.py:116
+msgid "telefono_persona_help"
+msgstr ""
+
+#. Default: "Numero di telefono"
+#: design/plone/contenttypes/interfaces/persona.py:115
+msgid "telefono_persona_label"
 msgstr ""
 
 #. Default: "Temi"
@@ -2043,16 +1979,6 @@ msgstr ""
 msgid "uo_contact_info_description"
 msgstr ""
 
-#. Default: "Inserire un file contenente le variazioni della situazione patrimoniale intervenute nell'anno precedente e copia della dichiarazione dei redditi. Solo per persona politica."
-#: design/plone/contenttypes/interfaces/persona.py:230
-msgid "variazioni_situazione_patrimoniale_help"
-msgstr ""
-
-#. Default: "Variazioni situazione partimoniale"
-#: design/plone/contenttypes/interfaces/persona.py:225
-msgid "variazioni_situazione_patrimoniale_label"
-msgstr ""
-
 #. Default: "Vincoli"
 #: design/plone/contenttypes/interfaces/servizio.py:200
 msgid "vincoli"
@@ -2064,12 +1990,12 @@ msgid "vincoli_help"
 msgstr ""
 
 #. Default: "Indicare un indirizzo web di riferimento a questo evento."
-#: design/plone/contenttypes/behaviors/evento.py:130
+#: design/plone/contenttypes/behaviors/evento.py:128
 msgid "web_event_help"
 msgstr ""
 
 #. Default: "Sito web"
-#: design/plone/contenttypes/behaviors/evento.py:129
+#: design/plone/contenttypes/behaviors/evento.py:127
 msgid "web_event_label"
 msgstr ""
 

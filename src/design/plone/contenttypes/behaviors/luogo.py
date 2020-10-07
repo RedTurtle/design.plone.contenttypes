@@ -41,11 +41,11 @@ class ILuogo(model.Schema):
         required=False,
     )
 
-    argomenti_di_interesse = RichText(
-        title=_(u"argomenti_di_interesse", default=u"Argomenti di interesse"),
+    elementi_di_interesse = RichText(
+        title=_(u"elementi_di_interesse", default=u"Elementi di interesse"),
         description=_(
-            u"help_argomenti_di_interesse",
-            default=u"Indicare eventuali argomenti di interesse per il "
+            u"help_elementi_di_interesse",
+            default=u"Indicare eventuali elementi di interesse per il "
             "cittadino.",
         ),
         required=False,
@@ -152,9 +152,9 @@ class ILuogo(model.Schema):
 
     # custom fieldsets and order
     form.order_after(nome_alternativo="IBasic.title")
-    form.order_before(argomenti_di_interesse="ILeadImageBehavior.image")
+    form.order_before(elementi_di_interesse="ILeadImageBehavior.image")
     # form.order_after(modalita_accesso="ILeadImageBehavior.image_caption")
-    # form.order_after(argomenti_di_interesse="ILeadImageBehavior.image_caption")
+    # form.order_after(elementi_di_interesse="ILeadImageBehavior.image_caption")
     # form.order_after(descrizione_completa="ILeadImageBehavior.image_caption")
 
     model.fieldset(
