@@ -30,21 +30,6 @@ class ILuogo(model.Schema):
         required=False,
     )
 
-    luoghi_correlati = RelationList(
-        title=_("luoghi_correlati_luogo_label", default=u"Luoghi correlati"),
-        description=_(
-            "luoghi_correlati_luogo__help",
-            default="Indicare una serie di eventuali luoghi di interesse per "
-            "il cittadino correlati a questo.",
-        ),
-        value_type=RelationChoice(
-            title=_(u"Struttura responsabile"),
-            vocabulary="plone.app.vocabularies.Catalog",
-        ),
-        required=False,
-        default=[],
-    )
-
     nome_alternativo = schema.TextLine(
         title=_(u"nome_alternativo", default=u"Nome alternativo"),
         description=_(
@@ -175,7 +160,7 @@ class ILuogo(model.Schema):
     model.fieldset(
         "descrizione",
         label=_("descrizione_label", default=u"Descrizione"),
-        fields=["descrizione_completa", "luoghi_correlati"],
+        fields=["descrizione_completa"],
     )
     model.fieldset(
         "accesso",
@@ -205,15 +190,7 @@ class ILuogo(model.Schema):
             "selectableTypes": ["UnitaOrganizzativa"],
         },
     )
-    form.widget(
-        "luoghi_correlati",
-        RelatedItemsFieldWidget,
-        vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={
-            "maximumSelectionSize": 10,
-            "selectableTypes": ["UnitaOrganizzativa"],
-        },
-    )
+
     # searchabletext indexer
     dexteritytextindexer.searchable("descrizione_completa")
 

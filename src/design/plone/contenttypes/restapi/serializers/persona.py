@@ -41,7 +41,6 @@ class PersonaSerializer(SerializeFolderToJson):
         return sorted(items, key=lambda k: k["title"])
 
     def __call__(self, version=None, include_items=True):
-        self.index = "news_uo"
         result = super(PersonaSerializer, self).__call__(
             version=None, include_items=True
         )
