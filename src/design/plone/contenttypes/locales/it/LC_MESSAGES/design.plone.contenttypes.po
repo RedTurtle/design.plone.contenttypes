@@ -1295,7 +1295,7 @@ msgstr ""
 msgid "help_modalita_accesso"
 msgstr ""
 
-#. Default: "Indicare, se esiste, un nome alternativo per il luogo; questo sarà mostrato tra parentesi affiancato al titolo della scheda"
+#. Default: "Indicare, se esiste, un nome alternativo per il luogo; questo sarà mostrato tra parentesi affianco al titolo della scheda"
 #: design/plone/contenttypes/behaviors/luogo.py:35
 msgid "help_nome_alternativo"
 msgstr ""
