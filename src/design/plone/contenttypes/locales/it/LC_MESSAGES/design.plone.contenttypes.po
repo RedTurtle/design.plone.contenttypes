@@ -358,10 +358,6 @@ msgstr ""
 msgid "Governo e settore pubblico"
 msgstr ""
 
-#: design/plone/contenttypes/restapi/types/adapters.py:31
-msgid "Image dimension should be ${size} px"
-msgstr "La dimensione dell'immagine deve essere di ${size} px"
-
 #: design/plone/contenttypes/vocabularies/tags_vocabulary.py:51
 msgid "Immigrazione"
 msgstr ""
@@ -787,7 +783,7 @@ msgid "accedi_al_servizio_label"
 msgstr ""
 
 #. Default: "Modalità di accesso"
-#: design/plone/contenttypes/behaviors/luogo.py:167
+#: design/plone/contenttypes/behaviors/luogo.py:163
 msgid "accesso_label"
 msgstr ""
 
@@ -1174,7 +1170,7 @@ msgid "descrizione_estesa_help"
 msgstr ""
 
 #. Default: "Descrizione"
-#: design/plone/contenttypes/behaviors/luogo.py:162
+#: design/plone/contenttypes/behaviors/luogo.py:158
 msgid "descrizione_label"
 msgstr ""
 
@@ -1343,6 +1339,11 @@ msgstr ""
 #. Default: "Eventuale codice identificativo del servizio."
 #: design/plone/contenttypes/interfaces/servizio.py:298
 msgid "identificativo_help"
+msgstr ""
+
+#. Default: "La dimensione dell'immagine dovrebbe essere di ${size} px"
+#: design/plone/contenttypes/restapi/types/adapters.py:31
+msgid "image_size_help"
 msgstr ""
 
 #. Default: "Immagine"

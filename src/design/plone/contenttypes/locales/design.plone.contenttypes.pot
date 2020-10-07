@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2020-10-07 09:27+0000\n"
+"POT-Creation-Date: 2020-10-07 15:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -363,10 +363,6 @@ msgstr ""
 
 #: design/plone/contenttypes/vocabularies/dataset.py:39
 msgid "Governo e settore pubblico"
-msgstr ""
-
-#: design/plone/contenttypes/restapi/types/adapters.py:31
-msgid "Image dimension should be ${size} px"
 msgstr ""
 
 #: design/plone/contenttypes/vocabularies/tags_vocabulary.py:51
@@ -794,7 +790,7 @@ msgid "accedi_al_servizio_label"
 msgstr ""
 
 #. Default: "Modalità di accesso"
-#: design/plone/contenttypes/behaviors/luogo.py:167
+#: design/plone/contenttypes/behaviors/luogo.py:163
 msgid "accesso_label"
 msgstr ""
 
@@ -1181,7 +1177,7 @@ msgid "descrizione_estesa_help"
 msgstr ""
 
 #. Default: "Descrizione"
-#: design/plone/contenttypes/behaviors/luogo.py:162
+#: design/plone/contenttypes/behaviors/luogo.py:158
 msgid "descrizione_label"
 msgstr ""
 
@@ -1348,6 +1344,11 @@ msgstr ""
 #. Default: "Eventuale codice identificativo del servizio."
 #: design/plone/contenttypes/interfaces/servizio.py:298
 msgid "identificativo_help"
+msgstr ""
+
+#. Default: "La dimensione dell'immagine dovrebbe essere di ${size} px"
+#: design/plone/contenttypes/restapi/types/adapters.py:31
+msgid "image_size_help"
 msgstr ""
 
 #. Default: "Immagine"

@@ -29,7 +29,8 @@ class LeadImageJsonSchemaProvider(ObjectJsonSchemaProvider):
         portal_type_size = sizes.get(portal_type, None)
         if portal_type_size:
             msgid = _(
-                u"Image dimension should be ${size} px",
+                "image_size_help",
+                default=u"La dimensione dell'immagine dovrebbe essere di ${size} px",  # noqa
                 mapping={u"size": portal_type_size},
             )
             schema["description"] = translate(msgid, context=self.request)
