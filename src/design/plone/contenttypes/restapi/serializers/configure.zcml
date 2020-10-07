@@ -9,4 +9,7 @@
     <adapter factory=".venue.SerializeVenueToJsonSummary" />
     <adapter factory=".relationfield.RelationListFieldSerializer" />
 
+    <adapter factory=".dxcontent.SerializeToJson" />
+    <adapter factory=".dxcontent.SerializeFolderToJson" />
+    
 </configure>

@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-from plone.restapi.serializer.dxcontent import (
-    SerializeFolderToJson as BaseSerializer,
-)
+from .dxcontent import SerializeFolderToJson as BaseSerializer
 from design.plone.contenttypes.interfaces.servizio import IServizio
 from plone import api
 from plone.restapi.interfaces import ISerializeToJson
