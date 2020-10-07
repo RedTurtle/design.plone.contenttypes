@@ -360,7 +360,7 @@ msgstr ""
 
 #: design/plone/contenttypes/restapi/types/adapters.py:31
 msgid "Image dimension should be ${size} px"
-msgstr ""
+msgstr "La dimensione dell'immagine deve essere di ${size} px"
 
 #: design/plone/contenttypes/vocabularies/tags_vocabulary.py:51
 msgid "Immigrazione"
@@ -1295,7 +1295,7 @@ msgstr ""
 msgid "help_modalita_accesso"
 msgstr ""
 
-#. Default: "Indicare, se esiste, un nome alternativo per il luogo; questo sarà mostrato tra parentesi affianco al titolo della scheda"
+#. Default: "Indicare, se esiste, un nome alternativo per il luogo; questo sarà mostrato affianco al titolo della scheda"
 #: design/plone/contenttypes/behaviors/luogo.py:35
 msgid "help_nome_alternativo"
 msgstr ""
