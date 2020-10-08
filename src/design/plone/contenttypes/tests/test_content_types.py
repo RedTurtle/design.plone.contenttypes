@@ -54,14 +54,6 @@ class TestContentTypes(unittest.TestCase):
 
         self.assertEqual(ids, FIELDSETS_ORDER["Persona"])
 
-    def test_news_item_fieldset_order(self):
-        response = self.api_session.get("/@types/News%20Item")
-        res = response.json()
-
-        ids = [x["id"] for x in res["fieldsets"]]
-
-        self.assertEqual(ids, FIELDSETS_ORDER["News Item"])
-
     # schema overrides aggiunge "correlati" ma dai test non si vede
     # def test_event_fieldset_order(self):
     #     response = self.api_session.get("/@types/Event")
@@ -94,20 +86,3 @@ class TestContentTypes(unittest.TestCase):
         ids = [x["id"] for x in res["fieldsets"]]
 
         self.assertEqual(ids, FIELDSETS_ORDER["Venue"])
-
-    def test_image_field_description(self):
-        response = self.api_session.get("/@types/News%20Item")
-        res = response.json()
-        self.assertEqual(
-            res["properties"]["image"]["description"],
-            "Image dimension should be 1920x600 px",
-        )
-
-    # schema overrides aggiunge correlati ma dai test non si vede
-    # def test_testata_fieldset_order(self):
-    #     response = self.api_session.get("/@types/Document")
-    #     res = response.json()
-
-    #     ids = [x["id"] for x in res["fieldsets"]]
-    #     self.assertIn("testata", ids)
-    #     self.assertEqual(ids, FIELDSETS_ORDER["Document"])

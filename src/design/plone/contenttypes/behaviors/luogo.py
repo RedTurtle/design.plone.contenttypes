@@ -19,26 +19,6 @@ class ILuogo(model.Schema):
     """
     """
 
-    quartiere = schema.TextLine(
-        title=_(u"quartiere", default=u"Quartiere"),
-        description=_(
-            u"help_quartiere",
-            default=u"Indicare l'eventuale"
-            " quartiere in cui si trova questo luogo",
-        ),
-        required=False,
-    )
-
-    circoscrizione = schema.TextLine(
-        title=_(u"circoscrizione", default=u"Circoscrizione"),
-        description=_(
-            u"help_circoscrizione",
-            default=u"Indicare l'eventuale"
-            " circoscrizione in cui si trova questo luogo",
-        ),
-        required=False,
-    )
-
     # moved to behavior under field name descrizione_estesa?
     descrizione_completa = RichText(
         title=_(u"descrizione_completa", default=u"Descrizione completa"),
@@ -55,7 +35,7 @@ class ILuogo(model.Schema):
         description=_(
             u"help_nome_alternativo",
             default=u"Indicare, se esiste, un nome alternativo per il luogo;"
-            " questo sarà mostrato tra parentesi affiancato al titolo della"
+            " questo sarà mostrato affianco al titolo della"
             " scheda",
         ),
         required=False,
@@ -65,8 +45,8 @@ class ILuogo(model.Schema):
         title=_(u"elementi_di_interesse", default=u"Elementi di interesse"),
         description=_(
             u"help_elementi_di_interesse",
-            default=u"Indicare eventuali elementi di interesse relativi al"
-            " luogo",
+            default=u"Indicare eventuali elementi di interesse per il "
+            "cittadino.",
         ),
         required=False,
     )
@@ -81,39 +61,10 @@ class ILuogo(model.Schema):
         required=False,
     )
 
-    riferimento_telefonico_luogo = schema.TextLine(
-        title=_(u"riferimento_telefonico_luogo", default=u"Telefono",),
-        description=_(
-            u"help_riferimento_telefonico_luogo",
-            default=u"Indicare un riferimento telefonico per poter contattare"
-            " i referenti del luogo",
-        ),
-        required=False,
-    )
-
-    riferimento_mail_luogo = schema.TextLine(
-        title=_(u"riferimento_mail_luogo", default=u"E-mail"),
-        description=_(
-            u"help_riferimento_mail_luogo",
-            default=u"Indicare un indirizzo mail per poter contattare"
-            " i referenti del luogo",
-        ),
-        required=False,
-    )
-
-    orario_pubblico = RichText(
-        title=_(u"orario_pubblico", default=u"Orario per il pubblico"),
-        description=_(
-            u"help_orario_pubblico",
-            default=u"Indicare eventuali orari di accesso al pubblico",
-        ),
-        required=False,
-    )
-
     struttura_responsabile_correlati = RelationList(
         title=_(
             "struttura_responsabile_correlati",
-            default=u"Struttura responsabile del luogo",
+            default=u"Struttura responsabile del luogo.",
         ),
         description=_(
             "struttura_responsabile_correlati_help",
@@ -127,17 +78,6 @@ class ILuogo(model.Schema):
         ),
         required=False,
         default=[],
-    )
-
-    # custom widgets
-    form.widget(
-        "struttura_responsabile_correlati",
-        RelatedItemsFieldWidget,
-        vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={
-            "maximumSelectionSize": 10,
-            "selectableTypes": ["UnitaOrganizzativa"],
-        },
     )
 
     struttura_responsabile = RichText(
@@ -158,7 +98,7 @@ class ILuogo(model.Schema):
         description=_(
             "help_riferimento_telefonico_struttura",
             default="Indicare il riferimento telefonico per poter contattare"
-            " i referenti della struttura responsabile",
+            " i referenti della struttura responsabile.",
         ),
         required=False,
     )
@@ -166,47 +106,27 @@ class ILuogo(model.Schema):
     riferimento_mail_struttura = schema.TextLine(
         title=_(
             u"riferimento_mail_struttura",
-            default=u"E-mail della struttura responsabile",
+            default=u"E-mail struttura responsabile",
         ),
         description=_(
             "help_riferimento_mail_struttura",
             default="Indicare un indirizzo mail per poter contattare"
-            " i referenti della struttura responsabile",
+            " i referenti della struttura responsabile.",
         ),
         required=False,
     )
 
-    riferimento_web = schema.TextLine(
-        title=_(u"riferimento_web", default=u"Indirizzo web"),
+    riferimento_pec_struttura = schema.TextLine(
+        title=_(
+            u"riferimento_pec_struttura",
+            default=u"Pec della struttura responsabile",
+        ),
         description=_(
-            "help_riferimento_web",
-            default="Indicare un indirizzo web utile per ottenere i contatti"
-            " del luogo",
+            "help_riferimento_pec_struttura",
+            default="Indicare un indirizzo pec per poter contattare"
+            " i referenti della struttura responsabile.",
         ),
         required=False,
-    )
-
-    sede_di = RelationList(
-        title=_("sede_di", default=u"Questo luogo è sede di",),
-        description=_(
-            "sede_di_help",
-            default="Indicare gli eventuali luoghi o uffici di cui questo"
-            " luogo è sede",
-        ),
-        value_type=RelationChoice(
-            title=_(u"Sede di"), vocabulary="plone.app.vocabularies.Catalog",
-        ),
-        required=False,
-        default=[],
-    )
-    form.widget(
-        "sede_di",
-        RelatedItemsFieldWidget,
-        vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={
-            "maximumSelectionSize": 10,
-            "selectableTypes": ["UnitaOrganizzativa", "Venue"],
-        },
     )
 
     # Decisono con Baio di toglierlo: visto il vocabolario, che in realtà sta
@@ -231,40 +151,44 @@ class ILuogo(model.Schema):
     # )
 
     # custom fieldsets and order
-    form.order_after(circoscrizione="IGeolocatable.coordinates")
-    form.order_after(quartiere="IGeolocatable.coordinates")
     form.order_after(nome_alternativo="IBasic.title")
-    form.order_after(orario_pubblico="ILeadImageBehavior.image_caption")
-    form.order_after(modalita_accesso="ILeadImageBehavior.image_caption")
-    form.order_after(sede_di="ILeadImageBehavior.image_caption")
-    form.order_after(elementi_di_interesse="ILeadImageBehavior.image_caption")
-    form.order_after(descrizione_completa="ILeadImageBehavior.image_caption")
 
     model.fieldset(
-        "dove",
-        label=_("dove_label", default=u"Dove"),
-        fields=["quartiere", "circoscrizione"],
+        "descrizione",
+        label=_("descrizione_label", default=u"Descrizione"),
+        fields=["descrizione_completa", "elementi_di_interesse"],
+    )
+    model.fieldset(
+        "accesso",
+        label=_("accesso_label", default=u"Modalità di accesso"),
+        fields=["modalita_accesso"],
     )
 
     model.fieldset(
         "contatti",
         label=_("contatti_label", default=u"Contatti"),
         fields=[
-            "riferimento_telefonico_luogo",
-            "riferimento_mail_luogo",
             "struttura_responsabile_correlati",
             "struttura_responsabile",
             "riferimento_telefonico_struttura",
             "riferimento_mail_struttura",
-            "riferimento_web",
+            "riferimento_pec_struttura",
         ],
     )
 
+    # custom widgets
+    form.widget(
+        "struttura_responsabile_correlati",
+        RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
+        pattern_options={
+            "maximumSelectionSize": 10,
+            "selectableTypes": ["UnitaOrganizzativa"],
+        },
+    )
+
     # searchabletext indexer
-    dexteritytextindexer.searchable("quartiere")
-    dexteritytextindexer.searchable("circoscrizione")
     dexteritytextindexer.searchable("descrizione_completa")
-    dexteritytextindexer.searchable("orario_pubblico")
 
 
 @implementer(ILuogo)

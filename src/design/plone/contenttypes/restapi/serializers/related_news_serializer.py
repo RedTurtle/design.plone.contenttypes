@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
-from plone.restapi.serializer.dxcontent import (
-    SerializeFolderToJson as BaseSerializer,
-)
-from design.plone.contenttypes.interfaces.persona import IPersona
+from .dxcontent import SerializeFolderToJson as BaseSerializer
 from design.plone.contenttypes.interfaces.servizio import IServizio
 from plone import api
 from plone.restapi.interfaces import ISerializeToJson
@@ -42,12 +39,6 @@ class SerializeFolderToJson(BaseSerializer):
         ]
         result["related_news"] = news
         return result
-
-
-@implementer(ISerializeToJson)
-@adapter(IPersona, Interface)
-class PersonaSerializer(SerializeFolderToJson):
-    index = "news_people"
 
 
 @implementer(ISerializeToJson)

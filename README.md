@@ -1,7 +1,6 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
 - [Design Plone Content-types](#design-plone-content-types)
 - [Features](#features)
 - [Tipi di contenuto](#tipi-di-contenuto)
@@ -9,14 +8,16 @@
   - [Pagina](#pagina)
   - [Notizie e comunicati stampa](#notizie-e-comunicati-stampa)
   - [Luogo](#luogo)
+  - [Unità Organizzativa](#unità-organizzativa)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext)
   - [Pagina Argomento](#pagina-argomento)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-1)
   - [Persona](#persona)
+    - [Evento di creazione](#evento-di-creazione)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-2)
   - [Servizio](#servizio)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-3)
-  - [Unità Organizzativa](#unit%C3%A0-organizzativa)
+  - [Unità Organizzativa](#unità-organizzativa-1)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-4)
 - [Gestione vocabolari](#gestione-vocabolari)
 - [Endpoint restapi](#endpoint-restapi)
@@ -90,11 +91,11 @@ gestione di un sito Agid con Plone e Volto.
   - [ ] Indicizzazione testo
   - [ ] Vista su Volto completata
 
-- [ ] **Notizia**
+- [x] **Notizia**
 
   - [x] Definizione campi
   - [x] Ordine campi
-  - [ ] Ordine fieldsets
+  - [x] Ordine fieldsets
   - [x] Indicizzazione testo
   - [x] Vista su Volto completata
 
@@ -102,25 +103,25 @@ gestione di un sito Agid con Plone e Volto.
 
   - [x] Definizione campi
   - [x] Abilitare behavior collective.address.address
-  - [ ] Ordine campi
-  - [ ] Ordine fieldsets
+  - [x] Ordine campi
+  - [x] Ordine fieldsets
   - [x] Indicizzazione testo
   - [ ] Vista su Volto completata
-  - [ ] gestione di "è sede di"
+  - [x] gestione di "è sede di"
 
-- [ ] **Pagina Argomento**
+- [x] **Pagina Argomento**
 
   - [x] Definizione campi
-  - [ ] Ordine campi
-  - [ ] Ordine fieldsets
+  - [x] Ordine campi
+  - [x] Ordine fieldsets
   - [x] Indicizzazione testo
   - [x] Vista su Volto completata
 
 - [ ] **Persona**
 
   - [x] Definizione campi
-  - [ ] Ordine campi
-  - [ ] Ordine fieldsets
+  - [x] Ordine campi
+  - [x] Ordine fieldsets
   - [x] Indicizzazione testo
   - [ ] Vista su Volto completata
 
@@ -190,6 +191,12 @@ Alcuni campi della geolocalizzazione hanno dei valori predefiniti quando viene r
 
 Sono pre-popolati con la sede di AGID a Roma.
 
+Il campo "**sede_di**" ritornato da restapi è calcolato in base alle Unità Operative che lo referenziano come sede principale o secondaria.
+
+## Unità Organizzativa
+
+La get di questo content-type, ritorna (nell'attributo "**servizi_offerti**") anche la lista di Servizi che la referenziano nei campi "**ufficio_responsabile**" e "**area**".
+
 ### Campi indicizzati nel SearchableText
 
 - street
@@ -214,10 +221,29 @@ dei blocchi anche per le pagine argomento.
 ### Campi indicizzati nel SearchableText
 
 - blocchi Volto
-- unita_amministrativa_responsabile
+- unita_amministrative_responsabili
 - ulteriori_informazioni
 
 ## Persona
+
+Il serializer della persona, ritorna anche i seguenti valori calcolati:
+
+- **strutture_correlate**: elenco di Unità Organizzative in cui la persona è stata aggiunta nel campo "Persone che compongono la struttura"
+- **responsabile_di**: elenco di Unità Organizzative in cui la persona è stata aggiunta nel campo "Responsabile"
+- **assessore_di**: elenco di Unità Organizzative in cui la persona è stata aggiunta nel campo "Assessore di riferimento"
+
+### Evento di creazione
+
+Alla creazione di una Persona, viene creata anche una struttura predefinita per contenere diversi documenti:
+
+- Foto e attività politica
+- Compensi
+- Importi di viaggio e/o servizi
+- Situazione patrimoniale
+- Dichiarazione dei redditi
+- Spese elettorali
+- Variazione situazione patrimoniale
+- Altre cariche
 
 ### Campi indicizzati nel SearchableText
 

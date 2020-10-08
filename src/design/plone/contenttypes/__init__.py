@@ -15,4 +15,5 @@ utils.searchable(IAddress, "country")
 
 # need to be the last thing we import: in the patch we import the message
 # factory above
-from design.plone.contenttypes import patches  # noqa
+#  TEMPORANEAMENTE DISABILITATO PER FARE L'OVERRIDE STANDARD
+# from design.plone.contenttypes import patches  # noqa
