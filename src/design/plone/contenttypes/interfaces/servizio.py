@@ -379,7 +379,7 @@ class IServizio(model.Schema):
     )
     model.fieldset(
         "accedi_al_servizio",
-        label=_("accedi_al_servizio_label", default=u"Accedi al servizio"),
+        label=_("accedi_al_servizio_label", default=u"Accedere al servizio"),
         fields=[
             "come_si_fa",
             "cosa_si_ottiene",

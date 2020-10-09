@@ -777,7 +777,7 @@ msgstr ""
 msgid "a_cura_di_persone_label"
 msgstr ""
 
-#. Default: "Accedi al servizio"
+#. Default: "Accedere al servizio"
 #: design/plone/contenttypes/interfaces/servizio.py:382
 msgid "accedi_al_servizio_label"
 msgstr ""
