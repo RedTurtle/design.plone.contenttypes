@@ -11,8 +11,7 @@ from plone.app.textfield import RichText
 from plone.app.z3cform.widget import RichTextFieldWidget
 
 
-@provider(IFormFieldProvider)
-class IDescrizioneEstesa(model.Schema):
+class IDescrizioneEstesaSchema(model.Schema):
     descrizione_estesa = RichText(
         title=_(u"descrizione_estesa", default=u"Descrizione estesa"),
         required=False,
@@ -27,9 +26,35 @@ class IDescrizioneEstesa(model.Schema):
     dexteritytextindexer.searchable("descrizione_estesa")
 
 
+@provider(IFormFieldProvider)
+class IDescrizioneEstesa(IDescrizioneEstesaSchema):
+    """ """
+
+
+@provider(IFormFieldProvider)
+class IDescrizioneEstesaServizio(IDescrizioneEstesaSchema):
+    """ """
+
+    model.fieldset(
+        "cose",
+        label=_("cose_label", default=u"Cos'è"),
+        fields=["descrizione_estesa"],
+    )
+
+
 @implementer(IDescrizioneEstesa)
 @adapter(IDexterityContent)
 class DescrizioneEstesa(object):
+    """
+    """
+
+    def __init__(self, context):
+        self.context = context
+
+
+@implementer(IDescrizioneEstesaServizio)
+@adapter(IDexterityContent)
+class DescrizioneEstesaServizio(object):
     """
     """
 
