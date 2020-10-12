@@ -20,6 +20,8 @@ class RelationListFieldSerializer(DefaultRelationListFieldSerializer):
     def __call__(self):
         data = []
         for value in self.get_value():
+            if not value:
+                continue
             content = value.to_object
             if content:
                 summary = getMultiAdapter(
