@@ -1,7 +1,6 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
 - [Design Plone Content-types](#design-plone-content-types)
 - [Features](#features)
 - [Tipi di contenuto](#tipi-di-contenuto)
@@ -107,7 +106,7 @@ gestione di un sito Agid con Plone e Volto.
   - [x] Ordine campi
   - [x] Ordine fieldsets
   - [x] Indicizzazione testo
-  - [ ] Vista su Volto completata
+  - [x] Vista su Volto completata
   - [x] gestione di "è sede di"
 
 - [x] **Pagina Argomento**
@@ -124,7 +123,7 @@ gestione di un sito Agid con Plone e Volto.
   - [x] Ordine campi
   - [x] Ordine fieldsets
   - [x] Indicizzazione testo
-  - [ ] Vista su Volto completata
+  - [x] Vista su Volto completata
 
 - [ ] **Pratica**
 
@@ -156,7 +155,7 @@ gestione di un sito Agid con Plone e Volto.
   - [x] Ordine campi
   - [x] Ordine fieldsets
   - [x] Indicizzazione testo
-  - [ ] Vista su Volto completata
+  - [x] Vista su Volto completata
 
 ## Pagina
 
