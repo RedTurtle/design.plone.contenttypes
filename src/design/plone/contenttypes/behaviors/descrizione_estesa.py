@@ -16,13 +16,11 @@ class IDescrizioneEstesaSchema(model.Schema):
         title=_(u"descrizione_estesa", default=u"Descrizione estesa"),
         required=False,
         description=_(
-            "descrizione_estesa_help",
-            default="Descrizione dettagliata e completa.",
+            "descrizione_estesa_help", default="Descrizione dettagliata e completa.",
         ),
     )
 
     form.widget("descrizione_estesa", RichTextFieldWidget)
-    form.order_after(descrizione_estesa="IBasic.description")
     dexteritytextindexer.searchable("descrizione_estesa")
 
 
@@ -30,15 +28,15 @@ class IDescrizioneEstesaSchema(model.Schema):
 class IDescrizioneEstesa(IDescrizioneEstesaSchema):
     """ """
 
+    form.order_after(descrizione_estesa="IBasic.description")
+
 
 @provider(IFormFieldProvider)
 class IDescrizioneEstesaServizio(IDescrizioneEstesaSchema):
     """ """
 
     model.fieldset(
-        "cose",
-        label=_("cose_label", default=u"Cos'è"),
-        fields=["descrizione_estesa"],
+        "cose", label=_("cose_label", default=u"Cos'è"), fields=["descrizione_estesa"],
     )
 
 
