@@ -73,6 +73,7 @@ FIELDSETS_ORDER = {
     ],
     "Servizio": [
         "default",
+        "cose",
         "a_chi_si_rivolge",
         "accedi_al_servizio",
         "cosa_serve",
