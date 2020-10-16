@@ -2,6 +2,7 @@
 from plone import api
 
 import logging
+import json
 
 logger = logging.getLogger(__name__)
 
@@ -26,6 +27,10 @@ def update_registry(context):
 
 def update_controlpanel(context):
     update_profile(context, "controlpanel")
+
+
+def update_catalog(context):
+    update_profile(context, "catalog")
 
 
 def remap_fields(mapping):
@@ -89,3 +94,31 @@ def to_1003(context):
         "evento_supportato_da": "supportato_da",
     }
     remap_fields(mapping=mapping)
+
+
+def to_1005(context):
+
+    update_registry(context)
+    update_catalog(context)
+
+    def fix_index(blocks):
+        for block in blocks.values():
+            if block.get("@type", "") == "listing":
+                for query in block.get("query", []):
+                    if query["i"] == "argomenti_correlati":
+                        query["i"] = "tassonomia_argomenti"
+                        logger.info("[UPDATE] - {}".format(brain.getURL()))
+
+    # fix root
+    portal = api.portal.get()
+    portal_blocks = json.loads(portal.blocks)
+    fix_index(portal_blocks)
+    portal.blocks = json.dumps(portal_blocks)
+
+    for brain in api.content.find(
+        object_provides="plone.restapi.behaviors.IBlocks"
+    ):
+        item = brain.getObject()
+        blocks = getattr(item, "blocks", {})
+        if blocks:
+            fix_index(blocks)

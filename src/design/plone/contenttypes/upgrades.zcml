@@ -34,4 +34,12 @@
     profile="design.plone.contenttypes:default"
     handler=".upgrades.update_types"
     />
+  <genericsetup:upgradeStep
+    source="1004"
+    destination="1005"
+    title="Upgrade to 1005"
+    description="Remove unused index"
+    profile="design.plone.contenttypes:default"
+    handler=".upgrades.to_1005"
+    />
 </configure>
