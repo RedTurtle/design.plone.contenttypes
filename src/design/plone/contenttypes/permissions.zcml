@@ -4,8 +4,6 @@
   i18n_domain="plone">
 
   <configure zcml:condition="installed AccessControl.security">
-  <!-- -*- extra stuff goes here -*- -->
-
     <include package="Products.CMFCore" file="permissions.zcml" />
     <permission
         id="design.plone.contenttypes.AddDocumento"
@@ -84,6 +82,15 @@
         title="design.plone.contenttypes: Add Pratica"
     />
 
+    <permission
+        id="design.plone.contenttypes.AddCartellaModulistica"
+        title="design.plone.contenttypes: Add CartellaModulistica"
+    />
+
+    <permission
+        id="design.plone.contenttypes.AddModulo"
+        title="design.plone.contenttypes: Add Modulo"
+    />
 
 
   </configure>

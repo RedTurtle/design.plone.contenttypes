@@ -11,4 +11,13 @@
       layer="design.plone.contenttypes.interfaces.IDesignPloneContenttypesLayer"
       />
 
+  <configure package="plone.app.dexterity.browser">
+    <browser:page
+        for="design.plone.contenttypes.interfaces.cartella_modulistica.ICartellaModulistica"
+        name="modulistica_view"
+        class="plone.app.dexterity.browser.folder_listing.FolderView"
+        template="folder_listing.pt"
+        permission="zope2.View"
+        />
+  </configure>
 </configure>

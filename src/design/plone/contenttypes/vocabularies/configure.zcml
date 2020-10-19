@@ -75,5 +75,9 @@
         component=".argomenti_vocabulary.ArgomentiVocabularyFactory"
         name="design.plone.vocabularies.argomenti"
     />
+    <utility
+        component=".tipologie_documento.TipologieDocumentoFactory"
+        name="design.plone.vocabularies.tipologie_documento"
+    />
 
 </configure>
