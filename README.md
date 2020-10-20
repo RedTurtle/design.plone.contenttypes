@@ -24,6 +24,7 @@
   - [Unità Organizzativa](#unità-organizzativa)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-4)
 - [Gestione vocabolari](#gestione-vocabolari)
+- [Gestione modulistica](#gestione-modulistica)
 - [Endpoint restapi](#endpoint-restapi)
   - [Customizzazione dati relation field](#customizzazione-dati-relation-field)
 - [Installazione](#installazione)
@@ -186,7 +187,7 @@ Se i Documenti vengono raggruppati in Pagine, nella vista verrà mostrato il tes
 
 Ha i campi definiti da Agid (senza quelli specifici per i Bandi, perché li gestiamo con un content-type ad hoc).
 
-Al suo interno può contenere degli oggetti di tipo Modulo (che sono i file scaricabili veri e propri).
+Al suo interno può contenere degli oggetti di tipo **Modulo** (che sono i file scaricabili veri e propri).
 
 I Moduli che vengono inseriti dentro al Documento, verranno mostrati nel frontend come lista di documenti scaricabili.
 
@@ -331,6 +332,12 @@ I vocabolari personalizzabili sono i seguenti:
 
 - Tipologie notizia
 - Tipologie unità organizzativa
+
+# Gestione modulistica
+
+Agid prevede un tipo di contenuto **Documento** per gestire i moduli scaricabili.
+
+Abbiamo però sviluppato anche un contenuto chiamato **Cartella Modulistica** che ha il compito di raggruppare in modo logico più Documenti e mostrarli all'utente come faceva il vecchio prodotto **cciaa.modulistica**.
 
 # Endpoint restapi
 
