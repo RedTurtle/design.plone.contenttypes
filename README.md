@@ -6,19 +6,22 @@
 - [Features](#features)
 - [Tipi di contenuto](#tipi-di-contenuto)
   - [Elenco tipi implementati](#elenco-tipi-implementati)
-  - [Pagina](#pagina)
-  - [Notizie e comunicati stampa](#notizie-e-comunicati-stampa)
-  - [Luogo](#luogo)
-  - [Unità Organizzativa](#unit%C3%A0-organizzativa)
+  - [Cartella Modulistica](#cartella-modulistica)
+  - [Documento](#documento)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext)
+    - [Evento di creazione](#evento-di-creazione)
+  - [Luogo](#luogo)
+  - [Modulo](#modulo)
+  - [Notizie e comunicati stampa](#notizie-e-comunicati-stampa)
+  - [Pagina](#pagina)
   - [Pagina Argomento](#pagina-argomento)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-1)
   - [Persona](#persona)
-    - [Evento di creazione](#evento-di-creazione)
+    - [Evento di creazione](#evento-di-creazione-1)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-2)
   - [Servizio](#servizio)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-3)
-  - [Unità Organizzativa](#unit%C3%A0-organizzativa-1)
+  - [Unità Organizzativa](#unità-organizzativa)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-4)
 - [Gestione vocabolari](#gestione-vocabolari)
 - [Endpoint restapi](#endpoint-restapi)
@@ -44,6 +47,12 @@ gestione di un sito Agid con Plone e Volto.
 
 ## Elenco tipi implementati
 
+- [ ] **Cartella Modulistica**
+
+  - [x] Definizione campi
+  - [x] Ordine campi
+  - [ ] Vista su Volto completata
+  
 - [ ] **Collegamento**
 
   - [x] Definizione campi
@@ -62,10 +71,10 @@ gestione di un sito Agid con Plone e Volto.
 
 - [ ] **Documento**
 
-  - [ ] Definizione campi
-  - [ ] Ordine campi
-  - [ ] Ordine fieldsets
-  - [ ] Indicizzazione testo
+  - [x] Definizione campi
+  - [x] Ordine campi
+  - [x] Ordine fieldsets
+  - [x] Indicizzazione testo
   - [ ] Vista su Volto completata
 
 - [ ] **Documento Personale**
@@ -90,6 +99,13 @@ gestione di un sito Agid con Plone e Volto.
   - [ ] Ordine campi
   - [ ] Ordine fieldsets
   - [ ] Indicizzazione testo
+  - [ ] Vista su Volto completata
+
+- [ ] **Modulo**
+
+  - [x] Definizione campi
+  - [x] Ordine campi
+  - [x] Ordine fieldsets
   - [ ] Vista su Volto completata
 
 - [x] **Notizia**
@@ -158,18 +174,31 @@ gestione di un sito Agid con Plone e Volto.
   - [x] Indicizzazione testo
   - [x] Vista su Volto completata
 
-## Pagina
+## Cartella Modulistica
 
-- Può essere usata anche come pagina di disambiguazione. C'è una behavior attivata (_design.plone.contenttypes.behavior.info_testata_)
-  per impostare informazioni aggiuntive per la testata delle pagine di disambiguazione.
+Contenuto folderish (come la Pagina) che serve a raggruppare dei Documenti.
 
-## Notizie e comunicati stampa
+Questo content-type ha sia i blocchi attivati che una vista ad hoc che mostra i Documenti al suo interno con già i link ai file da scaricare.
 
-- Tipo base "Notizia" di Plone con alcuni campi aggiuntivi.
-- Folderish (grazie a redturtle.volto)
-- Può contenere Immagini, Collegamenti, File, Documenti (utile per strutturare i contenuti al suo interno)
-- Alla creazione di una Notizia, vengono create automaticamente al suo interno due cartelle
-  "Multimedia" e "Documenti allegati" per poter organizzare meglio i contenuti
+Se i Documenti vengono raggruppati in Pagine, nella vista verrà mostrato il testo delle pagine contenitori come separatore tra i vari gruppi (solo nella parte Volto).
+
+## Documento
+
+Ha i campi definiti da Agid (senza quelli specifici per i Bandi, perché li gestiamo con un content-type ad hoc).
+
+Al suo interno può contenere degli oggetti di tipo Modulo (che sono i file scaricabili veri e propri).
+
+I Moduli che vengono inseriti dentro al Documento, verranno mostrati nel frontend come lista di documenti scaricabili.
+
+### Campi indicizzati nel SearchableText
+
+- blocchi Volto
+
+### Evento di creazione
+
+Alla creazione di un Documento, un evento genera in automatico una cartella "Multimedia" dove andare ad inserire delle eventuali immagini.
+
+L'evento imposta anche come unico contenuto aggiungibile dentro al Documento, il Modulo.
 
 ## Luogo
 
@@ -194,21 +223,23 @@ Sono pre-popolati con la sede di AGID a Roma.
 
 Il campo "**sede_di**" ritornato da restapi è calcolato in base alle Unità Operative che lo referenziano come sede principale o secondaria.
 
-## Unità Organizzativa
+## Modulo
 
-La get di questo content-type, ritorna (nell'attributo "**servizi_offerti**") anche la lista di Servizi che la referenziano nei campi "**ufficio_responsabile**" e "**area**".
+Content-type creabile solo all'interno del Documento. Questo è un File "evoluto".
+Ha 3 campi file: uno per il modulo principale, e gli altri due per eventuali formati alternativi.
 
-### Campi indicizzati nel SearchableText
+## Notizie e comunicati stampa
 
-- street
-- city
-- zip_code
-- country
-- quartiere
-- circoscrizione
-- descrizione_breve
-- orario_pubblico
-- identificativo_mibac
+- Tipo base "Notizia" di Plone con alcuni campi aggiuntivi.
+- Folderish (grazie a redturtle.volto)
+- Può contenere Immagini, Collegamenti, File, Documenti (utile per strutturare i contenuti al suo interno)
+- Alla creazione di una Notizia, vengono create automaticamente al suo interno due cartelle
+  "Multimedia" e "Documenti allegati" per poter organizzare meglio i contenuti
+
+## Pagina
+
+- Può essere usata anche come pagina di disambiguazione. C'è una behavior attivata (_design.plone.contenttypes.behavior.info_testata_)
+  per impostare informazioni aggiuntive per la testata delle pagine di disambiguazione.
 
 ## Pagina Argomento
 
@@ -276,16 +307,19 @@ Alla creazione di una Persona, viene creata anche una struttura predefinita per 
 
 ## Unità Organizzativa
 
+La get di questo content-type, ritorna (nell'attributo "**servizi_offerti**") anche la lista di Servizi che la referenziano nei campi "**ufficio_responsabile**" e "**area**".
+
 ### Campi indicizzati nel SearchableText
 
-- competenze
-- tipologia_organizzazione
-- assessore_riferimento
-- responsabile
 - street
 - city
 - zip_code
 - country
+- quartiere
+- circoscrizione
+- descrizione_breve
+- orario_pubblico
+- identificativo_mibac
 
 # Gestione vocabolari
 
