@@ -117,7 +117,7 @@ gestione di un sito Agid con Plone e Volto.
   - [x] Indicizzazione testo
   - [x] Vista su Volto completata
 
-- [ ] **Luogo**
+- [x] **Luogo**
 
   - [x] Definizione campi
   - [x] Abilitare behavior collective.address.address
@@ -135,7 +135,7 @@ gestione di un sito Agid con Plone e Volto.
   - [x] Indicizzazione testo
   - [x] Vista su Volto completata
 
-- [ ] **Persona**
+- [x] **Persona**
 
   - [x] Definizione campi
   - [x] Ordine campi
