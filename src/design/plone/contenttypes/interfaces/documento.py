@@ -129,14 +129,19 @@ class IDocumento(model.Schema):
         required=False,
     )
 
-    # protocollo = schema.TextLine(
-    #     title=_("protocollo", default="Protocollo"), required=False
-    # )
-
-    # data_protocollo = schema.Date(
-    #     title=_("data_protocollo", default="Data del protocollo"),
-    #     required=False,
-    # )
+    documenti_allegati = RelationList(
+        title=_(
+            "documenti_allegati_label",
+            default="Documenti allegati",
+        ),
+        description=_(
+            "documenti_allegati_help",
+            default="Seleziona una serie di altri contenuti di tipo Documento "
+            "che vanno allegati a questo.",
+        ),
+        required=True,
+        value_type=RelationChoice(vocabulary="plone.app.vocabularies.Catalog"),
+    )
 
     # custom widgets
     form.widget(
@@ -171,6 +176,14 @@ class IDocumento(model.Schema):
             "selectableTypes": ["UnitaOrganizzativa"],
         },
     )
+    form.widget(
+        "documenti_allegati",
+        RelatedItemsFieldWidget,
+        pattern_options={
+            "maximumSelectionSize": 10,
+            "selectableTypes": ["Documento"],
+        },
+    )
 
     #  custom fieldsets
     model.fieldset(
@@ -192,7 +205,7 @@ class IDocumento(model.Schema):
     model.fieldset(
         "informazioni",
         label=_("informazioni_label", default=u"Ulteriori informazioni"),
-        fields=["riferimenti_normativi"],
+        fields=["riferimenti_normativi", "documenti_allegati"],
     )
 
     # custom order
@@ -205,3 +218,4 @@ class IDocumento(model.Schema):
     form.order_after(
         riferimenti_normativi="IAdditionalHelpInfos.ulteriori_informazioni"
     )
+    form.order_after(documenti_allegati="riferimenti_normativi")

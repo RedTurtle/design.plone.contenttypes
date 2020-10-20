@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 from design.plone.contenttypes.interfaces.modulo import IModulo
+from plone.dexterity.utils import iterSchemata
+from plone.restapi.interfaces import IFieldSerializer
 from plone.restapi.interfaces import ISerializeToJsonSummary
-from plone.restapi.serializer.converters import json_compatible
 from plone.restapi.serializer.summary import DefaultJSONSummarySerializer
 from zope.component import adapter
+from zope.component import queryMultiAdapter
 from zope.interface import implementer
 from zope.interface import Interface
+from zope.schema import getFields
 
 
 @implementer(ISerializeToJsonSummary)
@@ -18,9 +21,16 @@ class SerializeModuloToJsonSummary(DefaultJSONSummarySerializer):
             "formato_alternativo_1",
             "formato_alternativo_2",
         ]
-        for field in fields:
-            value = getattr(self.context, field, None)
-            if callable(value):
-                value = value()
-            summary[field] = json_compatible(value)
+        for schema in iterSchemata(self.context):
+            for name, field in getFields(schema).items():
+                if name not in fields:
+                    continue
+
+                # serialize the field
+                serializer = queryMultiAdapter(
+                    (field, self.context, self.request),
+                    IFieldSerializer,
+                )
+                value = serializer()
+                summary[name] = value
         return summary
