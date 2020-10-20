@@ -339,6 +339,13 @@ I vocabolari personalizzabili sono i seguenti:
 C'è una customizzazione dei dati ritornati dal serializer per i relation field (correlati)
 per ritornare oltre alle informazioni standard, anche la data di pubblicazione e l'inizio e fine evento.
 
+## @modulistica_items
+
+Endpoint ed expansion per la modulistica.
+
+Nei content-type CartellaModulistica, tra i vari expansion c'è anche `@modulistica_items`.
+Questo è utile per la vista di frontend, in quanto se richiamato, ritorna la struttura di dati da mostrare in visualizzazione.
+
 # Installazione
 
 Questo prodotto non è stato pensato per funzionare da solo, ma fa parte della suite "design.plone".

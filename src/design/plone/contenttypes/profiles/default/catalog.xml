@@ -21,7 +21,7 @@
  <index name="tipologia_notizia" meta_type="FieldIndex">
   <indexed_attr value="tipologia_notizia"/>
  </index>
- <index name="tipologia_documento" meta_type="FieldIndex">
+ <index name="tipologia_documento" meta_type="KeywordIndex">
   <indexed_attr value="tipologia_documento"/>
  </index>
  

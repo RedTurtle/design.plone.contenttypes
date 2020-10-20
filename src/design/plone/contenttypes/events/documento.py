@@ -12,6 +12,9 @@ def documentoCreateHandler(documento, event):
 
     @param event: Event that triggers the method (onAdded event)
     """
+    if "multimedia" in documento.keys():
+        # we are copying or moving it
+        return
 
     documentoConstraints = ISelectableConstrainTypes(documento)
     documentoConstraints.setConstrainTypesMode(1)

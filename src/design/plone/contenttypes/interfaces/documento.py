@@ -139,7 +139,8 @@ class IDocumento(model.Schema):
             default="Seleziona una serie di altri contenuti di tipo Documento "
             "che vanno allegati a questo.",
         ),
-        required=True,
+        default=[],
+        required=False,
         value_type=RelationChoice(vocabulary="plone.app.vocabularies.Catalog"),
     )
 

@@ -37,7 +37,6 @@
   <genericsetup:upgradeSteps
     source="1004"
     destination="1005"
-    title="Add modulistica types"
     profile="design.plone.contenttypes:default">
     <genericsetup:upgradeStep
         title="Import types"
