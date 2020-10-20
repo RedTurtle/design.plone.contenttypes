@@ -46,8 +46,10 @@ class IDocumento(model.Schema):
             default="Seleziona l'ufficio responsabile di questo documento.",
         ),
         required=True,
+        default=[],
         value_type=RelationChoice(
-            title=_(""), vocabulary="plone.app.vocabularies.Catalog"
+            title=_(u"Ufficio responsabile"),
+            vocabulary="plone.app.vocabularies.Catalog",
         ),
     )
 
@@ -62,16 +64,14 @@ class IDocumento(model.Schema):
             "documento.",
         ),
         required=True,
+        default=[],
         value_type=RelationChoice(
-            vocabulary="plone.app.vocabularies.Catalog",
+            title=_(u"Area"), vocabulary="plone.app.vocabularies.Catalog"
         ),
     )
 
     autori = RelationList(
-        title=_(
-            "autori_label",
-            default="Autore/i",
-        ),
+        title=_("autori_label", default="Autore/i",),
         description=_(
             "autori_help",
             default="Seleziona una lista di autori che hanno pubblicato "
@@ -130,10 +130,7 @@ class IDocumento(model.Schema):
     )
 
     documenti_allegati = RelationList(
-        title=_(
-            "documenti_allegati_label",
-            default="Documenti allegati",
-        ),
+        title=_("documenti_allegati_label", default="Documenti allegati",),
         description=_(
             "documenti_allegati_help",
             default="Seleziona una serie di altri contenuti di tipo Documento "
@@ -148,14 +145,17 @@ class IDocumento(model.Schema):
     form.widget(
         "ufficio_responsabile",
         RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "maximumSelectionSize": 1,
             "selectableTypes": ["UnitaOrganizzativa"],
         },
     )
+
     form.widget(
         "autori",
         RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "maximumSelectionSize": 10,
             "selectableTypes": ["Persona", "UnitaOrganizzativa"],
@@ -164,6 +164,7 @@ class IDocumento(model.Schema):
     form.widget(
         "servizi_collegati",
         RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "maximumSelectionSize": 10,
             "selectableTypes": ["Servizio"],
@@ -172,6 +173,7 @@ class IDocumento(model.Schema):
     form.widget(
         "area_responsabile",
         RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "maximumSelectionSize": 1,
             "selectableTypes": ["UnitaOrganizzativa"],
@@ -180,6 +182,7 @@ class IDocumento(model.Schema):
     form.widget(
         "documenti_allegati",
         RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "maximumSelectionSize": 10,
             "selectableTypes": ["Documento"],
