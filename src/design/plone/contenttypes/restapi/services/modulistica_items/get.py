@@ -36,7 +36,7 @@ class ModulisticaItems(object):
 
         data = self.get_modulistica_data()
         if data:
-            result["modulistica-items"] = data
+            result["modulistica-items"] = {"items": data}
         return result
 
     def get_modulistica_data(self, context=None):
@@ -62,8 +62,7 @@ class ModulisticaItems(object):
 
                         # serialize the field
                         serializer = queryMultiAdapter(
-                            (field, child, self.request),
-                            IFieldSerializer,
+                            (field, child, self.request), IFieldSerializer,
                         )
                         value = serializer()
                         data[json_compatible(name)] = value

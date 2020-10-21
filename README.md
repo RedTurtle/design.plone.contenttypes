@@ -1,7 +1,6 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
 - [Design Plone Content-types](#design-plone-content-types)
 - [Features](#features)
 - [Tipi di contenuto](#tipi-di-contenuto)
@@ -53,7 +52,7 @@ gestione di un sito Agid con Plone e Volto.
   - [x] Definizione campi
   - [x] Ordine campi
   - [ ] Vista su Volto completata
-  
+
 - [ ] **Collegamento**
 
   - [x] Definizione campi
@@ -182,6 +181,8 @@ Contenuto folderish (come la Pagina) che serve a raggruppare dei Documenti.
 Questo content-type ha sia i blocchi attivati che una vista ad hoc che mostra i Documenti al suo interno con già i link ai file da scaricare.
 
 Se i Documenti vengono raggruppati in Pagine, nella vista verrà mostrato il testo delle pagine contenitori come separatore tra i vari gruppi (solo nella parte Volto).
+
+Nella proprietà @components dell'oggetto CartellaModulistica, viene sempre inviato nella prop modulistica-items l'url dell'endpoint per avere la struttura dati degli elementi da mostrare nella vista della cartella modulistica. Quell'url ritorna sempre una oggetto del tipo {items:[]} dove l'array contiene gli elementi.
 
 ## Documento
 
