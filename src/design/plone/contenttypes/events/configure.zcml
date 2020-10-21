@@ -47,6 +47,10 @@
           zope.lifecycleevent.interfaces.IObjectAddedEvent"
       handler=".notizie_e_comunicati_stampa.notiziaCreateHandler"
     />
-
+    <subscriber
+      for="design.plone.contenttypes.interfaces.pagina_argomento.IPaginaArgomento
+          zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+      handler=".pagina_argomento.onModify"
+    />
     
 </configure>

@@ -6,9 +6,9 @@ from plone.dexterity.interfaces import IDexterityItem
 
 @indexer(IDexterityContainer)
 @indexer(IDexterityItem)
-def tassonomia_argomenti(context, **kw):
+def argomenti(context, **kw):
     return [
-        x.to_object.UID()
+        x.to_object.Title()
         for x in getattr(context.aq_base, "tassonomia_argomenti", [])
         if x.to_object
     ]

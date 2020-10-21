@@ -21,8 +21,8 @@
  <index name="tipologia_notizia" meta_type="FieldIndex">
   <indexed_attr value="tipologia_notizia"/>
  </index>
- <index name="tassonomia_argomenti" meta_type="KeywordIndex">
-  <indexed_attr value="tassonomia_argomenti"/>
+ <index name="argomenti" meta_type="KeywordIndex">
+  <indexed_attr value="argomenti"/>
  </index>
  <index name="ufficio_responsabile" meta_type="KeywordIndex">
   <indexed_attr value="ufficio_responsabile"/>
@@ -30,10 +30,12 @@
  
  <!-- metadata -->
  <column value="tipologia_notizia"/>
- <column value="tassonomia_argomenti"/>
+ <column value="argomenti"/>
 
  <!-- cleanup -->
  <index name="argomenti_correlati" remove="True" />
-  <column value="argomenti_correlati" remove="True" />
+ <column value="argomenti_correlati" remove="True" />
+ <index name="tassonomia_argomenti" remove="True" />
+ <column value="tassonomia_argomenti" remove="True" />
 
 </object>
