@@ -9,16 +9,17 @@
   - [Pagina](#pagina)
   - [Notizie e comunicati stampa](#notizie-e-comunicati-stampa)
   - [Luogo](#luogo)
-  - [Unità Organizzativa](#unit%C3%A0-organizzativa)
+  - [Unità Organizzativa](#unità-organizzativa)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext)
   - [Pagina Argomento](#pagina-argomento)
+    - [Evento di modifica](#evento-di-modifica)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-1)
   - [Persona](#persona)
     - [Evento di creazione](#evento-di-creazione)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-2)
   - [Servizio](#servizio)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-3)
-  - [Unità Organizzativa](#unit%C3%A0-organizzativa-1)
+  - [Unità Organizzativa](#unità-organizzativa-1)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-4)
 - [Gestione vocabolari](#gestione-vocabolari)
 - [Endpoint restapi](#endpoint-restapi)
@@ -218,6 +219,11 @@ Questo va in conflitto con le personalizzazioni fatte con `collective.dexterityt
 adapter di SearchableText che trova. Per ovviare a questo problema, abbiamo messo la behavior "volto.blocks" come ultima, in modo
 che venisse ignorato il suo indexer, e poi abbiamo registrato un adapter per `IDynamicTextIndexExtender` per replicare l'indicizzazione
 dei blocchi anche per le pagine argomento.
+
+### Evento di modifica
+
+Se si modifica il titolo dell'argomento, viene scatenato un event handler che 
+cerca tutti i contenuti del sito che referenziano questa pagina, e reindicizza il loro indice `argomenti` per aggiornare il valore (perché ci si salva il titolo).
 
 ### Campi indicizzati nel SearchableText
 
