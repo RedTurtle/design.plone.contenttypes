@@ -107,16 +107,6 @@ class IDocumento(model.Schema):
         required=False,
     )
 
-    canale_digitale = RichText(
-        title=_("canale_digitale_label", default="Canale digitale"),
-        description=_(
-            "canale_digitale_help",
-            default="Collegamento con l'eventuale canale digitale di"
-            " attivazione del servizio.",
-        ),
-        required=False,
-    )
-
     riferimenti_normativi = RichText(
         title=_(
             "riferimenti_normativi_label", default="Riferimenti normativi"
@@ -204,7 +194,7 @@ class IDocumento(model.Schema):
     model.fieldset(
         "accedere_al_servizio",
         label=_("accedere_al_servizio_label", default="Accedere al servizio"),
-        fields=["servizi_collegati", "canale_digitale"],
+        fields=["servizi_collegati"],
     )
     model.fieldset(
         "informazioni",

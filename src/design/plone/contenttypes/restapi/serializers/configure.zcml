@@ -8,6 +8,7 @@
     <adapter factory=".persona.PersonaSerializer" />
     <adapter factory=".related_news_serializer.ServizioSerializer" />
     <adapter factory=".relationfield.RelationListFieldSerializer" />
+    <adapter factory=".servizio.SerializeServizioToJsonSummary" />
     <adapter factory=".unita_organizzativa.UOSerializer" />
     <adapter factory=".venue.SerializeVenueToJsonSummary" />
     <adapter factory=".venue.VenueSerializer" />
