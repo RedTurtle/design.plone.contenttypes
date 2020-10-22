@@ -1,10 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <object name="portal_types" meta_type="Plone Types Tool">
   <property name="title">Controls the available contenttypes in your portal</property>
+  <object name="CartellaModulistica" meta_type="Dexterity FTI"/>
   <object name="Dataset" meta_type="Dexterity FTI"/>
   <object name="Documento Personale" meta_type="Dexterity FTI"/>
   <object name="Documento" meta_type="Dexterity FTI"/>
   <object name="Messaggio" meta_type="Dexterity FTI"/>
+  <object name="Modulo" meta_type="Dexterity FTI"/>
   <object name="Pagina Argomento" meta_type="Dexterity FTI"/>
   <object name="Persona" meta_type="Dexterity FTI"/>
   <object name="Pratica" meta_type="Dexterity FTI"/>

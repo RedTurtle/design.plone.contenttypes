@@ -34,4 +34,17 @@
     profile="design.plone.contenttypes:default"
     handler=".upgrades.update_registry"
     />
+  <genericsetup:upgradeSteps
+    source="1004"
+    destination="1005"
+    profile="design.plone.contenttypes:default">
+    <genericsetup:upgradeStep
+        title="Import types"
+        handler=".upgrades.update_types"
+        />
+    <genericsetup:upgradeStep
+        title="Update catalog"
+        handler=".upgrades.update_catalog"
+        />
+  </genericsetup:upgradeSteps>
 </configure>

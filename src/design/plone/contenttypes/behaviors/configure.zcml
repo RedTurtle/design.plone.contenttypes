@@ -44,6 +44,16 @@
       marker=".argomenti.IArgomenti"
       />
     <plone:behavior
+      title="Argomenti Documento"
+      name="design.plone.contenttypes.behavior.argomenti_documento"
+      description="Tassonomia argomenti"
+      provides=".argomenti.IArgomentiDocumento"
+      factory=".argomenti.ArgomentiDocumento"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      marker=".argomenti.IArgomentiDocumento"
+      />
+
+    <plone:behavior
       title="Luoghi correlati"
       name="design.plone.contenttypes.behavior.luoghi_correlati"
       description=""
@@ -118,6 +128,14 @@
       provides=".descrizione_estesa.IDescrizioneEstesaServizio"
       factory=".descrizione_estesa.DescrizioneEstesaServizio"
       marker=".descrizione_estesa.IDescrizioneEstesaServizio"
+      />
+    <plone:behavior
+      title="Descrizione estesa documento"
+      name="design.plone.contenttypes.behavior.descrizione_estesa_documento"
+      description=""
+      provides=".descrizione_estesa.IDescrizioneEstesaDocumento"
+      factory=".descrizione_estesa.DescrizioneEstesaDocumento"
+      marker=".descrizione_estesa.IDescrizioneEstesaDocumento"
       />
 
     <plone:behavior
@@ -194,4 +212,12 @@
       marker=".geolocation.IGeolocatableEvent"
       />
 
+    <plone:behavior
+      title="Multi File"
+      name="design.plone.contenttypes.behavior.multi_file"
+      description="Tre campi file aggiuntivi."
+      provides=".multi_file.IMultiFile"
+      factory=".multi_file.MultiFile"
+      marker=".multi_file.IMultiFile"
+      />
 </configure>

@@ -21,6 +21,10 @@
  <index name="tipologia_notizia" meta_type="FieldIndex">
   <indexed_attr value="tipologia_notizia"/>
  </index>
+ <index name="tipologia_documento" meta_type="KeywordIndex">
+  <indexed_attr value="tipologia_documento"/>
+ </index>
+ 
  <index name="argomenti_correlati" meta_type="KeywordIndex">
   <indexed_attr value="argomenti_correlati"/>
  </index>
@@ -32,5 +36,6 @@
  </index>
 
  <column value="tipologia_notizia"/>
+ <column value="tipologia_documento"/>
  <column value="argomenti_correlati"/>
 </object>

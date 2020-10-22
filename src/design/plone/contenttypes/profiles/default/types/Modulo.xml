@@ -1,38 +1,36 @@
 <?xml version="1.0"?>
 <object xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-    name="Documento"
+    name="Modulo"
     meta_type="Dexterity FTI"
     i18n:domain="design.plone.contenttypes">
 
   <!-- Basic properties -->
   <property
       i18n:translate=""
-      name="title">Documento</property>
+      name="title">Modulo</property>
   <property
       i18n:translate=""
-      name="description"></property>
+      name="description">Un modulo compilabile.</property>
 
   <property name="allow_discussion">False</property>
-  <property name="factory">Documento</property>
+  <property name="factory">Modulo</property>
   <property name="icon_expr"></property>
   <property name="link_target"></property>
 
   <!-- Hierarchy control -->
-  <property name="global_allow">True</property>
-  <property name="filter_content_types">True</property>
+  <property name="global_allow">False</property>
+  <property name="filter_content_types">False</property>
   <property name="allowed_content_types">
-    <element value="Document" />
-    <element value="Modulo" />
   </property>
   <!-- Schema, class and security -->
-  <property name="add_permission">design.plone.contenttypes.AddDocumento</property>
-  <property name="klass">design.plone.contenttypes.content.documento.Documento</property>
+  <property name="add_permission">design.plone.contenttypes.AddModulo</property>
+  <property name="klass">design.plone.contenttypes.content.modulo.Modulo</property>
   <property name="model_file"></property>
   <property name="model_source"></property>
-  <property name="schema">design.plone.contenttypes.interfaces.documento.IDocumento</property>
+  <property name="schema">design.plone.contenttypes.interfaces.modulo.IModulo</property>
 
   <!-- Enabled behaviors -->
-  <property name="behaviors" purge="true">
+  <property name="behaviors" purge="false">
     <element value="plone.namefromtitle" />
     <element value="plone.allowdiscussion" />
     <element value="plone.excludefromnavigation" />
@@ -40,15 +38,11 @@
     <element value="plone.dublincore" />
     <element value="plone.relateditems" />
     <element value="plone.locking" />
-    <element value="plone.constraintypes"/>
-    <element value="plone.leadimage" />
-    <element value="design.plone.contenttypes.behavior.argomenti_documento" />
-    <element value="design.plone.contenttypes.behavior.descrizione_estesa_documento" />
-    <element value="design.plone.contenttypes.behavior.additional_help_infos"/>
+    <element value="design.plone.contenttypes.behavior.multi_file" />
   </property>
 
   <!-- View information -->
-  <property name="add_view_expr">string:${folder_url}/++add++Documento</property>
+  <property name="add_view_expr">string:${folder_url}/++add++Modulo</property>
   <property name="default_view">view</property>
   <property name="default_view_fallback">False</property>
   <property name="immediate_view">view</property>

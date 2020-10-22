@@ -12,18 +12,23 @@ def documentoCreateHandler(documento, event):
 
     @param event: Event that triggers the method (onAdded event)
     """
+    if "multimedia" in documento.keys():
+        # we are copying or moving it
+        return
 
-    allegati = api.content.create(
-        type="Document", title="Allegati", container=documento
+    documentoConstraints = ISelectableConstrainTypes(documento)
+    documentoConstraints.setConstrainTypesMode(1)
+    documentoConstraints.setLocallyAllowedTypes(("Document",))
+
+    # create support folder
+    multimedia = api.content.create(
+        type="Document", title="Multimedia", container=documento
     )
 
-    galleria = api.content.create(
-        type="Document", title="Galleria", container=documento
-    )
+    multimediaConstraints = ISelectableConstrainTypes(multimedia)
+    multimediaConstraints.setConstrainTypesMode(1)
+    multimediaConstraints.setLocallyAllowedTypes(("Image",))
 
-    attachedConstraints = ISelectableConstrainTypes(allegati)
-    attachedConstraints.setConstrainTypesMode(1)
-    attachedConstraints.setLocallyAllowedTypes(("File",))
-    galleryConstraints = ISelectableConstrainTypes(galleria)
-    galleryConstraints.setConstrainTypesMode(1)
-    galleryConstraints.setLocallyAllowedTypes(("Image",))
+    documentoConstraints = ISelectableConstrainTypes(documento)
+    documentoConstraints.setConstrainTypesMode(1)
+    documentoConstraints.setLocallyAllowedTypes(("Modulo",))
