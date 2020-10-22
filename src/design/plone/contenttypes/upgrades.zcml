@@ -32,6 +32,6 @@
     title="Upgrade to 1005"
     description=""
     profile="design.plone.contenttypes:default"
-    handler=".upgrades.to_1005"
+    handler=".upgrades.update_registry"
     />
 </configure>

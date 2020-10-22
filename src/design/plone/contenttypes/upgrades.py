@@ -89,8 +89,3 @@ def to_1003(context):
         "evento_supportato_da": "supportato_da",
     }
     remap_fields(mapping=mapping)
-
-
-def to_1004(context):
-
-    update_registry(context)
