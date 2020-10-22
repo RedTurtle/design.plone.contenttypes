@@ -73,6 +73,7 @@ FIELDSETS_ORDER = {
     ],
     "Servizio": [
         "default",
+        "cose",
         "a_chi_si_rivolge",
         "accedi_al_servizio",
         "cosa_serve",
@@ -119,9 +120,7 @@ FIELDSETS_ORDER = {
 class TypesGet(BaseGet):
     def customize_persona_schema(self, result):
         msgid = _(u"Nome e Cognome", default="Nome e cognome")
-        result["properties"]["title"]["title"] = translate(
-            msgid, context=self.request
-        )
+        result["properties"]["title"]["title"] = translate(msgid, context=self.request)
         return result
 
     def customize_venue_schema(self, result):
@@ -129,15 +128,9 @@ class TypesGet(BaseGet):
         Unico modo per spostare il campo "notes"
         """
         for fieldset in result["fieldsets"]:
-            if (
-                fieldset.get("id") == "default"
-                and "notes" in fieldset["fields"]
-            ):
+            if fieldset.get("id") == "default" and "notes" in fieldset["fields"]:
                 fieldset["fields"].remove("notes")
-            if (
-                fieldset.get("id") == "dove"
-                and "notes" not in fieldset["fields"]
-            ):
+            if fieldset.get("id") == "dove" and "notes" not in fieldset["fields"]:
                 fieldset["fields"].append("notes")
 
         return result
@@ -148,16 +141,14 @@ class TypesGet(BaseGet):
         Perché changeNotes ha l'order after="*" che vince su tutto.
         """
         versioning_fields = ["versioning_enabled", "changeNote"]
-        for fieldset in result["fieldsets"]:
-            if fieldset.get("id") == "default":
-                for field in versioning_fields:
-                    # remove from default fieldset
-                    if field in fieldset["fields"]:
-                        fieldset["fields"].remove(field)
-            if fieldset.get("id") == "settings":
-                for field in versioning_fields:
-                    if field not in fieldset["fields"]:
-                        fieldset["fields"].append(field)
+        for field in versioning_fields:
+            found = False
+            for fieldset in result["fieldsets"]:
+                if fieldset.get("id") == "default" and field in fieldset["fields"]:
+                    found = True
+                    fieldset["fields"].remove(field)
+                if fieldset.get("id") == "settings" and found:
+                    fieldset["fields"].append(field)
 
         return result
 
@@ -165,9 +156,7 @@ class TypesGet(BaseGet):
         result = super(TypesGet, self).reply()
 
         if "fieldsets" in result:
-            result["fieldsets"] = self.reorder_fieldsets(
-                original=result["fieldsets"]
-            )
+            result["fieldsets"] = self.reorder_fieldsets(original=result["fieldsets"])
         pt = self.request.PATH_INFO.split("/")[-1]
 
         if "properties" in result:
@@ -202,9 +191,7 @@ class TypesGet(BaseGet):
                         )
 
                 if "geolocation" in result["properties"]:
-                    if not result["properties"]["geolocation"].get(
-                        "default", {}
-                    ):
+                    if not result["properties"]["geolocation"].get("default", {}):
                         result["properties"]["geolocation"]["default"] = eval(
                             api.portal.get_registry_record(
                                 "geolocation", interface=IGeolocationDefaults

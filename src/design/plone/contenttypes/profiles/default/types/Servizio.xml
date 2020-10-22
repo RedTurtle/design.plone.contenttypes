@@ -31,10 +31,7 @@
   <property name="schema">design.plone.contenttypes.interfaces.servizio.IServizio</property>
 
   <!-- Enabled behaviors -->
-  <property name="behaviors" purge="false">
-    <!-- Details about all standard behaviors following can be read at
-         https://docs.plone.org/external/plone.app.dexterity/docs/reference/standard-behaviours.html
-    -->
+  <property name="behaviors" purge="true">
     <element value="plone.namefromtitle"/>
     <element value="plone.allowdiscussion"/>
     <element value="plone.excludefromnavigation"/>
@@ -43,7 +40,7 @@
     <element value="plone.publication"/>
     <element value="plone.categorization"/>
     <element value="plone.basic"/>
-    <element value="design.plone.contenttypes.behavior.descrizione_estesa" />
+    <element value="design.plone.contenttypes.behavior.descrizione_estesa_servizio" />
     <element value="plone.locking" />
     <element value="plone.leadimage"/>
     <element value="plone.relateditems"/>

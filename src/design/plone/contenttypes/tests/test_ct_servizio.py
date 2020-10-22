@@ -25,9 +25,18 @@ WIDGET_PROPERTY_CHECKS = {
         "maximumSelectionSize": 1,
         "selectableTypes": ["UnitaOrganizzativa"],
     },
-    "area": {"maximumSelectionSize": 1, "selectableTypes": ["UnitaOrganizzativa"]},
-    "altri_documenti": {"maximumSelectionSize": 10, "selectableTypes": ["Documento"]},
-    "servizi_collegati": {"maximumSelectionSize": 10, "selectableTypes": ["Servizio"]},
+    "area": {
+        "maximumSelectionSize": 1,
+        "selectableTypes": ["UnitaOrganizzativa"],
+    },
+    "altri_documenti": {
+        "maximumSelectionSize": 10,
+        "selectableTypes": ["Documento"],
+    },
+    "servizi_collegati": {
+        "maximumSelectionSize": 10,
+        "selectableTypes": ["Servizio"],
+    },
     "dove_rivolgersi": {
         "maximumSelectionSize": 10,
         "selectableTypes": ["Venue", "UnitaOrganizzativa"],
@@ -56,7 +65,7 @@ class TestServizio(unittest.TestCase):
                 "plone.publication",
                 "plone.categorization",
                 "plone.basic",
-                "design.plone.contenttypes.behavior.descrizione_estesa",
+                "design.plone.contenttypes.behavior.descrizione_estesa_servizio",
                 "plone.locking",
                 "plone.leadimage",
                 "plone.relateditems",

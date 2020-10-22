@@ -111,6 +111,14 @@
       marker=".descrizione_estesa.IDescrizioneEstesa"
       />
 
+    <plone:behavior
+      title="Descrizione estesa servizio"
+      name="design.plone.contenttypes.behavior.descrizione_estesa_servizio"
+      description=""
+      provides=".descrizione_estesa.IDescrizioneEstesaServizio"
+      factory=".descrizione_estesa.DescrizioneEstesaServizio"
+      marker=".descrizione_estesa.IDescrizioneEstesaServizio"
+      />
 
     <plone:behavior
       title="Info per la testata"
