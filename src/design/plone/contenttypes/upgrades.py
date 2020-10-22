@@ -25,6 +25,10 @@ def update_registry(context):
     update_profile(context, "plone.app.registry")
 
 
+def update_catalog(context):
+    update_profile(context, "catalog")
+
+
 def update_controlpanel(context):
     update_profile(context, "controlpanel")
 

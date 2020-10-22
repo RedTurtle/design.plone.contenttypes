@@ -52,5 +52,10 @@
           zope.lifecycleevent.interfaces.IObjectModifiedEvent"
       handler=".pagina_argomento.onModify"
     />
+    <subscriber
+      for="plone.app.contenttypes.interfaces.IDocument
+          zope.lifecycleevent.interfaces.IObjectAddedEvent"
+      handler=".document.documentCreateHandler"
+    />
     
 </configure>

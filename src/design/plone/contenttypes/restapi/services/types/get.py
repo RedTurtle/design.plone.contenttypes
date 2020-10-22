@@ -27,6 +27,17 @@ FIELDSETS_ORDER = {
         "ownership",
         "layout",
     ],
+    "Documento": [
+        "default",
+        "descrizione",
+        "accedere_al_servizio",
+        "informazioni",
+        "settings",
+        "correlati",
+        "categorization",
+        "dates",
+        "ownership",
+    ],
     "Event": [
         "default",
         "cose",
@@ -50,6 +61,14 @@ FIELDSETS_ORDER = {
         "settings",
         "ownership",
         "layout",
+    ],
+    "Modulo": [
+        "default",
+        "settings",
+        "correlati",
+        "categorization",
+        "dates",
+        "ownership",
     ],
     "Pagina Argomento": [
         "default",
@@ -120,7 +139,9 @@ FIELDSETS_ORDER = {
 class TypesGet(BaseGet):
     def customize_persona_schema(self, result):
         msgid = _(u"Nome e Cognome", default="Nome e cognome")
-        result["properties"]["title"]["title"] = translate(msgid, context=self.request)
+        result["properties"]["title"]["title"] = translate(
+            msgid, context=self.request
+        )
         return result
 
     def customize_venue_schema(self, result):
@@ -128,9 +149,15 @@ class TypesGet(BaseGet):
         Unico modo per spostare il campo "notes"
         """
         for fieldset in result["fieldsets"]:
-            if fieldset.get("id") == "default" and "notes" in fieldset["fields"]:
+            if (
+                fieldset.get("id") == "default"
+                and "notes" in fieldset["fields"]
+            ):
                 fieldset["fields"].remove("notes")
-            if fieldset.get("id") == "dove" and "notes" not in fieldset["fields"]:
+            if (
+                fieldset.get("id") == "dove"
+                and "notes" not in fieldset["fields"]
+            ):
                 fieldset["fields"].append("notes")
 
         return result
@@ -144,7 +171,10 @@ class TypesGet(BaseGet):
         for field in versioning_fields:
             found = False
             for fieldset in result["fieldsets"]:
-                if fieldset.get("id") == "default" and field in fieldset["fields"]:
+                if (
+                    fieldset.get("id") == "default"
+                    and field in fieldset["fields"]
+                ):
                     found = True
                     fieldset["fields"].remove(field)
                 if fieldset.get("id") == "settings" and found:
@@ -156,7 +186,9 @@ class TypesGet(BaseGet):
         result = super(TypesGet, self).reply()
 
         if "fieldsets" in result:
-            result["fieldsets"] = self.reorder_fieldsets(original=result["fieldsets"])
+            result["fieldsets"] = self.reorder_fieldsets(
+                original=result["fieldsets"]
+            )
         pt = self.request.PATH_INFO.split("/")[-1]
 
         if "properties" in result:
@@ -191,7 +223,9 @@ class TypesGet(BaseGet):
                         )
 
                 if "geolocation" in result["properties"]:
-                    if not result["properties"]["geolocation"].get("default", {}):
+                    if not result["properties"]["geolocation"].get(
+                        "default", {}
+                    ):
                         result["properties"]["geolocation"]["default"] = eval(
                             api.portal.get_registry_record(
                                 "geolocation", interface=IGeolocationDefaults

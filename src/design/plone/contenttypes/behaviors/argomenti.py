@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from collective import dexteritytextindexer
 from design.plone.contenttypes import _
+from design.plone.contenttypes.interfaces.documento import IDocumento
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
 from plone.autoform.interfaces import IFormFieldProvider
@@ -12,8 +13,7 @@ from zope.interface import provider, implementer
 
 
 class IArgomentiSchema(model.Schema):
-    """ Marker interface for Argomenti
-    """
+    """Marker interface for Argomenti"""
 
     tassonomia_argomenti = RelationList(
         title=_("tassonomia_argomenti_label", default="Tassonomia argomenti"),
@@ -47,11 +47,26 @@ class IArgomenti(IArgomentiSchema):
     """ """
 
 
+@provider(IFormFieldProvider)
+class IArgomentiDocumento(IArgomentiSchema):
+    """ """
+
+    form.order_after(tassonomia_argomenti="IDublinCore.title")
+
+
 @implementer(IArgomenti)
 @adapter(IDexterityContent)
 class Argomenti(object):
-    """
-    """
+    """"""
+
+    def __init__(self, context):
+        self.context = context
+
+
+@implementer(IArgomentiDocumento)
+@adapter(IDocumento)
+class ArgomentiDocumento(object):
+    """"""
 
     def __init__(self, context):
         self.context = context

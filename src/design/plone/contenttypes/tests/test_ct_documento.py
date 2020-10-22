@@ -23,18 +23,20 @@ class TestDocument(unittest.TestCase):
                 "plone.allowdiscussion",
                 "plone.excludefromnavigation",
                 "plone.shortname",
-                "plone.ownership",
-                "plone.publication",
-                "plone.categorization",
-                "plone.basic",
-                "design.plone.contenttypes.behavior.descrizione_estesa",
+                "plone.dublincore",
+                "plone.relateditems",
                 "plone.locking",
+                "plone.constraintypes",
                 "plone.leadimage",
-                "design.plone.contenttypes.behavior.argomenti",
+                "design.plone.contenttypes.behavior.argomenti_documento",
+                "design.plone.contenttypes.behavior.descrizione_estesa_documento",
                 "design.plone.contenttypes.behavior.additional_help_infos",
             ),
         )
 
-    def test_document_ct_title(self):
+    def test_event_addable_types(self):
         portal_types = api.portal.get_tool(name="portal_types")
-        self.assertEqual("Documento", portal_types["Documento"].title)
+        self.assertEqual(
+            ("Document", "Modulo"),
+            portal_types["Documento"].allowed_content_types,
+        )

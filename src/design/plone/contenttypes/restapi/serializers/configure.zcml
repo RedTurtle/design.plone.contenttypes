@@ -1,15 +1,16 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:zcml="http://namespaces.zope.org/zcml">
-
+    
+    <adapter factory=".dxcontent.SerializeFolderToJson" />
+    <adapter factory=".dxcontent.SerializeToJson" />
+    <adapter factory=".modulo.SerializeModuloToJsonSummary" />
     <adapter factory=".persona.PersonaSerializer" />
     <adapter factory=".related_news_serializer.ServizioSerializer" />
-    <adapter factory=".unita_organizzativa.UOSerializer" />
-    <adapter factory=".venue.VenueSerializer" />
-    <adapter factory=".venue.SerializeVenueToJsonSummary" />
     <adapter factory=".relationfield.RelationListFieldSerializer" />
-
-    <adapter factory=".dxcontent.SerializeToJson" />
-    <adapter factory=".dxcontent.SerializeFolderToJson" />
+    <adapter factory=".servizio.SerializeServizioToJsonSummary" />
+    <adapter factory=".unita_organizzativa.UOSerializer" />
+    <adapter factory=".venue.SerializeVenueToJsonSummary" />
+    <adapter factory=".venue.VenueSerializer" />
     
 </configure>

@@ -32,7 +32,10 @@ class IServiziCorrelati(model.Schema):
         "servizi_correlati",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={"maximumSelectionSize": 10, "selectableTypes": ["Servizio"]},
+        pattern_options={
+            "maximumSelectionSize": 10,
+            "selectableTypes": ["Servizio"],
+        },
     )
 
     model.fieldset(
@@ -45,8 +48,7 @@ class IServiziCorrelati(model.Schema):
 @implementer(IServiziCorrelati)
 @adapter(IDexterityContent)
 class ServiziCorrelati(object):
-    """
-    """
+    """"""
 
     def __init__(self, context):
         self.context = context
