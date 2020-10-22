@@ -2,6 +2,7 @@
 from plone import api
 
 import logging
+import json
 
 logger = logging.getLogger(__name__)
 
@@ -93,3 +94,38 @@ def to_1003(context):
         "evento_supportato_da": "supportato_da",
     }
     remap_fields(mapping=mapping)
+
+
+def to_1005(context):
+    def fix_index(blocks):
+        for block in blocks.values():
+            if block.get("@type", "") == "listing":
+                for query in block.get("query", []):
+                    if (
+                        query["i"] == "argomenti_correlati"
+                        or query["i"] == "tassonomia_argomenti"
+                    ):  # noqa
+                        query["i"] = "argomenti"
+                        logger.info(" - {}".format(brain.getURL()))
+
+    # fix root
+    portal = api.portal.get()
+    portal_blocks = json.loads(portal.blocks)
+    fix_index(portal_blocks)
+    portal.blocks = json.dumps(portal_blocks)
+
+    logger.info("Fixing listing blocks.")
+    for brain in api.content.find(
+        object_provides="plone.restapi.behaviors.IBlocks"
+    ):
+        item = brain.getObject()
+        blocks = getattr(item, "blocks", {})
+        if blocks:
+            fix_index(blocks)
+
+    logger.info("** Reindexing items that refers to an argument **")
+    for brain in api.portal.get_tool("portal_catalog")():
+        item = brain.getObject()
+        if getattr(item.aq_base, "tassonomia_argomenti", []):
+            logger.info(" - {}".format(brain.getURL()))
+            item.reindexObject(idxs=["argomenti"])

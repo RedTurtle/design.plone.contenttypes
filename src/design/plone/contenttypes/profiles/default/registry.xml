@@ -29,7 +29,11 @@
        <value key="group" i18n:translate="">Text</value>
     </records>
   <records interface="plone.app.querystring.interfaces.IQueryField"
-             prefix="plone.app.querystring.field.argomenti_correlati">
+             prefix="plone.app.querystring.field.argomenti_correlati"
+             remove="True">
+  </records>
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+             prefix="plone.app.querystring.field.tassonomia_argomenti">
         <value key="title" i18n:translate="">Argomenti correlati</value>
         <value key="description" i18n:translate="">Argomenti correlati</value>
         <value key="enabled">True</value>

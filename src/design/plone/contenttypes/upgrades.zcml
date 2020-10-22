@@ -26,7 +26,14 @@
     profile="design.plone.contenttypes:default"
     handler=".upgrades.to_1003"
     />
-  
+  <genericsetup:upgradeStep
+    source="1003"
+    destination="1004"
+    title="Upgrade to 1004"
+    description=""
+    profile="design.plone.contenttypes:default"
+    handler=".upgrades.update_types"
+    />  
   <genericsetup:upgradeSteps
     source="1004"
     destination="1005"
@@ -42,6 +49,10 @@
     <genericsetup:upgradeStep
         title="Set some default values for notizie types"
         handler=".upgrades.update_registry"
+        />
+    <genericsetup:upgradeStep
+        title="fix catalog indexes"
+        handler=".upgrades.to_1005"
         />
   </genericsetup:upgradeSteps>
 </configure>
