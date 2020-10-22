@@ -55,4 +55,17 @@
         handler=".upgrades.to_1005"
         />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+    source="1005"
+    destination="1006"
+    profile="design.plone.contenttypes:default">
+    <genericsetup:upgradeStep
+        title="Fix criteria"
+        handler=".upgrades.update_registry"
+        />
+    <genericsetup:upgradeStep
+        title="fix catalog blocks"
+        handler=".upgrades.to_1006"
+        />
+  </genericsetup:upgradeSteps>
 </configure>

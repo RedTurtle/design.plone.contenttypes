@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from plone import api
+from copy import deepcopy
 
 import logging
 import json
@@ -119,13 +120,46 @@ def to_1005(context):
         object_provides="plone.restapi.behaviors.IBlocks"
     ):
         item = brain.getObject()
-        blocks = getattr(item, "blocks", {})
+        blocks = deepcopy(getattr(item, "blocks", {}))
         if blocks:
             fix_index(blocks)
-
+            item.blocks = blocks
     logger.info("** Reindexing items that refers to an argument **")
     for brain in api.portal.get_tool("portal_catalog")():
         item = brain.getObject()
         if getattr(item.aq_base, "tassonomia_argomenti", []):
             logger.info(" - {}".format(brain.getURL()))
             item.reindexObject(idxs=["argomenti"])
+
+
+def to_1006(context):
+    def fix_index(blocks):
+        for block in blocks.values():
+            if block.get("@type", "") == "listing":
+                for query in block.get("query", []):
+                    if (
+                        query["i"] == "argomenti_correlati"
+                        or query["i"] == "tassonomia_argomenti"
+                        or query["i"] == "argomenti"
+                    ):  # noqa
+                        query["i"] = "argomenti"
+                        query["v"] = [
+                            x.Title for x in api.content.find(UID=query["v"])
+                        ]
+                        logger.info(" - {}".format(brain.getURL()))
+
+    # fix root
+    portal = api.portal.get()
+    portal_blocks = json.loads(portal.blocks)
+    fix_index(portal_blocks)
+    portal.blocks = json.dumps(portal_blocks)
+
+    logger.info("Fixing listing blocks.")
+    for brain in api.content.find(
+        object_provides="plone.restapi.behaviors.IBlocks"
+    ):
+        item = brain.getObject()
+        blocks = deepcopy(getattr(item, "blocks", {}))
+        if blocks:
+            fix_index(blocks)
+            item.blocks = blocks
