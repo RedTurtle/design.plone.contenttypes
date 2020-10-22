@@ -51,7 +51,7 @@
         handler=".upgrades.update_registry"
         />
     <genericsetup:upgradeStep
-        title="Set some default values for notizie types"
+        title="fix catalog indexes"
         handler=".upgrades.to_1005"
         />
   </genericsetup:upgradeSteps>

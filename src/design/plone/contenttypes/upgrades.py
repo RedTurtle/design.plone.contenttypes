@@ -33,10 +33,6 @@ def update_controlpanel(context):
     update_profile(context, "controlpanel")
 
 
-def update_catalog(context):
-    update_profile(context, "catalog")
-
-
 def remap_fields(mapping):
     pc = api.portal.get_tool(name="portal_catalog")
     brains = pc()
@@ -101,15 +97,14 @@ def to_1003(context):
 
 
 def to_1005(context):
-
-    update_registry(context)
-    update_catalog(context)
-
     def fix_index(blocks):
         for block in blocks.values():
             if block.get("@type", "") == "listing":
                 for query in block.get("query", []):
-                    if query["i"] == "argomenti_correlati" or query["i"] == "tassonomia_argomenti":  # noqa
+                    if (
+                        query["i"] == "argomenti_correlati"
+                        or query["i"] == "tassonomia_argomenti"
+                    ):  # noqa
                         query["i"] = "argomenti"
                         logger.info(" - {}".format(brain.getURL()))
 
@@ -119,7 +114,7 @@ def to_1005(context):
     fix_index(portal_blocks)
     portal.blocks = json.dumps(portal_blocks)
 
-    logger.info('Fixing listing blocks.')
+    logger.info("Fixing listing blocks.")
     for brain in api.content.find(
         object_provides="plone.restapi.behaviors.IBlocks"
     ):
@@ -128,9 +123,9 @@ def to_1005(context):
         if blocks:
             fix_index(blocks)
 
-    logger.info('** Reindexing items that refers to an argument **')
-    for brain in api.portal.get_tool('portal_catalog')():
+    logger.info("** Reindexing items that refers to an argument **")
+    for brain in api.portal.get_tool("portal_catalog")():
         item = brain.getObject()
-        if getattr(item.aq_base, 'tassonomia_argomenti', []):
-            logger.info(' - {}'.format(brain.getURL()))
-            item.reindexObject(idxs=['argomenti'])
+        if getattr(item.aq_base, "tassonomia_argomenti", []):
+            logger.info(" - {}".format(brain.getURL()))
+            item.reindexObject(idxs=["argomenti"])
