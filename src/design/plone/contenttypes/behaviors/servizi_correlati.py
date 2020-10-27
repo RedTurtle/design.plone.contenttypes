@@ -43,6 +43,7 @@ class IServiziCorrelati(model.Schema):
         label=_("correlati_label", default="Contenuti collegati"),
         fields=["servizi_correlati"],
     )
+    form.order_before(servizi_correlati="IRelatedItems.relatedItems")
 
 
 @implementer(IServiziCorrelati)

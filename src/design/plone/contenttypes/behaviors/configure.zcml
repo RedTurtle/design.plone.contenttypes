@@ -52,7 +52,15 @@
       for="plone.dexterity.interfaces.IDexterityContent"
       marker=".argomenti.IArgomentiDocumento"
       />
-
+    <plone:behavior
+      title="Argomenti Bando"
+      name="design.plone.contenttypes.behavior.argomenti_bando"
+      description="Tassonomia argomenti"
+      provides=".argomenti.IArgomentiBando"
+      factory=".argomenti.ArgomentiBando"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      marker=".argomenti.IArgomentiBando"
+      />
     <plone:behavior
       title="Luoghi correlati"
       name="design.plone.contenttypes.behavior.luoghi_correlati"
@@ -220,4 +228,5 @@
       factory=".multi_file.MultiFile"
       marker=".multi_file.IMultiFile"
       />
+
 </configure>
