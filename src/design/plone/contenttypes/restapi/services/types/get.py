@@ -73,6 +73,7 @@ FIELDSETS_ORDER = {
     "Pagina Argomento": [
         "default",
         "informazioni",
+        "correlati",
         "categorization",
         "dates",
         "settings",
@@ -85,6 +86,7 @@ FIELDSETS_ORDER = {
         "contatti",
         "documenti",
         "informazioni",
+        "correlati",
         "categorization",
         "dates",
         "ownership",
@@ -130,6 +132,7 @@ FIELDSETS_ORDER = {
         "orari",
         "contatti",
         "informazioni",
+        "correlati",
         "categorization",
     ],
 }

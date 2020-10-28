@@ -111,20 +111,37 @@ class IPersona(model.Schema):
         required=False,
     )
 
-    telefono = schema.TextLine(
+    telefono = schema.List(
         title=_("telefono_persona_label", default="Numero di telefono"),
         description=_(
             "telefono_persona_help",
-            default="Contatto telefonico della persona.",
+            default="Contatto telefonico della persona. E' possibile inserire "
+            'più di un numero. Premendo "Invio" o "tab" si può passare al '
+            "successivo da inserire.",
+        ),
+        value_type=schema.TextLine(),
+        missing_value=[],
+        default=[],
+        required=False,
+    )
+    fax = schema.TextLine(
+        title=_(u"fax_persona_label", default=u"Fax"),
+        description=_(
+            u"fax_persona_help", default=u"Indicare un numero di fax."
         ),
         required=False,
     )
-
-    email = schema.TextLine(
+    email = schema.List(
         title=_("email_persona_label", default="Indirizzo email"),
         description=_(
-            "email_persona_help", default="Contatto mail della persona."
+            "email_persona_help",
+            default="Contatto mail della persona. E' possibile inserire più"
+            ' di un indirizzo. Premendo "Invio" o "tab" si può passare al '
+            "successivo da inserire.",
         ),
+        value_type=schema.TextLine(),
+        missing_value=[],
+        default=[],
         required=False,
     )
     curriculum_vitae = field.NamedBlobFile(
@@ -153,7 +170,7 @@ class IPersona(model.Schema):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "maximumSelectionSize": 1,
+            "maximumSelectionSize": 10,
             "selectableTypes": ["UnitaOrganizzativa"],
             "basePath": "/amministrazione",
         },
@@ -177,7 +194,7 @@ class IPersona(model.Schema):
     model.fieldset(
         "contatti",
         label=_("contatti_label", default="Contatti"),
-        fields=["telefono", "email"],
+        fields=["telefono", "fax", "email"],
     )
     model.fieldset(
         "documenti",
@@ -190,4 +207,5 @@ class IPersona(model.Schema):
     dexteritytextindexer.searchable("deleghe")
     dexteritytextindexer.searchable("tipologia_persona")
     dexteritytextindexer.searchable("telefono")
+    dexteritytextindexer.searchable("fax")
     dexteritytextindexer.searchable("email")

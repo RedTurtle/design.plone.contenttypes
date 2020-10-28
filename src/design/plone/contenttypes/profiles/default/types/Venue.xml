@@ -8,6 +8,7 @@
   <element value="plone.app.content.interfaces.INameFromTitle"/>
   <element value="plone.app.dexterity.behaviors.metadata.IBasic"/>
   <element value="plone.app.dexterity.behaviors.metadata.ICategorization"/>
+  <element value="plone.relateditems" />
   <element value="plone.leadimage"/>
   <element value="design.plone.contenttypes.behavior.contatti_venue"/>
   <element value="design.plone.contenttypes.behavior.luogo"/>

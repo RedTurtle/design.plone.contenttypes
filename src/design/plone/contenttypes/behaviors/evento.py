@@ -104,6 +104,13 @@ class IEvento(model.Schema):
         ),
         required=False,
     )
+    fax = schema.TextLine(
+        title=_(u"fax_event_help", default=u"Fax"),
+        description=_(
+            u"fax_event_label", default="Indicare un numero di fax."
+        ),
+        required=False,
+    )
     reperibilita = schema.TextLine(
         title=_(u"reperibilita", default=u"Reperibilità organizzatore"),
         required=False,
@@ -205,6 +212,7 @@ class IEvento(model.Schema):
             "organizzato_da_interno",
             "organizzato_da_esterno",
             "telefono",
+            "fax",
             "reperibilita",
             "email",
             "web",

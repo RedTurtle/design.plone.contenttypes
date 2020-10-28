@@ -87,6 +87,7 @@ class SerializeVenueToJsonSummary(DefaultJSONSummarySerializer):
             "geolocation",
             "orario_pubblico",
             "telefono",
+            "fax",
             "email",
             "pec",
             "web",

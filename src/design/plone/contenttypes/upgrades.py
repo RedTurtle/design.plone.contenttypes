@@ -163,3 +163,12 @@ def to_1006(context):
         if blocks:
             fix_index(blocks)
             item.blocks = blocks
+
+
+def to_1007(context):
+    for brain in api.content.find(portal_type="Persona"):
+        item = brain.getObject()
+        if item.email:
+            item.email = [item.email]
+        if item.telefono:
+            item.telefono = [item.telefono]

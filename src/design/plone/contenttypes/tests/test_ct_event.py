@@ -28,6 +28,11 @@ class TestEvent(unittest.TestCase):
         self.assertEqual(
             portal_types["Event"].behaviors,
             (
+                "plone.eventlocation",
+                "plone.eventattendees",
+                "plone.eventcontact",
+                "collective.venue.behaviors.ILocation",
+                "collective.venue.behaviors.IOrganizer",
                 "plone.eventbasic",
                 "plone.leadimage",
                 "design.plone.contenttypes.behavior.argomenti",
@@ -84,24 +89,7 @@ class TestEventApi(unittest.TestCase):
         self.api_session.close()
 
     def test_event_substructure_created(self):
-        self.api_session.post(
-            self.portal_url,
-            json={
-                "@type": "Event",
-                "title": "Bar",
-                "indirizzo": "xxx",
-                "descrizione_destinatari": "pippo,pluto,paperino",
-                "date_significative": "xxx",
-                "cap": "11111",
-                "orari": "lorem ipsum",
-                "prezzo": "lorem ipsum",
-                "box_aiuto": "lorem ipsum",
-            },
-        )
-
-        transaction.commit()
-
-        event = self.portal["bar"]
+        event = self.portal["evento"]
 
         self.assertEqual(
             sorted(["multimedia", "documenti", "sponsor_evento"]),

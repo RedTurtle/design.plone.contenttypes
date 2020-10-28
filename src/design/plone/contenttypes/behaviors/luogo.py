@@ -102,7 +102,17 @@ class ILuogo(model.Schema):
         ),
         required=False,
     )
-
+    riferimento_fax_struttura = schema.TextLine(
+        title=_(
+            u"riferimento_fax_struttura",
+            default=u"Fax della struttura responsabile",
+        ),
+        description=_(
+            "help_riferimento_fax_struttura",
+            default="Indicare un numero di fax della struttura responsabile.",
+        ),
+        required=False,
+    )
     riferimento_mail_struttura = schema.TextLine(
         title=_(
             u"riferimento_mail_struttura",
@@ -171,6 +181,7 @@ class ILuogo(model.Schema):
             "struttura_responsabile_correlati",
             "struttura_responsabile",
             "riferimento_telefonico_struttura",
+            "riferimento_fax_struttura",
             "riferimento_mail_struttura",
             "riferimento_pec_struttura",
         ],
