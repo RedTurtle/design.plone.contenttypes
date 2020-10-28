@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<object name="Bando Folder Deepening" meta_type="Dexterity FTI" i18n:domain="plone"
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+ <property name="title" i18n:translate="">Cartella Approfondimento</property>
+ <property name="filter_content_types">True</property>
+ <property name="allowed_content_types">
+   <element value="File" />
+   <element value="Link" />
+ </property>
+</object>
