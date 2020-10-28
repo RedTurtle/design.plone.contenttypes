@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+          i18n:domain="plone">
+  <records interface="design.plone.contenttypes.controlpanels.vocabularies.IVocabulariesControlPanel" />
+  <records interface="design.plone.contenttypes.controlpanels.geolocation_defaults.IGeolocationDefaults" />
+  <record name="plone.allowed_sizes" interface="Products.CMFPlone.interfaces.controlpanel.IImagingSchema" field="allowed_sizes">
+    <value purge="False">
+      <element>gallery 250:250</element>
+    </value>
+  </record>
+  <record name="design.plone.contenttypes.controlpanels.vocabularies.IVocabulariesControlPanel.tipologie_notizia" field="tipologie_notizia" interface="design.plone.contenttypes.controlpanels.vocabularies.IVocabulariesControlPanel">
+    <value purge="False">
+      <element>Avviso</element>
+      <element>Comunicato stampa</element>
+      <element>Novità</element>
+    </value>
+  </record>
+</registry>

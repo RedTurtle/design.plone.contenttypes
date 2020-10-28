@@ -1,20 +1,6 @@
 <?xml version="1.0"?>
 <registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
           i18n:domain="plone">
-  <records interface="design.plone.contenttypes.controlpanels.vocabularies.IVocabulariesControlPanel" />
-  <records interface="design.plone.contenttypes.controlpanels.geolocation_defaults.IGeolocationDefaults" />
-  <record name="plone.allowed_sizes" interface="Products.CMFPlone.interfaces.controlpanel.IImagingSchema" field="allowed_sizes">
-    <value purge="False">
-      <element>gallery 250:250</element>
-    </value>
-  </record>
-  <record name="design.plone.contenttypes.controlpanels.vocabularies.IVocabulariesControlPanel.tipologie_notizia" field="tipologie_notizia" interface="design.plone.contenttypes.controlpanels.vocabularies.IVocabulariesControlPanel">
-    <value purge="False">
-      <element>Avviso</element>
-      <element>Comunicato stampa</element>
-      <element>Novità</element>
-    </value>
-  </record>
   <records interface="plone.app.querystring.interfaces.IQueryField"
              prefix="plone.app.querystring.field.tipologia_notizia">
         <value key="title" i18n:translate="">Tipologia notizia</value>
@@ -41,15 +27,27 @@
        <value key="vocabulary">design.plone.vocabularies.argomenti</value>
        <value key="group" i18n:translate="">Text</value>
     </records>
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.tipologia_documento">
+        <value key="title" i18n:translate="">Tipologia documento</value>
+        <value key="description" i18n:translate=""></value>
+        <value key="enabled">True</value>
+        <value key="sortable">False</value>
+        <value key="operations">
+            <element>plone.app.querystring.operation.selection.any</element>
+            <element>plone.app.querystring.operation.selection.all</element>
+        </value>
+       <value key="vocabulary">design.plone.vocabularies.tipologie_documento</value>
+       <value key="group" i18n:translate="">Text</value>
+  </records>
+  <!-- cleanup -->
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+            prefix="plone.app.querystring.field.tassonomia_argomenti"
+            remove="True">
+  </records>
 
-    <!-- cleanup -->
-    <records interface="plone.app.querystring.interfaces.IQueryField"
-             prefix="plone.app.querystring.field.tassonomia_argomenti"
-             remove="True">
-    </records>
-
-    <records interface="plone.app.querystring.interfaces.IQueryField"
-             prefix="plone.app.querystring.field.argomenti_correlati"
-             remove="True">
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+            prefix="plone.app.querystring.field.argomenti_correlati"
+            remove="True">
   </records>
 </registry>

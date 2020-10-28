@@ -77,6 +77,10 @@
         handler=".upgrades.update_types"
         />
       <genericsetup:upgradeStep
+        title="Add criteria for tipologia_documento"
+        handler=".upgrades.update_registry"
+        />
+      <genericsetup:upgradeStep
         title="Convert Persona email field"
         handler=".upgrades.to_1007"
         />
