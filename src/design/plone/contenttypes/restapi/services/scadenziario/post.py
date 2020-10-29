@@ -22,7 +22,7 @@ class ScadenziarioSearchPost(Service):
         data = json_body(self.request)
         query = data.get("query", None)
         # b_start = int(data.get("b_start", 0))
-        b_size = int(data.get("b_size", 25))
+        # b_size = int(data.get("b_size", 25))
         sort_on = data.get("sort_on", None)
         sort_order = data.get("sort_order", None)
         limit = int(data.get("limit", 1000))
@@ -65,13 +65,7 @@ class ScadenziarioSearchPost(Service):
         keys = list(brains_grouped.keys())
         keys.sort()
 
-        def chunks(lst, n):
-            chunks_results = []
-            for i in range(0, len(lst), n):
-                chunks_results.append(lst[i:i + n])
-            return chunks_results
-
-        return chunks(keys, b_size)
+        return keys
 
 
 class ScadenziarioDayPost(Service):
