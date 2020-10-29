@@ -65,7 +65,10 @@ class ScadenziarioSearchPost(Service):
         keys = list(brains_grouped.keys())
         keys.sort()
 
-        return keys
+        return {
+            '@id': self.request.get('URL'),
+            'items': keys
+        }
 
 
 class ScadenziarioDayPost(Service):
@@ -135,4 +138,7 @@ class ScadenziarioDayPost(Service):
                     }
                 )
                 results_to_be_returned[key].sort(key=lambda x: x['title'])
-        return results_to_be_returned
+        return {
+            '@id': self.request.get('URL'),
+            'items': results_to_be_returned
+        }
