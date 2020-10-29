@@ -18,4 +18,20 @@
     permission="zope2.View"
     />
 
+  <plone:service
+    method="POST"
+    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+    factory=".post.ScadenziarioDayPost"
+    name="@scadenziario-day"
+    permission="zope2.View"
+    />
+
+  <plone:service
+    method="POST"
+    for="Products.CMFCore.interfaces.IContentish"
+    factory=".post.ScadenziarioDayPost"
+    name="@scadenziario-day"
+    permission="zope2.View"
+    />
+
 </configure>
