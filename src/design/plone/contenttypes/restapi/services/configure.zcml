@@ -4,6 +4,7 @@
 
     <include package=".modulistica_items" />
     <include package=".types" />
+    <include package=".scadenziario" />
     
     <adapter
         factory=".controlpanel.VocabulariesControlpanel"

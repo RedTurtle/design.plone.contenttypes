@@ -1,0 +1,21 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone">
+
+  <plone:service
+    method="POST"
+    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+    factory=".post.ScadenziarioSearchPost"
+    name="@scadenziario"
+    permission="zope2.View"
+    />
+
+  <plone:service
+    method="POST"
+    for="Products.CMFCore.interfaces.IContentish"
+    factory=".post.ScadenziarioSearchPost"
+    name="@scadenziario"
+    permission="zope2.View"
+    />
+
+</configure>
