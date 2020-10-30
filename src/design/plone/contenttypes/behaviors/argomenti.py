@@ -10,6 +10,7 @@ from plone.supermodel import model
 from z3c.relationfield.schema import RelationChoice, RelationList
 from zope.component import adapter
 from zope.interface import provider, implementer
+from design.plone.contenttypes.interfaces.bando import IBandoAgidSchema
 
 
 class IArgomentiSchema(model.Schema):
@@ -54,6 +55,18 @@ class IArgomentiDocumento(IArgomentiSchema):
     form.order_after(tassonomia_argomenti="IDublinCore.title")
 
 
+@provider(IFormFieldProvider)
+class IArgomentiBando(IArgomentiSchema):
+    """ """
+
+    model.fieldset(
+        "correlati",
+        label=_("correlati_label", default="Contenuti collegati"),
+        fields=["tassonomia_argomenti"],
+    )
+    form.order_before(tassonomia_argomenti="IRelatedItems.relatedItems")
+
+
 @implementer(IArgomenti)
 @adapter(IDexterityContent)
 class Argomenti(object):
@@ -66,6 +79,15 @@ class Argomenti(object):
 @implementer(IArgomentiDocumento)
 @adapter(IDocumento)
 class ArgomentiDocumento(object):
+    """"""
+
+    def __init__(self, context):
+        self.context = context
+
+
+@implementer(IArgomentiBando)
+@adapter(IBandoAgidSchema)
+class ArgomentiBando(object):
     """"""
 
     def __init__(self, context):
