@@ -44,6 +44,7 @@
     <element value="plone.shortname"/>
     <element value="plone.ownership"/>
     <element value="plone.publication"/>
+    <element value="plone.relateditems" />
     <element value="plone.categorization"/>
     <element value="plone.basic"/>
     <element value="plone.locking" />

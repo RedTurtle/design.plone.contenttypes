@@ -25,6 +25,7 @@ class TestPaginaArgomento(unittest.TestCase):
                 "plone.shortname",
                 "plone.ownership",
                 "plone.publication",
+                "plone.relateditems",
                 "plone.categorization",
                 "plone.basic",
                 "plone.locking",

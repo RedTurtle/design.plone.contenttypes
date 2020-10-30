@@ -68,4 +68,21 @@
         handler=".upgrades.to_1006"
         />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+    source="1006"
+    destination="1007"
+    profile="design.plone.contenttypes:default">
+      <genericsetup:upgradeStep
+        title="Import types"
+        handler=".upgrades.update_types"
+        />
+      <genericsetup:upgradeStep
+        title="Add criteria for tipologia_documento"
+        handler=".upgrades.update_registry"
+        />
+      <genericsetup:upgradeStep
+        title="Convert Persona email field"
+        handler=".upgrades.to_1007"
+        />
+  </genericsetup:upgradeSteps>
 </configure>

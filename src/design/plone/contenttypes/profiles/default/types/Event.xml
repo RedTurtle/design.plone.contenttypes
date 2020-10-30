@@ -6,7 +6,7 @@
     <element value="Document" />
 
  </property>
-  <property name="behaviors" purge="True">
+  <property name="behaviors" purge="False">
     <element value="plone.eventbasic"/>
     <element value="plone.leadimage"/>
     <element value="design.plone.contenttypes.behavior.argomenti"/>

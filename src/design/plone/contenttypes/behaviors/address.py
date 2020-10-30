@@ -13,19 +13,31 @@ from design.plone.contenttypes.interfaces.unita_organizzativa import (
 )
 
 
+class IAddressNomeSede(model.Schema):
+    nome_sede = schema.TextLine(
+        title=_("nome_sede", default="Nome sede"),
+        description=_(
+            "help_nome_sede",
+            default="Inserisci il nome della "
+            "sede, se non è presente tra i Luoghi del sito.",
+        ),
+        required=False,
+    )
+
+
 class IAddressLocal(model.Schema):
     """
     """
 
     quartiere = schema.TextLine(
-        title=_(u"quartiere", default=u"Quartiere"),
-        description=_(u"help_quartiere", default=u""),
+        title=_("quartiere", default="Quartiere"),
+        description=_("help_quartiere", default=""),
         required=False,
     )
 
     circoscrizione = schema.TextLine(
-        title=_(u"circoscrizione", default=u"Circoscrizione"),
-        description=_(u"help_circoscrizione", default=u""),
+        title=_("circoscrizione", default="Circoscrizione"),
+        description=_("help_circoscrizione", default=""),
         required=False,
     )
 
@@ -35,12 +47,13 @@ class IAddressLocal(model.Schema):
 
 
 @provider(IFormFieldProvider)
-class IAddressUnitaOrganizzativa(IAddress, IAddressLocal):
+class IAddressUnitaOrganizzativa(IAddress, IAddressNomeSede, IAddressLocal):
 
     model.fieldset(
         "contatti",
         label=_("contatti_label", default="Contatti"),
         fields=[
+            "nome_sede",
             "street",
             "zip_code",
             "city",
@@ -57,7 +70,7 @@ class IAddressVenue(IAddress, IAddressLocal):
 
     model.fieldset(
         "dove",
-        label=_("dove_label", default=u"Dove"),
+        label=_("dove_label", default="Dove"),
         fields=[
             "street",
             "zip_code",
@@ -70,13 +83,14 @@ class IAddressVenue(IAddress, IAddressLocal):
 
 
 @provider(IFormFieldProvider)
-class IAddressEvent(IAddress, IAddressLocal):
+class IAddressEvent(IAddress, IAddressNomeSede, IAddressLocal):
     """"""
 
     model.fieldset(
         "luogo",
-        label=_("luogo_label", default=u"Luogo"),
+        label=_("luogo_label", default="Luogo"),
         fields=[
+            "nome_sede",
             "street",
             "zip_code",
             "city",

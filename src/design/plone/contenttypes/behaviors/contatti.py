@@ -27,6 +27,12 @@ class IContatti(model.Schema):
         required=False,
     )
 
+    fax = schema.TextLine(
+        title=_(u"fax_label", default=u"Fax"),
+        description=_(u"fax_help", default=u"Indicare un numero di fax."),
+        required=False,
+    )
+
     email = schema.TextLine(
         title=_(u"email_label", default=u"E-mail"),
         description=_(
@@ -72,7 +78,7 @@ class IContattiUnitaOrganizzativa(IContatti):
     model.fieldset(
         "contatti",
         label=_("contatti_label", default=u"Contatti"),
-        fields=["telefono", "email", "pec", "web", "orario_pubblico"],
+        fields=["telefono", "fax", "email", "pec", "web", "orario_pubblico"],
     )
 
 
@@ -88,7 +94,7 @@ class IContattiVenue(IContatti):
     model.fieldset(
         "contatti",
         label=_("contatti_label", default=u"Contatti"),
-        fields=["telefono", "email", "pec", "web"],
+        fields=["telefono", "fax", "email", "pec", "web"],
     )
 
 

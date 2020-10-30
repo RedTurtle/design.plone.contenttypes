@@ -35,6 +35,7 @@ class TestLuogo(unittest.TestCase):
                 "plone.app.content.interfaces.INameFromTitle",
                 "plone.app.dexterity.behaviors.metadata.IBasic",
                 "plone.app.dexterity.behaviors.metadata.ICategorization",
+                "plone.relateditems",
                 "plone.leadimage",
                 "design.plone.contenttypes.behavior.contatti_venue",
                 "design.plone.contenttypes.behavior.luogo",
@@ -137,19 +138,6 @@ class TestLuogoApi(unittest.TestCase):
         self.assertEqual(venue.geolocation.latitude, 11.0)
         self.assertEqual(venue.geolocation.longitude, 10.0)
 
-    def test_venue_default_values_for_location(self):
-        response = self.api_session.get("/@types/Venue")
-        schema = response.json()["properties"]
-        self.assertEqual(
-            schema["country"]["default"], {"title": "Italia", "token": "380"}
-        )
-        self.assertEqual(schema["city"]["default"], "Roma")
-        self.assertEqual(schema["street"]["default"], "Via Liszt, 21")
-        self.assertEqual(
-            schema["geolocation"]["default"],
-            {"latitude": 41.8337833, "longitude": 12.4677863},
-        )
-
     def test_venue_services(self):
         response = self.api_session.get(
             self.venue.absolute_url() + "?fullobjects"
@@ -166,32 +154,4 @@ class TestLuogoApi(unittest.TestCase):
 
         self.assertTrue(
             response.json()["related_news"][0]["@id"], self.news.absolute_url()
-        )
-
-    # def test_venue_offices(self):
-    # Per ora non gestiamo ma gestiremo nel prossimo futuro
-    #     response = self.api_session.get(
-    #         self.venue.absolute_url() + "?fullobjects"
-    #     )
-    #     self.assertTrue(
-    #         response.json()["venue_offices"][0]["@id"], self.uo.absolute_url()
-    #     )
-
-    def test_fieldsets(self):
-        response = self.api_session.get("/@types/Venue")
-        fieldsets = response.json()["fieldsets"]
-        # can't provide schema.tweaks adapter... let's check if we have all
-        # expected fieldsets...
-        self.assertEqual(
-            [x["id"] for x in fieldsets],
-            [
-                "default",
-                "descrizione",
-                "accesso",
-                "dove",
-                "orari",
-                "contatti",
-                "informazioni",
-                "categorization",
-            ],
         )
