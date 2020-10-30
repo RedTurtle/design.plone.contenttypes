@@ -16,6 +16,7 @@ import design.plone.contenttypes
 import plone.formwidget.geolocation
 import plone.restapi
 import redturtle.volto
+import redturtle.bandi
 from zope.configuration import xmlconfig
 
 
@@ -30,7 +31,6 @@ class DesignPloneContenttypesLayer(PloneSandboxLayer):
         self.loadZCML(package=collective.dexteritytextindexer)
         self.loadZCML(package=collective.folderishtypes)
         self.loadZCML(package=collective.venue)
-        self.loadZCML(package=redturtle.bandi)
         self.loadZCML(package=collective.volto.cookieconsent)
         self.loadZCML(
             package=design.plone.contenttypes, context=configurationContext
@@ -44,6 +44,7 @@ class DesignPloneContenttypesLayer(PloneSandboxLayer):
             design.plone.contenttypes,
             context=configurationContext,
         )
+        self.loadZCML(package=redturtle.bandi)
 
     def setUpPloneSite(self, portal):
         applyProfile(portal, "design.plone.contenttypes:default")
