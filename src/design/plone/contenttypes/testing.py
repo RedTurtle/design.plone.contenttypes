@@ -83,6 +83,7 @@ class DesignPloneContenttypesRestApiLayer(PloneRestApiDXLayer):
         self.loadZCML(package=plone.formwidget.geolocation)
         self.loadZCML(package=plone.restapi)
         self.loadZCML(package=redturtle.volto)
+        self.loadZCML(package=redturtle.bandi)
 
     def setUpPloneSite(self, portal):
         applyProfile(portal, "design.plone.contenttypes:default")
