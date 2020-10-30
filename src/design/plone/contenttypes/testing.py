@@ -30,6 +30,7 @@ class DesignPloneContenttypesLayer(PloneSandboxLayer):
         self.loadZCML(package=collective.dexteritytextindexer)
         self.loadZCML(package=collective.folderishtypes)
         self.loadZCML(package=collective.venue)
+        self.loadZCML(package=redturtle.bandi)
         self.loadZCML(package=collective.volto.cookieconsent)
         self.loadZCML(
             package=design.plone.contenttypes, context=configurationContext
