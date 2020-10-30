@@ -6,7 +6,7 @@
   <element value="Bando Folder Deepening" />
  </property>
  <property name="behaviors" purge="False">
-    <element value="design.plone.contenttypes.behavior.argomenti"/>
+    <element value="design.plone.contenttypes.behavior.argomenti_bando"/>
     <element value="design.plone.contenttypes.behavior.servizi_correlati" remove="True"/>
  </property>
  <property name="schema">design.plone.contenttypes.interfaces.bando.IBandoAgidSchema</property>
