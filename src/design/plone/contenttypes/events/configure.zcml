@@ -7,11 +7,11 @@
            zope.lifecycleevent.interfaces.IObjectAddedEvent"
       handler=".pratica.praticaCreateHandler"
     />
-    <subscriber
+    <!-- <subscriber
       for="design.plone.contenttypes.interfaces.documento_personale.IDocumentoPersonale
            zope.lifecycleevent.interfaces.IObjectAddedEvent"
       handler=".documento_personale.documentoPersonaleCreateHandler"
-    />
+    /> -->
     <subscriber
      for="collective.venue.interfaces.IVenue
           zope.lifecycleevent.interfaces.IObjectAddedEvent"

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from plone import api
 from copy import deepcopy
+from plone.app.upgrade.utils import installOrReinstallProduct
 
 import logging
 import json
@@ -172,3 +173,7 @@ def to_1007(context):
             item.email = [item.email]
         if item.telefono:
             item.telefono = [item.telefono]
+
+
+def to_1008(context):
+    installOrReinstallProduct(api.portal.get(), "redturtle.bandi")

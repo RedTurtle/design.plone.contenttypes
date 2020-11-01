@@ -85,4 +85,17 @@
         handler=".upgrades.to_1007"
         />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+    source="1007"
+    destination="1008"
+    profile="design.plone.contenttypes:default">
+      <genericsetup:upgradeStep
+        title="install redturtle.bandi"
+        handler=".upgrades.to_1008"
+        />
+      <genericsetup:upgradeStep
+        title="Import types"
+        handler=".upgrades.update_types"
+        />
+  </genericsetup:upgradeSteps>
 </configure>

@@ -13,9 +13,9 @@ def eventoCreateHandler(evento, event):
     @param event: Event that triggers the method (onAdded event)
     """
 
-    constraintsEvento = ISelectableConstrainTypes(evento)
-    constraintsEvento.setConstrainTypesMode(1)
-    constraintsEvento.setLocallyAllowedTypes(("Event", "Document"))
+    # constraintsEvento = ISelectableConstrainTypes(evento)
+    # constraintsEvento.setConstrainTypesMode(1)
+    # constraintsEvento.setLocallyAllowedTypes(("Event", "Document"))
 
     galleria = api.content.create(
         container=evento, type="Document", title="Multimedia", id="multimedia"
@@ -46,7 +46,7 @@ def eventoCreateHandler(evento, event):
     constraintsDocumenti.setConstrainTypesMode(1)
     constraintsDocumenti.setLocallyAllowedTypes(("File",))
 
-    constraintsEvento.setLocallyAllowedTypes(("Event",))
+    # constraintsEvento.setLocallyAllowedTypes(("Event",))
 
     # add publish automation during creation
     api.content.transition(obj=galleria, transition="publish")
