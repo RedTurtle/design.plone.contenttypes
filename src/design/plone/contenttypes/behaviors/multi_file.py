@@ -11,7 +11,7 @@ from zope.interface import provider, implementer
 class IMultiFileSchema(model.Schema):
     """"""
 
-    file_principale = field.NamedFile(
+    file_principale = field.NamedBlobFile(
         title=_("file_principale_label", default="File principale"),
         description=_(
             "file_principale_help",
@@ -20,7 +20,7 @@ class IMultiFileSchema(model.Schema):
         required=True,
     )
 
-    formato_alternativo_1 = field.NamedFile(
+    formato_alternativo_1 = field.NamedBlobFile(
         title=_(
             "formato_alternativo_1_label", default="Formato alternativo 1"
         ),
@@ -32,7 +32,7 @@ class IMultiFileSchema(model.Schema):
         required=False,
     )
 
-    formato_alternativo_2 = field.NamedFile(
+    formato_alternativo_2 = field.NamedBlobFile(
         title=_(
             "formato_alternativo_2_label", default="Formato alternativo 2"
         ),
