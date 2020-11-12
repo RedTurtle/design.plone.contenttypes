@@ -107,6 +107,10 @@
         handler=".upgrades.update_catalog"
         />
       <genericsetup:upgradeStep
+        title="Add criteria for tipologia_documento"
+        handler=".upgrades.update_registry"
+        />
+      <genericsetup:upgradeStep
         title="cleanup index"
         handler=".upgrades.to_1009"
         />
