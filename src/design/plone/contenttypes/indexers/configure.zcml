@@ -9,8 +9,8 @@
     <adapter name="ufficio_responsabile"
              factory=".common.ufficio_responsabile" />
 
-    <adapter name="argomenti"
-             factory=".common.argomenti" />
+    <adapter name="tassonomia_argomenti"
+             factory=".common.tassonomia_argomenti" />
 
     <adapter factory=".pagina_argomento.SearchableTextExtender"
              name="IPaginaArgomento"

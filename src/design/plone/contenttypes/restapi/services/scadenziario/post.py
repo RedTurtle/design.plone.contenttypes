@@ -97,8 +97,8 @@ class ScadenziarioSearchPost(Service):
 
         all_results = not_events + expanded_events
         brains_grouped = {}
-        for brain in all_results:
-            if not safe_hasattr(results[0], "start"):
+        for brain in results:
+            if not safe_hasattr(brain, "start") or not brain.start:
                 continue
             brains_grouped.setdefault(
                 brain.start.strftime("%Y/%m/%d"), []

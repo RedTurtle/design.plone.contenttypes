@@ -62,12 +62,17 @@ class ModulisticaItems(object):
 
                         # serialize the field
                         serializer = queryMultiAdapter(
-                            (field, child, self.request), IFieldSerializer,
+                            (field, child, self.request), IFieldSerializer
                         )
                         value = serializer()
                         data[json_compatible(name)] = value
             if IFolderish.providedBy(child):
-                children = self.get_modulistica_data(context=child)
+                children = [
+                    x
+                    for x in self.get_modulistica_data(context=child)
+                    if x.get("@type", "")
+                    not in ["Document", "CartellaModulistica"]
+                ]
                 if children:
                     data["items"] = children
             res.append(data)

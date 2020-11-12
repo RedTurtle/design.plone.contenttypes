@@ -257,7 +257,7 @@ dei blocchi anche per le pagine argomento.
 ### Evento di modifica
 
 Se si modifica il titolo dell'argomento, viene scatenato un event handler che 
-cerca tutti i contenuti del sito che referenziano questa pagina, e reindicizza il loro indice `argomenti` per aggiornare il valore (perché ci si salva il titolo).
+cerca tutti i contenuti del sito che referenziano questa pagina, e reindicizza il loro indice `tassonomia_argomenti` per aggiornare il valore (perché ci si salva il titolo).
 
 ### Campi indicizzati nel SearchableText
 
