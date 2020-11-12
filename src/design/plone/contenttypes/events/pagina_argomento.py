@@ -26,4 +26,4 @@ def onModify(argomento, event):
     ):
         obj = intids.queryObject(rel.from_id)
         if obj is not None and checkPermission("zope2.View", obj):
-            obj.reindexObject(idxs=["argomenti"])
+            obj.reindexObject(idxs=["tassonomia_argomenti"])
