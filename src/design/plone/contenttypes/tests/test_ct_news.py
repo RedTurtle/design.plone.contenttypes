@@ -55,8 +55,8 @@ class TestNews(unittest.TestCase):
     def test_news_item_addable_types(self):
         portal_types = api.portal.get_tool(name="portal_types")
         self.assertEqual(
-            ("Image", "File", "Link", "Document"),
-            portal_types["News Item"].allowed_content_types,
+            sorted(("Image", "File", "Link", "Document")),
+            sorted(portal_types["News Item"].allowed_content_types),
         )
 
 
