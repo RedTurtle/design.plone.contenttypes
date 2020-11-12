@@ -22,7 +22,7 @@
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-2)
   - [Servizio](#servizio)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-3)
-  - [Unità Organizzativa](#unit%C3%A0-organizzativa)
+  - [Unità Organizzativa](#unità-organizzativa)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-4)
 - [Gestione vocabolari](#gestione-vocabolari)
 - [Gestione modulistica](#gestione-modulistica)
@@ -257,7 +257,7 @@ dei blocchi anche per le pagine argomento.
 ### Evento di modifica
 
 Se si modifica il titolo dell'argomento, viene scatenato un event handler che 
-cerca tutti i contenuti del sito che referenziano questa pagina, e reindicizza il loro indice `argomenti` per aggiornare il valore (perché ci si salva il titolo).
+cerca tutti i contenuti del sito che referenziano questa pagina, e reindicizza il loro indice `tassonomia_argomenti` per aggiornare il valore (perché ci si salva il titolo).
 
 ### Campi indicizzati nel SearchableText
 
