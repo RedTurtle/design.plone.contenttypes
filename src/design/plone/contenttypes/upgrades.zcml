@@ -98,4 +98,17 @@
         handler=".upgrades.update_types"
         />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+    source="1008"
+    destination="1009"
+    profile="design.plone.contenttypes:default">
+      <genericsetup:upgradeStep
+        title="Update catalog"
+        handler=".upgrades.update_catalog"
+        />
+      <genericsetup:upgradeStep
+        title="cleanup index"
+        handler=".upgrades.to_1009"
+        />
+  </genericsetup:upgradeSteps>
 </configure>
