@@ -176,9 +176,13 @@ class ScadenziarioDayPost(Service):
             results_to_be_returned[key] = []
             for brain in brains_grouped[key]:
                 if isinstance(brain, (EventAccessor, EventOccurrenceAccessor)):
+                    if brain.context.portal_type == "Occurrence":
+                        url = brain.url[:-10]
+                    else:
+                        url = brain.url
                     results_to_be_returned[key].append(
                         {
-                            "@id": brain.url,
+                            "@id": url,
                             "id": brain.id,
                             "title": brain.title,
                             "text": brain.description,
