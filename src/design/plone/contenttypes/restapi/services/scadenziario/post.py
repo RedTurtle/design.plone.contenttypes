@@ -10,6 +10,7 @@ from plone.app.querystring import queryparser
 from plone.app.event.base import expand_events
 from plone.app.event.recurrence import EventOccurrenceAccessor
 from plone.app.event.dx.behaviors import EventAccessor
+from DateTime import DateTime
 
 zcatalog_version = get_distribution("Products.ZCatalog").version
 if parse_version(zcatalog_version) >= parse_version("5.1"):
@@ -103,7 +104,6 @@ class ScadenziarioSearchPost(Service):
             brains_grouped.setdefault(
                 brain.start.strftime("%Y/%m/%d"), []
             ).append(brain)
-
         keys = list(brains_grouped.keys())
         if sort_order:
             keys.sort(reverse=True)
@@ -117,12 +117,8 @@ class ScadenziarioDayPost(Service):
     def reply(self):
         data = json_body(self.request)
         query = data.get("query", None)
-        # b_start = int(data.get("b_start", 0))
-        # b_size = int(data.get("b_size", 25))
         sort_on = data.get("sort_on", None)
         sort_order = data.get("sort_order", None)
-        limit = int(data.get("limit", 1000))
-        # fullobjects = data.get("fullobjects", False)
 
         if query is None:
             raise Exception("No query supplied")
@@ -130,41 +126,23 @@ class ScadenziarioDayPost(Service):
         if sort_order:
             sort_order = "descending" if sort_order else "ascending"
 
-        querybuilder = getMultiAdapter(
-            (self.context, self.request), name="querybuilderresults"
-        )
-
-        querybuilder_parameters = dict(
-            query=query,
-            brains=True,
-            # b_start=b_start,
-            # b_size=b_size,
-            sort_on=sort_on,
-            sort_order=sort_order,
-            limit=limit,
-        )
-
-        # Exclude "self" content item from the results when ZCatalog supports NOT UUID
-        # queries and it is called on a content object.
-        if (
-            not IPloneSiteRoot.providedBy(self.context)
-            and SUPPORT_NOT_UUID_QUERIES
-        ):
-            querybuilder_parameters.update(
-                dict(custom_query={"UID": {"not": self.context.UID()}})
-            )
-
-        results = querybuilder(**querybuilder_parameters)
-        # preparati per l'expand degli eventi.
-        not_events = [x for x in results if x.portal_type != "Event"]
-        events = [x for x in results if x.portal_type == "Event"]
-        # prende la query e la trasforma in una query per il catalogo
-        # così poi se e quando dobbiamo litigare con delle ricorrenze e date
-        # di start ed end, le abbiamo già calcolate, come plone le proporrebbe
-        # al catalogo
+        # results = querybuilder(**querybuilder_parameters)
+        # Seems that origina querybuilder is not able to handle event search on
+        # a single day... I can handle this calling catalog and going through
+        # DateTime conversion
         query_for_catalog = queryparser.parseFormquery(
             self.context, query, sort_on=sort_on, sort_order=sort_order
         )
+        query_for_catalog["start"]["query"][0] = DateTime(
+            query_for_catalog["start"]["query"][0]
+        )
+        query_for_catalog["start"]["query"][1] = DateTime(
+            query_for_catalog["start"]["query"][1]
+        )
+        results = self.context.portal_catalog(query_for_catalog)
+        # preparati per l'expand degli eventi.
+        not_events = [x for x in results if x.portal_type != "Event"]
+        events = [x for x in results if x.portal_type == "Event"]
         start = None
         end = None
         # qui ce l'abbiamo per forza start
@@ -174,7 +152,7 @@ class ScadenziarioDayPost(Service):
             end = query_for_catalog["end"]["query"]
 
         expanded_events = expand_events(events, 3, start, end)
-        start_date = start[0][:10]
+        start_date = start[0].strftime("%Y/%m/%d")
         correct_events = []
         for x in expanded_events:
             if start_date == x.start.strftime("%Y/%m/%d"):
@@ -198,11 +176,10 @@ class ScadenziarioDayPost(Service):
             results_to_be_returned[key] = []
             for brain in brains_grouped[key]:
                 if isinstance(brain, (EventAccessor, EventOccurrenceAccessor)):
-                    event = brain.context.aq_parent
                     results_to_be_returned[key].append(
                         {
-                            "@id": event.absolute_url(),
-                            "id": event.id,
+                            "@id": brain.url,
+                            "id": brain.id,
                             "title": brain.title,
                             "text": brain.description,
                             "start": brain.start.strftime("%Y/%m/%d"),
