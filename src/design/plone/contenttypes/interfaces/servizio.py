@@ -179,7 +179,7 @@ class IServizio(model.Schema):
 
     cosa_serve = RichText(
         title=_(u"cosa_serve", default=u"Cosa serve"),
-        required=True,
+        required=False,
         description=_(
             "cosa_serve_help",
             default="Descrizione delle istruzioni per usufruire del servizio.",
@@ -225,7 +225,7 @@ class IServizio(model.Schema):
             default="Seleziona l'ufficio responsabile dell'erogazione"
             " di questo servizio.",
         ),
-        required=True,
+        required=False,
         default=[],
         value_type=RelationChoice(
             title=_(u"Ufficio responsabile"),

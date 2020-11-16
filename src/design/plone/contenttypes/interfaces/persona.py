@@ -30,7 +30,7 @@ class IPersona(model.Schema):
             "ruolo_help",
             default="Descrizione testuale del ruolo di questa persona.",
         ),
-        required=True,
+        required=False,
     )
 
     organizzazione_riferimento = RelationList(
@@ -48,7 +48,7 @@ class IPersona(model.Schema):
             vocabulary="plone.app.vocabularies.Catalog",
         ),
         default=[],
-        required=True,
+        required=False,
     )
 
     data_conclusione_incarico = schema.Date(
@@ -88,7 +88,7 @@ class IPersona(model.Schema):
             " amministrativa o di altro tipo.",
         ),
         vocabulary="design.plone.contenttypes.TipologiaPersona",
-        required=True,
+        required=False,
     )
 
     data_insediamento = schema.Date(

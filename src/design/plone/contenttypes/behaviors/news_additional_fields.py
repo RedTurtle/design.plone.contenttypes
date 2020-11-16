@@ -20,7 +20,7 @@ class INewsAdditionalFields(model.Schema):
             "tipologia_notizia_help",
             default="Seleziona la tipologia della notizia.",
         ),
-        required=True,
+        required=False,
         vocabulary="design.plone.vocabularies.tipologie_notizia",
     )
 

@@ -32,7 +32,7 @@ class IDocumento(model.Schema):
             "tipologia_documento_help",
             default="Seleziona la tipologia del documento.",
         ),
-        required=True,
+        required=False,
         vocabulary="design.plone.vocabularies.tipologie_documento",
     )
 
@@ -45,7 +45,7 @@ class IDocumento(model.Schema):
             "ufficio_responsabile_help",
             default="Seleziona l'ufficio responsabile di questo documento.",
         ),
-        required=True,
+        required=False,
         default=[],
         value_type=RelationChoice(
             title=_(u"Ufficio responsabile"),
@@ -63,7 +63,7 @@ class IDocumento(model.Schema):
             default="Seleziona l'area amministrativa responsabile del "
             "documento.",
         ),
-        required=True,
+        required=False,
         default=[],
         value_type=RelationChoice(
             title=_(u"Area"), vocabulary="plone.app.vocabularies.Catalog"
@@ -71,7 +71,7 @@ class IDocumento(model.Schema):
     )
 
     autori = RelationList(
-        title=_("autori_label", default="Autore/i",),
+        title=_("autori_label", default="Autore/i"),
         description=_(
             "autori_help",
             default="Seleziona una lista di autori che hanno pubblicato "
@@ -101,9 +101,7 @@ class IDocumento(model.Schema):
             "documento.",
         ),
         default=[],
-        value_type=RelationChoice(
-            vocabulary="plone.app.vocabularies.Catalog",
-        ),
+        value_type=RelationChoice(vocabulary="plone.app.vocabularies.Catalog"),
         required=False,
     )
 
@@ -120,7 +118,7 @@ class IDocumento(model.Schema):
     )
 
     documenti_allegati = RelationList(
-        title=_("documenti_allegati_label", default="Documenti allegati",),
+        title=_("documenti_allegati_label", default="Documenti allegati"),
         description=_(
             "documenti_allegati_help",
             default="Seleziona una serie di altri contenuti di tipo Documento "
