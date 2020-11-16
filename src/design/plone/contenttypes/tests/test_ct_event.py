@@ -28,11 +28,6 @@ class TestEvent(unittest.TestCase):
         self.assertEqual(
             portal_types["Event"].behaviors,
             (
-                "plone.eventlocation",
-                "plone.eventattendees",
-                "plone.eventcontact",
-                "collective.venue.behaviors.ILocation",
-                "collective.venue.behaviors.IOrganizer",
                 "plone.eventbasic",
                 "plone.leadimage",
                 "design.plone.contenttypes.behavior.argomenti",
@@ -53,6 +48,8 @@ class TestEvent(unittest.TestCase):
                 "plone.locking",
                 "plone.constraintypes",
                 "volto.blocks",
+                "monet.policy.behavior.testo_portlet",
+                "monet.policy.behavior.categoria_evento",
             ),
         )
 
