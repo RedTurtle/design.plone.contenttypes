@@ -7,5 +7,6 @@
    <property name="view_methods">
     <element value="document_view" />
     <element value="trasparenza_view"/>
+    <element value="dettagli_procedimenti_view"/>
   </property>
 </object>
