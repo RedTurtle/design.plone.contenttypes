@@ -64,6 +64,9 @@ class TrasparenzaItems(object):
         self.request = request
 
     def __call__(self, expand=False):
+        if "amministrazione-trasparente" not in self.context.absolute_url():
+            return {}
+
         result = {
             "trasparenza-items": {
                 "@id": "{}/@trasparenza-items".format(
@@ -73,9 +76,6 @@ class TrasparenzaItems(object):
         }
         if not expand:
             return result
-        import pdb
-
-        pdb.set_trace()
         data = self.get_trasparenza_data()
         if data:
             result["trasparenza-items"] = {"items": data}
