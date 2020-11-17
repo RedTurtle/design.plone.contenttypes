@@ -2,7 +2,19 @@ from plone import api
 from plone.restapi.interfaces import ISerializeToJson
 from zope.component import getMultiAdapter
 from zope.globalrequest import getRequest
+from plone.dexterity.utils import iterSchemata
+from plone.restapi.interfaces import IExpandableElement
+from plone.restapi.interfaces import IFieldSerializer
+from plone.restapi.interfaces import ISerializeToJsonSummary
+from plone.restapi.serializer.converters import json_compatible
 from plone.restapi.services import Service
+from zope.component import adapter
+from zope.component import queryMultiAdapter
+from zope.interface import implementer
+from zope.interface import Interface
+from zope.schema import getFields
+from Products.CMFCore.interfaces import IFolderish
+
 
 TRASPARENZA_FIELDS = [
     "modalita_avvio",
@@ -42,3 +54,58 @@ class TrasparenzaService(Service):
         for field in TRASPARENZA_FIELDS:
             result[field] = obj.get(field)
         return result
+
+
+@implementer(IExpandableElement)
+@adapter(Interface, Interface)
+class TrasparenzaItems(object):
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+
+    def __call__(self, expand=False):
+        result = {
+            "trasparenza-items": {
+                "@id": "{}/@trasparenza-items".format(
+                    self.context.absolute_url()
+                )
+            }
+        }
+        if not expand:
+            return result
+        import pdb
+
+        pdb.set_trace()
+        data = self.get_trasparenza_data()
+        if data:
+            result["trasparenza-items"] = {"items": data}
+        return result
+
+    def get_trasparenza_data(self, context=None):
+        if context is None:
+            context = self.context
+        res = []
+
+        for child in context.listFolderContents():
+            serializer = queryMultiAdapter(
+                (child, self.request), ISerializeToJsonSummary
+            )
+            data = serializer()
+            if child.portal_type == "Document":
+
+                if IFolderish.providedBy(child):
+                    children = [
+                        x
+                        for x in self.get_trasparenza_data(context=child)
+                        if x.get("@type", "") in ["Document",]
+                    ]
+                    if children:
+                        data["items"] = children
+            res.append(data)
+        return res
+
+
+class TrasparenzaItemsGet(Service):
+    def reply(self):
+        data = TrasparenzaItems(self.context, self.request)
+        return data(expand=True)["trasparenza-items"]

@@ -11,4 +11,14 @@
     permission="zope2.View"
     />
 
+  <plone:service
+    method="GET"
+    name="@trasparenza-items"
+    for="zope.interface.Interface"
+    factory=".get.TrasparenzaItemsGet"
+    permission="zope2.View"
+    />
+
+  <adapter factory=".get.TrasparenzaItems" name="trasparenza-items"/>
+
 </configure>
