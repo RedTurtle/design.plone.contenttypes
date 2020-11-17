@@ -78,7 +78,9 @@ class VenueSerializer(RelatedNewsSerializer):
 @adapter(IVenue, Interface)
 class SerializeVenueToJsonSummary(DefaultJSONSummarySerializer):
     def __call__(self, version=None, include_items=True):
-        summary = super(SerializeVenueToJsonSummary, self).__call__()
+        summary = super(SerializeVenueToJsonSummary, self).__call__(
+            version=version, include_items=include_items
+        )
         fields = [
             "street",
             "zip_code",

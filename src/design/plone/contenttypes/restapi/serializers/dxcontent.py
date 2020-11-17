@@ -20,7 +20,9 @@ from plone.restapi.serializer.dxcontent import (
 @adapter(IDexterityContent, IDesignPloneContenttypesLayer)
 class SerializeToJson(BaseSerializer):
     def __call__(self, version=None, include_items=True):
-        result = super(SerializeToJson, self).__call__(version, include_items)
+        result = super(SerializeToJson, self).__call__(
+            version=version, include_items=include_items
+        )
         ttool = api.portal.get_tool("portal_types")
         if self.context.portal_type == "News Item":
             result["design_italia_meta_type"] = translate(
@@ -40,7 +42,7 @@ class SerializeToJson(BaseSerializer):
 class SerializeFolderToJson(BaseFolderSerializer):
     def __call__(self, version=None, include_items=True):
         result = super(SerializeFolderToJson, self).__call__(
-            version, include_items
+            version=version, include_items=include_items
         )
         result["@id"] = self.context.absolute_url()
         ttool = api.portal.get_tool("portal_types")

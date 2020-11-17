@@ -15,7 +15,9 @@ from zope.schema import getFields
 @adapter(IModulo, Interface)
 class SerializeModuloToJsonSummary(DefaultJSONSummarySerializer):
     def __call__(self, version=None, include_items=True):
-        summary = super(SerializeModuloToJsonSummary, self).__call__()
+        summary = super(SerializeModuloToJsonSummary, self).__call__(
+            version=version, include_items=include_items
+        )
         fields = [
             "file_principale",
             "formato_alternativo_1",
@@ -28,8 +30,7 @@ class SerializeModuloToJsonSummary(DefaultJSONSummarySerializer):
 
                 # serialize the field
                 serializer = queryMultiAdapter(
-                    (field, self.context, self.request),
-                    IFieldSerializer,
+                    (field, self.context, self.request), IFieldSerializer
                 )
                 value = serializer()
                 summary[name] = value

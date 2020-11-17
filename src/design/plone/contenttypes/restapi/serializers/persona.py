@@ -42,7 +42,7 @@ class PersonaSerializer(SerializeFolderToJson):
 
     def __call__(self, version=None, include_items=True):
         result = super(PersonaSerializer, self).__call__(
-            version=None, include_items=True
+            version=version, include_items=include_items
         )
         strutture_correlate = self.related_contents(field="persone_struttura")
         responsabile_di = self.related_contents(field="responsabile")

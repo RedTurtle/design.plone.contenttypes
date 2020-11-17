@@ -18,10 +18,10 @@ class SerializeServizioToJsonSummary(DefaultJSONSummarySerializer):
         """
         Ritorna sempre una serie di campi extra
         """
-        summary = super(SerializeServizioToJsonSummary, self).__call__()
-        fields = [
-            "canale_digitale",
-        ]
+        summary = super(SerializeServizioToJsonSummary, self).__call__(
+            version=version, include_items=include_items
+        )
+        fields = ["canale_digitale"]
         for schema in iterSchemata(self.context):
             for name, field in getFields(schema).items():
                 if name not in fields:
@@ -29,8 +29,7 @@ class SerializeServizioToJsonSummary(DefaultJSONSummarySerializer):
 
                 # serialize the field
                 serializer = queryMultiAdapter(
-                    (field, self.context, self.request),
-                    IFieldSerializer,
+                    (field, self.context, self.request), IFieldSerializer
                 )
                 value = serializer()
                 summary[name] = value
