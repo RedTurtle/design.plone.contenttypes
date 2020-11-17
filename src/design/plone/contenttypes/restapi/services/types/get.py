@@ -110,6 +110,7 @@ FIELDSETS_ORDER = {
         "settings",
         "ownership",
         "dates",
+        "trasparenza",
     ],
     "UnitaOrganizzativa": [
         "default",

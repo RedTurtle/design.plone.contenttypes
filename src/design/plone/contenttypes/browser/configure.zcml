@@ -10,7 +10,12 @@
       directory="overrides"
       layer="design.plone.contenttypes.interfaces.IDesignPloneContenttypesLayer"
       />
-
+   <browser:page
+      for="*"
+      name="trasparenza_view"
+      permission="zope2.View"
+      class=".trasparenza.TrasparenzaView"
+      />
   <configure package="plone.app.dexterity.browser">
     <browser:page
         for="design.plone.contenttypes.interfaces.cartella_modulistica.ICartellaModulistica"

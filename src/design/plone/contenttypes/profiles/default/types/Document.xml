@@ -4,5 +4,8 @@
  <property name="behaviors" purge="False">
   <element value="design.plone.contenttypes.behavior.info_testata"/>
  </property>
- 
+   <property name="view_methods">
+    <element value="document_view" />
+    <element value="trasparenza_view"/>
+  </property>
 </object>
