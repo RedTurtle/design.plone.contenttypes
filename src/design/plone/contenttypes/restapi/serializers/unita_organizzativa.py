@@ -47,7 +47,7 @@ class UOSerializer(RelatedNewsSerializer):
     def __call__(self, version=None, include_items=True):
         self.index = "news_uo"
         result = super(UOSerializer, self).__call__(
-            version=None, include_items=True
+            version=version, include_items=include_items
         )
         result["servizi_offerti"] = self.get_services()
         return result

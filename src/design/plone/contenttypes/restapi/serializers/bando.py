@@ -26,7 +26,7 @@ class BandoSerializer(BaseSerializer):
 
     def __call__(self, version=None, include_items=True):
         result = super(BandoSerializer, self).__call__(
-            version=None, include_items=True
+            version=version, include_items=include_items
         )
         bando_view = self.context.restrictedTraverse("bando_view")
         result["approfondimento"] = self.get_approfondimenti(bando_view)

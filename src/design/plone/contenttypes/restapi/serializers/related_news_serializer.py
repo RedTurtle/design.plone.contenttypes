@@ -13,7 +13,7 @@ class SerializeFolderToJson(BaseSerializer):
         # if include_items:
         #     self.request.form = {"fullobjects": ""}
         result = super(SerializeFolderToJson, self).__call__(
-            version=None, include_items=include_items
+            version=version, include_items=include_items
         )
 
         catalog = api.portal.get_tool("portal_catalog")

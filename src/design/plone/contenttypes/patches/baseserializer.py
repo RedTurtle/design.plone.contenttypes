@@ -32,7 +32,7 @@ def design_italia_serialize_to_json_call(
 ):
     ttool = api.portal.get_tool("portal_types")
     result = original_serialize_to_json__call__(
-        self, version=None, include_items=True
+        self, version=version, include_items=include_items
     )
     if self.context.portal_type == "News Item":
         result["design_italia_meta_type"] = translate(
@@ -56,7 +56,7 @@ def design_italia_serialize_folder_to_json_call(
     self, version=None, include_items=True
 ):
     folder_metadata = super(SerializeFolderToJson, self).__call__(
-        version=version
+        version=version, include_items=include_items
     )
 
     folder_metadata.update({"is_folderish": True})
