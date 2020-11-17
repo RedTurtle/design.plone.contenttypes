@@ -14,13 +14,11 @@ from zope.schema import getFields
 @implementer(ISerializeToJsonSummary)
 @adapter(IServizio, Interface)
 class SerializeServizioToJsonSummary(DefaultJSONSummarySerializer):
-    def __call__(self, version=None, include_items=True):
+    def __call__(self):
         """
         Ritorna sempre una serie di campi extra
         """
-        summary = super(SerializeServizioToJsonSummary, self).__call__(
-            version=version, include_items=include_items
-        )
+        summary = super(SerializeServizioToJsonSummary, self).__call__()
         fields = ["canale_digitale"]
         for schema in iterSchemata(self.context):
             for name, field in getFields(schema).items():
