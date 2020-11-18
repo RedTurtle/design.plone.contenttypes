@@ -1,18 +1,15 @@
+# -*- coding: utf-8 -*-
 from plone import api
 from plone.restapi.interfaces import ISerializeToJson
 from zope.component import getMultiAdapter
 from zope.globalrequest import getRequest
-from plone.dexterity.utils import iterSchemata
 from plone.restapi.interfaces import IExpandableElement
-from plone.restapi.interfaces import IFieldSerializer
 from plone.restapi.interfaces import ISerializeToJsonSummary
-from plone.restapi.serializer.converters import json_compatible
 from plone.restapi.services import Service
 from zope.component import adapter
 from zope.component import queryMultiAdapter
 from zope.interface import implementer
 from zope.interface import Interface
-from zope.schema import getFields
 from Products.CMFCore.interfaces import IFolderish
 
 
@@ -97,7 +94,7 @@ class TrasparenzaItems(object):
                     children = [
                         x
                         for x in self.get_trasparenza_data(context=child)
-                        if x.get("@type", "") in ["Document",]
+                        if x.get("@type", "") in ["Document", ]
                     ]
                     if children:
                         data["items"] = children
