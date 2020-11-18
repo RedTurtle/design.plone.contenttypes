@@ -55,7 +55,7 @@ class ITrasparenza(model.Schema):
             "file_correlato_help",
             default="Inserisci il file correlato di questo pocedimento.",
         ),
-        required=True,
+        required=False,
     )
 
     decorrenza_termine = RichText(
