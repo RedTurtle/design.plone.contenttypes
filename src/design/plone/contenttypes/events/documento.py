@@ -31,4 +31,4 @@ def documentoCreateHandler(documento, event):
 
     documentoConstraints = ISelectableConstrainTypes(documento)
     documentoConstraints.setConstrainTypesMode(1)
-    documentoConstraints.setLocallyAllowedTypes(("Modulo",))
+    documentoConstraints.setLocallyAllowedTypes(("Modulo", "Link"))
