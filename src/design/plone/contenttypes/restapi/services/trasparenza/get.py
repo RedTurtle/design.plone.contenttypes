@@ -96,7 +96,7 @@ class TrasparenzaItems(object):
                     children = [
                         x
                         for x in self.get_trasparenza_data(context=child)
-                        if x.get("@type", "") in ["Document",]
+                        if x.get("@type", "") in ["Document", ]
                     ]
                     if children:
                         data["items"] = children
