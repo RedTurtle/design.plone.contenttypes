@@ -22,8 +22,10 @@ TRASPARENZA_FIELDS = [
     "dove_rivolgersi_extra",
     "fine_termine",
     "silenzio_assenso",
+    "ufficio_responsabile",
     "provvedimento_finale",
     "organo_competente_provvedimento_finale",
+    "modalita_richiesta_informazioni",
     "procedura_online",
     "altre_modalita_invio",
     "atti_documenti_corredo",
@@ -33,7 +35,7 @@ TRASPARENZA_FIELDS = [
     "titolare_potere_sostitutivo",
     "customer_satisfaction",
     "riferimenti_normativi",
-    "tempo medio",
+    "tempo_medio",
     "file_correlato",
     "responsabile_procedimento",
     "dirigente",
@@ -94,7 +96,7 @@ class TrasparenzaItems(object):
                     children = [
                         x
                         for x in self.get_trasparenza_data(context=child)
-                        if x.get("@type", "") in ["Document", ]
+                        if x.get("@type", "") in ["Document",]
                     ]
                     if children:
                         data["items"] = children

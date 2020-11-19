@@ -20,7 +20,7 @@ class ITrasparenza(model.Schema):
     Behavior conenene i campi per la sezione amministrazione trasparente
     """
 
-    modalita_avvio = schema.TextLine(
+    modalita_avvio = RichText(
         title=_(u"modalita_avvio_label", default=u"Modalita di avvio"),
         description=_(
             u"modalita_avvio_help",
@@ -148,6 +148,17 @@ class ITrasparenza(model.Schema):
             default="Organo competente del provvedimento finale.",  # noqa
         ),
     )
+    modalita_richiesta_informazioni = RichText(
+        title=_(
+            u"modalita_richiesta_informazioni_label",
+            default=u"Modalità per richiedere informazioni",
+        ),
+        required=False,
+        description=_(
+            "modalita_richiesta_informazioni_help",
+            default="Indicare le modalità per richiedere informazioni riguardo a questo procedimento.",  # noqa
+        ),
+    )
     procedura_online = schema.TextLine(
         title=_(
             u"procedura_online_label",
@@ -199,7 +210,7 @@ class ITrasparenza(model.Schema):
         ),
         required=False,
     )
-    strumenti_tutela = schema.TextLine(
+    strumenti_tutela = RichText(
         title=_(u"strumenti_tutela_label", default=u"Strumenti di tutela"),
         description=_(
             u"strumenti_tutela_help",
@@ -276,6 +287,7 @@ class ITrasparenza(model.Schema):
             "responsabile_procedimento",
             "dirigente",
             "organo_competente_provvedimento_finale",
+            "modalita_richiesta_informazioni",
             "procedura_online",
             "altre_modalita_invio",
             "atti_documenti_corredo",
