@@ -20,7 +20,7 @@ class ITrasparenza(model.Schema):
     Behavior conenene i campi per la sezione amministrazione trasparente
     """
 
-    modalita_avvio = RichText(
+    modalita_avvio = schema.TextLine(
         title=_(u"modalita_avvio_label", default=u"Modalita di avvio"),
         description=_(
             u"modalita_avvio_help",
@@ -38,6 +38,15 @@ class ITrasparenza(model.Schema):
             default="Inserisci eventuale testo descrittivo del procedimento.",  # noqa
         ),
     )
+    file_correlato = field.NamedBlobFile(
+        title=_("file_correlato_label", default="File correlato"),
+        description=_(
+            "file_correlato_help",
+            default="Inserisci il file correlato di questo pocedimento.",
+        ),
+        required=False,
+    )
+
     soggetti_esterni = RichText(
         title=_(
             u"soggetti_eserni_label",
@@ -48,14 +57,6 @@ class ITrasparenza(model.Schema):
             "soggetti_eserni_help",
             default="Inserisci eventuali soggetti esterni, nonché, strutture interne coinvolte nel procedimento.",  # noqa
         ),
-    )
-    file_correlato = field.NamedBlobFile(
-        title=_("file_correlato_label", default="File correlato"),
-        description=_(
-            "file_correlato_help",
-            default="Inserisci il file correlato di questo pocedimento.",
-        ),
-        required=False,
     )
 
     decorrenza_termine = RichText(
@@ -277,11 +278,11 @@ class ITrasparenza(model.Schema):
         fields=[
             "modalita_avvio",
             "descrizione",
+            "file_correlato",
             "soggetti_esterni",
             "decorrenza_termine",
             "fine_termine",
             "tempo_medio",
-            "file_correlato",
             "silenzio_assenso",
             "provvedimento_finale",
             "responsabile_procedimento",
