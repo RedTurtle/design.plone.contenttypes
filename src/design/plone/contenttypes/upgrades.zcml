@@ -115,4 +115,19 @@
         handler=".upgrades.to_1009"
         />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+    source="1009"
+    destination="1010"
+    profile="design.plone.contenttypes:default">
+      <genericsetup:upgradeStep
+        title="Update catalog"
+        handler=".upgrades.update_catalog"
+        />
+    <genericsetup:upgradeStep
+        title="new keyword index usable from collection and plone.app.querystring stuff"
+        handler=".upgrades.update_registry"
+        />
+
+  </genericsetup:upgradeSteps>
+
 </configure>
