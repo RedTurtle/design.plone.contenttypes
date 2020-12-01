@@ -127,6 +127,10 @@
         title="new keyword index usable from collection and plone.app.querystring stuff"
         handler=".upgrades.update_registry"
         />
+      <genericsetup:upgradeStep
+        title="reindex index"
+        handler=".upgrades.to_1010"
+        />
   </genericsetup:upgradeSteps>
 
 </configure>
