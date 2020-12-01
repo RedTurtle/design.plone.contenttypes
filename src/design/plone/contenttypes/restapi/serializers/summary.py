@@ -14,6 +14,7 @@ from zope.interface import Interface
 class DefaultJSONSummarySerializer(BaseSerializer):
     def __call__(self):
         res = super(DefaultJSONSummarySerializer, self).__call__()
+        res["id"] = self.context.id
         try:
             obj = self.context.getObject()
         except AttributeError:

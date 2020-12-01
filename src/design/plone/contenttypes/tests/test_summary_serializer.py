@@ -61,3 +61,19 @@ class SummarySerializerTest(unittest.TestCase):
         self.assertFalse(items[0]["has_children"])
         self.assertEqual(items[1]["title"], "filled")
         self.assertTrue(items[1]["has_children"])
+
+    def test_get_content_return_id_value(self):
+
+        news = api.content.create(
+            container=self.portal, type="News Item", title="news"
+        )
+        commit()
+
+        response = self.api_session.get(news.absolute_url())
+
+        result = response.json()
+        items = result.get("items", [])
+
+        self.assertEqual(len(items), 2)
+        self.assertEqual(items[0]["id"], "multimedia")
+        self.assertEqual(items[1]["id"], "documenti-allegati")
