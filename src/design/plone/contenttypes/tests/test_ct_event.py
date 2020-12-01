@@ -48,8 +48,6 @@ class TestEvent(unittest.TestCase):
                 "plone.locking",
                 "plone.constraintypes",
                 "volto.blocks",
-                "monet.policy.behavior.testo_portlet",
-                "monet.policy.behavior.categoria_evento",
             ),
         )
 

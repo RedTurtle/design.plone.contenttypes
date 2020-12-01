@@ -21,6 +21,7 @@
   <property name="global_allow">True</property>
   <property name="filter_content_types">True</property>
   <property name="allowed_content_types">
+    <element value="CartellaModulistica" />
     <element value="Document" />
     <element value="Image" />
     <element value="File" />
@@ -49,6 +50,7 @@
     <element value="design.plone.contenttypes.behavior.argomenti"/>
     <element value="design.plone.contenttypes.behavior.additional_help_infos"/>
     <element value="collective.dexteritytextindexer"/>
+    <element value="design.plone.contenttypes.behavior.trasparenza"/>
   </property>
 
   <!-- View information -->

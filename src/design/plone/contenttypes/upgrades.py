@@ -212,3 +212,8 @@ def to_1009(context):
         if getattr(item.aq_base, "tassonomia_argomenti", []):
             logger.info(" - {}".format(brain.getURL()))
             item.reindexObject(idxs=["tassonomia_argomenti"])
+
+
+def to_1010(context):
+    pc = api.portal.get_tool(name="portal_catalog")
+    pc.manage_reindexIndex(ids=['event_location'])

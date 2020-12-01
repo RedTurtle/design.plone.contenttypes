@@ -5,7 +5,8 @@
     <include package=".modulistica_items" />
     <include package=".types" />
     <include package=".scadenziario" />
-    
+    <include package=".trasparenza" />
+
     <adapter
         factory=".controlpanel.VocabulariesControlpanel"
         name="design-plone-vocabularies" />
