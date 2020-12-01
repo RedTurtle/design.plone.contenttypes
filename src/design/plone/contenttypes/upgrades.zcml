@@ -132,5 +132,13 @@
         handler=".upgrades.to_1010"
         />
   </genericsetup:upgradeSteps>
-
+  <genericsetup:upgradeSteps
+    source="1010"
+    destination="1011"
+    profile="design.plone.contenttypes:default">
+      <genericsetup:upgradeStep
+        title="Add CartellaModulistica to Servizio addable types"
+        handler=".upgrades.update_types"
+        />
+  </genericsetup:upgradeSteps>
 </configure>
