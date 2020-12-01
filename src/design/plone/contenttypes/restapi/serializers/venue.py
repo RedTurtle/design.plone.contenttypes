@@ -5,12 +5,14 @@ from .related_news_serializer import (
 
 from Acquisition import aq_inner
 from collective.venue.interfaces import IVenue
+from design.plone.contenttypes.restapi.serializers.summary import (
+    DefaultJSONSummarySerializer,
+)
 from plone import api
 from plone.app.textfield.value import RichTextValue
 from plone.restapi.interfaces import ISerializeToJson
 from plone.restapi.interfaces import ISerializeToJsonSummary
 from plone.restapi.serializer.converters import json_compatible
-from plone.restapi.serializer.summary import DefaultJSONSummarySerializer
 from zc.relation.interfaces import ICatalog
 from zope.component import adapter, getMultiAdapter
 from zope.component import getUtility

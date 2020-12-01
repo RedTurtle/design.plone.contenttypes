@@ -1,7 +1,10 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:zcml="http://namespaces.zope.org/zcml">
-    
+
+    <!-- summary -->
+    <adapter factory=".summary.DefaultJSONSummarySerializer" />
+
     <adapter factory=".dxcontent.SerializeFolderToJson" />
     <adapter factory=".dxcontent.SerializeToJson" />
     <adapter factory=".modulo.SerializeModuloToJsonSummary" />
@@ -13,5 +16,6 @@
     <adapter factory=".venue.SerializeVenueToJsonSummary" />
     <adapter factory=".venue.VenueSerializer" />
     <adapter factory=".bando.BandoSerializer" />
+
     
 </configure>
