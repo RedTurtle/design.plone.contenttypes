@@ -37,6 +37,6 @@ class TestDocument(unittest.TestCase):
     def test_event_addable_types(self):
         portal_types = api.portal.get_tool(name="portal_types")
         self.assertEqual(
-            ("Document", "Modulo"),
+            ("Document", "Modulo", "Link"),
             portal_types["Documento"].allowed_content_types,
         )
