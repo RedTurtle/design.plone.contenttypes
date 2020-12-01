@@ -40,6 +40,22 @@
        <value key="vocabulary">design.plone.vocabularies.tipologie_documento</value>
        <value key="group" i18n:translate="">Text</value>
   </records>
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+             prefix="plone.app.querystring.field.event_location">
+        <value key="title" i18n:translate="">Luogo evento</value>
+        <value key="description" i18n:translate="">Luogo correlato legato all'evento</value>
+        <value key="enabled">True</value>
+        <value key="sortable">False</value>
+        <value key="operations">
+            <element>plone.app.querystring.operation.selection.any</element>
+            <element>plone.app.querystring.operation.selection.all</element>
+        </value>
+       <value key="vocabulary">design.plone.vocabularies.event_location</value>
+       <value key="group" i18n:translate="">Text</value>
+   </records>
+
+
   <!-- cleanup -->
   <records interface="plone.app.querystring.interfaces.IQueryField"
             prefix="plone.app.querystring.field.argomenti"

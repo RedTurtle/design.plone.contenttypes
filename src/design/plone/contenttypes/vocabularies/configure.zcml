@@ -79,5 +79,9 @@
         component=".tipologie_documento.TipologieDocumentoFactory"
         name="design.plone.vocabularies.tipologie_documento"
     />
+    <utility
+        component=".events.EventLocationVocabularyFactory"
+        name="design.plone.vocabularies.event_location"
+    />
 
 </configure>
