@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
+from plone import api
 from plone.dexterity.interfaces import IDexterityContent
 from plone.restapi.interfaces import IFieldSerializer
 from plone.restapi.interfaces import ISerializeToJsonSummary
@@ -24,6 +25,8 @@ class RelationListFieldSerializer(DefaultRelationListFieldSerializer):
                 continue
             content = value.to_object
             if content:
+                if not api.user.has_permission("View", obj=content):
+                    continue
                 summary = getMultiAdapter(
                     (content, getRequest()), ISerializeToJsonSummary
                 )()

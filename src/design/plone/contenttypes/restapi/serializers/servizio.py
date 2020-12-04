@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 from design.plone.contenttypes.interfaces.servizio import IServizio
+from design.plone.contenttypes.restapi.serializers.summary import (
+    DefaultJSONSummarySerializer,
+)
 from plone.dexterity.utils import iterSchemata
 from plone.restapi.interfaces import IFieldSerializer
 from plone.restapi.interfaces import ISerializeToJsonSummary
-from plone.restapi.serializer.summary import DefaultJSONSummarySerializer
 from zope.component import adapter
 from zope.component import queryMultiAdapter
 from zope.interface import implementer
