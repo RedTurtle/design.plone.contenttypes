@@ -28,6 +28,7 @@
 - [Gestione modulistica](#gestione-modulistica)
 - [Endpoint restapi](#endpoint-restapi)
   - [Customizzazione dati relation field](#customizzazione-dati-relation-field)
+  - [Serializer summary](#serializer-summary)
 - [Installazione](#installazione)
 - [Traduzioni](#traduzioni)
 - [Contribuisci](#contribuisci)
@@ -353,6 +354,19 @@ Abbiamo però sviluppato anche un contenuto chiamato **Cartella Modulistica** ch
 
 C'è una customizzazione dei dati ritornati dal serializer per i relation field (correlati)
 per ritornare oltre alle informazioni standard, anche la data di pubblicazione e l'inizio e fine evento.
+
+Vengono ritornati solo i correlati che l'utente che li ha richiesti può vedere (a differenza dello standard, che li torna tutti).
+
+
+## Serializer summary
+
+E' il serializer utilizzato dalla get di un contenuto per mostrare il dettaglio dei suoi figli quando non viene richiesta
+la fullobjects (ci sono sono le informazioni base quindi).
+
+E' stato customizzato per ritornare sempre due informazioni utili visto che Volto ora non richiede più sempre la fullobjects:
+
+- has_children: ritorna True o False a seconda che il contenuto abbia o meno dei figli
+- id: l'id dell'oggetto
 
 ## @modulistica_items
 
