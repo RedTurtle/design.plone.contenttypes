@@ -403,6 +403,4 @@ Questo progetto è rilasciato con licenza GPLv2.
 
 Questo progetto è stato sviluppato da **RedTurtle Technology**.
 
-.. image:: https://avatars1.githubusercontent.com/u/1087171?s=100&v=4
-   :alt: RedTurtle Technology Site
-   :target: http://www.redturtle.it/
+<a href="http://www.redturtle.it/" rel="RedTurtle Technology Site">![RedTurtle Technology Site](https://avatars1.githubusercontent.com/u/1087171?s=100&v=4)</a>
