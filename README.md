@@ -21,7 +21,7 @@
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-2)
   - [Servizio](#servizio)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-3)
-  - [Unità Organizzativa](#unit%C3%A0-organizzativa)
+  - [Unità Organizzativa](#unità-organizzativa)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-4)
 - [Gestione vocabolari](#gestione-vocabolari)
 - [Gestione modulistica](#gestione-modulistica)
@@ -404,5 +404,5 @@ Questo progetto è rilasciato con licenza GPLv2.
 Questo progetto è stato sviluppato da **RedTurtle Technology**.
 
 .. image:: https://avatars1.githubusercontent.com/u/1087171?s=100&v=4
-:alt: RedTurtle Technology Site
-:target: http://www.redturtle.it/
+   :alt: RedTurtle Technology Site
+   :target: http://www.redturtle.it/
