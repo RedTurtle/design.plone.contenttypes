@@ -5,7 +5,8 @@ Changelog
 1.0.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add `immagine_testata` new field in *design.plone.contenttypes.behavior.info_testata* behavior.
+  [cekk]
 
 
 1.0.0 (2020-12-07)
