@@ -70,11 +70,24 @@ class IArgomentiSchema(model.Schema):
 class IArgomenti(IArgomentiSchema):
     """ """
 
+    model.fieldset(
+        "correlati",
+        label=_("correlati_label", default="Contenuti collegati"),
+        fields=["correlato_in_evidenza"],
+    )
+    form.order_after(correlato_in_evidenza="IRelatedItems.relatedItems")
+
 
 @provider(IFormFieldProvider)
 class IArgomentiDocumento(IArgomentiSchema):
     """ """
 
+    model.fieldset(
+        "correlati",
+        label=_("correlati_label", default="Contenuti collegati"),
+        fields=["correlato_in_evidenza"],
+    )
+    form.order_after(correlato_in_evidenza="IRelatedItems.relatedItems")
     form.order_after(tassonomia_argomenti="IDublinCore.title")
 
 
@@ -88,6 +101,7 @@ class IArgomentiBando(IArgomentiSchema):
         fields=["tassonomia_argomenti", "correlato_in_evidenza"],
     )
     form.order_before(tassonomia_argomenti="IRelatedItems.relatedItems")
+    form.order_after(correlato_in_evidenza="IRelatedItems.relatedItems")
 
 
 @implementer(IArgomenti)
