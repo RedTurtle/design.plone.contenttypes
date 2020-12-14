@@ -58,7 +58,12 @@ class IInfoTestata(model.Schema):
     model.fieldset(
         "testata",
         label=_("testata_fieldset_label", default=u"Testata"),
-        fields=["info_testata", "ricerca_in_testata", "mostra_navigazione"],
+        fields=[
+            "info_testata",
+            "immagine_testata",
+            "ricerca_in_testata",
+            "mostra_navigazione",
+        ],
     )
 
 

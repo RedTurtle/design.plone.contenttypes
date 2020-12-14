@@ -6,6 +6,7 @@ Changelog
 ------------------
 
 - Add `immagine_testata` new field in *design.plone.contenttypes.behavior.info_testata* behavior.
+  [cekk]
 - Add `correlato_in_evidenza` new field in *design.plone.contenttypes.behavior.argomenti* behavior.
   [cekk]
 
