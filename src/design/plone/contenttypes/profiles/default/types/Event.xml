@@ -29,5 +29,11 @@
     <element value="plone.locking" />
     <element value="plone.constraintypes" />
     <element value="volto.blocks" />
+    <!-- remove unused behaviors -->
+    <element value="plone.eventlocation" remove="True" />
+    <element value="plone.eventattendees" remove="True" />
+    <element value="plone.eventcontact" remove="True" />
+    <element value="collective.venue.behaviors.ILocation" remove="True" />
+    <element value="collective.venue.behaviors.IOrganizer" remove="True" />
   </property>
 </object>
