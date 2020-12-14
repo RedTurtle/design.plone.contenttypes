@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.0.1 (unreleased)
+1.0.1 (2020-12-14)
 ------------------
 
 - Add `immagine_testata` new field in *design.plone.contenttypes.behavior.info_testata* behavior.
