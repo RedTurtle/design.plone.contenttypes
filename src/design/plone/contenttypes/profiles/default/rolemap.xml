@@ -105,7 +105,18 @@
       <role name="Owner"/>
       <role name="Contributor"/>
     </permission>
-
+    <permission name="design.plone.contenttypes: Add CartellaModulistica" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="Owner"/>
+      <role name="Contributor"/>
+    </permission>
+    <permission name="design.plone.contenttypes: Modulo" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="Owner"/>
+      <role name="Contributor"/>
+    </permission>
 
   </permissions>
 </rolemap>

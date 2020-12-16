@@ -141,4 +141,13 @@
         handler=".upgrades.update_types"
         />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+    source="1011"
+    destination="1012"
+    profile="design.plone.contenttypes:default">
+      <genericsetup:upgradeStep
+        title="Fix rolemap for new types"
+        handler=".upgrades.update_rolemap"
+        />
+  </genericsetup:upgradeSteps>
 </configure>
