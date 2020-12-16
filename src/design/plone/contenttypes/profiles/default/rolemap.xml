@@ -111,7 +111,7 @@
       <role name="Owner"/>
       <role name="Contributor"/>
     </permission>
-    <permission name="design.plone.contenttypes: Modulo" acquire="True">
+    <permission name="design.plone.contenttypes: Add Modulo" acquire="True">
       <role name="Manager"/>
       <role name="Site Administrator"/>
       <role name="Owner"/>
