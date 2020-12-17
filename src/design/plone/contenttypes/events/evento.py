@@ -13,42 +13,42 @@ def eventoCreateHandler(evento, event):
     @param event: Event that triggers the method (onAdded event)
     """
 
-    # constraintsEvento = ISelectableConstrainTypes(evento)
-    # constraintsEvento.setConstrainTypesMode(1)
-    # constraintsEvento.setLocallyAllowedTypes(("Event", "Document"))
+    if "multimedia" not in evento.keys():
+        galleria = api.content.create(
+            container=evento,
+            type="Document",
+            title="Multimedia",
+            id="multimedia",
+        )
+        # select  constraints
+        constraintsGalleria = ISelectableConstrainTypes(galleria)
+        constraintsGalleria.setConstrainTypesMode(1)
+        constraintsGalleria.setLocallyAllowedTypes(("Image", "Link"))
 
-    galleria = api.content.create(
-        container=evento, type="Document", title="Multimedia", id="multimedia"
-    )
+        api.content.transition(obj=galleria, transition="publish")
 
-    sponsor = api.content.create(
-        container=evento,
-        type="Document",
-        title="Sponsor Evento",
-        id="sponsor_evento",
-    )
+    if "sponsor_evento" not in evento.keys():
+        sponsor = api.content.create(
+            container=evento,
+            type="Document",
+            title="Sponsor Evento",
+            id="sponsor_evento",
+        )
+        constraintsSponsor = ISelectableConstrainTypes(sponsor)
+        constraintsSponsor.setConstrainTypesMode(1)
+        constraintsSponsor.setLocallyAllowedTypes(("Link",))
 
-    documenti = api.content.create(
-        container=evento, type="Document", title="Documenti", id="documenti"
-    )
+        api.content.transition(obj=sponsor, transition="publish")
 
-    # select  constraints
-    constraintsGalleria = ISelectableConstrainTypes(galleria)
-    constraintsGalleria.setConstrainTypesMode(1)
-    constraintsGalleria.setLocallyAllowedTypes(("Image", "Link"))
+    if "documenti" not in evento.keys():
+        documenti = api.content.create(
+            container=evento,
+            type="Document",
+            title="Documenti",
+            id="documenti",
+        )
+        constraintsDocumenti = ISelectableConstrainTypes(documenti)
+        constraintsDocumenti.setConstrainTypesMode(1)
+        constraintsDocumenti.setLocallyAllowedTypes(("File",))
 
-    constraintsSponsor = ISelectableConstrainTypes(sponsor)
-    constraintsSponsor.setConstrainTypesMode(1)
-
-    constraintsSponsor.setLocallyAllowedTypes(("Link",))
-
-    constraintsDocumenti = ISelectableConstrainTypes(documenti)
-    constraintsDocumenti.setConstrainTypesMode(1)
-    constraintsDocumenti.setLocallyAllowedTypes(("File",))
-
-    # constraintsEvento.setLocallyAllowedTypes(("Event",))
-
-    # add publish automation during creation
-    api.content.transition(obj=galleria, transition="publish")
-    api.content.transition(obj=sponsor, transition="publish")
-    api.content.transition(obj=documenti, transition="publish")
+        api.content.transition(obj=documenti, transition="publish")

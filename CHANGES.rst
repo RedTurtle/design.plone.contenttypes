@@ -7,7 +7,8 @@ Changelog
 
 - Fix rolemap for new types.
   [cekk]
-
+- Do not break *eventoCreateHandler* when copying and event.
+  [cekk]
 
 1.0.1 (2020-12-14)
 ------------------
