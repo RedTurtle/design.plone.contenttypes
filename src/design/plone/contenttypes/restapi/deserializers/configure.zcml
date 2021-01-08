@@ -4,4 +4,5 @@
 
     <adapter factory=".persona.DeserializePersonaFromJson" />
     <adapter factory=".dxfields.GeolocationFieldDeserializer" />
+    <adapter factory=".dxfields.BlocksFieldDeserializer" />
 </configure>

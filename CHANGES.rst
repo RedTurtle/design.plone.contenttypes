@@ -5,7 +5,8 @@ Changelog
 1.0.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- **BREAKING CHANGE** Convert RichText fields into BlocksField.
+  [cekk]
 
 
 1.0.2 (2020-12-17)
