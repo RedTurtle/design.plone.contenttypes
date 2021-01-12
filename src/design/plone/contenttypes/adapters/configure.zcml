@@ -12,5 +12,6 @@
 
   <adapter factory=".searchabletext_indexers.RelationChoiceFieldConverter" />
   <adapter factory=".searchabletext_indexers.RelationListFieldConverter" />
+  <adapter factory=".searchabletext_indexers.BlocksFieldConverter" />
 
 </configure>
