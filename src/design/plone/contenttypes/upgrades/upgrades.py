@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
 from plone import api
 from copy import deepcopy
+from design.plone.contenttypes.fields import BlocksField
+from design.plone.contenttypes.upgrades.draftjs_converter import to_draftjs
 from plone.app.upgrade.utils import installOrReinstallProduct
+from plone.dexterity.utils import iterSchemata
+from zope.schema import getFields
 
 import logging
 import json
@@ -9,6 +13,8 @@ import json
 logger = logging.getLogger(__name__)
 
 DEFAULT_PROFILE = "profile-design.plone.contenttypes:default"
+
+# standard upgrades #
 
 
 def update_profile(context, profile):
@@ -54,6 +60,9 @@ def remap_fields(mapping):
                     )
                 )
                 delattr(item, old)
+
+
+# custom ones #
 
 
 def to_1001(context):
@@ -216,4 +225,32 @@ def to_1009(context):
 
 def to_1010(context):
     pc = api.portal.get_tool(name="portal_catalog")
-    pc.manage_reindexIndex(ids=['event_location'])
+    pc.manage_reindexIndex(ids=["event_location"])
+
+
+def to_1100(context):
+    pc = api.portal.get_tool(name="portal_catalog")
+    brains = pc()
+    tot = len(brains)
+    i = 0
+    logger.info("### START CONVERSION FIELDS RICHTEXT -> DRAFTJS ###")
+    for brain in brains:
+        i += 1
+        if i % 200 == 0:
+            logger.info("Progress: {}/{}".format(i, tot))
+        item = brain.getObject()
+        for schema in iterSchemata(item):
+            for name, field in getFields(schema).items():
+                if not isinstance(field, BlocksField):
+                    continue
+                value = field.get(item)
+                if not value:
+                    continue
+                try:
+                    new_value = to_draftjs(value.raw)
+                except Exception as e:
+                    logger.error(
+                        "[NOT MIGRATED] - {}: {}".format(brain.getPath(), name)
+                    )
+                    raise e
+                setattr(item, name, new_value)

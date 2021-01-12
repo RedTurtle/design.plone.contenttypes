@@ -150,4 +150,13 @@
         handler=".upgrades.update_rolemap"
         />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+    source="1012"
+    destination="1100"
+    profile="design.plone.contenttypes:default">
+      <genericsetup:upgradeStep
+        title="Convert RichText fields into Blocks fields"
+        handler=".upgrades.to_1100"
+        />
+  </genericsetup:upgradeSteps>
 </configure>

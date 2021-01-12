@@ -128,12 +128,9 @@ class TestServizioApi(unittest.TestCase):
             container=self.portal,
             type="Servizio",
             title="Test servizio",
-            a_chi_si_rivolge=RichTextValue(
-                raw="destinatari",
-                mimeType="text/html",
-                outputMimeType="text/html",
-                encoding="utf-8",
-            ),
+            a_chi_si_rivolge={
+                "blocks": {"foo": {"searchableText": "destinatari"}}
+            },
         )
 
         res = api.content.find(SearchableText="destinatari")
@@ -148,12 +145,7 @@ class TestServizioApi(unittest.TestCase):
             container=self.portal,
             type="Servizio",
             title="Test servizio",
-            chi_puo_presentare=RichTextValue(
-                raw="chi",
-                mimeType="text/html",
-                outputMimeType="text/html",
-                encoding="utf-8",
-            ),
+            chi_puo_presentare={"blocks": {"foo": {"searchableText": "chi"}}},
         )
 
         res = api.content.find(SearchableText="chi")
@@ -168,12 +160,7 @@ class TestServizioApi(unittest.TestCase):
             container=self.portal,
             type="Servizio",
             title="Test servizio",
-            come_si_fa=RichTextValue(
-                raw="come",
-                mimeType="text/html",
-                outputMimeType="text/html",
-                encoding="utf-8",
-            ),
+            come_si_fa={"blocks": {"foo": {"searchableText": "come"}}},
         )
 
         res = api.content.find(SearchableText="come")
@@ -188,12 +175,9 @@ class TestServizioApi(unittest.TestCase):
             container=self.portal,
             type="Servizio",
             title="Test servizio",
-            cosa_si_ottiene=RichTextValue(
-                raw="ottenere",
-                mimeType="text/html",
-                outputMimeType="text/html",
-                encoding="utf-8",
-            ),
+            cosa_si_ottiene={
+                "blocks": {"foo": {"searchableText": "ottenere"}}
+            },
         )
 
         res = api.content.find(SearchableText="ottenere")
@@ -208,12 +192,7 @@ class TestServizioApi(unittest.TestCase):
             container=self.portal,
             type="Servizio",
             title="Test servizio",
-            cosa_serve=RichTextValue(
-                raw="serve",
-                mimeType="text/html",
-                outputMimeType="text/html",
-                encoding="utf-8",
-            ),
+            cosa_serve={"blocks": {"foo": {"searchableText": "serve"}}},
         )
 
         res = api.content.find(SearchableText="serve")
