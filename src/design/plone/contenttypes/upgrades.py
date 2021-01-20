@@ -228,15 +228,15 @@ def to_1013(context):
         for block in blocks.values():
             if (
                 block.get("@type", "") == "listing"
-                and block.get("template", "") == "photoGallery"
+                and block.get("template", "") == "imageGallery"
             ):
-                block["template"] = "imageGallery"
+                block["template"] = "photogallery"
                 found = True
         return found
 
     # fix root
     logger.info(
-        'Changing listing block template from "photoGallery" to "imageGallery"'  # noqa
+        'Changing listing block template from "imageGallery" to "photogallery'
     )
     portal = api.portal.get()
     portal_blocks = json.loads(portal.blocks)
