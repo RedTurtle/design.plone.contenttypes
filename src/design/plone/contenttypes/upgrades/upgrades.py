@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-from plone import api
-from copy import deepcopy
 from collective.volto.blocksfield.field import BlocksField
+from copy import deepcopy
 from design.plone.contenttypes.upgrades.draftjs_converter import to_draftjs
+from plone import api
+from plone.app.textfield.value import RichTextValue
 from plone.app.upgrade.utils import installOrReinstallProduct
 from plone.dexterity.utils import iterSchemata
 from zope.schema import getFields
@@ -296,7 +297,7 @@ def to_1100(context):
                 if not isinstance(field, BlocksField):
                     continue
                 value = field.get(item)
-                if not value:
+                if not value or not isinstance(value, RichTextValue):
                     continue
                 try:
                     new_value = to_draftjs(value.raw)
