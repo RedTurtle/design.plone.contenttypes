@@ -150,4 +150,13 @@
         handler=".upgrades.update_rolemap"
         />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+    source="1012"
+    destination="1013"
+    profile="design.plone.contenttypes:default">
+      <genericsetup:upgradeStep
+        title="Fix listing block template"
+        handler=".upgrades.to_1013"
+        />
+  </genericsetup:upgradeSteps>
 </configure>

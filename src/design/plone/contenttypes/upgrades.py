@@ -216,4 +216,56 @@ def to_1009(context):
 
 def to_1010(context):
     pc = api.portal.get_tool(name="portal_catalog")
-    pc.manage_reindexIndex(ids=['event_location'])
+    pc.manage_reindexIndex(ids=["event_location"])
+
+
+def to_1013(context):
+    def fix_template_name(blocks):
+        """
+        revert to tassonomia_argomenti
+        """
+        found = False
+        for block in blocks.values():
+            if (
+                block.get("@type", "") == "listing"
+                and block.get("template", "") == "imageGallery"
+            ):
+                block["template"] = "photogallery"
+                found = True
+        return found
+
+    # fix root
+    logger.info(
+        'Changing listing block template from "imageGallery" to "photogallery'
+    )
+    portal = api.portal.get()
+    portal_blocks = json.loads(portal.blocks)
+    to_update = fix_template_name(portal_blocks)
+    fixed_items = []
+    if to_update:
+        portal.blocks = json.dumps(portal_blocks)
+        fixed_items.append("Root")
+    i = 0
+    brains = api.content.find(
+        object_provides="plone.restapi.behaviors.IBlocks"
+    )
+    tot = len(brains)
+    for brain in brains:
+        i += 1
+        if i % 1000 == 0:
+            logger.info("Progress: {}/{}".format(i, tot))
+        item = brain.getObject()
+        blocks = deepcopy(getattr(item, "blocks", {}))
+        if blocks:
+            to_update = fix_template_name(blocks)
+            if to_update:
+                item.blocks = blocks
+                fixed_items.append(brain.getPath())
+
+    logger.info("Finish")
+    if fixed_items:
+        logger.info("Updated items:")
+        for fixed in fixed_items:
+            logger.info("- {}".format(fixed))
+    else:
+        logger.info("No items affected.")
