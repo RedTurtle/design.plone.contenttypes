@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from design.plone.contenttypes import _
-from design.plone.contenttypes.fields import BlocksField
+from collective.volto.blocksfield.field import BlocksField
 from plone.namedfile import field
 from plone.supermodel import model
 from z3c.relationfield.schema import RelationChoice

@@ -2,7 +2,7 @@
 from collective import dexteritytextindexer
 from design.plone.contenttypes import _
 from design.plone.contenttypes.interfaces.documento import IDocumento
-from design.plone.contenttypes.fields import BlocksField
+from collective.volto.blocksfield.field import BlocksField
 from plone.autoform import directives as form
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.dexterity.interfaces import IDexterityContent

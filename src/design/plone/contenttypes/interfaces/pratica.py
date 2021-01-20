@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from plone.supermodel import model
-from design.plone.contenttypes.fields import BlocksField
+from collective.volto.blocksfield.field import BlocksField
 from zope import schema
 from design.plone.contenttypes import _
 

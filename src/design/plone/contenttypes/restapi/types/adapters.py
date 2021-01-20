@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-from design.plone.contenttypes.fields import IBlocksField
 from plone.restapi.types.adapters import ObjectJsonSchemaProvider
-from plone.restapi.types.adapters import JSONFieldSchemaProvider
 from plone.restapi.types.interfaces import IJsonSchemaProvider
 from zope.component import adapter, getUtility
 from zope.i18n import translate
@@ -38,13 +36,3 @@ class LeadImageJsonSchemaProvider(ObjectJsonSchemaProvider):
             schema["description"] = translate(msgid, context=self.request)
 
         return schema
-
-
-@adapter(IBlocksField, Interface, Interface)
-@implementer(IJsonSchemaProvider)
-class BlocksFieldSchemaProvider(JSONFieldSchemaProvider):
-    def get_widget(self):
-        return "blocks"
-
-    def get_factory(self):
-        return "BlocksField"

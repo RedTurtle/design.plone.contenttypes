@@ -6,5 +6,4 @@
     <adapter factory=".adapters.LeadImageJsonSchemaProvider"
              name="ILeadImageBehavior.image" />
     
-    <adapter factory=".adapters.BlocksFieldSchemaProvider"/>
 </configure>

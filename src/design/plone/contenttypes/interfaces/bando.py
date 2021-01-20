@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from design.plone.contenttypes.fields import BlocksField
+from collective.volto.blocksfield.field import BlocksField
 from plone.autoform import directives
 from plone.supermodel import model
 from redturtle.bandi import bandiMessageFactory as _

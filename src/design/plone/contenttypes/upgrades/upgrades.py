@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from plone import api
 from copy import deepcopy
-from design.plone.contenttypes.fields import BlocksField
+from collective.volto.blocksfield.field import BlocksField
 from design.plone.contenttypes.upgrades.draftjs_converter import to_draftjs
 from plone.app.upgrade.utils import installOrReinstallProduct
 from plone.dexterity.utils import iterSchemata
