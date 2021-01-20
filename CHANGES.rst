@@ -6,6 +6,7 @@ Changelog
 ------------------
 
 - **BREAKING CHANGE** Convert RichText fields into BlocksField.
+- Upgrade-step to fix unused listing block template.
   [cekk]
 
 
