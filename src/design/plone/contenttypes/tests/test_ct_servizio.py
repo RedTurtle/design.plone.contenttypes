@@ -11,7 +11,6 @@ from plone.app.testing import setRoles
 from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import SITE_OWNER_PASSWORD
 from plone.app.testing import TEST_USER_ID
-from plone.app.textfield.value import RichTextValue
 from plone.restapi.testing import RelativeSession
 
 import unittest
@@ -207,12 +206,9 @@ class TestServizioApi(unittest.TestCase):
             container=self.portal,
             type="Servizio",
             title="Test servizio",
-            ulteriori_informazioni=RichTextValue(
-                raw="aiuto",
-                mimeType="text/html",
-                outputMimeType="text/html",
-                encoding="utf-8",
-            ),
+            ulteriori_informazioni={
+                "blocks": {"123456": {"searchableText": "aiuto"}}
+            },
         )
 
         res = api.content.find(SearchableText="aiuto")

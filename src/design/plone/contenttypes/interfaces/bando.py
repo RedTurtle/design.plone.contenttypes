@@ -24,15 +24,47 @@ class IBandoAgidSchema(IBandoSchema):
         description=_("text_help", default="",),
         required=False,
     )
-    riferimenti_bando = BlocksField(
+    tipologia_bando = schema.Choice(
+        title=_rtbando("tipologia_bando_label", default="Announcement type"),
+        description=_rtbando("tipologia_bando_help", default=""),
+        vocabulary="redturtle.bandi.tipologia.vocabulary",
+        required=True,
+    )
+    destinatari = schema.List(
+        title=_rtbando("destinatari_label", default="Recipients"),
+        description=_rtbando("destinatari_help", default=""),
+        required=True,
+        value_type=schema.Choice(
+            vocabulary="redturtle.bandi.destinatari.vocabulary"
+        ),
+    )
+    ente_bando = schema.Tuple(
+        title=_rtbando("ente_label", default="Authority"),
+        description=_rtbando("ente_help", default="Select some authorities."),
+        required=False,
+        defaultFactory=getDefaultEnte,
+        value_type=schema.TextLine(),
+        missing_value=None,
+    )
+    scadenza_domande_bando = schema.Datetime(
         title=_(
-            "riferimenti_bando_agid_label", default="Ulteriori informazioni"
+            "scadenza_domande_bando_label",
+            default="Termine per le richieste di chiarimenti",
         ),
         description=_(
-            "riferimenti_bando_agid_help",
-            default="Ulteriori informazioni non previste negli altri campi;"
-            " si può trattare di contatti o note informative la cui conoscenza"
-            " è indispensabile per la partecipazione al bando",
+            "scadenza_domande_bando_help",
+            default="Data entro la quale sarà possibile far pervenire domande"
+            " e richieste di chiarimento a chi eroga il bando",
+        ),
+        required=False,
+    )
+    scadenza_bando = schema.Datetime(
+        title=_rtbando(
+            "scadenza_bando_label", default="Expiration date and time"
+        ),
+        description=_rtbando(
+            "scadenza_bando_help",
+            default="Deadline to participate in the announcement",
         ),
         required=False,
     )
@@ -46,53 +78,17 @@ class IBandoAgidSchema(IBandoSchema):
         required=False,
     )
 
-    scadenza_bando = schema.Datetime(
-        title=_rtbando(
-            "scadenza_bando_label", default="Expiration date and time"
-        ),
-        description=_rtbando(
-            "scadenza_bando_help",
-            default="Deadline to participate in the announcement",
-        ),
-        required=False,
-    )
-
-    scadenza_domande_bando = schema.Datetime(
+    riferimenti_bando = BlocksField(
         title=_(
-            "scadenza_domande_bando_label",
-            default="Termine per le richieste di chiarimenti",
+            "riferimenti_bando_agid_label", default="Ulteriori informazioni"
         ),
         description=_(
-            "scadenza_domande_bando_help",
-            default="Data entro la quale sarà possibile far pervenire domande"
-            " e richieste di chiarimento a chi eroga il bando",
+            "riferimenti_bando_agid_help",
+            default="Ulteriori informazioni non previste negli altri campi;"
+            " si può trattare di contatti o note informative la cui conoscenza"
+            " è indispensabile per la partecipazione al bando",
         ),
         required=False,
-    )
-
-    ente_bando = schema.Tuple(
-        title=_rtbando("ente_label", default="Authority"),
-        description=_rtbando("ente_help", default="Select some authorities."),
-        required=False,
-        defaultFactory=getDefaultEnte,
-        value_type=schema.TextLine(),
-        missing_value=None,
-    )
-
-    destinatari = schema.List(
-        title=_rtbando("destinatari_label", default="Recipients"),
-        description=_rtbando("destinatari_help", default=""),
-        required=True,
-        value_type=schema.Choice(
-            vocabulary="redturtle.bandi.destinatari.vocabulary"
-        ),
-    )
-
-    tipologia_bando = schema.Choice(
-        title=_rtbando("tipologia_bando_label", default="Announcement type"),
-        description=_rtbando("tipologia_bando_help", default=""),
-        vocabulary="redturtle.bandi.tipologia.vocabulary",
-        required=True,
     )
 
     ufficio_responsabile = RelationList(

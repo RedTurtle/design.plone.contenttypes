@@ -13,7 +13,6 @@ from plone.app.testing import (
     TEST_USER_ID,
     setRoles,
 )
-# from plone.app.textfield.value import RichTextValue
 from plone.restapi.testing import RelativeSession
 from Products.CMFPlone.utils import getToolByName
 from transaction import commit
@@ -44,7 +43,9 @@ class TestServizio(unittest.TestCase):
             container=self.portal, type="News Item", title="TestNews"
         )
         self.luogo = api.content.create(
-            container=self.portal, type="Venue", title="Luogo",
+            container=self.portal,
+            type="Venue",
+            title="Luogo",
             street="Street Foo",
             zip_code="1234",
             city="Rome",
@@ -61,8 +62,10 @@ class TestServizio(unittest.TestCase):
         luogo = RelationValue(intids.getId(self.luogo))
 
         self.uo = api.content.create(
-            container=self.portal, type="UnitaOrganizzativa", title="TestUO",
-            sede=[luogo]
+            container=self.portal,
+            type="UnitaOrganizzativa",
+            title="TestUO",
+            sede=[luogo],
         )
         uo = RelationValue(intids.getId(self.uo))
 
@@ -70,7 +73,7 @@ class TestServizio(unittest.TestCase):
             container=self.portal,
             type="Servizio",
             title="TestService",
-            ufficio_responsabile=[uo]
+            ufficio_responsabile=[uo],
         )
 
         self.news.a_cura_di = [uo]
@@ -82,20 +85,26 @@ class TestServizio(unittest.TestCase):
         self.api_session.close()
 
     def test_uo_service_related_news(self):
-        response = self.api_session.get(self.uo.absolute_url() + "?fullobjects")
+        response = self.api_session.get(
+            self.uo.absolute_url() + "?fullobjects"
+        )
         self.assertTrue(
             response.json()["related_news"][0]["@id"], self.news.absolute_url()
         )
 
     def test_uo_service_related_service(self):
-        response = self.api_session.get(self.uo.absolute_url() + "?fullobjects")
+        response = self.api_session.get(
+            self.uo.absolute_url() + "?fullobjects"
+        )
         self.assertTrue(
             response.json()["servizi_offerti"][0]["@id"],
-            self.service.absolute_url()
+            self.service.absolute_url(),
         )
 
     def test_uo_sede_data(self):
-        response = self.api_session.get(self.uo.absolute_url() + "?fullobjects")
+        response = self.api_session.get(
+            self.uo.absolute_url() + "?fullobjects"
+        )
         sede = response.json()["sede"][0]
         fields = [
             "street",
@@ -112,10 +121,7 @@ class TestServizio(unittest.TestCase):
             "riferimento_pec_struttura",
         ]
         for field in fields:
-            self.assertEqual(
-                sede[field],
-                getattr(self.luogo, field, '')
-            )
+            self.assertEqual(sede[field], getattr(self.luogo, field, ""))
 
 
 class TestUO(unittest.TestCase):
@@ -155,42 +161,3 @@ class TestUO(unittest.TestCase):
         self.assertEqual(
             "Unita Organizzativa", portal_types["UnitaOrganizzativa"].title
         )
-
-
-#  DISABILITATO perchè nei test non indicizza niente nel searchabletext, non so perché
-# class TestUOSearchableText(unittest.TestCase):
-#     layer = DESIGN_PLONE_CONTENTTYPES_FUNCTIONAL_TESTING
-
-#     def setUp(self):
-#         """Custom shared utility setup for tests."""
-#         self.portal = self.layer["portal"]
-#         self.catalog = api.portal.get_tool(name="portal_catalog")
-#         setRoles(self.portal, TEST_USER_ID, ["Manager"])
-
-#         self.person = api.content.create(
-#             container=self.portal, type="Persona", title="John Doe"
-#         )
-
-# def test_competenze_indexed(self):
-#     uo = api.content.create(
-#         container=self.portal,
-#         type="UnitaOrganizzativa",
-#         title="UO",
-#         # competenze=RichTextValue(
-#         #     raw="destinatari",
-#         #     mimeType="text/html",
-#         #     outputMimeType="text/html",
-#         #     encoding="utf-8",
-#         # ),
-#     )
-#     res = api.content.find(UID=uo.UID())
-#     rid = res[0].getRID()
-#     index_data = self.catalog.getIndexDataForRID(rid)
-
-#     import pdb
-
-#     pdb.set_trace()
-#     res = api.content.find(SearchableText="destinatari")
-
-#     self.assertEqual(len(res), 1)
-#     self.assertEqual(res[0].UID, servizio.UID())

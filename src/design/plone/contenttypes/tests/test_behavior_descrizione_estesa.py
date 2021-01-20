@@ -8,7 +8,6 @@ from plone.app.testing import (
     TEST_USER_ID,
     setRoles,
 )
-from plone.app.textfield.value import RichTextValue
 from plone.restapi.testing import RelativeSession
 from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
@@ -36,17 +35,15 @@ class TestDescrizioneEstesaBehavior(unittest.TestCase):
 
     def test_descrizione_estesa_indexed(self):
 
-        #  Servizio have design.plone.contenttypes.behavior.descrizione_estesa behavior
+        # Servizio have design.plone.contenttypes.behavior.descrizione_estesa
+        # behavior
         servizio = api.content.create(
             container=self.portal,
             type="Servizio",
             title="Test servizio",
-            descrizione_estesa=RichTextValue(
-                raw="<p>foo</p>",
-                mimeType="text/html",
-                outputMimeType="text/html",
-                encoding="utf-8",
-            ),
+            descrizione_estesa={
+                "blocks": {"12345": {"searchableText": "foo"}}
+            },
         )
 
         res = api.content.find(SearchableText="foo")
