@@ -58,6 +58,7 @@ setup(
         "plone.app.dexterity",
         "collective.dexteritytextindexer",
         "collective.venue[geolocation]",
+        "collective.volto.blocksfield",
         "plone.formwidget.geolocation",
         "redturtle.volto",
         "redturtle.bandi",
