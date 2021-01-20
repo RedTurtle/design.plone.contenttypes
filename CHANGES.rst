@@ -5,7 +5,8 @@ Changelog
 1.0.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Upgrade-step to fix unused listing block template.
+  [cekk]
 
 
 1.0.2 (2020-12-17)
