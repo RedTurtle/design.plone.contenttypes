@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from design.plone.contenttypes import _
-from plone.app.textfield import RichText
+from design.plone.contenttypes.fields import BlocksField
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
 from plone.supermodel import model
@@ -107,7 +107,7 @@ class IDocumento(model.Schema):
         required=False,
     )
 
-    riferimenti_normativi = RichText(
+    riferimenti_normativi = BlocksField(
         title=_(
             "riferimenti_normativi_label", default="Riferimenti normativi"
         ),

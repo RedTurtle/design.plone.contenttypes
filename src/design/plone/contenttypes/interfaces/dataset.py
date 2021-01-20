@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from design.plone.contenttypes import _
-from plone.app.textfield import RichText
+from design.plone.contenttypes.fields import BlocksField
 from plone.namedfile import field
 from plone.supermodel import model
 from zope import schema
@@ -19,7 +19,7 @@ class IDataset(model.Schema):
 
     # TODO: identificativo dataset
 
-    distribuzione = RichText(
+    distribuzione = BlocksField(
         title=_(u"distribuzione", default=u"Distribuzione"), required=True
     )
 

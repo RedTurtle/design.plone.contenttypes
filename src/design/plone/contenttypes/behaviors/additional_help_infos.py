@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from collective import dexteritytextindexer
 from design.plone.contenttypes import _
-from plone.app.textfield import RichText
+from design.plone.contenttypes.fields import BlocksField
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.dexterity.interfaces import IDexterityContent
 from plone.supermodel import model
@@ -14,11 +14,12 @@ from zope.interface import provider, implementer
 @provider(IFormFieldProvider)
 class IAdditionalHelpInfos(model.Schema):
 
-    ulteriori_informazioni = RichText(
+    ulteriori_informazioni = BlocksField(
         title=_(u"ulteriori_informazioni", default=u"Ulteriori informazioni"),
         description=_(
             "ulteriori_informazioni_help",
-            default="Ulteriori informazioni non contemplate" " dai campi precedenti.",
+            default="Ulteriori informazioni non contemplate"
+            " dai campi precedenti.",
         ),
         required=False,
     )

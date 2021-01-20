@@ -2,7 +2,7 @@
 from collective import dexteritytextindexer
 from collective.venue.interfaces import IVenue
 from design.plone.contenttypes import _
-from plone.app.textfield import RichText
+from design.plone.contenttypes.fields import BlocksField
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
 from zope import schema
@@ -61,7 +61,7 @@ class IContatti(model.Schema):
         required=False,
     )
 
-    orario_pubblico = RichText(
+    orario_pubblico = BlocksField(
         title=_(u"orario_pubblico_label", default=u"Orario per il pubblico"),
         description=_(
             u"orario_pubblico_help",

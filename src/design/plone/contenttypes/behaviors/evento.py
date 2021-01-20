@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from design.plone.contenttypes import _
-from plone.app.textfield import RichText
+from design.plone.contenttypes.fields import BlocksField
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
 from plone.autoform.interfaces import IFormFieldProvider
@@ -27,7 +27,7 @@ class IEvento(model.Schema):
         required=False,
     )
 
-    descrizione_destinatari = RichText(
+    descrizione_destinatari = BlocksField(
         title=_(
             u"descrizione_destinatari", default=u"Descrizione destinatari"
         ),
@@ -53,7 +53,7 @@ class IEvento(model.Schema):
         required=False,
     )
 
-    orari = RichText(
+    orari = BlocksField(
         title=_(u"orari", default=u"Informazioni sugli orari"),
         required=False,
         description=_(
@@ -62,7 +62,7 @@ class IEvento(model.Schema):
         ),
     )
 
-    prezzo = RichText(
+    prezzo = BlocksField(
         title=_(u"prezzo", default=u"Prezzo"),
         required=False,
         description=_(
@@ -86,7 +86,7 @@ class IEvento(model.Schema):
         ),
     )
 
-    organizzato_da_esterno = RichText(
+    organizzato_da_esterno = BlocksField(
         title=_(u"organizzato_da_esterno_label", default=u"Organizzatore"),
         required=False,
         description=_(

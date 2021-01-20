@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from design.plone.contenttypes import _
-from plone.app.textfield import RichText
+from design.plone.contenttypes.fields import BlocksField
 from plone.namedfile import field
 from plone.supermodel import model
 from z3c.relationfield.schema import RelationChoice
@@ -17,7 +17,8 @@ class IDocumentoPersonale(model.Schema):
     )
 
     data_protocollo = schema.Date(
-        title=_(u"data_protocollo", default=u"Data del protocollo"), required=True
+        title=_(u"data_protocollo", default=u"Data del protocollo"),
+        required=True,
     )
 
     immagine = field.NamedImage(
@@ -25,11 +26,14 @@ class IDocumentoPersonale(model.Schema):
     )
 
     pratica_associata = field.NamedFile(
-        title=_(u"pratica_associata", default=u"Pratica associata"), required=True
+        title=_(u"pratica_associata", default=u"Pratica associata"),
+        required=True,
     )
 
     servizio_origine = schema.Choice(
-        title=_(u"servizio_origine", default=u"Servizio che genera il documento"),
+        title=_(
+            u"servizio_origine", default=u"Servizio che genera il documento"
+        ),
         vocabulary="design.plone.contenttypes.Mockup",
         required=True,
     )
@@ -45,7 +49,7 @@ class IDocumentoPersonale(model.Schema):
         required=True,
     )
 
-    oggetto = RichText(
+    oggetto = BlocksField(
         title=_(u"oggetto", default=u"Oggetto"),
         # non viene specificato se il campo e' obbligatorio o meno
         required=False,
@@ -61,7 +65,8 @@ class IDocumentoPersonale(model.Schema):
     # rientrare nel content type "Unita' organizzativa")
     ufficio_responsabile = schema.Choice(
         title=_(
-            u"ufficio_responsabile_documento_personale", default=u"Ufficio responsabile"
+            u"ufficio_responsabile_documento_personale",
+            default=u"Ufficio responsabile",
         ),
         required=True,
         vocabulary="design.plone.contenttypes.Mockup",
@@ -70,7 +75,10 @@ class IDocumentoPersonale(model.Schema):
     # TODO: usare vocabolario dinamico per le tipologie di aree amministrative
     # (dovrebbe rientrare nel content type "Unita' organizzativa")
     area_responsabile = schema.Choice(
-        title=_(u"area_responsabile_documento_personale", default=u"Area responsabile"),
+        title=_(
+            u"area_responsabile_documento_personale",
+            default=u"Area responsabile",
+        ),
         required=True,
         vocabulary="design.plone.contenttypes.Mockup",
     )
@@ -95,14 +103,16 @@ class IDocumentoPersonale(model.Schema):
         title=u"Servizi collegati",
         default=[],
         value_type=RelationChoice(
-            title=_(u"Servizio collegato"), vocabulary="plone.app.vocabularies.Catalog"
+            title=_(u"Servizio collegato"),
+            vocabulary="plone.app.vocabularies.Catalog",
         ),
         required=False,
     )
 
     canale_digitale_servizio = schema.TextLine(
         title=_(
-            u"canale_digitale_servizio", default=u"Canale digitale servizio collegato"
+            u"canale_digitale_servizio",
+            default=u"Canale digitale servizio collegato",
         ),
         required=False,
     )
@@ -111,7 +121,7 @@ class IDocumentoPersonale(model.Schema):
         title=_(u"data_inizio", default=u"Data di inizio"), required=False
     )
 
-    data_e_fasi_intermedie = RichText(
+    data_e_fasi_intermedie = BlocksField(
         title=_(u"data_e_fasi_intermedie", default=u"Data e fasi intermedie"),
         required=False,
     )
@@ -126,15 +136,17 @@ class IDocumentoPersonale(model.Schema):
         required=False,
         default=[],
         value_type=RelationChoice(
-            title=_(u"Dataset collegato"), vocabulary="plone.app.vocabularies.Catalog"
+            title=_(u"Dataset collegato"),
+            vocabulary="plone.app.vocabularies.Catalog",
         ),
     )
 
-    informazioni = RichText(
-        title=_(u"informazioni", default=u"Ulteriori informazioni"), required=False
+    informazioni = BlocksField(
+        title=_(u"informazioni", default=u"Ulteriori informazioni"),
+        required=False,
     )
 
-    riferimenti_normativi = RichText(
+    riferimenti_normativi = BlocksField(
         title=_(u"riferimenti_normativi", default=u"Riferimenti normativi"),
         required=False,
     )

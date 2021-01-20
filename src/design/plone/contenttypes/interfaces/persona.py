@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from collective import dexteritytextindexer
 from design.plone.contenttypes import _
-from plone.app.textfield import RichText
+from design.plone.contenttypes.fields import BlocksField
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
 from plone.namedfile import field
@@ -63,7 +63,7 @@ class IPersona(model.Schema):
         required=False,
     )
 
-    competenze = RichText(
+    competenze = BlocksField(
         title=_("competenze_label", default="Competenze"),
         description=_(
             "competenze_help",
@@ -71,7 +71,7 @@ class IPersona(model.Schema):
         ),
         required=False,
     )
-    deleghe = RichText(
+    deleghe = BlocksField(
         title=_("deleghe_label", default="Deleghe"),
         description=_(
             "deleghe_help",
@@ -101,7 +101,7 @@ class IPersona(model.Schema):
         required=False,
     )
 
-    biografia = RichText(
+    biografia = BlocksField(
         title=_("biografia_label", default="Biografia"),
         description=_(
             "biografia_help",

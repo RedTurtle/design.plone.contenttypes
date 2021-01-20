@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from design.plone.contenttypes import _
-from plone.app.textfield import RichText
+from design.plone.contenttypes.fields import BlocksField
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.dexterity.interfaces import IDexterityContent
 from plone.namedfile import field as namedfile
@@ -16,7 +16,7 @@ class IInfoTestata(model.Schema):
     """
     """
 
-    info_testata = RichText(
+    info_testata = BlocksField(
         title=_(
             u"info_testata_label",
             default=u"Informazioni aggiuntive per la testata",

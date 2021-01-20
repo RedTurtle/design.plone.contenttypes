@@ -19,7 +19,7 @@ class BlocksFieldSerializer(DefaultFieldSerializer):
     def __call__(self):
         value = copy.deepcopy(self.get_value())
         if not value:
-            return ""
+            return {}
         blocks = value.get("blocks", {})
         if blocks:
             for id, block_value in blocks.items():
