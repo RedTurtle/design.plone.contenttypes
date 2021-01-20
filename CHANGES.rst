@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.0.3 (unreleased)
+1.0.3 (2021-01-20)
 ------------------
 
 - Upgrade-step to fix unused listing block template.
