@@ -269,3 +269,17 @@ def to_1013(context):
             logger.info("- {}".format(fixed))
     else:
         logger.info("No items affected.")
+
+
+def to_1014(context):
+    update_types(context)
+
+    # cleanup trasparenza behavior from CTs
+    portal_types = api.portal.get_tool(name="portal_types")
+    service_behaviors = portal_types["Servizio"].behaviors
+    to_remove = [
+        "design.plone.contenttypes.behavior.trasparenza",
+    ]
+    portal_types["Servizio"].behaviors = tuple(
+        [x for x in service_behaviors if x not in to_remove]
+    )
