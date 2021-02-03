@@ -199,7 +199,6 @@ class IEvento(model.Schema):
     )
 
     # custom fieldsets and order
-    form.order_before(descrizione_estesa="ILeadImageBehavior.image")
     form.order_before(sottotitolo="ILeadImageBehavior.image")
 
     model.fieldset(
