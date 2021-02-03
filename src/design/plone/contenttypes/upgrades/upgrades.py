@@ -282,6 +282,21 @@ def to_1013(context):
 
 
 def to_1100(context):
+    # remove volto.blocks behavior from news and events and add new one
+    update_types(context)
+    portal_types = api.portal.get_tool(name="portal_types")
+    for ptype in ["News Item", "Event"]:
+        portal_types[ptype].behaviors = tuple(
+            [x for x in portal_types[ptype].behaviors if x != "volto.blocks"]
+        )
+    portal_types["Pagina Argomento"].behaviors = tuple(
+        [
+            x
+            for x in portal_types["Pagina Argomento"].behaviors
+            if x != "design.plone.contenttypes.behavior.additional_help_infos"
+        ]
+    )
+    # now copy values in new fields
     pc = api.portal.get_tool(name="portal_catalog")
     brains = pc()
     tot = len(brains)
@@ -292,6 +307,13 @@ def to_1100(context):
         if i % 1000 == 0:
             logger.info("Progress: {}/{}".format(i, tot))
         item = brain.getObject()
+        if brain.portal_type in ["Event", "News Item"]:
+            item.descrizione_estesa = {
+                "blocks": getattr(item, "blocks", {}),
+                "blocks_layout": getattr(item, "blocks_layout", {"items": []}),
+            }
+            del item["blocks"]
+            del item["blocks_layout"]
         for schema in iterSchemata(item):
             for name, field in getFields(schema).items():
                 if not isinstance(field, BlocksField):

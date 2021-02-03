@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from collective import dexteritytextindexer
+from collective.volto.blocksfield.field import BlocksField
 from design.plone.contenttypes import _
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
@@ -13,6 +15,14 @@ from zope.interface import provider, implementer
 
 @provider(IFormFieldProvider)
 class INewsAdditionalFields(model.Schema):
+    descrizione_estesa = BlocksField(
+        title=_(u"descrizione_estesa", default=u"Descrizione estesa"),
+        required=False,
+        description=_(
+            "descrizione_estesa_help",
+            default="Descrizione dettagliata e completa.",
+        ),
+    )
 
     tipologia_notizia = schema.Choice(
         title=_("tipologia_notizia_label", default="Tipologia notizia"),
@@ -117,9 +127,12 @@ class INewsAdditionalFields(model.Schema):
     )
 
     # custom fieldsets and order
+    form.order_before(descrizione_estesa="ILeadImageBehavior.image")
     form.order_before(tipologia_notizia="ILeadImageBehavior.image")
     form.order_before(numero_progressivo_cs="ILeadImageBehavior.image")
     form.order_before(a_cura_di="ILeadImageBehavior.image")
+
+    dexteritytextindexer.searchable("descrizione_estesa")
 
 
 @implementer(INewsAdditionalFields)

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from collective import dexteritytextindexer
 from design.plone.contenttypes import _
 from collective.volto.blocksfield.field import BlocksField
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
@@ -26,7 +27,14 @@ class IEvento(model.Schema):
         ),
         required=False,
     )
-
+    descrizione_estesa = BlocksField(
+        title=_(u"descrizione_estesa", default=u"Descrizione estesa"),
+        required=False,
+        description=_(
+            "descrizione_estesa_help",
+            default="Descrizione dettagliata e completa.",
+        ),
+    )
     descrizione_destinatari = BlocksField(
         title=_(
             u"descrizione_destinatari", default=u"Descrizione destinatari"
@@ -191,7 +199,9 @@ class IEvento(model.Schema):
     )
 
     # custom fieldsets and order
+    form.order_before(descrizione_estesa="ILeadImageBehavior.image")
     form.order_before(sottotitolo="ILeadImageBehavior.image")
+
     model.fieldset(
         "cose",
         label=_("cose_label", default=u"Cos'è"),
@@ -224,6 +234,8 @@ class IEvento(model.Schema):
         label=_("informazioni_label", default=u"Ulteriori informazioni"),
         fields=["patrocinato_da"],
     )
+
+    dexteritytextindexer.searchable("descrizione_estesa")
 
 
 @implementer(IEvento)

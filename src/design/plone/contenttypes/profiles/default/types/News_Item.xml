@@ -20,7 +20,6 @@
    <element value="plone.versioning"/>
    <element value="plone.locking"/>
    <element value="plone.constraintypes"/>
-   <element value="volto.blocks"/>
  </property>
  
 </object>

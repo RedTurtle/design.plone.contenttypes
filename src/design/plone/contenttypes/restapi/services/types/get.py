@@ -50,7 +50,6 @@ FIELDSETS_ORDER = {
         "categorization",
         "dates",
         "settings",
-        "layout",
         "ownership",
     ],
     "News Item": [
@@ -60,7 +59,6 @@ FIELDSETS_ORDER = {
         "categorization",
         "settings",
         "ownership",
-        "layout",
     ],
     "Modulo": [
         "default",
