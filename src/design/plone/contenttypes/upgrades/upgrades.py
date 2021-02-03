@@ -312,8 +312,8 @@ def to_1100(context):
                 "blocks": getattr(item, "blocks", {}),
                 "blocks_layout": getattr(item, "blocks_layout", {"items": []}),
             }
-            del item["blocks"]
-            del item["blocks_layout"]
+            item.blocks = None
+            item.blocks_layout = None
         for schema in iterSchemata(item):
             for name, field in getFields(schema).items():
                 if not isinstance(field, BlocksField):

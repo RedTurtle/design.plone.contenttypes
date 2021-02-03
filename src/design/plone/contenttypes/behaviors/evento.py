@@ -205,7 +205,11 @@ class IEvento(model.Schema):
     model.fieldset(
         "cose",
         label=_("cose_label", default=u"Cos'è"),
-        fields=["descrizione_destinatari", "persone_amministrazione"],
+        fields=[
+            "descrizione_estesa",
+            "descrizione_destinatari",
+            "persone_amministrazione"
+        ],
     )
     model.fieldset(
         "date_e_orari",
