@@ -152,7 +152,7 @@ def to_draftjs(text):
     do something here
     """
     if not text:
-        return {}
+        return {"blocks": {}, "blocks_layout": {"items": []}}
     html = _fix_headers(text)
     html = _fix_html(html)
 

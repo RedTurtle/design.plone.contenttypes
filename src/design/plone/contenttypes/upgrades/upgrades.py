@@ -343,6 +343,8 @@ def to_1100(context):
                     value = value.raw
                 else:
                     continue
+                if value == "<p><br></p>":
+                    value = ""
                 try:
                     new_value = to_draftjs(value)
                 except Exception as e:
