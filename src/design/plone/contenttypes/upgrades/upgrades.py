@@ -308,9 +308,24 @@ def to_1100(context):
             logger.info("Progress: {}/{}".format(i, tot))
         item = brain.getObject()
         if brain.portal_type in ["Event", "News Item"]:
+            blocks = getattr(item, "blocks", {})
+            blocks_layout = getattr(item, "blocks_layout", {"items": []})[
+                "items"
+            ]
+            if not blocks:
+                continue
+            title_uid = ""
+            new_blocks = {}
+            for uid, block in blocks.items():
+                if block.get("@type", "") == "title":
+                    title_uid = uid
+                else:
+                    new_blocks[uid] = block
             item.descrizione_estesa = {
-                "blocks": getattr(item, "blocks", {}),
-                "blocks_layout": getattr(item, "blocks_layout", {"items": []}),
+                "blocks": new_blocks,
+                "blocks_layout": {
+                    "items": [x for x in blocks_layout if x != title_uid]
+                },
             }
             item.blocks = None
             item.blocks_layout = None
