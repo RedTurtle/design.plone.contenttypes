@@ -10,6 +10,7 @@ from zope.schema import getFields
 
 import logging
 import json
+import six
 
 logger = logging.getLogger(__name__)
 
@@ -334,10 +335,16 @@ def to_1100(context):
                 if not isinstance(field, BlocksField):
                     continue
                 value = field.get(item)
-                if not value or not isinstance(value, RichTextValue):
+                if not value:
+                    continue
+                if isinstance(value, six.string_types):
+                    value = "<p>{}</p>".format(value)
+                elif isinstance(value, RichTextValue):
+                    value = value.raw
+                else:
                     continue
                 try:
-                    new_value = to_draftjs(value.raw)
+                    new_value = to_draftjs(value)
                 except Exception as e:
                     logger.error(
                         "[NOT MIGRATED] - {}: {}".format(brain.getPath(), name)
