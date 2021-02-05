@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.0.4 (unreleased)
+1.0.4 (2021-02-05)
 ------------------
 
 - Add upgrade-step to cleanup Bando behaviors.
