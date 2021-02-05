@@ -28,6 +28,7 @@
     <element value="plone.versioning" />
     <element value="plone.locking" />
     <element value="plone.constraintypes" />
+    <element value="collective.dexteritytextindexer"/>
     <!-- remove unused behaviors -->
     <element value="plone.eventlocation" remove="True" />
     <element value="plone.eventattendees" remove="True" />
