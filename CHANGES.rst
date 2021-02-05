@@ -5,7 +5,8 @@ Changelog
 1.0.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add upgrade-step to cleanup Bando behaviors.
+  [cekk]
 
 
 1.0.3 (2021-01-20)

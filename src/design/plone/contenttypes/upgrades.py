@@ -269,3 +269,14 @@ def to_1013(context):
             logger.info("- {}".format(fixed))
     else:
         logger.info("No items affected.")
+
+
+def to_1014(context):
+    portal_types = api.portal.get_tool(name="portal_types")
+    portal_types["Bando"].behaviors = tuple(
+        [
+            x
+            for x in portal_types["Bando"].behaviors
+            if x != "design.plone.contenttypes.behavior.argomenti"
+        ]
+    )

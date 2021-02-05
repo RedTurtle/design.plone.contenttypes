@@ -159,4 +159,13 @@
         handler=".upgrades.to_1013"
         />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+    source="1013"
+    destination="1014"
+    profile="design.plone.contenttypes:default">
+      <genericsetup:upgradeStep
+        title="Fix Bando behaviors"
+        handler=".upgrades.to_1014"
+        />
+  </genericsetup:upgradeSteps>
 </configure>
