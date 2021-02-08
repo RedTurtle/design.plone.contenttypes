@@ -159,14 +159,23 @@
         handler=".upgrades.to_1013"
         />
   </genericsetup:upgradeSteps>
-
   <genericsetup:upgradeSteps
     source="1013"
     destination="1014"
     profile="design.plone.contenttypes:default">
       <genericsetup:upgradeStep
-        title="Deactivate Amministrazione trasparente"
+        title="Fix Bando behaviors"
         handler=".upgrades.to_1014"
         />
   </genericsetup:upgradeSteps>
+    <genericsetup:upgradeSteps
+    source="1014"
+    destination="1015"
+    profile="design.plone.contenttypes:default">
+      <genericsetup:upgradeStep
+        title="Deactivate Amministrazione trasparente"
+        handler=".upgrades.to_1015"
+        />
+  </genericsetup:upgradeSteps>
+
 </configure>
