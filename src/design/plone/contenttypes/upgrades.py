@@ -282,6 +282,7 @@ def to_1014(context):
         ]
     )
 
+
 def to_1015(context):
     update_types(context)
 
@@ -293,3 +294,4 @@ def to_1015(context):
     ]
     portal_types["Servizio"].behaviors = tuple(
         [x for x in service_behaviors if x not in to_remove]
+    )
