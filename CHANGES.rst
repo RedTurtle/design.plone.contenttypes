@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.0.5 (unreleased)
+1.0.5 (2021-02-08)
 ------------------
 
 - Disable trasparenza behavior by default.
