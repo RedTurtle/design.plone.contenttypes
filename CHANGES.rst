@@ -6,7 +6,7 @@ Changelog
 ------------------
 
 - Disable trasparenza behavior by default.
-  [cekk]
+  [deodorhunter]
 
 
 1.0.4 (2021-02-05)
