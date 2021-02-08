@@ -7,7 +7,8 @@ Changelog
 
 - Disable trasparenza behavior by default.
   [deodorhunter]
-
+- Remove reference limit in "persone_struttura" field.
+  [cekk]
 
 1.0.4 (2021-02-05)
 ------------------

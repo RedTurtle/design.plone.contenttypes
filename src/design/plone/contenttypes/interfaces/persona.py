@@ -172,7 +172,6 @@ class IPersona(model.Schema):
         pattern_options={
             "maximumSelectionSize": 10,
             "selectableTypes": ["UnitaOrganizzativa"],
-            "basePath": "/amministrazione",
         },
     )
 

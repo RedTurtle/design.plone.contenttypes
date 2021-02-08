@@ -154,10 +154,7 @@ class IUnitaOrganizzativa(model.Schema):
         "persone_struttura",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={
-            "maximumSelectionSize": 10,
-            "selectableTypes": ["Persona"],
-        },
+        pattern_options={"selectableTypes": ["Persona"]},
     )
     form.widget(
         "legami_con_altre_strutture",
