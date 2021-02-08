@@ -5,7 +5,8 @@ Changelog
 1.0.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Disable trasparenza behavior by default.
+  [deodorhunter]
 
 
 1.0.4 (2021-02-05)

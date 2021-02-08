@@ -110,7 +110,6 @@ FIELDSETS_ORDER = {
         "settings",
         "ownership",
         "dates",
-        "trasparenza",
     ],
     "UnitaOrganizzativa": [
         "default",
@@ -255,6 +254,14 @@ class TypesGet(BaseGet):
             # no match
             return original
         actual = [x["id"] for x in original]
+        portal_types = api.portal.get_tool(name="portal_types")
+        service_behaviors = portal_types["Servizio"].behaviors
+        if (
+            "design.plone.contenttypes.behavior.trasparenza"
+            in service_behaviors
+        ):
+            actual.append("trasparenza")
+
         if set(order) != set(actual):
             # list mismatch
             raise FieldsetsMismatchError(
