@@ -250,17 +250,17 @@ class TypesGet(BaseGet):
     def reorder_fieldsets(self, original):
         pt = self.request.PATH_INFO.split("/")[-1]
         order = FIELDSETS_ORDER.get(pt, [])
+        if not order:
+            # no match
+            return original
+        actual = [x["id"] for x in original]
         portal_types = api.portal.get_tool(name="portal_types")
         service_behaviors = portal_types["Servizio"].behaviors
         if (
             "design.plone.contenttypes.behavior.trasparenza"
             in service_behaviors
         ):
-            order.append("trasparenza")
-        if not order:
-            # no match
-            return original
-        actual = [x["id"] for x in original]
+            actual.append("trasparenza")
 
         if set(order) != set(actual):
             # list mismatch
