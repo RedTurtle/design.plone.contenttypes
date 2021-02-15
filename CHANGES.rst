@@ -5,7 +5,8 @@ Changelog
 1.0.6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Handle Servizio tabs in both cases: with Trasparenza enabled or not.
+  [cekk]
 
 
 1.0.5 (2021-02-08)
