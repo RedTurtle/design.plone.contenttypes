@@ -249,7 +249,8 @@ class TypesGet(BaseGet):
 
     def reorder_fieldsets(self, original):
         pt = self.request.PATH_INFO.split("/")[-1]
-        order = FIELDSETS_ORDER.get(pt, [])
+        # makea copy
+        order = [x for x in FIELDSETS_ORDER.get(pt, [])]
         if not order:
             # no match
             return original
@@ -260,7 +261,7 @@ class TypesGet(BaseGet):
             "design.plone.contenttypes.behavior.trasparenza"
             in service_behaviors
         ):
-            actual.append("trasparenza")
+            order.append("trasparenza")
 
         if set(order) != set(actual):
             # list mismatch
