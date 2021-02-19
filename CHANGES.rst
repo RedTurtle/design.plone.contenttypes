@@ -5,8 +5,7 @@ Changelog
 1.0.9 (unreleased)
 ------------------
 
-- Add search_sections field in control panel.
-  [cekk]
+- Nothing changed yet.
 
 
 1.0.8 (2021-02-19)

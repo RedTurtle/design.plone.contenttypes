@@ -177,13 +177,5 @@
         handler=".upgrades.to_1015"
         />
   </genericsetup:upgradeSteps>
-  <genericsetup:upgradeSteps
-    source="1015"
-    destination="1016"
-    profile="design.plone.contenttypes:default">
-      <genericsetup:upgradeStep
-        title="Add field in control panel"
-        handler=".upgrades.update_registry"
-        />
-  </genericsetup:upgradeSteps>
+
 </configure>
