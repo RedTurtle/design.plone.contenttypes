@@ -5,7 +5,8 @@ Changelog
 1.0.9 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Can add Images into Cartella Modulistica (to be able to add image blocks in it).
+  [cekk]
 
 
 1.0.8 (2021-02-19)

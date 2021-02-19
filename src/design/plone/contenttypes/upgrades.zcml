@@ -177,5 +177,13 @@
         handler=".upgrades.to_1015"
         />
   </genericsetup:upgradeSteps>
-
+  <genericsetup:upgradeSteps
+    source="1015"
+    destination="1016"
+    profile="design.plone.contenttypes:default">
+      <genericsetup:upgradeStep
+        title="Add Image to CartellaModulistica addable types"
+        handler=".upgrades.update_types"
+        />
+  </genericsetup:upgradeSteps>
 </configure>
