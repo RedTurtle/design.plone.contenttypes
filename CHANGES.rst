@@ -5,7 +5,8 @@ Changelog
 1.0.9 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Customizable tipologie_documento.
+  [cekk]
 
 
 1.0.8 (2021-02-19)
