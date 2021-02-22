@@ -5,6 +5,8 @@ Changelog
 1.0.9 (unreleased)
 ------------------
 
+- Add search_sections field in control panel.
+  [cekk]
 - Can add Images into Cartella Modulistica (to be able to add image blocks in it).
   [cekk]
 - Customizable tipologie_documento.

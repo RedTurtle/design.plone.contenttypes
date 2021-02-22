@@ -4,7 +4,7 @@ from plone.app.registry.browser.controlpanel import ControlPanelFormWrapper
 from plone.app.registry.browser.controlpanel import RegistryEditForm
 from plone.z3cform import layout
 from z3c.form import form
-from zope.schema import List, TextLine
+from zope.schema import List, TextLine, SourceText
 from zope.interface import Interface
 
 
@@ -60,6 +60,15 @@ class IVocabulariesControlPanel(Interface):
         required=True,
         default=[],
         value_type=TextLine(),
+    )
+
+    search_sections = SourceText(
+        title=_("search_sections_label", default="Sezioni ricerca"),
+        description=_(
+            "search_sections_help",
+            default="Inserire una lista di sezioni per la ricerca.",
+        ),
+        default="",
     )
 
 
