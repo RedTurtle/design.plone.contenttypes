@@ -7,6 +7,8 @@ Changelog
 
 - Can add Images into Cartella Modulistica (to be able to add image blocks in it).
   [cekk]
+- Customizable tipologie_documento.
+  [cekk]
 
 
 1.0.8 (2021-02-19)
