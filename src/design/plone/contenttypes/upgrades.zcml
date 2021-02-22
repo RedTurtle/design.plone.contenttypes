@@ -182,6 +182,10 @@
     destination="1016"
     profile="design.plone.contenttypes:default">
       <genericsetup:upgradeStep
+        title="Add Image to CartellaModulistica addable types"
+        handler=".upgrades.update_types"
+        />
+      <genericsetup:upgradeStep
         title="Make customizable tipologie_documento"
         handler=".upgrades.update_registry"
         />
