@@ -189,5 +189,9 @@
         title="Make customizable tipologie_documento"
         handler=".upgrades.update_registry"
         />
+      <genericsetup:upgradeStep
+        title="Set defaults"
+        handler=".upgrades.to_1016"
+        />
   </genericsetup:upgradeSteps>
 </configure>

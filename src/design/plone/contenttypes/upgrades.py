@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
+from design.plone.contenttypes.controlpanels.vocabularies import (
+    IVocabulariesControlPanel,
+)
 from plone import api
 from copy import deepcopy
 from plone.app.upgrade.utils import installOrReinstallProduct
+
 
 import logging
 import json
@@ -296,4 +300,20 @@ def to_1015(context):
     ]
     portal_types["Servizio"].behaviors = tuple(
         [x for x in service_behaviors if x not in to_remove]
+    )
+
+
+def to_1016(context):
+    section_ids = ["amministrazione", "servizi", "novita", "documenti-e-dati"]
+    sections = []
+    portal = api.portal.get()
+    for id in section_ids:
+        item = portal.get(id, None)
+        if item:
+            sections.append({"title": item.title, "linkUrl": [item.UID()]})
+    settings = [{"rootPath": "/", "items": sections}]
+    api.portal.set_registry_record(
+        "search_sections",
+        json.dumps(settings),
+        interface=IVocabulariesControlPanel,
     )
