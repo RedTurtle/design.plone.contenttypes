@@ -256,11 +256,8 @@ class TypesGet(BaseGet):
             return original
         actual = [x["id"] for x in original]
         portal_types = api.portal.get_tool(name="portal_types")
-        service_behaviors = portal_types["Servizio"].behaviors
-        if (
-            "design.plone.contenttypes.behavior.trasparenza"
-            in service_behaviors
-        ):
+        behaviors = portal_types[pt].behaviors
+        if "design.plone.contenttypes.behavior.trasparenza" in behaviors:
             order.append("trasparenza")
 
         if set(order) != set(actual):
