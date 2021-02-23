@@ -69,6 +69,7 @@ class IVocabulariesControlPanel(Interface):
             default="Inserire una lista di sezioni per la ricerca.",
         ),
         default="",
+        required=False,
     )
 
 

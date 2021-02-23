@@ -26,7 +26,9 @@ class SourceTextSerializer(DefaultFieldSerializer):
     def __call__(self):
         value = super(SourceTextSerializer, self).__call__()
         if self.field.getName() == "search_sections":
-            return serialize_data(context=self.context, json_data=value)
+            return json.dumps(
+                serialize_data(context=self.context, json_data=value)
+            )
         return value
 
 

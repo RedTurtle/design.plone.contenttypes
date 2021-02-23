@@ -47,13 +47,15 @@ class SourceTextDeserializer(DefaultFieldDeserializer):
             #  per ora solo con questo, ma potenzialmente con altri simili
             data = json.loads(value)
             for root in data:
+                if not root:
+                    continue
                 for tab in root.get("items", []):
                     for key in KEYS_WITH_URL:
-                        value = tab.get(key, [])
-                        if value:
+                        url = tab.get(key, [])
+                        if url:
                             tab[key] = [
                                 x.get("UID", "")
-                                for x in value
+                                for x in url
                                 if x.get("UID", "")
                             ]
                     blocks = tab.get("blocks", {})
@@ -76,5 +78,5 @@ class SourceTextDeserializer(DefaultFieldDeserializer):
                                 block_value = handler(block_value)
 
                             blocks[id] = block_value
-            value = json.dumps(value)
+            value = json.dumps(data)
         return value
