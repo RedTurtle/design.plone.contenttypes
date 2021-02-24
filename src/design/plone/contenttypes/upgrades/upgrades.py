@@ -6,7 +6,6 @@ from design.plone.contenttypes.controlpanels.vocabularies import (
 from plone import api
 from copy import deepcopy
 from design.plone.contenttypes.upgrades.draftjs_converter import to_draftjs
-from plone import api
 from plone.app.textfield.value import RichTextValue
 from plone.app.upgrade.utils import installOrReinstallProduct
 from plone.dexterity.utils import iterSchemata
