@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 from collective.volto.blocksfield.field import BlocksField
+from design.plone.contenttypes.controlpanels.vocabularies import (
+    IVocabulariesControlPanel,
+)
+from plone import api
 from copy import deepcopy
 from design.plone.contenttypes.upgrades.draftjs_converter import to_draftjs
 from plone import api
@@ -7,6 +11,7 @@ from plone.app.textfield.value import RichTextValue
 from plone.app.upgrade.utils import installOrReinstallProduct
 from plone.dexterity.utils import iterSchemata
 from zope.schema import getFields
+
 
 import logging
 import json
@@ -19,8 +24,10 @@ DEFAULT_PROFILE = "profile-design.plone.contenttypes:default"
 # standard upgrades #
 
 
-def update_profile(context, profile):
-    context.runImportStepFromProfile(DEFAULT_PROFILE, profile)
+def update_profile(context, profile, run_dependencies=True):
+    context.runImportStepFromProfile(
+        DEFAULT_PROFILE, profile, run_dependencies
+    )
 
 
 def update_types(context):
@@ -32,7 +39,7 @@ def update_rolemap(context):
 
 
 def update_registry(context):
-    update_profile(context, "plone.app.registry")
+    update_profile(context, "plone.app.registry", run_dependencies=False)
 
 
 def update_catalog(context):
@@ -282,7 +289,49 @@ def to_1013(context):
         logger.info("No items affected.")
 
 
-def to_1100(context):
+def to_1014(context):
+    update_types(context)
+    portal_types = api.portal.get_tool(name="portal_types")
+    portal_types["Bando"].behaviors = tuple(
+        [
+            x
+            for x in portal_types["Bando"].behaviors
+            if x != "design.plone.contenttypes.behavior.argomenti"
+        ]
+    )
+
+
+def to_1015(context):
+    update_types(context)
+
+    # cleanup trasparenza behavior from CTs
+    portal_types = api.portal.get_tool(name="portal_types")
+    service_behaviors = portal_types["Servizio"].behaviors
+    to_remove = [
+        "design.plone.contenttypes.behavior.trasparenza",
+    ]
+    portal_types["Servizio"].behaviors = tuple(
+        [x for x in service_behaviors if x not in to_remove]
+    )
+
+
+def to_1016(context):
+    section_ids = ["amministrazione", "servizi", "novita", "documenti-e-dati"]
+    sections = []
+    portal = api.portal.get()
+    for id in section_ids:
+        item = portal.get(id, None)
+        if item:
+            sections.append({"title": item.title, "linkUrl": [item.UID()]})
+    settings = [{"rootPath": "/", "items": sections}]
+    api.portal.set_registry_record(
+        "search_sections",
+        json.dumps(settings),
+        interface=IVocabulariesControlPanel,
+    )
+
+
+def to_2000(context):
     # remove volto.blocks behavior from news and events and add new one
     update_types(context)
     portal_types = api.portal.get_tool(name="portal_types")

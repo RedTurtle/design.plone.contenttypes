@@ -4,16 +4,16 @@ from plone.app.registry.browser.controlpanel import ControlPanelFormWrapper
 from plone.app.registry.browser.controlpanel import RegistryEditForm
 from plone.z3cform import layout
 from z3c.form import form
-from zope.schema import List, TextLine
+from zope.schema import List, TextLine, SourceText
 from zope.interface import Interface
 
 
 class IVocabulariesControlPanel(Interface):
     tipologie_notizia = List(
-        title=_(u"Tipologie notizia"),
+        title=_(u"Tipologie Notizia"),
         description=_(
-            u"Inserisci i valori utilizzabili per le tipologie di"
-            " notizia; inserisci i valori uno per riga"
+            u"Inserisci i valori utilizzabili per le tipologie di una"
+            " Notizia; inserisci i valori uno per riga"
         ),
         required=True,
         default=[],
@@ -21,13 +21,34 @@ class IVocabulariesControlPanel(Interface):
     )
 
     tipologie_unita_organizzativa = List(
-        title=_(u"Tipologie unita organizzativa"),
+        title=_(u"Tipologie Unità Organizzativa"),
         description=_(
-            u"Inserisci i valori utilizzabili per le tipologie di"
-            " unita organizzativa; inserisci i valori uno per riga"
+            "Inserisci i valori utilizzabili per le tipologie di un'"
+            " Unità Organizzativa; inserisci i valori uno per riga"
         ),
         required=True,
         default=[],
+        value_type=TextLine(),
+    )
+
+    tipologie_documento = List(
+        title=_(u"Tipologie Documento"),
+        description=_(
+            u"Inserisci i valori utilizzabili per le tipologie di"
+            " un Documento; inserisci i valori uno per riga"
+        ),
+        required=True,
+        default=[
+            "Accordi tra enti",
+            "Atti normativi",
+            "Dataset",
+            "Documenti (tecnici) di supporto",
+            "Documenti albo pretorio",
+            "Documenti attività politica",
+            "Documenti funzionamento interno",
+            "Istanze",
+            "Modulistica",
+        ],
         value_type=TextLine(),
     )
 
@@ -39,6 +60,16 @@ class IVocabulariesControlPanel(Interface):
         required=True,
         default=[],
         value_type=TextLine(),
+    )
+
+    search_sections = SourceText(
+        title=_("search_sections_label", default="Sezioni ricerca"),
+        description=_(
+            "search_sections_help",
+            default="Inserire una lista di sezioni per la ricerca.",
+        ),
+        default="",
+        required=False,
     )
 
 

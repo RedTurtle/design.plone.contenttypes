@@ -33,7 +33,7 @@
     description=""
     profile="design.plone.contenttypes:default"
     handler=".upgrades.update_types"
-    />  
+    />
   <genericsetup:upgradeSteps
     source="1004"
     destination="1005"
@@ -161,13 +161,48 @@
   </genericsetup:upgradeSteps>
   <genericsetup:upgradeSteps
     source="1013"
-    destination="1100"
+    destination="1014"
+    profile="design.plone.contenttypes:default">
+      <genericsetup:upgradeStep
+        title="Fix Bando behaviors"
+        handler=".upgrades.to_1014"
+        />
+  </genericsetup:upgradeSteps>
+    <genericsetup:upgradeSteps
+    source="1014"
+    destination="1015"
+    profile="design.plone.contenttypes:default">
+      <genericsetup:upgradeStep
+        title="Deactivate Amministrazione trasparente"
+        handler=".upgrades.to_1015"
+        />
+  </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+    source="1015"
+    destination="1016"
+    profile="design.plone.contenttypes:default">
+      <genericsetup:upgradeStep
+        title="Add Image to CartellaModulistica addable types"
+        handler=".upgrades.update_types"
+        />
+      <genericsetup:upgradeStep
+        title="Make customizable tipologie_documento"
+        handler=".upgrades.update_registry"
+        />
+      <genericsetup:upgradeStep
+        title="Set defaults"
+        handler=".upgrades.to_1016"
+        />
+  </genericsetup:upgradeSteps>
+
+  <genericsetup:upgradeSteps
+    source="1016"
+    destination="2000"
     profile="design.plone.contenttypes:default">
       <genericsetup:upgradeStep
         title="Convert RichText fields into Blocks fields"
-        handler=".upgrades.to_1100"
+        handler=".upgrades.to_2000"
         />
   </genericsetup:upgradeSteps>  
-    
   
 </configure>

@@ -47,6 +47,11 @@
     />
 
     <utility
+        component=".controlapanel_vocabularies.TipologieDocumentoFactory"
+        name="design.plone.vocabularies.tipologie_documento"
+    />
+
+    <utility
         component=".controlapanel_vocabularies.LeadImageDimensionFactory"
         name="design.plone.vocabularies.leadimage_dimension"
     />
@@ -74,10 +79,6 @@
     <utility
         component=".argomenti_vocabulary.ArgomentiVocabularyFactory"
         name="design.plone.vocabularies.argomenti"
-    />
-    <utility
-        component=".tipologie_documento.TipologieDocumentoFactory"
-        name="design.plone.vocabularies.tipologie_documento"
     />
     <utility
         component=".events.EventLocationVocabularyFactory"
