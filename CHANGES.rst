@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.0.9 (unreleased)
+1.0.9 (2021-02-25)
 ------------------
 
 - Add search_sections field in control panel.
