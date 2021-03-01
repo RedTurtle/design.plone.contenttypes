@@ -21,7 +21,7 @@
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-2)
   - [Servizio](#servizio)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-3)
-  - [Unità Organizzativa](#unit%C3%A0-organizzativa)
+  - [Unità Organizzativa](#unità-organizzativa)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-4)
 - [Gestione vocabolari](#gestione-vocabolari)
 - [Gestione modulistica](#gestione-modulistica)
@@ -49,19 +49,19 @@ gestione di un sito Agid con Plone e Volto.
 
 ## Elenco tipi implementati
 
-- [ ] **Cartella Modulistica**
+- [x] **Cartella Modulistica**
 
   - [x] Definizione campi
   - [x] Ordine campi
-  - [ ] Vista su Volto completata
+  - [x] Vista su Volto completata
 
-- [ ] **Collegamento**
+- [x] **Collegamento**
 
   - [x] Definizione campi
   - [x] Ordine campi
   - [x] Indicizzazione testo
   - [x] Vista su Volto completata
-  - [ ] Selezione link interno
+  - [x] Selezione link interno
 
 - [ ] **Dataset**
 
@@ -103,12 +103,12 @@ gestione di un sito Agid con Plone e Volto.
   - [ ] Indicizzazione testo
   - [ ] Vista su Volto completata
 
-- [ ] **Modulo**
+- [x] **Modulo**
 
   - [x] Definizione campi
   - [x] Ordine campi
   - [x] Ordine fieldsets
-  - [ ] Vista su Volto completata
+  - [x] Vista su Volto completata
 
 - [x] **Notizia**
 
