@@ -42,7 +42,7 @@ class TestNews(unittest.TestCase):
                 "plone.versioning",
                 "plone.locking",
                 "plone.constraintypes",
-                "volto.blocks",
+                "collective.dexteritytextindexer",
             ),
         )
 

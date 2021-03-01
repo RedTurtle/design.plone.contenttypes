@@ -11,7 +11,8 @@ Changelog
   [cekk]
 - Customizable tipologie_documento.
   [cekk]
-
+- Use volto editor also in blocks.
+  [cekk]
 
 1.0.8 (2021-02-19)
 ------------------
