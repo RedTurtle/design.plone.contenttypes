@@ -2,10 +2,11 @@ Changelog
 =========
 
 
-1.0.10 (unreleased)
--------------------
+2.0.0 (unreleased)
+------------------
 
-- Nothing changed yet.
+- BREAKING CHANGE: use blocks editor also in other "text" fields.
+  [cekk]
 
 
 1.0.9 (2021-02-25)
@@ -17,8 +18,7 @@ Changelog
   [cekk]
 - Customizable tipologie_documento.
   [cekk]
-- Use volto editor also in blocks.
-  [cekk]
+
 
 1.0.8 (2021-02-19)
 ------------------
