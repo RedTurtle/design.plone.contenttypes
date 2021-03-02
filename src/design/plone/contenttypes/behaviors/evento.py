@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
+from collective import dexteritytextindexer
 from design.plone.contenttypes import _
-from plone.app.textfield import RichText
+from collective.volto.blocksfield.field import BlocksField
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
 from plone.autoform.interfaces import IFormFieldProvider
@@ -26,8 +27,15 @@ class IEvento(model.Schema):
         ),
         required=False,
     )
-
-    descrizione_destinatari = RichText(
+    descrizione_estesa = BlocksField(
+        title=_(u"descrizione_estesa", default=u"Descrizione estesa"),
+        required=False,
+        description=_(
+            "descrizione_estesa_help",
+            default="Descrizione dettagliata e completa.",
+        ),
+    )
+    descrizione_destinatari = BlocksField(
         title=_(
             u"descrizione_destinatari", default=u"Descrizione destinatari"
         ),
@@ -53,7 +61,7 @@ class IEvento(model.Schema):
         required=False,
     )
 
-    orari = RichText(
+    orari = BlocksField(
         title=_(u"orari", default=u"Informazioni sugli orari"),
         required=False,
         description=_(
@@ -62,7 +70,7 @@ class IEvento(model.Schema):
         ),
     )
 
-    prezzo = RichText(
+    prezzo = BlocksField(
         title=_(u"prezzo", default=u"Prezzo"),
         required=False,
         description=_(
@@ -86,7 +94,7 @@ class IEvento(model.Schema):
         ),
     )
 
-    organizzato_da_esterno = RichText(
+    organizzato_da_esterno = BlocksField(
         title=_(u"organizzato_da_esterno_label", default=u"Organizzatore"),
         required=False,
         description=_(
@@ -192,10 +200,15 @@ class IEvento(model.Schema):
 
     # custom fieldsets and order
     form.order_before(sottotitolo="ILeadImageBehavior.image")
+
     model.fieldset(
         "cose",
         label=_("cose_label", default=u"Cos'è"),
-        fields=["descrizione_destinatari", "persone_amministrazione"],
+        fields=[
+            "descrizione_estesa",
+            "descrizione_destinatari",
+            "persone_amministrazione"
+        ],
     )
     model.fieldset(
         "date_e_orari",
@@ -224,6 +237,8 @@ class IEvento(model.Schema):
         label=_("informazioni_label", default=u"Ulteriori informazioni"),
         fields=["patrocinato_da"],
     )
+
+    dexteritytextindexer.searchable("descrizione_estesa")
 
 
 @implementer(IEvento)

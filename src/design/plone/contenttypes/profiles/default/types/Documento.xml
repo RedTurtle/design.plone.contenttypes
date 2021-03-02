@@ -46,6 +46,7 @@
     <element value="design.plone.contenttypes.behavior.argomenti_documento" />
     <element value="design.plone.contenttypes.behavior.descrizione_estesa_documento" />
     <element value="design.plone.contenttypes.behavior.additional_help_infos"/>
+    <element value="collective.dexteritytextindexer"/>
   </property>
 
   <!-- View information -->

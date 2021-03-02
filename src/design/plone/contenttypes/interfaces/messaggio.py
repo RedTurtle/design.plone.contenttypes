@@ -10,7 +10,8 @@ class IMessaggio(model.Schema):
     """
 
     data_messaggio = schema.Date(
-        title=_(u"data_messaggio", default=u"Data del messaggio"), required=True
+        title=_(u"data_messaggio", default=u"Data del messaggio"),
+        required=True,
     )
 
     # "Titolo del messaggio" e "Descrizione" vengono lasciati in titolo e
@@ -32,15 +33,14 @@ class IMessaggio(model.Schema):
     )
 
     pratica_associata = schema.TextLine(
-        title=_(u"pratica_associata", default=u"Pratica associata"), required=True
+        title=_(u"pratica_associata", default=u"Pratica associata"),
+        required=True,
     )
-
-    # come gestiamo "Servizio che genera il messaggio"? Link, ref, RichText
-    # con solo il link alla pagina?
 
     data_scadenza_procedura = schema.Date(
         title=_(
-            u"data_scadenza_procedura", default=u"Data di scadenza della procedura"
+            u"data_scadenza_procedura",
+            default=u"Data di scadenza della procedura",
         ),
         required=False,
     )
@@ -54,5 +54,6 @@ class IMessaggio(model.Schema):
     )
 
     documenti_allegati = field.NamedFile(
-        title=_(u"documenti_allegati", default=u"Documenti allegati"), required=False
+        title=_(u"documenti_allegati", default=u"Documenti allegati"),
+        required=False,
     )

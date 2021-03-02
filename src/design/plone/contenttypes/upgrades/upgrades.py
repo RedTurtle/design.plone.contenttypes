@@ -1,18 +1,26 @@
 # -*- coding: utf-8 -*-
+from collective.volto.blocksfield.field import BlocksField
 from design.plone.contenttypes.controlpanels.vocabularies import (
     IVocabulariesControlPanel,
 )
 from plone import api
 from copy import deepcopy
+from design.plone.contenttypes.upgrades.draftjs_converter import to_draftjs
+from plone.app.textfield.value import RichTextValue
 from plone.app.upgrade.utils import installOrReinstallProduct
+from plone.dexterity.utils import iterSchemata
+from zope.schema import getFields
 
 
 import logging
 import json
+import six
 
 logger = logging.getLogger(__name__)
 
 DEFAULT_PROFILE = "profile-design.plone.contenttypes:default"
+
+# standard upgrades #
 
 
 def update_profile(context, profile, run_dependencies=True):
@@ -60,6 +68,9 @@ def remap_fields(mapping):
                     )
                 )
                 delattr(item, old)
+
+
+# custom ones #
 
 
 def to_1001(context):
@@ -317,3 +328,76 @@ def to_1016(context):
         json.dumps(settings),
         interface=IVocabulariesControlPanel,
     )
+
+
+def to_2000(context):
+    # remove volto.blocks behavior from news and events and add new one
+    update_types(context)
+    portal_types = api.portal.get_tool(name="portal_types")
+    for ptype in ["News Item", "Event"]:
+        portal_types[ptype].behaviors = tuple(
+            [x for x in portal_types[ptype].behaviors if x != "volto.blocks"]
+        )
+    portal_types["Pagina Argomento"].behaviors = tuple(
+        [
+            x
+            for x in portal_types["Pagina Argomento"].behaviors
+            if x != "design.plone.contenttypes.behavior.additional_help_infos"
+        ]
+    )
+    # now copy values in new fields
+    pc = api.portal.get_tool(name="portal_catalog")
+    brains = pc()
+    tot = len(brains)
+    i = 0
+    logger.info("### START CONVERSION FIELDS RICHTEXT -> DRAFTJS ###")
+    for brain in brains:
+        i += 1
+        if i % 1000 == 0:
+            logger.info("Progress: {}/{}".format(i, tot))
+        item = brain.getObject()
+        if brain.portal_type in ["Event", "News Item"]:
+            blocks = getattr(item, "blocks", {})
+            blocks_layout = getattr(item, "blocks_layout", {"items": []})[
+                "items"
+            ]
+            if not blocks:
+                continue
+            title_uid = ""
+            new_blocks = {}
+            for uid, block in blocks.items():
+                if block.get("@type", "") == "title":
+                    title_uid = uid
+                else:
+                    new_blocks[uid] = block
+            item.descrizione_estesa = {
+                "blocks": new_blocks,
+                "blocks_layout": {
+                    "items": [x for x in blocks_layout if x != title_uid]
+                },
+            }
+            item.blocks = None
+            item.blocks_layout = None
+        for schema in iterSchemata(item):
+            for name, field in getFields(schema).items():
+                if not isinstance(field, BlocksField):
+                    continue
+                value = field.get(item)
+                if not value:
+                    continue
+                if isinstance(value, six.string_types):
+                    value = "<p>{}</p>".format(value)
+                elif isinstance(value, RichTextValue):
+                    value = value.raw
+                else:
+                    continue
+                if value == "<p><br></p>":
+                    value = ""
+                try:
+                    new_value = to_draftjs(value)
+                except Exception as e:
+                    logger.error(
+                        "[NOT MIGRATED] - {}: {}".format(brain.getPath(), name)
+                    )
+                    raise e
+                setattr(item, name, new_value)

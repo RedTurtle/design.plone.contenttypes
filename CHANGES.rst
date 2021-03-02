@@ -17,7 +17,8 @@ Changelog
   [cekk]
 - Customizable tipologie_documento.
   [cekk]
-
+- Use volto editor also in blocks.
+  [cekk]
 
 1.0.8 (2021-02-19)
 ------------------
@@ -57,6 +58,7 @@ Changelog
 1.0.3 (2021-01-20)
 ------------------
 
+- **BREAKING CHANGE** Convert RichText fields into BlocksField.
 - Upgrade-step to fix unused listing block template.
   [cekk]
 

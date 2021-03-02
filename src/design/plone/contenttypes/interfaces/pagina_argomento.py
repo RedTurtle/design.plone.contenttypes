@@ -7,11 +7,22 @@ from plone.supermodel import model
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
 from zope.schema import TextLine
+from plone.app.textfield import RichText
 
 
 class IPaginaArgomento(model.Schema):
     """ Marker interface for PaginaArgomento
     """
+
+    ulteriori_informazioni = RichText(
+        title=_(u"ulteriori_informazioni", default=u"Ulteriori informazioni"),
+        description=_(
+            "ulteriori_informazioni_help",
+            default="Ulteriori informazioni non contemplate"
+            " dai campi precedenti.",
+        ),
+        required=False,
+    )
 
     icona = TextLine(
         title=_(u"icona", default=u"Icona"),
@@ -55,5 +66,12 @@ class IPaginaArgomento(model.Schema):
         unita_amministrative_responsabili="ILeadImageBehavior.image_caption"
     )
 
+    model.fieldset(
+        "informazioni",
+        label=_("informazioni_label", default=u"Ulteriori informazioni"),
+        fields=["ulteriori_informazioni"],
+    )
+
     # SearchableText fields
+    dexteritytextindexer.searchable("ulteriori_informazioni")
     dexteritytextindexer.searchable("unita_amministrative_responsabili")

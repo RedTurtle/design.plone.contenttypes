@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from plone import api
 from Products.CMFPlone.interfaces import INonInstallable
 from zope.interface import implementer
 
@@ -12,6 +13,11 @@ class HiddenProfiles(object):
 
 def post_install(context):
     """Post install script"""
+    portal_types = api.portal.get_tool(name="portal_types")
+    for ptype in ["News Item", "Event"]:
+        portal_types[ptype].behaviors = tuple(
+            [x for x in portal_types[ptype].behaviors if x != "volto.blocks"]
+        )
 
 
 def uninstall(context):

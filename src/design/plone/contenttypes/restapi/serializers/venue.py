@@ -9,7 +9,6 @@ from design.plone.contenttypes.restapi.serializers.summary import (
     DefaultJSONSummarySerializer,
 )
 from plone import api
-from plone.app.textfield.value import RichTextValue
 from plone.restapi.interfaces import ISerializeToJson
 from plone.restapi.interfaces import ISerializeToJsonSummary
 from plone.restapi.serializer.converters import json_compatible
@@ -101,7 +100,5 @@ class SerializeVenueToJsonSummary(DefaultJSONSummarySerializer):
             value = getattr(self.context, field, None)
             if callable(value):
                 value = value()
-            if isinstance(value, RichTextValue):
-                value = value.output
             summary[field] = json_compatible(value)
         return summary

@@ -2,8 +2,7 @@
 from collective import dexteritytextindexer
 from design.plone.contenttypes import _
 from design.plone.contenttypes.interfaces.documento import IDocumento
-from plone.app.textfield import RichText
-from plone.app.z3cform.widget import RichTextFieldWidget
+from collective.volto.blocksfield.field import BlocksField
 from plone.autoform import directives as form
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.dexterity.interfaces import IDexterityContent
@@ -13,7 +12,7 @@ from zope.interface import provider, implementer
 
 
 class IDescrizioneEstesaSchema(model.Schema):
-    descrizione_estesa = RichText(
+    descrizione_estesa = BlocksField(
         title=_(u"descrizione_estesa", default=u"Descrizione estesa"),
         required=False,
         description=_(
@@ -22,7 +21,6 @@ class IDescrizioneEstesaSchema(model.Schema):
         ),
     )
 
-    form.widget("descrizione_estesa", RichTextFieldWidget)
     dexteritytextindexer.searchable("descrizione_estesa")
 
 

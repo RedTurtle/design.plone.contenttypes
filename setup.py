@@ -58,6 +58,7 @@ setup(
         "plone.app.dexterity",
         "collective.dexteritytextindexer",
         "collective.venue[geolocation]",
+        "collective.volto.blocksfield",
         "plone.formwidget.geolocation",
         "redturtle.volto",
         "redturtle.bandi",
@@ -69,6 +70,7 @@ setup(
             # Plone KGS does not use this version, because it would break
             # Remove if your package shall be part of coredev.
             # plone_coredev tests as of 2016-04-01.
+            "collective.volto.blocksfield",
             "plone.testing>=5.0.0",
             "plone.app.contenttypes",
             "plone.app.robotframework[debug]",

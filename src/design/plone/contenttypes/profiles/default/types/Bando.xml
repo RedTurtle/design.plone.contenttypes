@@ -7,7 +7,9 @@
  </property>
  <property name="behaviors" purge="False">
     <element value="design.plone.contenttypes.behavior.argomenti_bando"/>
+    <element value="collective.dexteritytextindexer"/>
     <element value="design.plone.contenttypes.behavior.servizi_correlati" remove="True"/>
+    <element value="plone.richtext" remove="True" />
  </property>
  <property name="schema">design.plone.contenttypes.interfaces.bando.IBandoAgidSchema</property>
 </object>

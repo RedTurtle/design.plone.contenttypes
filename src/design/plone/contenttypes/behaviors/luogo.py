@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from collective import dexteritytextindexer
 from design.plone.contenttypes import _
-from plone.app.textfield import RichText
+from collective.volto.blocksfield.field import BlocksField
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
 from plone.autoform.interfaces import IFormFieldProvider
@@ -20,7 +20,7 @@ class ILuogo(model.Schema):
     """
 
     # moved to behavior under field name descrizione_estesa?
-    descrizione_completa = RichText(
+    descrizione_completa = BlocksField(
         title=_(u"descrizione_completa", default=u"Descrizione completa"),
         description=_(
             u"help_descrizione_completa",
@@ -41,7 +41,7 @@ class ILuogo(model.Schema):
         required=False,
     )
 
-    elementi_di_interesse = RichText(
+    elementi_di_interesse = BlocksField(
         title=_(u"elementi_di_interesse", default=u"Elementi di interesse"),
         description=_(
             u"help_elementi_di_interesse",
@@ -51,7 +51,7 @@ class ILuogo(model.Schema):
         required=False,
     )
 
-    modalita_accesso = RichText(
+    modalita_accesso = BlocksField(
         title=_(u"modalita_accesso", default=u"Modalita' di accesso"),
         description=_(
             u"help_modalita_accesso",
@@ -80,7 +80,7 @@ class ILuogo(model.Schema):
         default=[],
     )
 
-    struttura_responsabile = RichText(
+    struttura_responsabile = BlocksField(
         title=_(u"struttura_responsabile", default=u"Struttura responsabile"),
         required=False,
         description=_(

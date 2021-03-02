@@ -2,6 +2,8 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="plone.restapi">
+
     <adapter factory=".adapters.LeadImageJsonSchemaProvider"
              name="ILeadImageBehavior.image" />
+    
 </configure>

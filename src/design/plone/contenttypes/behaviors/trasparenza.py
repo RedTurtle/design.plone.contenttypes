@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from design.plone.contenttypes import _
-from plone.app.textfield import RichText
+from collective.volto.blocksfield.field import BlocksField
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.dexterity.interfaces import IDexterityContent
 from plone.supermodel import model
@@ -28,7 +28,7 @@ class ITrasparenza(model.Schema):
         ),
         required=False,
     )
-    descrizione = RichText(
+    descrizione = BlocksField(
         title=_(
             u"descrizione_label", default=u"Descrizione del procedimento",
         ),
@@ -47,7 +47,7 @@ class ITrasparenza(model.Schema):
         required=False,
     )
 
-    soggetti_esterni = RichText(
+    soggetti_esterni = BlocksField(
         title=_(
             u"soggetti_eserni_label",
             default=u"Soggetti esterni, nonché, strutture interne coinvolte nel procedimento",
@@ -59,7 +59,7 @@ class ITrasparenza(model.Schema):
         ),
     )
 
-    decorrenza_termine = RichText(
+    decorrenza_termine = BlocksField(
         title=_(
             u"decorrenza_termini_label",
             default=u"Decorrenza termine del procedimento",
@@ -70,7 +70,7 @@ class ITrasparenza(model.Schema):
             default="Inserisci la decorrenza termine del procedimento.",  # noqa
         ),
     )
-    fine_termine = RichText(
+    fine_termine = BlocksField(
         title=_(
             u"fine_termine_label", default=u"Fine termine del procedimento",
         ),
@@ -80,7 +80,7 @@ class ITrasparenza(model.Schema):
             default="Inserisci la fine termine del procedimento.",  # noqa
         ),
     )
-    tempo_medio = RichText(
+    tempo_medio = BlocksField(
         title=_(
             u"tempo_medio_label", default=u"Tempo medio del procedimento",
         ),
@@ -102,7 +102,7 @@ class ITrasparenza(model.Schema):
             default="Indicare se il procedimento prevede il silenzio assenso o la dichiarazione dell'interessato sostitutiva del provvedimento finale.",  # noqa
         ),
     )
-    provvedimento_finale = RichText(
+    provvedimento_finale = BlocksField(
         title=_(
             u"provvedimento_finale_label",
             default=u"Provvedimento del procedimento",
@@ -138,7 +138,7 @@ class ITrasparenza(model.Schema):
         required=False,
         default=[],
     )
-    organo_competente_provvedimento_finale = RichText(
+    organo_competente_provvedimento_finale = BlocksField(
         title=_(
             u"organo_competente_provvedimento_finale_label",
             default=u"Organo competente del provvedimento finale",
@@ -149,7 +149,7 @@ class ITrasparenza(model.Schema):
             default="Organo competente del provvedimento finale.",  # noqa
         ),
     )
-    modalita_richiesta_informazioni = RichText(
+    modalita_richiesta_informazioni = BlocksField(
         title=_(
             u"modalita_richiesta_informazioni_label",
             default=u"Modalità per richiedere informazioni",
@@ -171,7 +171,7 @@ class ITrasparenza(model.Schema):
         ),
         required=False,
     )
-    altre_modalita_invio = RichText(
+    altre_modalita_invio = BlocksField(
         title=_(
             u"altre_modalita_invio_label", default=u"Altre modalità di invio",
         ),
@@ -181,7 +181,7 @@ class ITrasparenza(model.Schema):
         ),
         required=False,
     )
-    atti_documenti_corredo = RichText(
+    atti_documenti_corredo = BlocksField(
         title=_(
             u"atti_documenti_corredo_label",
             default=u"Atti e documenti a corredo dell'istanza",
@@ -192,7 +192,7 @@ class ITrasparenza(model.Schema):
         ),
         required=False,
     )
-    reperimento_modulistica = RichText(
+    reperimento_modulistica = BlocksField(
         title=_(
             u"reperimento_modulistica_label",
             default=u"Dove reperire la modulistica",
@@ -203,7 +203,7 @@ class ITrasparenza(model.Schema):
         ),
         required=False,
     )
-    pagamenti = RichText(
+    pagamenti = BlocksField(
         title=_(u"pagamenti_label", default=u"Pagamenti previsti e modalità",),
         description=_(
             u"pagamenti_help",
@@ -211,7 +211,7 @@ class ITrasparenza(model.Schema):
         ),
         required=False,
     )
-    strumenti_tutela = RichText(
+    strumenti_tutela = BlocksField(
         title=_(u"strumenti_tutela_label", default=u"Strumenti di tutela"),
         description=_(
             u"strumenti_tutela_help",
@@ -220,7 +220,7 @@ class ITrasparenza(model.Schema):
         required=False,
     )
     # rt o collegamento a persona? esiste sempre?
-    titolare_potere_sostitutivo = RichText(
+    titolare_potere_sostitutivo = BlocksField(
         title=_(
             u"titolare_potere_sostitutivo_label",
             default=u"Titolare del potere sostitutivo",
@@ -231,7 +231,7 @@ class ITrasparenza(model.Schema):
             default="Eventuale titolare del potere sostitutivo.",  # noqa
         ),
     )
-    customer_satisfaction = RichText(
+    customer_satisfaction = BlocksField(
         title=_(
             u"customer_satisfaction_label",
             default=u"Risultati indagini di customer satisfaction",
@@ -242,7 +242,7 @@ class ITrasparenza(model.Schema):
             default="Risultati indagini di customer satisfaction.",  # noqa
         ),
     )
-    riferimenti_normativi = RichText(
+    riferimenti_normativi = BlocksField(
         title=_(
             u"riferimenti_normativi_label", default=u"Riferimenti normativi",
         ),

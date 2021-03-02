@@ -5,7 +5,6 @@ from design.plone.contenttypes.testing import (
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
-from plone.app.textfield.value import RichTextValue
 from plone.dexterity.fti import DexterityFTI
 from transaction import commit
 
@@ -57,18 +56,12 @@ class LuogoBehaviorIndexerFunctionalTest(unittest.TestCase):
 
         self.venue.quartiere = "quartiere"
         self.venue.circoscrizione = "Nord/ovest"
-        self.venue.descrizione_breve = RichTextValue(
-            raw="breve",
-            mimeType="text/html",
-            outputMimeType="text/html",
-            encoding="utf-8",
-        )
-        self.venue.orario_pubblico = RichTextValue(
-            raw="orario",
-            mimeType="text/html",
-            outputMimeType="text/html",
-            encoding="utf-8",
-        )
+        self.venue.descrizione_breve = {
+            "blocks": {"123456": {"searchableText": "breve"}}
+        }
+        self.venue.orario_pubblico = {
+            "blocks": {"123456": {"searchableText": "orario"}}
+        }
         self.venue.reindexObject(idxs="SearchableText")
         commit()
 

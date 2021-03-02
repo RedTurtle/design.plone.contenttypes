@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from collective import dexteritytextindexer
 from design.plone.contenttypes import _
-from plone.app.textfield import RichText
+from collective.volto.blocksfield.field import BlocksField
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
 from plone.supermodel import model
@@ -14,7 +14,7 @@ class IUnitaOrganizzativa(model.Schema):
     """Marker interface for content type UnitaOrganizzativa
     """
 
-    competenze = RichText(
+    competenze = BlocksField(
         title=_(u"competenze", default=u"Competenze"),
         description=_(
             "uo_competenze_help",
@@ -133,7 +133,7 @@ class IUnitaOrganizzativa(model.Schema):
         required=False,
     )
 
-    contact_info = RichText(
+    contact_info = BlocksField(
         title=_(
             u"contact_info", default=u"Informazioni di contatto generiche"
         ),

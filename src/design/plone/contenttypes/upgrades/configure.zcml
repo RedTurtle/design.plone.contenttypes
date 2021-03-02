@@ -194,4 +194,15 @@
         handler=".upgrades.to_1016"
         />
   </genericsetup:upgradeSteps>
+
+  <genericsetup:upgradeSteps
+    source="1016"
+    destination="2000"
+    profile="design.plone.contenttypes:default">
+      <genericsetup:upgradeStep
+        title="Convert RichText fields into Blocks fields"
+        handler=".upgrades.to_2000"
+        />
+  </genericsetup:upgradeSteps>  
+  
 </configure>

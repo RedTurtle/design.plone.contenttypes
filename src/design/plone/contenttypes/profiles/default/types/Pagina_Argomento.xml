@@ -51,7 +51,6 @@
     <element value="plone.leadimage" />
     <element value="collective.dexteritytextindexer"/>
     <element value="volto.blocks" />
-    <element value="design.plone.contenttypes.behavior.additional_help_infos"/>
   </property>
 
   <!-- View information -->

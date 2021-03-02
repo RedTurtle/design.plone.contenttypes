@@ -11,12 +11,13 @@ import collective.address
 import collective.dexteritytextindexer
 import collective.folderishtypes
 import collective.venue
+import collective.volto.blocksfield
 import collective.volto.cookieconsent
 import design.plone.contenttypes
 import plone.formwidget.geolocation
 import plone.restapi
-import redturtle.volto
 import redturtle.bandi
+import redturtle.volto
 from zope.configuration import xmlconfig
 
 
@@ -31,6 +32,7 @@ class DesignPloneContenttypesLayer(PloneSandboxLayer):
         self.loadZCML(package=collective.dexteritytextindexer)
         self.loadZCML(package=collective.folderishtypes)
         self.loadZCML(package=collective.venue)
+        self.loadZCML(package=collective.volto.blocksfield)
         self.loadZCML(package=collective.volto.cookieconsent)
         self.loadZCML(
             package=design.plone.contenttypes, context=configurationContext
@@ -77,6 +79,7 @@ class DesignPloneContenttypesRestApiLayer(PloneRestApiDXLayer):
         self.loadZCML(package=collective.dexteritytextindexer)
         self.loadZCML(package=collective.folderishtypes)
         self.loadZCML(package=collective.venue)
+        self.loadZCML(package=collective.volto.blocksfield)
         self.loadZCML(package=collective.volto.cookieconsent)
         self.loadZCML(package=design.plone.contenttypes)
         self.loadZCML(name="overrides.zcml", package=design.plone.contenttypes)

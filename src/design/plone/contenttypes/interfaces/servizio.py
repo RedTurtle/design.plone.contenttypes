@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from collective import dexteritytextindexer
 from design.plone.contenttypes import _
-from plone.app.textfield import RichText
+from collective.volto.blocksfield.field import BlocksField
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
 from plone.supermodel import model
@@ -35,7 +35,7 @@ class IServizio(model.Schema):
         ),
     )
 
-    motivo_stato_servizio = RichText(
+    motivo_stato_servizio = BlocksField(
         title=_(
             u"motivo_stato_servizio_label",
             default=u"Motivo dello stato del servizio nel caso non sia attivo",
@@ -47,7 +47,7 @@ class IServizio(model.Schema):
         ),
     )
 
-    a_chi_si_rivolge = RichText(
+    a_chi_si_rivolge = BlocksField(
         title=_(u"a_chi_si_rivolge_label", default=u"A chi si rivolge"),
         required=False,
         description=_(
@@ -56,7 +56,7 @@ class IServizio(model.Schema):
         ),
     )
 
-    chi_puo_presentare = RichText(
+    chi_puo_presentare = BlocksField(
         title=_(u"chi_puo_presentare_label", default=u"Chi può presentare"),
         required=False,
         description=_(
@@ -66,7 +66,7 @@ class IServizio(model.Schema):
         ),
     )
 
-    copertura_geografica = RichText(
+    copertura_geografica = BlocksField(
         title=_(
             u"copertura_geografica_label", default=u"Copertura geografica"
         ),
@@ -78,7 +78,7 @@ class IServizio(model.Schema):
         ),
     )
 
-    come_si_fa = RichText(
+    come_si_fa = BlocksField(
         title=_(u"come_si_fa", default=u"Come si fa"),
         required=False,
         description=_(
@@ -88,7 +88,7 @@ class IServizio(model.Schema):
         ),
     )
 
-    cosa_si_ottiene = RichText(
+    cosa_si_ottiene = BlocksField(
         title=_(u"cosa_si_ottiene", default=u"Cosa si ottiene"),
         description=_(
             "cosa_si_ottiene_help",
@@ -98,7 +98,7 @@ class IServizio(model.Schema):
         required=False,
     )
 
-    procedure_collegate = RichText(
+    procedure_collegate = BlocksField(
         title=_(
             u"procedure_collegate", default=u"Procedure collegate all'esito"
         ),
@@ -111,7 +111,7 @@ class IServizio(model.Schema):
         ),
     )
 
-    canale_digitale = RichText(
+    canale_digitale = BlocksField(
         title=_(u"canale_digitale", default=u"Canale digitale"),
         description=_(
             "canale_digitale_help",
@@ -121,7 +121,7 @@ class IServizio(model.Schema):
         required=False,
     )
 
-    autenticazione = RichText(
+    autenticazione = BlocksField(
         title=_(u"autenticazione", default=u"Autenticazione"),
         description=_(
             "autenticazione_help",
@@ -143,7 +143,7 @@ class IServizio(model.Schema):
         ),
     )
 
-    dove_rivolgersi_extra = RichText(
+    dove_rivolgersi_extra = BlocksField(
         title=_(
             u"dove_rivolgersi_extra",
             default=u"Dove rivolgersi: informazioni aggiuntive",
@@ -156,7 +156,7 @@ class IServizio(model.Schema):
         required=False,
     )
 
-    prenota_appuntamento = RichText(
+    prenota_appuntamento = BlocksField(
         title=_(u"prenota_appuntamento", default=u"Prenota un appuntamento"),
         description=_(
             "prenota_appuntamento_help",
@@ -167,7 +167,7 @@ class IServizio(model.Schema):
         required=False,
     )
 
-    tempi_e_scadenze = RichText(
+    tempi_e_scadenze = BlocksField(
         title=_(u"tempi_e_scadenze", default=u"Tempi e scadenze"),
         required=False,
         description=_(
@@ -177,7 +177,7 @@ class IServizio(model.Schema):
         ),
     )
 
-    cosa_serve = RichText(
+    cosa_serve = BlocksField(
         title=_(u"cosa_serve", default=u"Cosa serve"),
         required=True,
         description=_(
@@ -186,7 +186,7 @@ class IServizio(model.Schema):
         ),
     )
 
-    costi = RichText(
+    costi = BlocksField(
         title=_(u"costi", default=u"Costi"),
         required=False,
         description=_(
@@ -196,7 +196,7 @@ class IServizio(model.Schema):
         ),
     )
 
-    vincoli = RichText(
+    vincoli = BlocksField(
         title=_(u"vincoli", default=u"Vincoli"),
         required=False,
         description=_(
@@ -205,7 +205,7 @@ class IServizio(model.Schema):
         ),
     )
 
-    casi_particolari = RichText(
+    casi_particolari = BlocksField(
         title=_(u"casi_particolari", default=u"Casi particolari"),
         required=False,
         description=_(
@@ -260,7 +260,7 @@ class IServizio(model.Schema):
         required=False,
     )
 
-    link_siti_esterni = RichText(
+    link_siti_esterni = BlocksField(
         title=_(u"link_siti_esterni", default=u"Link a siti esterni"),
         required=False,
         description=_(
