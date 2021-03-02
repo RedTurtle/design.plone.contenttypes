@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-2.0.0 (unreleased)
+2.0.0 (2021-03-02)
 ------------------
 
 - BREAKING CHANGE: use blocks editor also in other "text" fields.
