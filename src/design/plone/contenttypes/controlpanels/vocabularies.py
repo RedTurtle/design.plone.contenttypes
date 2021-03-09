@@ -16,7 +16,7 @@ class IVocabulariesControlPanel(Interface):
             " Notizia; inserisci i valori uno per riga"
         ),
         required=True,
-        default=[],
+        default=["Avviso", "Comunicato stampa", "Novità"],
         value_type=TextLine(),
     )
 
@@ -27,7 +27,7 @@ class IVocabulariesControlPanel(Interface):
             " Unità Organizzativa; inserisci i valori uno per riga"
         ),
         required=True,
-        default=[],
+        default=["Politica", "Amministrativa", "Altro"],
         value_type=TextLine(),
     )
 
@@ -58,7 +58,12 @@ class IVocabulariesControlPanel(Interface):
             u"Inserire le dimensioni nella forma di esempio PortalType|900x900"
         ),
         required=True,
-        default=[],
+        default=[
+            "News Item|1920x600",
+            "Servizio|1920x600",
+            "UnitaOrganizzativa|1920x600",
+            "Persona|180x100",
+        ],
         value_type=TextLine(),
     )
 

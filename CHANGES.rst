@@ -5,7 +5,8 @@ Changelog
 2.0.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix defaults for vocabularies.
+  [cekk]
 
 
 2.0.0 (2021-03-02)
