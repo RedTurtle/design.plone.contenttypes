@@ -7,7 +7,8 @@ Changelog
 
 - Fix defaults for vocabularies.
   [cekk]
-
+- Add remoteUrl to summarize serialization for Link content-type.
+  [cekk]
 
 2.0.0 (2021-03-02)
 ------------------
