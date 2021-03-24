@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-2.0.1 (unreleased)
+2.0.1 (2021-03-24)
 ------------------
 
 - Fix defaults for vocabularies.
