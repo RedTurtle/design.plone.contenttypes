@@ -1,16 +1,17 @@
 # -*- coding: utf-8 -*-
 from collective.volto.blocksfield.field import BlocksField
-from design.plone.contenttypes.controlpanels.vocabularies import (
-    IVocabulariesControlPanel,
-)
-from plone import api
 from copy import deepcopy
 from design.plone.contenttypes.upgrades.draftjs_converter import to_draftjs
+from plone import api
 from plone.app.textfield.value import RichTextValue
 from plone.app.upgrade.utils import installOrReinstallProduct
 from plone.dexterity.utils import iterSchemata
+from transaction import commit
 from zope.schema import getFields
 
+from design.plone.contenttypes.controlpanels.vocabularies import (
+    IVocabulariesControlPanel,
+)
 
 import logging
 import json
@@ -401,3 +402,24 @@ def to_2000(context):
                     )
                     raise e
                 setattr(item, name, new_value)
+
+
+def to_2002(context):
+    """ Per l'aggiornamento del vocabolario tipologie_persona, sistemiamo
+    tutti quelli già presenti.
+    """
+    type_mapping = {
+        'altro': 'Altro tipo',
+        'politica': 'Politica',
+        'amministrativa': 'Amministrativa',
+    }
+    logger.info("Fixing 'Tipologia Persona'...")
+    fixed_total = 0
+    for brain in api.content.find(portal_type="Persona"):
+        item = brain.getObject()
+        if item.tipologia_persona in type_mapping:
+            item.tipologia_persona = type_mapping[item.tipologia_persona]
+            fixed_total += 1
+        commit()
+    logger.info("Fixing 'Tipologia Persona': DONE")
+    logger.info("Updated {} objects".format(fixed_total))

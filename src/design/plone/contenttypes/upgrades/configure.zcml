@@ -203,6 +203,20 @@
         title="Convert RichText fields into Blocks fields"
         handler=".upgrades.to_2000"
         />
-  </genericsetup:upgradeSteps>  
-  
+  </genericsetup:upgradeSteps>
+
+  <genericsetup:upgradeSteps
+    source="2000"
+    destination="2002"
+    profile="design.plone.contenttypes:default">
+      <genericsetup:upgradeStep
+        title="Make customizable tipologie_persona"
+        handler=".upgrades.update_registry"
+        />
+      <genericsetup:upgradeStep
+        title="Fix existing tipologie_persona"
+        handler=".upgrades.to_2002  "
+        />
+  </genericsetup:upgradeSteps>
+
 </configure>

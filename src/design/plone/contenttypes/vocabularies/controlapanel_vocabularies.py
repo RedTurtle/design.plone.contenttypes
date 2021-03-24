@@ -43,6 +43,11 @@ class TipologieDocumento(BaseVocabulary):
 
 
 @implementer(IVocabularyFactory)
+class TipologiePersona(BaseVocabulary):
+    field = "tipologie_persona"
+
+
+@implementer(IVocabularyFactory)
 class LeadImageDimension(BaseVocabulary):
     field = "lead_image_dimension"
 
@@ -64,6 +69,7 @@ class LeadImageDimension(BaseVocabulary):
 LeadImageDimensionFactory = LeadImageDimension()
 TipologieNotiziaFactory = TipologieNotizia()
 TipologieDocumentoFactory = TipologieDocumento()
+TipologiePersonaFactory = TipologiePersona()
 TipologieUnitaOrganizzativaVocabularyFactory = (
     TipologieUnitaOrganizzativaVocabulary()
 )
