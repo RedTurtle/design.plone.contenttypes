@@ -5,7 +5,8 @@ Changelog
 2.0.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Now you can customize tipologie_persona from the control panel.
+  [arsenico13]
 
 
 2.0.1 (2021-03-24)
