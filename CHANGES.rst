@@ -17,6 +17,7 @@ Changelog
 - Add remoteUrl to summarize serialization for Link content-type.
   [cekk]
 
+
 2.0.0 (2021-03-02)
 ------------------
 
@@ -48,6 +49,7 @@ Changelog
 - Do not run dependencies when upgrading plone.app.registry.
   [cekk]
 
+
 1.0.6 (2021-02-15)
 ------------------
 
@@ -62,6 +64,7 @@ Changelog
   [deodorhunter]
 - Remove reference limit in "persone_struttura" field.
   [cekk]
+
 
 1.0.4 (2021-02-05)
 ------------------
@@ -85,6 +88,7 @@ Changelog
   [cekk]
 - Do not break *eventoCreateHandler* when copying and event.
   [cekk]
+
 
 1.0.1 (2020-12-14)
 ------------------
