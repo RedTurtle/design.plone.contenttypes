@@ -52,6 +52,21 @@ class IVocabulariesControlPanel(Interface):
         value_type=TextLine(),
     )
 
+    tipologie_persona = List(
+        title=_(u"Tipologie Persona"),
+        description=_(
+            u"Inserisci i valori utilizzabili per le tipologie di"
+            " una Persona; inserisci i valori uno per riga"
+        ),
+        required=True,
+        default=[
+            "Amministrativa",
+            "Politica",
+            "Altro tipo",
+        ],
+        value_type=TextLine(),
+    )
+
     lead_image_dimension = List(
         title=_(u"Indicare le dimensioni delle lead image dei contenuti"),
         description=_(
