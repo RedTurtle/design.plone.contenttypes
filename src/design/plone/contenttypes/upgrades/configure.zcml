@@ -213,6 +213,10 @@
         title="Make customizable tipologie_persona"
         handler=".upgrades.update_registry"
         />
+      <genericsetup:upgradeStep
+        title="Fix existing tipologie_persona"
+        handler=".upgrades.to_2002  "
+        />
   </genericsetup:upgradeSteps>
 
 </configure>

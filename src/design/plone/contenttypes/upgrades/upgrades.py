@@ -401,3 +401,16 @@ def to_2000(context):
                     )
                     raise e
                 setattr(item, name, new_value)
+
+
+def to_2002(context):
+    """ Per l'aggiornamento del vocabolario tipologie_persona, sistemiamo
+    tutti quelli già presenti.
+    """
+    for brain in api.content.find(portal_type="Persona"):
+        item = brain.getObject()
+        import pdb; pdb.set_trace()
+        # if item.email:
+        #     item.email = [item.email]
+        # if item.telefono:
+        #     item.telefono = [item.telefono]
