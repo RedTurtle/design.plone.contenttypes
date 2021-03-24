@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-2.0.2 (unreleased)
+2.0.2 (2021-03-24)
 ------------------
 
 - Now you can customize tipologie_persona from the control panel.
