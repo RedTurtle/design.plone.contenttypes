@@ -5,7 +5,9 @@ Changelog
 2.0.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Added behavior `plone.translatable` by default on almost all the content
+  types.
+  [arsenico13]
 
 
 2.0.2 (2021-03-24)
