@@ -52,6 +52,7 @@
     <element value="design.plone.contenttypes.behavior.argomenti"/>
     <element value="collective.dexteritytextindexer"/>
     <element value="design.plone.contenttypes.behavior.additional_help_infos"/>
+    <element value="plone.translatable"/>
   </property>
 
   <!-- View information -->

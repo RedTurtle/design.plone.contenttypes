@@ -17,6 +17,8 @@
   <element value="design.plone.contenttypes.behavior.geolocation_venue"/>
   <element value="design.plone.contenttypes.behavior.additional_help_infos"/>
   <element value="collective.dexteritytextindexer"/>
+  <element value="plone.translatable"/>
+  <!-- remove unused behaviors -->
   <element value="collective.address.behaviors.IContact" remove="True"/>
   <element value="collective.address.behaviors.ISocial" remove="True"/>
   <element value="design.plone.contenttypes.behavior.servizi_correlati" remove="True"/>

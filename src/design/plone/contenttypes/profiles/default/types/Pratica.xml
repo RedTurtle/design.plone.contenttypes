@@ -47,6 +47,7 @@
     <element value="plone.categorization"/>
     <element value="plone.basic"/>
     <element value="plone.locking" />
+    <element value="plone.translatable"/>
   </property>
 
   <!-- View information -->
