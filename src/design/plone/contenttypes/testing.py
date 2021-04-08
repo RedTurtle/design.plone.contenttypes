@@ -53,6 +53,7 @@ class DesignPloneContenttypesLayer(PloneSandboxLayer):
 
     def setUpPloneSite(self, portal):
         applyProfile(portal, "design.plone.contenttypes:default")
+        applyProfile(portal, "plone.app.caching:default")
 
 
 DESIGN_PLONE_CONTENTTYPES_FIXTURE = DesignPloneContenttypesLayer()
@@ -94,6 +95,7 @@ class DesignPloneContenttypesRestApiLayer(PloneRestApiDXLayer):
 
     def setUpPloneSite(self, portal):
         applyProfile(portal, "design.plone.contenttypes:default")
+        applyProfile(portal, "plone.app.caching:default")
 
 
 DESIGN_PLONE_CONTENTTYPES_API_FIXTURE = DesignPloneContenttypesRestApiLayer()
