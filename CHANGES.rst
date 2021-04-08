@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-2.0.3 (unreleased)
+2.0.3 (2021-04-08)
 ------------------
 
 - Added behavior `plone.translatable` by default on almost all the content
