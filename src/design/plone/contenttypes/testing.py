@@ -39,6 +39,7 @@ class DesignPloneContenttypesLayer(PloneSandboxLayer):
         self.loadZCML(
             package=design.plone.contenttypes, context=configurationContext
         )
+        self.loadZCML(package=plone.app.caching)
         self.loadZCML(package=plone.formwidget.geolocation)
         self.loadZCML(package=plone.restapi)
         self.loadZCML(package=redturtle.volto)
@@ -85,6 +86,7 @@ class DesignPloneContenttypesRestApiLayer(PloneRestApiDXLayer):
         self.loadZCML(package=collective.volto.cookieconsent)
         self.loadZCML(package=design.plone.contenttypes)
         self.loadZCML(name="overrides.zcml", package=design.plone.contenttypes)
+        self.loadZCML(package=plone.app.caching)
         self.loadZCML(package=plone.formwidget.geolocation)
         self.loadZCML(package=plone.restapi)
         self.loadZCML(package=redturtle.volto)
