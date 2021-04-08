@@ -43,6 +43,7 @@ class TestNews(unittest.TestCase):
                 "plone.locking",
                 "plone.constraintypes",
                 "collective.dexteritytextindexer",
+                "plone.translatable",
             ),
         )
 

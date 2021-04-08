@@ -29,6 +29,7 @@ class TestDocument(unittest.TestCase):
                 "plone.basic",
                 "plone.locking",
                 "volto.blocks",
+                "plone.translatable",
             ),
         )
 

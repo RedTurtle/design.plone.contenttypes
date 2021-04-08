@@ -45,6 +45,7 @@ class TestPersona(unittest.TestCase):
                 "plone.locking",
                 "design.plone.contenttypes.behavior.additional_help_infos",
                 "collective.dexteritytextindexer",
+                "plone.translatable",
             ),
         )
 

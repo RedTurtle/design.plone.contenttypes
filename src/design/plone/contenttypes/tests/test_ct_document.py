@@ -31,5 +31,6 @@ class TestDocument(unittest.TestCase):
                 "plone.constraintypes",
                 "volto.blocks",
                 "design.plone.contenttypes.behavior.info_testata",
+                "plone.translatable",
             ),
         )
