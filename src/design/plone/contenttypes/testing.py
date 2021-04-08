@@ -14,10 +14,12 @@ import collective.venue
 import collective.volto.blocksfield
 import collective.volto.cookieconsent
 import design.plone.contenttypes
+import plone.app.caching
 import plone.formwidget.geolocation
 import plone.restapi
 import redturtle.bandi
 import redturtle.volto
+
 from zope.configuration import xmlconfig
 
 
