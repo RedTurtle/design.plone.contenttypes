@@ -27,5 +27,6 @@ class TestDocument(unittest.TestCase):
                 "plone.relateditems",
                 "plone.locking",
                 "design.plone.contenttypes.behavior.multi_file",
+                "plone.translatable",
             ),
         )

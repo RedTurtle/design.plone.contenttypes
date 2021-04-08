@@ -21,6 +21,7 @@
    <element value="plone.locking"/>
    <element value="plone.constraintypes"/>
    <element value="collective.dexteritytextindexer"/>
+   <element value="plone.translatable"/>
  </property>
- 
+
 </object>

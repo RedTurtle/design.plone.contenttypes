@@ -44,6 +44,7 @@ class TestLuogo(unittest.TestCase):
                 "design.plone.contenttypes.behavior.geolocation_venue",
                 "design.plone.contenttypes.behavior.additional_help_infos",
                 "collective.dexteritytextindexer",
+                "plone.translatable",
             ),
         )
 

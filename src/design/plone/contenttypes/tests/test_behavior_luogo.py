@@ -43,8 +43,8 @@ class LuogoBehaviorIndexerFunctionalTest(unittest.TestCase):
 
     def test_luogo_behavior_fields_inexed_for_venue(self):
         # Non sembra deterministico il testing delle cose indicizzate con
-        #  collective.dexteritytextindexer. Per ora togliamo. Poi se capiamo come
-        # gestire lo rimetteremo.
+        # collective.dexteritytextindexer. Per ora togliamo. Poi se capiamo
+        # come gestire lo rimetteremo.
         return
         self.assertTrue(True)
         res = api.content.find(UID=self.venue.UID())

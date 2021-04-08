@@ -3,6 +3,7 @@
    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
  <property name="behaviors" purge="False">
   <element value="design.plone.contenttypes.behavior.info_testata"/>
+  <element value="plone.translatable"/>
  </property>
    <property name="view_methods">
     <element value="document_view" />

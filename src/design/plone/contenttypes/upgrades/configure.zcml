@@ -219,4 +219,14 @@
         />
   </genericsetup:upgradeSteps>
 
+  <genericsetup:upgradeSteps
+    source="2002"
+    destination="2003"
+    profile="design.plone.contenttypes:default">
+      <genericsetup:upgradeStep
+        title="Update types info: new behavior added by default"
+        handler=".upgrades.update_types"
+        />
+  </genericsetup:upgradeSteps>
+
 </configure>

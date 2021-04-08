@@ -48,6 +48,7 @@ class TestEvent(unittest.TestCase):
                 "plone.locking",
                 "plone.constraintypes",
                 "collective.dexteritytextindexer",
+                "plone.translatable",
             ),
         )
 

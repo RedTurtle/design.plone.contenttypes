@@ -14,10 +14,12 @@ import collective.venue
 import collective.volto.blocksfield
 import collective.volto.cookieconsent
 import design.plone.contenttypes
+import plone.app.caching
 import plone.formwidget.geolocation
 import plone.restapi
 import redturtle.bandi
 import redturtle.volto
+
 from zope.configuration import xmlconfig
 
 
@@ -37,6 +39,7 @@ class DesignPloneContenttypesLayer(PloneSandboxLayer):
         self.loadZCML(
             package=design.plone.contenttypes, context=configurationContext
         )
+        self.loadZCML(package=plone.app.caching)
         self.loadZCML(package=plone.formwidget.geolocation)
         self.loadZCML(package=plone.restapi)
         self.loadZCML(package=redturtle.volto)
@@ -49,6 +52,7 @@ class DesignPloneContenttypesLayer(PloneSandboxLayer):
         self.loadZCML(package=redturtle.bandi)
 
     def setUpPloneSite(self, portal):
+        applyProfile(portal, "plone.app.caching:default")
         applyProfile(portal, "design.plone.contenttypes:default")
 
 
@@ -83,12 +87,14 @@ class DesignPloneContenttypesRestApiLayer(PloneRestApiDXLayer):
         self.loadZCML(package=collective.volto.cookieconsent)
         self.loadZCML(package=design.plone.contenttypes)
         self.loadZCML(name="overrides.zcml", package=design.plone.contenttypes)
+        self.loadZCML(package=plone.app.caching)
         self.loadZCML(package=plone.formwidget.geolocation)
         self.loadZCML(package=plone.restapi)
         self.loadZCML(package=redturtle.volto)
         self.loadZCML(package=redturtle.bandi)
 
     def setUpPloneSite(self, portal):
+        applyProfile(portal, "plone.app.caching:default")
         applyProfile(portal, "design.plone.contenttypes:default")
 
 
