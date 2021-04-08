@@ -52,8 +52,8 @@ class DesignPloneContenttypesLayer(PloneSandboxLayer):
         self.loadZCML(package=redturtle.bandi)
 
     def setUpPloneSite(self, portal):
-        applyProfile(portal, "design.plone.contenttypes:default")
         applyProfile(portal, "plone.app.caching:default")
+        applyProfile(portal, "design.plone.contenttypes:default")
 
 
 DESIGN_PLONE_CONTENTTYPES_FIXTURE = DesignPloneContenttypesLayer()
@@ -94,8 +94,8 @@ class DesignPloneContenttypesRestApiLayer(PloneRestApiDXLayer):
         self.loadZCML(package=redturtle.bandi)
 
     def setUpPloneSite(self, portal):
-        applyProfile(portal, "design.plone.contenttypes:default")
         applyProfile(portal, "plone.app.caching:default")
+        applyProfile(portal, "design.plone.contenttypes:default")
 
 
 DESIGN_PLONE_CONTENTTYPES_API_FIXTURE = DesignPloneContenttypesRestApiLayer()
