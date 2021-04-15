@@ -5,8 +5,8 @@ Changelog
 2.0.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Fix typo.
+  [cekk]
 
 2.0.3 (2021-04-08)
 ------------------
