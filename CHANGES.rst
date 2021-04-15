@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+no (unreleased)
+---------------
+
+- Nothing changed yet.
+
+
 2.0.4 (2021-04-15)
 ------------------
 
