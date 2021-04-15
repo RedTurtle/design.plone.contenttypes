@@ -36,6 +36,6 @@
     <element value="plone.eventcontact" remove="True" />
     <element value="collective.venue.behaviors.ILocation" remove="True" />
     <element value="collective.venue.behaviors.IOrganizer" remove="True" />
-    <element value="volto.blocks" rermove="True" />
+    <element value="volto.blocks" remove="True" />
   </property>
 </object>
