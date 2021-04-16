@@ -6,6 +6,7 @@
 <property name="schema">collective.venue.interfaces.IVenue</property>
  <property name="behaviors" purge="True">
   <element value="plone.app.content.interfaces.INameFromTitle"/>
+  <element value="plone.app.dexterity.behaviors.id.IShortName"/>
   <element value="plone.app.dexterity.behaviors.metadata.IBasic"/>
   <element value="plone.app.dexterity.behaviors.metadata.ICategorization"/>
   <element value="plone.relateditems" />

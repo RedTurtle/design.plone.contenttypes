@@ -2,10 +2,11 @@ Changelog
 =========
 
 
-no (unreleased)
----------------
+2.0.5 (unreleased)
+-------------------
 
-- Nothing changed yet.
+- Add `plone.app.dexterity.behaviors.id.IShortName`behavior to Venue content-type to allow renaming.
+  [cekk]
 
 
 2.0.4 (2021-04-15)

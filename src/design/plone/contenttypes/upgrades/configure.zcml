@@ -229,4 +229,13 @@
         />
   </genericsetup:upgradeSteps>
 
+  <genericsetup:upgradeSteps
+    source="2003"
+    destination="2004"
+    profile="design.plone.contenttypes:default">
+      <genericsetup:upgradeStep
+        title="Update types info: add IShortName behavior to Venue"
+        handler=".upgrades.update_types"
+        />
+  </genericsetup:upgradeSteps>
 </configure>
