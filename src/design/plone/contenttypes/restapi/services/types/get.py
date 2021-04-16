@@ -130,6 +130,7 @@ FIELDSETS_ORDER = {
         "orari",
         "contatti",
         "informazioni",
+        "settings",
         "correlati",
         "categorization",
     ],

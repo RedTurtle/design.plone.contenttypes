@@ -5,7 +5,8 @@ Changelog
 2.0.6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix Venue fields order.
+  [cekk]
 
 
 2.0.5 (2021-04-16)
