@@ -28,11 +28,11 @@ class TestLuogo(unittest.TestCase):
 
     def test_behaviors_enabled_for_luogo(self):
         portal_types = api.portal.get_tool(name="portal_types")
-
         self.assertEqual(
             portal_types["Venue"].behaviors,
             (
                 "plone.app.content.interfaces.INameFromTitle",
+                "plone.app.dexterity.behaviors.id.IShortName",
                 "plone.app.dexterity.behaviors.metadata.IBasic",
                 "plone.app.dexterity.behaviors.metadata.ICategorization",
                 "plone.relateditems",
