@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-2.0.6 (unreleased)
+2.0.6 (2021-04-16)
 ------------------
 
 - Fix Venue fields order.
