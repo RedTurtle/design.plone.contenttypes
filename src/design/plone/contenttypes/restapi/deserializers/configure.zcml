@@ -5,4 +5,5 @@
     <adapter factory=".persona.DeserializePersonaFromJson" />
     <adapter factory=".dxfields.GeolocationFieldDeserializer" />
     <adapter factory=".dxfields.SourceTextDeserializer" />
+    <adapter factory=".controlpanel.DesignPloneControlPanelSerializeFromJson" />
 </configure>

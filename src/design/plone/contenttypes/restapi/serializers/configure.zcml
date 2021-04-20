@@ -17,6 +17,6 @@
     <adapter factory=".venue.SerializeVenueToJsonSummary" />
     <adapter factory=".venue.VenueSerializer" />
     <adapter factory=".bando.BandoSerializer" />
-
+    <adapter factory=".controlpanel.DesignPloneControlPanelSerializeToJson" />
     
 </configure>

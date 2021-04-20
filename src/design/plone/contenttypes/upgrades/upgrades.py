@@ -9,8 +9,8 @@ from plone.dexterity.utils import iterSchemata
 from transaction import commit
 from zope.schema import getFields
 
-from design.plone.contenttypes.controlpanels.vocabularies import (
-    IVocabulariesControlPanel,
+from design.plone.contenttypes.controlpanels.settings import (
+    IDesignPloneSettings,
 )
 
 import logging
@@ -327,7 +327,7 @@ def to_1016(context):
     api.portal.set_registry_record(
         "search_sections",
         json.dumps(settings),
-        interface=IVocabulariesControlPanel,
+        interface=IDesignPloneSettings,
     )
 
 
@@ -409,9 +409,9 @@ def to_2002(context):
     tutti quelli già presenti.
     """
     type_mapping = {
-        'altro': 'Altro tipo',
-        'politica': 'Politica',
-        'amministrativa': 'Amministrativa',
+        "altro": "Altro tipo",
+        "politica": "Politica",
+        "amministrativa": "Amministrativa",
     }
     logger.info("Fixing 'Tipologia Persona'...")
     fixed_total = 0

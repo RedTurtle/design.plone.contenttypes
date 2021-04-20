@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-from design.plone.contenttypes.controlpanels.vocabularies import (
-    IVocabulariesControlPanel,
-)
 from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING,
     DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
@@ -12,7 +9,11 @@ from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import SITE_OWNER_PASSWORD
 from plone.app.testing import TEST_USER_ID
 from plone.restapi.testing import RelativeSession
+from design.plone.contenttypes.controlpanels.settings import (
+    IDesignPloneSettings,
+)
 
+import json
 import transaction
 import unittest
 
@@ -68,6 +69,7 @@ class TestNewsApi(unittest.TestCase):
     def setUp(self):
         self.app = self.layer["app"]
         self.portal = self.layer["portal"]
+        self.request = self.layer["request"]
         self.portal_url = self.portal.absolute_url()
         setRoles(self.portal, TEST_USER_ID, ["Manager"])
 
@@ -75,16 +77,16 @@ class TestNewsApi(unittest.TestCase):
         self.api_session.headers.update({"Accept": "application/json"})
         self.api_session.auth = (SITE_OWNER_NAME, SITE_OWNER_PASSWORD)
 
-        api.portal.set_registry_record(
-            "tipologie_notizia",
-            ["xxx", "yyy"],
-            interface=IVocabulariesControlPanel,
-        )
-
         self.document = api.content.create(
             container=self.portal, type="Document", title="Document"
         )
 
+        # we need it because of vocabularies
+        api.portal.set_registry_record(
+            "tipologie_notizia",
+            json.dumps({"en": ["foo", "bar"]}),
+            interface=IDesignPloneSettings,
+        )
         transaction.commit()
 
     def tearDown(self):
@@ -104,7 +106,7 @@ class TestNewsApi(unittest.TestCase):
             json={
                 "@type": "News Item",
                 "title": "Foo",
-                "tipologia_notizia": "xxx",
+                "tipologia_notizia": "foo",
                 "a_cura_di": self.document.UID(),
             },
         )
@@ -116,7 +118,7 @@ class TestNewsApi(unittest.TestCase):
             json={
                 "@type": "News Item",
                 "title": "Foo",
-                "tipologia_notizia": "xxx",
+                "tipologia_notizia": "foo",
                 "a_cura_di": self.document.UID(),
             },
         )

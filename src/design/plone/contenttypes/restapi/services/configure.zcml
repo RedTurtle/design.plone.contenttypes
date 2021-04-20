@@ -8,7 +8,8 @@
     <include package=".trasparenza" />
 
     <adapter
-        factory=".controlpanel.VocabulariesControlpanel"
-        name="design-plone-vocabularies" />
+        factory=".controlpanel.DesignPloneSettings"
+        provides="design.plone.contenttypes.controlpanels.settings.IDesignPloneSettingsControlpanel"
+        name="design-plone-settings" />
 
 </configure>

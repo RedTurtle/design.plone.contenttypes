@@ -13,6 +13,12 @@
       permission="cmf.ManagePortal"
       />
   <browser:page
+      name="design-plone-settings"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      class=".settings.DesignPloneControlPanelView"
+      permission="cmf.ManagePortal"
+      />
+  <browser:page
       name="geolocation-defaults"
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"
       class=".geolocation_defaults.GeolocationDefaultControlPanellView"
