@@ -423,3 +423,33 @@ def to_2002(context):
         commit()
     logger.info("Fixing 'Tipologia Persona': DONE")
     logger.info("Updated {} objects".format(fixed_total))
+
+
+def to_3000(context):
+    """
+    """
+    update_registry(context)
+    update_controlpanel(context)
+    multilanguage = [
+        "tipologie_notizia",
+        "tipologie_unita_organizzativa",
+        "tipologie_documento",
+        "tipologie_persona",
+    ]
+    simple = ["lead_image_dimension", "search_sections"]
+    old_entry = "design.plone.contenttypes.controlpanels.vocabularies.IVocabulariesControlPanel.{}"  # noqa
+    for field in simple:
+        value = api.portal.get_registry_record(old_entry.format(field))
+        api.portal.set_registry_record(
+            field, value, interface=IDesignPloneSettings
+        )
+
+    for field in multilanguage:
+        value = api.portal.get_registry_record(old_entry.format(field))
+        api.portal.set_registry_record(
+            field, json.dumps({"it": value}), interface=IDesignPloneSettings
+        )
+
+    context.runAllImportStepsFromProfile(
+        "profile-design.plone.contenttypes:to_3000"
+    )

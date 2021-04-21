@@ -5,7 +5,10 @@ Changelog
 2.0.7 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Rename controlpanel.
+  [cekk]
+- Now controlpanel settings entries can be multilanguage.
+  [cekk]
 
 
 2.0.6 (2021-04-16)
