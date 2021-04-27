@@ -5,7 +5,8 @@ Changelog
 2.0.7 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- *organizzazione_riferimento* field for Persona no more required.
+  [cekk]
 
 
 2.0.6 (2021-04-16)

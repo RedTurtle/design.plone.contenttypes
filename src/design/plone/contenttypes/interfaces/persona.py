@@ -48,7 +48,7 @@ class IPersona(model.Schema):
             vocabulary="plone.app.vocabularies.Catalog",
         ),
         default=[],
-        required=True,
+        required=False,
     )
 
     data_conclusione_incarico = schema.Date(
