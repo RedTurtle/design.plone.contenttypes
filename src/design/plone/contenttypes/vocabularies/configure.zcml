@@ -84,5 +84,9 @@
         component=".events.EventLocationVocabularyFactory"
         name="design.plone.vocabularies.event_location"
     />
+    <utility
+        component=".offices.OfficeManagerVocabularyFactory"
+        name="design.plone.vocabularies.office_manager"
+    />
 
 </configure>

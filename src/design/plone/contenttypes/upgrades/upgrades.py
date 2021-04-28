@@ -423,3 +423,8 @@ def to_2002(context):
         commit()
     logger.info("Fixing 'Tipologia Persona': DONE")
     logger.info("Updated {} objects".format(fixed_total))
+
+
+def to_2005(context):
+    pc = api.portal.get_tool(name="portal_catalog")
+    pc.manage_reindexIndex(ids=["office_manager"])
