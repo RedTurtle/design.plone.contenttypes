@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-2.0.7 (unreleased)
+3.0.0 (2021-04-30)
 ------------------
 
 - Rename controlpanel.
