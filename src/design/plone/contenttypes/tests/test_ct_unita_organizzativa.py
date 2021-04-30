@@ -67,16 +67,22 @@ class TestServizio(unittest.TestCase):
             title="TestUO",
             sede=[luogo],
         )
-        uo = RelationValue(intids.getId(self.uo))
 
         self.service = api.content.create(
             container=self.portal,
             type="Servizio",
             title="TestService",
-            ufficio_responsabile=[uo],
+            ufficio_responsabile=[RelationValue(intids.getId(self.uo))],
         )
 
-        self.news.a_cura_di = [uo]
+        self.bando = api.content.create(
+            container=self.portal,
+            type="Bando",
+            title="TestBando",
+            ufficio_responsabile=[RelationValue(intids.getId(self.uo))],
+        )
+
+        self.news.a_cura_di = [RelationValue(intids.getId(self.uo))]
         pcatalog = getToolByName(self.portal, "portal_catalog")
         pcatalog.manage_reindexIndex(ids=["ufficio_responsabile", "news_uo"])
         commit()
@@ -92,9 +98,12 @@ class TestServizio(unittest.TestCase):
             response.json()["related_news"][0]["@id"], self.news.absolute_url()
         )
 
-    def test_uo_service_related_service(self):
+    def test_uo_service_related_service_show_only_services(self):
         response = self.api_session.get(
             self.uo.absolute_url() + "?fullobjects"
+        )
+        self.assertEqual(
+            len(response.json()["servizi_offerti"]), 1,
         )
         self.assertTrue(
             response.json()["servizi_offerti"][0]["@id"],
