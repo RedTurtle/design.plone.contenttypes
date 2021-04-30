@@ -41,7 +41,14 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       post_handler=".setuphandlers.uninstall"
       />
-
+  <genericsetup:registerProfile
+      name="to_3000"
+      title="Design Plone: Content-types to 3000"
+      directory="profiles/to_3000"
+      description="Fix control panel of design.plone.contenttypes add-on."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+  
   <utility
       factory=".setuphandlers.HiddenProfiles"
       name="design.plone.contenttypes-hiddenprofiles"

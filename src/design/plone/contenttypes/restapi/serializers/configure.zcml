@@ -17,6 +17,5 @@
     <adapter factory=".venue.SerializeVenueToJsonSummary" />
     <adapter factory=".venue.VenueSerializer" />
     <adapter factory=".bando.BandoSerializer" />
-
     
 </configure>

@@ -5,6 +5,10 @@ Changelog
 2.0.7 (unreleased)
 ------------------
 
+- Rename controlpanel.
+  [cekk]
+- Now controlpanel settings entries can be multilanguage.
+  [cekk]
 - *organizzazione_riferimento* field for Persona no more required.
   [cekk]
 - servizi_offerti in UO serializer now returns only related Servizi.

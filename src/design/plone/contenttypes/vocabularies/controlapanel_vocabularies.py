@@ -1,20 +1,24 @@
 # -*- coding: utf-8 -*-
-from design.plone.contenttypes.controlpanels.vocabularies import (
-    IVocabulariesControlPanel,
+from design.plone.contenttypes.controlpanels.settings import (
+    IDesignPloneSettings,
 )
+from design.plone.contenttypes.utils import get_settings_for_language
 from plone import api
 from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 
+import logging
+
+
+logger = logging.getLogger(__name__)
+
 
 class BaseVocabulary(object):
     def __call__(self, context):
 
-        values = api.portal.get_registry_record(
-            self.field, interface=IVocabulariesControlPanel, default=[]
-        )
+        values = get_settings_for_language(field=self.field)
         if not values:
             return SimpleVocabulary([])
 
@@ -54,7 +58,7 @@ class LeadImageDimension(BaseVocabulary):
     def __call__(self, context):
 
         values = api.portal.get_registry_record(
-            self.field, interface=IVocabulariesControlPanel, default=[]
+            self.field, interface=IDesignPloneSettings, default=[]
         )
         if not values:
             return SimpleVocabulary([])
