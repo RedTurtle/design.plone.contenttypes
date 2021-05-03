@@ -18,9 +18,7 @@
     <adapter factory=".events.event_location"
              name="event_location"
     />
-    <adapter factory=".bando.office_manager"
-             name="office_manager"
-    />
+
 
 </configure>
 
