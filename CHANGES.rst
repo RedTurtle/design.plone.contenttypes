@@ -5,7 +5,8 @@ Changelog
 3.0.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix upgrade-step.
+  [cekk]
 
 
 3.0.0 (2021-04-30)

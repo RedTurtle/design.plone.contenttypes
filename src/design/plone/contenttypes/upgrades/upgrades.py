@@ -445,10 +445,15 @@ def to_3000(context):
         )
 
     for field in multilanguage:
-        value = api.portal.get_registry_record(old_entry.format(field))
-        api.portal.set_registry_record(
-            field, json.dumps({"it": value}), interface=IDesignPloneSettings
-        )
+        try:
+            value = api.portal.get_registry_record(old_entry.format(field))
+            api.portal.set_registry_record(
+                field,
+                json.dumps({"it": value}),
+                interface=IDesignPloneSettings,
+            )
+        except Exception:
+            continue
 
     context.runAllImportStepsFromProfile(
         "profile-design.plone.contenttypes:to_3000"
