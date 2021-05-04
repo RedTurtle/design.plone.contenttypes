@@ -238,4 +238,18 @@
         handler=".upgrades.update_types"
         />
   </genericsetup:upgradeSteps>
+
+  <genericsetup:upgradeSteps
+    source="2004"
+    destination="2005"
+    profile="design.plone.contenttypes:default">
+      <genericsetup:upgradeStep
+        title="Update catalog"
+        handler=".upgrades.update_catalog"
+        />
+      <genericsetup:upgradeStep
+        title="Add criteria for ufficio_responsabile"
+        handler=".upgrades.update_registry"
+        />
+  </genericsetup:upgradeSteps>
 </configure>
