@@ -334,14 +334,18 @@ La get di questo content-type, ritorna (nell'attributo "**servizi_offerti**") an
 
 Per diversi tipi di contenuto servono dei vocabolari con una lista di valori predefiniti.
 
-Questi sono configurabili dal pannello di controllo "_Vocabolari Design Plone_".
+Questi sono configurabili dal pannello di controllo "_Impostazioni Design Plone_".
 
 I vocabolari personalizzabili sono i seguenti:
 
 - Tipologie notizia
 - Tipologie persona
 - Tipologie unità organizzativa
-
+- Tipologie documento
+- Dimensioni leadimage
+- Sezioni ricerca
+  
+A parte gli ultimi due, gli altri campi sono tutti multilingua. I vocabolari che usano quei valori, ritornano solo i possibili valori a seconda della lingua selezionata dall'utente.
 # Gestione modulistica
 
 Agid prevede un tipo di contenuto **Documento** per gestire i moduli scaricabili.

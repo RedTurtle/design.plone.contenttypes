@@ -11,7 +11,7 @@ from plone.restapi.testing import RelativeSession
 import unittest
 
 
-class VocabulariesControlpanelTest(unittest.TestCase):
+class SettingsControlpanelTest(unittest.TestCase):
 
     layer = DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING
 
@@ -28,7 +28,7 @@ class VocabulariesControlpanelTest(unittest.TestCase):
 
     def test_controlpanel_exists(self):
         response = self.api_session.get(
-            "/@controlpanels/design-plone-vocabularies"
+            "/@controlpanels/design-plone-settings"
         )
 
         self.assertEqual(response.status_code, 200)
@@ -40,4 +40,4 @@ class VocabulariesControlpanelTest(unittest.TestCase):
         response = self.api_session.get("/@controlpanels")
 
         titles = [x.get("title") for x in response.json()]
-        self.assertIn("Vocabolari Design Plone", titles)
+        self.assertIn("Impostazioni Design Plone", titles)

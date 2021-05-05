@@ -238,10 +238,18 @@
         handler=".upgrades.update_types"
         />
   </genericsetup:upgradeSteps>
-
   <genericsetup:upgradeSteps
     source="2004"
-    destination="2005"
+    destination="3000"
+    profile="design.plone.contenttypes:default">
+      <genericsetup:upgradeStep
+        title="multilanguage settings"
+        handler=".upgrades.to_3000"
+        />
+  </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+    source="3000"
+    destination="3001"
     profile="design.plone.contenttypes:default">
       <genericsetup:upgradeStep
         title="Update catalog"

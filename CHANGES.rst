@@ -2,12 +2,30 @@ Changelog
 =========
 
 
-2.0.7 (unreleased)
+3.0.2 (unreleased)
 ------------------
 
-- *organizzazione_riferimento* field for Persona no more required.
+- Added criteria for ente bando and ufficio responsabile.
+  [daniele]
+
+3.0.1 (2021-05-04)
+------------------
+
+- Fix upgrade-step.
   [cekk]
 
+
+3.0.0 (2021-04-30)
+------------------
+
+- Rename controlpanel.
+  [cekk]
+- Now controlpanel settings entries can be multilanguage.
+  [cekk]
+- *organizzazione_riferimento* field for Persona no more required.
+  [cekk]
+- servizi_offerti in UO serializer now returns only related Servizi.
+  [cekk]
 
 2.0.6 (2021-04-16)
 ------------------

@@ -7,9 +7,9 @@
   <include package="Products.CMFCore" file="permissions.zcml" />
 
   <browser:page
-      name="design-plone-vocabularies"
+      name="design-plone-settings"
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-      class=".vocabularies.VocabulariesControlPanelView"
+      class=".settings.DesignPloneControlPanelView"
       permission="cmf.ManagePortal"
       />
   <browser:page
