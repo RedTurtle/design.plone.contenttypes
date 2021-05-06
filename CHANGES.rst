@@ -5,7 +5,8 @@ Changelog
 3.0.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Added backreferences to Documento and Cartella Modulistica for related services.
+  [daniele]
 
 
 3.0.1 (2021-05-04)
