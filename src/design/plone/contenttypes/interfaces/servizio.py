@@ -352,7 +352,7 @@ class IServizio(model.Schema):
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "maximumSelectionSize": 10,
-            "selectableTypes": ["Documento"],
+            "selectableTypes": ["Documento", "CartellaModulistica"],
             # "basePath": "/",
         },
     )

@@ -17,5 +17,6 @@
     <adapter factory=".venue.SerializeVenueToJsonSummary" />
     <adapter factory=".venue.VenueSerializer" />
     <adapter factory=".bando.BandoSerializer" />
-    
+    <adapter factory=".documento.DocumentoSerializer" />
+    <adapter factory=".cartella_modulistica.CartellaModulisticaSerializer" />
 </configure>
