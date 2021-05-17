@@ -193,6 +193,7 @@ Ha i campi definiti da Agid (senza quelli specifici per i Bandi, perché li gest
 Al suo interno può contenere degli oggetti di tipo **Modulo** (che sono i file scaricabili veri e propri).
 
 I Moduli che vengono inseriti dentro al Documento, verranno mostrati nel frontend come lista di documenti scaricabili.
+E' presente una customizzazione del serializer per poter mostrare di default più di 25 risultati (200), perché può essere necessario mostrare più moduli.
 
 ### Campi indicizzati nel SearchableText
 
