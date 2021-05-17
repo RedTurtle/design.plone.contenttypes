@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.0.2 (unreleased)
+3.0.2 (2021-05-17)
 ------------------
 
 - Added backreferences to Documento and Cartella Modulistica for related services.
