@@ -1,10 +1,20 @@
 # -*- coding: utf-8 -*-
 
 from design.plone.contenttypes.testing import (
+    DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
     DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING,
 )
+from plone.app.testing import setRoles
+from plone.app.testing import SITE_OWNER_NAME
+from plone.app.testing import SITE_OWNER_PASSWORD
+from plone.app.testing import TEST_USER_ID
+from plone.restapi.testing import RelativeSession
 from plone import api
+from plone.namedfile.file import NamedBlobFile
+
 import unittest
+import transaction
+import os
 
 
 class TestDocument(unittest.TestCase):
@@ -29,7 +39,7 @@ class TestDocument(unittest.TestCase):
                 "plone.constraintypes",
                 "plone.leadimage",
                 "design.plone.contenttypes.behavior.argomenti_documento",
-                "design.plone.contenttypes.behavior.descrizione_estesa_documento",
+                "design.plone.contenttypes.behavior.descrizione_estesa_documento",  # noqa
                 "design.plone.contenttypes.behavior.additional_help_infos",
                 "collective.dexteritytextindexer",
                 "plone.translatable",
@@ -41,4 +51,45 @@ class TestDocument(unittest.TestCase):
         self.assertEqual(
             ("Document", "Modulo", "Link"),
             portal_types["Documento"].allowed_content_types,
+        )
+
+
+class TestDocumentoApi(unittest.TestCase):
+
+    layer = DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING
+
+    def setUp(self):
+        self.app = self.layer["app"]
+        self.portal = self.layer["portal"]
+        self.portal_url = self.portal.absolute_url()
+        setRoles(self.portal, TEST_USER_ID, ["Manager"])
+
+        self.api_session = RelativeSession(self.portal_url)
+        self.api_session.headers.update({"Accept": "application/json"})
+        self.api_session.auth = (SITE_OWNER_NAME, SITE_OWNER_PASSWORD)
+        self.documento = api.content.create(
+            container=self.portal, type="Documento", title="Documento"
+        )
+        for i in range(50):
+            child = api.content.create(
+                container=self.documento,
+                type="Modulo",
+                title="File {}".format(i),
+            )
+            filename = os.path.join(os.path.dirname(__file__), u"example.pdf")
+            child.file = NamedBlobFile(
+                data=open(filename, "rb").read(),
+                filename="example.pdf",
+                contentType="application/pdf",
+            )
+        transaction.commit()
+
+    def tearDown(self):
+        self.api_session.close()
+
+    def test_document_get_return_more_than_25_results_by_default(self):
+        response = self.api_session.get(self.documento.absolute_url())
+        res = response.json()
+        self.assertEqual(
+            len(res["items"]), len(self.documento.listFolderContents())
         )
