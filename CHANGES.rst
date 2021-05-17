@@ -5,6 +5,8 @@ Changelog
 3.0.2 (unreleased)
 ------------------
 
+- Added backreferences to Documento and Cartella Modulistica for related services.
+  [daniele]
 - Documento now set b_size=200 by default to show more than 25 items when getting its data.
   [cekk]
 
