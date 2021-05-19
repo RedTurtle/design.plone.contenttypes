@@ -232,7 +232,7 @@
     <!-- Uncomment if needed again -->
     <!-- <plone:behavior
       title="Trasparenza"
-      name="`"
+      name="design.plone.contenttypes.behavior.trasparenza"
       description="Campi aggiuntivi per la sezione amministrazione trasparente."
       provides=".trasparenza.ITrasparenza"
       factory=".trasparenza.Trasparenza"
