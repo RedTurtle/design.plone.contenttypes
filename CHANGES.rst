@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.0.3 (unreleased)
+3.0.3 (2021-05-20)
 ------------------
 
 - Added criteria for ente bando and ufficio responsabile.
