@@ -30,7 +30,7 @@ WIDGET_PROPERTY_CHECKS = {
     },
     "altri_documenti": {
         "maximumSelectionSize": 10,
-        "selectableTypes": ["Documento"],
+        "selectableTypes": ["Documento", "CartellaModulistica"],
     },
     "servizi_collegati": {
         "maximumSelectionSize": 10,

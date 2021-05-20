@@ -252,6 +252,19 @@
     destination="3001"
     profile="design.plone.contenttypes:default">
       <genericsetup:upgradeStep
+        title="Update catalog"
+        handler=".upgrades.update_catalog"
+        />
+      <genericsetup:upgradeStep
+        title="Add criteria for ufficio_responsabile"
+        handler=".upgrades.update_registry"
+        />
+  </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+    source="3001"
+    destination="3002"
+    profile="design.plone.contenttypes:default">
+      <genericsetup:upgradeStep
         title="Removes amministrazione trasparente behavior"
         handler=".upgrades.to_1015"
         />
