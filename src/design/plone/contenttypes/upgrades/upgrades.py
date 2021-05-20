@@ -313,6 +313,10 @@ def to_1015(context):
     portal_types["Servizio"].behaviors = tuple(
         [x for x in service_behaviors if x not in to_remove]
     )
+    persona_behaviors = portal_types["Persona"].behaviors
+    portal_types["Persona"].behaviors = tuple(
+        [x for x in persona_behaviors if x not in to_remove]
+    )
 
 
 def to_1016(context):

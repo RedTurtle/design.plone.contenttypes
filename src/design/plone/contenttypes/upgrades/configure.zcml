@@ -247,4 +247,13 @@
         handler=".upgrades.to_3000"
         />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+    source="3000"
+    destination="3001"
+    profile="design.plone.contenttypes:default">
+      <genericsetup:upgradeStep
+        title="Removes amministrazione trasparente behavior"
+        handler=".upgrades.to_1015"
+        />
+  </genericsetup:upgradeSteps>
 </configure>
