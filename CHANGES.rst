@@ -5,8 +5,8 @@ Changelog
 3.0.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Added criteria for ente bando and ufficio responsabile.
+  [daniele]
 
 3.0.2 (2021-05-17)
 ------------------
