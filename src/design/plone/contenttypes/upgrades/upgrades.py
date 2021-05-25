@@ -473,19 +473,18 @@ def to_3002(context):
     fixed_total = 0
     for brain in api.content.find(portal_type="Documento"):
         item = brain.getObject()
-        for rel in item.servizi_collegati:
+        for rel in getattr(item, 'servizi_collegati', []):
             service = rel.to_object
             if service:
                 service.altri_documenti.append(RelationValue(intids.getId(item)))
                 notify(ObjectModifiedEvent(service))
+                logger.info("Fixed item {}".format("/".join(service.getPhysicalPath())))
 
-        try:
+        if getattr(item, 'servizi_collegati', []):
             delattr(item, "servizi_collegati")
             notify(ObjectModifiedEvent(item))
             fixed_total += 1
-        except:
-            logger.error("Problem fixing item {}".format("/".join(item.getPhysicalPath())))
-            continue
+            logger.info("Fixed item {}".format("/".join(item.getPhysicalPath())))
 
     logger.info("Fixing 'Documento': DONE")
-    logger.info("Updated {} objects".format(fixed_total))
+    logger.info("Updated {} objects Documento".format(fixed_total))
