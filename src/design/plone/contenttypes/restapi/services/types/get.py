@@ -30,7 +30,6 @@ FIELDSETS_ORDER = {
     "Documento": [
         "default",
         "descrizione",
-        "accedere_al_servizio",
         "informazioni",
         "settings",
         "correlati",

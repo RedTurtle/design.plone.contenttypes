@@ -9,6 +9,13 @@ from plone.dexterity.utils import iterSchemata
 from transaction import commit
 from zope.schema import getFields
 
+from zope.component import getUtility
+from zope.intid.interfaces import IIntIds
+from zope.event import notify
+from zope.lifecycleevent import ObjectModifiedEvent
+from z3c.relationfield import RelationValue
+
+
 from design.plone.contenttypes.controlpanels.settings import (
     IDesignPloneSettings,
 )
@@ -458,3 +465,27 @@ def to_3000(context):
     context.runAllImportStepsFromProfile(
         "profile-design.plone.contenttypes:to_3000"
     )
+
+
+def to_3002(context):
+    intids = getUtility(IIntIds)
+    logger.info("Fixing Documento references...")
+    fixed_total = 0
+    for brain in api.content.find(portal_type="Documento"):
+        item = brain.getObject()
+        for rel in item.servizi_collegati:
+            service = rel.to_object
+            if service:
+                service.altri_documenti.append(RelationValue(intids.getId(item)))
+                notify(ObjectModifiedEvent(service))
+
+        try:
+            delattr(item, "servizi_collegati")
+            notify(ObjectModifiedEvent(item))
+            fixed_total += 1
+        except:
+            logger.error("Problem fixing item {}".format("/".join(item.getPhysicalPath())))
+            continue
+
+    logger.info("Fixing 'Documento': DONE")
+    logger.info("Updated {} objects".format(fixed_total))
