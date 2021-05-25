@@ -5,9 +5,12 @@ Changelog
 3.0.4 (unreleased)
 ------------------
 
-- Add `design.plone.contenttypes.behavior.argomenti_document` behavior to Document.
+- Add `design.plone.contenttypes.behavior.argomenti_document` behavior to **Document**.
+  [cekk]
 - *correlato_in_evidenza* field now return also icon value in restapi calls.
-
+  [cekk]
+- Add leadimage to **CartellaModulistica**.
+  [cekk]
 
 3.0.3 (2021-05-20)
 ------------------
