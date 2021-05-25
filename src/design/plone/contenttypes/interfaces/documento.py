@@ -38,11 +38,11 @@ class IDocumento(model.Schema):
 
     ufficio_responsabile = RelationList(
         title=_(
-            "ufficio_responsabile_label",
+            "ufficio_responsabile_documento_label",
             default="Ufficio responsabile del documento",
         ),
         description=_(
-            "ufficio_responsabile_help",
+            "ufficio_responsabile_documento_help",
             default="Seleziona l'ufficio responsabile di questo documento.",
         ),
         required=True,
@@ -94,9 +94,11 @@ class IDocumento(model.Schema):
     )
 
     servizi_collegati = RelationList(
-        title=_("servizi_collegati_label", default="Servizi collegati"),
+        title=_(
+            "servizi_collegati_documento_label", default="Servizi collegati"
+        ),
         description=_(
-            "servizi_collegati_help",
+            "servizi_collegati_documento_help",
             default="Seleziona una lista di servizi collegati a questo "
             "documento.",
         ),
@@ -109,10 +111,11 @@ class IDocumento(model.Schema):
 
     riferimenti_normativi = BlocksField(
         title=_(
-            "riferimenti_normativi_label", default="Riferimenti normativi"
+            "riferimenti_normativi_documento_label",
+            default="Riferimenti normativi",
         ),
         description=_(
-            "riferimenti_normativi_help",
+            "riferimenti_normativi_documento_help",
             default="Inserisici del testo di dettaglio per eventuali "
             "riferimenti normativi utili a questo documento.",
         ),
