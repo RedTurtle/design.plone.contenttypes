@@ -5,7 +5,8 @@ Changelog
 3.0.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add `design.plone.contenttypes.behavior.argomenti_document` behavior to Document.
+- *correlato_in_evidenza* field now return also icon value in restapi calls.
 
 
 3.0.3 (2021-05-20)
