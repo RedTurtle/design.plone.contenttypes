@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.0.4 (unreleased)
+3.1.0 (2021-05-26)
 ------------------
 
 - Add `design.plone.contenttypes.behavior.argomenti_document` behavior to **Document**.
