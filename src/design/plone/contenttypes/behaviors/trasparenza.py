@@ -30,11 +30,12 @@ class ITrasparenza(model.Schema):
     )
     descrizione = BlocksField(
         title=_(
-            u"descrizione_label", default=u"Descrizione del procedimento",
+            u"descrizione_procedimento_label",
+            default=u"Descrizione del procedimento",
         ),
         required=False,
         description=_(
-            "descrizione_help",
+            "descrizione_procedimento_help",
             default="Inserisci eventuale testo descrittivo del procedimento.",  # noqa
         ),
     )

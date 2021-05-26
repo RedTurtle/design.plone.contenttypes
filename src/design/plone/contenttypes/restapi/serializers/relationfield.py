@@ -41,5 +41,7 @@ class RelationListFieldSerializer(DefaultRelationListFieldSerializer):
                     summary["end"] = json_compatible(
                         getattr(content, "end", "")
                     )
+                if getattr(content, "icona", ""):
+                    summary["icona"] = content.icona
                 data.append(json_compatible(summary))
         return data
