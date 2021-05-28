@@ -467,7 +467,7 @@ def to_3000(context):
     )
 
 
-def to_3002(context):
+def to_3101(context):
     intids = getUtility(IIntIds)
     logger.info("Fixing Documento references...")
     fixed_total = 0

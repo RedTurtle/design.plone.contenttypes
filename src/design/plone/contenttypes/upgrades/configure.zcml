@@ -262,11 +262,20 @@
   </genericsetup:upgradeSteps>
   <genericsetup:upgradeSteps
     source="3001"
-    destination="3002"
+    destination="3100"
+    profile="design.plone.contenttypes:default">
+      <genericsetup:upgradeStep
+        title="Enable behaviors"
+        handler=".upgrades.update_types"
+        />
+  </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+    source="3100"
+    destination="3101"
     profile="design.plone.contenttypes:default">
       <genericsetup:upgradeStep
         title="Fix references for services"
-        handler=".upgrades.to_3002"
+        handler=".upgrades.to_3101"
         />
   </genericsetup:upgradeSteps>
 </configure>

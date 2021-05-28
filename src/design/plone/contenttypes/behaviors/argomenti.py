@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 from collective import dexteritytextindexer
 from design.plone.contenttypes import _
+from design.plone.contenttypes.interfaces.bando import IBandoAgidSchema
 from design.plone.contenttypes.interfaces.documento import IDocumento
+from plone.app.contenttypes.interfaces import IDocument
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
 from plone.autoform.interfaces import IFormFieldProvider
@@ -10,7 +12,6 @@ from plone.supermodel import model
 from z3c.relationfield.schema import RelationChoice, RelationList
 from zope.component import adapter
 from zope.interface import provider, implementer
-from design.plone.contenttypes.interfaces.bando import IBandoAgidSchema
 
 
 class IArgomentiSchema(model.Schema):
@@ -36,7 +37,7 @@ class IArgomentiSchema(model.Schema):
         ),
         description=_(
             "correlato_in_evidenza_help",
-            default="Seleziona un correlato da mettere in evidenza."
+            default="Seleziona un correlato da mettere in evidenza per questo"
             " contenuto.",
         ),
         value_type=RelationChoice(
@@ -92,6 +93,24 @@ class IArgomentiDocumento(IArgomentiSchema):
 
 
 @provider(IFormFieldProvider)
+class IArgomentiDocument(IArgomentiSchema):
+    """ """
+
+    model.fieldset(
+        "correlati",
+        label=_("correlati_label", default="Contenuti collegati"),
+        fields=["correlato_in_evidenza"],
+    )
+    model.fieldset(
+        "testata",
+        label=_("testata_fieldset_label", default=u"Testata"),
+        fields=["tassonomia_argomenti"],
+    )
+    form.order_after(correlato_in_evidenza="IRelatedItems.relatedItems")
+    form.order_after(tassonomia_argomenti="IInfoTestata.mostra_navigazione")
+
+
+@provider(IFormFieldProvider)
 class IArgomentiBando(IArgomentiSchema):
     """ """
 
@@ -125,6 +144,15 @@ class ArgomentiDocumento(object):
 @implementer(IArgomentiBando)
 @adapter(IBandoAgidSchema)
 class ArgomentiBando(object):
+    """"""
+
+    def __init__(self, context):
+        self.context = context
+
+
+@implementer(IArgomentiDocument)
+@adapter(IDocument)
+class ArgomentiDocument(object):
     """"""
 
     def __init__(self, context):
