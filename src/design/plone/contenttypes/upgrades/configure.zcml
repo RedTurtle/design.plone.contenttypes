@@ -265,14 +265,6 @@
     destination="3002"
     profile="design.plone.contenttypes:default">
       <genericsetup:upgradeStep
-        title="Update catalog"
-        handler=".upgrades.update_catalog"
-        />
-      <genericsetup:upgradeStep
-        title="Updated registry"
-        handler=".upgrades.update_registry"
-        />
-      <genericsetup:upgradeStep
         title="Fix references for services"
         handler=".upgrades.to_3002"
         />
