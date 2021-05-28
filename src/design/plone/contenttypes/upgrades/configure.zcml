@@ -269,4 +269,13 @@
         handler=".upgrades.update_types"
         />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+    source="3100"
+    destination="3101"
+    profile="design.plone.contenttypes:default">
+      <genericsetup:upgradeStep
+        title="Fix references for services"
+        handler=".upgrades.to_3101"
+        />
+  </genericsetup:upgradeSteps>
 </configure>

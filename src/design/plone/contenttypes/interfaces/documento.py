@@ -93,22 +93,6 @@ class IDocumento(model.Schema):
         required=False,
     )
 
-    servizi_collegati = RelationList(
-        title=_(
-            "servizi_collegati_documento_label", default="Servizi collegati"
-        ),
-        description=_(
-            "servizi_collegati_documento_help",
-            default="Seleziona una lista di servizi collegati a questo "
-            "documento.",
-        ),
-        default=[],
-        value_type=RelationChoice(
-            vocabulary="plone.app.vocabularies.Catalog",
-        ),
-        required=False,
-    )
-
     riferimenti_normativi = BlocksField(
         title=_(
             "riferimenti_normativi_documento_label",
@@ -155,15 +139,6 @@ class IDocumento(model.Schema):
         },
     )
     form.widget(
-        "servizi_collegati",
-        RelatedItemsFieldWidget,
-        vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={
-            "maximumSelectionSize": 10,
-            "selectableTypes": ["Servizio"],
-        },
-    )
-    form.widget(
         "area_responsabile",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
@@ -194,11 +169,6 @@ class IDocumento(model.Schema):
         ],
     )
 
-    model.fieldset(
-        "accedere_al_servizio",
-        label=_("accedere_al_servizio_label", default="Accedere al servizio"),
-        fields=["servizi_collegati"],
-    )
     model.fieldset(
         "informazioni",
         label=_("informazioni_label", default=u"Ulteriori informazioni"),

@@ -5,8 +5,8 @@ Changelog
 3.1.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Removed field "Accedere al servizio" from Documento ct.
+  [daniele]
 
 3.1.0 (2021-05-26)
 ------------------
