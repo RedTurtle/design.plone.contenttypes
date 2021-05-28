@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.1.1 (unreleased)
+3.1.1 (2021-05-28)
 ------------------
 
 - Removed field "Accedere al servizio" from Documento ct.
