@@ -500,7 +500,7 @@ def to_3101(context):
 def to_volto13(context):  # noqa: C901
     # convert listing blocks with new standard
 
-    logger.info("### START CONVERSION TO VOLTO 13 ###")
+    logger.info("### START CONVERSION TO VOLTO 13: default => simpleCard ###")
 
     def fix_listing(blocks, url):
         for block in blocks.values():
