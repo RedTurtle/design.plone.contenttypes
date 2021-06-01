@@ -278,4 +278,13 @@
         handler=".upgrades.to_3101"
         />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+    source="3101"
+    destination="3200"
+    profile="design.plone.contenttypes:default">
+      <genericsetup:upgradeStep
+        title="Migrate to volto 13"
+        handler=".upgrades.to_volto13"
+        />
+  </genericsetup:upgradeSteps>
 </configure>
