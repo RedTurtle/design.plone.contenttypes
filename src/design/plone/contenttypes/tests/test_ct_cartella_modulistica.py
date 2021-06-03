@@ -27,6 +27,7 @@ class TestDocument(unittest.TestCase):
                 "plone.publication",
                 "plone.categorization",
                 "plone.basic",
+                "plone.leadimage",
                 "plone.locking",
                 "volto.blocks",
                 "plone.translatable",

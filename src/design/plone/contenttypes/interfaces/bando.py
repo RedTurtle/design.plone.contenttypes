@@ -93,12 +93,12 @@ class IBandoAgidSchema(IBandoSchema):
 
     ufficio_responsabile = RelationList(
         title=_(
-            "ufficio_responsabile_label",
-            default="Ufficio responsabile del documento",
+            "ufficio_responsabile_bando_label",
+            default="Ufficio responsabile del bando",
         ),
         description=_(
-            "ufficio_responsabile_help",
-            default="Seleziona l'ufficio responsabile di questo documento.",
+            "ufficio_responsabile_bando_help",
+            default="Seleziona l'ufficio responsabile di questo bando.",
         ),
         required=False,
         default=[],

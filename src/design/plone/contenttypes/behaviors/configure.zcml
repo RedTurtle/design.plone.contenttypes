@@ -44,6 +44,15 @@
       marker=".argomenti.IArgomenti"
       />
     <plone:behavior
+      title="Argomenti Document"
+      name="design.plone.contenttypes.behavior.argomenti_document"
+      description="Tassonomia argomenti per i Document"
+      provides=".argomenti.IArgomentiDocument"
+      factory=".argomenti.ArgomentiDocument"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      marker=".argomenti.IArgomentiDocument"
+      />
+    <plone:behavior
       title="Argomenti Documento"
       name="design.plone.contenttypes.behavior.argomenti_documento"
       description="Tassonomia argomenti"

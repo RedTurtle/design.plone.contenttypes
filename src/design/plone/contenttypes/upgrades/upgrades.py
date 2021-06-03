@@ -9,6 +9,13 @@ from plone.dexterity.utils import iterSchemata
 from transaction import commit
 from zope.schema import getFields
 
+from zope.component import getUtility
+from zope.intid.interfaces import IIntIds
+from zope.event import notify
+from zope.lifecycleevent import ObjectModifiedEvent
+from z3c.relationfield import RelationValue
+
+
 from design.plone.contenttypes.controlpanels.settings import (
     IDesignPloneSettings,
 )
@@ -464,7 +471,29 @@ def to_3000(context):
     )
 
 
-def to_3002(context):
+def to_3101(context):
+    intids = getUtility(IIntIds)
+    logger.info("Fixing Documento references...")
+    fixed_total = 0
+    for brain in api.content.find(portal_type="Documento"):
+        item = brain.getObject()
+        for rel in getattr(item, 'servizi_collegati', []):
+            service = rel.to_object
+            if service:
+                service.altri_documenti.append(RelationValue(intids.getId(item)))
+                notify(ObjectModifiedEvent(service))
+                logger.info("Fixed item {}".format("/".join(service.getPhysicalPath())))
+
+        if getattr(item, 'servizi_collegati', []):
+            delattr(item, "servizi_collegati")
+            notify(ObjectModifiedEvent(item))
+            fixed_total += 1
+            logger.info("Fixed item {}".format("/".join(item.getPhysicalPath())))
+
+    logger.info("Fixing 'Documento': DONE")
+    logger.info("Updated {} objects Documento".format(fixed_total))
+
+def to_3102(context):
     update_types(context)
 
     # cleanup trasparenza behavior from CTs
@@ -478,4 +507,3 @@ def to_3002(context):
             portal_types[key].behaviors = tuple(
                 [x for x in ct_behaviors if x not in to_remove]
             )
-
