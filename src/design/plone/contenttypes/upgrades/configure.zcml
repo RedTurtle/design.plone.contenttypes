@@ -266,7 +266,7 @@
     profile="design.plone.contenttypes:default">
       <genericsetup:upgradeStep
         title="Removes amministrazione trasparente behavior"
-        handler=".upgrades.to_1015"
+        handler=".upgrades.to_3002"
         />
   </genericsetup:upgradeSteps>
 </configure>

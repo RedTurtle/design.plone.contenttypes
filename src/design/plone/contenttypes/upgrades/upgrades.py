@@ -462,3 +462,23 @@ def to_3000(context):
     context.runAllImportStepsFromProfile(
         "profile-design.plone.contenttypes:to_3000"
     )
+
+
+def to_3002(context):
+    update_types(context)
+
+    # cleanup trasparenza behavior from CTs
+    portal_types = api.portal.get_tool(name="portal_types")
+    to_remove = [
+        "design.plone.contenttypes.behavior.trasparenza",
+    ]
+    for key, value in portal_types.items():
+        ct_behaviors = getattr(value, "behaviors", None)
+        if ct_behaviors is not None:
+            try:
+                portal_types[key].behaviors = tuple(
+                    [x for x in ct_behaviors if x not in to_remove]
+                )
+            except Exception:
+                continue
+
