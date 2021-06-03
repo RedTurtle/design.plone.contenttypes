@@ -475,10 +475,7 @@ def to_3002(context):
     for key, value in portal_types.items():
         ct_behaviors = getattr(value, "behaviors", None)
         if ct_behaviors is not None:
-            try:
-                portal_types[key].behaviors = tuple(
-                    [x for x in ct_behaviors if x not in to_remove]
-                )
-            except Exception:
-                continue
+            portal_types[key].behaviors = tuple(
+                [x for x in ct_behaviors if x not in to_remove]
+            )
 
