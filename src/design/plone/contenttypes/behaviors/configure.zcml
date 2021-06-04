@@ -238,14 +238,15 @@
       marker=".multi_file.IMultiFile"
       />
 
-    <plone:behavior
+    <!-- Uncomment if needed again -->
+    <!-- <plone:behavior
       title="Trasparenza"
       name="design.plone.contenttypes.behavior.trasparenza"
       description="Campi aggiuntivi per la sezione amministrazione trasparente."
       provides=".trasparenza.ITrasparenza"
       factory=".trasparenza.Trasparenza"
       marker=".trasparenza.ITrasparenza"
-      />
+      /> -->
 
 
 </configure>

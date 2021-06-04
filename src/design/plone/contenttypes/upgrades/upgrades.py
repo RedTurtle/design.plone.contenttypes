@@ -320,6 +320,10 @@ def to_1015(context):
     portal_types["Servizio"].behaviors = tuple(
         [x for x in service_behaviors if x not in to_remove]
     )
+    persona_behaviors = portal_types["Persona"].behaviors
+    portal_types["Persona"].behaviors = tuple(
+        [x for x in persona_behaviors if x not in to_remove]
+    )
 
 
 def to_1016(context):
@@ -473,18 +477,40 @@ def to_3101(context):
     fixed_total = 0
     for brain in api.content.find(portal_type="Documento"):
         item = brain.getObject()
-        for rel in getattr(item, 'servizi_collegati', []):
+        for rel in getattr(item, "servizi_collegati", []):
             service = rel.to_object
             if service:
-                service.altri_documenti.append(RelationValue(intids.getId(item)))
+                service.altri_documenti.append(
+                    RelationValue(intids.getId(item))
+                )
                 notify(ObjectModifiedEvent(service))
-                logger.info("Fixed item {}".format("/".join(service.getPhysicalPath())))
+                logger.info(
+                    "Fixed item {}".format("/".join(service.getPhysicalPath()))
+                )
 
-        if getattr(item, 'servizi_collegati', []):
+        if getattr(item, "servizi_collegati", []):
             delattr(item, "servizi_collegati")
             notify(ObjectModifiedEvent(item))
             fixed_total += 1
-            logger.info("Fixed item {}".format("/".join(item.getPhysicalPath())))
+            logger.info(
+                "Fixed item {}".format("/".join(item.getPhysicalPath()))
+            )
 
     logger.info("Fixing 'Documento': DONE")
     logger.info("Updated {} objects Documento".format(fixed_total))
+
+
+def to_3102(context):
+    update_types(context)
+
+    # cleanup trasparenza behavior from CTs
+    portal_types = api.portal.get_tool(name="portal_types")
+    to_remove = [
+        "design.plone.contenttypes.behavior.trasparenza",
+    ]
+    for key, value in portal_types.items():
+        ct_behaviors = getattr(value, "behaviors", None)
+        if ct_behaviors is not None:
+            portal_types[key].behaviors = tuple(
+                [x for x in ct_behaviors if x not in to_remove]
+            )
