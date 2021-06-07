@@ -123,7 +123,7 @@ class IDesignPloneSettings(Interface):
             "abilitata. E' poi possibile sovrascrivere il default nei singoli "
             'contenuti (nel tab "Impostazioni").',
         ),
-        default=True,
+        default=False,
         required=False,
     )
 

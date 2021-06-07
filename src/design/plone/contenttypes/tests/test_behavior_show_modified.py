@@ -38,7 +38,7 @@ class TestShowModifiedBehavior(unittest.TestCase):
         self.api_session.close()
         # reset do default
         api.portal.set_registry_record(
-            "show_modified_default", True, interface=IDesignPloneSettings,
+            "show_modified_default", False, interface=IDesignPloneSettings,
         )
         transaction.commit()
 
@@ -50,17 +50,17 @@ class TestShowModifiedBehavior(unittest.TestCase):
         transaction.commit()
         resp = self.api_session.get(page.absolute_url())
 
-        self.assertTrue(getattr(page, "show_modified", None))
-        self.assertTrue(resp.json().get("show_modified", None))
+        self.assertFalse(getattr(page, "show_modified", None))
+        self.assertFalse(resp.json().get("show_modified", None))
 
         api.portal.set_registry_record(
-            "show_modified_default", False, interface=IDesignPloneSettings,
+            "show_modified_default", True, interface=IDesignPloneSettings,
         )
         transaction.commit()
 
         resp = self.api_session.get(page.absolute_url())
-        self.assertFalse(getattr(page, "show_modified", None))
-        self.assertFalse(resp.json().get("show_modified", None))
+        self.assertTrue(getattr(page, "show_modified", None))
+        self.assertTrue(resp.json().get("show_modified", None))
 
     def test_if_set_will_override_default(self):
 
@@ -68,10 +68,10 @@ class TestShowModifiedBehavior(unittest.TestCase):
             container=self.portal,
             type="Document",
             title="Test document",
-            show_modified=False,
+            show_modified=True,
         )
         transaction.commit()
         resp = self.api_session.get(page.absolute_url())
 
-        self.assertFalse(getattr(page, "show_modified", None))
-        self.assertFalse(resp.json().get("show_modified", None))
+        self.assertTrue(getattr(page, "show_modified", None))
+        self.assertTrue(resp.json().get("show_modified", None))
