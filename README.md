@@ -21,10 +21,11 @@
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-2)
   - [Servizio](#servizio)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-3)
-  - [Unità Organizzativa](#unit%C3%A0-organizzativa)
+  - [Unità Organizzativa](#unità-organizzativa)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-4)
-- [Gestione vocabolari](#gestione-vocabolari)
+- [Pannello di controllo](#pannello-di-controllo)
 - [Gestione modulistica](#gestione-modulistica)
+- [Data di modifica](#data-di-modifica)
 - [Endpoint restapi](#endpoint-restapi)
   - [Customizzazione dati relation field](#customizzazione-dati-relation-field)
   - [Serializer summary](#serializer-summary)
@@ -331,13 +332,9 @@ La get di questo content-type, ritorna (nell'attributo "**servizi_offerti**") an
 - orario_pubblico
 - identificativo_mibac
 
-# Gestione vocabolari
+# Pannello di controllo
 
-Per diversi tipi di contenuto servono dei vocabolari con una lista di valori predefiniti.
-
-Questi sono configurabili dal pannello di controllo "_Impostazioni Design Plone_".
-
-I vocabolari personalizzabili sono i seguenti:
+Nel pannello di controllo "_Impostazioni Design Plone_" sono presenti diversi campi dove configurare valori di default per i vari contenuti:
 
 - Tipologie notizia
 - Tipologie persona
@@ -345,13 +342,21 @@ I vocabolari personalizzabili sono i seguenti:
 - Tipologie documento
 - Dimensioni leadimage
 - Sezioni ricerca
-  
-A parte gli ultimi due, gli altri campi sono tutti multilingua. I vocabolari che usano quei valori, ritornano solo i possibili valori a seconda della lingua selezionata dall'utente.
+- Mostra la data di modifica
+
+A parte gli ultimi tre, gli altri campi sono tutti multilingua. I vocabolari che usano quei valori, ritornano solo i possibili valori a seconda della lingua selezionata dall'utente.
 # Gestione modulistica
 
 Agid prevede un tipo di contenuto **Documento** per gestire i moduli scaricabili.
 
 Abbiamo però sviluppato anche un contenuto chiamato **Cartella Modulistica** che ha il compito di raggruppare in modo logico più Documenti e mostrarli all'utente come faceva il vecchio prodotto **cciaa.modulistica**.
+
+# Data di modifica
+
+Esiste una behavior (*design.plone.contenttypes.behavior.show_modified*) abilitata di default solo per i Document (Pagina)
+che indica al frontend se va mostrata o meno la data di modifica.
+
+Nel pannello di controllo viene definito il default, mentre nel singolo contenuto è possibile cambiare il valore nel tab "Impostazioni".
 
 # Endpoint restapi
 

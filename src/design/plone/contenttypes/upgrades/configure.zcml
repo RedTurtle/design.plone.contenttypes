@@ -288,4 +288,17 @@
         handler=".upgrades.to_3102"
       />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+    source="3102"
+    destination="3200"
+    profile="design.plone.contenttypes:default">
+      <genericsetup:upgradeStep
+        title="Enable show_modified behavior for Document"
+        handler=".upgrades.update_types"
+        />
+      <genericsetup:upgradeStep
+        title="Add new field in settings (show_modified_default)"
+        handler=".upgrades.update_registry"
+        />
+  </genericsetup:upgradeSteps>
 </configure>

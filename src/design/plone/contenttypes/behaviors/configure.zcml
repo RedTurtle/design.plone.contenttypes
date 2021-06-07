@@ -238,6 +238,15 @@
       marker=".multi_file.IMultiFile"
       />
 
+    <plone:behavior
+      title="Show modified"
+      name="design.plone.contenttypes.behavior.show_modified"
+      description="Mostra la data di modifica."
+      provides=".show_modified.IShowModified"
+      factory=".show_modified.ShowModified"
+      marker=".show_modified.IShowModified"
+      />
+
     <!-- Uncomment if needed again -->
     <!-- <plone:behavior
       title="Trasparenza"
