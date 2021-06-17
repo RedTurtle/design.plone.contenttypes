@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.2.1 (unreleased)
+3.3.0 (2021-06-17)
 ------------------
 
 - Volto 13 compatibility.
