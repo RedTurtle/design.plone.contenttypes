@@ -262,6 +262,7 @@
   </genericsetup:upgradeSteps>
   <genericsetup:upgradeSteps
     source="3001"
+
     destination="3100"
     profile="design.plone.contenttypes:default">
       <genericsetup:upgradeStep
@@ -280,11 +281,33 @@
   </genericsetup:upgradeSteps>
   <genericsetup:upgradeSteps
     source="3101"
+    destination="3102"
+    profile="design.plone.contenttypes:default">
+      <genericsetup:upgradeStep
+        title="Removes amministrazione trasparente behavior"
+        handler=".upgrades.to_3102"
+      />
+  </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+    source="3102"
     destination="3200"
+    profile="design.plone.contenttypes:default">
+      <genericsetup:upgradeStep
+        title="Enable show_modified behavior for Document"
+        handler=".upgrades.update_types"
+        />
+      <genericsetup:upgradeStep
+        title="Add new field in settings (show_modified_default)"
+        handler=".upgrades.update_registry"
+        />
+  </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+    source="3200"
+    destination="3300"
     profile="design.plone.contenttypes:default">
       <genericsetup:upgradeStep
         title="Migrate to volto 13"
         handler=".upgrades.to_volto13"
-        />
+      />
   </genericsetup:upgradeSteps>
 </configure>

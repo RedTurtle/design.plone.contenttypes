@@ -2,10 +2,17 @@ Changelog
 =========
 
 
-3.1.2 (unreleased)
+3.2.1 (unreleased)
 ------------------
 
 - Volto 13 compatibility.
+  [cekk]
+
+
+3.2.0 (2021-06-08)
+------------------
+
+- Add new behavior "design.plone.contenttypes.behavior.show_modified".
   [cekk]
 
 

@@ -5,6 +5,7 @@
   <element value="design.plone.contenttypes.behavior.info_testata"/>
   <element value="design.plone.contenttypes.behavior.argomenti_document" />
   <element value="plone.translatable"/>
+  <element value="design.plone.contenttypes.behavior.show_modified"/>
  </property>
    <property name="view_methods">
     <element value="document_view" />

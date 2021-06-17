@@ -4,7 +4,7 @@ from plone.app.registry.browser.controlpanel import ControlPanelFormWrapper
 from plone.app.registry.browser.controlpanel import RegistryEditForm
 from plone.restapi.controlpanels.interfaces import IControlpanel
 from zope.interface import Interface
-from zope.schema import List, TextLine, SourceText
+from zope.schema import List, TextLine, SourceText, Bool
 
 import json
 
@@ -109,6 +109,21 @@ class IDesignPloneSettings(Interface):
             default="Inserire una lista di sezioni per la ricerca.",
         ),
         default="",
+        required=False,
+    )
+
+    show_modified_default = Bool(
+        title=_(
+            "show_modified_default_label", default="Mostra la data di modifica"
+        ),
+        description=_(
+            "show_modified_default_help",
+            default="Questo è il valore di default per decidere se mostrare "
+            "o meno la data di modifica nei contenuti che hanno la behavior "
+            "abilitata. E' poi possibile sovrascrivere il default nei singoli "
+            'contenuti (nel tab "Impostazioni").',
+        ),
+        default=False,
         required=False,
     )
 
