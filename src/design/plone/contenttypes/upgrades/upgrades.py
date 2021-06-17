@@ -501,7 +501,22 @@ def to_3101(context):
     logger.info("Updated {} objects Documento".format(fixed_total))
 
 
-<<<<<<< HEAD
+def to_3102(context):
+    update_types(context)
+
+    # cleanup trasparenza behavior from CTs
+    portal_types = api.portal.get_tool(name="portal_types")
+    to_remove = [
+        "design.plone.contenttypes.behavior.trasparenza",
+    ]
+    for key, value in portal_types.items():
+        ct_behaviors = getattr(value, "behaviors", None)
+        if ct_behaviors is not None:
+            portal_types[key].behaviors = tuple(
+                [x for x in ct_behaviors if x not in to_remove]
+            )
+
+
 def to_volto13(context):  # noqa: C901
     # convert listing blocks with new standard
 
@@ -573,19 +588,3 @@ def to_volto13(context):  # noqa: C901
                     if blocks:
                         fix_listing(blocks, brain.getURL())
                         setattr(item, name, value)
-=======
-def to_3102(context):
-    update_types(context)
-
-    # cleanup trasparenza behavior from CTs
-    portal_types = api.portal.get_tool(name="portal_types")
-    to_remove = [
-        "design.plone.contenttypes.behavior.trasparenza",
-    ]
-    for key, value in portal_types.items():
-        ct_behaviors = getattr(value, "behaviors", None)
-        if ct_behaviors is not None:
-            portal_types[key].behaviors = tuple(
-                [x for x in ct_behaviors if x not in to_remove]
-            )
->>>>>>> master
