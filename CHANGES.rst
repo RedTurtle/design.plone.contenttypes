@@ -5,7 +5,8 @@ Changelog
 3.2.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Volto 13 compatibility.
+  [cekk]
 
 
 3.2.0 (2021-06-08)

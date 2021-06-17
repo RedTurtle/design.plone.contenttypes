@@ -301,4 +301,13 @@
         handler=".upgrades.update_registry"
         />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+    source="3200"
+    destination="3300"
+    profile="design.plone.contenttypes:default">
+      <genericsetup:upgradeStep
+        title="Migrate to volto 13"
+        handler=".upgrades.to_volto13"
+      />
+  </genericsetup:upgradeSteps>
 </configure>
