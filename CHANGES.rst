@@ -5,7 +5,8 @@ Changelog
 3.3.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Handle contents with old Richtext values in volto13 migration.
+  [cekk]
 
 
 3.3.0 (2021-06-17)

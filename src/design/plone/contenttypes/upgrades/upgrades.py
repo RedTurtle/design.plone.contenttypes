@@ -535,9 +535,6 @@ def to_volto13(context):  # noqa: C901
                 if block.get("template", False) and block.get(
                     "variation", False
                 ):
-                    # import pdb
-
-                    # pdb.set_trace()
                     logger.error("- {}".format(url))
                 if block.get("variation", "") == "default":
                     block["variation"] = "simpleCard"
@@ -584,7 +581,14 @@ def to_volto13(context):  # noqa: C901
                                 {"blocks": {}, "blocks_layout": {"items": []}},
                             )
                             continue
-                    blocks = value.get("blocks", {})
+                    try:
+                        blocks = value.get("blocks", {})
+                    except AttributeError:
+                        logger.warning(
+                            "[RICHTEXT] - {} (not converted)".format(
+                                brain.getURL()
+                            )
+                        )
                     if blocks:
                         fix_listing(blocks, brain.getURL())
                         setattr(item, name, value)
