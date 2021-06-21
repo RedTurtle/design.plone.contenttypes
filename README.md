@@ -21,7 +21,7 @@
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-2)
   - [Servizio](#servizio)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-3)
-  - [Unità Organizzativa](#unit%C3%A0-organizzativa)
+  - [Unità Organizzativa](#unità-organizzativa)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-4)
 - [Pannello di controllo](#pannello-di-controllo)
 - [Gestione modulistica](#gestione-modulistica)
@@ -195,6 +195,8 @@ Al suo interno può contenere degli oggetti di tipo **Modulo** (che sono i file 
 
 I Moduli che vengono inseriti dentro al Documento, verranno mostrati nel frontend come lista di documenti scaricabili.
 E' presente una customizzazione del serializer per poter mostrare di default più di 25 risultati (200), perché può essere necessario mostrare più moduli.
+
+Se si prova a fare un caricamento massivo di file dalla vista "*contents*" di un Documento, c'è una personalizzazione di restapi che converte il tipo da File (il default che imposta Volto per la POST) a **Modulo**. In questo modo si può fare il caricamento massivo di Moduli dentro ad un Documento.
 
 ### Campi indicizzati nel SearchableText
 

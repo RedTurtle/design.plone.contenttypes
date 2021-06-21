@@ -4,10 +4,11 @@ from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING,
 )
 from plone import api
+
 import unittest
 
 
-class TestDocument(unittest.TestCase):
+class TestCartellaModulistica(unittest.TestCase):
     layer = DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING
 
     def setUp(self):

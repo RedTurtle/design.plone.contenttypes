@@ -5,7 +5,8 @@ Changelog
 3.3.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Convert File into Modulo when trying to do a massive upload inside a Documento.
+  [cekk]
 
 
 3.3.1 (2021-06-17)
