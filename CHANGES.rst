@@ -5,7 +5,8 @@ Changelog
 3.3.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Enabled "trasparenza" behavior. It's back!
+  [arsenico13]
 
 
 3.3.1 (2021-06-17)
