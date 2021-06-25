@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.3.2 (unreleased)
+3.3.2 (2021-06-25)
 ------------------
 
 - Enabled "trasparenza" behavior. It's back!
