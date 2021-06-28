@@ -5,7 +5,8 @@ Changelog
 3.3.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix description for "a_cura_di_persone" field.
+  [cekk]
 
 
 3.3.2 (2021-06-25)
