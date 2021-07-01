@@ -60,7 +60,7 @@ class INewsAdditionalFields(model.Schema):
             "a_cura_di_persone_help",
             default="Seleziona una lista di persone dell'amministrazione "
             "citate in questa notizia/comunicato stampa. Questa informazione "
-            'verrà mostrata nel riquadro "A cura di".',
+            'verrà mostrata nella sezione "A cura di".',
         ),
         default=[],
         value_type=RelationChoice(vocabulary="plone.app.vocabularies.Catalog"),
