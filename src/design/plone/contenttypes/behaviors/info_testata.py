@@ -49,7 +49,7 @@ class IInfoTestata(model.Schema):
             u"mostra_bottoni_condivisione_label",
             default=u"Mostra i bottoni per la condivisione sui social",
         ),
-        default=True,
+        default=False,
         required=False,
         description=_(
             "mostra_bottoni_condivisione_help",
