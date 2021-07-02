@@ -53,8 +53,8 @@ class IInfoTestata(model.Schema):
         required=False,
         description=_(
             "mostra_bottoni_condivisione_help",
-            default="Seleziona se mostrare o meno il bottone con i link per "
-            "la condivisione sui vari social.",
+            default="Seleziona se mostrare o meno i bottoni con i link per "
+            "la condivisione sui vari social, mail e stampa.",
         ),
     )
     mostra_navigazione = schema.Bool(
@@ -71,9 +71,10 @@ class IInfoTestata(model.Schema):
         "testata",
         label=_("testata_fieldset_label", default=u"Testata"),
         fields=[
-            "info_testata",
-            "immagine_testata",
             "ricerca_in_testata",
+            "mostra_bottoni_condivisione",
+            "immagine_testata",
+            "info_testata",
             "mostra_navigazione",
         ],
     )
