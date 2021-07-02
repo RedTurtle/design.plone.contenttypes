@@ -104,8 +104,8 @@ class INewsAdditionalFields(model.Schema):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "recentlyUsed": True,  # Just turn on. Config in plone.app.widgets.
             "selectableTypes": ["Persona"],
+            "maximumSelectionSize": 50,
         },
     )
     form.widget(
@@ -122,8 +122,8 @@ class INewsAdditionalFields(model.Schema):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "recentlyUsed": True,  # Just turn on. Config in plone.app.widgets.
             "selectableTypes": ["Venue"],
+            "maximumSelectionSize": 50,
         },
     )
 

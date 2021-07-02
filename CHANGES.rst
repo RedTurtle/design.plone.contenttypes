@@ -7,6 +7,8 @@ Changelog
 
 - Fix description for "a_cura_di_persone" field.
   [cekk]
+- Added "maximumSelectionSize" in RelatedItemsFieldWidget
+  [giulia]
 
 
 3.3.2 (2021-06-25)
