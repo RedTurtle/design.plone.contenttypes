@@ -9,7 +9,8 @@ Changelog
   [cekk]
 - Added "maximumSelectionSize" in RelatedItemsFieldWidget
   [giulia]
-
+- Add mostra_bottoni_condivisione field.
+  [cekk]
 
 3.3.2 (2021-06-25)
 ------------------

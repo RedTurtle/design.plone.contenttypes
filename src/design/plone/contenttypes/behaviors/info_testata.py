@@ -44,7 +44,19 @@ class IInfoTestata(model.Schema):
             default="Seleziona se mostrare o meno il campo di ricerca in testata.",
         ),
     )
-
+    mostra_bottoni_condivisione = schema.Bool(
+        title=_(
+            u"mostra_bottoni_condivisione_label",
+            default=u"Mostra i bottoni per la condivisione sui social",
+        ),
+        default=True,
+        required=False,
+        description=_(
+            "mostra_bottoni_condivisione_help",
+            default="Seleziona se mostrare o meno il bottone con i link per "
+            "la condivisione sui vari social.",
+        ),
+    )
     mostra_navigazione = schema.Bool(
         title=_(u"mostra_navigazione_label", default=u"Mostra la navigazione"),
         default=False,
