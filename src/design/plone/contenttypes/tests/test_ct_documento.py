@@ -113,3 +113,21 @@ class TestDocumentoApi(unittest.TestCase):
         transaction.commit()
 
         self.assertEqual(self.documento["my-file"].portal_type, "Modulo")
+
+    def test_post_image_will_convert_into_modulo(self):
+        response = self.api_session.post(
+            self.documento.absolute_url(),
+            json={
+                "@type": "Image",
+                "title": "My Image",
+                "image": {
+                    "filename": "image.jpg",
+                    "data": "Spam and Eggs",
+                    "content_type": "image/jpeg",
+                },
+            },
+        )
+        self.assertEqual(201, response.status_code)
+        transaction.commit()
+
+        self.assertEqual(self.documento["my-image"].portal_type, "Modulo")
