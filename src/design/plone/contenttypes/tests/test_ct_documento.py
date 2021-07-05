@@ -70,6 +70,13 @@ class TestDocumentoApi(unittest.TestCase):
         self.documento = api.content.create(
             container=self.portal, type="Documento", title="Documento"
         )
+
+        transaction.commit()
+
+    def tearDown(self):
+        self.api_session.close()
+
+    def test_document_get_return_more_than_25_results_by_default(self):
         for i in range(50):
             child = api.content.create(
                 container=self.documento,
@@ -83,13 +90,44 @@ class TestDocumentoApi(unittest.TestCase):
                 contentType="application/pdf",
             )
         transaction.commit()
-
-    def tearDown(self):
-        self.api_session.close()
-
-    def test_document_get_return_more_than_25_results_by_default(self):
         response = self.api_session.get(self.documento.absolute_url())
         res = response.json()
         self.assertEqual(
             len(res["items"]), len(self.documento.listFolderContents())
         )
+
+    def test_post_file_will_convert_into_modulo(self):
+        response = self.api_session.post(
+            self.documento.absolute_url(),
+            json={
+                "@type": "File",
+                "title": "My File",
+                "file": {
+                    "filename": "test.txt",
+                    "data": "Spam and Eggs",
+                    "content_type": "text/plain",
+                },
+            },
+        )
+        self.assertEqual(201, response.status_code)
+        transaction.commit()
+
+        self.assertEqual(self.documento["my-file"].portal_type, "Modulo")
+
+    def test_post_image_will_convert_into_modulo(self):
+        response = self.api_session.post(
+            self.documento.absolute_url(),
+            json={
+                "@type": "Image",
+                "title": "My Image",
+                "image": {
+                    "filename": "image.jpg",
+                    "data": "Spam and Eggs",
+                    "content_type": "image/jpeg",
+                },
+            },
+        )
+        self.assertEqual(201, response.status_code)
+        transaction.commit()
+
+        self.assertEqual(self.documento["my-image"].portal_type, "Modulo")

@@ -5,6 +5,8 @@ Changelog
 3.3.3 (unreleased)
 ------------------
 
+- Convert File into Modulo when trying to do a massive upload inside a Documento.
+  [cekk]
 - Fix description for "a_cura_di_persone" field.
   [cekk]
 - Added "maximumSelectionSize" in RelatedItemsFieldWidget
