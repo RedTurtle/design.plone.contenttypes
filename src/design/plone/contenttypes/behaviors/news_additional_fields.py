@@ -59,7 +59,8 @@ class INewsAdditionalFields(model.Schema):
         description=_(
             "a_cura_di_persone_help",
             default="Seleziona una lista di persone dell'amministrazione "
-            "citate in questa notizia/comunicato stampa.",
+            "citate in questa notizia/comunicato stampa. Questa informazione "
+            'verrà mostrata nella sezione "A cura di".',
         ),
         default=[],
         value_type=RelationChoice(vocabulary="plone.app.vocabularies.Catalog"),
@@ -103,8 +104,8 @@ class INewsAdditionalFields(model.Schema):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "recentlyUsed": True,  # Just turn on. Config in plone.app.widgets.
             "selectableTypes": ["Persona"],
+            "maximumSelectionSize": 50,
         },
     )
     form.widget(
@@ -121,8 +122,8 @@ class INewsAdditionalFields(model.Schema):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "recentlyUsed": True,  # Just turn on. Config in plone.app.widgets.
             "selectableTypes": ["Venue"],
+            "maximumSelectionSize": 50,
         },
     )
 

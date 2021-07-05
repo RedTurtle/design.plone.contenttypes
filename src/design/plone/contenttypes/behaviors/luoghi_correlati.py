@@ -28,8 +28,8 @@ class ILuoghiCorrelatiSchema(model.Schema):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "recentlyUsed": True,  # Just turn on. Config in plone.app.widgets.
             "selectableTypes": ["Venue"],
+            "maximumSelectionSize": 50,
         },
     )
 
@@ -64,8 +64,8 @@ class ILuoghiCorrelatiEvento(model.Schema):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "recentlyUsed": True,  # Just turn on. Config in plone.app.widgets.
             "selectableTypes": ["Venue"],
+            "maximumSelectionSize": 50,
         },
     )
 
