@@ -11,7 +11,8 @@ Changelog
   [cekk]
 - Added "maximumSelectionSize" in RelatedItemsFieldWidget
   [giulia]
-
+- Change block @type: newsHome -> highlitedContent
+  [cekk]
 
 3.3.2 (2021-06-25)
 ------------------
