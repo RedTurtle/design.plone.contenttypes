@@ -310,4 +310,13 @@
         handler=".upgrades.to_volto13"
       />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+    source="3300"
+    destination="3400"
+    profile="design.plone.contenttypes:default">
+      <genericsetup:upgradeStep
+        title="Migrate newsHome to highlitedContent"
+        handler=".upgrades.to_3400"
+      />
+  </genericsetup:upgradeSteps>
 </configure>

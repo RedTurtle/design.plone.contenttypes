@@ -1,0 +1,13 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:zcml="http://namespaces.zope.org/zcml">
+
+  <plone:service
+      method="POST"
+      factory=".add.DocumentoPost"
+      for="design.plone.contenttypes.interfaces.documento.IDocumento"
+      permission="cmf.AddPortalContent"
+      />
+
+</configure>
