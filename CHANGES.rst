@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.3.3 (unreleased)
+3.4.0 (2021-07-07)
 ------------------
 
 - Convert File into Modulo when trying to do a massive upload inside a Documento.
