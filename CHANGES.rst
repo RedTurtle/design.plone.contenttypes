@@ -11,6 +11,7 @@ Changelog
   [cekk]
 - Added "maximumSelectionSize" in RelatedItemsFieldWidget
   [giulia]
+- Add mostra_bottoni_condivisione field.
 - Change block @type: newsHome -> highlitedContent
   [cekk]
 

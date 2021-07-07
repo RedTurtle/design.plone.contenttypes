@@ -44,7 +44,19 @@ class IInfoTestata(model.Schema):
             default="Seleziona se mostrare o meno il campo di ricerca in testata.",
         ),
     )
-
+    mostra_bottoni_condivisione = schema.Bool(
+        title=_(
+            u"mostra_bottoni_condivisione_label",
+            default=u"Mostra i bottoni per la condivisione sui social",
+        ),
+        default=False,
+        required=False,
+        description=_(
+            "mostra_bottoni_condivisione_help",
+            default="Seleziona se mostrare o meno i bottoni con i link per "
+            "la condivisione sui vari social, mail e stampa.",
+        ),
+    )
     mostra_navigazione = schema.Bool(
         title=_(u"mostra_navigazione_label", default=u"Mostra la navigazione"),
         default=False,
@@ -59,9 +71,10 @@ class IInfoTestata(model.Schema):
         "testata",
         label=_("testata_fieldset_label", default=u"Testata"),
         fields=[
-            "info_testata",
-            "immagine_testata",
             "ricerca_in_testata",
+            "mostra_bottoni_condivisione",
+            "immagine_testata",
+            "info_testata",
             "mostra_navigazione",
         ],
     )
