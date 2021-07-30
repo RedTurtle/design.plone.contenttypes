@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.4.1 (unreleased)
+3.4.1 (2021-07-30)
 ------------------
 
 - You can now add "File" content type inside a CartellaModulistica.
