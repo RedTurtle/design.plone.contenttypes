@@ -319,4 +319,13 @@
         handler=".upgrades.to_3400"
       />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+    source="3400"
+    destination="3401"
+    profile="design.plone.contenttypes:default">
+      <genericsetup:upgradeStep
+        title="Enable File to be added inside CartellaModulistica"
+        handler=".upgrades.to_3401"
+      />
+  </genericsetup:upgradeSteps>
 </configure>
