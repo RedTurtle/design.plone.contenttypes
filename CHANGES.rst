@@ -5,7 +5,8 @@ Changelog
 3.4.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- You can now add "File" content type inside a CartellaModulistica.
+  [arsenico13]
 
 
 3.4.0 (2021-07-07)

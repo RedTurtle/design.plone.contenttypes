@@ -656,3 +656,8 @@ def to_3400(context):  # noqa: C901
                     if blocks:
                         fix_block(blocks, brain.getURL())
                         setattr(item, name, value)
+
+
+def to_3401(context):  # noqa: C901
+    logger.info("File type can now be added inside a CartellaModulistica")
+    update_types(context)
