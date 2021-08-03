@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.4.2 (unreleased)
+3.4.2 (2021-08-03)
 ------------------
 
 - Remove required from *ufficio_responsabile* and *area_responsabile* in **Documento** contents.
