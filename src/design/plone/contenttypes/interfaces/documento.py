@@ -45,7 +45,7 @@ class IDocumento(model.Schema):
             "ufficio_responsabile_documento_help",
             default="Seleziona l'ufficio responsabile di questo documento.",
         ),
-        required=True,
+        required=False,
         default=[],
         value_type=RelationChoice(
             title=_(u"Ufficio responsabile"),
@@ -63,7 +63,7 @@ class IDocumento(model.Schema):
             default="Seleziona l'area amministrativa responsabile del "
             "documento.",
         ),
-        required=True,
+        required=False,
         default=[],
         value_type=RelationChoice(
             title=_(u"Area"), vocabulary="plone.app.vocabularies.Catalog"

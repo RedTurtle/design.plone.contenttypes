@@ -5,7 +5,8 @@ Changelog
 3.4.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Remove required from *ufficio_responsabile* and *area_responsabile* in **Documento** contents.
+  [cekk]
 
 
 3.4.1 (2021-07-30)
