@@ -9,10 +9,9 @@ from zope.schema.vocabulary import SimpleVocabulary
 from zope.site.hooks import getSite
 
 
-@implementer(IVocabularyFactory)
-class EventLocationVocabulary(object):
+class ReferencesVocabulary(object):
 
-    INDEX = 'event_location'
+    INDEX = ""
 
     def get_all_index_values(self):
         index = self.catalog._catalog.getIndex(self.INDEX)
@@ -20,7 +19,7 @@ class EventLocationVocabulary(object):
 
     def __call__(self, registry=None):
         site = getSite()
-        self.catalog = getToolByName(site, 'portal_catalog', None)
+        self.catalog = getToolByName(site, "portal_catalog", None)
         if self.catalog is None:
             return SimpleVocabulary([])
         values = self.get_all_index_values()
@@ -31,4 +30,24 @@ class EventLocationVocabulary(object):
         return SimpleVocabulary(terms)
 
 
+@implementer(IVocabularyFactory)
+class EventLocationVocabulary(ReferencesVocabulary):
+
+    INDEX = "event_location"
+
+
+@implementer(IVocabularyFactory)
+class OfficeLocationVocabulary(ReferencesVocabulary):
+
+    INDEX = "ufficio_responsabile"
+
+
+@implementer(IVocabularyFactory)
+class UOLocationVocabulary(ReferencesVocabulary):
+
+    INDEX = "uo_location"
+
+
 EventLocationVocabularyFactory = EventLocationVocabulary()
+OfficeLocationVocabularyFactory = OfficeLocationVocabulary()
+UOLocationVocabularyFactory = UOLocationVocabulary()

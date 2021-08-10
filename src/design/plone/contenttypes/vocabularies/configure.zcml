@@ -81,12 +81,16 @@
         name="design.plone.vocabularies.argomenti"
     />
     <utility
-        component=".events.EventLocationVocabularyFactory"
+        component=".reference_vocabularies.EventLocationVocabularyFactory"
         name="design.plone.vocabularies.event_location"
     />
     <utility
-        component=".offices.OfficeLocationVocabularyFactory"
+        component=".reference_vocabularies.OfficeLocationVocabularyFactory"
         name="design.plone.vocabularies.ufficio_responsabile"
+    />
+    <utility
+        component=".reference_vocabularies.UOLocationVocabularyFactory"
+        name="design.plone.vocabularies.uo_locations"
     />
 
 </configure>

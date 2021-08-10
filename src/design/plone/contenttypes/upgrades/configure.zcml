@@ -328,4 +328,13 @@
         handler=".upgrades.to_3401"
       />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+    source="3401"
+    destination="3500"
+    profile="design.plone.contenttypes:default">
+      <genericsetup:upgradeStep
+        title="Fix catalog"
+        handler=".upgrades.to_3500"
+      />
+  </genericsetup:upgradeSteps>
 </configure>
