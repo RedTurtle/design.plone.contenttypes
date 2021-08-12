@@ -30,8 +30,11 @@
  <index name="ufficio_responsabile" meta_type="KeywordIndex">
   <indexed_attr value="ufficio_responsabile"/>
  </index>
-  <index name="event_location" meta_type="KeywordIndex">
+ <index name="event_location" meta_type="KeywordIndex">
   <indexed_attr value="event_location"/>
+ </index>
+ <index name="tipologia_organizzazione" meta_type="KeywordIndex">
+  <indexed_attr value="tipologia_organizzazione"/>
  </index>
 
  <!-- metadata -->

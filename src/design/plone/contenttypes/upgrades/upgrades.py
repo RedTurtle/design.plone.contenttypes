@@ -627,7 +627,8 @@ def to_3500(context):
 
     # remove unused index
     catalog = api.portal.get_tool(name="portal_catalog")
-    catalog.manage_delIndex("office_venue")
+    if "office_venue" in catalog.indexes():
+        catalog.manage_delIndex("office_venue")
 
     # reindex
     brains = api.content.find(portal_type="UnitaOrganizzativa")
@@ -639,4 +640,4 @@ def to_3500(context):
         if i % 1000 == 0:
             logger.info("Progress: {}/{}".format(i, tot))
         uo = brain.getObject()
-        uo.reindexObject(idxs=["uo_location"])
+        uo.reindexObject(idxs=["uo_location", "tipologia_organizzazione"])
