@@ -5,7 +5,8 @@ Changelog
 3.4.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add new index: uo_location.
+  [cekk]
 
 
 3.4.2 (2021-08-03)

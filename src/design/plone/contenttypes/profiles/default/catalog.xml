@@ -12,8 +12,8 @@
 <index name="news_venue" meta_type="KeywordIndex">
   <indexed_attr value="news_venue"/>
  </index>
-<index name="office_venue" meta_type="KeywordIndex">
-  <indexed_attr value="office_venue"/>
+<index name="uo_location" meta_type="KeywordIndex">
+  <indexed_attr value="uo_location"/>
  </index>
 <index name="service_venue" meta_type="KeywordIndex">
   <indexed_attr value="service_venue"/>
@@ -30,8 +30,11 @@
  <index name="ufficio_responsabile" meta_type="KeywordIndex">
   <indexed_attr value="ufficio_responsabile"/>
  </index>
-  <index name="event_location" meta_type="KeywordIndex">
+ <index name="event_location" meta_type="KeywordIndex">
   <indexed_attr value="event_location"/>
+ </index>
+ <index name="tipologia_organizzazione" meta_type="KeywordIndex">
+  <indexed_attr value="tipologia_organizzazione"/>
  </index>
 
  <!-- metadata -->

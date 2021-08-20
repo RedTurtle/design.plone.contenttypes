@@ -87,9 +87,7 @@ class TestLuogoApi(unittest.TestCase):
         self.service.dove_rivolgersi = [venue]
         self.uo.luoghi_correlati = [venue]
         pcatalog = getToolByName(self.portal, "portal_catalog")
-        pcatalog.manage_reindexIndex(
-            ids=["service_venue", "office_venue", "news_venue"]
-        )
+        pcatalog.manage_reindexIndex(ids=["service_venue", "uo_location", "news_venue"])
         commit()
 
     def tearDown(self):
@@ -105,11 +103,7 @@ class TestLuogoApi(unittest.TestCase):
 
         response = self.api_session.patch(
             venue.absolute_url(),
-            json={
-                "@type": "Venue",
-                "title": "Foo",
-                "geolocation": {"foo": "bar"},
-            },
+            json={"@type": "Venue", "title": "Foo", "geolocation": {"foo": "bar"}},
         )
         message = response.json()["message"]
 
@@ -140,18 +134,13 @@ class TestLuogoApi(unittest.TestCase):
         self.assertEqual(venue.geolocation.longitude, 10.0)
 
     def test_venue_services(self):
-        response = self.api_session.get(
-            self.venue.absolute_url() + "?fullobjects"
-        )
+        response = self.api_session.get(self.venue.absolute_url() + "?fullobjects")
         self.assertTrue(
-            response.json()["venue_services"][0]["@id"],
-            self.service.absolute_url(),
+            response.json()["venue_services"][0]["@id"], self.service.absolute_url(),
         )
 
     def test_venue_news(self):
-        response = self.api_session.get(
-            self.venue.absolute_url() + "?fullobjects"
-        )
+        response = self.api_session.get(self.venue.absolute_url() + "?fullobjects")
 
         self.assertTrue(
             response.json()["related_news"][0]["@id"], self.news.absolute_url()
