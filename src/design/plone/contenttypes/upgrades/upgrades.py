@@ -641,3 +641,18 @@ def to_3500(context):
             logger.info("Progress: {}/{}".format(i, tot))
         uo = brain.getObject()
         uo.reindexObject(idxs=["uo_location", "tipologia_organizzazione"])
+
+
+def to_3501(context):
+    logger.info("Reindex UO for new SearchableText fields")
+
+    brains = api.content.find(portal_type="UnitaOrganizzativa")
+    tot = len(brains)
+    logger.info("Found {} UO.".format(tot))
+    i = 0
+    for brain in brains:
+        i += 1
+        if i % 1000 == 0:
+            logger.info("Progress: {}/{}".format(i, tot))
+        uo = brain.getObject()
+        uo.reindexObject(idxs=["SearchableText"])

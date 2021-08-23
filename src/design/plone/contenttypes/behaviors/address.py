@@ -8,9 +8,7 @@ from plone.supermodel import model
 from zope.component import adapter
 from zope import schema
 from zope.interface import provider, implementer
-from design.plone.contenttypes.interfaces.unita_organizzativa import (
-    IUnitaOrganizzativa,
-)
+from design.plone.contenttypes.interfaces.unita_organizzativa import IUnitaOrganizzativa
 
 
 class IAddressNomeSede(model.Schema):
@@ -23,6 +21,7 @@ class IAddressNomeSede(model.Schema):
         ),
         required=False,
     )
+    dexteritytextindexer.searchable("nome_sede")
 
 
 class IAddressLocal(model.Schema):

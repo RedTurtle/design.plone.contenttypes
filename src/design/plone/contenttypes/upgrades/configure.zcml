@@ -337,4 +337,13 @@
         handler=".upgrades.to_3500"
       />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+    source="3500"
+    destination="3501"
+    profile="design.plone.contenttypes:default">
+      <genericsetup:upgradeStep
+        title="New fields in SearchableText for UO"
+        handler=".upgrades.to_3501"
+      />
+  </genericsetup:upgradeSteps>
 </configure>

@@ -7,7 +7,8 @@ Changelog
 
 - Add new index: uo_location.
   [cekk]
-
+- Add new fields to be indexed in SearchableText for UO: nome_sede, email, pec, web
+  [cekk]
 
 3.4.2 (2021-08-03)
 ------------------

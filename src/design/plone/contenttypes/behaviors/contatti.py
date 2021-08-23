@@ -8,9 +8,7 @@ from plone.supermodel import model
 from zope import schema
 from zope.component import adapter
 from zope.interface import provider, implementer
-from design.plone.contenttypes.interfaces.unita_organizzativa import (
-    IUnitaOrganizzativa,
-)
+from design.plone.contenttypes.interfaces.unita_organizzativa import IUnitaOrganizzativa
 
 
 class IContatti(model.Schema):
@@ -37,8 +35,7 @@ class IContatti(model.Schema):
         title=_(u"email_label", default=u"E-mail"),
         description=_(
             u"email_help",
-            default=u"Indicare un indirizzo mail per poter contattare"
-            " i referenti.",
+            default=u"Indicare un indirizzo mail per poter contattare" " i referenti.",
         ),
         required=False,
     )
@@ -47,17 +44,14 @@ class IContatti(model.Schema):
         title=_(u"pec_label", default=u"Pec"),
         description=_(
             u"pec_help",
-            default=u"Indicare un indirizzo pec per poter contattare"
-            " i referenti.",
+            default=u"Indicare un indirizzo pec per poter contattare" " i referenti.",
         ),
         required=False,
     )
 
     web = schema.TextLine(
         title=_(u"web_label", default=u"Sito web"),
-        description=_(
-            "web_help", default="Indicare un indirizzo web di riferimento."
-        ),
+        description=_("web_help", default="Indicare un indirizzo web di riferimento."),
         required=False,
     )
 
@@ -71,6 +65,9 @@ class IContatti(model.Schema):
     )
 
     dexteritytextindexer.searchable("orario_pubblico")
+    dexteritytextindexer.searchable("email")
+    dexteritytextindexer.searchable("pec")
+    dexteritytextindexer.searchable("web")
 
 
 @provider(IFormFieldProvider)

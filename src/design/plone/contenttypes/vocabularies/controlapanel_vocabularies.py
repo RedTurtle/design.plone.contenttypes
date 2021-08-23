@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-from design.plone.contenttypes.controlpanels.settings import (
-    IDesignPloneSettings,
-)
+from design.plone.contenttypes.controlpanels.settings import IDesignPloneSettings
 from design.plone.contenttypes.utils import get_settings_for_language
 from plone import api
 from zope.interface import implementer
@@ -24,8 +22,7 @@ class BaseVocabulary(object):
 
         terms = [SimpleTerm(value=x, token=x, title=x) for x in values]
         terms.insert(
-            0,
-            SimpleTerm(value="", token="", title="-- seleziona un valore --"),
+            0, SimpleTerm(value="", token="", title="-- seleziona un valore --"),
         )
 
         return SimpleVocabulary(terms)
@@ -74,6 +71,4 @@ LeadImageDimensionFactory = LeadImageDimension()
 TipologieNotiziaFactory = TipologieNotizia()
 TipologieDocumentoFactory = TipologieDocumento()
 TipologiePersonaFactory = TipologiePersona()
-TipologieUnitaOrganizzativaVocabularyFactory = (
-    TipologieUnitaOrganizzativaVocabulary()
-)
+TipologieUnitaOrganizzativaVocabularyFactory = TipologieUnitaOrganizzativaVocabulary()
