@@ -9,6 +9,8 @@ Changelog
   [cekk]
 - Add new fields to be indexed in SearchableText for UO: nome_sede, email, pec, web
   [cekk]
+- Do not break if there are extra fieldsets that comes from non standard addons: just append them to the default ordered list.
+  [cekk]
 
 3.4.2 (2021-08-03)
 ------------------

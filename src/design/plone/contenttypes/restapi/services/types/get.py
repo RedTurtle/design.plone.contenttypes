@@ -140,9 +140,7 @@ FIELDSETS_ORDER = {
 class TypesGet(BaseGet):
     def customize_persona_schema(self, result):
         msgid = _(u"Nome e Cognome", default="Nome e cognome")
-        result["properties"]["title"]["title"] = translate(
-            msgid, context=self.request
-        )
+        result["properties"]["title"]["title"] = translate(msgid, context=self.request)
         return result
 
     def customize_venue_schema(self, result):
@@ -150,15 +148,9 @@ class TypesGet(BaseGet):
         Unico modo per spostare il campo "notes"
         """
         for fieldset in result["fieldsets"]:
-            if (
-                fieldset.get("id") == "default"
-                and "notes" in fieldset["fields"]
-            ):
+            if fieldset.get("id") == "default" and "notes" in fieldset["fields"]:
                 fieldset["fields"].remove("notes")
-            if (
-                fieldset.get("id") == "dove"
-                and "notes" not in fieldset["fields"]
-            ):
+            if fieldset.get("id") == "dove" and "notes" not in fieldset["fields"]:
                 fieldset["fields"].append("notes")
 
         return result
@@ -172,10 +164,7 @@ class TypesGet(BaseGet):
         for field in versioning_fields:
             found = False
             for fieldset in result["fieldsets"]:
-                if (
-                    fieldset.get("id") == "default"
-                    and field in fieldset["fields"]
-                ):
+                if fieldset.get("id") == "default" and field in fieldset["fields"]:
                     found = True
                     fieldset["fields"].remove(field)
                 if fieldset.get("id") == "settings" and found:
@@ -187,9 +176,7 @@ class TypesGet(BaseGet):
         result = super(TypesGet, self).reply()
 
         if "fieldsets" in result:
-            result["fieldsets"] = self.reorder_fieldsets(
-                original=result["fieldsets"]
-            )
+            result["fieldsets"] = self.reorder_fieldsets(original=result["fieldsets"])
         pt = self.request.PATH_INFO.split("/")[-1]
 
         if "properties" in result:
@@ -224,9 +211,7 @@ class TypesGet(BaseGet):
                         )
 
                 if "geolocation" in result["properties"]:
-                    if not result["properties"]["geolocation"].get(
-                        "default", {}
-                    ):
+                    if not result["properties"]["geolocation"].get("default", {}):
                         result["properties"]["geolocation"]["default"] = eval(
                             api.portal.get_registry_record(
                                 "geolocation", interface=IGeolocationDefaults
@@ -252,19 +237,15 @@ class TypesGet(BaseGet):
         if not order:
             # no match
             return original
-        actual = [x["id"] for x in original]
-        portal_types = api.portal.get_tool(name="portal_types")
-        behaviors = portal_types[pt].behaviors
-        if "design.plone.contenttypes.behavior.trasparenza" in behaviors:
-            order.append("trasparenza")
+        original_fieldsets = [x["id"] for x in original]
 
-        if set(order) != set(actual):
-            # list mismatch
-            raise FieldsetsMismatchError(
-                "Fieldset mismatch for {}. expected: {} get: {}".format(
-                    pt, order, actual
-                )
-            )
+        for fieldset_id in original_fieldsets:
+            # if some fieldsets comes from additional addons (not from the
+            # base ones), then append them to the order list.
+            if fieldset_id not in order:
+                order.append(fieldset_id)
+
+        # create a new fieldsets list with the custom order
         new = []
         for id in order:
             for fieldset in original:
@@ -272,5 +253,5 @@ class TypesGet(BaseGet):
                     new.append(fieldset)
         if not new:
             # no match
-            new = original
+            return original
         return new
