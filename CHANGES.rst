@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.4.3 (unreleased)
+3.5.0 (2021-08-24)
 ------------------
 
 - Add new index: uo_location.
