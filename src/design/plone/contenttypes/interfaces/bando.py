@@ -33,10 +33,8 @@ class IBandoAgidSchema(IBandoSchema):
     destinatari = schema.List(
         title=_rtbando("destinatari_label", default="Recipients"),
         description=_rtbando("destinatari_help", default=""),
-        required=True,
-        value_type=schema.Choice(
-            vocabulary="redturtle.bandi.destinatari.vocabulary"
-        ),
+        required=False,
+        value_type=schema.Choice(vocabulary="redturtle.bandi.destinatari.vocabulary"),
     )
     ente_bando = schema.Tuple(
         title=_rtbando("ente_label", default="Authority"),
@@ -59,9 +57,7 @@ class IBandoAgidSchema(IBandoSchema):
         required=False,
     )
     scadenza_bando = schema.Datetime(
-        title=_rtbando(
-            "scadenza_bando_label", default="Expiration date and time"
-        ),
+        title=_rtbando("scadenza_bando_label", default="Expiration date and time"),
         description=_rtbando(
             "scadenza_bando_help",
             default="Deadline to participate in the announcement",
@@ -71,17 +67,14 @@ class IBandoAgidSchema(IBandoSchema):
 
     chiusura_procedimento_bando = schema.Date(
         title=_rtbando(
-            "chiusura_procedimento_bando_label",
-            default="Closing date procedure",
+            "chiusura_procedimento_bando_label", default="Closing date procedure",
         ),
         description=_rtbando("chiusura_procedimento_bando_help", default=""),
         required=False,
     )
 
     riferimenti_bando = BlocksField(
-        title=_(
-            "riferimenti_bando_agid_label", default="Ulteriori informazioni"
-        ),
+        title=_("riferimenti_bando_agid_label", default="Ulteriori informazioni"),
         description=_(
             "riferimenti_bando_agid_help",
             default="Ulteriori informazioni non previste negli altri campi;"
@@ -109,14 +102,10 @@ class IBandoAgidSchema(IBandoSchema):
     )
 
     area_responsabile = RelationList(
-        title=_(
-            "area_responsabile_label",
-            default="Area responsabile del documento",
-        ),
+        title=_("area_responsabile_label", default="Area responsabile del documento",),
         description=_(
             "area_responsabile_help",
-            default="Seleziona l'area amministrativa responsabile del "
-            "documento.",
+            default="Seleziona l'area amministrativa responsabile del " "documento.",
         ),
         required=False,
         default=[],

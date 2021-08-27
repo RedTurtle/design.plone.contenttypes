@@ -5,7 +5,8 @@ Changelog
 3.5.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Customize some Bando and Bando Folder Deepenings fields and allowed types.
+  [cekk]
 
 
 3.5.0 (2021-08-24)

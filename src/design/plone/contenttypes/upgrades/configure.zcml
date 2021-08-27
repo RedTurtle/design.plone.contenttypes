@@ -346,4 +346,13 @@
         handler=".upgrades.to_3501"
       />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+    source="3501"
+    destination="3600"
+    profile="design.plone.contenttypes:default">
+      <genericsetup:upgradeStep
+        title="Bandi customizations"
+        handler=".upgrades.to_3600"
+      />
+  </genericsetup:upgradeSteps>
 </configure>
