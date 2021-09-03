@@ -453,3 +453,4 @@ class IServizio(model.Schema):
     dexteritytextindexer.searchable("copertura_geografica")
     dexteritytextindexer.searchable("costi")
     dexteritytextindexer.searchable("servizi_collegati")
+    dexteritytextindexer.searchable("link_utili")

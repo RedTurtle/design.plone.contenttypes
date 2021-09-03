@@ -5,7 +5,10 @@ Changelog
 3.5.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add link_utili to SearchableText index.
+  [cekk]
+- showModifiedDefaultValue compatible with plone.restapi >= 8.9.1
+  [cekk]
 
 
 3.5.0 (2021-08-24)
