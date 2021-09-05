@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from collective import dexteritytextindexer
-from design.plone.contenttypes import _
 from collective.volto.blocksfield.field import BlocksField
+from design.plone.contenttypes import _
+from design.plone.contenttypes.interfaces import IDesignPloneContentType
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
 from plone.supermodel import model
@@ -10,7 +11,7 @@ from z3c.relationfield.schema import RelationList
 from zope import schema
 
 
-class IServizio(model.Schema):
+class IServizio(model.Schema, IDesignPloneContentType):
     """Marker interface for content type Servizio
     """
 
@@ -67,9 +68,7 @@ class IServizio(model.Schema):
     )
 
     copertura_geografica = BlocksField(
-        title=_(
-            u"copertura_geografica_label", default=u"Copertura geografica"
-        ),
+        title=_(u"copertura_geografica_label", default=u"Copertura geografica"),
         required=False,
         description=_(
             "copertura_geografica_help",
@@ -99,9 +98,7 @@ class IServizio(model.Schema):
     )
 
     procedure_collegate = BlocksField(
-        title=_(
-            u"procedure_collegate", default=u"Procedure collegate all'esito"
-        ),
+        title=_(u"procedure_collegate", default=u"Procedure collegate all'esito"),
         required=False,
         description=_(
             "procedure_collegate_help",
@@ -200,8 +197,7 @@ class IServizio(model.Schema):
         title=_(u"vincoli", default=u"Vincoli"),
         required=False,
         description=_(
-            "vincoli_help",
-            default="Descrizione degli eventuali vincoli presenti.",
+            "vincoli_help", default="Descrizione degli eventuali vincoli presenti.",
         ),
     )
 
@@ -217,9 +213,7 @@ class IServizio(model.Schema):
 
     # vocabolario dalle unita' organizzative presenti a catalogo?
     ufficio_responsabile = RelationList(
-        title=_(
-            u"ufficio_responsabile_erogazione", default=u"Ufficio responsabile"
-        ),
+        title=_(u"ufficio_responsabile_erogazione", default=u"Ufficio responsabile"),
         description=_(
             "ufficio_responsabile_help",
             default="Seleziona l'ufficio responsabile dell'erogazione"
@@ -238,8 +232,7 @@ class IServizio(model.Schema):
         required=False,
         default=[],
         description=_(
-            "area_help",
-            default="Seleziona l'area da cui dipende questo servizio.",
+            "area_help", default="Seleziona l'area da cui dipende questo servizio.",
         ),
         value_type=RelationChoice(
             title=_(u"Area"), vocabulary="plone.app.vocabularies.Catalog"
@@ -305,8 +298,7 @@ class IServizio(model.Schema):
         title=u"Servizi collegati",
         default=[],
         value_type=RelationChoice(
-            title=_(u"Servizi collegati"),
-            vocabulary="plone.app.vocabularies.Catalog",
+            title=_(u"Servizi collegati"), vocabulary="plone.app.vocabularies.Catalog",
         ),
         required=False,
         description=_(
@@ -371,11 +363,7 @@ class IServizio(model.Schema):
     model.fieldset(
         "a_chi_si_rivolge",
         label=_("a_chi_si_rivolge_label", default=u"A chi si rivolge"),
-        fields=[
-            "a_chi_si_rivolge",
-            "chi_puo_presentare",
-            "copertura_geografica",
-        ],
+        fields=["a_chi_si_rivolge", "chi_puo_presentare", "copertura_geografica"],
     )
     model.fieldset(
         "accedi_al_servizio",
@@ -453,4 +441,4 @@ class IServizio(model.Schema):
     dexteritytextindexer.searchable("copertura_geografica")
     dexteritytextindexer.searchable("costi")
     dexteritytextindexer.searchable("servizi_collegati")
-    dexteritytextindexer.searchable("link_utili")
+    dexteritytextindexer.searchable("link_siti_esterni")

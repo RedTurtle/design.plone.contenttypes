@@ -659,13 +659,5 @@ def to_3501(context):
 
 
 def to_3502(context):
-    brains = api.content.find(portal_type="Servizio")
-    tot = len(brains)
-    logger.info("Found {} Servizi.".format(tot))
-    i = 0
-    for brain in brains:
-        i += 1
-        if i % 1000 == 0:
-            logger.info("Progress: {}/{}".format(i, tot))
-        servizio = brain.getObject()
-        servizio.reindexObject(idxs=["SearchableText"])
+    pc = api.portal.get_tool(name="portal_catalog")
+    pc.reindexIndex("SearchableText", context.REQUEST)

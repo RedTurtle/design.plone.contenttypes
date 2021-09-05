@@ -1,21 +1,22 @@
 # -*- coding: utf-8 -*-
 from collective.volto.blocksfield.field import BlocksField
+from design.plone.contenttypes.interfaces import IDesignPloneContentType
+from plone.app.z3cform.widget import AjaxSelectFieldWidget
+from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives
+from plone.autoform import directives as form
 from plone.supermodel import model
 from redturtle.bandi import bandiMessageFactory as _
-from z3c.form.browser.checkbox import CheckBoxFieldWidget
-from plone.app.z3cform.widget import AjaxSelectFieldWidget
-from z3c.form.browser.radio import RadioFieldWidget
-from zope import schema
 from redturtle.bandi import bandiMessageFactory as _rtbando
 from redturtle.bandi.interfaces.bandoSchema import IBandoSchema, getDefaultEnte
+from z3c.form.browser.checkbox import CheckBoxFieldWidget
+from z3c.form.browser.radio import RadioFieldWidget
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
-from plone.app.z3cform.widget import RelatedItemsFieldWidget
-from plone.autoform import directives as form
+from zope import schema
 
 
-class IBandoAgidSchema(IBandoSchema):
+class IBandoAgidSchema(IBandoSchema, IDesignPloneContentType):
     """ A Dexterity schema for Annoucements """
 
     # ridefinito, così usiamo il campo dei blocchi
@@ -34,9 +35,7 @@ class IBandoAgidSchema(IBandoSchema):
         title=_rtbando("destinatari_label", default="Recipients"),
         description=_rtbando("destinatari_help", default=""),
         required=True,
-        value_type=schema.Choice(
-            vocabulary="redturtle.bandi.destinatari.vocabulary"
-        ),
+        value_type=schema.Choice(vocabulary="redturtle.bandi.destinatari.vocabulary"),
     )
     ente_bando = schema.Tuple(
         title=_rtbando("ente_label", default="Authority"),
@@ -59,9 +58,7 @@ class IBandoAgidSchema(IBandoSchema):
         required=False,
     )
     scadenza_bando = schema.Datetime(
-        title=_rtbando(
-            "scadenza_bando_label", default="Expiration date and time"
-        ),
+        title=_rtbando("scadenza_bando_label", default="Expiration date and time"),
         description=_rtbando(
             "scadenza_bando_help",
             default="Deadline to participate in the announcement",
@@ -71,17 +68,14 @@ class IBandoAgidSchema(IBandoSchema):
 
     chiusura_procedimento_bando = schema.Date(
         title=_rtbando(
-            "chiusura_procedimento_bando_label",
-            default="Closing date procedure",
+            "chiusura_procedimento_bando_label", default="Closing date procedure",
         ),
         description=_rtbando("chiusura_procedimento_bando_help", default=""),
         required=False,
     )
 
     riferimenti_bando = BlocksField(
-        title=_(
-            "riferimenti_bando_agid_label", default="Ulteriori informazioni"
-        ),
+        title=_("riferimenti_bando_agid_label", default="Ulteriori informazioni"),
         description=_(
             "riferimenti_bando_agid_help",
             default="Ulteriori informazioni non previste negli altri campi;"
@@ -109,14 +103,10 @@ class IBandoAgidSchema(IBandoSchema):
     )
 
     area_responsabile = RelationList(
-        title=_(
-            "area_responsabile_label",
-            default="Area responsabile del documento",
-        ),
+        title=_("area_responsabile_label", default="Area responsabile del documento",),
         description=_(
             "area_responsabile_help",
-            default="Seleziona l'area amministrativa responsabile del "
-            "documento.",
+            default="Seleziona l'area amministrativa responsabile del " "documento.",
         ),
         required=False,
         default=[],
