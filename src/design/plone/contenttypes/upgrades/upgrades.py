@@ -656,3 +656,27 @@ def to_3501(context):
             logger.info("Progress: {}/{}".format(i, tot))
         uo = brain.getObject()
         uo.reindexObject(idxs=["SearchableText"])
+
+
+def to_3502(context):
+    logger.info("Enable kitconcept.seo behavior")
+
+    types_list = [
+        "UnitaOrganizzativa",
+        "Bando",
+        "Subsite",
+        "Venue",
+        "Persona",
+        "Event",
+        "News Item",
+        "Document",
+        "Documento",
+        "Servizio",
+        "CartellaModulistica",
+        "Pagina Argomento",
+    ]
+    portal_types = api.portal.get_tool(name="portal_types")
+    for ct_type in types_list:
+        if "kitconcept.seo" not in portal_types[ct_type].behaviors:
+            portal_types[ct_type].behaviors += ("kitconcept.seo",)
+            logger.info("Enabled kitconcept.seo on: {}".format(ct_type))
