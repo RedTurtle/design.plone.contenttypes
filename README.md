@@ -5,6 +5,7 @@
 - [Features](#features)
 - [Tipi di contenuto](#tipi-di-contenuto)
   - [Elenco tipi implementati](#elenco-tipi-implementati)
+  - [Bando](#bando)
   - [Cartella Modulistica](#cartella-modulistica)
   - [Documento](#documento)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext)
@@ -21,7 +22,7 @@
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-2)
   - [Servizio](#servizio)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-3)
-  - [Unità Organizzativa](#unit%C3%A0-organizzativa)
+  - [Unità Organizzativa](#unità-organizzativa)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-4)
 - [Pannello di controllo](#pannello-di-controllo)
 - [Gestione modulistica](#gestione-modulistica)
@@ -177,6 +178,19 @@ gestione di un sito Agid con Plone e Volto.
   - [x] Indicizzazione testo
   - [x] Vista su Volto completata
 
+
+## Bando
+
+Proveniente da redturtle.bandi\_.
+
+Sono state fatte alcune modifiche ai campi e in più:
+
+- La vista di default nel backend è la base_view, in modo da non dare problemi con i campi a blocchi
+- Rimosso l'ente di default
+- Le cartelle approfondimento possono contenere anche Moduli
+
+
+.. \_redturtle.bandi: https://github.com/RedTurtle/redturtle.bandi
 ## Cartella Modulistica
 
 Contenuto folderish (come la Pagina) che serve a raggruppare dei Documenti.

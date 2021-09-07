@@ -13,4 +13,8 @@
     <element value="plone.richtext" remove="True" />
  </property>
  <property name="schema">design.plone.contenttypes.interfaces.bando.IBandoAgidSchema</property>
+ <property name="default_view">view</property>
+ <property name="view_methods">
+  <element value="view" />
+ </property>
 </object>

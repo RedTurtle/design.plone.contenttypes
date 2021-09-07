@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from plone import api
+from redturtle.bandi.interfaces.settings import IBandoSettings
 from Products.CMFPlone.interfaces import INonInstallable
 from zope.interface import implementer
 
@@ -21,6 +22,9 @@ def post_install(context):
         portal_types[ptype].behaviors = tuple(
             [x for x in portal_types[ptype].behaviors if x != "volto.blocks"]
         )
+
+    # remove default ente
+    api.portal.set_registry_record("default_ente", (), interface=IBandoSettings)
 
 
 def uninstall(context):
