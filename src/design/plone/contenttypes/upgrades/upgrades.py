@@ -319,7 +319,9 @@ def to_1016(context):
             sections.append({"title": item.title, "linkUrl": [item.UID()]})
     settings = [{"rootPath": "/", "items": sections}]
     api.portal.set_registry_record(
-        "search_sections", json.dumps(settings), interface=IDesignPloneSettings,
+        "search_sections",
+        json.dumps(settings),
+        interface=IDesignPloneSettings,
     )
 
 
@@ -395,7 +397,7 @@ def to_2000(context):
 
 
 def to_2002(context):
-    """ Per l'aggiornamento del vocabolario tipologie_persona, sistemiamo
+    """Per l'aggiornamento del vocabolario tipologie_persona, sistemiamo
     tutti quelli già presenti.
     """
     type_mapping = {
@@ -416,8 +418,7 @@ def to_2002(context):
 
 
 def to_3000(context):
-    """
-    """
+    """ """
     update_registry(context)
     update_controlpanel(context)
     multilanguage = [
@@ -436,7 +437,9 @@ def to_3000(context):
         try:
             value = api.portal.get_registry_record(old_entry.format(field))
             api.portal.set_registry_record(
-                field, json.dumps({"it": value}), interface=IDesignPloneSettings,
+                field,
+                json.dumps({"it": value}),
+                interface=IDesignPloneSettings,
             )
         except Exception:
             continue
@@ -656,12 +659,8 @@ def to_3501(context):
         uo.reindexObject(idxs=["SearchableText"])
 
 
-def to_3502(context):
-    pc = api.portal.get_tool(name="portal_catalog")
-    pc.reindexIndex("SearchableText", context.REQUEST)
-
+def to_3600(context):
     logger.info("Enable kitconcept.seo behavior")
-
     types_list = [
         "UnitaOrganizzativa",
         "Bando",
@@ -682,8 +681,8 @@ def to_3502(context):
             portal_types[ct_type].behaviors += ("kitconcept.seo",)
             logger.info("Enabled kitconcept.seo on: {}".format(ct_type))
 
-
-def to_3600(context):
+    logger.info("Bandi customizations")
+    update_catalog(context)
     api.portal.set_registry_record("default_ente", (), interface=IBandoSettings)
 
     portal_types = api.portal.get_tool(name="portal_types")
@@ -694,3 +693,8 @@ def to_3600(context):
     )
     portal_types["Bando"].default_view = "view"
     portal_types["Bando"].view_methods = ("view",)
+
+    logger.info("Reindex indexes")
+    pc = api.portal.get_tool(name="portal_catalog")
+    pc.reindexIndex("SearchableText", context.REQUEST)
+    pc.reindexIndex("ufficio_responsabile_bando", context.REQUEST)
