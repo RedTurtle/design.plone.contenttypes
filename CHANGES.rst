@@ -15,6 +15,8 @@ Changelog
   [cekk]
 - Customize some Bando and Bando Folder Deepenings fields and allowed types.
   [cekk]
+- Upgrade step to enable kitconcept.seo behavior on contents.
+  [daniele]
 
 3.5.0 (2021-08-24)
 ------------------
