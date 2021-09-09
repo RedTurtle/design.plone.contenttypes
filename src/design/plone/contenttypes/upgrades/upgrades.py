@@ -2,22 +2,20 @@
 from Acquisition import aq_base
 from collective.volto.blocksfield.field import BlocksField
 from copy import deepcopy
+from design.plone.contenttypes.controlpanels.settings import IDesignPloneSettings
 from design.plone.contenttypes.upgrades.draftjs_converter import to_draftjs
 from plone import api
 from plone.app.textfield.value import RichTextValue
 from plone.app.upgrade.utils import installOrReinstallProduct
 from plone.dexterity.utils import iterSchemata
+from redturtle.bandi.interfaces.settings import IBandoSettings
 from transaction import commit
-from zope.schema import getFields
-
-from zope.component import getUtility
-from zope.intid.interfaces import IIntIds
-from zope.event import notify
-from zope.lifecycleevent import ObjectModifiedEvent
 from z3c.relationfield import RelationValue
-
-
-from design.plone.contenttypes.controlpanels.settings import IDesignPloneSettings
+from zope.component import getUtility
+from zope.event import notify
+from zope.intid.interfaces import IIntIds
+from zope.lifecycleevent import ObjectModifiedEvent
+from zope.schema import getFields
 
 import logging
 import json
@@ -661,3 +659,38 @@ def to_3501(context):
 def to_3502(context):
     pc = api.portal.get_tool(name="portal_catalog")
     pc.reindexIndex("SearchableText", context.REQUEST)
+
+    logger.info("Enable kitconcept.seo behavior")
+
+    types_list = [
+        "UnitaOrganizzativa",
+        "Bando",
+        "Subsite",
+        "Venue",
+        "Persona",
+        "Event",
+        "News Item",
+        "Document",
+        "Documento",
+        "Servizio",
+        "CartellaModulistica",
+        "Pagina Argomento",
+    ]
+    portal_types = api.portal.get_tool(name="portal_types")
+    for ct_type in types_list:
+        if "kitconcept.seo" not in portal_types[ct_type].behaviors:
+            portal_types[ct_type].behaviors += ("kitconcept.seo",)
+            logger.info("Enabled kitconcept.seo on: {}".format(ct_type))
+
+
+def to_3600(context):
+    api.portal.set_registry_record("default_ente", (), interface=IBandoSettings)
+
+    portal_types = api.portal.get_tool(name="portal_types")
+    portal_types["Bando Folder Deepening"].allowed_content_types = (
+        "Modulo",
+        "File",
+        "Link",
+    )
+    portal_types["Bando"].default_view = "view"
+    portal_types["Bando"].view_methods = ("view",)

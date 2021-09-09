@@ -13,6 +13,8 @@ Changelog
   [cekk]
 - Register custom TextBlockSearchableText adapter to index all text blocks in IDesignPloneContentType contents.
   [cekk]
+- Customize some Bando and Bando Folder Deepenings fields and allowed types.
+  [cekk]
 
 3.5.0 (2021-08-24)
 ------------------

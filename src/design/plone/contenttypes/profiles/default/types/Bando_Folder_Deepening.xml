@@ -6,5 +6,6 @@
  <property name="allowed_content_types">
    <element value="File" />
    <element value="Link" />
+   <element value="Modulo" />
  </property>
 </object>

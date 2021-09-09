@@ -34,7 +34,7 @@ class IBandoAgidSchema(IBandoSchema, IDesignPloneContentType):
     destinatari = schema.List(
         title=_rtbando("destinatari_label", default="Recipients"),
         description=_rtbando("destinatari_help", default=""),
-        required=True,
+        required=False,
         value_type=schema.Choice(vocabulary="redturtle.bandi.destinatari.vocabulary"),
     )
     ente_bando = schema.Tuple(
