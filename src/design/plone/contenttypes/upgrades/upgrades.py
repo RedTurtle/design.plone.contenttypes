@@ -698,3 +698,4 @@ def to_3600(context):
     pc = api.portal.get_tool(name="portal_catalog")
     pc.reindexIndex("SearchableText", context.REQUEST)
     pc.reindexIndex("ufficio_responsabile_bando", context.REQUEST)
+    pc.reindexIndex("Subject_bando", context.REQUEST)

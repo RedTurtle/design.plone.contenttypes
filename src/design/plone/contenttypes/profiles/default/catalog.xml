@@ -48,6 +48,8 @@
  <column value="tipologia_documento"/>
  <column value="tassonomia_argomenti"/>
  <column value="event_location"/>
+ <column value="Subject_bando"/>
+ <column value="ufficio_responsabile_bando"/>
 
  <!-- cleanup -->
  <index name="argomenti_correlati" remove="True" />
