@@ -5,9 +5,16 @@ Changelog
 3.5.1 (unreleased)
 ------------------
 
+- Add link_siti_esterni to SearchableText index.
+  [cekk]
+- showModifiedDefaultValue compatible with plone.restapi >= 8.9.1
+  [cekk]
+- All content-types extends **IDesignPloneContentType** marker interface.
+  [cekk]
+- Register custom TextBlockSearchableText adapter to index all text blocks in IDesignPloneContentType contents.
+  [cekk]
 - Customize some Bando and Bando Folder Deepenings fields and allowed types.
   [cekk]
-
 
 3.5.0 (2021-08-24)
 ------------------

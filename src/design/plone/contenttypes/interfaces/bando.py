@@ -1,21 +1,22 @@
 # -*- coding: utf-8 -*-
 from collective.volto.blocksfield.field import BlocksField
+from design.plone.contenttypes.interfaces import IDesignPloneContentType
+from plone.app.z3cform.widget import AjaxSelectFieldWidget
+from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives
+from plone.autoform import directives as form
 from plone.supermodel import model
 from redturtle.bandi import bandiMessageFactory as _
-from z3c.form.browser.checkbox import CheckBoxFieldWidget
-from plone.app.z3cform.widget import AjaxSelectFieldWidget
-from z3c.form.browser.radio import RadioFieldWidget
-from zope import schema
 from redturtle.bandi import bandiMessageFactory as _rtbando
 from redturtle.bandi.interfaces.bandoSchema import IBandoSchema, getDefaultEnte
+from z3c.form.browser.checkbox import CheckBoxFieldWidget
+from z3c.form.browser.radio import RadioFieldWidget
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
-from plone.app.z3cform.widget import RelatedItemsFieldWidget
-from plone.autoform import directives as form
+from zope import schema
 
 
-class IBandoAgidSchema(IBandoSchema):
+class IBandoAgidSchema(IBandoSchema, IDesignPloneContentType):
     """ A Dexterity schema for Annoucements """
 
     # ridefinito, così usiamo il campo dei blocchi

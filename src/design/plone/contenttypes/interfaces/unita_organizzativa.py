@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from collective import dexteritytextindexer
-from design.plone.contenttypes import _
 from collective.volto.blocksfield.field import BlocksField
+from design.plone.contenttypes import _
+from design.plone.contenttypes.interfaces import IDesignPloneContentType
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
 from plone.supermodel import model
@@ -10,7 +11,7 @@ from z3c.relationfield.schema import RelationList
 from zope import schema
 
 
-class IUnitaOrganizzativa(model.Schema):
+class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
     """Marker interface for content type UnitaOrganizzativa
     """
 
@@ -40,8 +41,7 @@ class IUnitaOrganizzativa(model.Schema):
     responsabile = RelationList(
         title=u"Responsabile",
         value_type=RelationChoice(
-            title=_(u"Responsabile"),
-            vocabulary="plone.app.vocabularies.Catalog",
+            title=_(u"Responsabile"), vocabulary="plone.app.vocabularies.Catalog",
         ),
         description=_(
             "responsabile_help",
@@ -52,12 +52,9 @@ class IUnitaOrganizzativa(model.Schema):
     )
 
     tipologia_organizzazione = schema.Choice(
-        title=_(
-            u"tipologia_organizzazione", default=u"Tipologia organizzazione"
-        ),
+        title=_(u"tipologia_organizzazione", default=u"Tipologia organizzazione"),
         # vocabolario di rif sara' la lista delle tipologie di organizzazione
-        vocabulary=""
-        "design.plone.vocabularies.tipologie_unita_organizzativa",
+        vocabulary="" "design.plone.vocabularies.tipologie_unita_organizzativa",
         description=_(
             "tipologia_organizzazione_help",
             default="Specificare la tipologia di organizzazione: politica,"
@@ -93,8 +90,7 @@ class IUnitaOrganizzativa(model.Schema):
         ),
         description=_(
             "persone_struttura_help",
-            default="Seleziona la lista delle persone che compongono"
-            " la struttura.",
+            default="Seleziona la lista delle persone che compongono" " la struttura.",
         ),
         required=False,
     )
@@ -134,9 +130,7 @@ class IUnitaOrganizzativa(model.Schema):
     )
 
     contact_info = BlocksField(
-        title=_(
-            u"contact_info", default=u"Informazioni di contatto generiche"
-        ),
+        title=_(u"contact_info", default=u"Informazioni di contatto generiche"),
         required=False,
         description=_(
             "uo_contact_info_description",
@@ -154,10 +148,7 @@ class IUnitaOrganizzativa(model.Schema):
         "persone_struttura",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={
-            "selectableTypes": ["Persona"],
-            "maximumSelectionSize": 50,
-        },
+        pattern_options={"selectableTypes": ["Persona"], "maximumSelectionSize": 50},
     )
     form.widget(
         "legami_con_altre_strutture",
@@ -192,10 +183,7 @@ class IUnitaOrganizzativa(model.Schema):
         "sede",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={
-            "maximumSelectionSize": 1,
-            "selectableTypes": ["Venue"],
-        },
+        pattern_options={"maximumSelectionSize": 1, "selectableTypes": ["Venue"]},
     )
     form.widget(
         "sedi_secondarie",
@@ -210,9 +198,7 @@ class IUnitaOrganizzativa(model.Schema):
 
     # custom fieldsets and order
     model.fieldset(
-        "cosa_fa",
-        label=_("cosa_fa_label", default="Cosa fa"),
-        fields=["competenze"],
+        "cosa_fa", label=_("cosa_fa_label", default="Cosa fa"), fields=["competenze"],
     )
     model.fieldset(
         "struttura",
@@ -234,9 +220,7 @@ class IUnitaOrganizzativa(model.Schema):
         label=_("contatti_label", default="Contatti"),
         fields=["sede", "sedi_secondarie", "contact_info"],
     )
-    form.order_after(
-        sedi_secondarie="IContattiUnitaOrganizzativa.orario_pubblico"
-    )
+    form.order_after(sedi_secondarie="IContattiUnitaOrganizzativa.orario_pubblico")
     form.order_after(contact_info="sedi_secondarie")
 
     # SearchableText indexers

@@ -657,6 +657,9 @@ def to_3501(context):
 
 
 def to_3502(context):
+    pc = api.portal.get_tool(name="portal_catalog")
+    pc.reindexIndex("SearchableText", context.REQUEST)
+
     logger.info("Enable kitconcept.seo behavior")
 
     types_list = [

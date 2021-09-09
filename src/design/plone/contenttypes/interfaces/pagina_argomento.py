@@ -1,16 +1,17 @@
 # -*- coding: utf-8 -*-
 from collective import dexteritytextindexer
 from design.plone.contenttypes import _
+from design.plone.contenttypes.interfaces import IDesignPloneContentType
+from plone.app.textfield import RichText
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
 from plone.supermodel import model
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
 from zope.schema import TextLine
-from plone.app.textfield import RichText
 
 
-class IPaginaArgomento(model.Schema):
+class IPaginaArgomento(model.Schema, IDesignPloneContentType):
     """ Marker interface for PaginaArgomento
     """
 
@@ -18,8 +19,7 @@ class IPaginaArgomento(model.Schema):
         title=_(u"ulteriori_informazioni", default=u"Ulteriori informazioni"),
         description=_(
             "ulteriori_informazioni_help",
-            default="Ulteriori informazioni non contemplate"
-            " dai campi precedenti.",
+            default="Ulteriori informazioni non contemplate" " dai campi precedenti.",
         ),
         required=False,
     )

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-from design.plone.contenttypes import _
 from collective.volto.blocksfield.field import BlocksField
+from design.plone.contenttypes import _
+from design.plone.contenttypes.interfaces import IDesignPloneContentType
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
 from plone.supermodel import model
@@ -9,13 +10,12 @@ from z3c.relationfield.schema import RelationList
 from zope import schema
 
 
-class IDocumento(model.Schema):
+class IDocumento(model.Schema, IDesignPloneContentType):
     """Marker interface for content type Documento"""
 
     identificativo = schema.TextLine(
         title=_(
-            "identificativo_documento_label",
-            default="Identificativo del documento.",
+            "identificativo_documento_label", default="Identificativo del documento.",
         ),
         description=_(
             "identificativo_documento_help",
@@ -25,12 +25,9 @@ class IDocumento(model.Schema):
     )
 
     tipologia_documento = schema.Choice(
-        title=_(
-            "tipologia_documento_label", default="Tipologia del documento"
-        ),
+        title=_("tipologia_documento_label", default="Tipologia del documento"),
         description=_(
-            "tipologia_documento_help",
-            default="Seleziona la tipologia del documento.",
+            "tipologia_documento_help", default="Seleziona la tipologia del documento.",
         ),
         required=True,
         vocabulary="design.plone.vocabularies.tipologie_documento",
@@ -54,14 +51,10 @@ class IDocumento(model.Schema):
     )
 
     area_responsabile = RelationList(
-        title=_(
-            "area_responsabile_label",
-            default="Area responsabile del documento",
-        ),
+        title=_("area_responsabile_label", default="Area responsabile del documento",),
         description=_(
             "area_responsabile_help",
-            default="Seleziona l'area amministrativa responsabile del "
-            "documento.",
+            default="Seleziona l'area amministrativa responsabile del " "documento.",
         ),
         required=False,
         default=[],
@@ -83,9 +76,7 @@ class IDocumento(model.Schema):
     )
 
     licenza_distribuzione = schema.TextLine(
-        title=_(
-            "licenza_distribuzione_label", default="Licenza di distribuzione"
-        ),
+        title=_("licenza_distribuzione_label", default="Licenza di distribuzione"),
         description=_(
             "licenza_distribuzione_help",
             default="La licenza con il quale viene distribuito questo documento.",
@@ -95,8 +86,7 @@ class IDocumento(model.Schema):
 
     riferimenti_normativi = BlocksField(
         title=_(
-            "riferimenti_normativi_documento_label",
-            default="Riferimenti normativi",
+            "riferimenti_normativi_documento_label", default="Riferimenti normativi",
         ),
         description=_(
             "riferimenti_normativi_documento_help",
@@ -151,10 +141,7 @@ class IDocumento(model.Schema):
         "documenti_allegati",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={
-            "maximumSelectionSize": 10,
-            "selectableTypes": ["Documento"],
-        },
+        pattern_options={"maximumSelectionSize": 10, "selectableTypes": ["Documento"]},
     )
 
     #  custom fieldsets

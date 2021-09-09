@@ -351,7 +351,7 @@
     destination="3502"
     profile="design.plone.contenttypes:default">
       <genericsetup:upgradeStep
-        title="Enable kitconcept.seo behavior"
+        title="New fields in SearchableText for Servizio (link_utili)"
         handler=".upgrades.to_3502"
       />
   </genericsetup:upgradeSteps>

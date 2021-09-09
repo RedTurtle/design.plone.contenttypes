@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from collective import dexteritytextindexer
-from design.plone.contenttypes import _
 from collective.volto.blocksfield.field import BlocksField
+from design.plone.contenttypes import _
+from design.plone.contenttypes.interfaces import IDesignPloneContentType
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
 from plone.namedfile import field
@@ -11,7 +12,7 @@ from z3c.relationfield.schema import RelationList
 from zope import schema
 
 
-class IPersona(model.Schema):
+class IPersona(model.Schema, IDesignPloneContentType):
     """ Marker interface for contenttype Persona
     """
 
@@ -27,16 +28,14 @@ class IPersona(model.Schema):
     ruolo = schema.TextLine(
         title=_("ruolo", default="Ruolo"),
         description=_(
-            "ruolo_help",
-            default="Descrizione testuale del ruolo di questa persona.",
+            "ruolo_help", default="Descrizione testuale del ruolo di questa persona.",
         ),
         required=True,
     )
 
     organizzazione_riferimento = RelationList(
         title=_(
-            "organizzazione_riferimento_label",
-            default="Organizzazione di riferimento",
+            "organizzazione_riferimento_label", default="Organizzazione di riferimento",
         ),
         description=_(
             "organizzazione_riferimento_help",
@@ -53,8 +52,7 @@ class IPersona(model.Schema):
 
     data_conclusione_incarico = schema.Date(
         title=_(
-            "data_conclusione_incarico_label",
-            default="Data conclusione incarico",
+            "data_conclusione_incarico_label", default="Data conclusione incarico",
         ),
         description=_(
             "data_conclusione_incarico_help",
@@ -74,8 +72,7 @@ class IPersona(model.Schema):
     deleghe = BlocksField(
         title=_("deleghe_label", default="Deleghe"),
         description=_(
-            "deleghe_help",
-            default="Elenco delle deleghe a capo della persona.",
+            "deleghe_help", default="Elenco delle deleghe a capo della persona.",
         ),
         required=False,
     )
@@ -126,9 +123,7 @@ class IPersona(model.Schema):
     )
     fax = schema.TextLine(
         title=_(u"fax_persona_label", default=u"Fax"),
-        description=_(
-            u"fax_persona_help", default=u"Indicare un numero di fax."
-        ),
+        description=_(u"fax_persona_help", default=u"Indicare un numero di fax."),
         required=False,
     )
     email = schema.List(
@@ -149,8 +144,7 @@ class IPersona(model.Schema):
         required=False,
         description=_(
             "curriculum_vitae_help",
-            default="Allega un file contenente il "
-            "curriculum vitae della persona.",
+            default="Allega un file contenente il " "curriculum vitae della persona.",
         ),
     )
 
@@ -159,8 +153,7 @@ class IPersona(model.Schema):
         required=False,
         description=_(
             "atto_nomina_help",
-            default="Inserire un file contenente l'atto di nomina della"
-            " persona.",
+            default="Inserire un file contenente l'atto di nomina della" " persona.",
         ),
     )
 
