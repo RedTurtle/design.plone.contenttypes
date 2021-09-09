@@ -17,6 +17,8 @@ Changelog
   [cekk]
 - Add **ufficio_responsabile_bando** index.
   [cekk]
+- Upgrade step to enable kitconcept.seo behavior on contents.
+  [daniele]
 
 3.5.0 (2021-08-24)
 ------------------
