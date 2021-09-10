@@ -694,8 +694,17 @@ def to_3600(context):
     portal_types["Bando"].default_view = "view"
     portal_types["Bando"].view_methods = ("view",)
 
-    logger.info("Reindex indexes")
+    logger.info("Reindex SearchableText")
     pc = api.portal.get_tool(name="portal_catalog")
-    pc.reindexIndex("SearchableText", context.REQUEST)
-    pc.reindexIndex("ufficio_responsabile_bando", context.REQUEST)
-    pc.reindexIndex("Subject_bando", context.REQUEST)
+    # pc.reindexIndex("SearchableText", context.REQUEST)
+
+    logger.info("Reindex Bandi")
+    i = 0
+    brains = api.content.find(portal_type="Bando")
+    tot = len(brains)
+    for brain in brains:
+        i += 1
+        if i % 1000 == 0:
+            logger.info("Progress: {}/{}".format(i, tot))
+        bando = brain.getObject()
+        bando.reindexObject(idxs=["ufficio_responsabile_bando", "Subject_bando"])
