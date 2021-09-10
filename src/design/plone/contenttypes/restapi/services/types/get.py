@@ -230,10 +230,12 @@ class TypesGet(BaseGet):
             result = self.customize_versioning_fields_fieldset(result)
         return result
 
+    def get_order_by_type(self, portal_type):
+        return [x for x in FIELDSETS_ORDER.get(portal_type, [])]
+
     def reorder_fieldsets(self, original):
         pt = self.request.PATH_INFO.split("/")[-1]
-        # makea copy
-        order = [x for x in FIELDSETS_ORDER.get(pt, [])]
+        order = self.get_order_by_type(portal_type=pt)
         if not order:
             # no match
             return original
