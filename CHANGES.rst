@@ -15,8 +15,12 @@ Changelog
   [cekk]
 - Customize some Bando and Bando Folder Deepenings fields and allowed types.
   [cekk]
+- Add **ufficio_responsabile_bando** and **Subject_bando** indexes to speedup @bandi-search-filters endpoint.
+  [cekk]
 - Upgrade step to enable kitconcept.seo behavior on contents.
   [daniele]
+- Refactor @types endpoint to be more extensible.
+  [cekk]
 
 3.5.0 (2021-08-24)
 ------------------

@@ -30,6 +30,12 @@
  <index name="ufficio_responsabile" meta_type="KeywordIndex">
   <indexed_attr value="ufficio_responsabile"/>
  </index>
+ <index name="ufficio_responsabile_bando" meta_type="KeywordIndex">
+  <indexed_attr value="ufficio_responsabile_bando"/>
+ </index>
+ <index name="Subject_bando" meta_type="KeywordIndex">
+  <indexed_attr value="Subject_bando"/>
+ </index>
  <index name="event_location" meta_type="KeywordIndex">
   <indexed_attr value="event_location"/>
  </index>
@@ -42,6 +48,8 @@
  <column value="tipologia_documento"/>
  <column value="tassonomia_argomenti"/>
  <column value="event_location"/>
+ <column value="Subject_bando"/>
+ <column value="ufficio_responsabile_bando"/>
 
  <!-- cleanup -->
  <index name="argomenti_correlati" remove="True" />

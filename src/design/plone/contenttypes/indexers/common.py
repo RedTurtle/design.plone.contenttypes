@@ -18,7 +18,4 @@ def tassonomia_argomenti(context, **kw):
 @indexer(IDexterityItem)
 def ufficio_responsabile(context, **kw):
     uffici = getattr(context.aq_base, "ufficio_responsabile", [])
-    return [
-        ufficio.UID()
-        for ufficio in filter(bool, [x.to_object for x in uffici])
-    ]
+    return [ufficio.UID() for ufficio in filter(bool, [x.to_object for x in uffici])]
