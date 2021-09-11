@@ -19,6 +19,8 @@ Changelog
   [cekk]
 - Upgrade step to enable kitconcept.seo behavior on contents.
   [daniele]
+- Refactor @types endpoint to be more extensible.
+  [cekk]
 
 3.5.0 (2021-08-24)
 ------------------
