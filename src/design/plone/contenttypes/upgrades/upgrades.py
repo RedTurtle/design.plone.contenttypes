@@ -696,7 +696,7 @@ def to_3600(context):
 
     logger.info("Reindex SearchableText")
     pc = api.portal.get_tool(name="portal_catalog")
-    # pc.reindexIndex("SearchableText", context.REQUEST)
+    pc.reindexIndex("SearchableText", context.REQUEST)
 
     logger.info("Reindex Bandi")
     i = 0
