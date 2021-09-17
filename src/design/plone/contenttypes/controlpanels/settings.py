@@ -76,14 +76,13 @@ class IDesignPloneSettings(Interface):
             "valori diversi a seconda delle lingue del sito.",
         ),
         required=True,
-        default=json.dumps(
-            {"it": ["Amministrativa", "Politica", "Altro tipo"]}
-        ),
+        default=json.dumps({"it": ["Amministrativa", "Politica", "Altro tipo"]}),
     )
 
     lead_image_dimension = List(
         title=_(
-            "lead_image_dimension_label", default="Dimensioni lead image",
+            "lead_image_dimension_label",
+            default="Dimensioni lead image",
         ),
         description=_(
             "lead_image_dimension_help",
@@ -113,9 +112,7 @@ class IDesignPloneSettings(Interface):
     )
 
     show_modified_default = Bool(
-        title=_(
-            "show_modified_default_label", default="Mostra la data di modifica"
-        ),
+        title=_("show_modified_default_label", default="Mostra la data di modifica"),
         description=_(
             "show_modified_default_help",
             default="Questo è il valore di default per decidere se mostrare "
@@ -123,7 +120,7 @@ class IDesignPloneSettings(Interface):
             "abilitata. E' poi possibile sovrascrivere il default nei singoli "
             'contenuti (nel tab "Impostazioni").',
         ),
-        default=False,
+        default=True,
         required=False,
     )
 
@@ -135,7 +132,6 @@ class DesignPloneControlPanelForm(RegistryEditForm):
 
 
 class DesignPloneControlPanelView(ControlPanelFormWrapper):
-    """
-    """
+    """ """
 
     form = DesignPloneControlPanelForm
