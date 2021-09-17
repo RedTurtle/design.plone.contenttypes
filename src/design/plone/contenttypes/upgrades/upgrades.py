@@ -708,3 +708,11 @@ def to_3600(context):
             logger.info("Progress: {}/{}".format(i, tot))
         bando = brain.getObject()
         bando.reindexObject(idxs=["ufficio_responsabile_bando", "Subject_bando"])
+
+
+def to_3700(context):
+    logger.info("Set show_modified_default as True")
+
+    api.portal.set_registry_record(
+        "show_modified_default", True, interface=IDesignPloneSettings
+    )
