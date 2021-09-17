@@ -21,7 +21,7 @@ Changelog
   [daniele]
 - Refactor @types endpoint to be more extensible.
   [cekk]
-- *show_modified_default* is not enabled by default.
+- *show_modified_default* is **True** by default.
   [cekk]
 
 3.5.0 (2021-08-24)
