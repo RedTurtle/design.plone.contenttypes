@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.5.1 (unreleased)
+3.6.0 (2021-09-21)
 ------------------
 
 - Add link_siti_esterni to SearchableText index.
