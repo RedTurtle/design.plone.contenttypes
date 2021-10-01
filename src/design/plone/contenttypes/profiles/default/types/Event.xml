@@ -30,6 +30,7 @@
     <element value="plone.constraintypes" />
     <element value="collective.dexteritytextindexer"/>
     <element value="plone.translatable"/>
+    <element value="kitconcept.seo"/>
     <!-- remove unused behaviors -->
     <element value="plone.eventlocation" remove="True" />
     <element value="plone.eventattendees" remove="True" />

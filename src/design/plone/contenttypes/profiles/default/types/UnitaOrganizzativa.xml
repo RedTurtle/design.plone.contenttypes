@@ -53,6 +53,7 @@
     <element value="collective.dexteritytextindexer"/>
     <element value="design.plone.contenttypes.behavior.additional_help_infos"/>
     <element value="plone.translatable"/>
+    <element value="kitconcept.seo"/>
   </property>
 
   <!-- View information -->

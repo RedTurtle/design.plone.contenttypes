@@ -13,6 +13,7 @@
    <element value="plone.constraintypes"/>
    <element value="collective.dexteritytextindexer"/>
    <element value="plone.translatable"/>
+   <element value="kitconcept.seo"/>
  </property>
 
 </object>

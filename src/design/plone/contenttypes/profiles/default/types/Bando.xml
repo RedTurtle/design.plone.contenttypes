@@ -11,6 +11,7 @@
     <element value="plone.translatable"/>
     <element value="design.plone.contenttypes.behavior.servizi_correlati" remove="True"/>
     <element value="plone.richtext" remove="True" />
+    <element value="kitconcept.seo"/>
  </property>
  <property name="schema">design.plone.contenttypes.interfaces.bando.IBandoAgidSchema</property>
  <property name="default_view">view</property>
