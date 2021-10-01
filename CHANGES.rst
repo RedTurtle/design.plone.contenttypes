@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.6.1 (unreleased)
+3.6.1 (2021-10-01)
 ------------------
 
 - Enable kitconcept.seo beaviour for a set of CT.
