@@ -6,6 +6,7 @@
   <element value="design.plone.contenttypes.behavior.argomenti_document" />
   <element value="plone.translatable"/>
   <element value="design.plone.contenttypes.behavior.show_modified"/>
+  <element value="kitconcept.seo"/>
  </property>
    <property name="view_methods">
     <element value="document_view" />

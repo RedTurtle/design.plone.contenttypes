@@ -32,6 +32,7 @@ class TestCartellaModulistica(unittest.TestCase):
                 "plone.locking",
                 "volto.blocks",
                 "plone.translatable",
+                "kitconcept.seo",
             ),
         )
 

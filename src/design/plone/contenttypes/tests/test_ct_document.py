@@ -34,5 +34,6 @@ class TestDocument(unittest.TestCase):
                 "design.plone.contenttypes.behavior.argomenti_document",
                 "plone.translatable",
                 "design.plone.contenttypes.behavior.show_modified",
+                "kitconcept.seo",
             ),
         )

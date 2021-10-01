@@ -98,6 +98,7 @@ class TestUO(unittest.TestCase):
                 "collective.dexteritytextindexer",
                 "design.plone.contenttypes.behavior.additional_help_infos",
                 "plone.translatable",
+                "kitconcept.seo",
             ),
         )
 

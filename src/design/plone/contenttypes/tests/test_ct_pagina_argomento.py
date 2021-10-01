@@ -33,5 +33,6 @@ class TestPaginaArgomento(unittest.TestCase):
                 "collective.dexteritytextindexer",
                 "volto.blocks",
                 "plone.translatable",
+                "kitconcept.seo",
             ),
         )

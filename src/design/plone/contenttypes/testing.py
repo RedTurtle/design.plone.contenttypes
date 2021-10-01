@@ -6,6 +6,7 @@ from plone.app.testing import IntegrationTesting
 from plone.app.testing import PloneSandboxLayer
 from plone.restapi.testing import PloneRestApiDXLayer
 from plone.testing import z2
+from zope.configuration import xmlconfig
 
 import collective.address
 import collective.dexteritytextindexer
@@ -14,13 +15,12 @@ import collective.venue
 import collective.volto.blocksfield
 import collective.volto.cookieconsent
 import design.plone.contenttypes
+import kitconcept.seo
 import plone.app.caching
 import plone.formwidget.geolocation
 import plone.restapi
 import redturtle.bandi
 import redturtle.volto
-
-from zope.configuration import xmlconfig
 
 
 class DesignPloneContenttypesLayer(PloneSandboxLayer):
@@ -50,6 +50,7 @@ class DesignPloneContenttypesLayer(PloneSandboxLayer):
             context=configurationContext,
         )
         self.loadZCML(package=redturtle.bandi)
+        self.loadZCML(package=kitconcept.seo)
 
     def setUpPloneSite(self, portal):
         applyProfile(portal, "plone.app.caching:default")
@@ -92,6 +93,7 @@ class DesignPloneContenttypesRestApiLayer(PloneRestApiDXLayer):
         self.loadZCML(package=plone.restapi)
         self.loadZCML(package=redturtle.volto)
         self.loadZCML(package=redturtle.bandi)
+        self.loadZCML(package=kitconcept.seo)
 
     def setUpPloneSite(self, portal):
         applyProfile(portal, "plone.app.caching:default")
