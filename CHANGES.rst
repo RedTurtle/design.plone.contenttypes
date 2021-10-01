@@ -5,7 +5,8 @@ Changelog
 3.6.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Enable kitconcept.seo beaviour for a set of CT.
+  [daniele]
 
 
 3.6.0 (2021-09-21)
