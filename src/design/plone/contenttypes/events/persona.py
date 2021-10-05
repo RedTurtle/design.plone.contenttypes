@@ -15,38 +15,38 @@ def personaCreateHandler(persona, event):
 
     FOLDERS = [
         {
-            "id": "gallery",
+            "id": "foto-e-attivita-politica",
             "title": "Foto e attività politica",
             "contains": ("Image",),
         },
         {"id": "compensi", "title": "Compensi", "contains": ("File",)},
         {
-            "id": "importi_viaggio_servizi",
+            "id": "importi-di-viaggio-e-o-servizi",
             "title": "Importi di viaggio e/o servizi",
             "contains": ("File",),
         },
         {
-            "id": "situazione_patrimoniale",
+            "id": "situazione-patrimoniale",
             "title": "Situazione patrimoniale",
             "contains": ("File",),
         },
         {
-            "id": "dichiarazione_redditi",
+            "id": "dichiarazione-dei-redditi",
             "title": "Dichiarazione dei redditi",
             "contains": ("File",),
         },
         {
-            "id": "spese_elettorali",
+            "id": "spese-elettorali",
             "title": "Spese elettorali",
             "contains": ("File",),
         },
         {
-            "id": "variazione_situazione_patrimoniale",
+            "id": "variazione-situazione-patrimoniale",
             "title": "Variazione situazione patrimoniale",
             "contains": ("File",),
         },
         {
-            "id": "altre_cariche",
+            "id": "altre-cariche",
             "title": "Altre cariche",
             "contains": ("File",),
         },
@@ -55,7 +55,7 @@ def personaCreateHandler(persona, event):
         if folder["id"] in persona:
             continue
         suboject = api.content.create(
-            type="Document", title=folder["title"], container=persona
+            type="Document", id=folder["id"], title=folder["title"], container=persona
         )
         subobjectConstraints = ISelectableConstrainTypes(suboject)
         subobjectConstraints.setConstrainTypesMode(1)

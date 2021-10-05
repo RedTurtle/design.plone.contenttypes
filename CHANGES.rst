@@ -5,7 +5,8 @@ Changelog
 3.6.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- [fix] Do not duplicate default folders in UO and Persona when copy/paste them.
+  [cekk]
 
 
 3.6.1 (2021-10-01)

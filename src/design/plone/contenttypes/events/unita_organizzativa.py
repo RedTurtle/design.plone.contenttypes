@@ -16,6 +16,8 @@ def unitaOrganizzativaCreateHandler(unitaOrganizzativa, event):
 
     @param event: Event that triggers the method (onAdded event)
     """
+    if "allegati" in unitaOrganizzativa.keys():
+        return
     try:
         allegati = api.content.create(
             type="Document", title="Allegati", container=unitaOrganizzativa
