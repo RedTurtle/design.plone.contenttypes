@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.6.2 (unreleased)
+3.6.2 (2021-10-05)
 ------------------
 
 - [fix] Do not duplicate default folders in UO and Persona when copy/paste them.
