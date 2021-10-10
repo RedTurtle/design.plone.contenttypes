@@ -1,5 +1,6 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
+    xmlns:cache="http://namespaces.zope.org/cache"
     xmlns:plone="http://namespaces.plone.org/plone">
 
   <plone:service
@@ -33,5 +34,8 @@
     name="@scadenziario-day"
     permission="zope2.View"
     />
+
+  <cache:ruleset ruleset="plone.content.dynamic" for=".get.ScadenziarioSearchPost" />
+  <cache:ruleset ruleset="plone.content.dynamic" for=".get.ScadenziarioDayPost" />
 
 </configure>

@@ -2,11 +2,11 @@ Changelog
 =========
 
 
-3.6.3 (unreleased)
+3.7.0 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- p.a.caching rules for rest api services.
+  [cekk]
 
 3.6.2 (2021-10-05)
 ------------------

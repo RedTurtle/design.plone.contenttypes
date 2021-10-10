@@ -1,6 +1,7 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:cache="http://namespaces.zope.org/cache"
     xmlns:zcml="http://namespaces.zope.org/zcml">
 
   <plone:service
@@ -20,5 +21,8 @@
     />
 
   <adapter factory=".get.TrasparenzaItems" name="trasparenza-items"/>
+
+  <cache:ruleset ruleset="plone.content.dynamic" for=".get.TrasparenzaService" />
+  <cache:ruleset ruleset="plone.content.dynamic" for=".get.TrasparenzaItemsGet" />
 
 </configure>
