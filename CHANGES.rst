@@ -5,8 +5,8 @@ Changelog
 3.7.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Fix typo.
+  [cekk]
 
 3.7.0 (2021-10-10)
 ------------------

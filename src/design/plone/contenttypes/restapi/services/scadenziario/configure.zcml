@@ -35,7 +35,7 @@
     permission="zope2.View"
     />
 
-  <cache:ruleset ruleset="plone.content.dynamic" for=".get.ScadenziarioSearchPost" />
-  <cache:ruleset ruleset="plone.content.dynamic" for=".get.ScadenziarioDayPost" />
+  <cache:ruleset ruleset="plone.content.dynamic" for=".post.ScadenziarioSearchPost" />
+  <cache:ruleset ruleset="plone.content.dynamic" for=".post.ScadenziarioDayPost" />
 
 </configure>
