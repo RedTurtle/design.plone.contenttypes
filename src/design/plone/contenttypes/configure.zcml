@@ -12,7 +12,8 @@
     Better import explicite packages or configurations ;)
   -->
   <!-- <includeDependencies package="." /> -->
-
+  <include package="plone.app.caching" />
+  
   <include file="permissions.zcml" />
   <include package=".adapters" />
   <include package=".behaviors" />

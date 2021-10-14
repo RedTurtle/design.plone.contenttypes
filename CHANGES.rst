@@ -5,7 +5,8 @@ Changelog
 3.7.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Import p.a.caching.
+  [cekk]
 
 
 3.7.1 (2021-10-10)
