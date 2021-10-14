@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.7.2 (unreleased)
+3.7.2 (2021-10-14)
 ------------------
 
 - Import p.a.caching.
