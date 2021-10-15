@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.7.3 (unreleased)
+3.7.3 (2021-10-15)
 ------------------
 
 - Fix addable content-types for Venue.
