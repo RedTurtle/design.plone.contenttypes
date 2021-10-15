@@ -4,6 +4,12 @@
 <property name="title" i18n:translate="">Luogo</property>
 <property name="klass">design.plone.contenttypes.content.luogo.Venue</property>
 <property name="schema">collective.venue.interfaces.IVenue</property>
+<property name="allowed_content_types">
+    <element value="Folder" />
+    <element value="Link" />
+    <element value="Image" />
+    <element value="File" />
+ </property>
  <property name="behaviors" purge="True">
   <element value="plone.app.content.interfaces.INameFromTitle"/>
   <element value="plone.app.dexterity.behaviors.id.IShortName"/>
