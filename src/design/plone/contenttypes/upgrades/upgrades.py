@@ -716,3 +716,15 @@ def to_3700(context):
     api.portal.set_registry_record(
         "show_modified_default", True, interface=IDesignPloneSettings
     )
+
+
+def to_3800(context):
+    logger.info("Fix Venue addable types")
+
+    portal_types = api.portal.get_tool(name="portal_types")
+    portal_types["Venue"].allowed_content_types = (
+        "Folder",
+        "Image",
+        "File",
+        "Link",
+    )

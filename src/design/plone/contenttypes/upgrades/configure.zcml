@@ -364,4 +364,13 @@
         handler=".upgrades.to_3700"
       />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+    source="3700"
+    destination="3800"
+    profile="design.plone.contenttypes:default">
+      <genericsetup:upgradeStep
+        title="Fix Venue addable types"
+        handler=".upgrades.to_3800"
+      />
+  </genericsetup:upgradeSteps>
 </configure>

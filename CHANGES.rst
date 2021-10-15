@@ -5,7 +5,8 @@ Changelog
 3.7.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix addable content-types for Venue.
+  [cekk]
 
 
 3.7.2 (2021-10-14)

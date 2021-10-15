@@ -94,6 +94,13 @@ class TestLuogoApi(unittest.TestCase):
     def tearDown(self):
         self.api_session.close()
 
+    def test_venus_addable_types(self):
+        portal_types = api.portal.get_tool(name="portal_types")
+        self.assertEqual(
+            ("Folder", "Link", "Image", "File"),
+            portal_types["Venue"].allowed_content_types,
+        )
+
     def test_venue_geolocation_deserializer_wrong_structure(self):
         venue = api.content.create(
             container=self.portal, type="Venue", title="Example venue"
