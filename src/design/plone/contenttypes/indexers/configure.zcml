@@ -14,5 +14,7 @@
     <adapter name="Subject_bando" factory=".bando.Subject_bando" />
     <adapter name="uo_location" factory=".uo.uo_location" />
 
+    <!-- only metadata -->
+    <adapter name="ruolo" factory=".metadata.ruolo" />
 </configure>
 

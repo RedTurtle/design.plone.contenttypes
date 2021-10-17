@@ -373,4 +373,17 @@
         handler=".upgrades.to_3800"
       />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+    source="3800"
+    destination="3900"
+    profile="design.plone.contenttypes:default">
+      <genericsetup:upgradeStep
+        title="Update catalog"
+        handler=".upgrades.update_catalog"
+        />
+      <genericsetup:upgradeStep
+        title="Add metadata to Persona"
+        handler=".upgrades.to_3900"
+      />
+  </genericsetup:upgradeSteps>
 </configure>

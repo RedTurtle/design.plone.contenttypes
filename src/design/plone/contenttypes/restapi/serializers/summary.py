@@ -24,6 +24,8 @@ class DefaultJSONSummarySerializer(BaseSerializer):
         res = super(DefaultJSONSummarySerializer, self).__call__()
         if self.context.portal_type == "Link":
             res["remoteUrl"] = self.get_remote_url()
+        if self.context.portal_type == "Persona":
+            res["ruolo"] = self.context.ruolo
         res["id"] = self.context.id
         try:
             obj = self.context.getObject()
