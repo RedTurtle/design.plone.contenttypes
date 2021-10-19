@@ -5,7 +5,8 @@ Changelog
 3.7.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Export children and parent UO in UO details.
+  [cekk]
 
 
 3.7.3 (2021-10-15)

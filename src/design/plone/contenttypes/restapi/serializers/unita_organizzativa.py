@@ -22,8 +22,7 @@ from zope.globalrequest import getRequest
 @adapter(IUnitaOrganizzativa, Interface)
 class UOSerializer(RelatedNewsSerializer):
     def get_services(self):
-        """
-        """
+        """ """
         catalog = getUtility(ICatalog)
         intids = getUtility(IIntIds)
         services = []
@@ -48,10 +47,43 @@ class UOSerializer(RelatedNewsSerializer):
                     services.append(summary)
         return sorted(services, key=lambda k: k["title"])
 
+    def getChildrenUo(self):
+        res = []
+        children = self.context.listFolderContents(
+            contentFilter={"portal_type": "UnitaOrganizzativa"}
+        )
+        if not children:
+            return []
+
+        for child in children:
+            data = getMultiAdapter((child, self.request), ISerializeToJsonSummary)()
+            data.update(self.getAdditionalInfos(context=child))
+            res.append(data)
+        return res
+
+    def getParentUo(self):
+        parent = self.context.aq_parent
+        if parent.portal_type != "UnitaOrganizzativa":
+            return None
+
+        data = getMultiAdapter((parent, self.request), ISerializeToJsonSummary)()
+        data.update(self.getAdditionalInfos(context=parent))
+        return data
+
+    def getAdditionalInfos(self, context):
+        return {
+            "city": getattr(context, "city", ""),
+            "zip_code": getattr(context, "zip_code", ""),
+            "street": getattr(context, "street", ""),
+            "contact_info": getattr(context, "contact_info", ""),
+        }
+
     def __call__(self, version=None, include_items=True):
         self.index = "news_uo"
         result = super(UOSerializer, self).__call__(
             version=version, include_items=include_items
         )
         result["servizi_offerti"] = self.get_services()
+        result["uo_parent"] = self.getParentUo()
+        result["uo_children"] = self.getChildrenUo()
         return result
