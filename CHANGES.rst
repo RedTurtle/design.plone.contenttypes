@@ -5,7 +5,8 @@ Changelog
 3.7.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add *ruolo* metadata for Persona and export it in summary serializer.
+  [cekk] 
 
 
 3.7.3 (2021-10-15)
