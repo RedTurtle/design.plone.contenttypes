@@ -5,7 +5,8 @@ Changelog
 3.7.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- ufficio_responsabile in Servizio allows now 10 items.
+  [cekk]
 
 
 3.7.4 (2021-10-21)
