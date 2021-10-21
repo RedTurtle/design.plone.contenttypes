@@ -22,7 +22,8 @@ class BaseVocabulary(object):
 
         terms = [SimpleTerm(value=x, token=x, title=x) for x in values]
         terms.insert(
-            0, SimpleTerm(value="", token="", title="-- seleziona un valore --"),
+            0,
+            SimpleTerm(value="", token="", title="-- seleziona un valore --"),
         )
 
         return SimpleVocabulary(terms)
@@ -49,6 +50,11 @@ class TipologiePersona(BaseVocabulary):
 
 
 @implementer(IVocabularyFactory)
+class RuoliPersona(BaseVocabulary):
+    field = "ruoli_persona"
+
+
+@implementer(IVocabularyFactory)
 class LeadImageDimension(BaseVocabulary):
     field = "lead_image_dimension"
 
@@ -71,4 +77,5 @@ LeadImageDimensionFactory = LeadImageDimension()
 TipologieNotiziaFactory = TipologieNotizia()
 TipologieDocumentoFactory = TipologieDocumento()
 TipologiePersonaFactory = TipologiePersona()
+RuoliPersonaFactory = RuoliPersona()
 TipologieUnitaOrganizzativaVocabularyFactory = TipologieUnitaOrganizzativaVocabulary()

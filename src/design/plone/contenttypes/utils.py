@@ -16,6 +16,8 @@ def get_settings_for_language(field):
     values = api.portal.get_registry_record(
         field, interface=IDesignPloneSettings, default=[]
     )
+    if not values:
+        return []
     if not isinstance(values, six.text_type):
         return values
     try:

@@ -737,3 +737,19 @@ def to_3900(context):
     for brain in brains:
         persona = brain.getObject()
         persona.reindexObject()
+
+
+def to_4000(context):
+    logger.info("Move ruolo to a choice field")
+    ruoli = {"it": [], "en": []}
+    brains = api.content.find(portal_type="Persona")
+    for brain in brains:
+        persona = brain.getObject()
+        ruolo = getattr(persona, "ruolo", "")
+        lang = brain.language
+        if ruolo not in ruoli[lang]:
+            ruoli[lang].append(ruolo)
+
+    api.portal.set_registry_record(
+        "ruoli_persona", json.dumps(ruoli), interface=IDesignPloneSettings
+    )
