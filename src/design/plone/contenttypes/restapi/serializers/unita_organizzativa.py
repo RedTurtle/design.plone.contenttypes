@@ -5,7 +5,9 @@ from .related_news_serializer import (
 from design.plone.contenttypes.interfaces.unita_organizzativa import (
     IUnitaOrganizzativa,
 )
-
+from design.plone.contenttypes.restapi.serializers.summary import (
+    DefaultJSONSummarySerializer,
+)
 from plone.restapi.interfaces import ISerializeToJson, ISerializeToJsonSummary
 from zope.component import adapter, getMultiAdapter
 from zope.interface import implementer
@@ -87,3 +89,13 @@ class UOSerializer(RelatedNewsSerializer):
         result["uo_parent"] = self.getParentUo()
         result["uo_children"] = self.getChildrenUo()
         return result
+
+
+@implementer(ISerializeToJsonSummary)
+@adapter(IUnitaOrganizzativa, Interface)
+class UOJSONSummarySerializer(DefaultJSONSummarySerializer):
+    def __call__(self):
+        data = super().__call__()
+        for field in ["address", "city", "zip_code", "email", "telefono"]:
+            data[field] = getattr(self.context, field, "")
+        return data

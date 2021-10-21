@@ -7,6 +7,8 @@ Changelog
 
 - Export children and parent UO in UO details.
   [cekk]
+- Export more infos in UO summary adapter.
+  [cekk]
 
 
 3.7.3 (2021-10-15)
