@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.7.4 (unreleased)
+3.7.4 (2021-10-21)
 ------------------
 
 - Add *ruolo* metadata for Persona and export it in summary serializer.
