@@ -12,8 +12,7 @@ from zope import schema
 
 
 class IServizio(model.Schema, IDesignPloneContentType):
-    """Marker interface for content type Servizio
-    """
+    """Marker interface for content type Servizio"""
 
     sottotitolo = schema.TextLine(
         title=_(u"sottotitolo_label", default=u"Sottotitolo"),
@@ -197,7 +196,8 @@ class IServizio(model.Schema, IDesignPloneContentType):
         title=_(u"vincoli", default=u"Vincoli"),
         required=False,
         description=_(
-            "vincoli_help", default="Descrizione degli eventuali vincoli presenti.",
+            "vincoli_help",
+            default="Descrizione degli eventuali vincoli presenti.",
         ),
     )
 
@@ -213,10 +213,10 @@ class IServizio(model.Schema, IDesignPloneContentType):
 
     # vocabolario dalle unita' organizzative presenti a catalogo?
     ufficio_responsabile = RelationList(
-        title=_(u"ufficio_responsabile_erogazione", default=u"Ufficio responsabile"),
+        title=_(u"ufficio_responsabile_erogazione", default=u"Uffici responsabili"),
         description=_(
             "ufficio_responsabile_help",
-            default="Seleziona l'ufficio responsabile dell'erogazione"
+            default="Seleziona gli uffici responsabili dell'erogazione"
             " di questo servizio.",
         ),
         required=True,
@@ -232,7 +232,8 @@ class IServizio(model.Schema, IDesignPloneContentType):
         required=False,
         default=[],
         description=_(
-            "area_help", default="Seleziona l'area da cui dipende questo servizio.",
+            "area_help",
+            default="Seleziona l'area da cui dipende questo servizio.",
         ),
         value_type=RelationChoice(
             title=_(u"Area"), vocabulary="plone.app.vocabularies.Catalog"
@@ -298,7 +299,8 @@ class IServizio(model.Schema, IDesignPloneContentType):
         title=u"Servizi collegati",
         default=[],
         value_type=RelationChoice(
-            title=_(u"Servizi collegati"), vocabulary="plone.app.vocabularies.Catalog",
+            title=_(u"Servizi collegati"),
+            vocabulary="plone.app.vocabularies.Catalog",
         ),
         required=False,
         description=_(
@@ -333,7 +335,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "maximumSelectionSize": 1,
+            "maximumSelectionSize": 10,
             "selectableTypes": ["UnitaOrganizzativa"],
             # "basePath": "/amministrazione/uffici",
         },

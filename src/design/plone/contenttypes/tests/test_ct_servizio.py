@@ -21,7 +21,7 @@ WIDGET_PROPERTY_CHECKS = {
         "selectableTypes": ["Pagina Argomento"],
     },
     "ufficio_responsabile": {
-        "maximumSelectionSize": 1,
+        "maximumSelectionSize": 10,
         "selectableTypes": ["UnitaOrganizzativa"],
     },
     "area": {
@@ -128,9 +128,7 @@ class TestServizioApi(unittest.TestCase):
             container=self.portal,
             type="Servizio",
             title="Test servizio",
-            a_chi_si_rivolge={
-                "blocks": {"foo": {"searchableText": "destinatari"}}
-            },
+            a_chi_si_rivolge={"blocks": {"foo": {"searchableText": "destinatari"}}},
         )
 
         res = api.content.find(SearchableText="destinatari")
@@ -175,9 +173,7 @@ class TestServizioApi(unittest.TestCase):
             container=self.portal,
             type="Servizio",
             title="Test servizio",
-            cosa_si_ottiene={
-                "blocks": {"foo": {"searchableText": "ottenere"}}
-            },
+            cosa_si_ottiene={"blocks": {"foo": {"searchableText": "ottenere"}}},
         )
 
         res = api.content.find(SearchableText="ottenere")
@@ -207,9 +203,7 @@ class TestServizioApi(unittest.TestCase):
             container=self.portal,
             type="Servizio",
             title="Test servizio",
-            ulteriori_informazioni={
-                "blocks": {"123456": {"searchableText": "aiuto"}}
-            },
+            ulteriori_informazioni={"blocks": {"123456": {"searchableText": "aiuto"}}},
         )
 
         res = api.content.find(SearchableText="aiuto")

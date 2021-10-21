@@ -728,3 +728,12 @@ def to_3800(context):
         "File",
         "Link",
     )
+
+
+def to_3900(context):
+    logger.info("Add new metadata: ruolo")
+
+    brains = api.content.find(portal_type="Persona")
+    for brain in brains:
+        persona = brain.getObject()
+        persona.reindexObject()

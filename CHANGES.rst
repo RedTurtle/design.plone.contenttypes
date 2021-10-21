@@ -2,13 +2,22 @@ Changelog
 =========
 
 
-3.7.4 (unreleased)
+3.7.5 (unreleased)
 ------------------
 
 - Export children and parent UO in UO details.
   [cekk]
 - Export more infos in UO summary adapter.
   [cekk]
+- ufficio_responsabile in Servizio allows now 10 items.
+  [cekk]
+
+
+3.7.4 (2021-10-21)
+------------------
+
+- Add *ruolo* metadata for Persona and export it in summary serializer.
+  [cekk] 
 
 
 3.7.3 (2021-10-15)
