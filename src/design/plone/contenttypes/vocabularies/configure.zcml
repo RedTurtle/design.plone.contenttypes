@@ -40,6 +40,10 @@
         name="design.plone.contenttypes.TipologiaPersona"
     />
 
+    <utility
+        component=".controlapanel_vocabularies.RuoliPersonaFactory"
+        name="design.plone.contenttypes.RuoliPersona"
+    />
 
     <utility
         component=".controlapanel_vocabularies.TipologieNotiziaFactory"

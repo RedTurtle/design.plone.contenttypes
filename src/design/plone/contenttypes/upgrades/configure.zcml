@@ -386,4 +386,17 @@
         handler=".upgrades.to_3900"
       />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+    source="3900"
+    destination="4000"
+    profile="design.plone.contenttypes:default">
+      <genericsetup:upgradeStep
+        title=""
+        handler=".upgrades.update_registry"
+        />
+      <genericsetup:upgradeStep
+        title="Convert ruolo field into a checkbox"
+        handler=".upgrades.to_4000"
+      />
+  </genericsetup:upgradeSteps>
 </configure>

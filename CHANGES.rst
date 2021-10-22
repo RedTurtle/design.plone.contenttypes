@@ -7,7 +7,8 @@ Changelog
 
 - ufficio_responsabile in Servizio allows now 10 items.
   [cekk]
-
+- *ruolo* is now a Choice field and can be configured in control panel.
+  [cekk]
 
 3.7.4 (2021-10-21)
 ------------------

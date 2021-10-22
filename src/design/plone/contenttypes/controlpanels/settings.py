@@ -79,6 +79,18 @@ class IDesignPloneSettings(Interface):
         default=json.dumps({"it": ["Amministrativa", "Politica", "Altro tipo"]}),
     )
 
+    ruoli_persona = SourceText(
+        title=_("ruoli_persona_label", default="Ruoli Persona"),
+        description=_(
+            "ruoli_persona_help",
+            default="Inserisci i valori utilizzabili per il ruolo di "
+            "una Persona. Se il sito è multilingua, puoi inserire "
+            "valori diversi a seconda delle lingue del sito.",
+        ),
+        required=True,
+        default="",
+    )
+
     lead_image_dimension = List(
         title=_(
             "lead_image_dimension_label",

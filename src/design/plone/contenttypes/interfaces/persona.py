@@ -13,8 +13,7 @@ from zope import schema
 
 
 class IPersona(model.Schema, IDesignPloneContentType):
-    """ Marker interface for contenttype Persona
-    """
+    """Marker interface for contenttype Persona"""
 
     foto_persona = field.NamedImage(
         title=_("foto_persona_label", default="Foto della persona"),
@@ -25,17 +24,20 @@ class IPersona(model.Schema, IDesignPloneContentType):
             "La dimensione suggerita è 180x100 px.",
         ),
     )
-    ruolo = schema.TextLine(
-        title=_("ruolo", default="Ruolo"),
+    ruolo = schema.Choice(
+        title=_("ruolo_label", default="Ruolo"),
         description=_(
-            "ruolo_help", default="Descrizione testuale del ruolo di questa persona.",
+            "ruolo_help",
+            default="Seleziona il ruolo della persona tra quelli disponibili.",
         ),
+        vocabulary="design.plone.contenttypes.RuoliPersona",
         required=True,
     )
 
     organizzazione_riferimento = RelationList(
         title=_(
-            "organizzazione_riferimento_label", default="Organizzazione di riferimento",
+            "organizzazione_riferimento_label",
+            default="Organizzazione di riferimento",
         ),
         description=_(
             "organizzazione_riferimento_help",
@@ -52,7 +54,8 @@ class IPersona(model.Schema, IDesignPloneContentType):
 
     data_conclusione_incarico = schema.Date(
         title=_(
-            "data_conclusione_incarico_label", default="Data conclusione incarico",
+            "data_conclusione_incarico_label",
+            default="Data conclusione incarico",
         ),
         description=_(
             "data_conclusione_incarico_help",
@@ -72,7 +75,8 @@ class IPersona(model.Schema, IDesignPloneContentType):
     deleghe = BlocksField(
         title=_("deleghe_label", default="Deleghe"),
         description=_(
-            "deleghe_help", default="Elenco delle deleghe a capo della persona.",
+            "deleghe_help",
+            default="Elenco delle deleghe a capo della persona.",
         ),
         required=False,
     )
