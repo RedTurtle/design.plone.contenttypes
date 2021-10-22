@@ -14,6 +14,7 @@
     <adapter factory=".relationfield.RelationListFieldSerializer" />
     <adapter factory=".servizio.SerializeServizioToJsonSummary" />
     <adapter factory=".unita_organizzativa.UOSerializer" />
+    <adapter factory=".unita_organizzativa.UOJSONSummarySerializer" />
     <adapter factory=".venue.SerializeVenueToJsonSummary" />
     <adapter factory=".venue.VenueSerializer" />
     <adapter factory=".bando.BandoSerializer" />

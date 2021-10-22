@@ -42,7 +42,9 @@ class TestUO(unittest.TestCase):
             container=self.portal, type="News Item", title="TestNews"
         )
         self.luogo = api.content.create(
-            container=self.portal, type="Venue", title="Luogo",
+            container=self.portal,
+            type="Venue",
+            title="Luogo",
         )
         sede = RelationValue(self.intids.getId(self.luogo))
 
@@ -51,6 +53,20 @@ class TestUO(unittest.TestCase):
             type="UnitaOrganizzativa",
             title="TestUO",
             sede=[sede],
+            city="Metropolis",
+            zip_code="1234",
+            street="whatever",
+            contact_info={"blocks": {"xxx": {"foo": "bar"}}},
+        )
+
+        self.uo_child = api.content.create(
+            container=self.uo,
+            type="UnitaOrganizzativa",
+            title="Child uo",
+            city="Gotham City",
+            zip_code="5678",
+            street="somewhere",
+            contact_info={"blocks": {"yyy": {"foo": "bar"}}},
         )
 
         self.service = api.content.create(
@@ -117,10 +133,12 @@ class TestUO(unittest.TestCase):
     def test_uo_service_related_service_show_only_services(self):
         response = self.api_session.get(self.uo.absolute_url() + "?fullobjects")
         self.assertEqual(
-            len(response.json()["servizi_offerti"]), 1,
+            len(response.json()["servizi_offerti"]),
+            1,
         )
         self.assertTrue(
-            response.json()["servizi_offerti"][0]["@id"], self.service.absolute_url(),
+            response.json()["servizi_offerti"][0]["@id"],
+            self.service.absolute_url(),
         )
 
     def test_uo_sede_data(self):
@@ -149,7 +167,9 @@ class TestUO(unittest.TestCase):
 
         # create another uo and a venue
         luogo_bis = api.content.create(
-            container=self.portal, type="Venue", title="Luogo bis",
+            container=self.portal,
+            type="Venue",
+            title="Luogo bis",
         )
         api.content.create(
             container=self.portal,
@@ -167,7 +187,9 @@ class TestUO(unittest.TestCase):
     def test_uo_locations_vocabulary_populated(self):
         # create another uo and a venue
         luogo_bis = api.content.create(
-            container=self.portal, type="Venue", title="Luogo bis",
+            container=self.portal,
+            type="Venue",
+            title="Luogo bis",
         )
         api.content.create(
             container=self.portal,
@@ -187,3 +209,37 @@ class TestUO(unittest.TestCase):
         self.assertEqual(len(vocabulary), 2)
         self.assertEqual(vocabulary.getTerm(self.luogo.UID()).title, self.luogo.Title())
         self.assertEqual(vocabulary.getTerm(luogo_bis.UID()).title, luogo_bis.Title())
+
+    def test_do_not_show_parent_uo_if_not_present(self):
+        response = self.api_session.get(self.uo.absolute_url())
+        uo_parent = response.json()["uo_parent"]
+
+        self.assertIsNone(uo_parent)
+
+    def test_show_parent_uo_if_present(self):
+        response = self.api_session.get(self.uo_child.absolute_url())
+        uo_parent = response.json()["uo_parent"]
+
+        self.assertIsNotNone(uo_parent)
+        self.assertEqual(uo_parent["id"], self.uo.getId())
+        self.assertEqual(uo_parent["zip_code"], self.uo.zip_code)
+        self.assertEqual(uo_parent["city"], self.uo.city)
+        self.assertEqual(uo_parent["contact_info"], self.uo.contact_info)
+        self.assertEqual(uo_parent["street"], self.uo.street)
+
+    def test_do_not_show_children_uo_if_not_present(self):
+        response = self.api_session.get(self.uo_child.absolute_url())
+        uo_children = response.json()["uo_children"]
+
+        self.assertEqual(uo_children, [])
+
+    def test_show_children_uo_if_present(self):
+        response = self.api_session.get(self.uo.absolute_url())
+        uo_children = response.json()["uo_children"]
+
+        self.assertEqual(len(uo_children), 1)
+        self.assertEqual(uo_children[0]["id"], self.uo_child.getId())
+        self.assertEqual(uo_children[0]["zip_code"], self.uo_child.zip_code)
+        self.assertEqual(uo_children[0]["city"], self.uo_child.city)
+        self.assertEqual(uo_children[0]["contact_info"], self.uo_child.contact_info)
+        self.assertEqual(uo_children[0]["street"], self.uo_child.street)

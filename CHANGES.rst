@@ -5,6 +5,10 @@ Changelog
 3.7.5 (unreleased)
 ------------------
 
+- Export children and parent UO in UO details.
+  [cekk]
+- Export more infos in UO summary adapter.
+  [cekk]
 - ufficio_responsabile in Servizio allows now 10 items.
   [cekk]
 - *ruolo* is now a Choice field and can be configured in control panel.
