@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.7.5 (unreleased)
+3.8.0 (2021-10-22)
 ------------------
 
 - Export children and parent UO in UO details.
