@@ -5,7 +5,8 @@ Changelog
 3.8.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Create additional folder in Persona for curriculum vitae.
+  [cekk]
 
 
 3.8.0 (2021-10-22)

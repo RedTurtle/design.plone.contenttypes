@@ -148,7 +148,9 @@ class IPersona(model.Schema, IDesignPloneContentType):
         required=False,
         description=_(
             "curriculum_vitae_help",
-            default="Allega un file contenente il " "curriculum vitae della persona.",
+            default="Allega un file contenente il curriculum vitae della persona. "
+            "Se ha più file da allegare, utilizza questo campo per quello principale "
+            'e gli altri mettili dentro alla cartella "Curriculum vitae" che troverai dentro alla Persona.',
         ),
     )
 

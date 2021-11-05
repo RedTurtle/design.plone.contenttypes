@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
 from Products.CMFPlone.interfaces import ISelectableConstrainTypes
 from plone import api
 
@@ -12,7 +13,8 @@ def eventoCreateHandler(evento, event):
 
     @param event: Event that triggers the method (onAdded event)
     """
-
+    if not IDesignPloneContenttypesLayer.providedBy(evento.REQUEST):
+        return
     if "multimedia" not in evento.keys():
         galleria = api.content.create(
             container=evento,
