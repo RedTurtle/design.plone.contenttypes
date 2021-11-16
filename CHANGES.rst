@@ -5,7 +5,8 @@ Changelog
 3.8.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix scadenziario sort_order
+  [pnicolli]
 
 
 3.8.0 (2021-10-22)
@@ -24,7 +25,7 @@ Changelog
 ------------------
 
 - Add *ruolo* metadata for Persona and export it in summary serializer.
-  [cekk] 
+  [cekk]
 
 
 3.7.3 (2021-10-15)
