@@ -49,7 +49,9 @@ class ScadenziarioSearchPost(Service):
             raise Exception("No query supplied")
 
         if sort_order:
-            sort_order = "descending" if sort_order else "ascending"
+            sort_order = (
+                "descending" if sort_order == "descending" else "ascending"
+            )
 
         querybuilder = getMultiAdapter(
             (self.context, self.request), name="querybuilderresults"
@@ -105,7 +107,7 @@ class ScadenziarioSearchPost(Service):
                 brain.start.strftime("%Y/%m/%d"), []
             ).append(brain)
         keys = list(brains_grouped.keys())
-        if sort_order:
+        if sort_order == "descending":
             keys.sort(reverse=True)
         else:
             keys.sort()
