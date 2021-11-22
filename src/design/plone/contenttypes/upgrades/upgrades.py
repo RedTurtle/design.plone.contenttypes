@@ -753,3 +753,13 @@ def to_4000(context):
     api.portal.set_registry_record(
         "ruoli_persona", json.dumps(ruoli), interface=IDesignPloneSettings
     )
+
+
+def to_4100(context):
+    logger.info("Add constrainttypes behavior to Document")
+
+    portal_types = api.portal.get_tool(name="portal_types")
+    document_behaviors = list(portal_types["Document"].behaviors) + [
+        "plone.constraintypes"
+    ]
+    portal_types["Document"].behaviors = tuple(document_behaviors)

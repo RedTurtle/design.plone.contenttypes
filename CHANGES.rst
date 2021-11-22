@@ -7,7 +7,8 @@ Changelog
 
 - Fix scadenziario sort_order
   [pnicolli]
-
+- Add plone.constraintypes behavior for Document.
+  [cekk]
 
 3.8.0 (2021-10-22)
 ------------------
