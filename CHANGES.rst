@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.8.1 (unreleased)
+3.8.1 (2021-11-22)
 ------------------
 
 - Fix scadenziario sort_order
