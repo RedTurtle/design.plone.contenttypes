@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.8.2 (unreleased)
+3.8.2 (2021-11-26)
 ------------------
 
 - Create additional folder in Persona for curriculum vitae.
