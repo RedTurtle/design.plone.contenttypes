@@ -6,8 +6,7 @@ from design.plone.contenttypes import _
 
 
 class IPratica(model.Schema):
-    """ Marker interface for Pratica
-    """
+    """Marker interface for Pratica"""
 
     numero_protocollo = schema.TextLine(
         title=_(u"numero_protocollo", default=u"Numero protocollo"),
@@ -40,13 +39,9 @@ class IPratica(model.Schema):
         required=False,
     )
 
-    contenuto = BlocksField(
-        title=_(u"contenuto", default=u"Contenuto"), required=True
-    )
+    contenuto = BlocksField(title=_(u"contenuto", default=u"Contenuto"), required=True)
 
-    contatti = BlocksField(
-        title=_(u"contatti", default=u"Contatti"), required=True
-    )
+    contatti = BlocksField(title=_(u"contatti", default=u"Contatti"), required=True)
 
     azioni_utente = schema.Choice(
         title=_(u"azioni_utente", default=u"Azioni utente"),

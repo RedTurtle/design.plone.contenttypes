@@ -57,7 +57,8 @@ class TestControlpanelVocabularies(unittest.TestCase):
         )
         vocab = factory(self.portal)
         self.assertEqual(
-            [], [(x.value) for x in vocab],
+            [],
+            [(x.value) for x in vocab],
         )
 
         #  set values also for en
@@ -70,7 +71,8 @@ class TestControlpanelVocabularies(unittest.TestCase):
         )
         vocab = factory(self.portal)
         self.assertEqual(
-            ["", "news-foo", "news-bar"], [(x.value) for x in vocab],
+            ["", "news-foo", "news-bar"],
+            [(x.value) for x in vocab],
         )
 
     def test_tipologie_unita_organizzativa_vocab(self):
@@ -92,7 +94,8 @@ class TestControlpanelVocabularies(unittest.TestCase):
         )
         vocab = factory(self.portal)
         self.assertEqual(
-            [], [(x.value) for x in vocab],
+            [],
+            [(x.value) for x in vocab],
         )
 
         #  set values also for en
@@ -107,7 +110,8 @@ class TestControlpanelVocabularies(unittest.TestCase):
         )
         vocab = factory(self.portal)
         self.assertEqual(
-            ["", "uo-foo", "uo-bar"], [(x.value) for x in vocab],
+            ["", "uo-foo", "uo-bar"],
+            [(x.value) for x in vocab],
         )
 
     def test_tipologie_tipologie_documento_vocab(self):
@@ -140,12 +144,14 @@ class TestControlpanelVocabularies(unittest.TestCase):
         )
         vocab = factory(self.portal)
         self.assertEqual(
-            [], [(x.value) for x in vocab],
+            [],
+            [(x.value) for x in vocab],
         )
 
         #  set values also for en
         self.set_value_for_language(
-            field="tipologie_documento", data={"en": ["doc-foo", "doc-bar"]},
+            field="tipologie_documento",
+            data={"en": ["doc-foo", "doc-bar"]},
         )
 
         factory = getUtility(
@@ -153,7 +159,8 @@ class TestControlpanelVocabularies(unittest.TestCase):
         )
         vocab = factory(self.portal)
         self.assertEqual(
-            ["", "doc-foo", "doc-bar"], [(x.value) for x in vocab],
+            ["", "doc-foo", "doc-bar"],
+            [(x.value) for x in vocab],
         )
 
     def test_dimensioni_immagini(self):

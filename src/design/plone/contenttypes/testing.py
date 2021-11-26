@@ -36,9 +36,7 @@ class DesignPloneContenttypesLayer(PloneSandboxLayer):
         self.loadZCML(package=collective.venue)
         self.loadZCML(package=collective.volto.blocksfield)
         self.loadZCML(package=collective.volto.cookieconsent)
-        self.loadZCML(
-            package=design.plone.contenttypes, context=configurationContext
-        )
+        self.loadZCML(package=design.plone.contenttypes, context=configurationContext)
         self.loadZCML(package=plone.app.caching)
         self.loadZCML(package=plone.formwidget.geolocation)
         self.loadZCML(package=plone.restapi)

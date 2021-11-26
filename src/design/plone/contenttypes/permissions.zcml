@@ -1,96 +1,100 @@
 <configure
-  xmlns="http://namespaces.zope.org/zope"
-  xmlns:zcml="http://namespaces.zope.org/zcml"
-  i18n_domain="plone">
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    i18n_domain="plone"
+    >
 
   <configure zcml:condition="installed AccessControl.security">
-    <include package="Products.CMFCore" file="permissions.zcml" />
+    <include
+        package="Products.CMFCore"
+        file="permissions.zcml"
+        />
     <permission
         id="design.plone.contenttypes.AddDocumento"
         title="design.plone.contenttypes: Add Documento"
-    />
+        />
 
 
     <permission
         id="design.plone.contenttypes.AddServizio"
         title="design.plone.contenttypes: Add Servizio"
-    />
+        />
 
 
     <permission
         id="design.plone.contenttypes.AddEvento"
         title="design.plone.contenttypes: Add Evento"
-    />
+        />
 
 
     <permission
         id="design.plone.contenttypes.AddPersona"
         title="design.plone.contenttypes: Add Persona"
-    />
+        />
 
 
     <permission
         id="design.plone.contenttypes.AddUnitaOrganizzativa"
         title="design.plone.contenttypes: Add UnitaOrganizzativa"
-    />
+        />
 
 
     <permission
         id="design.plone.contenttypes.AddNotizieEComunicatiStampa"
         title="design.plone.contenttypes: Add NotizieEComunicatiStampa"
-    />
+        />
 
 
     <permission
         id="design.plone.contenttypes.AddMessaggio"
         title="design.plone.contenttypes: Add Messaggio"
-    />
+        />
 
 
     <permission
         id="design.plone.contenttypes.AddLuogo"
         title="design.plone.contenttypes: Add Luogo"
-    />
+        />
 
 
     <permission
         id="design.plone.contenttypes.AddDocumentoPersonale"
         title="design.plone.contenttypes: Add DocumentoPersonale"
-    />
+        />
 
 
     <permission
         id="design.plone.contenttypes.AddPaginaArgomento"
         title="design.plone.contenttypes: Add PaginaArgomento"
-    />
+        />
 
 
     <permission
         id="design.plone.contenttypes.AddDataset"
         title="design.plone.contenttypes: Add Dataset"
-    />
+        />
 
 
     <permission
         id="design.plone.contenttypes.AddRicevutaPagamento"
         title="design.plone.contenttypes: Add RicevutaPagamento"
-    />
+        />
 
 
     <permission
         id="design.plone.contenttypes.AddPratica"
         title="design.plone.contenttypes: Add Pratica"
-    />
+        />
 
     <permission
         id="design.plone.contenttypes.AddCartellaModulistica"
         title="design.plone.contenttypes: Add CartellaModulistica"
-    />
+        />
 
     <permission
         id="design.plone.contenttypes.AddModulo"
         title="design.plone.contenttypes: Add Modulo"
-    />
+        />
 
 
   </configure>

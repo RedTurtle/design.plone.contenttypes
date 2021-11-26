@@ -3,17 +3,26 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:plone="http://namespaces.plone.org/plone"
-    i18n_domain="design.plone.contenttypes">
+    i18n_domain="design.plone.contenttypes"
+    >
 
 
-  <include package="z3c.unconfigure" file="meta.zcml" />
-  <include package="collective.address" file="configure.zcml"/>
+  <include
+      package="z3c.unconfigure"
+      file="meta.zcml"
+      />
+  <include
+      package="collective.address"
+      file="configure.zcml"
+      />
 
   <unconfigure>
     <adapter
-      name="SearchableText"
-      for="collective.address.behaviors.IAddressable Products.ZCatalog.interfaces.IZCatalog"
-      factory="collective.address.behaviors.searchable_text_indexer"/>
+        factory="collective.address.behaviors.searchable_text_indexer"
+        for="collective.address.behaviors.IAddressable
+             Products.ZCatalog.interfaces.IZCatalog"
+        name="SearchableText"
+        />
   </unconfigure>
 
 

@@ -18,16 +18,13 @@ class VocabItem(object):
 
 @implementer(IVocabularyFactory)
 class DocumentTypesVocabulary(object):
-    """
-    """
+    """ """
 
     def __call__(self, context):
         # Just an example list of content for our vocabulary,
         # this can be any static or dynamic data, a catalog result for example.
         items = [
-            VocabItem(
-                u"documenti_albo_pretorio", _(u"Documenti albo pretorio")
-            ),
+            VocabItem(u"documenti_albo_pretorio", _(u"Documenti albo pretorio")),
             VocabItem(u"modulistica", _(u"Modulistica")),
             VocabItem(
                 u"documento_funzionamento_interno",
@@ -57,7 +54,9 @@ class DocumentTypesVocabulary(object):
         for item in items:
             terms.append(
                 SimpleTerm(
-                    value=item.token, token=str(item.token), title=item.value,
+                    value=item.token,
+                    token=str(item.token),
+                    title=item.value,
                 )
             )
         # Create a SimpleVocabulary from the terms list and return it:

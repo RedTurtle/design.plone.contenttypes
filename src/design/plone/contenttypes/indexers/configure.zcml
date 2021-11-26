@@ -1,20 +1,57 @@
-<configure
-    xmlns="http://namespaces.zope.org/zope">
+<configure xmlns="http://namespaces.zope.org/zope">
 
-    <adapter name="event_location" factory=".events.event_location"  />
-    <adapter name="IPaginaArgomento" factory=".pagina_argomento.SearchableTextExtender" />
-    <adapter name="news_people" factory=".news.news_people" />
-    <adapter name="news_service" factory=".news.news_service" />
-    <adapter name="news_uo" factory=".news.news_uo" />
-    <adapter name="news_venue" factory=".news.news_venue" />
-    <adapter name="service_venue" factory=".servizio.service_venue" />
-    <adapter name="tassonomia_argomenti" factory=".common.tassonomia_argomenti" />
-    <adapter name="ufficio_responsabile" factory=".common.ufficio_responsabile" />
-    <adapter name="ufficio_responsabile_bando" factory=".bando.ufficio_responsabile_bando" />
-    <adapter name="Subject_bando" factory=".bando.Subject_bando" />
-    <adapter name="uo_location" factory=".uo.uo_location" />
+  <adapter
+      factory=".events.event_location"
+      name="event_location"
+      />
+  <adapter
+      factory=".pagina_argomento.SearchableTextExtender"
+      name="IPaginaArgomento"
+      />
+  <adapter
+      factory=".news.news_people"
+      name="news_people"
+      />
+  <adapter
+      factory=".news.news_service"
+      name="news_service"
+      />
+  <adapter
+      factory=".news.news_uo"
+      name="news_uo"
+      />
+  <adapter
+      factory=".news.news_venue"
+      name="news_venue"
+      />
+  <adapter
+      factory=".servizio.service_venue"
+      name="service_venue"
+      />
+  <adapter
+      factory=".common.tassonomia_argomenti"
+      name="tassonomia_argomenti"
+      />
+  <adapter
+      factory=".common.ufficio_responsabile"
+      name="ufficio_responsabile"
+      />
+  <adapter
+      factory=".bando.ufficio_responsabile_bando"
+      name="ufficio_responsabile_bando"
+      />
+  <adapter
+      factory=".bando.Subject_bando"
+      name="Subject_bando"
+      />
+  <adapter
+      factory=".uo.uo_location"
+      name="uo_location"
+      />
 
-    <!-- only metadata -->
-    <adapter name="ruolo" factory=".metadata.ruolo" />
+  <!-- only metadata -->
+  <adapter
+      factory=".metadata.ruolo"
+      name="ruolo"
+      />
 </configure>
-

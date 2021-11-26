@@ -20,6 +20,11 @@ def luogoCreateHandler(luogo, event):
     folder.reindexObject(idxs=["Title"])
     constraints = ISelectableConstrainTypes(folder)
     constraints.setConstrainTypesMode(1)
-    constraints.setLocallyAllowedTypes(("Image", "Link",))
+    constraints.setLocallyAllowedTypes(
+        (
+            "Image",
+            "Link",
+        )
+    )
 
     # non dovrebbe essere cancellabile

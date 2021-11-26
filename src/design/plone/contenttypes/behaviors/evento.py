@@ -16,8 +16,7 @@ from zope.interface import provider, implementer
 
 @provider(IFormFieldProvider)
 class IEvento(model.Schema):
-    """Marker inteerface for content type Evento
-    """
+    """Marker inteerface for content type Evento"""
 
     sottotitolo = schema.TextLine(
         title=_(u"sottotitolo_label", default=u"Sottotitolo"),
@@ -36,9 +35,7 @@ class IEvento(model.Schema):
         ),
     )
     descrizione_destinatari = BlocksField(
-        title=_(
-            u"descrizione_destinatari", default=u"Descrizione destinatari"
-        ),
+        title=_(u"descrizione_destinatari", default=u"Descrizione destinatari"),
         required=False,
         description=_(
             "descrizione_destinatari_help",
@@ -114,9 +111,7 @@ class IEvento(model.Schema):
     )
     fax = schema.TextLine(
         title=_(u"fax_event_help", default=u"Fax"),
-        description=_(
-            u"fax_event_label", default="Indicare un numero di fax."
-        ),
+        description=_(u"fax_event_label", default="Indicare un numero di fax."),
         required=False,
     )
     reperibilita = schema.TextLine(
@@ -142,8 +137,7 @@ class IEvento(model.Schema):
         title=_(u"web_event_label", default=u"Sito web"),
         description=_(
             "web_event_help",
-            default="Indicare un indirizzo web di riferimento a "
-            "questo evento.",
+            default="Indicare un indirizzo web di riferimento a " "questo evento.",
         ),
         required=False,
     )
@@ -207,7 +201,7 @@ class IEvento(model.Schema):
         fields=[
             "descrizione_estesa",
             "descrizione_destinatari",
-            "persone_amministrazione"
+            "persone_amministrazione",
         ],
     )
     model.fieldset(
@@ -215,9 +209,7 @@ class IEvento(model.Schema):
         label=_("date_e_orari_label", default=u"Date e orari"),
         fields=["orari"],
     )
-    model.fieldset(
-        "costi", label=_("costi_label", default=u"Costi"), fields=["prezzo"]
-    )
+    model.fieldset("costi", label=_("costi_label", default=u"Costi"), fields=["prezzo"])
     model.fieldset(
         "contatti",
         label=_("contatti_label", default=u"Contatti"),
@@ -244,8 +236,7 @@ class IEvento(model.Schema):
 @implementer(IEvento)
 @adapter(IDexterityContent)
 class Evento(object):
-    """
-    """
+    """ """
 
     def __init__(self, context):
         self.context = context

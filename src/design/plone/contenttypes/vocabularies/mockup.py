@@ -16,19 +16,18 @@ class VocabItem(object):
 
 @implementer(IVocabularyFactory)
 class Mockup(object):
-    """
-    """
+    """ """
 
     def __call__(self, context):
         # Just an example list of content for our vocabulary,
         # this can be any static or dynamic data, a catalog result for example.
         items = [
-            VocabItem(u'sony-a7r-iii', _(u'Sony Aplha 7R III')),
-            VocabItem(u'canon-5d-iv', _(u'Canon 5D IV')),
-            VocabItem(u'pippo', _(u'Pippo')),
-            VocabItem(u'pluto', _(u'Pluto')),
-            VocabItem(u'paperino', _(u'Paperino')),
-            VocabItem(u'giovanni', _(u'Giovanni')),
+            VocabItem(u"sony-a7r-iii", _(u"Sony Aplha 7R III")),
+            VocabItem(u"canon-5d-iv", _(u"Canon 5D IV")),
+            VocabItem(u"pippo", _(u"Pippo")),
+            VocabItem(u"pluto", _(u"Pluto")),
+            VocabItem(u"paperino", _(u"Paperino")),
+            VocabItem(u"giovanni", _(u"Giovanni")),
         ]
 
         # Fix context if you are using the vocabulary in DataGridField.
@@ -41,9 +40,7 @@ class Mockup(object):
         terms = []
         for item in items:
             terms.append(
-                SimpleTerm(
-                    value=item.token, token=str(item.token), title=item.value
-                )
+                SimpleTerm(value=item.token, token=str(item.token), title=item.value)
             )
         # Create a SimpleVocabulary from the terms list and return it:
         return SimpleVocabulary(terms)

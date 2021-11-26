@@ -10,10 +10,20 @@ from zope.interface import Interface
 
 class IGeolocationDefaults(Interface):
     street = TextLine(
-        title=_(u"Via"), required=False, default="Via Liszt, 21",
+        title=_(u"Via"),
+        required=False,
+        default="Via Liszt, 21",
     )
-    zip_code = TextLine(title=_(u"CAP"), required=False, default="00144",)
-    city = TextLine(title=_(u"Città"), required=False, default="Roma",)
+    zip_code = TextLine(
+        title=_(u"CAP"),
+        required=False,
+        default="00144",
+    )
+    city = TextLine(
+        title=_(u"Città"),
+        required=False,
+        default="Roma",
+    )
     country = TextLine(
         title=_(u"Nazione"),
         required=False,

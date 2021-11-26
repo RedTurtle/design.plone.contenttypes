@@ -139,8 +139,7 @@ class INewsAdditionalFields(model.Schema):
 @implementer(INewsAdditionalFields)
 @adapter(INewsItem)
 class NewsAdditionalFields(object):
-    """
-    """
+    """ """
 
     def __init__(self, context):
         self.context = context

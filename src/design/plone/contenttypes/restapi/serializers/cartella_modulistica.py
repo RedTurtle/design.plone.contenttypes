@@ -22,8 +22,7 @@ from zope.globalrequest import getRequest
 @adapter(ICartellaModulistica, Interface)
 class CartellaModulisticaSerializer(RelatedNewsSerializer):
     def get_services(self):
-        """
-        """
+        """ """
         catalog = getUtility(ICatalog)
         intids = getUtility(IIntIds)
         services = []

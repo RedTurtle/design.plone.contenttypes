@@ -8,5 +8,4 @@ from zope.interface import implementer
 
 @implementer(IUnitaOrganizzativa)
 class UnitaOrganizzativa(Container):
-    '''
-    '''
+    """ """

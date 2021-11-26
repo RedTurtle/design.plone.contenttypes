@@ -25,8 +25,7 @@ class IAddressNomeSede(model.Schema):
 
 
 class IAddressLocal(model.Schema):
-    """
-    """
+    """ """
 
     quartiere = schema.TextLine(
         title=_("quartiere", default="Quartiere"),
@@ -103,8 +102,7 @@ class IAddressEvent(IAddress, IAddressNomeSede, IAddressLocal):
 @implementer(IAddressUnitaOrganizzativa)
 @adapter(IUnitaOrganizzativa)
 class AddressUnitaOrganizzativa(object):
-    """
-    """
+    """ """
 
     def __init__(self, context):
         self.context = context
@@ -113,8 +111,7 @@ class AddressUnitaOrganizzativa(object):
 @implementer(IAddressVenue)
 @adapter(IDexterityContent)
 class AddressVenue(object):
-    """
-    """
+    """ """
 
     def __init__(self, context):
         self.context = context
@@ -123,8 +120,7 @@ class AddressVenue(object):
 @implementer(IAddressEvent)
 @adapter(IDexterityContent)
 class AddressEvent(object):
-    """
-    """
+    """ """
 
     def __init__(self, context):
         self.context = context

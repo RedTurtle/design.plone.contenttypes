@@ -13,8 +13,7 @@ from zope.i18n import translate
 
 @implementer(IVocabularyFactory)
 class AllLifeEventsVocabulary(object):
-    """
-    """
+    """ """
 
     def __call__(self, context):
         """
@@ -24,9 +23,7 @@ class AllLifeEventsVocabulary(object):
         items = [
             (
                 u"L1.0",
-                _(
-                    u"Iscrizione scuola/università e/o richiesta borsa di studio"
-                ),
+                _(u"Iscrizione scuola/università e/o richiesta borsa di studio"),
             ),
             (u"L2.0", _(u"Invalidità")),
             (
@@ -46,9 +43,7 @@ class AllLifeEventsVocabulary(object):
             (u"L9.0", _(u"Cambio di residenza/domicilio")),
             (
                 u"L11.0",
-                _(
-                    u"Richiesta passaporto, visto e assistenza viaggi internazionali"
-                ),
+                _(u"Richiesta passaporto, visto e assistenza viaggi internazionali"),
             ),
             (u"L12.0", _(u"Nascita di un bambino, richiesta adozioni")),
             (u"L13.0", _(u"Matrimonio e/o cambio stato civile")),
@@ -65,9 +60,7 @@ class AllLifeEventsVocabulary(object):
             (u"L19.0", _(u"Possesso, cura, smarrimento animale da compagnia")),
             (
                 u"B1.0",
-                _(
-                    u"Iscrizione scuola/università e/o richiesta borsa di studio"
-                ),
+                _(u"Iscrizione scuola/università e/o richiesta borsa di studio"),
             ),
             (u"B2.0", _(u"Avvio impresa")),
             (u"B3.0", _(u"Avvio nuova attività professionale")),
@@ -85,9 +78,7 @@ class AllLifeEventsVocabulary(object):
             (u"B15.0", _(u"Bancarotta")),
             (
                 u"B16.0",
-                _(
-                    u"Partecipazione ad appalti pubblici nazionali e trasfrontalieri"
-                ),
+                _(u"Partecipazione ad appalti pubblici nazionali e trasfrontalieri"),
             ),
         ]
         req = getRequest()

@@ -18,8 +18,7 @@ class IAdditionalHelpInfos(model.Schema):
         title=_(u"ulteriori_informazioni", default=u"Ulteriori informazioni"),
         description=_(
             "ulteriori_informazioni_help",
-            default="Ulteriori informazioni non contemplate"
-            " dai campi precedenti.",
+            default="Ulteriori informazioni non contemplate" " dai campi precedenti.",
         ),
         required=False,
     )
@@ -36,8 +35,7 @@ class IAdditionalHelpInfos(model.Schema):
 @implementer(IAdditionalHelpInfos)
 @adapter(IDexterityContent)
 class AdditionalHelpInfos(object):
-    """
-    """
+    """ """
 
     def __init__(self, context):
         self.context = context

@@ -26,9 +26,7 @@ class ModulisticaItems(object):
     def __call__(self, expand=False):
         result = {
             "modulistica-items": {
-                "@id": "{}/@modulistica-items".format(
-                    self.context.absolute_url()
-                )
+                "@id": "{}/@modulistica-items".format(self.context.absolute_url())
             }
         }
         if not expand:
@@ -44,10 +42,7 @@ class ModulisticaItems(object):
             context = self.context
         res = []
         for child in context.listFolderContents():
-            if (
-                child.portal_type == "Document"
-                and child.getId() == "multimedia"
-            ):
+            if child.portal_type == "Document" and child.getId() == "multimedia":
                 continue
 
             serializer = queryMultiAdapter(
@@ -70,8 +65,7 @@ class ModulisticaItems(object):
                 children = [
                     x
                     for x in self.get_modulistica_data(context=child)
-                    if x.get("@type", "")
-                    not in ["Document", "CartellaModulistica"]
+                    if x.get("@type", "") not in ["Document", "CartellaModulistica"]
                 ]
                 if children:
                     data["items"] = children

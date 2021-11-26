@@ -144,7 +144,8 @@ class TestLuogoApi(unittest.TestCase):
     def test_venue_services(self):
         response = self.api_session.get(self.venue.absolute_url() + "?fullobjects")
         self.assertTrue(
-            response.json()["venue_services"][0]["@id"], self.service.absolute_url(),
+            response.json()["venue_services"][0]["@id"],
+            self.service.absolute_url(),
         )
 
     def test_venue_news(self):

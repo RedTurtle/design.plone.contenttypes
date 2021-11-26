@@ -52,11 +52,11 @@ class TestCorrelatoInEvidenza(unittest.TestCase):
         self.api_session.close()
 
     def test_correlato_in_evidenza_also_return_icona_info(self):
-        """
-        """
+        """ """
         response = self.api_session.get(self.document.absolute_url())
         res = response.json()
         self.assertIn(
-            "icona", res["correlato_in_evidenza"][0],
+            "icona",
+            res["correlato_in_evidenza"][0],
         )
         self.assertEqual(res["correlato_in_evidenza"][0]["icona"], "test-icon")

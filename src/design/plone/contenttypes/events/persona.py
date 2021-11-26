@@ -19,6 +19,7 @@ def personaCreateHandler(persona, event):
             "title": "Foto e attività politica",
             "contains": ("Image",),
         },
+        {"id": "curriculum-vitae", "title": "Curriculum vitae", "contains": ("File",)},
         {"id": "compensi", "title": "Compensi", "contains": ("File",)},
         {
             "id": "importi-di-viaggio-e-o-servizi",

@@ -79,8 +79,7 @@ class ILuoghiCorrelatiEvento(model.Schema):
 @implementer(ILuoghiCorrelati)
 @adapter(IDexterityContent)
 class LuoghiCorrelati(object):
-    """
-    """
+    """ """
 
     def __init__(self, context):
         self.context = context
@@ -89,8 +88,7 @@ class LuoghiCorrelati(object):
 @implementer(ILuoghiCorrelatiEvento)
 @adapter(IDexterityContent)
 class LuoghiCorrelatiEvento(object):
-    """
-    """
+    """ """
 
     def __init__(self, context):
         self.context = context

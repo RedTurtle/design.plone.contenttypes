@@ -48,12 +48,9 @@ class TestBaseSerializer(unittest.TestCase):
         News should return the news type (tipologia_notizia field)
         Other types shoule return their own portal_type.
         """
-        response_news = self.api_session.get(
-            self.news.absolute_url() + "?fullobjects"
-        )
+        response_news = self.api_session.get(self.news.absolute_url() + "?fullobjects")
         self.assertTrue(
-            response_news.json()["design_italia_meta_type"]
-            == "Comunicati stampa"
+            response_news.json()["design_italia_meta_type"] == "Comunicati stampa"
         )
 
     def test_design_italia_meta_type_with_type_different_from_news(self):

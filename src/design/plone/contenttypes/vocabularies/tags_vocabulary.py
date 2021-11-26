@@ -16,8 +16,7 @@ class VocabItem(object):
 
 @implementer(IVocabularyFactory)
 class TagsVocabulary(object):
-    """
-    """
+    """ """
 
     def __call__(self, context):
         # Just an example list of content for our vocabulary,
@@ -36,9 +35,7 @@ class TagsVocabulary(object):
             VocabItem(u"protezione-sociale", _(u"Protezione sociale")),
             VocabItem(u"comunicazione", _(u"Comunicazione")),
             VocabItem(u"urbanistica-edilizia", _(u"Urbanistica ed edilizia")),
-            VocabItem(
-                u"formazione-professionale", _(u"Formazione professionale")
-            ),
+            VocabItem(u"formazione-professionale", _(u"Formazione professionale")),
             VocabItem(
                 u"condizioni-organizzazione-lavoro",
                 _(u"Condizioni e organizzazione del lavoro"),
@@ -56,9 +53,7 @@ class TagsVocabulary(object):
             VocabItem(u"gestione-rifiuti", _(u"Gestione dei rifiuti")),
             VocabItem(u"salute", _(u"Salute")),
             VocabItem(u"sicurezza-pubblica", _(u"Sicurezza pubblica")),
-            VocabItem(
-                u"sicurezza-internazionale", _(u"Sicurezza internazionale")
-            ),
+            VocabItem(u"sicurezza-internazionale", _(u"Sicurezza internazionale")),
             VocabItem(u"spazio-verde", _(u"Spazio verde")),
             VocabItem(u"sport", _(u"Sport")),
             VocabItem(u"trasporto-stradale", _(u"Trasporto stradale")),
@@ -80,9 +75,7 @@ class TagsVocabulary(object):
         terms = []
         for item in items:
             terms.append(
-                SimpleTerm(
-                    value=item.token, token=str(item.token), title=item.value
-                )
+                SimpleTerm(value=item.token, token=str(item.token), title=item.value)
             )
         # Create a SimpleVocabulary from the terms list and return it:
         return SimpleVocabulary(terms)

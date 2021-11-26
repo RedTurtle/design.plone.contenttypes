@@ -6,5 +6,4 @@ from design.plone.contenttypes.interfaces.dataset import IDataset
 
 @implementer(IDataset)
 class Dataset(Container):
-    '''
-    '''
+    """ """

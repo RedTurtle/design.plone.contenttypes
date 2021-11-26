@@ -15,7 +15,8 @@ class IDocumento(model.Schema, IDesignPloneContentType):
 
     identificativo = schema.TextLine(
         title=_(
-            "identificativo_documento_label", default="Identificativo del documento.",
+            "identificativo_documento_label",
+            default="Identificativo del documento.",
         ),
         description=_(
             "identificativo_documento_help",
@@ -27,7 +28,8 @@ class IDocumento(model.Schema, IDesignPloneContentType):
     tipologia_documento = schema.Choice(
         title=_("tipologia_documento_label", default="Tipologia del documento"),
         description=_(
-            "tipologia_documento_help", default="Seleziona la tipologia del documento.",
+            "tipologia_documento_help",
+            default="Seleziona la tipologia del documento.",
         ),
         required=True,
         vocabulary="design.plone.vocabularies.tipologie_documento",
@@ -51,7 +53,10 @@ class IDocumento(model.Schema, IDesignPloneContentType):
     )
 
     area_responsabile = RelationList(
-        title=_("area_responsabile_label", default="Area responsabile del documento",),
+        title=_(
+            "area_responsabile_label",
+            default="Area responsabile del documento",
+        ),
         description=_(
             "area_responsabile_help",
             default="Seleziona l'area amministrativa responsabile del " "documento.",
@@ -64,7 +69,10 @@ class IDocumento(model.Schema, IDesignPloneContentType):
     )
 
     autori = RelationList(
-        title=_("autori_label", default="Autore/i",),
+        title=_(
+            "autori_label",
+            default="Autore/i",
+        ),
         description=_(
             "autori_help",
             default="Seleziona una lista di autori che hanno pubblicato "
@@ -86,7 +94,8 @@ class IDocumento(model.Schema, IDesignPloneContentType):
 
     riferimenti_normativi = BlocksField(
         title=_(
-            "riferimenti_normativi_documento_label", default="Riferimenti normativi",
+            "riferimenti_normativi_documento_label",
+            default="Riferimenti normativi",
         ),
         description=_(
             "riferimenti_normativi_documento_help",
@@ -97,7 +106,10 @@ class IDocumento(model.Schema, IDesignPloneContentType):
     )
 
     documenti_allegati = RelationList(
-        title=_("documenti_allegati_label", default="Documenti allegati",),
+        title=_(
+            "documenti_allegati_label",
+            default="Documenti allegati",
+        ),
         description=_(
             "documenti_allegati_help",
             default="Seleziona una serie di altri contenuti di tipo Documento "

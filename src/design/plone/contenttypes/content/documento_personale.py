@@ -8,5 +8,4 @@ from design.plone.contenttypes.interfaces.documento_personale import (
 
 @implementer(IDocumentoPersonale)
 class DocumentoPersonale(Container):
-    '''
-    '''
+    """ """

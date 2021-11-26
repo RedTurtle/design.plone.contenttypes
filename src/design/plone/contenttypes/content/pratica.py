@@ -6,5 +6,4 @@ from zope.interface import implementer
 
 @implementer(IPratica)
 class Pratica(Container):
-    '''
-    '''
+    """ """

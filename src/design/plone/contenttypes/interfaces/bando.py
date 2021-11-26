@@ -17,12 +17,15 @@ from zope import schema
 
 
 class IBandoAgidSchema(IBandoSchema, IDesignPloneContentType):
-    """ A Dexterity schema for Annoucements """
+    """A Dexterity schema for Annoucements"""
 
     # ridefinito, così usiamo il campo dei blocchi
     text = BlocksField(
         title=_("text_label", default="Testo"),
-        description=_("text_help", default="",),
+        description=_(
+            "text_help",
+            default="",
+        ),
         required=False,
     )
     tipologia_bando = schema.Choice(
@@ -68,7 +71,8 @@ class IBandoAgidSchema(IBandoSchema, IDesignPloneContentType):
 
     chiusura_procedimento_bando = schema.Date(
         title=_rtbando(
-            "chiusura_procedimento_bando_label", default="Closing date procedure",
+            "chiusura_procedimento_bando_label",
+            default="Closing date procedure",
         ),
         description=_rtbando("chiusura_procedimento_bando_help", default=""),
         required=False,
@@ -103,7 +107,10 @@ class IBandoAgidSchema(IBandoSchema, IDesignPloneContentType):
     )
 
     area_responsabile = RelationList(
-        title=_("area_responsabile_label", default="Area responsabile del documento",),
+        title=_(
+            "area_responsabile_label",
+            default="Area responsabile del documento",
+        ),
         description=_(
             "area_responsabile_help",
             default="Seleziona l'area amministrativa responsabile del " "documento.",

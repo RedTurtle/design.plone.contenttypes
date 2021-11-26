@@ -2,30 +2,34 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:plone="http://namespaces.plone.org/plone"
-    i18n_domain="design.plone.contenttypes">
+    i18n_domain="design.plone.contenttypes"
+    >
 
   <!-- Set overrides folder for Just-a-Bunch-Of-Templates product -->
-  <include package="z3c.jbot" file="meta.zcml" />
+  <include
+      package="z3c.jbot"
+      file="meta.zcml"
+      />
   <browser:jbot
       directory="overrides"
       layer="design.plone.contenttypes.interfaces.IDesignPloneContenttypesLayer"
       />
-   <browser:page
-      for="*"
+  <browser:page
       name="trasparenza_view"
-      permission="zope2.View"
-      class=".trasparenza.TrasparenzaView"
-      />
-   <browser:page
       for="*"
-      name="dettagli_procedimenti_view"
+      class=".trasparenza.TrasparenzaView"
       permission="zope2.View"
+      />
+  <browser:page
+      name="dettagli_procedimenti_view"
+      for="*"
       class=".trasparenza.DettagliProcedimentiView"
+      permission="zope2.View"
       />
   <configure package="plone.app.dexterity.browser">
     <browser:page
-        for="design.plone.contenttypes.interfaces.cartella_modulistica.ICartellaModulistica"
         name="modulistica_view"
+        for="design.plone.contenttypes.interfaces.cartella_modulistica.ICartellaModulistica"
         class="plone.app.dexterity.browser.folder_listing.FolderView"
         template="folder_listing.pt"
         permission="zope2.View"

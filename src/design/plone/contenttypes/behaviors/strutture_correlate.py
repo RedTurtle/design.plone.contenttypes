@@ -47,8 +47,7 @@ class IStruttureCorrelate(model.Schema):
 @implementer(IStruttureCorrelate)
 @adapter(IDexterityContent)
 class StruttureCorrelate(object):
-    """
-    """
+    """ """
 
     def __init__(self, context):
         self.context = context

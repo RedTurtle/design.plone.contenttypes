@@ -32,9 +32,7 @@ class IArgomentiSchema(model.Schema):
         default=[],
     )
     correlato_in_evidenza = RelationList(
-        title=_(
-            "correlato_in_evidenza_label", default="Correlato in evidenza"
-        ),
+        title=_("correlato_in_evidenza_label", default="Correlato in evidenza"),
         description=_(
             "correlato_in_evidenza_help",
             default="Seleziona un correlato da mettere in evidenza per questo"

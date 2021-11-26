@@ -1,61 +1,62 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
-    i18n_domain="design.plone.contenttypes">
+    i18n_domain="design.plone.contenttypes"
+    >
 
-     <subscriber
+  <subscriber
       for="design.plone.contenttypes.interfaces.pratica.IPratica
            zope.lifecycleevent.interfaces.IObjectAddedEvent"
       handler=".pratica.praticaCreateHandler"
-    />
-    <!-- <subscriber
+      />
+  <!-- <subscriber
       for="design.plone.contenttypes.interfaces.documento_personale.IDocumentoPersonale
            zope.lifecycleevent.interfaces.IObjectAddedEvent"
       handler=".documento_personale.documentoPersonaleCreateHandler"
     /> -->
-    <subscriber
-     for="collective.venue.interfaces.IVenue
-          zope.lifecycleevent.interfaces.IObjectAddedEvent"
-     handler=".luogo.luogoCreateHandler"
-    />
-    <subscriber
+  <subscriber
+      for="collective.venue.interfaces.IVenue
+           zope.lifecycleevent.interfaces.IObjectAddedEvent"
+      handler=".luogo.luogoCreateHandler"
+      />
+  <subscriber
       for="design.plone.contenttypes.interfaces.unita_organizzativa.IUnitaOrganizzativa
-          zope.lifecycleevent.interfaces.IObjectAddedEvent"
+           zope.lifecycleevent.interfaces.IObjectAddedEvent"
       handler=".unita_organizzativa.unitaOrganizzativaCreateHandler"
-    />
-    <subscriber
+      />
+  <subscriber
       for="design.plone.contenttypes.interfaces.persona.IPersona
-          zope.lifecycleevent.interfaces.IObjectAddedEvent"
+           zope.lifecycleevent.interfaces.IObjectAddedEvent"
       handler=".persona.personaCreateHandler"
-    />
-    <subscriber
+      />
+  <subscriber
       for="plone.event.interfaces.IEvent
-          zope.lifecycleevent.interfaces.IObjectAddedEvent"
+           zope.lifecycleevent.interfaces.IObjectAddedEvent"
       handler=".evento.eventoCreateHandler"
-    />
-    <subscriber
+      />
+  <subscriber
       for="design.plone.contenttypes.interfaces.documento.IDocumento
-          zope.lifecycleevent.interfaces.IObjectAddedEvent"
+           zope.lifecycleevent.interfaces.IObjectAddedEvent"
       handler=".documento.documentoCreateHandler"
-    />
-    <subscriber
+      />
+  <subscriber
       for="design.plone.contenttypes.interfaces.servizio.IServizio
-          zope.lifecycleevent.interfaces.IObjectAddedEvent"
+           zope.lifecycleevent.interfaces.IObjectAddedEvent"
       handler=".servizio.servizioCreateHandler"
-    />
-    <subscriber
+      />
+  <subscriber
       for="plone.app.contenttypes.interfaces.INewsItem
-          zope.lifecycleevent.interfaces.IObjectAddedEvent"
+           zope.lifecycleevent.interfaces.IObjectAddedEvent"
       handler=".notizie_e_comunicati_stampa.notiziaCreateHandler"
-    />
-    <subscriber
+      />
+  <subscriber
       for="design.plone.contenttypes.interfaces.pagina_argomento.IPaginaArgomento
-          zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+           zope.lifecycleevent.interfaces.IObjectModifiedEvent"
       handler=".pagina_argomento.onModify"
-    />
-    <subscriber
+      />
+  <subscriber
       for="plone.app.contenttypes.interfaces.IDocument
-          zope.lifecycleevent.interfaces.IObjectAddedEvent"
+           zope.lifecycleevent.interfaces.IObjectAddedEvent"
       handler=".document.documentCreateHandler"
-    />
-    
+      />
+
 </configure>

@@ -1,23 +1,24 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
-    xmlns:zcml="http://namespaces.zope.org/zcml">
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    >
 
-    <!-- summary -->
-    <adapter factory=".summary.DefaultJSONSummarySerializer" />
+  <!-- summary -->
+  <adapter factory=".summary.DefaultJSONSummarySerializer" />
 
-    <adapter factory=".dxcontent.SerializeFolderToJson" />
-    <adapter factory=".dxcontent.SerializeToJson" />
-    <adapter factory=".dxfields.SourceTextSerializer" />
-    <adapter factory=".modulo.SerializeModuloToJsonSummary" />
-    <adapter factory=".persona.PersonaSerializer" />
-    <adapter factory=".related_news_serializer.ServizioSerializer" />
-    <adapter factory=".relationfield.RelationListFieldSerializer" />
-    <adapter factory=".servizio.SerializeServizioToJsonSummary" />
-    <adapter factory=".unita_organizzativa.UOSerializer" />
-    <adapter factory=".unita_organizzativa.UOJSONSummarySerializer" />
-    <adapter factory=".venue.SerializeVenueToJsonSummary" />
-    <adapter factory=".venue.VenueSerializer" />
-    <adapter factory=".bando.BandoSerializer" />
-    <adapter factory=".documento.DocumentoSerializer" />
-    <adapter factory=".cartella_modulistica.CartellaModulisticaSerializer" />
+  <adapter factory=".dxcontent.SerializeFolderToJson" />
+  <adapter factory=".dxcontent.SerializeToJson" />
+  <adapter factory=".dxfields.SourceTextSerializer" />
+  <adapter factory=".modulo.SerializeModuloToJsonSummary" />
+  <adapter factory=".persona.PersonaSerializer" />
+  <adapter factory=".related_news_serializer.ServizioSerializer" />
+  <adapter factory=".relationfield.RelationListFieldSerializer" />
+  <adapter factory=".servizio.SerializeServizioToJsonSummary" />
+  <adapter factory=".unita_organizzativa.UOSerializer" />
+  <adapter factory=".unita_organizzativa.UOJSONSummarySerializer" />
+  <adapter factory=".venue.SerializeVenueToJsonSummary" />
+  <adapter factory=".venue.VenueSerializer" />
+  <adapter factory=".bando.BandoSerializer" />
+  <adapter factory=".documento.DocumentoSerializer" />
+  <adapter factory=".cartella_modulistica.CartellaModulisticaSerializer" />
 </configure>

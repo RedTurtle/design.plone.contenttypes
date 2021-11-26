@@ -6,5 +6,4 @@ from zope.interface import implementer
 
 @implementer(IMessaggio)
 class Messaggio(Container):
-    """ Marker interface for Messaggio
-    """
+    """Marker interface for Messaggio"""

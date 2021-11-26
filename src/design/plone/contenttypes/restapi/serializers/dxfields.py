@@ -26,9 +26,7 @@ class SourceTextSerializer(DefaultFieldSerializer):
     def __call__(self):
         value = super(SourceTextSerializer, self).__call__()
         if self.field.getName() == "search_sections":
-            return json.dumps(
-                serialize_data(context=self.context, json_data=value)
-            )
+            return json.dumps(serialize_data(context=self.context, json_data=value))
         return value
 
 
@@ -73,7 +71,8 @@ def fix_blocks(context, tab):
             block_type = block_value.get("@type", "")
             handlers = []
             for h in subscribers(
-                (context, request), IBlockFieldSerializationTransformer,
+                (context, request),
+                IBlockFieldSerializationTransformer,
             ):
                 if h.block_type == block_type or h.block_type is None:
                     handlers.append(h)
