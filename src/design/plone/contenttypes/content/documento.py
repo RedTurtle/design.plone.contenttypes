@@ -6,5 +6,4 @@ from design.plone.contenttypes.interfaces.documento import IDocumento
 
 @implementer(IDocumento)
 class Documento(Container):
-    """
-    """
+    """ """

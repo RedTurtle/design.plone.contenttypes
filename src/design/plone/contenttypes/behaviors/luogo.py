@@ -16,8 +16,7 @@ from zope.interface import provider, implementer
 
 @provider(IFormFieldProvider)
 class ILuogo(model.Schema):
-    """
-    """
+    """ """
 
     # moved to behavior under field name descrizione_estesa?
     descrizione_completa = BlocksField(
@@ -45,8 +44,7 @@ class ILuogo(model.Schema):
         title=_(u"elementi_di_interesse", default=u"Elementi di interesse"),
         description=_(
             u"help_elementi_di_interesse",
-            default=u"Indicare eventuali elementi di interesse per il "
-            "cittadino.",
+            default=u"Indicare eventuali elementi di interesse per il " "cittadino.",
         ),
         required=False,
     )
@@ -205,8 +203,7 @@ class ILuogo(model.Schema):
 @implementer(ILuogo)
 @adapter(IDexterityContent)
 class Luogo(object):
-    """
-    """
+    """ """
 
     def __init__(self, context):
         self.context = context

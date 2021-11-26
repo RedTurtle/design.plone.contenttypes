@@ -93,9 +93,7 @@ class TestDocumentoApi(unittest.TestCase):
         transaction.commit()
         response = self.api_session.get(self.documento.absolute_url())
         res = response.json()
-        self.assertEqual(
-            len(res["items"]), len(self.documento.listFolderContents())
-        )
+        self.assertEqual(len(res["items"]), len(self.documento.listFolderContents()))
 
     def test_post_file_will_convert_into_modulo(self):
         response = self.api_session.post(

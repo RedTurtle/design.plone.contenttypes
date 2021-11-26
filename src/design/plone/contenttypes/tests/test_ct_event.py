@@ -77,9 +77,7 @@ class TestEventApi(unittest.TestCase):
         self.event = api.content.create(
             container=self.portal, type="Event", title="Evento"
         )
-        provideAdapter(
-            SchemaTweaks, (IFormFieldProvider,), name="schema.tweaks"
-        )
+        provideAdapter(SchemaTweaks, (IFormFieldProvider,), name="schema.tweaks")
         transaction.commit()
 
     def tearDown(self):
@@ -95,15 +93,11 @@ class TestEventApi(unittest.TestCase):
 
         self.assertEqual(event["multimedia"].portal_type, "Document")
         self.assertEqual(event["multimedia"].constrain_types_mode, 1)
-        self.assertEqual(
-            event["multimedia"].locally_allowed_types, ("Image", "Link")
-        )
+        self.assertEqual(event["multimedia"].locally_allowed_types, ("Image", "Link"))
 
         self.assertEqual(event["sponsor_evento"].portal_type, "Document")
         self.assertEqual(event["sponsor_evento"].constrain_types_mode, 1)
-        self.assertEqual(
-            event["sponsor_evento"].locally_allowed_types, ("Link",)
-        )
+        self.assertEqual(event["sponsor_evento"].locally_allowed_types, ("Link",))
 
         self.assertEqual(event["documenti"].portal_type, "Document")
         self.assertEqual(event["documenti"].constrain_types_mode, 1)

@@ -43,8 +43,7 @@ class IGeolocatableEvent(IGeolocatable):
 @implementer(IGeolocatableUnitaOrganizzativa)
 @adapter(IUnitaOrganizzativa)
 class GeolocatableUnitaOrganizzativa(object):
-    """
-    """
+    """ """
 
     def __init__(self, context):
         self.context = context
@@ -53,8 +52,7 @@ class GeolocatableUnitaOrganizzativa(object):
 @implementer(IGeolocatableVenue)
 @adapter(IVenue)
 class GeolocatableVenue(object):
-    """
-    """
+    """ """
 
     def __init__(self, context):
         self.context = context
@@ -63,8 +61,7 @@ class GeolocatableVenue(object):
 @implementer(IGeolocatableEvent)
 @adapter(IDexterityContent)
 class GeolocatableEvent(object):
-    """
-    """
+    """ """
 
     def __init__(self, context):
         self.context = context

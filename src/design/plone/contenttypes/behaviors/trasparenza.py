@@ -73,7 +73,8 @@ class ITrasparenza(model.Schema):
     )
     fine_termine = BlocksField(
         title=_(
-            u"fine_termine_label", default=u"Fine termine del procedimento",
+            u"fine_termine_label",
+            default=u"Fine termine del procedimento",
         ),
         required=False,
         description=_(
@@ -83,7 +84,8 @@ class ITrasparenza(model.Schema):
     )
     tempo_medio = BlocksField(
         title=_(
-            u"tempo_medio_label", default=u"Tempo medio del procedimento",
+            u"tempo_medio_label",
+            default=u"Tempo medio del procedimento",
         ),
         required=False,
         description=_(
@@ -131,10 +133,17 @@ class ITrasparenza(model.Schema):
         default=[],
     )
     dirigente = RelationList(
-        title=_("dirigente", default=u"Dirigente",),
-        description=_("dirigente_help", default="Indicare il dirigente.",),
+        title=_(
+            "dirigente",
+            default=u"Dirigente",
+        ),
+        description=_(
+            "dirigente_help",
+            default="Indicare il dirigente.",
+        ),
         value_type=RelationChoice(
-            title=_(u"Dirigente"), vocabulary="plone.app.vocabularies.Catalog",
+            title=_(u"Dirigente"),
+            vocabulary="plone.app.vocabularies.Catalog",
         ),
         required=False,
         default=[],
@@ -174,7 +183,8 @@ class ITrasparenza(model.Schema):
     )
     altre_modalita_invio = BlocksField(
         title=_(
-            u"altre_modalita_invio_label", default=u"Altre modalità di invio",
+            u"altre_modalita_invio_label",
+            default=u"Altre modalità di invio",
         ),
         description=_(
             u"altre_modalita_invio_help",
@@ -205,7 +215,10 @@ class ITrasparenza(model.Schema):
         required=False,
     )
     pagamenti = BlocksField(
-        title=_(u"pagamenti_label", default=u"Pagamenti previsti e modalità",),
+        title=_(
+            u"pagamenti_label",
+            default=u"Pagamenti previsti e modalità",
+        ),
         description=_(
             u"pagamenti_help",
             default=u"Indicare le informazioni riguardanti i pagamenti previsti e modalità di pagamento.",  # noqa
@@ -245,7 +258,8 @@ class ITrasparenza(model.Schema):
     )
     riferimenti_normativi = BlocksField(
         title=_(
-            u"riferimenti_normativi_label", default=u"Riferimenti normativi",
+            u"riferimenti_normativi_label",
+            default=u"Riferimenti normativi",
         ),
         required=False,
         description=_(
@@ -306,8 +320,7 @@ class ITrasparenza(model.Schema):
 @implementer(ITrasparenza)
 @adapter(IDexterityContent)
 class Trasparenza(object):
-    """
-    """
+    """ """
 
     def __init__(self, context):
         self.context = context

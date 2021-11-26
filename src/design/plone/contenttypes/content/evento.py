@@ -6,5 +6,4 @@ from plone.event.interfaces import IEvent
 
 @implementer(IEvent)
 class Event(Container):
-    """
-    """
+    """ """

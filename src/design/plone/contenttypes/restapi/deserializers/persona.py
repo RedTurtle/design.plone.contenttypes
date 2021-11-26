@@ -39,9 +39,9 @@ class DeserializePersonaFromJson(DeserializeFromJson):
                 and data["data_conclusione_incarico"]
                 and len(data["data_conclusione_incarico"]) > 10
             ):
-                data["data_conclusione_incarico"] = data[
-                    "data_conclusione_incarico"
-                ][0:10]
+                data["data_conclusione_incarico"] = data["data_conclusione_incarico"][
+                    0:10
+                ]
         return super(DeserializePersonaFromJson, self).__call__(
             validate_all=False, data=data, create=False
         )

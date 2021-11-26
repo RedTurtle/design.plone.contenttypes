@@ -17,8 +17,7 @@ class VocabItem(object):
 
 @implementer(IVocabularyFactory)
 class TemiDataset(object):
-    """
-    """
+    """ """
 
     def __call__(self, context):
         # Just an example list of content for our vocabulary,
@@ -35,13 +34,9 @@ class TemiDataset(object):
             ),
             VocabItem(u"energia", _(u"Energia")),
             VocabItem(u"ambiente", _(u"Ambiente")),
-            VocabItem(
-                u"governo_e_settore_pubblico", _(u"Governo e settore pubblico")
-            ),
+            VocabItem(u"governo_e_settore_pubblico", _(u"Governo e settore pubblico")),
             VocabItem(u"salute", _(u"Salute")),
-            VocabItem(
-                u"tematiche_internazionali", _(u"Tematiche internazionali")
-            ),
+            VocabItem(u"tematiche_internazionali", _(u"Tematiche internazionali")),
             VocabItem(
                 u"giustizia_sistema_giuridico_e_sicurezza_pubblica",
                 _(u"Giustizia, sistema giuridico e sicurezza pubblica"),
@@ -60,7 +55,9 @@ class TemiDataset(object):
         for item in items:
             terms.append(
                 SimpleTerm(
-                    value=item.token, token=str(item.token), title=item.value,
+                    value=item.token,
+                    token=str(item.token),
+                    title=item.value,
                 )
             )
         # Create a SimpleVocabulary from the terms list and return it:

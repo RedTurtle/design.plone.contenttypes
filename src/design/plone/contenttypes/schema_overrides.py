@@ -10,8 +10,7 @@ from zope.interface import implementer
 @implementer(interfaces.ISchemaPlugin)
 @adapter(IFormFieldProvider)
 class SchemaTweaks(object):
-    """
-    """
+    """ """
 
     order = 999999
 
@@ -26,24 +25,24 @@ class SchemaTweaks(object):
                 label=_("correlati_label", default="Contenuti collegati"),
                 fields=["relatedItems"],
             )
-            self.schema._Element__tagged_values[
-                "plone.supermodel.fieldsets"
-            ] = [fieldset]
+            self.schema._Element__tagged_values["plone.supermodel.fieldsets"] = [
+                fieldset
+            ]
         if self.schema.getName() == "IEventBasic":
             fieldset = Fieldset(
                 "date_e_orari",
                 label=_("date_e_orari_label", default=u"Date e orari"),
                 fields=["start", "end", "whole_day", "open_end", "sync_uid"],
             )
-            self.schema._Element__tagged_values[
-                "plone.supermodel.fieldsets"
-            ] = [fieldset]
+            self.schema._Element__tagged_values["plone.supermodel.fieldsets"] = [
+                fieldset
+            ]
         if self.schema.getName() == "IEventRecurrence":
             fieldset = Fieldset(
                 "date_e_orari",
                 label=_("date_e_orari_label", default=u"Date e orari"),
                 fields=["recurrence"],
             )
-            self.schema._Element__tagged_values[
-                "plone.supermodel.fieldsets"
-            ] = [fieldset]
+            self.schema._Element__tagged_values["plone.supermodel.fieldsets"] = [
+                fieldset
+            ]

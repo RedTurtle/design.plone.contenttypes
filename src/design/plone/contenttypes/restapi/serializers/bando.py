@@ -11,15 +11,12 @@ from design.plone.contenttypes.interfaces.bando import IBandoAgidSchema
 @adapter(IBandoAgidSchema, Interface)
 class BandoSerializer(BaseSerializer):
     def get_approfondimenti(self, bando_view):
-        """
-        """
+        """ """
         folders = bando_view.retrieveFolderDeepening()
         results = []
 
         for folder in folders:
-            contents = bando_view.retrieveContentsOfFolderDeepening(
-                folder["path"]
-            )
+            contents = bando_view.retrieveContentsOfFolderDeepening(folder["path"])
             folder.update({"children": contents})
             results.append(folder)
         return sorted(results, key=lambda k: k["title"])

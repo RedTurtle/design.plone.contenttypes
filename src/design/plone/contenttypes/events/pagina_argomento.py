@@ -7,8 +7,7 @@ from zope.security import checkPermission
 
 
 def onModify(argomento, event):
-    """
-    """
+    """ """
     should_update_references = False
     for descr in event.descriptions:
         for fieldname in descr.attributes:

@@ -60,7 +60,5 @@ class SerializeFolderToJson(BaseFolderSerializer):
             # siamo in un sotto-elemento di quello richiesto dalla query.
             #  ritorniamo il numero di elementi totale, senza doverli ritornare
             # effettivamente.
-            result[
-                "items_total"
-            ] = self.context.getFolderContents().actual_result_count
+            result["items_total"] = self.context.getFolderContents().actual_result_count
         return result

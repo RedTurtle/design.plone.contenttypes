@@ -27,9 +27,7 @@ from design.plone.contenttypes import _
 original_serialize_to_json__call__ = SerializeToJson.__call__
 
 
-def design_italia_serialize_to_json_call(
-    self, version=None, include_items=True
-):
+def design_italia_serialize_to_json_call(self, version=None, include_items=True):
     ttool = api.portal.get_tool("portal_types")
     result = original_serialize_to_json__call__(
         self, version=version, include_items=include_items
@@ -52,9 +50,7 @@ def patch_base_serializer():
     SerializeToJson.__call__ = design_italia_serialize_to_json_call
 
 
-def design_italia_serialize_folder_to_json_call(
-    self, version=None, include_items=True
-):
+def design_italia_serialize_folder_to_json_call(self, version=None, include_items=True):
     folder_metadata = super(SerializeFolderToJson, self).__call__(
         version=version, include_items=include_items
     )
@@ -78,20 +74,16 @@ def design_italia_serialize_folder_to_json_call(
         if batch.links:
             result["batching"] = batch.links
         if "fullobjects" in list(self.request.form):
-            result["items"] = getMultiAdapter(
-                (brains, self.request), ISerializeToJson
-            )(fullobjects=True)["items"]
+            result["items"] = getMultiAdapter((brains, self.request), ISerializeToJson)(
+                fullobjects=True
+            )["items"]
         else:
             result["items"] = [
-                getMultiAdapter(
-                    (brain, self.request), ISerializeToJsonSummary
-                )()
+                getMultiAdapter((brain, self.request), ISerializeToJsonSummary)()
                 for brain in batch
             ]
     return result
 
 
 def patch_base_folder_serializer():
-    SerializeFolderToJson.__call__ = (
-        design_italia_serialize_folder_to_json_call
-    )
+    SerializeFolderToJson.__call__ = design_italia_serialize_folder_to_json_call

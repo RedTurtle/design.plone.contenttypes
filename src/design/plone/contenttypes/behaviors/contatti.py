@@ -12,8 +12,7 @@ from design.plone.contenttypes.interfaces.unita_organizzativa import IUnitaOrgan
 
 
 class IContatti(model.Schema):
-    """
-    """
+    """ """
 
     telefono = schema.TextLine(
         title=_(u"telefono_label", default=u"Telefono"),
@@ -98,8 +97,7 @@ class IContattiVenue(IContatti):
 @implementer(IContattiUnitaOrganizzativa)
 @adapter(IUnitaOrganizzativa)
 class ContattiUnitaOrganizzativa(object):
-    """
-    """
+    """ """
 
     def __init__(self, context):
         self.context = context
@@ -108,8 +106,7 @@ class ContattiUnitaOrganizzativa(object):
 @implementer(IContattiVenue)
 @adapter(IVenue)
 class ContattiVenue(object):
-    """
-    """
+    """ """
 
     def __init__(self, context):
         self.context = context

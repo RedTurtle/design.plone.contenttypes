@@ -16,8 +16,7 @@ class VocabItem(object):
 
 @implementer(IVocabularyFactory)
 class AvailableServicesVocabulary(object):
-    """
-    """
+    """ """
 
     def __call__(self, context):
         # Just an example list of content for our vocabulary,

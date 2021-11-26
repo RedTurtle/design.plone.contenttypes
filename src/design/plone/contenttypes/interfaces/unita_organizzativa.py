@@ -12,8 +12,7 @@ from zope import schema
 
 
 class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
-    """Marker interface for content type UnitaOrganizzativa
-    """
+    """Marker interface for content type UnitaOrganizzativa"""
 
     competenze = BlocksField(
         title=_(u"competenze", default=u"Competenze"),
@@ -41,7 +40,8 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
     responsabile = RelationList(
         title=u"Responsabile",
         value_type=RelationChoice(
-            title=_(u"Responsabile"), vocabulary="plone.app.vocabularies.Catalog",
+            title=_(u"Responsabile"),
+            vocabulary="plone.app.vocabularies.Catalog",
         ),
         description=_(
             "responsabile_help",
@@ -198,7 +198,9 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
 
     # custom fieldsets and order
     model.fieldset(
-        "cosa_fa", label=_("cosa_fa_label", default="Cosa fa"), fields=["competenze"],
+        "cosa_fa",
+        label=_("cosa_fa_label", default="Cosa fa"),
+        fields=["competenze"],
     )
     model.fieldset(
         "struttura",

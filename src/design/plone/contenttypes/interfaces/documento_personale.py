@@ -9,8 +9,7 @@ from zope import schema
 
 
 class IDocumentoPersonale(model.Schema):
-    """ Marker interface for DocumentoPersonale
-    """
+    """Marker interface for DocumentoPersonale"""
 
     protocollo = schema.TextLine(
         title=_(u"protocollo", default=u"Protocollo"), required=True
@@ -31,9 +30,7 @@ class IDocumentoPersonale(model.Schema):
     )
 
     servizio_origine = schema.Choice(
-        title=_(
-            u"servizio_origine", default=u"Servizio che genera il documento"
-        ),
+        title=_(u"servizio_origine", default=u"Servizio che genera il documento"),
         vocabulary="design.plone.contenttypes.Mockup",
         required=True,
     )

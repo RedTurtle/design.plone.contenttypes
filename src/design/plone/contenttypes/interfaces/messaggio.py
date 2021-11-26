@@ -6,8 +6,7 @@ from zope import schema
 
 
 class IMessaggio(model.Schema):
-    """ Marker interface for Messaggio
-    """
+    """Marker interface for Messaggio"""
 
     data_messaggio = schema.Date(
         title=_(u"data_messaggio", default=u"Data del messaggio"),

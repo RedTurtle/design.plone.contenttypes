@@ -6,4 +6,4 @@ from zope.interface import implementer
 
 @implementer(IModulo)
 class Modulo(Item):
-    """ Modulo """
+    """Modulo"""

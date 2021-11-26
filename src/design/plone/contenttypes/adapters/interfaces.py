@@ -8,7 +8,7 @@ class ICorrelati(Interface):
 
 
 class Correlati(object):
-    """ Generic class for defining correlationn data """
+    """Generic class for defining correlationn data"""
 
     def __init__(self, context, request):
         self.context = context

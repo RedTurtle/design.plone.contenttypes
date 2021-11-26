@@ -8,4 +8,4 @@ from design.plone.contenttypes.interfaces.cartella_modulistica import (
 
 @implementer(ICartellaModulistica)
 class CartellaModulistica(Container):
-    """ Cartella Modulistica """
+    """Cartella Modulistica"""

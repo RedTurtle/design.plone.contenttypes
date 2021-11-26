@@ -45,8 +45,7 @@ class IDatasetCorrelati(model.Schema):
 @implementer(IDatasetCorrelati)
 @adapter(IDexterityContent)
 class DatasetCorrelati(object):
-    """
-    """
+    """ """
 
     def __init__(self, context):
         self.context = context

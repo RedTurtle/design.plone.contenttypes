@@ -13,8 +13,7 @@ from zope.interface import provider
 
 @provider(IFormFieldProvider)
 class IInfoTestata(model.Schema):
-    """
-    """
+    """ """
 
     info_testata = RichText(
         title=_(
@@ -83,8 +82,7 @@ class IInfoTestata(model.Schema):
 @implementer(IInfoTestata)
 @adapter(IDexterityContent)
 class InfoTestata(object):
-    """
-    """
+    """ """
 
     def __init__(self, context):
         self.context = context

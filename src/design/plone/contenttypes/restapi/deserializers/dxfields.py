@@ -33,9 +33,7 @@ class GeolocationFieldDeserializer(DefaultFieldDeserializer):
                     context=self.request,
                 )
             )
-        return Geolocation(
-            latitude=value["latitude"], longitude=value["longitude"]
-        )
+        return Geolocation(latitude=value["latitude"], longitude=value["longitude"])
 
 
 @implementer(IFieldDeserializer)
@@ -54,9 +52,7 @@ class SourceTextDeserializer(DefaultFieldDeserializer):
                         url = tab.get(key, [])
                         if url:
                             tab[key] = [
-                                x.get("UID", "")
-                                for x in url
-                                if x.get("UID", "")
+                                x.get("UID", "") for x in url if x.get("UID", "")
                             ]
                     blocks = tab.get("blocks", {})
                     if blocks:
@@ -72,9 +68,7 @@ class SourceTextDeserializer(DefaultFieldDeserializer):
                                     or h.block_type is None  # noqa
                                 ):
                                     handlers.append(h)
-                            for handler in sorted(
-                                handlers, key=lambda h: h.order
-                            ):
+                            for handler in sorted(handlers, key=lambda h: h.order):
                                 block_value = handler(block_value)
 
                             blocks[id] = block_value

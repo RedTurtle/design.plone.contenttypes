@@ -5,4 +5,4 @@ from zope.interface import implementer
 
 @implementer(ICorrelati)
 class GetCorrelatiServizi(Correlati):
-    """ Adapter for upload file """
+    """Adapter for upload file"""

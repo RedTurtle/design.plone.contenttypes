@@ -16,22 +16,21 @@ class VocabItem(object):
 
 @implementer(IVocabularyFactory)
 class ListaAzioniPratica(object):
-    """
-    """
+    """ """
 
     def __call__(self, context):
         # Just an example list of content for our vocabulary,
         # this can be any static or dynamic data, a catalog result for example.
         items = [
-            VocabItem(u'pagare', _(u'Pagare')),
-            VocabItem(u'iscriversi', _(u'Iscriversi')),
-            VocabItem(u'richiedere', _(u'Richiedere')),
-            VocabItem(u'leggere', _(u'Leggere')),
-            VocabItem(u'attivare', _(u'Attivare')),
-            VocabItem(u'autorizzare', _(u'Autorizzare')),
-            VocabItem(u'delegare', _(u'Delegare')),
-            VocabItem(u'informare', _(u'Informare')),
-            VocabItem(u'accettare', _(u'Accettare')),
+            VocabItem(u"pagare", _(u"Pagare")),
+            VocabItem(u"iscriversi", _(u"Iscriversi")),
+            VocabItem(u"richiedere", _(u"Richiedere")),
+            VocabItem(u"leggere", _(u"Leggere")),
+            VocabItem(u"attivare", _(u"Attivare")),
+            VocabItem(u"autorizzare", _(u"Autorizzare")),
+            VocabItem(u"delegare", _(u"Delegare")),
+            VocabItem(u"informare", _(u"Informare")),
+            VocabItem(u"accettare", _(u"Accettare")),
         ]
         # Fix context if you are using the vocabulary in DataGridField.
         # See https://github.com/collective/collective.z3cform.datagridfield/issues/31:  # NOQA: 501
@@ -43,9 +42,7 @@ class ListaAzioniPratica(object):
         terms = []
         for item in items:
             terms.append(
-                SimpleTerm(
-                    value=item.token, token=str(item.token), title=item.value
-                )
+                SimpleTerm(value=item.token, token=str(item.token), title=item.value)
             )
         # Create a SimpleVocabulary from the terms list and return it:
         return SimpleVocabulary(terms)

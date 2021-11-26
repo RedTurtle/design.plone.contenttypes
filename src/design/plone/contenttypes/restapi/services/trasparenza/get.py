@@ -46,9 +46,7 @@ class TrasparenzaService(Service):
     def reply(self):
         catalog = api.portal.get_tool("portal_catalog")
         brains = catalog(**{"UID": self.request.uid})[0]
-        obj = getMultiAdapter(
-            (brains.getObject(), getRequest()), ISerializeToJson
-        )()
+        obj = getMultiAdapter((brains.getObject(), getRequest()), ISerializeToJson)()
         result = {}
         for field in TRASPARENZA_FIELDS:
             result[field] = obj.get(field)
@@ -68,9 +66,7 @@ class TrasparenzaItems(object):
 
         result = {
             "trasparenza-items": {
-                "@id": "{}/@trasparenza-items".format(
-                    self.context.absolute_url()
-                )
+                "@id": "{}/@trasparenza-items".format(self.context.absolute_url())
             }
         }
         if not expand:
@@ -96,7 +92,10 @@ class TrasparenzaItems(object):
                     children = [
                         x
                         for x in self.get_trasparenza_data(context=child)
-                        if x.get("@type", "") in ["Document", ]
+                        if x.get("@type", "")
+                        in [
+                            "Document",
+                        ]
                     ]
                     if children:
                         data["items"] = children

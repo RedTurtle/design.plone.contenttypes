@@ -21,9 +21,7 @@ class IMultiFileSchema(model.Schema):
     )
 
     formato_alternativo_1 = field.NamedBlobFile(
-        title=_(
-            "formato_alternativo_1_label", default="Formato alternativo 1"
-        ),
+        title=_("formato_alternativo_1_label", default="Formato alternativo 1"),
         description=_(
             "formato_alternativo_1_help",
             default="Inserisci un eventuale formato alternativo del "
@@ -33,9 +31,7 @@ class IMultiFileSchema(model.Schema):
     )
 
     formato_alternativo_2 = field.NamedBlobFile(
-        title=_(
-            "formato_alternativo_2_label", default="Formato alternativo 2"
-        ),
+        title=_("formato_alternativo_2_label", default="Formato alternativo 2"),
         description=_(
             "formato_alternativo_2_help",
             default="Inserisci un eventuale formato alternativo del "

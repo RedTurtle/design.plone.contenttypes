@@ -49,9 +49,7 @@ class ScadenziarioSearchPost(Service):
             raise Exception("No query supplied")
 
         if sort_order:
-            sort_order = (
-                "descending" if sort_order == "descending" else "ascending"
-            )
+            sort_order = "descending" if sort_order == "descending" else "ascending"
 
         querybuilder = getMultiAdapter(
             (self.context, self.request), name="querybuilderresults"
@@ -69,10 +67,7 @@ class ScadenziarioSearchPost(Service):
         # Exclude "self" content item from the results when ZCatalog supports
         # NOT UUID
         # queries and it is called on a content object.
-        if (
-            not IPloneSiteRoot.providedBy(self.context)
-            and SUPPORT_NOT_UUID_QUERIES
-        ):
+        if not IPloneSiteRoot.providedBy(self.context) and SUPPORT_NOT_UUID_QUERIES:
             querybuilder_parameters.update(
                 dict(custom_query={"UID": {"not": self.context.UID()}})
             )
@@ -103,9 +98,9 @@ class ScadenziarioSearchPost(Service):
         for brain in all_results:
             if not safe_hasattr(brain, "start") or not brain.start:
                 continue
-            brains_grouped.setdefault(
-                brain.start.strftime("%Y/%m/%d"), []
-            ).append(brain)
+            brains_grouped.setdefault(brain.start.strftime("%Y/%m/%d"), []).append(
+                brain
+            )
         keys = list(brains_grouped.keys())
         if sort_order == "descending":
             keys.sort(reverse=True)
@@ -166,9 +161,9 @@ class ScadenziarioDayPost(Service):
         for brain in all_results:
             if not safe_hasattr(results[0], "start"):
                 continue
-            brains_grouped.setdefault(
-                brain.start.strftime("%Y/%m/%d"), []
-            ).append(brain)
+            brains_grouped.setdefault(brain.start.strftime("%Y/%m/%d"), []).append(
+                brain
+            )
 
         keys = list(brains_grouped.keys())
         keys.sort()

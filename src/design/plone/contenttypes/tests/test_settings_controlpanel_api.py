@@ -27,14 +27,10 @@ class SettingsControlpanelTest(unittest.TestCase):
         setRoles(self.portal, TEST_USER_ID, ["Manager"])
 
     def test_controlpanel_exists(self):
-        response = self.api_session.get(
-            "/@controlpanels/design-plone-settings"
-        )
+        response = self.api_session.get("/@controlpanels/design-plone-settings")
 
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(
-            response.headers.get("Content-Type"), "application/json"
-        )
+        self.assertEqual(response.headers.get("Content-Type"), "application/json")
 
     def test_controlpanel_listed(self):
         response = self.api_session.get("/@controlpanels")

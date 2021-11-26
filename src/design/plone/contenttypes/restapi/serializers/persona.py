@@ -19,8 +19,7 @@ class PersonaSerializer(SerializeFolderToJson):
     index = "news_people"
 
     def related_contents(self, field):
-        """
-        """
+        """ """
         catalog = getUtility(ICatalog)
         intids = getUtility(IIntIds)
         items = []

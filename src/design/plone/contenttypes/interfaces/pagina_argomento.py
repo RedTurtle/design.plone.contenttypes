@@ -12,8 +12,7 @@ from zope.schema import TextLine
 
 
 class IPaginaArgomento(model.Schema, IDesignPloneContentType):
-    """ Marker interface for PaginaArgomento
-    """
+    """Marker interface for PaginaArgomento"""
 
     ulteriori_informazioni = RichText(
         title=_(u"ulteriori_informazioni", default=u"Ulteriori informazioni"),

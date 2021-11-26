@@ -19,8 +19,7 @@ from zope.security import checkPermission
 @adapter(IDocumento, Interface)
 class DocumentoSerializer(SerializeFolderToJson):
     def get_services(self):
-        """
-        """
+        """ """
         catalog = getUtility(ICatalog)
         intids = getUtility(IIntIds)
         services = []

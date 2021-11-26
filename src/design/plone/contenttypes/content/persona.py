@@ -6,5 +6,4 @@ from zope.interface import implementer
 
 @implementer(IPersona)
 class Persona(Container):
-    """
-    """
+    """ """

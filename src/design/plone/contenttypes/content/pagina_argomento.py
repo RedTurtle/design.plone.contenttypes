@@ -8,5 +8,4 @@ from zope.interface import implementer
 
 @implementer(IPaginaArgomento)
 class PaginaArgomento(Container):
-    '''
-    '''
+    """ """

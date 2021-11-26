@@ -31,15 +31,16 @@ class IShowModified(model.Schema):
     )
 
     model.fieldset(
-        "settings", label="Impostazioni", fields=["show_modified"],
+        "settings",
+        label="Impostazioni",
+        fields=["show_modified"],
     )
 
 
 @implementer(IShowModified)
 @adapter(IDexterityContent)
 class ShowModified(object):
-    """
-    """
+    """ """
 
     def __init__(self, context):
         self.context = context

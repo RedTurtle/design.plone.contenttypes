@@ -4,4 +4,4 @@ from plone.supermodel import model
 
 
 class ICartellaModulistica(model.Schema, IDesignPloneContentType):
-    """ Cartella Modulistica """
+    """Cartella Modulistica"""

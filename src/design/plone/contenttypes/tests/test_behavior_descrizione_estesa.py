@@ -41,9 +41,7 @@ class TestDescrizioneEstesaBehavior(unittest.TestCase):
             container=self.portal,
             type="Servizio",
             title="Test servizio",
-            descrizione_estesa={
-                "blocks": {"12345": {"searchableText": "foo"}}
-            },
+            descrizione_estesa={"blocks": {"12345": {"searchableText": "foo"}}},
         )
 
         res = api.content.find(SearchableText="foo")

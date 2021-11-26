@@ -51,9 +51,7 @@ class TestNews(unittest.TestCase):
 
     def test_news_item_ct_title(self):
         portal_types = api.portal.get_tool(name="portal_types")
-        self.assertEqual(
-            "Notizie e comunicati stampa", portal_types["News Item"].title
-        )
+        self.assertEqual("Notizie e comunicati stampa", portal_types["News Item"].title)
 
     def test_news_item_addable_types(self):
         portal_types = api.portal.get_tool(name="portal_types")
@@ -131,9 +129,7 @@ class TestNewsApi(unittest.TestCase):
 
         self.assertEqual(news["multimedia"].portal_type, "Document")
         self.assertEqual(news["multimedia"].constrain_types_mode, 1)
-        self.assertEqual(
-            news["multimedia"].locally_allowed_types, ("Link", "Image")
-        )
+        self.assertEqual(news["multimedia"].locally_allowed_types, ("Link", "Image"))
 
         self.assertEqual(news["documenti-allegati"].portal_type, "Document")
         self.assertEqual(news["documenti-allegati"].constrain_types_mode, 1)
