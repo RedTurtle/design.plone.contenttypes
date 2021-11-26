@@ -1,16 +1,18 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
-    xmlns:plone="http://namespaces.plone.org/plone">
+    xmlns:plone="http://namespaces.plone.org/plone"
+    >
 
-    <include package=".content" />
-    <include package=".modulistica_items" />
-    <include package=".types" />
-    <include package=".scadenziario" />
-    <include package=".trasparenza" />
+  <include package=".content" />
+  <include package=".modulistica_items" />
+  <include package=".types" />
+  <include package=".scadenziario" />
+  <include package=".trasparenza" />
 
-    <adapter
-        factory=".controlpanel.DesignPloneSettings"
-        provides="design.plone.contenttypes.controlpanels.settings.IDesignPloneSettingsControlpanel"
-        name="design-plone-settings" />
+  <adapter
+      factory=".controlpanel.DesignPloneSettings"
+      provides="design.plone.contenttypes.controlpanels.settings.IDesignPloneSettingsControlpanel"
+      name="design-plone-settings"
+      />
 
 </configure>

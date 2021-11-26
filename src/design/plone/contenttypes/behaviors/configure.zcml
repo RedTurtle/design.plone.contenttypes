@@ -1,258 +1,262 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:plone="http://namespaces.plone.org/plone"
-    i18n_domain="design.plone.contenttypes">
+    i18n_domain="design.plone.contenttypes"
+    >
 
-    <include package="plone.behavior" file="meta.zcml" />
-    <plone:behavior
-      title="Metadati luogo"
+  <include
+      package="plone.behavior"
+      file="meta.zcml"
+      />
+  <plone:behavior
       name="design.plone.contenttypes.behavior.luogo"
+      title="Metadati luogo"
       description="Adds fields."
-      provides=".luogo.ILuogo"
       factory=".luogo.Luogo"
+      provides=".luogo.ILuogo"
       for="collective.venue.interfaces.IVenue"
       marker=".luogo.ILuogo"
       />
 
-    <plone:behavior
-      title="Metadati evento"
+  <plone:behavior
       name="design.plone.contenttypes.behavior.evento"
+      title="Metadati evento"
       description="Adds fields."
-      provides=".evento.IEvento"
       factory=".evento.Evento"
+      provides=".evento.IEvento"
       for="plone.event.interfaces.IEvent"
       marker=".evento.IEvento"
       />
 
-    <plone:behavior
-      title="Metadati news"
+  <plone:behavior
       name="design.plone.contenttypes.behavior.news"
+      title="Metadati news"
       description="Adds fields."
-      provides=".news_additional_fields.INewsAdditionalFields"
       factory=".news_additional_fields.NewsAdditionalFields"
+      provides=".news_additional_fields.INewsAdditionalFields"
       for="plone.app.contenttypes.interfaces.INewsItem"
       marker=".news_additional_fields.INewsAdditionalFields"
       />
 
-    <plone:behavior
-      title="Argomenti"
+  <plone:behavior
       name="design.plone.contenttypes.behavior.argomenti"
+      title="Argomenti"
       description="Tassonomia argomenti"
-      provides=".argomenti.IArgomenti"
       factory=".argomenti.Argomenti"
+      provides=".argomenti.IArgomenti"
       for="plone.dexterity.interfaces.IDexterityContent"
       marker=".argomenti.IArgomenti"
       />
-    <plone:behavior
-      title="Argomenti Document"
+  <plone:behavior
       name="design.plone.contenttypes.behavior.argomenti_document"
+      title="Argomenti Document"
       description="Tassonomia argomenti per i Document"
-      provides=".argomenti.IArgomentiDocument"
       factory=".argomenti.ArgomentiDocument"
+      provides=".argomenti.IArgomentiDocument"
       for="plone.dexterity.interfaces.IDexterityContent"
       marker=".argomenti.IArgomentiDocument"
       />
-    <plone:behavior
-      title="Argomenti Documento"
+  <plone:behavior
       name="design.plone.contenttypes.behavior.argomenti_documento"
+      title="Argomenti Documento"
       description="Tassonomia argomenti"
-      provides=".argomenti.IArgomentiDocumento"
       factory=".argomenti.ArgomentiDocumento"
+      provides=".argomenti.IArgomentiDocumento"
       for="plone.dexterity.interfaces.IDexterityContent"
       marker=".argomenti.IArgomentiDocumento"
       />
-    <plone:behavior
-      title="Argomenti Bando"
+  <plone:behavior
       name="design.plone.contenttypes.behavior.argomenti_bando"
+      title="Argomenti Bando"
       description="Tassonomia argomenti"
-      provides=".argomenti.IArgomentiBando"
       factory=".argomenti.ArgomentiBando"
+      provides=".argomenti.IArgomentiBando"
       for="plone.dexterity.interfaces.IDexterityContent"
       marker=".argomenti.IArgomentiBando"
       />
-    <plone:behavior
-      title="Luoghi correlati"
+  <plone:behavior
       name="design.plone.contenttypes.behavior.luoghi_correlati"
+      title="Luoghi correlati"
       description=""
-      provides=".luoghi_correlati.ILuoghiCorrelati"
       factory=".luoghi_correlati.LuoghiCorrelati"
+      provides=".luoghi_correlati.ILuoghiCorrelati"
       for="plone.dexterity.interfaces.IDexterityContent"
       marker=".luoghi_correlati.ILuoghiCorrelati"
       />
-    <plone:behavior
-      title="Luoghi correlati"
+  <plone:behavior
       name="design.plone.contenttypes.behavior.luoghi_correlati_evento"
+      title="Luoghi correlati"
       description=""
-      provides=".luoghi_correlati.ILuoghiCorrelatiEvento"
       factory=".luoghi_correlati.LuoghiCorrelatiEvento"
+      provides=".luoghi_correlati.ILuoghiCorrelatiEvento"
       for="plone.app.contenttypes.interfaces.IEvent"
       marker=".luoghi_correlati.ILuoghiCorrelatiEvento"
       />
 
-    <plone:behavior
-      title="Dataset correlati"
+  <plone:behavior
       name="design.plone.contenttypes.behavior.dataset_correlati"
+      title="Dataset correlati"
       description=""
-      provides=".dataset_correlati.IDatasetCorrelati"
       factory=".dataset_correlati.DatasetCorrelati"
+      provides=".dataset_correlati.IDatasetCorrelati"
       for="plone.dexterity.interfaces.IDexterityContent"
       marker=".dataset_correlati.IDatasetCorrelati"
       />
 
-    <plone:behavior
-      title="Servizi correlati"
+  <plone:behavior
       name="design.plone.contenttypes.behavior.servizi_correlati"
+      title="Servizi correlati"
       description=""
-      provides=".servizi_correlati.IServiziCorrelati"
       factory=".servizi_correlati.ServiziCorrelati"
+      provides=".servizi_correlati.IServiziCorrelati"
       for="plone.dexterity.interfaces.IDexterityContent"
       marker=".servizi_correlati.IServiziCorrelati"
       />
 
-    <plone:behavior
-      title="Strutture correlate"
+  <plone:behavior
       name="design.plone.contenttypes.behavior.strutture_correlate"
+      title="Strutture correlate"
       description=""
-      provides=".strutture_correlate.IStruttureCorrelate"
       factory=".strutture_correlate.StruttureCorrelate"
+      provides=".strutture_correlate.IStruttureCorrelate"
       for="plone.dexterity.interfaces.IDexterityContent"
       marker=".strutture_correlate.IStruttureCorrelate"
-    />
+      />
 
-    <plone:behavior
-      title="Ulteriori campi aiuto testuali"
+  <plone:behavior
       name="design.plone.contenttypes.behavior.additional_help_infos"
+      title="Ulteriori campi aiuto testuali"
       description=""
-      provides=".additional_help_infos.IAdditionalHelpInfos"
       factory=".additional_help_infos.AdditionalHelpInfos"
+      provides=".additional_help_infos.IAdditionalHelpInfos"
       for="plone.dexterity.interfaces.IDexterityContent"
       marker=".additional_help_infos.IAdditionalHelpInfos"
       />
 
-    <plone:behavior
-      title="Descrizione estesa"
+  <plone:behavior
       name="design.plone.contenttypes.behavior.descrizione_estesa"
+      title="Descrizione estesa"
       description=""
-      provides=".descrizione_estesa.IDescrizioneEstesa"
       factory=".descrizione_estesa.DescrizioneEstesa"
+      provides=".descrizione_estesa.IDescrizioneEstesa"
       marker=".descrizione_estesa.IDescrizioneEstesa"
       />
 
-    <plone:behavior
-      title="Descrizione estesa servizio"
+  <plone:behavior
       name="design.plone.contenttypes.behavior.descrizione_estesa_servizio"
+      title="Descrizione estesa servizio"
       description=""
-      provides=".descrizione_estesa.IDescrizioneEstesaServizio"
       factory=".descrizione_estesa.DescrizioneEstesaServizio"
+      provides=".descrizione_estesa.IDescrizioneEstesaServizio"
       marker=".descrizione_estesa.IDescrizioneEstesaServizio"
       />
-    <plone:behavior
-      title="Descrizione estesa documento"
+  <plone:behavior
       name="design.plone.contenttypes.behavior.descrizione_estesa_documento"
+      title="Descrizione estesa documento"
       description=""
-      provides=".descrizione_estesa.IDescrizioneEstesaDocumento"
       factory=".descrizione_estesa.DescrizioneEstesaDocumento"
+      provides=".descrizione_estesa.IDescrizioneEstesaDocumento"
       marker=".descrizione_estesa.IDescrizioneEstesaDocumento"
       />
 
-    <plone:behavior
-      title="Info per la testata"
+  <plone:behavior
       name="design.plone.contenttypes.behavior.info_testata"
+      title="Info per la testata"
       description=""
-      provides=".info_testata.IInfoTestata"
       factory=".info_testata.InfoTestata"
+      provides=".info_testata.IInfoTestata"
       for="plone.dexterity.interfaces.IDexterityContent"
       marker=".info_testata.IInfoTestata"
       />
-    <plone:behavior
-      title="Address UO"
+  <plone:behavior
       name="design.plone.contenttypes.behavior.address_uo"
+      title="Address UO"
       description="Behavior address per UO."
-      provides=".address.IAddressUnitaOrganizzativa"
       factory=".address.AddressUnitaOrganizzativa"
+      provides=".address.IAddressUnitaOrganizzativa"
       marker=".address.IAddressUnitaOrganizzativa"
       />
-    <plone:behavior
-      title="Address Venue"
+  <plone:behavior
       name="design.plone.contenttypes.behavior.address_venue"
+      title="Address Venue"
       description="Behavior address per Venue."
-      provides=".address.IAddressVenue"
       factory=".address.AddressVenue"
+      provides=".address.IAddressVenue"
       marker=".address.IAddressVenue"
       />
-    <plone:behavior
-      title="Address Event"
+  <plone:behavior
       name="design.plone.contenttypes.behavior.address_event"
+      title="Address Event"
       description="Behavior address per Event."
-      provides=".address.IAddressEvent"
       factory=".address.AddressEvent"
+      provides=".address.IAddressEvent"
       marker=".address.IAddressEvent"
       />
-    <plone:behavior
-      title="Contatti"
+  <plone:behavior
       name="design.plone.contenttypes.behavior.contatti_uo"
+      title="Contatti"
       description="Behavior contatti per UO."
-      provides=".contatti.IContattiUnitaOrganizzativa"
       factory=".contatti.ContattiUnitaOrganizzativa"
+      provides=".contatti.IContattiUnitaOrganizzativa"
       marker=".contatti.IContattiUnitaOrganizzativa"
       />
-    <plone:behavior
-      title="Contatti"
+  <plone:behavior
       name="design.plone.contenttypes.behavior.contatti_venue"
+      title="Contatti"
       description="Behavior contatti per Venue."
-      provides=".contatti.IContattiVenue"
       factory=".contatti.ContattiVenue"
+      provides=".contatti.IContattiVenue"
       marker=".contatti.IContattiVenue"
       />
-    <plone:behavior
-      title="Geolocatable"
+  <plone:behavior
       name="design.plone.contenttypes.behavior.geolocation_uo"
+      title="Geolocatable"
       description="Behavior geolocatable per UO."
-      provides=".geolocation.IGeolocatableUnitaOrganizzativa"
       factory=".geolocation.GeolocatableUnitaOrganizzativa"
+      provides=".geolocation.IGeolocatableUnitaOrganizzativa"
       marker=".geolocation.IGeolocatableUnitaOrganizzativa"
       />
-    <plone:behavior
-      title="Geolocatable"
+  <plone:behavior
       name="design.plone.contenttypes.behavior.geolocation_venue"
+      title="Geolocatable"
       description="Behavior geolocatable per Venue."
-      provides=".geolocation.IGeolocatableVenue"
       factory=".geolocation.GeolocatableVenue"
+      provides=".geolocation.IGeolocatableVenue"
       marker=".geolocation.IGeolocatableVenue"
       />
-    <plone:behavior
-      title="Geolocatable"
+  <plone:behavior
       name="design.plone.contenttypes.behavior.geolocation_event"
+      title="Geolocatable"
       description="Behavior geolocatable per Event."
-      provides=".geolocation.IGeolocatableEvent"
       factory=".geolocation.GeolocatableEvent"
+      provides=".geolocation.IGeolocatableEvent"
       marker=".geolocation.IGeolocatableEvent"
       />
 
-    <plone:behavior
-      title="Multi File"
+  <plone:behavior
       name="design.plone.contenttypes.behavior.multi_file"
+      title="Multi File"
       description="Tre campi file aggiuntivi."
-      provides=".multi_file.IMultiFile"
       factory=".multi_file.MultiFile"
+      provides=".multi_file.IMultiFile"
       marker=".multi_file.IMultiFile"
       />
 
-    <plone:behavior
-      title="Show modified"
+  <plone:behavior
       name="design.plone.contenttypes.behavior.show_modified"
+      title="Show modified"
       description="Mostra la data di modifica."
-      provides=".show_modified.IShowModified"
       factory=".show_modified.ShowModified"
+      provides=".show_modified.IShowModified"
       marker=".show_modified.IShowModified"
       />
 
-    <plone:behavior
-      title="Trasparenza"
+  <plone:behavior
       name="design.plone.contenttypes.behavior.trasparenza"
+      title="Trasparenza"
       description="Campi aggiuntivi per la sezione amministrazione trasparente."
-      provides=".trasparenza.ITrasparenza"
       factory=".trasparenza.Trasparenza"
+      provides=".trasparenza.ITrasparenza"
       marker=".trasparenza.ITrasparenza"
       />
 

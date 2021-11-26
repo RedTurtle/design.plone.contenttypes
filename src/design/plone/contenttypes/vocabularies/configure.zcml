@@ -1,100 +1,101 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
-    i18n_domain="design.plone.contenttypes">
+    i18n_domain="design.plone.contenttypes"
+    >
 
-    <!-- Vocabolario attualmente inutile. Lasciato per memoria storica e per
+  <!-- Vocabolario attualmente inutile. Lasciato per memoria storica e per
         non rifare il lavoro se ce lo chiedessero in futuro.
     -->
-    <!-- <utility
+  <!-- <utility
         component=".all_life_events_vocabulary.AllLifeEventsVocabularyFactory"
         name="design.plone.contenttypes.AllLifeEventsVocabulary"
     /> -->
 
 
-    <utility
-        component=".tags_vocabulary.TagsVocabularyFactory"
-        name="design.plone.contenttypes.TagsVocabulary"
-    />
+  <utility
+      name="design.plone.contenttypes.TagsVocabulary"
+      component=".tags_vocabulary.TagsVocabularyFactory"
+      />
 
 
-    <utility
-        component=".people_vocabulary.PeopleVocabularyFactory"
-        name="design.plone.contenttypes.PeopleVocabulary"
-    />
+  <utility
+      name="design.plone.contenttypes.PeopleVocabulary"
+      component=".people_vocabulary.PeopleVocabularyFactory"
+      />
 
 
-    <utility
-        component=".available_services_vocabulary.AvailableServicesVocabularyFactory"
-        name="design.plone.contenttypes.AvailableServicesVocabulary"
-    />
+  <utility
+      name="design.plone.contenttypes.AvailableServicesVocabulary"
+      component=".available_services_vocabulary.AvailableServicesVocabularyFactory"
+      />
 
 
-    <utility
-        component=".document_types_vocabulary.DocumentTypesVocabularyFactory"
-        name="design.plone.contenttypes.DocumentTypesVocabulary"
-    />
+  <utility
+      name="design.plone.contenttypes.DocumentTypesVocabulary"
+      component=".document_types_vocabulary.DocumentTypesVocabularyFactory"
+      />
 
 
-    <utility
-        component=".controlapanel_vocabularies.TipologiePersonaFactory"
-        name="design.plone.contenttypes.TipologiaPersona"
-    />
+  <utility
+      name="design.plone.contenttypes.TipologiaPersona"
+      component=".controlapanel_vocabularies.TipologiePersonaFactory"
+      />
 
-    <utility
-        component=".controlapanel_vocabularies.RuoliPersonaFactory"
-        name="design.plone.contenttypes.RuoliPersona"
-    />
+  <utility
+      name="design.plone.contenttypes.RuoliPersona"
+      component=".controlapanel_vocabularies.RuoliPersonaFactory"
+      />
 
-    <utility
-        component=".controlapanel_vocabularies.TipologieNotiziaFactory"
-        name="design.plone.vocabularies.tipologie_notizia"
-    />
+  <utility
+      name="design.plone.vocabularies.tipologie_notizia"
+      component=".controlapanel_vocabularies.TipologieNotiziaFactory"
+      />
 
-    <utility
-        component=".controlapanel_vocabularies.TipologieDocumentoFactory"
-        name="design.plone.vocabularies.tipologie_documento"
-    />
+  <utility
+      name="design.plone.vocabularies.tipologie_documento"
+      component=".controlapanel_vocabularies.TipologieDocumentoFactory"
+      />
 
-    <utility
-        component=".controlapanel_vocabularies.LeadImageDimensionFactory"
-        name="design.plone.vocabularies.leadimage_dimension"
-    />
+  <utility
+      name="design.plone.vocabularies.leadimage_dimension"
+      component=".controlapanel_vocabularies.LeadImageDimensionFactory"
+      />
 
-    <utility
-        component=".mockup.MockupFactory"
-        name="design.plone.contenttypes.Mockup"
-    />
+  <utility
+      name="design.plone.contenttypes.Mockup"
+      component=".mockup.MockupFactory"
+      />
 
-    <utility
-        component=".dataset.TemiDatasetFactory"
-        name="design.plone.contenttypes.temi_dataset"
-    />
+  <utility
+      name="design.plone.contenttypes.temi_dataset"
+      component=".dataset.TemiDatasetFactory"
+      />
 
-    <utility
-        component=".lista_azioni_pratica.ListaAzioniPraticaFactory"
-        name="design.plone.contenttypes.ListaAzioniPratica"
-    />
+  <utility
+      name="design.plone.contenttypes.ListaAzioniPratica"
+      component=".lista_azioni_pratica.ListaAzioniPraticaFactory"
+      />
 
-    <utility
-        component=".controlapanel_vocabularies.TipologieUnitaOrganizzativaVocabularyFactory"
-        name="design.plone.vocabularies.tipologie_unita_organizzativa"
-    />
+  <utility
+      name="design.plone.vocabularies.tipologie_unita_organizzativa"
+      component=".controlapanel_vocabularies.TipologieUnitaOrganizzativaVocabularyFactory"
+      />
 
-    <utility
-        component=".argomenti_vocabulary.ArgomentiVocabularyFactory"
-        name="design.plone.vocabularies.argomenti"
-    />
-    <utility
-        component=".reference_vocabularies.EventLocationVocabularyFactory"
-        name="design.plone.vocabularies.event_location"
-    />
-    <utility
-        component=".reference_vocabularies.OfficeLocationVocabularyFactory"
-        name="design.plone.vocabularies.ufficio_responsabile"
-    />
-    <utility
-        component=".reference_vocabularies.UOLocationVocabularyFactory"
-        name="design.plone.vocabularies.uo_locations"
-    />
+  <utility
+      name="design.plone.vocabularies.argomenti"
+      component=".argomenti_vocabulary.ArgomentiVocabularyFactory"
+      />
+  <utility
+      name="design.plone.vocabularies.event_location"
+      component=".reference_vocabularies.EventLocationVocabularyFactory"
+      />
+  <utility
+      name="design.plone.vocabularies.ufficio_responsabile"
+      component=".reference_vocabularies.OfficeLocationVocabularyFactory"
+      />
+  <utility
+      name="design.plone.vocabularies.uo_locations"
+      component=".reference_vocabularies.UOLocationVocabularyFactory"
+      />
 
 </configure>

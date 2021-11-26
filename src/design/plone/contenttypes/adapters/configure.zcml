@@ -1,20 +1,21 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
-    xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    >
 
   <adapter
-    for = "design.plone.contenttypes.interfaces.servizio.IServizio
+      factory=".servizi_correlati.GetCorrelatiServizi"
+      provides=".interfaces.ICorrelati"
+      for="design.plone.contenttypes.interfaces.servizio.IServizio
            zope.publisher.interfaces.browser.IHTTPRequest"
-    provides = ".interfaces.ICorrelati"
-    factory = ".servizi_correlati.GetCorrelatiServizi"
-    name = "correlati-servizi"
-  />
+      name="correlati-servizi"
+      />
 
   <adapter factory=".searchabletext_indexers.RelationChoiceFieldConverter" />
   <adapter factory=".searchabletext_indexers.RelationListFieldConverter" />
 
   <adapter
-        factory=".searchabletext_indexers.TextBlockSearchableText"
-        name="text"
-        />
+      factory=".searchabletext_indexers.TextBlockSearchableText"
+      name="text"
+      />
 </configure>

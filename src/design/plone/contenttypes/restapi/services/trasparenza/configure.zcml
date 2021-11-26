@@ -1,28 +1,38 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
-    xmlns:plone="http://namespaces.plone.org/plone"
     xmlns:cache="http://namespaces.zope.org/cache"
-    xmlns:zcml="http://namespaces.zope.org/zcml">
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    >
 
   <plone:service
-    method="GET"
-    name="@trasparenza"
-    for="zope.interface.Interface"
-    factory=".get.TrasparenzaService"
-    permission="zope2.View"
-    />
+      method="GET"
+      factory=".get.TrasparenzaService"
+      for="zope.interface.Interface"
+      permission="zope2.View"
+      name="@trasparenza"
+      />
 
   <plone:service
-    method="GET"
-    name="@trasparenza-items"
-    for="zope.interface.Interface"
-    factory=".get.TrasparenzaItemsGet"
-    permission="zope2.View"
-    />
+      method="GET"
+      factory=".get.TrasparenzaItemsGet"
+      for="zope.interface.Interface"
+      permission="zope2.View"
+      name="@trasparenza-items"
+      />
 
-  <adapter factory=".get.TrasparenzaItems" name="trasparenza-items"/>
+  <adapter
+      factory=".get.TrasparenzaItems"
+      name="trasparenza-items"
+      />
 
-  <cache:ruleset ruleset="plone.content.dynamic" for=".get.TrasparenzaService" />
-  <cache:ruleset ruleset="plone.content.dynamic" for=".get.TrasparenzaItemsGet" />
+  <cache:ruleset
+      for=".get.TrasparenzaService"
+      ruleset="plone.content.dynamic"
+      />
+  <cache:ruleset
+      for=".get.TrasparenzaItemsGet"
+      ruleset="plone.content.dynamic"
+      />
 
 </configure>

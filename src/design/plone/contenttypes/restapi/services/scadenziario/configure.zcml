@@ -1,41 +1,48 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:cache="http://namespaces.zope.org/cache"
-    xmlns:plone="http://namespaces.plone.org/plone">
+    xmlns:plone="http://namespaces.plone.org/plone"
+    >
 
   <plone:service
-    method="POST"
-    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-    factory=".post.ScadenziarioSearchPost"
-    name="@scadenziario"
-    permission="zope2.View"
-    />
+      method="POST"
+      factory=".post.ScadenziarioSearchPost"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      permission="zope2.View"
+      name="@scadenziario"
+      />
 
   <plone:service
-    method="POST"
-    for="Products.CMFCore.interfaces.IContentish"
-    factory=".post.ScadenziarioSearchPost"
-    name="@scadenziario"
-    permission="zope2.View"
-    />
+      method="POST"
+      factory=".post.ScadenziarioSearchPost"
+      for="Products.CMFCore.interfaces.IContentish"
+      permission="zope2.View"
+      name="@scadenziario"
+      />
 
   <plone:service
-    method="POST"
-    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-    factory=".post.ScadenziarioDayPost"
-    name="@scadenziario-day"
-    permission="zope2.View"
-    />
+      method="POST"
+      factory=".post.ScadenziarioDayPost"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      permission="zope2.View"
+      name="@scadenziario-day"
+      />
 
   <plone:service
-    method="POST"
-    for="Products.CMFCore.interfaces.IContentish"
-    factory=".post.ScadenziarioDayPost"
-    name="@scadenziario-day"
-    permission="zope2.View"
-    />
+      method="POST"
+      factory=".post.ScadenziarioDayPost"
+      for="Products.CMFCore.interfaces.IContentish"
+      permission="zope2.View"
+      name="@scadenziario-day"
+      />
 
-  <cache:ruleset ruleset="plone.content.dynamic" for=".post.ScadenziarioSearchPost" />
-  <cache:ruleset ruleset="plone.content.dynamic" for=".post.ScadenziarioDayPost" />
+  <cache:ruleset
+      for=".post.ScadenziarioSearchPost"
+      ruleset="plone.content.dynamic"
+      />
+  <cache:ruleset
+      for=".post.ScadenziarioDayPost"
+      ruleset="plone.content.dynamic"
+      />
 
 </configure>
