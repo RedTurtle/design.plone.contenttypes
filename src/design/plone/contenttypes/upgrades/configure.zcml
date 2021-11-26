@@ -279,8 +279,11 @@
         handler=".upgrades.update_registry"
         />
   </genericsetup:upgradeSteps>
-  <genericsetup:upgradeSteps source="3001">destination="3100"
-    profile="design.plone.contenttypes:default"&gt;
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="3001"
+      destination="3100"
+      >
     <genericsetup:upgradeStep
         title="Enable behaviors"
         handler=".upgrades.update_types"
