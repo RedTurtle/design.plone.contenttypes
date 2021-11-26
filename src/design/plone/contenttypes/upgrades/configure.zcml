@@ -399,4 +399,14 @@
         handler=".upgrades.to_4000"
       />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+    source="4000"
+    destination="4100"
+    profile="design.plone.contenttypes:default">
+      <genericsetup:upgradeStep
+        title="add plone.constraintypes behavior to Document"
+        handler=".upgrades.to_4100"
+      />
+  </genericsetup:upgradeSteps>
+  
 </configure>

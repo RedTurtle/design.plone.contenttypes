@@ -2,12 +2,20 @@ Changelog
 =========
 
 
-3.8.1 (unreleased)
+3.8.2 (unreleased)
 ------------------
 
 - Create additional folder in Persona for curriculum vitae.
   [cekk]
 
+
+3.8.1 (2021-11-22)
+------------------
+
+- Fix scadenziario sort_order
+  [pnicolli]
+- Add plone.constraintypes behavior for Document.
+  [cekk]
 
 3.8.0 (2021-10-22)
 ------------------
@@ -25,7 +33,7 @@ Changelog
 ------------------
 
 - Add *ruolo* metadata for Persona and export it in summary serializer.
-  [cekk] 
+  [cekk]
 
 
 3.7.3 (2021-10-15)
