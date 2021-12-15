@@ -42,6 +42,12 @@
  <index name="tipologia_organizzazione" meta_type="KeywordIndex">
   <indexed_attr value="tipologia_organizzazione"/>
  </index>
+ <index name="ruolo" meta_type="KeywordIndex">
+  <indexed_attr value="ruolo"/>
+ </index>
+ <index name="data_conclusione_incarico" meta_type="FieldIndex">
+  <indexed_attr value="data_conclusione_incarico"/>
+ </index>
 
  <!-- metadata -->
  <column value="tipologia_notizia"/>
@@ -51,6 +57,7 @@
  <column value="Subject_bando"/>
  <column value="ufficio_responsabile_bando"/>
  <column value="ruolo"/>
+ <column value="data_conclusione_incarico"/>
 
  <!-- cleanup -->
  <index name="argomenti_correlati" remove="True" />

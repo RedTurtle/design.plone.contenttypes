@@ -48,10 +48,15 @@
       factory=".uo.uo_location"
       name="uo_location"
       />
-
-  <!-- only metadata -->
   <adapter
-      factory=".metadata.ruolo"
+      factory=".persona.ruolo"
       name="ruolo"
       />
+  <adapter
+      factory=".persona.data_conclusione_incarico"
+      name="data_conclusione_incarico"
+      />
+
+  <!-- only metadata -->
+  
 </configure>
