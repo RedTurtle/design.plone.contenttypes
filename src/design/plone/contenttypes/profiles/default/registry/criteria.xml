@@ -105,6 +105,15 @@
         <value key="sortable">False</value>
         <value key="operations">
             <element>plone.app.querystring.operation.date.lessThan</element>
+            <element>plone.app.querystring.operation.date.largerThan</element>
+            <element>plone.app.querystring.operation.date.between</element>
+            <element>plone.app.querystring.operation.date.lessThanRelativeDate</element>
+            <element>plone.app.querystring.operation.date.largerThanRelativeDate</element>
+            <element>plone.app.querystring.operation.date.today</element>
+            <element>plone.app.querystring.operation.date.beforeToday</element>
+            <element>plone.app.querystring.operation.date.afterToday</element>
+            <element>plone.app.querystring.operation.date.beforeRelativeDate</element>
+            <element>plone.app.querystring.operation.date.afterRelativeDate</element>
         </value>
        <value key="group" i18n:translate="">Dates</value>
    </records>

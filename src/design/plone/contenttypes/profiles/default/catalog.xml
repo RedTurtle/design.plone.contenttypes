@@ -45,7 +45,7 @@
  <index name="ruolo" meta_type="KeywordIndex">
   <indexed_attr value="ruolo"/>
  </index>
- <index name="data_conclusione_incarico" meta_type="FieldIndex">
+ <index name="data_conclusione_incarico" meta_type="DateIndex">
   <indexed_attr value="data_conclusione_incarico"/>
  </index>
 

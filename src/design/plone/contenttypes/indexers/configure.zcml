@@ -52,10 +52,6 @@
       factory=".persona.ruolo"
       name="ruolo"
       />
-  <adapter
-      factory=".persona.data_conclusione_incarico"
-      name="data_conclusione_incarico"
-      />
 
   <!-- only metadata -->
   
