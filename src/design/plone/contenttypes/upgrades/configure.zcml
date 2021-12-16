@@ -441,5 +441,13 @@
         handler=".upgrades.to_4100"
         />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeStep
+      title="Add criteria and indexes to Persona"
+      description=""
+      profile="design.plone.contenttypes:default"
+      source="4100"
+      destination="4200"
+      handler=".upgrades.to_4200"
+      />
 
 </configure>

@@ -763,3 +763,15 @@ def to_4100(context):
         "plone.constraintypes"
     ]
     portal_types["Document"].behaviors = tuple(document_behaviors)
+
+
+def to_4200(context):
+    logger.info("Add criteria and indexes to Persona")
+
+    update_catalog(context)
+    update_registry(context)
+
+    brains = api.content.find(portal_type="Persona")
+    for brain in brains:
+        persona = brain.getObject()
+        persona.reindexObject(idxs=["ruolo", "data_conclusione_incarico"])
