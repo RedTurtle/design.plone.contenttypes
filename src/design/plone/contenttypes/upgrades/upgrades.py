@@ -774,4 +774,4 @@ def to_4200(context):
     brains = api.content.find(portal_type="Persona")
     for brain in brains:
         persona = brain.getObject()
-        persona.reindexObject(idxs=["ruolo"])
+        persona.reindexObject(idxs=["ruolo", "data_conclusione_incarico"])

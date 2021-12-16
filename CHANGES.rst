@@ -5,7 +5,8 @@ Changelog
 3.8.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Added criteria and indexes for Persona
+  [daniele]
 
 
 3.8.2 (2021-11-26)
