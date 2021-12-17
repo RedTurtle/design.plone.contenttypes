@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.8.3 (unreleased)
+3.8.3 (2021-12-17)
 ------------------
 
 - Added criteria and indexes for Persona
