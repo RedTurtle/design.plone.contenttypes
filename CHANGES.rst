@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.8.4 (unreleased)
+3.9.0 (2021-12-27)
 ------------------
 
 - Add default blocks in automatic created documents.
