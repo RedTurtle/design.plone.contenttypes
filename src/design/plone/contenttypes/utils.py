@@ -3,6 +3,7 @@ from design.plone.contenttypes.controlpanels.settings import (
     IDesignPloneSettings,
 )
 from plone import api
+from uuid import uuid4
 
 import logging
 import json
@@ -27,3 +28,9 @@ def get_settings_for_language(field):
         return values
     lang = api.portal.get_current_language()
     return json_data.get(lang, [])
+
+
+def create_default_blocks(context):
+    title_uuid = str(uuid4())
+    context.blocks = {title_uuid: {"@type": "title"}}
+    context.blocks_layout = {"items": [title_uuid]}

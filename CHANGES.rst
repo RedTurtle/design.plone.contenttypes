@@ -5,7 +5,8 @@ Changelog
 3.8.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add default blocks in automatic created documents.
+  [cekk]
 
 
 3.8.3 (2021-12-17)

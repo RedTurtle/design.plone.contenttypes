@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from design.plone.contenttypes.utils import create_default_blocks
 from plone import api
 from Products.CMFPlone.interfaces import ISelectableConstrainTypes
 
@@ -21,7 +22,8 @@ def servizioCreateHandler(servizio, event):
             child = api.content.create(
                 type="Document", title=folder["title"], container=servizio
             )
-            child = servizio[folder["id"]]
+            create_default_blocks(context=child)
+
             childConstraints = ISelectableConstrainTypes(child)
             childConstraints.setConstrainTypesMode(1)
             childConstraints.setLocallyAllowedTypes(folder["contains"])

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from plone import api
 from Products.CMFPlone.interfaces import ISelectableConstrainTypes
+from design.plone.contenttypes.utils import create_default_blocks
 
 
 def documentoCreateHandler(documento, event):
@@ -24,6 +25,7 @@ def documentoCreateHandler(documento, event):
     multimedia = api.content.create(
         type="Document", title="Multimedia", container=documento
     )
+    create_default_blocks(context=multimedia)
 
     multimediaConstraints = ISelectableConstrainTypes(multimedia)
     multimediaConstraints.setConstrainTypesMode(1)

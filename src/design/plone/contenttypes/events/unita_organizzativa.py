@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from design.plone.contenttypes.utils import create_default_blocks
 from plone import api
 from Products.CMFPlone.interfaces import ISelectableConstrainTypes
 
@@ -27,6 +28,7 @@ def unitaOrganizzativaCreateHandler(unitaOrganizzativa, event):
         logger.exception(e)
         return
 
+    create_default_blocks(context=allegati)
     allegatiConstraints = ISelectableConstrainTypes(allegati)
     allegatiConstraints.setConstrainTypesMode(1)
     allegatiConstraints.setLocallyAllowedTypes(("File",))

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
+from design.plone.contenttypes.utils import create_default_blocks
 from Products.CMFPlone.interfaces import ISelectableConstrainTypes
 from plone import api
 
@@ -22,6 +23,8 @@ def eventoCreateHandler(evento, event):
             title="Multimedia",
             id="multimedia",
         )
+        create_default_blocks(context=galleria)
+
         # select  constraints
         constraintsGalleria = ISelectableConstrainTypes(galleria)
         constraintsGalleria.setConstrainTypesMode(1)
@@ -36,6 +39,8 @@ def eventoCreateHandler(evento, event):
             title="Sponsor Evento",
             id="sponsor_evento",
         )
+        create_default_blocks(context=sponsor)
+
         constraintsSponsor = ISelectableConstrainTypes(sponsor)
         constraintsSponsor.setConstrainTypesMode(1)
         constraintsSponsor.setLocallyAllowedTypes(("Link",))
@@ -49,6 +54,8 @@ def eventoCreateHandler(evento, event):
             title="Documenti",
             id="documenti",
         )
+        create_default_blocks(context=documenti)
+
         constraintsDocumenti = ISelectableConstrainTypes(documenti)
         constraintsDocumenti.setConstrainTypesMode(1)
         constraintsDocumenti.setLocallyAllowedTypes(("File",))
