@@ -775,3 +775,22 @@ def to_4200(context):
     for brain in brains:
         persona = brain.getObject()
         persona.reindexObject(idxs=["ruolo", "data_conclusione_incarico"])
+
+
+def to_5000(context):
+    logger.info("Enable preview_image behavior in all content types")
+
+    portal_types = api.portal.get_tool(name="portal_types")
+
+    for portal_type, fti in portal_types.items():
+        behaviors = list(getattr(fti, "behaviors", ()))
+        if not behaviors:
+            continue
+        if portal_type == "Document":
+            # remove unused behavior (is in info_testata)
+            fti.behaviors = tuple([x for x in behaviors if x != "volto.preview_image"])
+            continue
+        if "plone.leadimage" not in behaviors or "volto.preview_image" in behaviors:
+            continue
+        behaviors.insert(behaviors.index("plone.leadimage") + 1, "volto.preview_image")
+        fti.behaviors = tuple(behaviors)

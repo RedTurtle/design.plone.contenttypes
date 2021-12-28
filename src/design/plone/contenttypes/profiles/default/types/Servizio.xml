@@ -46,6 +46,7 @@
     <element value="design.plone.contenttypes.behavior.descrizione_estesa_servizio" />
     <element value="plone.locking" />
     <element value="plone.leadimage"/>
+    <element value="volto.preview_image" />
     <element value="plone.relateditems"/>
     <element value="design.plone.contenttypes.behavior.argomenti"/>
     <element value="design.plone.contenttypes.behavior.additional_help_infos"/>

@@ -449,5 +449,12 @@
       destination="4200"
       handler=".upgrades.to_4200"
       />
-
+  <genericsetup:upgradeStep
+      title="Volto 14 compatibility"
+      description=""
+      profile="design.plone.contenttypes:default"
+      source="4200"
+      destination="5000"
+      handler=".upgrades.to_5000"
+      />
 </configure>

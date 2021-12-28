@@ -11,6 +11,7 @@
   <property name="behaviors" purge="False">
     <element value="plone.eventbasic" />
     <element value="plone.leadimage" />
+    <element value="volto.preview_image" />
     <element value="design.plone.contenttypes.behavior.argomenti" />
     <element value="plone.eventrecurrence" />
     <element value="design.plone.contenttypes.behavior.additional_help_infos" />
