@@ -54,4 +54,11 @@
       handler=".document.documentCreateHandler"
       />
 
+     <!-- common -->
+    <subscriber
+        for="plone.dexterity.interfaces.IDexterityContent
+             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+        handler=".common.onModify" />
+
+
 </configure>

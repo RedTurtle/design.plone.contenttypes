@@ -12,6 +12,10 @@ from plone.restapi.testing import RelativeSession
 from transaction import commit
 from zope.component import getMultiAdapter
 
+# from design.plone.contenttypes.behaviors.news_additional_fields import (
+#     INewsAdditionalFields,
+# )
+# from plone.app.contenttypes.behaviors.leadimage import ILeadImageBehavior
 import unittest
 
 
@@ -61,7 +65,6 @@ class SummarySerializerTest(unittest.TestCase):
         self.assertTrue(items[1]["has_children"])
 
     def test_get_content_return_id_value(self):
-
         news = api.content.create(container=self.portal, type="News Item", title="news")
         commit()
 

@@ -794,3 +794,20 @@ def to_5000(context):
             continue
         behaviors.insert(behaviors.index("plone.leadimage") + 1, "volto.preview_image")
         fti.behaviors = tuple(behaviors)
+
+    logger.info("Move immagine_testata to image")
+    catalog = api.portal.get_tool("portal_catalog")
+    i = 0
+    brains = catalog()
+    tot = len(brains)
+    for brain in brains:
+        i += 1
+        if i % 500 == 0:
+            logger.info("Progress: {}/{}".format(i, tot))
+        obj = brain.getObject()
+        if brain.portal_type == "Document":
+            immagine_testata = getattr(obj, "immagine_testata", None)
+            if immagine_testata:
+                obj.image = immagine_testata
+                obj.immagine_testata = None
+        catalog.catalog_object(obj)
