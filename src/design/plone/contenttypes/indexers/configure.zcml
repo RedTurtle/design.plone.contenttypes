@@ -55,12 +55,12 @@
 
 
   <!-- persona -->
-    <adapter
+  <adapter
       factory=".persona.ruolo"
       name="ruolo"
       />
 
-    <adapter
+  <adapter
       factory=".persona.image_field_indexer"
       name="image_field"
       />

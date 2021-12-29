@@ -449,17 +449,18 @@
       destination="4200"
       handler=".upgrades.to_4200"
       />
-    <genericsetup:upgradeSteps
+  <genericsetup:upgradeSteps
       profile="design.plone.contenttypes:default"
       source="4200"
-      destination="5000">
-      <genericsetup:upgradeStep
+      destination="5000"
+      >
+    <genericsetup:upgradeStep
         title="Update catalog"
         handler=".upgrades.update_catalog"
         />
-      <genericsetup:upgradeStep
+    <genericsetup:upgradeStep
         title="Volto 14 support"
         handler=".upgrades.to_5000"
         />
-    </genericsetup:upgradeSteps>
+  </genericsetup:upgradeSteps>
 </configure>
