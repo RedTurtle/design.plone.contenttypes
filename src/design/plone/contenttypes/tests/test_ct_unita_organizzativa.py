@@ -106,6 +106,7 @@ class TestUO(unittest.TestCase):
                 "plone.basic",
                 "plone.locking",
                 "plone.leadimage",
+                "volto.preview_image",
                 "plone.relateditems",
                 "design.plone.contenttypes.behavior.address_uo",
                 "design.plone.contenttypes.behavior.geolocation_uo",

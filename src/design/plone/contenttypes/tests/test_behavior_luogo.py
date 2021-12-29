@@ -31,6 +31,7 @@ class LuogoBehaviorIndexerFunctionalTest(unittest.TestCase):
             "design.plone.contenttypes.behavior.additional_help_infos",
             "design.plone.contenttypes.behavior.argomenti",
             "plone.leadimage",
+            "volto.preview_image",
             "collective.address.behaviors.IAddress",
             "design.plone.contenttypes.behavior.luogo",
             "collective.dexteritytextindexer",

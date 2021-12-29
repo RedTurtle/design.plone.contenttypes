@@ -6,13 +6,13 @@ from plone.app.contenttypes.utils import replace_link_variables_by_paths
 from plone.outputfilters.browser.resolveuid import uuidToURL
 from plone.restapi.deserializer import json_body
 from plone.restapi.interfaces import ISerializeToJsonSummary
-from Products.ZCatalog.interfaces import ICatalogBrain
 from redturtle.volto.restapi.serializer.summary import (
     DefaultJSONSummarySerializer as BaseSerializer,
 )
 from zope.component import adapter
 from zope.component import getMultiAdapter
 from zope.i18n import translate
+from zope.interface import Interface
 from zope.interface import implementer
 import re
 
@@ -20,7 +20,7 @@ RESOLVEUID_RE = re.compile(".*?/resolve[Uu]id/([^/]*)/?(.*)$")
 
 
 @implementer(ISerializeToJsonSummary)
-@adapter(ICatalogBrain, IDesignPloneContenttypesLayer)
+@adapter(Interface, IDesignPloneContenttypesLayer)
 class DefaultJSONSummarySerializer(BaseSerializer):
     def __call__(self):
         res = super().__call__()
@@ -66,7 +66,10 @@ class DefaultJSONSummarySerializer(BaseSerializer):
         return False
 
     def is_get_call(self):
-        return self.request.steps[-1] == "GET_application_json_"
+        steps = self.request.steps
+        if not steps:
+            return False
+        return steps[-1] == "GET_application_json_"
 
     def get_design_meta_type(self):
         ttool = api.portal.get_tool("portal_types")
@@ -82,7 +85,10 @@ class DefaultJSONSummarySerializer(BaseSerializer):
             )
 
     def expand_tassonomia_argomenti(self):
-        obj = self.context.getObject()
+        try:
+            obj = self.context.getObject()
+        except AttributeError:
+            obj = self.context
         arguments = []
         for ref in getattr(obj, "tassonomia_argomenti", []):
             ref_obj = ref.to_object

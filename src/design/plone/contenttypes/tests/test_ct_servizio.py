@@ -67,6 +67,7 @@ class TestServizio(unittest.TestCase):
                 "design.plone.contenttypes.behavior.descrizione_estesa_servizio",
                 "plone.locking",
                 "plone.leadimage",
+                "volto.preview_image",
                 "plone.relateditems",
                 "design.plone.contenttypes.behavior.argomenti",
                 "design.plone.contenttypes.behavior.additional_help_infos",

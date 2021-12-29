@@ -23,6 +23,15 @@ def post_install(context):
             [x for x in portal_types[ptype].behaviors if x != "volto.blocks"]
         )
 
+    # add image fields at the end of document behaviors
+    document_behaviors = [
+        x
+        for x in portal_types["Document"].behaviors
+        if x not in ["plone.leadimage", "volto.preview_image"]
+    ]
+    document_behaviors.extend(["plone.leadimage", "volto.preview_image"])
+    portal_types["Document"].behaviors = tuple(document_behaviors)
+
     # remove default ente
     api.portal.set_registry_record("default_ente", (), interface=IBandoSettings)
 

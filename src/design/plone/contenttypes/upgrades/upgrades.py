@@ -787,8 +787,12 @@ def to_5000(context):
         if not behaviors:
             continue
         if portal_type == "Document":
-            # remove unused behavior (is in info_testata)
-            fti.behaviors = tuple([x for x in behaviors if x != "volto.preview_image"])
+            behaviors = [
+                x
+                for x in behaviors
+                if x not in ["plone.leadimage", "volto.preview_image"]
+            ]
+            behaviors.extend(["plone.leadimage", "volto.preview_image"])
             continue
         if "plone.leadimage" not in behaviors or "volto.preview_image" in behaviors:
             continue

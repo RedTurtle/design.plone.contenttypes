@@ -30,6 +30,7 @@ class TestEvent(unittest.TestCase):
             (
                 "plone.eventbasic",
                 "plone.leadimage",
+                "volto.preview_image",
                 "design.plone.contenttypes.behavior.argomenti",
                 "plone.eventrecurrence",
                 "design.plone.contenttypes.behavior.additional_help_infos",

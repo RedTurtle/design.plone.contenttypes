@@ -40,6 +40,7 @@ class TestNews(unittest.TestCase):
                 "plone.leadimage",
                 "plone.versioning",
                 "plone.locking",
+                "volto.preview_image",
                 "design.plone.contenttypes.behavior.news",
                 "design.plone.contenttypes.behavior.argomenti",
                 "plone.constraintypes",
