@@ -5,7 +5,8 @@ Changelog
 3.9.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Bandi folder deepening now returns actual children order in parent instead of being ordered by title.
+  [deodorhunter]
 
 
 3.9.0 (2021-12-27)
