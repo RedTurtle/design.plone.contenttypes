@@ -5,7 +5,8 @@ Changelog
 3.9.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix publication when adding events.
+  [daniele]
 
 
 3.9.0 (2021-12-27)

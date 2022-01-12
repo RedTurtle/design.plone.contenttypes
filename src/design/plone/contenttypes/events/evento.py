@@ -30,7 +30,8 @@ def eventoCreateHandler(evento, event):
         constraintsGalleria.setConstrainTypesMode(1)
         constraintsGalleria.setLocallyAllowedTypes(("Image", "Link"))
 
-        api.content.transition(obj=galleria, transition="publish")
+        with api.env.adopt_roles(["Reviewer"]):
+            api.content.transition(obj=galleria, transition="publish")
 
     if "sponsor_evento" not in evento.keys():
         sponsor = api.content.create(
@@ -45,7 +46,8 @@ def eventoCreateHandler(evento, event):
         constraintsSponsor.setConstrainTypesMode(1)
         constraintsSponsor.setLocallyAllowedTypes(("Link",))
 
-        api.content.transition(obj=sponsor, transition="publish")
+        with api.env.adopt_roles(["Reviewer"]):
+            api.content.transition(obj=sponsor, transition="publish")
 
     if "documenti" not in evento.keys():
         documenti = api.content.create(
@@ -60,4 +62,5 @@ def eventoCreateHandler(evento, event):
         constraintsDocumenti.setConstrainTypesMode(1)
         constraintsDocumenti.setLocallyAllowedTypes(("File",))
 
-        api.content.transition(obj=documenti, transition="publish")
+        with api.env.adopt_roles(["Reviewer"]):
+            api.content.transition(obj=documenti, transition="publish")
