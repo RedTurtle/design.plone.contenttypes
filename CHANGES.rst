@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.9.1 (unreleased)
+3.9.1 (2022-01-13)
 ------------------
 
 - Fix publication when adding events.
