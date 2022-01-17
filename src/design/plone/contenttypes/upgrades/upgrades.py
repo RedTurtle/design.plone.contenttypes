@@ -793,9 +793,9 @@ def to_5000(context):
                 if x not in ["plone.leadimage", "volto.preview_image"]
             ]
             behaviors.extend(["plone.leadimage", "volto.preview_image"])
-            continue
-        if "plone.leadimage" not in behaviors or "volto.preview_image" in behaviors:
-            continue
+        else:
+            if "plone.leadimage" not in behaviors or "volto.preview_image" in behaviors:
+                continue
         behaviors.insert(behaviors.index("plone.leadimage") + 1, "volto.preview_image")
         fti.behaviors = tuple(behaviors)
 
