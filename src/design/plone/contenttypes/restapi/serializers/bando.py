@@ -19,7 +19,7 @@ class BandoSerializer(BaseSerializer):
             contents = bando_view.retrieveContentsOfFolderDeepening(folder["path"])
             folder.update({"children": contents})
             results.append(folder)
-        return sorted(results, key=lambda k: k["title"])
+        return results
 
     def __call__(self, version=None, include_items=True):
         result = super(BandoSerializer, self).__call__(
