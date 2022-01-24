@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.9.2 (unreleased)
+3.9.2 (2022-01-24)
 ------------------
 
 - Bandi folder deepening now returns actual children order in parent instead of being ordered by title.
