@@ -88,7 +88,18 @@ class IDesignPloneSettings(Interface):
             "valori diversi a seconda delle lingue del sito.",
         ),
         required=True,
-        default="",
+        default=json.dumps(
+            {
+                "it": [
+                    "Assessore",
+                    "Sindaco",
+                    "Consigliere",
+                    "Referente ufficio",
+                    "Responsabile",
+                    "Presidente",
+                ]
+            }
+        ),
     )
 
     lead_image_dimension = List(

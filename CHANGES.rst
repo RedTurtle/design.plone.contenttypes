@@ -7,6 +7,8 @@ Changelog
 
 - Bandi folder deepening now returns actual children order in parent instead of being ordered by title.
   [deodorhunter]
+- Added default values for Persona roles.
+  [daniele]
 
 
 3.9.1 (2022-01-13)
