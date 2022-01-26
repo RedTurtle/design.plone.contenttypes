@@ -139,8 +139,11 @@ FIELDSETS_ORDER = {
 @implementer(IPublishTraverse)
 class TypesGet(BaseGet):
     def customize_persona_schema(self, result):
-        msgid = _(u"Nome e Cognome", default="Nome e cognome")
-        result["properties"]["title"]["title"] = translate(msgid, context=self.request)
+        if "title" in result["properties"]:
+            msgid = _(u"Nome e Cognome", default="Nome e cognome")
+            result["properties"]["title"]["title"] = translate(
+                msgid, context=self.request
+            )
         return result
 
     def customize_venue_schema(self, result):
