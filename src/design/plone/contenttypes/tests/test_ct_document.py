@@ -26,7 +26,6 @@ class TestDocument(unittest.TestCase):
                 "plone.dublincore",
                 "plone.relateditems",
                 "plone.locking",
-                "volto.preview_image",
                 "volto.blocks",
                 "plone.versioning",
                 "plone.tableofcontents",
@@ -36,5 +35,7 @@ class TestDocument(unittest.TestCase):
                 "design.plone.contenttypes.behavior.show_modified",
                 "kitconcept.seo",
                 "plone.constraintypes",
+                "plone.leadimage",
+                "volto.preview_image",
             ),
         )

@@ -58,6 +58,8 @@
  <column value="ufficio_responsabile_bando"/>
  <column value="ruolo"/>
  <column value="data_conclusione_incarico"/>
+ <column value="parent"/>
+ <column value="ente_bando"/>
 
  <!-- cleanup -->
  <index name="argomenti_correlati" remove="True" />

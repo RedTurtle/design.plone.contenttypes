@@ -37,6 +37,7 @@ class TestLuogo(unittest.TestCase):
                 "plone.app.dexterity.behaviors.metadata.ICategorization",
                 "plone.relateditems",
                 "plone.leadimage",
+                "volto.preview_image",
                 "design.plone.contenttypes.behavior.contatti_venue",
                 "design.plone.contenttypes.behavior.luogo",
                 "design.plone.contenttypes.behavior.argomenti",

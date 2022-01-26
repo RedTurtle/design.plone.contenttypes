@@ -138,6 +138,15 @@ FIELDSETS_ORDER = {
 
 @implementer(IPublishTraverse)
 class TypesGet(BaseGet):
+    def customize_document_schema(self, result):
+        fields = ["image", "image_caption", "preview_image", "preview_caption"]
+        for fieldset in result.get("fieldsets", []):
+            if fieldset.get("id", "") == "testata":
+                fieldset["fields"] = fields + fieldset["fields"]
+            if fieldset.get("id", "") == "default":
+                fieldset["fields"] = [x for x in fieldset["fields"] if x not in fields]
+        return result
+
     def customize_persona_schema(self, result):
         if "title" in result["properties"]:
             msgid = _(u"Nome e Cognome", default="Nome e cognome")
@@ -150,6 +159,45 @@ class TypesGet(BaseGet):
         """
         Unico modo per spostare il campo "notes"
         """
+
+        if "properties" in result:
+            if "country" in result["properties"]:
+                if not result["properties"]["country"].get("default", ""):
+                    result["properties"]["country"]["default"] = {
+                        "title": "Italia",
+                        "token": "380",
+                    }
+            if "city" in result["properties"]:
+                if not result["properties"]["city"].get("default", ""):
+                    result["properties"]["city"][
+                        "default"
+                    ] = api.portal.get_registry_record(
+                        "city", interface=IGeolocationDefaults
+                    )
+            if "zip_code" in result["properties"]:
+                if not result["properties"]["zip_code"].get("default", ""):
+                    result["properties"]["zip_code"][
+                        "default"
+                    ] = api.portal.get_registry_record(
+                        "zip_code", interface=IGeolocationDefaults
+                    )
+
+            if "street" in result["properties"]:
+                if not result["properties"]["street"].get("default", ""):
+                    result["properties"]["street"][
+                        "default"
+                    ] = api.portal.get_registry_record(
+                        "street", interface=IGeolocationDefaults
+                    )
+
+            if "geolocation" in result["properties"]:
+                if not result["properties"]["geolocation"].get("default", {}):
+                    result["properties"]["geolocation"]["default"] = eval(
+                        api.portal.get_registry_record(
+                            "geolocation", interface=IGeolocationDefaults
+                        )
+                    )
+
         for fieldset in result["fieldsets"]:
             if fieldset.get("id") == "default" and "notes" in fieldset["fields"]:
                 fieldset["fields"].remove("notes")
@@ -182,45 +230,6 @@ class TypesGet(BaseGet):
             result["fieldsets"] = self.reorder_fieldsets(original=result["fieldsets"])
         pt = self.request.PATH_INFO.split("/")[-1]
 
-        if "properties" in result:
-            if pt == "Venue":
-                if "country" in result["properties"]:
-                    if not result["properties"]["country"].get("default", ""):
-                        result["properties"]["country"]["default"] = {
-                            "title": "Italia",
-                            "token": "380",
-                        }
-                if "city" in result["properties"]:
-                    if not result["properties"]["city"].get("default", ""):
-                        result["properties"]["city"][
-                            "default"
-                        ] = api.portal.get_registry_record(
-                            "city", interface=IGeolocationDefaults
-                        )
-                if "zip_code" in result["properties"]:
-                    if not result["properties"]["zip_code"].get("default", ""):
-                        result["properties"]["zip_code"][
-                            "default"
-                        ] = api.portal.get_registry_record(
-                            "zip_code", interface=IGeolocationDefaults
-                        )
-
-                if "street" in result["properties"]:
-                    if not result["properties"]["street"].get("default", ""):
-                        result["properties"]["street"][
-                            "default"
-                        ] = api.portal.get_registry_record(
-                            "street", interface=IGeolocationDefaults
-                        )
-
-                if "geolocation" in result["properties"]:
-                    if not result["properties"]["geolocation"].get("default", {}):
-                        result["properties"]["geolocation"]["default"] = eval(
-                            api.portal.get_registry_record(
-                                "geolocation", interface=IGeolocationDefaults
-                            )
-                        )
-
         # be careful: result could be dict or list. If list it will not
         # contains title. And this is ok for us.
         pt = self.request.PATH_INFO.split("/")[-1]
@@ -230,6 +239,8 @@ class TypesGet(BaseGet):
                 result = self.customize_persona_schema(result)
             if pt == "Venue":
                 result = self.customize_venue_schema(result)
+            if pt == "Document":
+                result = self.customize_document_schema(result)
             result = self.customize_versioning_fields_fieldset(result)
         return result
 

@@ -43,6 +43,7 @@
     <element value="plone.locking" />
     <element value="plone.constraintypes"/>
     <element value="plone.leadimage" />
+    <element value="volto.preview_image" />
     <element value="design.plone.contenttypes.behavior.argomenti_documento" />
     <element value="design.plone.contenttypes.behavior.descrizione_estesa_documento" />
     <element value="design.plone.contenttypes.behavior.additional_help_infos"/>

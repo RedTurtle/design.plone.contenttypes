@@ -38,6 +38,7 @@ class TestDocument(unittest.TestCase):
                 "plone.locking",
                 "plone.constraintypes",
                 "plone.leadimage",
+                "volto.preview_image",
                 "design.plone.contenttypes.behavior.argomenti_documento",
                 "design.plone.contenttypes.behavior.descrizione_estesa_documento",  # noqa
                 "design.plone.contenttypes.behavior.additional_help_infos",

@@ -8,6 +8,7 @@
     <element value="File" />
  </property>
  <property name="behaviors" purge="False">
+   <element value="volto.preview_image"/>
    <element value="design.plone.contenttypes.behavior.news"/>
    <element value="design.plone.contenttypes.behavior.argomenti"/>
    <element value="plone.constraintypes"/>

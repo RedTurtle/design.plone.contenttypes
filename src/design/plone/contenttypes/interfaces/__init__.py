@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 """Module where all interfaces, events and exceptions live."""
-from zope.publisher.interfaces.browser import IDefaultBrowserLayer
+from redturtle.volto.interfaces import IRedturtleVoltoLayer
 from zope.interface import Interface
 
 
-class IDesignPloneContenttypesLayer(IDefaultBrowserLayer):
+class IDesignPloneContenttypesLayer(IRedturtleVoltoLayer):
     """Marker interface that defines a browser layer."""
 
 

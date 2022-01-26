@@ -5,7 +5,12 @@ Changelog
 3.9.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add new metadata for Volto 14 support: we need some extra infos in blocks without getting the full object.
+  [cekk]
+- Add preview_image in all contents (from plone.volto).
+  [cekk]
+- Customized summary serializer to add more infos for listing blocsk.
+  [cekk]
 
 
 3.9.2 (2022-01-24)

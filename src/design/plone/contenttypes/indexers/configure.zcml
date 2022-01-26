@@ -37,6 +37,10 @@
       name="ufficio_responsabile"
       />
   <adapter
+      factory=".common.parent"
+      name="parent"
+      />
+  <adapter
       factory=".bando.ufficio_responsabile_bando"
       name="ufficio_responsabile_bando"
       />
@@ -48,11 +52,18 @@
       factory=".uo.uo_location"
       name="uo_location"
       />
+
+
+  <!-- persona -->
   <adapter
       factory=".persona.ruolo"
       name="ruolo"
       />
 
+  <adapter
+      factory=".persona.image_field_indexer"
+      name="image_field"
+      />
   <!-- only metadata -->
 
 </configure>

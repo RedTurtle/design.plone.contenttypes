@@ -10,6 +10,7 @@
   <element value="design.plone.contenttypes.behavior.show_modified"/>
   <element value="kitconcept.seo"/>
   <element value="plone.constraintypes"/>
+  <element value="plone.leadimage"/>
  </property>
    <property name="view_methods">
     <element value="document_view" />

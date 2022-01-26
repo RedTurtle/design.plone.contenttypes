@@ -775,3 +775,43 @@ def to_4200(context):
     for brain in brains:
         persona = brain.getObject()
         persona.reindexObject(idxs=["ruolo", "data_conclusione_incarico"])
+
+
+def to_5000(context):
+    logger.info("Enable preview_image behavior in all content types")
+
+    portal_types = api.portal.get_tool(name="portal_types")
+
+    for portal_type, fti in portal_types.items():
+        behaviors = list(getattr(fti, "behaviors", ()))
+        if not behaviors:
+            continue
+        if portal_type == "Document":
+            behaviors = [
+                x
+                for x in behaviors
+                if x not in ["plone.leadimage", "volto.preview_image"]
+            ]
+            behaviors.extend(["plone.leadimage", "volto.preview_image"])
+        else:
+            if "plone.leadimage" not in behaviors or "volto.preview_image" in behaviors:
+                continue
+        behaviors.insert(behaviors.index("plone.leadimage") + 1, "volto.preview_image")
+        fti.behaviors = tuple(behaviors)
+
+    logger.info("Move immagine_testata to image")
+    catalog = api.portal.get_tool("portal_catalog")
+    i = 0
+    brains = catalog()
+    tot = len(brains)
+    for brain in brains:
+        i += 1
+        if i % 500 == 0:
+            logger.info("Progress: {}/{}".format(i, tot))
+        obj = brain.getObject()
+        if brain.portal_type == "Document":
+            immagine_testata = getattr(obj, "immagine_testata", None)
+            if immagine_testata:
+                obj.image = immagine_testata
+                obj.immagine_testata = None
+        catalog.catalog_object(obj)

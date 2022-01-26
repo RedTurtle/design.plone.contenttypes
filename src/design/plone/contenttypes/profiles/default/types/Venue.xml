@@ -17,6 +17,7 @@
   <element value="plone.app.dexterity.behaviors.metadata.ICategorization"/>
   <element value="plone.relateditems" />
   <element value="plone.leadimage"/>
+  <element value="volto.preview_image" />
   <element value="design.plone.contenttypes.behavior.contatti_venue"/>
   <element value="design.plone.contenttypes.behavior.luogo"/>
   <element value="design.plone.contenttypes.behavior.argomenti"/>

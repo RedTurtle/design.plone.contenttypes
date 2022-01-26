@@ -29,6 +29,7 @@ class TestCartellaModulistica(unittest.TestCase):
                 "plone.categorization",
                 "plone.basic",
                 "plone.leadimage",
+                "volto.preview_image",
                 "plone.locking",
                 "volto.blocks",
                 "plone.translatable",
