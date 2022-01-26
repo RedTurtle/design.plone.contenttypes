@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.9.3 (unreleased)
+4.0.0 (2022-01-26)
 ------------------
 
 - Add new metadata for Volto 14 support: we need some extra infos in blocks without getting the full object.
