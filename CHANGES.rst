@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.0.2 (unreleased)
+4.0.2 (2022-01-27)
 ------------------
 
 - Fix miniature dimension to be the same as design.plone.policy ones.
