@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.0.1 (unreleased)
+4.0.1 (2022-01-27)
 ------------------
 
 - Fix upgrade-step to rename Document childrens with "image" as id.
