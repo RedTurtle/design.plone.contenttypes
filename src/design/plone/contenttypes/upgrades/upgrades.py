@@ -809,9 +809,25 @@ def to_5000(context):
         if i % 500 == 0:
             logger.info("Progress: {}/{}".format(i, tot))
         obj = brain.getObject()
+        if "image" in obj.keys():
+            api.content.rename(obj=obj["image"], new_id="image-1")
         if brain.portal_type == "Document":
             immagine_testata = getattr(obj, "immagine_testata", None)
             if immagine_testata:
                 obj.image = immagine_testata
                 obj.immagine_testata = None
+        catalog.catalog_object(obj)
+
+
+def to_5001(context):
+    catalog = api.portal.get_tool("portal_catalog")
+    i = 0
+    brains = catalog(portal_type="Pagina Argomento")
+    tot = len(brains)
+    logger.info("Add icona metadata to {}".format(tot))
+    for brain in brains:
+        i += 1
+        if i % 500 == 0:
+            logger.info("Progress: {}/{}".format(i, tot))
+        obj = brain.getObject()
         catalog.catalog_object(obj)

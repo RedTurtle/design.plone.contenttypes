@@ -463,4 +463,18 @@
         handler=".upgrades.to_5000"
         />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="5000"
+      destination="5001"
+      >
+    <genericsetup:upgradeStep
+        title="Update catalog"
+        handler=".upgrades.update_catalog"
+        />
+    <genericsetup:upgradeStep
+        title="Add new metadata"
+        handler=".upgrades.to_5001"
+        />
+  </genericsetup:upgradeSteps>
 </configure>

@@ -5,7 +5,12 @@ Changelog
 4.0.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix upgrade-step to rename Document childrens with "image" as id.
+  [cekk]
+- Add new metadata "icona" for Pagina Argomento.
+  [cekk]
+- Remove broken template customization.
+  [cekk]
 
 
 4.0.0 (2022-01-26)

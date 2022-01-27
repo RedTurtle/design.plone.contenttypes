@@ -60,6 +60,7 @@
  <column value="data_conclusione_incarico"/>
  <column value="parent"/>
  <column value="ente_bando"/>
+ <column value="icona"/>
 
  <!-- cleanup -->
  <index name="argomenti_correlati" remove="True" />
