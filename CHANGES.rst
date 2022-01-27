@@ -5,7 +5,8 @@ Changelog
 4.0.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix miniature dimension to be the same as design.plone.policy ones.
+  [cekk]
 
 
 4.0.1 (2022-01-27)
