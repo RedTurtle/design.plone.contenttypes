@@ -71,7 +71,7 @@ class ILuoghiCorrelatiEvento(model.Schema):
 
     model.fieldset(
         "luogo",
-        label=_("luogo_label", default=u"Luogo"),
+        label=_("luogo_label", default="Luogo"),
         fields=["luoghi_correlati"],
     )
 

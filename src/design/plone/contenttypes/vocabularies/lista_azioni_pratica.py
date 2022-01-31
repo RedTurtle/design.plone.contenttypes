@@ -22,15 +22,15 @@ class ListaAzioniPratica(object):
         # Just an example list of content for our vocabulary,
         # this can be any static or dynamic data, a catalog result for example.
         items = [
-            VocabItem(u"pagare", _(u"Pagare")),
-            VocabItem(u"iscriversi", _(u"Iscriversi")),
-            VocabItem(u"richiedere", _(u"Richiedere")),
-            VocabItem(u"leggere", _(u"Leggere")),
-            VocabItem(u"attivare", _(u"Attivare")),
-            VocabItem(u"autorizzare", _(u"Autorizzare")),
-            VocabItem(u"delegare", _(u"Delegare")),
-            VocabItem(u"informare", _(u"Informare")),
-            VocabItem(u"accettare", _(u"Accettare")),
+            VocabItem("pagare", _("Pagare")),
+            VocabItem("iscriversi", _("Iscriversi")),
+            VocabItem("richiedere", _("Richiedere")),
+            VocabItem("leggere", _("Leggere")),
+            VocabItem("attivare", _("Attivare")),
+            VocabItem("autorizzare", _("Autorizzare")),
+            VocabItem("delegare", _("Delegare")),
+            VocabItem("informare", _("Informare")),
+            VocabItem("accettare", _("Accettare")),
         ]
         # Fix context if you are using the vocabulary in DataGridField.
         # See https://github.com/collective/collective.z3cform.datagridfield/issues/31:  # NOQA: 501

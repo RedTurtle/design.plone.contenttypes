@@ -25,7 +25,7 @@ class IArgomentiSchema(model.Schema):
             " contenuto.",
         ),
         value_type=RelationChoice(
-            title=_(u"Argomenti correlati"),
+            title=_("Argomenti correlati"),
             vocabulary="plone.app.vocabularies.Catalog",
         ),
         required=False,
@@ -39,7 +39,7 @@ class IArgomentiSchema(model.Schema):
             " contenuto.",
         ),
         value_type=RelationChoice(
-            title=_(u"Correlato in evidenza"),
+            title=_("Correlato in evidenza"),
             vocabulary="plone.app.vocabularies.Catalog",
         ),
         required=False,
@@ -101,7 +101,7 @@ class IArgomentiDocument(IArgomentiSchema):
     )
     model.fieldset(
         "testata",
-        label=_("testata_fieldset_label", default=u"Testata"),
+        label=_("testata_fieldset_label", default="Testata"),
         fields=["tassonomia_argomenti"],
     )
     form.order_after(correlato_in_evidenza="IRelatedItems.relatedItems")

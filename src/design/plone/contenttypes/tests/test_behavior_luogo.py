@@ -38,7 +38,7 @@ class LuogoBehaviorIndexerFunctionalTest(unittest.TestCase):
         )
         self.fti = fti
 
-        self.portal.invokeFactory("venueitem", id="venue", title=u"venue")
+        self.portal.invokeFactory("venueitem", id="venue", title="venue")
         self.venue = self.portal.venue
         commit()
 

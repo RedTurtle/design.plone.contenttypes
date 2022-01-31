@@ -15,16 +15,16 @@ from zope.interface import provider, implementer
 class IServiziCorrelati(model.Schema):
 
     servizi_correlati = RelationList(
-        title=_(u"servizi_correlati_label", default=u"Servizi correlati"),
+        title=_("servizi_correlati_label", default="Servizi correlati"),
         description=_(
-            u"servizi_correlati_description",
-            default=u"Questi servizi non verranno mostrati nel contenuto, ma"
+            "servizi_correlati_description",
+            default="Questi servizi non verranno mostrati nel contenuto, ma"
             " permetteranno di vedere questo contenuto associato quando si"
             " visita il servizio",
         ),
         default=[],
         value_type=RelationChoice(
-            title=u"Related", vocabulary="plone.app.vocabularies.Catalog"
+            title="Related", vocabulary="plone.app.vocabularies.Catalog"
         ),
         required=False,
     )

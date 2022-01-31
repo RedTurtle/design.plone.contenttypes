@@ -13,7 +13,7 @@ from zope.interface import provider, implementer
 
 class IDescrizioneEstesaSchema(model.Schema):
     descrizione_estesa = BlocksField(
-        title=_(u"descrizione_estesa", default=u"Descrizione estesa"),
+        title=_("descrizione_estesa", default="Descrizione estesa"),
         required=False,
         description=_(
             "descrizione_estesa_help",
@@ -37,7 +37,7 @@ class IDescrizioneEstesaServizio(IDescrizioneEstesaSchema):
 
     model.fieldset(
         "cose",
-        label=_("cose_label", default=u"Cos'è"),
+        label=_("cose_label", default="Cos'è"),
         fields=["descrizione_estesa"],
     )
 
@@ -48,7 +48,7 @@ class IDescrizioneEstesaDocumento(IDescrizioneEstesaSchema):
 
     model.fieldset(
         "descrizione",
-        label=_("descrizione_label", default=u"Descrizione"),
+        label=_("descrizione_label", default="Descrizione"),
         fields=["descrizione_estesa"],
     )
 

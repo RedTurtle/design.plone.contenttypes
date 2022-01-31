@@ -10,27 +10,27 @@ from zope.interface import Interface
 
 class IGeolocationDefaults(Interface):
     street = TextLine(
-        title=_(u"Via"),
+        title=_("Via"),
         required=False,
         default="Via Liszt, 21",
     )
     zip_code = TextLine(
-        title=_(u"CAP"),
+        title=_("CAP"),
         required=False,
         default="00144",
     )
     city = TextLine(
-        title=_(u"Città"),
+        title=_("Città"),
         required=False,
         default="Roma",
     )
     country = TextLine(
-        title=_(u"Nazione"),
+        title=_("Nazione"),
         required=False,
         default="{'title': 'Italia','token': '380',}",
     )
     geolocation = TextLine(
-        title=_(u"Coordinate"),
+        title=_("Coordinate"),
         required=True,
         default="{'latitude': 41.8337833,'longitude': 12.4677863,}",
     )
@@ -40,10 +40,10 @@ class GeolocationDefaultControlPanelForm(RegistryEditForm):
     form.extends(RegistryEditForm)
     schema = IGeolocationDefaults
     id = "geolocation-defaults"
-    label = _(u"Geolocation default")
+    label = _("Geolocation default")
 
 
 GeolocationDefaultControlPanellView = layout.wrap_form(
     GeolocationDefaultControlPanelForm, ControlPanelFormWrapper
 )
-GeolocationDefaultControlPanellView.label = _(u"Geolocation default")
+GeolocationDefaultControlPanellView.label = _("Geolocation default")

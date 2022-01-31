@@ -15,7 +15,7 @@ class IPaginaArgomento(model.Schema, IDesignPloneContentType):
     """Marker interface for PaginaArgomento"""
 
     ulteriori_informazioni = RichText(
-        title=_(u"ulteriori_informazioni", default=u"Ulteriori informazioni"),
+        title=_("ulteriori_informazioni", default="Ulteriori informazioni"),
         description=_(
             "ulteriori_informazioni_help",
             default="Ulteriori informazioni non contemplate" " dai campi precedenti.",
@@ -24,7 +24,7 @@ class IPaginaArgomento(model.Schema, IDesignPloneContentType):
     )
 
     icona = TextLine(
-        title=_(u"icona", default=u"Icona"),
+        title=_("icona", default="Icona"),
         description=_(
             "icona_help",
             default="Puoi selezionare un’icona fra quelle proposte nel menu a"
@@ -36,13 +36,13 @@ class IPaginaArgomento(model.Schema, IDesignPloneContentType):
 
     unita_amministrative_responsabili = RelationList(
         title=_(
-            u"unita_amministrative_responsabili",
-            default=u"Unità amministrative responsabili",
+            "unita_amministrative_responsabili",
+            default="Unità amministrative responsabili",
         ),
         required=False,
         default=[],
         value_type=RelationChoice(
-            title=_(u"Unità amministrative responsabili"),
+            title=_("Unità amministrative responsabili"),
             vocabulary="plone.app.vocabularies.Catalog",
         ),
         description=_(
@@ -67,7 +67,7 @@ class IPaginaArgomento(model.Schema, IDesignPloneContentType):
 
     model.fieldset(
         "informazioni",
-        label=_("informazioni_label", default=u"Ulteriori informazioni"),
+        label=_("informazioni_label", default="Ulteriori informazioni"),
         fields=["ulteriori_informazioni"],
     )
 

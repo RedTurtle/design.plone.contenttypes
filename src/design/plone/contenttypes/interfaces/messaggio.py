@@ -9,7 +9,7 @@ class IMessaggio(model.Schema):
     """Marker interface for Messaggio"""
 
     data_messaggio = schema.Date(
-        title=_(u"data_messaggio", default=u"Data del messaggio"),
+        title=_("data_messaggio", default="Data del messaggio"),
         required=True,
     )
 
@@ -19,40 +19,40 @@ class IMessaggio(model.Schema):
     # TODO: aggiungere tassonomia delle tipologie di azioni richieste al
     # cittadino
     azioni_richieste = schema.Choice(
-        title=_(u"azioni_richieste", default=u"Azioni richieste"),
+        title=_("azioni_richieste", default="Azioni richieste"),
         required=True,
         vocabulary="design.plone.contenttypes.Mockup",
     )
 
     azioni_pratica = schema.Choice(
-        title=_(u"azioni_pratica", default=u"Azioni"),
+        title=_("azioni_pratica", default="Azioni"),
         # vocabolario di riferimento sara' la tassonomia "Lista azioni pratica"
         vocabulary="design.plone.contenttypes.ListaAzioniPratica",
         required=True,
     )
 
     pratica_associata = schema.TextLine(
-        title=_(u"pratica_associata", default=u"Pratica associata"),
+        title=_("pratica_associata", default="Pratica associata"),
         required=True,
     )
 
     data_scadenza_procedura = schema.Date(
         title=_(
-            u"data_scadenza_procedura",
-            default=u"Data di scadenza della procedura",
+            "data_scadenza_procedura",
+            default="Data di scadenza della procedura",
         ),
         required=False,
     )
 
     # TODO: inserire tassonomia contenente le tipologie di documenti
     tipologia_documento = schema.Choice(
-        title=_(u"tipologia_documento", default=u"Tipologia documento"),
+        title=_("tipologia_documento", default="Tipologia documento"),
         required=False,
         vocabulary="design.plone.contenttypes.Mockup",
         missing_value=(),
     )
 
     documenti_allegati = field.NamedFile(
-        title=_(u"documenti_allegati", default=u"Documenti allegati"),
+        title=_("documenti_allegati", default="Documenti allegati"),
         required=False,
     )

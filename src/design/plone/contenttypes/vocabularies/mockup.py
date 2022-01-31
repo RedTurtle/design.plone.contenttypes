@@ -22,12 +22,12 @@ class Mockup(object):
         # Just an example list of content for our vocabulary,
         # this can be any static or dynamic data, a catalog result for example.
         items = [
-            VocabItem(u"sony-a7r-iii", _(u"Sony Aplha 7R III")),
-            VocabItem(u"canon-5d-iv", _(u"Canon 5D IV")),
-            VocabItem(u"pippo", _(u"Pippo")),
-            VocabItem(u"pluto", _(u"Pluto")),
-            VocabItem(u"paperino", _(u"Paperino")),
-            VocabItem(u"giovanni", _(u"Giovanni")),
+            VocabItem("sony-a7r-iii", _("Sony Aplha 7R III")),
+            VocabItem("canon-5d-iv", _("Canon 5D IV")),
+            VocabItem("pippo", _("Pippo")),
+            VocabItem("pluto", _("Pluto")),
+            VocabItem("paperino", _("Paperino")),
+            VocabItem("giovanni", _("Giovanni")),
         ]
 
         # Fix context if you are using the vocabulary in DataGridField.

@@ -126,8 +126,8 @@ class IPersona(model.Schema, IDesignPloneContentType):
         required=False,
     )
     fax = schema.TextLine(
-        title=_(u"fax_persona_label", default=u"Fax"),
-        description=_(u"fax_persona_help", default=u"Indicare un numero di fax."),
+        title=_("fax_persona_label", default="Fax"),
+        description=_("fax_persona_help", default="Indicare un numero di fax."),
         required=False,
     )
     email = schema.List(

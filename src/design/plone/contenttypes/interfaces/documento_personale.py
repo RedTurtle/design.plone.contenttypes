@@ -12,25 +12,23 @@ class IDocumentoPersonale(model.Schema):
     """Marker interface for DocumentoPersonale"""
 
     protocollo = schema.TextLine(
-        title=_(u"protocollo", default=u"Protocollo"), required=True
+        title=_("protocollo", default="Protocollo"), required=True
     )
 
     data_protocollo = schema.Date(
-        title=_(u"data_protocollo", default=u"Data del protocollo"),
+        title=_("data_protocollo", default="Data del protocollo"),
         required=True,
     )
 
-    immagine = field.NamedImage(
-        title=_(u"immagine", default=u"Immagine"), required=False
-    )
+    immagine = field.NamedImage(title=_("immagine", default="Immagine"), required=False)
 
     pratica_associata = field.NamedFile(
-        title=_(u"pratica_associata", default=u"Pratica associata"),
+        title=_("pratica_associata", default="Pratica associata"),
         required=True,
     )
 
     servizio_origine = schema.Choice(
-        title=_(u"servizio_origine", default=u"Servizio che genera il documento"),
+        title=_("servizio_origine", default="Servizio che genera il documento"),
         vocabulary="design.plone.contenttypes.Mockup",
         required=True,
     )
@@ -41,13 +39,13 @@ class IDocumentoPersonale(model.Schema):
     # TODO: il vocabolario controllato da usare sara' "Argomenti di interesse
     #  pere gli utenti di un comune"
     argomenti_utenti = schema.Choice(
-        title=_(u"argomenti_utenti", default=u"Argomenti utenti"),
+        title=_("argomenti_utenti", default="Argomenti utenti"),
         vocabulary="design.plone.contenttypes.Mockup",
         required=True,
     )
 
     oggetto = BlocksField(
-        title=_(u"oggetto", default=u"Oggetto"),
+        title=_("oggetto", default="Oggetto"),
         # non viene specificato se il campo e' obbligatorio o meno
         required=False,
     )
@@ -62,8 +60,8 @@ class IDocumentoPersonale(model.Schema):
     # rientrare nel content type "Unita' organizzativa")
     ufficio_responsabile = schema.Choice(
         title=_(
-            u"ufficio_responsabile_documento_personale",
-            default=u"Ufficio responsabile",
+            "ufficio_responsabile_documento_personale",
+            default="Ufficio responsabile",
         ),
         required=True,
         vocabulary="design.plone.contenttypes.Mockup",
@@ -73,8 +71,8 @@ class IDocumentoPersonale(model.Schema):
     # (dovrebbe rientrare nel content type "Unita' organizzativa")
     area_responsabile = schema.Choice(
         title=_(
-            u"area_responsabile_documento_personale",
-            default=u"Area responsabile",
+            "area_responsabile_documento_personale",
+            default="Area responsabile",
         ),
         required=True,
         vocabulary="design.plone.contenttypes.Mockup",
@@ -82,25 +80,25 @@ class IDocumentoPersonale(model.Schema):
 
     # TODO: usare vocabolario dinamico per le gli autori?
     autori = RelationList(
-        title=u"Autore/i",
+        title="Autore/i",
         default=[],
         value_type=RelationChoice(
-            title=_(u"Autore"), vocabulary="plone.app.vocabularies.Catalog"
+            title=_("Autore"), vocabulary="plone.app.vocabularies.Catalog"
         ),
         required=False,
     )
 
     licenza_distribuzione = schema.TextLine(
-        title=_(u"licenza_distribuzione", default=u"Licenza di distribuzione"),
+        title=_("licenza_distribuzione", default="Licenza di distribuzione"),
         required=False,
     )
 
     # TODO: usare vocabolario dinamico per i servizi collegati?
     servizi_collegati = RelationList(
-        title=u"Servizi collegati",
+        title="Servizi collegati",
         default=[],
         value_type=RelationChoice(
-            title=_(u"Servizio collegato"),
+            title=_("Servizio collegato"),
             vocabulary="plone.app.vocabularies.Catalog",
         ),
         required=False,
@@ -108,42 +106,42 @@ class IDocumentoPersonale(model.Schema):
 
     canale_digitale_servizio = schema.TextLine(
         title=_(
-            u"canale_digitale_servizio",
-            default=u"Canale digitale servizio collegato",
+            "canale_digitale_servizio",
+            default="Canale digitale servizio collegato",
         ),
         required=False,
     )
 
     data_inizio = schema.Date(
-        title=_(u"data_inizio", default=u"Data di inizio"), required=False
+        title=_("data_inizio", default="Data di inizio"), required=False
     )
 
     data_e_fasi_intermedie = BlocksField(
-        title=_(u"data_e_fasi_intermedie", default=u"Data e fasi intermedie"),
+        title=_("data_e_fasi_intermedie", default="Data e fasi intermedie"),
         required=False,
     )
 
     data_inizio = schema.Date(
-        title=_(u"data_inizio", default=u"Data di inizio"), required=False
+        title=_("data_inizio", default="Data di inizio"), required=False
     )
 
     # TODO: vocabolario per i dataset collegati ad un documento
     dataset = RelationList(
-        title=_(u"Dataset"),
+        title=_("Dataset"),
         required=False,
         default=[],
         value_type=RelationChoice(
-            title=_(u"Dataset collegato"),
+            title=_("Dataset collegato"),
             vocabulary="plone.app.vocabularies.Catalog",
         ),
     )
 
     informazioni = BlocksField(
-        title=_(u"informazioni", default=u"Ulteriori informazioni"),
+        title=_("informazioni", default="Ulteriori informazioni"),
         required=False,
     )
 
     riferimenti_normativi = BlocksField(
-        title=_(u"riferimenti_normativi", default=u"Riferimenti normativi"),
+        title=_("riferimenti_normativi", default="Riferimenti normativi"),
         required=False,
     )

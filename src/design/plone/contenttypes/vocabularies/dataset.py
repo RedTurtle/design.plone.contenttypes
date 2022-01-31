@@ -24,26 +24,26 @@ class TemiDataset(object):
         # this can be any static or dynamic data, a catalog result for example.
         items = [
             VocabItem(
-                u"agricoltura_pesca_silvicoltura_e_prodotti_alimentari",
-                _(u"Agricoltura, pesca, silvicoltura e prodotti alimentari"),
+                "agricoltura_pesca_silvicoltura_e_prodotti_alimentari",
+                _("Agricoltura, pesca, silvicoltura e prodotti alimentari"),
             ),
-            VocabItem(u"economia_e_finanze", _(u"Economia e Finanze")),
+            VocabItem("economia_e_finanze", _("Economia e Finanze")),
             VocabItem(
-                u"istruzione_cultura_e_sport",
-                _(u"Istruzione, cultura e sport"),
+                "istruzione_cultura_e_sport",
+                _("Istruzione, cultura e sport"),
             ),
-            VocabItem(u"energia", _(u"Energia")),
-            VocabItem(u"ambiente", _(u"Ambiente")),
-            VocabItem(u"governo_e_settore_pubblico", _(u"Governo e settore pubblico")),
-            VocabItem(u"salute", _(u"Salute")),
-            VocabItem(u"tematiche_internazionali", _(u"Tematiche internazionali")),
+            VocabItem("energia", _("Energia")),
+            VocabItem("ambiente", _("Ambiente")),
+            VocabItem("governo_e_settore_pubblico", _("Governo e settore pubblico")),
+            VocabItem("salute", _("Salute")),
+            VocabItem("tematiche_internazionali", _("Tematiche internazionali")),
             VocabItem(
-                u"giustizia_sistema_giuridico_e_sicurezza_pubblica",
-                _(u"Giustizia, sistema giuridico e sicurezza pubblica"),
+                "giustizia_sistema_giuridico_e_sicurezza_pubblica",
+                _("Giustizia, sistema giuridico e sicurezza pubblica"),
             ),
-            VocabItem(u"regioni_e_citta", _(u"Regioni e città")),
-            VocabItem(u"popolazione_e_societa", _(u"Popolazione e società")),
-            VocabItem(u"scienza_e_tecnologia", _(u"Scienza e tecnologia")),
+            VocabItem("regioni_e_citta", _("Regioni e città")),
+            VocabItem("popolazione_e_societa", _("Popolazione e società")),
+            VocabItem("scienza_e_tecnologia", _("Scienza e tecnologia")),
         ]
 
         if not IDexterityContent.providedBy(context):

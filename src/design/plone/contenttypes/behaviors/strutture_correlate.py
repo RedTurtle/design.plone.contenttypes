@@ -14,10 +14,10 @@ from zope.interface import provider, implementer
 class IStruttureCorrelate(model.Schema):
 
     strutture_politiche = RelationList(
-        title=u"Strutture politiche coinvolte",
+        title="Strutture politiche coinvolte",
         default=[],
         value_type=RelationChoice(
-            title=_(u"Struttura politica coinvolta"),
+            title=_("Struttura politica coinvolta"),
             vocabulary="plone.app.vocabularies.Catalog",
         ),
         required=False,
@@ -39,7 +39,7 @@ class IStruttureCorrelate(model.Schema):
 
     model.fieldset(
         "informazioni",
-        label=_("informazioni_label", default=u"Ulteriori informazioni"),
+        label=_("informazioni_label", default="Ulteriori informazioni"),
         fields=["strutture_politiche"],
     )
 

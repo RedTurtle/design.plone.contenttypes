@@ -151,7 +151,7 @@ class IDesignPloneSettings(Interface):
 class DesignPloneControlPanelForm(RegistryEditForm):
     schema = IDesignPloneSettings
     id = "design-plone-control-panel"
-    label = _(u"Impostazioni Design Plone")
+    label = _("Impostazioni Design Plone")
 
 
 class DesignPloneControlPanelView(ControlPanelFormWrapper):

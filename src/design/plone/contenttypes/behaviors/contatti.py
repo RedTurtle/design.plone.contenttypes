@@ -15,50 +15,50 @@ class IContatti(model.Schema):
     """ """
 
     telefono = schema.TextLine(
-        title=_(u"telefono_label", default=u"Telefono"),
+        title=_("telefono_label", default="Telefono"),
         description=_(
-            u"telefono_help",
-            default=u"Indicare un riferimento telefonico per poter contattare"
+            "telefono_help",
+            default="Indicare un riferimento telefonico per poter contattare"
             " i referenti.",
         ),
         required=False,
     )
 
     fax = schema.TextLine(
-        title=_(u"fax_label", default=u"Fax"),
-        description=_(u"fax_help", default=u"Indicare un numero di fax."),
+        title=_("fax_label", default="Fax"),
+        description=_("fax_help", default="Indicare un numero di fax."),
         required=False,
     )
 
     email = schema.TextLine(
-        title=_(u"email_label", default=u"E-mail"),
+        title=_("email_label", default="E-mail"),
         description=_(
-            u"email_help",
-            default=u"Indicare un indirizzo mail per poter contattare" " i referenti.",
+            "email_help",
+            default="Indicare un indirizzo mail per poter contattare" " i referenti.",
         ),
         required=False,
     )
 
     pec = schema.TextLine(
-        title=_(u"pec_label", default=u"Pec"),
+        title=_("pec_label", default="Pec"),
         description=_(
-            u"pec_help",
-            default=u"Indicare un indirizzo pec per poter contattare" " i referenti.",
+            "pec_help",
+            default="Indicare un indirizzo pec per poter contattare" " i referenti.",
         ),
         required=False,
     )
 
     web = schema.TextLine(
-        title=_(u"web_label", default=u"Sito web"),
+        title=_("web_label", default="Sito web"),
         description=_("web_help", default="Indicare un indirizzo web di riferimento."),
         required=False,
     )
 
     orario_pubblico = BlocksField(
-        title=_(u"orario_pubblico_label", default=u"Orario per il pubblico"),
+        title=_("orario_pubblico_label", default="Orario per il pubblico"),
         description=_(
-            u"orario_pubblico_help",
-            default=u"Indicare eventuali orari di accesso al pubblico",
+            "orario_pubblico_help",
+            default="Indicare eventuali orari di accesso al pubblico",
         ),
         required=False,
     )
@@ -73,7 +73,7 @@ class IContatti(model.Schema):
 class IContattiUnitaOrganizzativa(IContatti):
     model.fieldset(
         "contatti",
-        label=_("contatti_label", default=u"Contatti"),
+        label=_("contatti_label", default="Contatti"),
         fields=["telefono", "fax", "email", "pec", "web", "orario_pubblico"],
     )
 
@@ -83,13 +83,13 @@ class IContattiVenue(IContatti):
 
     model.fieldset(
         "orari",
-        label=_("orari_label", default=u"Orari di apertura"),
+        label=_("orari_label", default="Orari di apertura"),
         fields=["orario_pubblico"],
     )
 
     model.fieldset(
         "contatti",
-        label=_("contatti_label", default=u"Contatti"),
+        label=_("contatti_label", default="Contatti"),
         fields=["telefono", "fax", "email", "pec", "web"],
     )
 

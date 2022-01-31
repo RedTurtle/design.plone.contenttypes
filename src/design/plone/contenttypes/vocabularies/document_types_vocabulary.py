@@ -24,23 +24,23 @@ class DocumentTypesVocabulary(object):
         # Just an example list of content for our vocabulary,
         # this can be any static or dynamic data, a catalog result for example.
         items = [
-            VocabItem(u"documenti_albo_pretorio", _(u"Documenti albo pretorio")),
-            VocabItem(u"modulistica", _(u"Modulistica")),
+            VocabItem("documenti_albo_pretorio", _("Documenti albo pretorio")),
+            VocabItem("modulistica", _("Modulistica")),
             VocabItem(
-                u"documento_funzionamento_interno",
-                _(u"Documento funzionamento interno"),
+                "documento_funzionamento_interno",
+                _("Documento funzionamento interno"),
             ),
-            VocabItem(u"atto_normativo", _(u"Atto normativo")),
-            VocabItem(u"accordo_tra_enti", _(u"Accordo tra enti")),
+            VocabItem("atto_normativo", _("Atto normativo")),
+            VocabItem("accordo_tra_enti", _("Accordo tra enti")),
             VocabItem(
-                u"documento_attivita_politica",
-                _(u"Documento attivita politica"),
+                "documento_attivita_politica",
+                _("Documento attivita politica"),
             ),
             VocabItem(
-                u"documento_tecnico_di_supporto",
-                _(u"Documento (tecnico) di supporto"),
+                "documento_tecnico_di_supporto",
+                _("Documento (tecnico) di supporto"),
             ),
-            VocabItem(u"istanza", _(u"Istanza")),
+            VocabItem("istanza", _("Istanza")),
         ]
 
         # Fix context if you are using the vocabulary in DataGridField.
