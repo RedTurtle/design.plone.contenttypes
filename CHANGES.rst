@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.0.3 (unreleased)
+4.0.3 (2022-01-31)
 ------------------
 
 - Add right widget to scadenza_domande_bando field.
