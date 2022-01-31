@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 from collective.volto.blocksfield.field import BlocksField
 from design.plone.contenttypes.interfaces import IDesignPloneContentType
+from plone.app.event.base import default_timezone
 from plone.app.z3cform.widget import AjaxSelectFieldWidget
+from plone.app.z3cform.widget import DatetimeFieldWidget
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives
 from plone.autoform import directives as form
@@ -148,7 +150,11 @@ class IBandoAgidSchema(IBandoSchema, IDesignPloneContentType):
             "selectableTypes": ["UnitaOrganizzativa"],
         },
     )
-
+    form.widget(
+        "scadenza_domande_bando",
+        DatetimeFieldWidget,
+        default_timezone=default_timezone,
+    )
     model.fieldset(
         "correlati",
         label=_("correlati_label", default="Contenuti collegati"),

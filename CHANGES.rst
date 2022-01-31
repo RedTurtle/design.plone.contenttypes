@@ -5,8 +5,8 @@ Changelog
 4.0.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Add right widget to scadenza_domande_bando field.
+  [cekk]
 
 4.0.2 (2022-01-27)
 ------------------
