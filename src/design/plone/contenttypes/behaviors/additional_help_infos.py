@@ -15,7 +15,7 @@ from zope.interface import provider, implementer
 class IAdditionalHelpInfos(model.Schema):
 
     ulteriori_informazioni = BlocksField(
-        title=_(u"ulteriori_informazioni", default=u"Ulteriori informazioni"),
+        title=_("ulteriori_informazioni", default="Ulteriori informazioni"),
         description=_(
             "ulteriori_informazioni_help",
             default="Ulteriori informazioni non contemplate" " dai campi precedenti.",
@@ -25,7 +25,7 @@ class IAdditionalHelpInfos(model.Schema):
 
     model.fieldset(
         "informazioni",
-        label=_("informazioni_label", default=u"Ulteriori informazioni"),
+        label=_("informazioni_label", default="Ulteriori informazioni"),
         fields=["ulteriori_informazioni"],
     )
 

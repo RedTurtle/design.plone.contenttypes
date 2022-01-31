@@ -15,7 +15,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
     """Marker interface for content type Servizio"""
 
     sottotitolo = schema.TextLine(
-        title=_(u"sottotitolo_label", default=u"Sottotitolo"),
+        title=_("sottotitolo_label", default="Sottotitolo"),
         description=_(
             "sottotitolo_help",
             default="Indica un eventuale sottotitolo/titolo alternativo.",
@@ -27,7 +27,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
     # solo se il servizio
     # non e' attivo
     stato_servizio = schema.Bool(
-        title=_(u"stato_servizio_label", default=u"Servizio non attivo"),
+        title=_("stato_servizio_label", default="Servizio non attivo"),
         required=False,
         description=_(
             "stato_servizio_help",
@@ -37,8 +37,8 @@ class IServizio(model.Schema, IDesignPloneContentType):
 
     motivo_stato_servizio = BlocksField(
         title=_(
-            u"motivo_stato_servizio_label",
-            default=u"Motivo dello stato del servizio nel caso non sia attivo",
+            "motivo_stato_servizio_label",
+            default="Motivo dello stato del servizio nel caso non sia attivo",
         ),
         required=False,
         description=_(
@@ -48,7 +48,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
     )
 
     a_chi_si_rivolge = BlocksField(
-        title=_(u"a_chi_si_rivolge_label", default=u"A chi si rivolge"),
+        title=_("a_chi_si_rivolge_label", default="A chi si rivolge"),
         required=False,
         description=_(
             "a_chi_si_rivolge_help",
@@ -57,7 +57,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
     )
 
     chi_puo_presentare = BlocksField(
-        title=_(u"chi_puo_presentare_label", default=u"Chi può presentare"),
+        title=_("chi_puo_presentare_label", default="Chi può presentare"),
         required=False,
         description=_(
             "chi_puo_presentare_help",
@@ -67,7 +67,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
     )
 
     copertura_geografica = BlocksField(
-        title=_(u"copertura_geografica_label", default=u"Copertura geografica"),
+        title=_("copertura_geografica_label", default="Copertura geografica"),
         required=False,
         description=_(
             "copertura_geografica_help",
@@ -77,7 +77,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
     )
 
     come_si_fa = BlocksField(
-        title=_(u"come_si_fa", default=u"Come si fa"),
+        title=_("come_si_fa", default="Come si fa"),
         required=False,
         description=_(
             "come_si_fa_help",
@@ -87,7 +87,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
     )
 
     cosa_si_ottiene = BlocksField(
-        title=_(u"cosa_si_ottiene", default=u"Cosa si ottiene"),
+        title=_("cosa_si_ottiene", default="Cosa si ottiene"),
         description=_(
             "cosa_si_ottiene_help",
             default="Indicare cosa si può ottenere dal servizio, ad esempio"
@@ -97,7 +97,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
     )
 
     procedure_collegate = BlocksField(
-        title=_(u"procedure_collegate", default=u"Procedure collegate all'esito"),
+        title=_("procedure_collegate", default="Procedure collegate all'esito"),
         required=False,
         description=_(
             "procedure_collegate_help",
@@ -108,7 +108,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
     )
 
     canale_digitale = BlocksField(
-        title=_(u"canale_digitale", default=u"Canale digitale"),
+        title=_("canale_digitale", default="Canale digitale"),
         description=_(
             "canale_digitale_help",
             default="Collegamento con l'eventuale canale digitale di"
@@ -118,7 +118,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
     )
 
     autenticazione = BlocksField(
-        title=_(u"autenticazione", default=u"Autenticazione"),
+        title=_("autenticazione", default="Autenticazione"),
         description=_(
             "autenticazione_help",
             default="Indicare, se previste, le modalità di autenticazione"
@@ -128,7 +128,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
     )
 
     dove_rivolgersi = RelationList(
-        title=u"Dove rivolgersi",
+        title="Dove rivolgersi",
         default=[],
         value_type=RelationChoice(vocabulary="plone.app.vocabularies.Catalog"),
         required=False,
@@ -141,8 +141,8 @@ class IServizio(model.Schema, IDesignPloneContentType):
 
     dove_rivolgersi_extra = BlocksField(
         title=_(
-            u"dove_rivolgersi_extra",
-            default=u"Dove rivolgersi: informazioni aggiuntive",
+            "dove_rivolgersi_extra",
+            default="Dove rivolgersi: informazioni aggiuntive",
         ),
         description=_(
             "dove_rivolgersi_extra_help",
@@ -153,7 +153,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
     )
 
     prenota_appuntamento = BlocksField(
-        title=_(u"prenota_appuntamento", default=u"Prenota un appuntamento"),
+        title=_("prenota_appuntamento", default="Prenota un appuntamento"),
         description=_(
             "prenota_appuntamento_help",
             default="Se è possibile prenotare un'appuntamento, indicare"
@@ -164,7 +164,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
     )
 
     tempi_e_scadenze = BlocksField(
-        title=_(u"tempi_e_scadenze", default=u"Tempi e scadenze"),
+        title=_("tempi_e_scadenze", default="Tempi e scadenze"),
         required=False,
         description=_(
             "tempi_e_scadenze_help",
@@ -174,7 +174,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
     )
 
     cosa_serve = BlocksField(
-        title=_(u"cosa_serve", default=u"Cosa serve"),
+        title=_("cosa_serve", default="Cosa serve"),
         required=True,
         description=_(
             "cosa_serve_help",
@@ -183,7 +183,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
     )
 
     costi = BlocksField(
-        title=_(u"costi", default=u"Costi"),
+        title=_("costi", default="Costi"),
         required=False,
         description=_(
             "costi_help",
@@ -193,7 +193,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
     )
 
     vincoli = BlocksField(
-        title=_(u"vincoli", default=u"Vincoli"),
+        title=_("vincoli", default="Vincoli"),
         required=False,
         description=_(
             "vincoli_help",
@@ -202,7 +202,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
     )
 
     casi_particolari = BlocksField(
-        title=_(u"casi_particolari", default=u"Casi particolari"),
+        title=_("casi_particolari", default="Casi particolari"),
         required=False,
         description=_(
             "casi_particolari_help",
@@ -213,7 +213,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
 
     # vocabolario dalle unita' organizzative presenti a catalogo?
     ufficio_responsabile = RelationList(
-        title=_(u"ufficio_responsabile_erogazione", default=u"Uffici responsabili"),
+        title=_("ufficio_responsabile_erogazione", default="Uffici responsabili"),
         description=_(
             "ufficio_responsabile_help",
             default="Seleziona gli uffici responsabili dell'erogazione"
@@ -222,13 +222,13 @@ class IServizio(model.Schema, IDesignPloneContentType):
         required=True,
         default=[],
         value_type=RelationChoice(
-            title=_(u"Ufficio responsabile"),
+            title=_("Ufficio responsabile"),
             vocabulary="plone.app.vocabularies.Catalog",
         ),
     )
 
     area = RelationList(
-        title=_(u"area", default=u"Area"),
+        title=_("area", default="Area"),
         required=False,
         default=[],
         description=_(
@@ -236,12 +236,12 @@ class IServizio(model.Schema, IDesignPloneContentType):
             default="Seleziona l'area da cui dipende questo servizio.",
         ),
         value_type=RelationChoice(
-            title=_(u"Area"), vocabulary="plone.app.vocabularies.Catalog"
+            title=_("Area"), vocabulary="plone.app.vocabularies.Catalog"
         ),
     )
 
     altri_documenti = RelationList(
-        title=u"Documenti correlati",
+        title="Documenti correlati",
         default=[],
         description=_(
             "altri_documenti_help",
@@ -249,13 +249,13 @@ class IServizio(model.Schema, IDesignPloneContentType):
             " a questo servizio.",
         ),
         value_type=RelationChoice(
-            title=_(u"Documento"), vocabulary="plone.app.vocabularies.Catalog"
+            title=_("Documento"), vocabulary="plone.app.vocabularies.Catalog"
         ),
         required=False,
     )
 
     link_siti_esterni = BlocksField(
-        title=_(u"link_siti_esterni", default=u"Link a siti esterni"),
+        title=_("link_siti_esterni", default="Link a siti esterni"),
         required=False,
         description=_(
             "link_siti_esterni_help",
@@ -265,7 +265,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
     )
 
     codice_ipa = schema.TextLine(
-        title=_(u"codice_ipa", default=u"Codice dell'ente erogatore (ipa)"),
+        title=_("codice_ipa", default="Codice dell'ente erogatore (ipa)"),
         required=False,
         description=_(
             "codice_ipa_help",
@@ -277,7 +277,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
 
     # classificazione basata sul catalogo dei servizi, stringa o lista?
     settore_merceologico = schema.TextLine(
-        title=_(u"settore_merceologico", default=u"Settore merceologico"),
+        title=_("settore_merceologico", default="Settore merceologico"),
         required=False,
         description=_(
             "settore_merceologico_help",
@@ -287,7 +287,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
     )
 
     identificativo = schema.TextLine(
-        title=_(u"identificativo", default=u"Identificativo"),
+        title=_("identificativo", default="Identificativo"),
         required=False,
         description=_(
             "identificativo_help",
@@ -296,10 +296,10 @@ class IServizio(model.Schema, IDesignPloneContentType):
     )
 
     servizi_collegati = RelationList(
-        title=u"Servizi collegati",
+        title="Servizi collegati",
         default=[],
         value_type=RelationChoice(
-            title=_(u"Servizi collegati"),
+            title=_("Servizi collegati"),
             vocabulary="plone.app.vocabularies.Catalog",
         ),
         required=False,
@@ -364,12 +364,12 @@ class IServizio(model.Schema, IDesignPloneContentType):
     # custom fieldset and order
     model.fieldset(
         "a_chi_si_rivolge",
-        label=_("a_chi_si_rivolge_label", default=u"A chi si rivolge"),
+        label=_("a_chi_si_rivolge_label", default="A chi si rivolge"),
         fields=["a_chi_si_rivolge", "chi_puo_presentare", "copertura_geografica"],
     )
     model.fieldset(
         "accedi_al_servizio",
-        label=_("accedi_al_servizio_label", default=u"Accedere al servizio"),
+        label=_("accedi_al_servizio_label", default="Accedere al servizio"),
         fields=[
             "come_si_fa",
             "cosa_si_ottiene",
@@ -383,46 +383,46 @@ class IServizio(model.Schema, IDesignPloneContentType):
     )
     model.fieldset(
         "cosa_serve",
-        label=_("cosa_serve_label", default=u"Cosa serve"),
+        label=_("cosa_serve_label", default="Cosa serve"),
         fields=["cosa_serve"],
     )
     model.fieldset(
         "costi_e_vincoli",
-        label=_("costi_e_vincoli_label", default=u"Costi e vincoli"),
+        label=_("costi_e_vincoli_label", default="Costi e vincoli"),
         fields=["costi", "vincoli"],
     )
 
     model.fieldset(
         "tempi_e_scadenze",
-        label=_("tempi_e_scadenze_label", default=u"Tempi e scadenze"),
+        label=_("tempi_e_scadenze_label", default="Tempi e scadenze"),
         fields=["tempi_e_scadenze"],
     )
 
     model.fieldset(
         "casi_particolari",
-        label=_("casi_particolari_label", default=u"Casi particolari"),
+        label=_("casi_particolari_label", default="Casi particolari"),
         fields=["casi_particolari"],
     )
 
     model.fieldset(
         "contatti",
-        label=_("contatti_label", default=u"Contatti"),
+        label=_("contatti_label", default="Contatti"),
         fields=["ufficio_responsabile", "area"],
     )
     model.fieldset(
         "documenti",
-        label=_("documenti_label", default=u"Documenti"),
+        label=_("documenti_label", default="Documenti"),
         fields=["altri_documenti"],
     )
     model.fieldset(
         "link_utili",
-        label=_("link_utili_label", default=u"Link utili"),
+        label=_("link_utili_label", default="Link utili"),
         fields=["link_siti_esterni"],
     )
 
     model.fieldset(
         "correlati",
-        label=_("correlati_label", default=u"Contenuti collegati"),
+        label=_("correlati_label", default="Contenuti collegati"),
         fields=["servizi_collegati"],
     )
 

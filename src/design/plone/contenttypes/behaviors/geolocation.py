@@ -26,7 +26,7 @@ class IGeolocatableUnitaOrganizzativa(IGeolocatable):
 class IGeolocatableVenue(IGeolocatable):
 
     model.fieldset(
-        "dove", label=_("dove_label", default=u"Dove"), fields=["geolocation"]
+        "dove", label=_("dove_label", default="Dove"), fields=["geolocation"]
     )
 
 
@@ -35,7 +35,7 @@ class IGeolocatableEvent(IGeolocatable):
 
     model.fieldset(
         "luogo",
-        label=_("luogo_label", default=u"Luogo"),
+        label=_("luogo_label", default="Luogo"),
         fields=["geolocation"],
     )
 

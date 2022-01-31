@@ -7,6 +7,8 @@ Changelog
 
 - Add right widget to scadenza_domande_bando field.
   [cekk]
+- Remove all u" from strings because they are un-needed in Python3 (and new black does not support python2 anymore).
+  [cekk]
 
 4.0.2 (2022-01-27)
 ------------------

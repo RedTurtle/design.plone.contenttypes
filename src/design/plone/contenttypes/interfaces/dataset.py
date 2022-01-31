@@ -11,7 +11,7 @@ class IDataset(model.Schema):
 
     # TODO: aggiungere tassonomia e vocabolario rilevante fornito nelle linee guida  # noqa
     temi = schema.Choice(
-        title=_(u"temi", default=u"Temi"),
+        title=_("temi", default="Temi"),
         vocabulary="design.plone.contenttypes.temi_dataset",
         required=True,
     )
@@ -19,18 +19,16 @@ class IDataset(model.Schema):
     # TODO: identificativo dataset
 
     distribuzione = BlocksField(
-        title=_(u"distribuzione", default=u"Distribuzione"), required=True
+        title=_("distribuzione", default="Distribuzione"), required=True
     )
 
-    licenza = schema.TextLine(title=_(u"licenza", default=u"Licenza"), required=True)
+    licenza = schema.TextLine(title=_("licenza", default="Licenza"), required=True)
 
-    dataset = field.NamedBlobFile(
-        title=_(u"dataset", default=u"Dataset"), required=True
-    )
+    dataset = field.NamedBlobFile(title=_("dataset", default="Dataset"), required=True)
 
-    titolare = schema.TextLine(title=_(u"titolare", default=u"Titolare"), required=True)
+    titolare = schema.TextLine(title=_("titolare", default="Titolare"), required=True)
 
     frequenza_aggiornamento = schema.TextLine(
-        title=_(u"frequenza_aggiornamento", default=u"Frequenza di aggiornamento"),
+        title=_("frequenza_aggiornamento", default="Frequenza di aggiornamento"),
         required=True,
     )

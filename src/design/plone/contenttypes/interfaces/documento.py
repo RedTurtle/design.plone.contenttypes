@@ -47,7 +47,7 @@ class IDocumento(model.Schema, IDesignPloneContentType):
         required=False,
         default=[],
         value_type=RelationChoice(
-            title=_(u"Ufficio responsabile"),
+            title=_("Ufficio responsabile"),
             vocabulary="plone.app.vocabularies.Catalog",
         ),
     )
@@ -64,7 +64,7 @@ class IDocumento(model.Schema, IDesignPloneContentType):
         required=False,
         default=[],
         value_type=RelationChoice(
-            title=_(u"Area"), vocabulary="plone.app.vocabularies.Catalog"
+            title=_("Area"), vocabulary="plone.app.vocabularies.Catalog"
         ),
     )
 
@@ -170,7 +170,7 @@ class IDocumento(model.Schema, IDesignPloneContentType):
 
     model.fieldset(
         "informazioni",
-        label=_("informazioni_label", default=u"Ulteriori informazioni"),
+        label=_("informazioni_label", default="Ulteriori informazioni"),
         fields=["riferimenti_normativi", "documenti_allegati"],
     )
 

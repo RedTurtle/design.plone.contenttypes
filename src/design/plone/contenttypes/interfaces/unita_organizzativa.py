@@ -15,7 +15,7 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
     """Marker interface for content type UnitaOrganizzativa"""
 
     competenze = BlocksField(
-        title=_(u"competenze", default=u"Competenze"),
+        title=_("competenze", default="Competenze"),
         description=_(
             "uo_competenze_help",
             default="Descrizione dei compiti assegnati alla struttura.",
@@ -24,7 +24,7 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
     )
 
     legami_con_altre_strutture = RelationList(
-        title=u"Servizi o uffici di riferimento",
+        title="Servizi o uffici di riferimento",
         default=[],
         description=_(
             "legami_con_altre_strutture_help",
@@ -32,15 +32,15 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
             " a questa unità organizzativa.",
         ),
         value_type=RelationChoice(
-            title=_(u"Struttura"), vocabulary="plone.app.vocabularies.Catalog"
+            title=_("Struttura"), vocabulary="plone.app.vocabularies.Catalog"
         ),
         required=False,
     )
 
     responsabile = RelationList(
-        title=u"Responsabile",
+        title="Responsabile",
         value_type=RelationChoice(
-            title=_(u"Responsabile"),
+            title=_("Responsabile"),
             vocabulary="plone.app.vocabularies.Catalog",
         ),
         description=_(
@@ -52,7 +52,7 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
     )
 
     tipologia_organizzazione = schema.Choice(
-        title=_(u"tipologia_organizzazione", default=u"Tipologia organizzazione"),
+        title=_("tipologia_organizzazione", default="Tipologia organizzazione"),
         # vocabolario di rif sara' la lista delle tipologie di organizzazione
         vocabulary="" "design.plone.vocabularies.tipologie_unita_organizzativa",
         description=_(
@@ -64,11 +64,11 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
     )
 
     assessore_riferimento = RelationList(
-        title=u"Assessore di riferimento",
+        title="Assessore di riferimento",
         # vocabolario di riferimento sara' dinamico con i content type
         # persona presenti all'interno della macro Amministrazione"
         value_type=RelationChoice(
-            title=_(u"Assessore di riferimento"),
+            title=_("Assessore di riferimento"),
             vocabulary="plone.app.vocabularies.Catalog",
         ),
         description=_(
@@ -82,10 +82,10 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
 
     # vocabolario di riferimento sara' dinamico con i content type persona
     persone_struttura = RelationList(
-        title=u"Persone che compongono la struttura",
+        title="Persone che compongono la struttura",
         default=[],
         value_type=RelationChoice(
-            title=_(u"Persone della struttura"),
+            title=_("Persone della struttura"),
             vocabulary="plone.app.vocabularies.Catalog",
         ),
         description=_(
@@ -96,7 +96,7 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
     )
 
     sede = RelationList(
-        title=u"Sede principale",
+        title="Sede principale",
         default=[],
         description=_(
             "sede_help",
@@ -107,13 +107,13 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
             "alcune informazioni.",
         ),
         value_type=RelationChoice(
-            title=_(u"Sede"), vocabulary="plone.app.vocabularies.Catalog"
+            title=_("Sede"), vocabulary="plone.app.vocabularies.Catalog"
         ),
         required=False,
     )
 
     sedi_secondarie = RelationList(
-        title=u"Sedi secondarie",
+        title="Sedi secondarie",
         default=[],
         description=_(
             "sedi_secondarie_help",
@@ -124,13 +124,13 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
             " sottostante.",
         ),
         value_type=RelationChoice(
-            title=_(u"Sede"), vocabulary="plone.app.vocabularies.Catalog"
+            title=_("Sede"), vocabulary="plone.app.vocabularies.Catalog"
         ),
         required=False,
     )
 
     contact_info = BlocksField(
-        title=_(u"contact_info", default=u"Informazioni di contatto generiche"),
+        title=_("contact_info", default="Informazioni di contatto generiche"),
         required=False,
         description=_(
             "uo_contact_info_description",

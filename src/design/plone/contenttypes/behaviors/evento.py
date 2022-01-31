@@ -19,7 +19,7 @@ class IEvento(model.Schema):
     """Marker inteerface for content type Evento"""
 
     sottotitolo = schema.TextLine(
-        title=_(u"sottotitolo_label", default=u"Sottotitolo"),
+        title=_("sottotitolo_label", default="Sottotitolo"),
         description=_(
             "sottotitolo_help",
             default="Indica un eventuale sottotitolo/titolo alternativo.",
@@ -27,7 +27,7 @@ class IEvento(model.Schema):
         required=False,
     )
     descrizione_estesa = BlocksField(
-        title=_(u"descrizione_estesa", default=u"Descrizione estesa"),
+        title=_("descrizione_estesa", default="Descrizione estesa"),
         required=False,
         description=_(
             "descrizione_estesa_help",
@@ -35,7 +35,7 @@ class IEvento(model.Schema):
         ),
     )
     descrizione_destinatari = BlocksField(
-        title=_(u"descrizione_destinatari", default=u"Descrizione destinatari"),
+        title=_("descrizione_destinatari", default="Descrizione destinatari"),
         required=False,
         description=_(
             "descrizione_destinatari_help",
@@ -44,10 +44,10 @@ class IEvento(model.Schema):
     )
 
     persone_amministrazione = RelationList(
-        title=u"Persone dell'amministrazione che partecipano all'evento",
+        title="Persone dell'amministrazione che partecipano all'evento",
         default=[],
         value_type=RelationChoice(
-            title=_(u"Persona dell'amministrazione"),
+            title=_("Persona dell'amministrazione"),
             vocabulary="plone.app.vocabularies.Catalog",
         ),
         description=_(
@@ -59,7 +59,7 @@ class IEvento(model.Schema):
     )
 
     orari = BlocksField(
-        title=_(u"orari", default=u"Informazioni sugli orari"),
+        title=_("orari", default="Informazioni sugli orari"),
         required=False,
         description=_(
             "orari_help",
@@ -68,7 +68,7 @@ class IEvento(model.Schema):
     )
 
     prezzo = BlocksField(
-        title=_(u"prezzo", default=u"Prezzo"),
+        title=_("prezzo", default="Prezzo"),
         required=False,
         description=_(
             "prezzo_help",
@@ -77,7 +77,7 @@ class IEvento(model.Schema):
         ),
     )
     organizzato_da_interno = RelationList(
-        title=_(u"organizzato_da_interno_label", default=u"Organizzato da"),
+        title=_("organizzato_da_interno_label", default="Organizzato da"),
         default=[],
         value_type=RelationChoice(vocabulary="plone.app.vocabularies.Catalog"),
         required=False,
@@ -92,7 +92,7 @@ class IEvento(model.Schema):
     )
 
     organizzato_da_esterno = BlocksField(
-        title=_(u"organizzato_da_esterno_label", default=u"Organizzatore"),
+        title=_("organizzato_da_esterno_label", default="Organizzatore"),
         required=False,
         description=_(
             "organizzato_da_esterno_help",
@@ -101,21 +101,21 @@ class IEvento(model.Schema):
         ),
     )
     telefono = schema.TextLine(
-        title=_(u"telefono_event_help", default=u"Telefono"),
+        title=_("telefono_event_help", default="Telefono"),
         description=_(
-            u"telefono_event_label",
-            default=u"Indicare un riferimento telefonico per poter contattare"
+            "telefono_event_label",
+            default="Indicare un riferimento telefonico per poter contattare"
             " gli organizzatori.",
         ),
         required=False,
     )
     fax = schema.TextLine(
-        title=_(u"fax_event_help", default=u"Fax"),
-        description=_(u"fax_event_label", default="Indicare un numero di fax."),
+        title=_("fax_event_help", default="Fax"),
+        description=_("fax_event_label", default="Indicare un numero di fax."),
         required=False,
     )
     reperibilita = schema.TextLine(
-        title=_(u"reperibilita", default=u"Reperibilità organizzatore"),
+        title=_("reperibilita", default="Reperibilità organizzatore"),
         required=False,
         description=_(
             "reperibilita_help",
@@ -124,17 +124,17 @@ class IEvento(model.Schema):
         ),
     )
     email = schema.TextLine(
-        title=_(u"email_event_label", default=u"E-mail"),
+        title=_("email_event_label", default="E-mail"),
         description=_(
-            u"email_event_help",
-            default=u"Indicare un indirizzo mail per poter contattare"
+            "email_event_help",
+            default="Indicare un indirizzo mail per poter contattare"
             " gli organizzatori.",
         ),
         required=False,
     )
 
     web = schema.TextLine(
-        title=_(u"web_event_label", default=u"Sito web"),
+        title=_("web_event_label", default="Sito web"),
         description=_(
             "web_event_help",
             default="Indicare un indirizzo web di riferimento a " "questo evento.",
@@ -142,7 +142,7 @@ class IEvento(model.Schema):
         required=False,
     )
     supportato_da = RelationList(
-        title=_(u"supportato_da_label", default=u"Evento supportato da"),
+        title=_("supportato_da_label", default="Evento supportato da"),
         required=False,
         default=[],
         value_type=RelationChoice(vocabulary="plone.app.vocabularies.Catalog"),
@@ -155,7 +155,7 @@ class IEvento(model.Schema):
     # TODO: come fare il rating/recensione dell'evento
 
     patrocinato_da = schema.TextLine(
-        title=_(u"patrocinato_da_label", default=u"Patrocinato da"),
+        title=_("patrocinato_da_label", default="Patrocinato da"),
         required=False,
         description=_(
             "patrocinato_da_help",
@@ -197,7 +197,7 @@ class IEvento(model.Schema):
 
     model.fieldset(
         "cose",
-        label=_("cose_label", default=u"Cos'è"),
+        label=_("cose_label", default="Cos'è"),
         fields=[
             "descrizione_estesa",
             "descrizione_destinatari",
@@ -206,13 +206,13 @@ class IEvento(model.Schema):
     )
     model.fieldset(
         "date_e_orari",
-        label=_("date_e_orari_label", default=u"Date e orari"),
+        label=_("date_e_orari_label", default="Date e orari"),
         fields=["orari"],
     )
-    model.fieldset("costi", label=_("costi_label", default=u"Costi"), fields=["prezzo"])
+    model.fieldset("costi", label=_("costi_label", default="Costi"), fields=["prezzo"])
     model.fieldset(
         "contatti",
-        label=_("contatti_label", default=u"Contatti"),
+        label=_("contatti_label", default="Contatti"),
         fields=[
             "organizzato_da_interno",
             "organizzato_da_esterno",
@@ -226,7 +226,7 @@ class IEvento(model.Schema):
     )
     model.fieldset(
         "informazioni",
-        label=_("informazioni_label", default=u"Ulteriori informazioni"),
+        label=_("informazioni_label", default="Ulteriori informazioni"),
         fields=["patrocinato_da"],
     )
 

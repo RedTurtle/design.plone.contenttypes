@@ -9,12 +9,12 @@ class IPratica(model.Schema):
     """Marker interface for Pratica"""
 
     numero_protocollo = schema.TextLine(
-        title=_(u"numero_protocollo", default=u"Numero protocollo"),
+        title=_("numero_protocollo", default="Numero protocollo"),
         required=True,
     )
 
     ufficio_riferimento = schema.Choice(
-        title=_(u"ufficio_riferimento", default=u"Ufficio di riferimento"),
+        title=_("ufficio_riferimento", default="Ufficio di riferimento"),
         # vocabolario di riferimento sara' la lista degli uffici di riferimento
         vocabulary="design.plone.contenttypes.Mockup",
         required=False,
@@ -23,15 +23,15 @@ class IPratica(model.Schema):
     # questo viene gestito dal workflow di Plone ma fa riferimento ad una
     # tassonomia "Lista stati di una pratica"
     stato_pratica = schema.TextLine(
-        title=_(u"stato_pratica", default=u"Stato della pratica"),
+        title=_("stato_pratica", default="Stato della pratica"),
         required=True,
     )
 
     # TODO: aggiungere tassonomia e vocabolario rilevante
     servizio_origine = schema.Choice(
         title=_(
-            u"servizio_origine_pratica",
-            default=u"Servizio che origina la pratica",
+            "servizio_origine_pratica",
+            default="Servizio che origina la pratica",
         ),
         # vocabolario di riferimento sara' il servizio che genera il task e
         # permette di soddisfarlo
@@ -39,12 +39,12 @@ class IPratica(model.Schema):
         required=False,
     )
 
-    contenuto = BlocksField(title=_(u"contenuto", default=u"Contenuto"), required=True)
+    contenuto = BlocksField(title=_("contenuto", default="Contenuto"), required=True)
 
-    contatti = BlocksField(title=_(u"contatti", default=u"Contatti"), required=True)
+    contatti = BlocksField(title=_("contatti", default="Contatti"), required=True)
 
     azioni_utente = schema.Choice(
-        title=_(u"azioni_utente", default=u"Azioni utente"),
+        title=_("azioni_utente", default="Azioni utente"),
         # vocabolario di riferimento sara' la tassonomia "Lista azioni pratica"
         vocabulary="design.plone.contenttypes.ListaAzioniPratica",
         required=True,

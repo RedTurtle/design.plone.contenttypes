@@ -85,7 +85,7 @@ class TestDocumentoApi(unittest.TestCase):
                 type="Modulo",
                 title="File {}".format(i),
             )
-            filename = os.path.join(os.path.dirname(__file__), u"example.pdf")
+            filename = os.path.join(os.path.dirname(__file__), "example.pdf")
             child.file = NamedBlobFile(
                 data=open(filename, "rb").read(),
                 filename="example.pdf",

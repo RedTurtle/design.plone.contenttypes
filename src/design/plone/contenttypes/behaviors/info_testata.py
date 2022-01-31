@@ -16,8 +16,8 @@ class IInfoTestata(model.Schema):
 
     info_testata = RichText(
         title=_(
-            u"info_testata_label",
-            default=u"Informazioni aggiuntive per la testata",
+            "info_testata_label",
+            default="Informazioni aggiuntive per la testata",
         ),
         required=False,
         description=_(
@@ -26,7 +26,7 @@ class IInfoTestata(model.Schema):
         ),
     )
     ricerca_in_testata = schema.Bool(
-        title=_(u"ricerca_in_testata_label", default=u"Ricerca in testata"),
+        title=_("ricerca_in_testata_label", default="Ricerca in testata"),
         default=False,
         required=False,
         description=_(
@@ -36,8 +36,8 @@ class IInfoTestata(model.Schema):
     )
     mostra_bottoni_condivisione = schema.Bool(
         title=_(
-            u"mostra_bottoni_condivisione_label",
-            default=u"Mostra i bottoni per la condivisione sui social",
+            "mostra_bottoni_condivisione_label",
+            default="Mostra i bottoni per la condivisione sui social",
         ),
         default=False,
         required=False,
@@ -48,7 +48,7 @@ class IInfoTestata(model.Schema):
         ),
     )
     mostra_navigazione = schema.Bool(
-        title=_(u"mostra_navigazione_label", default=u"Mostra la navigazione"),
+        title=_("mostra_navigazione_label", default="Mostra la navigazione"),
         default=False,
         required=False,
         description=_(
@@ -59,7 +59,7 @@ class IInfoTestata(model.Schema):
 
     model.fieldset(
         "testata",
-        label=_("testata_fieldset_label", default=u"Testata"),
+        label=_("testata_fieldset_label", default="Testata"),
         fields=[
             "ricerca_in_testata",
             "mostra_bottoni_condivisione",

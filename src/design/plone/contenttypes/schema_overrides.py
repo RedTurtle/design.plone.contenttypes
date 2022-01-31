@@ -31,7 +31,7 @@ class SchemaTweaks(object):
         if self.schema.getName() == "IEventBasic":
             fieldset = Fieldset(
                 "date_e_orari",
-                label=_("date_e_orari_label", default=u"Date e orari"),
+                label=_("date_e_orari_label", default="Date e orari"),
                 fields=["start", "end", "whole_day", "open_end", "sync_uid"],
             )
             self.schema._Element__tagged_values["plone.supermodel.fieldsets"] = [
@@ -40,7 +40,7 @@ class SchemaTweaks(object):
         if self.schema.getName() == "IEventRecurrence":
             fieldset = Fieldset(
                 "date_e_orari",
-                label=_("date_e_orari_label", default=u"Date e orari"),
+                label=_("date_e_orari_label", default="Date e orari"),
                 fields=["recurrence"],
             )
             self.schema._Element__tagged_values["plone.supermodel.fieldsets"] = [

@@ -20,20 +20,20 @@ class ILuogo(model.Schema):
 
     # moved to behavior under field name descrizione_estesa?
     descrizione_completa = BlocksField(
-        title=_(u"descrizione_completa", default=u"Descrizione completa"),
+        title=_("descrizione_completa", default="Descrizione completa"),
         description=_(
-            u"help_descrizione_completa",
-            default=u"Indicare una descrizione completa, inserendo tutte le"
+            "help_descrizione_completa",
+            default="Indicare una descrizione completa, inserendo tutte le"
             " informazioni rilevanti relative al luogo",
         ),
         required=False,
     )
 
     nome_alternativo = schema.TextLine(
-        title=_(u"nome_alternativo", default=u"Nome alternativo"),
+        title=_("nome_alternativo", default="Nome alternativo"),
         description=_(
-            u"help_nome_alternativo",
-            default=u"Indicare, se esiste, un nome alternativo per il luogo;"
+            "help_nome_alternativo",
+            default="Indicare, se esiste, un nome alternativo per il luogo;"
             " questo sarà mostrato affianco al titolo della"
             " scheda",
         ),
@@ -41,19 +41,19 @@ class ILuogo(model.Schema):
     )
 
     elementi_di_interesse = BlocksField(
-        title=_(u"elementi_di_interesse", default=u"Elementi di interesse"),
+        title=_("elementi_di_interesse", default="Elementi di interesse"),
         description=_(
-            u"help_elementi_di_interesse",
-            default=u"Indicare eventuali elementi di interesse per il " "cittadino.",
+            "help_elementi_di_interesse",
+            default="Indicare eventuali elementi di interesse per il " "cittadino.",
         ),
         required=False,
     )
 
     modalita_accesso = BlocksField(
-        title=_(u"modalita_accesso", default=u"Modalita' di accesso"),
+        title=_("modalita_accesso", default="Modalita' di accesso"),
         description=_(
-            u"help_modalita_accesso",
-            default=u"Indicare tutte le informazioni relative alla modalità di"
+            "help_modalita_accesso",
+            default="Indicare tutte le informazioni relative alla modalità di"
             " accesso al luogo",
         ),
         required=False,
@@ -62,7 +62,7 @@ class ILuogo(model.Schema):
     struttura_responsabile_correlati = RelationList(
         title=_(
             "struttura_responsabile_correlati",
-            default=u"Struttura responsabile del luogo.",
+            default="Struttura responsabile del luogo.",
         ),
         description=_(
             "struttura_responsabile_correlati_help",
@@ -71,7 +71,7 @@ class ILuogo(model.Schema):
             " compilare i campi testuali relativi alla struttura responsabile",
         ),
         value_type=RelationChoice(
-            title=_(u"Struttura responsabile"),
+            title=_("Struttura responsabile"),
             vocabulary="plone.app.vocabularies.Catalog",
         ),
         required=False,
@@ -79,7 +79,7 @@ class ILuogo(model.Schema):
     )
 
     struttura_responsabile = BlocksField(
-        title=_(u"struttura_responsabile", default=u"Struttura responsabile"),
+        title=_("struttura_responsabile", default="Struttura responsabile"),
         required=False,
         description=_(
             "struttura_responsabile_help",
@@ -90,8 +90,8 @@ class ILuogo(model.Schema):
 
     riferimento_telefonico_struttura = schema.TextLine(
         title=_(
-            u"riferimento_telefonico_struttura",
-            default=u"Telefono della struttura responsabile",
+            "riferimento_telefonico_struttura",
+            default="Telefono della struttura responsabile",
         ),
         description=_(
             "help_riferimento_telefonico_struttura",
@@ -102,8 +102,8 @@ class ILuogo(model.Schema):
     )
     riferimento_fax_struttura = schema.TextLine(
         title=_(
-            u"riferimento_fax_struttura",
-            default=u"Fax della struttura responsabile",
+            "riferimento_fax_struttura",
+            default="Fax della struttura responsabile",
         ),
         description=_(
             "help_riferimento_fax_struttura",
@@ -113,8 +113,8 @@ class ILuogo(model.Schema):
     )
     riferimento_mail_struttura = schema.TextLine(
         title=_(
-            u"riferimento_mail_struttura",
-            default=u"E-mail struttura responsabile",
+            "riferimento_mail_struttura",
+            default="E-mail struttura responsabile",
         ),
         description=_(
             "help_riferimento_mail_struttura",
@@ -126,8 +126,8 @@ class ILuogo(model.Schema):
 
     riferimento_pec_struttura = schema.TextLine(
         title=_(
-            u"riferimento_pec_struttura",
-            default=u"Pec della struttura responsabile",
+            "riferimento_pec_struttura",
+            default="Pec della struttura responsabile",
         ),
         description=_(
             "help_riferimento_pec_struttura",
@@ -144,7 +144,7 @@ class ILuogo(model.Schema):
     # # quando ritornano i dati dopo la migrazione, bisognera' vedere dove sono
     # # finiti, link invalido al momento
     # categoria_prevalente = schema.Choice(
-    #     title=_(u"categoria_prevalente", default=u"Categoria prevalente"),
+    #     title=_("categoria_prevalente", default="Categoria prevalente"),
     #     required=False,
     #     vocabulary="design.plone.contenttypes.Mockup",
     #     missing_value=None,
@@ -154,7 +154,7 @@ class ILuogo(model.Schema):
     # TODO: importare il db del MIBAC, codice DBUnico / ISIL.
     # Non compare nel frontend
     # identificativo_mibac = schema.TextLine(
-    #     title=_(u"identificativo_mibac", default=u"Identificativo"),
+    #     title=_("identificativo_mibac", default="Identificativo"),
     #     required=False,
     # )
 
@@ -163,18 +163,18 @@ class ILuogo(model.Schema):
 
     model.fieldset(
         "descrizione",
-        label=_("descrizione_label", default=u"Descrizione"),
+        label=_("descrizione_label", default="Descrizione"),
         fields=["descrizione_completa", "elementi_di_interesse"],
     )
     model.fieldset(
         "accesso",
-        label=_("accesso_label", default=u"Modalità di accesso"),
+        label=_("accesso_label", default="Modalità di accesso"),
         fields=["modalita_accesso"],
     )
 
     model.fieldset(
         "contatti",
-        label=_("contatti_label", default=u"Contatti"),
+        label=_("contatti_label", default="Contatti"),
         fields=[
             "struttura_responsabile_correlati",
             "struttura_responsabile",
