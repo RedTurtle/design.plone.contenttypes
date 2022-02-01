@@ -5,7 +5,8 @@ Changelog
 4.0.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add "geolocation" info in Summary serializer for backward compatibility with some block templates.
+  [cekk]
 
 
 4.0.3 (2022-01-31)

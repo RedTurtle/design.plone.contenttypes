@@ -38,6 +38,15 @@ class DefaultJSONSummarySerializer(BaseSerializer):
             if "_all" in metadata_fields or "bando_state" in metadata_fields:
                 res["bando_state"] = self.get_bando_state()
 
+        if "_all" in metadata_fields or "geolocation" in metadata_fields:
+            # backward compatibility for some block templates
+            if "geolocation" not in res:
+                res["geolocation"] = {}
+                if res.get("latitude", ""):
+                    res["geolocation"]["latitude"] = res["latitude"]
+                if res.get("longitude", ""):
+                    res["geolocation"]["longitude"] = res["longitude"]
+
         res["id"] = self.context.id
 
         # meta_type
