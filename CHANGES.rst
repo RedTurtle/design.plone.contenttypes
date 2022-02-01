@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.0.4 (unreleased)
+4.0.4 (2022-02-01)
 ------------------
 
 - Add "geolocation" info in Summary serializer for backward compatibility with some block templates.
