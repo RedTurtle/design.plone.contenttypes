@@ -5,7 +5,8 @@ Changelog
 4.0.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix geolocation hack.
+  [cekk]
 
 
 4.0.4 (2022-02-01)

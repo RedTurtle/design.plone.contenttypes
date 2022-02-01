@@ -41,11 +41,11 @@ class DefaultJSONSummarySerializer(BaseSerializer):
         if "_all" in metadata_fields or "geolocation" in metadata_fields:
             # backward compatibility for some block templates
             if "geolocation" not in res:
-                res["geolocation"] = {}
-                if res.get("latitude", ""):
-                    res["geolocation"]["latitude"] = res["latitude"]
-                if res.get("longitude", ""):
-                    res["geolocation"]["longitude"] = res["longitude"]
+                res["geolocation"] = None
+                latitude = res.get("latitude", 0)
+                longitude = res.get("longitude", 0)
+                if latitude and longitude:
+                    res["geolocation"] = {"latitude": latitude, "longitude": longitude}
 
         res["id"] = self.context.id
 
