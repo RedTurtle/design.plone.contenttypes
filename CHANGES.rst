@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.0.5 (unreleased)
+4.0.5 (2022-02-02)
 ------------------
 
 - Fix geolocation hack.
