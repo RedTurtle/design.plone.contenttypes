@@ -5,7 +5,8 @@ Changelog
 4.0.6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Do not return related items in serializer, if they're published but the date is in the future and the current user can't edit current context.
+  [cekk]
 
 
 4.0.5 (2022-02-02)

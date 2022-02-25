@@ -24,20 +24,28 @@ class RelationListFieldSerializer(DefaultRelationListFieldSerializer):
             if not value:
                 continue
             content = value.to_object
-            if content:
-                if not api.user.has_permission("View", obj=content):
-                    continue
-                summary = getMultiAdapter(
-                    (content, getRequest()), ISerializeToJsonSummary
-                )()
-                if content.effective().Date() != "1969/12/31":
-                    summary["effective"] = json_compatible(content.effective())
-                else:
-                    summary["effective"] = None
-                if content.portal_type == "Event":
-                    summary["start"] = json_compatible(getattr(content, "start", ""))
-                    summary["end"] = json_compatible(getattr(content, "end", ""))
-                if getattr(content, "icona", ""):
-                    summary["icona"] = content.icona
-                data.append(json_compatible(summary))
+            if not content:
+                continue
+            if not api.user.has_permission("View", obj=content):
+                continue
+            if content.effective().isFuture() and not api.user.has_permission(
+                "Modify portal content", obj=self.context
+            ):
+                # effective date is in the future.
+                # Users that can edit current context, should see it because otherwise
+                # they will not see it in edit form.
+                continue
+            summary = getMultiAdapter(
+                (content, getRequest()), ISerializeToJsonSummary
+            )()
+            if content.effective().Date() != "1969/12/31":
+                summary["effective"] = json_compatible(content.effective())
+            else:
+                summary["effective"] = None
+            if content.portal_type == "Event":
+                summary["start"] = json_compatible(getattr(content, "start", ""))
+                summary["end"] = json_compatible(getattr(content, "end", ""))
+            if getattr(content, "icona", ""):
+                summary["icona"] = content.icona
+            data.append(json_compatible(summary))
         return data
