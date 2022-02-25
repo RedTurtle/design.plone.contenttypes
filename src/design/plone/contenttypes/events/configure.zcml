@@ -53,7 +53,12 @@
            zope.lifecycleevent.interfaces.IObjectAddedEvent"
       handler=".document.documentCreateHandler"
       />
-
+  <subscriber
+      for="redturtle.bandi.interfaces.bando.IBando
+           zope.lifecycleevent.interfaces.IObjectAddedEvent"
+      handler=".bando.bandoCreateHandler"
+      />
+      
   <!-- common -->
   <subscriber
       for="plone.dexterity.interfaces.IDexterityContent
