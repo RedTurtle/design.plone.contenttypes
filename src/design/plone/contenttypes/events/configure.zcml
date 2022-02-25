@@ -58,7 +58,7 @@
            zope.lifecycleevent.interfaces.IObjectAddedEvent"
       handler=".bando.bandoCreateHandler"
       />
-      
+
   <!-- common -->
   <subscriber
       for="plone.dexterity.interfaces.IDexterityContent
