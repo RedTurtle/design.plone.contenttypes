@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.0.6 (unreleased)
+4.0.6 (2022-02-25)
 ------------------
 
 - Fix common indexers to work with also non-folderish contents.
