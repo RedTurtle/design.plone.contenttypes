@@ -477,4 +477,14 @@
         handler=".upgrades.to_5001"
         />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="5001"
+      destination="5002"
+      >
+    <genericsetup:upgradeStep
+        title="Add new metadata"
+        handler=".upgrades.to_5002"
+        />
+  </genericsetup:upgradeSteps>
 </configure>

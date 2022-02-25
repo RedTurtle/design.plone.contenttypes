@@ -5,7 +5,8 @@ Changelog
 4.0.6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix common indexers to work with also non-folderish contents.
+  [cekk]
 
 
 4.0.5 (2022-02-02)
