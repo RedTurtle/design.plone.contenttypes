@@ -17,6 +17,8 @@ class BandoSerializer(BaseSerializer):
 
         for folder in folders:
             contents = bando_view.retrieveContentsOfFolderDeepening(folder["path"])
+            if not contents:
+                continue
             folder.update({"children": contents})
             results.append(folder)
         return results

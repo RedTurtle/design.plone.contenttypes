@@ -2,10 +2,19 @@ Changelog
 =========
 
 
-4.0.6 (unreleased)
+4.0.7 (unreleased)
 ------------------
 
 - Do not return related items in serializer, if they're published but the date is in the future and the current user can't edit current context.
+  [cekk]
+- Add default folders when creating a new Bando.
+  [cekk]
+
+
+4.0.6 (2022-02-25)
+------------------
+
+- Fix common indexers to work with also non-folderish contents.
   [cekk]
 
 

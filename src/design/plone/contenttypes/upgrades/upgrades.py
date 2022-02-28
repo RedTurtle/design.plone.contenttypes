@@ -831,3 +831,19 @@ def to_5001(context):
             logger.info("Progress: {}/{}".format(i, tot))
         obj = brain.getObject()
         catalog.catalog_object(obj)
+
+
+def to_5002(context):
+    """
+    Reindex non-folderish items because there were some metadata not updated
+    """
+    catalog = api.portal.get_tool("portal_catalog")
+    i = 0
+    brains = catalog(is_folderish=False)
+    tot = len(brains)
+    for brain in brains:
+        i += 1
+        if i % 500 == 0:
+            logger.info("Progress: {}/{}".format(i, tot))
+        obj = brain.getObject()
+        catalog.catalog_object(obj)
