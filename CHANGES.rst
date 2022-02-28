@@ -5,7 +5,8 @@ Changelog
 4.0.7 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add default folders when creating a new Bando.
+  [cekk] 
 
 
 4.0.6 (2022-02-25)
