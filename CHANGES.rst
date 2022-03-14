@@ -9,7 +9,8 @@ Changelog
   [cekk]
 - Add default folders when creating a new Bando.
   [cekk]
-
+- Align summary serializer with latest redturtle.volto changes (pr #53).
+  [cekk]
 
 4.0.6 (2022-02-25)
 ------------------
