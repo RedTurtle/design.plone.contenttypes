@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.0.7 (unreleased)
+4.1.0 (unreleased)
 ------------------
 
 - Do not return related items in serializer, if they're published but the date is in the future and the current user can't edit current context.
