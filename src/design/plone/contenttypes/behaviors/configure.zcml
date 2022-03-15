@@ -260,4 +260,13 @@
       marker=".trasparenza.ITrasparenza"
       />
 
+  <plone:behavior
+      name="design.plone.contenttypes.behavior.update_note"
+      title="Update note"
+      description="Campo per le note di aggiornamento."
+      factory=".update_note.UpdateNote"
+      provides=".update_note.IUpdateNote"
+      marker=".update_note.IUpdateNote"
+      />
+
 </configure>

@@ -12,6 +12,7 @@
     <element value="design.plone.contenttypes.behavior.servizi_correlati" remove="True"/>
     <element value="plone.richtext" remove="True" />
     <element value="kitconcept.seo"/>
+    <element value="design.plone.contenttypes.behavior.update_note"/>
  </property>
  <property name="schema">design.plone.contenttypes.interfaces.bando.IBandoAgidSchema</property>
  <property name="default_view">view</property>

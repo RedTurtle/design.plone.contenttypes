@@ -5,7 +5,8 @@ Changelog
 4.1.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add behavior for update note additional field.
+  [cekk]
 
 
 4.1.0 (2022-03-14)
