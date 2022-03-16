@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.1.1 (unreleased)
+4.1.1 (2022-03-16)
 ------------------
 
 - Fix summary serializers for specific types.
