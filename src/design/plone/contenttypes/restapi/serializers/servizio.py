@@ -16,11 +16,8 @@ from zope.schema import getFields
 @implementer(ISerializeToJsonSummary)
 @adapter(IServizio, Interface)
 class SerializeServizioToJsonSummary(DefaultJSONSummarySerializer):
-    def __call__(self):
-        """
-        Ritorna sempre una serie di campi extra
-        """
-        summary = super(SerializeServizioToJsonSummary, self).__call__()
+    def __call__(self, force_all_metadata=False):
+        summary = super().__call__(force_all_metadata=force_all_metadata)
         fields = ["canale_digitale"]
         for schema in iterSchemata(self.context):
             for name, field in getFields(schema).items():
