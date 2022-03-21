@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.1.2 (unreleased)
+4.2.0 (2022-03-21)
 ------------------
 
 - Add new criteria for tipologia_organizzazione field/index.
