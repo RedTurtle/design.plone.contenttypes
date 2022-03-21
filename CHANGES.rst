@@ -5,7 +5,8 @@ Changelog
 4.2.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix servizi_collegati labels.
+  [cekk]
 
 
 4.2.0 (2022-03-21)

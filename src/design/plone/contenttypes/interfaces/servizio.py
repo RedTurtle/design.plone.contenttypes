@@ -296,17 +296,16 @@ class IServizio(model.Schema, IDesignPloneContentType):
     )
 
     servizi_collegati = RelationList(
-        title="Servizi collegati",
+        title=_("servizi_collegati_label", default="Servizi collegati"),
+        description=_(
+            "servizi_collegati_help",
+            default="Seleziona la lista dei servizi collegati a questo.",
+        ),
         default=[],
         value_type=RelationChoice(
-            title=_("Servizi collegati"),
             vocabulary="plone.app.vocabularies.Catalog",
         ),
         required=False,
-        description=_(
-            "servizi_collegati_help",
-            default="Seleziona la lista dei servizi collegati" " a questo.",
-        ),
     )
 
     # custom widgets
