@@ -5,7 +5,8 @@ Changelog
 4.1.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add new criteria for tipologia_organizzazione field/index.
+  [cekk]
 
 
 4.1.1 (2022-03-16)
