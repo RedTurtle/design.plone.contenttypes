@@ -2,10 +2,26 @@ Changelog
 =========
 
 
-4.1.1 (unreleased)
+4.2.1 (unreleased)
 ------------------
 
 - Add behavior for update note additional field.
+  [cekk]
+- Fix servizi_collegati labels.
+  [cekk]
+
+
+4.2.0 (2022-03-21)
+------------------
+
+- Add new criteria for tipologia_organizzazione field/index.
+  [cekk]
+
+
+4.1.1 (2022-03-16)
+------------------
+
+- Fix summary serializers for specific types.
   [cekk]
 
 

@@ -849,7 +849,7 @@ def to_5002(context):
         catalog.catalog_object(obj)
 
 
-def to_5100(context):
+def to_5200(context):
     """
     add new behavior for Bando
     """

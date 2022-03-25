@@ -94,8 +94,8 @@ class UOSerializer(RelatedNewsSerializer):
 @implementer(ISerializeToJsonSummary)
 @adapter(IUnitaOrganizzativa, Interface)
 class UOJSONSummarySerializer(DefaultJSONSummarySerializer):
-    def __call__(self):
-        data = super().__call__()
+    def __call__(self, force_all_metadata=False):
+        data = super().__call__(force_all_metadata=force_all_metadata)
         for field in ["address", "city", "zip_code", "email", "telefono"]:
             data[field] = getattr(self.context, field, "")
         return data
