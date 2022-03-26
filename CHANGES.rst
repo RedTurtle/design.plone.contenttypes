@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.2.1 (unreleased)
+4.2.1 (2022-03-26)
 ------------------
 
 - Add behavior for update note additional field.
