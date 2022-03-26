@@ -61,6 +61,7 @@
  <column value="parent"/>
  <column value="ente_bando"/>
  <column value="icona"/>
+ <column value="update_note"/>
 
  <!-- cleanup -->
  <index name="argomenti_correlati" remove="True" />

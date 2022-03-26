@@ -497,4 +497,18 @@
         handler=".upgrades.update_registry"
         />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="5100"
+      destination="5200"
+      >
+    <genericsetup:upgradeStep
+        title="Add new behavior"
+        handler=".upgrades.to_5200"
+        />
+    <genericsetup:upgradeStep
+        title="Add new index"
+        handler=".upgrades.update_catalog"
+        />
+  </genericsetup:upgradeSteps>
 </configure>

@@ -847,3 +847,15 @@ def to_5002(context):
             logger.info("Progress: {}/{}".format(i, tot))
         obj = brain.getObject()
         catalog.catalog_object(obj)
+
+
+def to_5200(context):
+    """
+    add new behavior for Bando
+    """
+    portal_types = api.portal.get_tool(name="portal_types")
+    fti = portal_types["Bando"]
+    behaviors = list(getattr(fti, "behaviors", ()))
+    if "design.plone.contenttypes.behavior.update_note" not in behaviors:
+        behaviors.append("design.plone.contenttypes.behavior.update_note")
+        fti.behaviors = tuple(behaviors)

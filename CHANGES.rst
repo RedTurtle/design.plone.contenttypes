@@ -5,6 +5,8 @@ Changelog
 4.2.1 (unreleased)
 ------------------
 
+- Add behavior for update note additional field.
+  [cekk]
 - Fix servizi_collegati labels.
   [cekk]
 
