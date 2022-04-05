@@ -5,7 +5,10 @@ Changelog
 4.2.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add custom expand_events method in scadenziario endpoints, because in plone.app.events >= 3.2.13
+  that method changed and breaks our integration. We keep previous version of that method to 
+  not re-implement scadenziario endpoints.
+  [cekk]
 
 
 4.2.1 (2022-03-26)
