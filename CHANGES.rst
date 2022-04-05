@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.2.2 (unreleased)
+4.3.0 (2022-04-05)
 ------------------
 
 - Add custom expand_events method in scadenziario endpoints, because in plone.app.events >= 3.2.13
