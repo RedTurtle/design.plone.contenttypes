@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.3.1 (unreleased)
+4.3.1 (2022-04-21)
 ------------------
 
 - Add missing msgids to Unita Organizzativa fields.
