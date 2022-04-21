@@ -15,7 +15,7 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
     """Marker interface for content type UnitaOrganizzativa"""
 
     competenze = BlocksField(
-        title=_("competenze", default="Competenze"),
+        title=_("uo_competenze_label", default="Competenze"),
         description=_(
             "uo_competenze_help",
             default="Descrizione dei compiti assegnati alla struttura.",
@@ -24,7 +24,9 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
     )
 
     legami_con_altre_strutture = RelationList(
-        title="Servizi o uffici di riferimento",
+        title=_(
+            "legami_altre_strutture_label", default="Servizi o uffici di riferimento"
+        ),
         default=[],
         description=_(
             "legami_con_altre_strutture_help",
@@ -38,7 +40,7 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
     )
 
     responsabile = RelationList(
-        title="Responsabile",
+        title=_("responsabile_label", default="Responsabile"),
         value_type=RelationChoice(
             title=_("Responsabile"),
             vocabulary="plone.app.vocabularies.Catalog",
@@ -52,7 +54,7 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
     )
 
     tipologia_organizzazione = schema.Choice(
-        title=_("tipologia_organizzazione", default="Tipologia organizzazione"),
+        title=_("tipologia_organizzazione_label", default="Tipologia organizzazione"),
         # vocabolario di rif sara' la lista delle tipologie di organizzazione
         vocabulary="" "design.plone.vocabularies.tipologie_unita_organizzativa",
         description=_(
@@ -82,7 +84,9 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
 
     # vocabolario di riferimento sara' dinamico con i content type persona
     persone_struttura = RelationList(
-        title="Persone che compongono la struttura",
+        title=_(
+            "persone_struttura_label", default="Persone che compongono la struttura"
+        ),
         default=[],
         value_type=RelationChoice(
             title=_("Persone della struttura"),
@@ -96,7 +100,7 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
     )
 
     sede = RelationList(
-        title="Sede principale",
+        title=_("sede_label", default="Sede principale"),
         default=[],
         description=_(
             "sede_help",
@@ -113,7 +117,7 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
     )
 
     sedi_secondarie = RelationList(
-        title="Sedi secondarie",
+        title=_("sedi_secondarie_label", default="Sedi secondarie"),
         default=[],
         description=_(
             "sedi_secondarie_help",
@@ -130,7 +134,7 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
     )
 
     contact_info = BlocksField(
-        title=_("contact_info", default="Informazioni di contatto generiche"),
+        title=_("contact_info_label", default="Informazioni di contatto generiche"),
         required=False,
         description=_(
             "uo_contact_info_description",

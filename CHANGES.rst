@@ -5,7 +5,8 @@ Changelog
 4.3.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add missing msgids to Unita Organizzativa fields.
+  [cekk]
 
 
 4.3.0 (2022-04-05)
