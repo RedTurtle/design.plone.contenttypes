@@ -511,4 +511,14 @@
         handler=".upgrades.update_catalog"
         />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="5200"
+      destination="5210"
+      >
+    <genericsetup:upgradeStep
+        title="Add volto.preview_image to Bandi"
+        handler=".upgrades.to_5210"
+        />
+  </genericsetup:upgradeSteps>
 </configure>
