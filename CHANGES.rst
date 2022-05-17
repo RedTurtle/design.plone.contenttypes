@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.3.2 (unreleased)
+4.3.2 (2022-05-17)
 ------------------
 
 - Add volto.preview_image behavior in Bando portal_type.
