@@ -13,6 +13,7 @@
     <element value="plone.richtext" remove="True" />
     <element value="kitconcept.seo"/>
     <element value="design.plone.contenttypes.behavior.update_note"/>
+    <element value="volto.preview_image" />
  </property>
  <property name="schema">design.plone.contenttypes.interfaces.bando.IBandoAgidSchema</property>
  <property name="default_view">view</property>

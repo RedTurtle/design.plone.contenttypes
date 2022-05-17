@@ -5,7 +5,8 @@ Changelog
 4.3.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add volto.preview_image behavior in Bando portal_type.
+  [cekk]
 
 
 4.3.1 (2022-04-21)

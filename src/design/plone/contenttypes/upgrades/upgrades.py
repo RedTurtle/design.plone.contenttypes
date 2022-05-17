@@ -859,3 +859,14 @@ def to_5200(context):
     if "design.plone.contenttypes.behavior.update_note" not in behaviors:
         behaviors.append("design.plone.contenttypes.behavior.update_note")
         fti.behaviors = tuple(behaviors)
+
+
+def to_5210(context):
+    logger.info("Enable preview_image behavior in Bandi content types")
+
+    portal_types = api.portal.get_tool(name="portal_types")
+    fti = portal_types["Bando"]
+    behaviors = list(getattr(fti, "behaviors", ()))
+    if "volto.preview_image" not in behaviors:
+        behaviors.append("volto.preview_image")
+        fti.behaviors = tuple(behaviors)
