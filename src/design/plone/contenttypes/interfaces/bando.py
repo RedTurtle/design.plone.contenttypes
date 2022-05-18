@@ -50,6 +50,16 @@ class IBandoAgidSchema(IBandoSchema, IDesignPloneContentType):
         value_type=schema.TextLine(),
         missing_value=None,
     )
+    apertura_bando = schema.Datetime(
+        title=_("apertura_bando_label", default=u"Opening date"),
+        description=_(
+            "apertura_bando_help",
+            default=u"Date and time of the opening of the announcement. Use "
+            u"this field if you want to set a specific opening date. "
+            u"If not set, the announcement will be open immediately.",
+        ),
+        required=False,
+    )
     scadenza_domande_bando = schema.Datetime(
         title=_(
             "scadenza_domande_bando_label",
