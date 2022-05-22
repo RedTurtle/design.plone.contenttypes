@@ -62,5 +62,9 @@
       name="schema.tweaks"
       />
 
+  <!-- provide interface to Venue-->
+  <class class="design.plone.contenttypes.content.luogo.Venue">
+    <implements interface="design.plone.contenttypes.interfaces.IDesignPloneContentType" />
+  </class>
 
 </configure>
