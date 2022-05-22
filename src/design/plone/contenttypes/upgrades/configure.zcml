@@ -521,4 +521,15 @@
         handler=".upgrades.to_5210"
         />
   </genericsetup:upgradeSteps>
+  
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="5210"
+      destination="5300"
+      >
+    <genericsetup:upgradeStep
+        title="Updated plone.volto: some fixes in content-types"
+        handler=".upgrades.to_5300"
+        />
+  </genericsetup:upgradeSteps>
 </configure>

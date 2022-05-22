@@ -17,12 +17,10 @@ class HiddenProfiles(object):
 
 def post_install(context):
     """Post install script"""
-    portal_types = api.portal.get_tool(name="portal_types")
-    for ptype in ["News Item", "Event"]:
-        portal_types[ptype].behaviors = tuple(
-            [x for x in portal_types[ptype].behaviors if x != "volto.blocks"]
-        )
 
+    remove_blocks_behavior(context)
+
+    portal_types = api.portal.get_tool(name="portal_types")
     # add image fields at the end of document behaviors
     document_behaviors = [
         x
@@ -34,6 +32,14 @@ def post_install(context):
 
     # remove default ente
     api.portal.set_registry_record("default_ente", (), interface=IBandoSettings)
+
+
+def remove_blocks_behavior(context):
+    portal_types = api.portal.get_tool(name="portal_types")
+    for ptype in ["News Item", "Event"]:
+        portal_types[ptype].behaviors = tuple(
+            [x for x in portal_types[ptype].behaviors if x != "volto.blocks"]
+        )
 
 
 def uninstall(context):

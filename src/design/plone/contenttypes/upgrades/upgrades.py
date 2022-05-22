@@ -4,6 +4,7 @@ from collective.volto.blocksfield.field import BlocksField
 from copy import deepcopy
 from design.plone.contenttypes.controlpanels.settings import IDesignPloneSettings
 from design.plone.contenttypes.upgrades.draftjs_converter import to_draftjs
+from design.plone.contenttypes.setuphandlers import remove_blocks_behavior
 from plone import api
 from plone.app.textfield.value import RichTextValue
 from plone.app.upgrade.utils import installOrReinstallProduct
@@ -870,3 +871,9 @@ def to_5210(context):
     if "volto.preview_image" not in behaviors:
         behaviors.append("volto.preview_image")
         fti.behaviors = tuple(behaviors)
+
+
+def to_5300(context):
+
+    logger.info('Remove "volto.blocks" behavior from News Item and Event.')
+    remove_blocks_behavior(context)

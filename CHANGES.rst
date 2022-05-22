@@ -5,8 +5,8 @@ Changelog
 4.3.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Fix content-types behaviors for plone.volto update (re-disable volto.blocks in News Items and Events).
+  [cekk]
 
 4.3.2 (2022-05-17)
 ------------------
