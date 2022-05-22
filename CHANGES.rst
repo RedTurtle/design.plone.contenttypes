@@ -5,7 +5,8 @@ Changelog
 4.3.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix SearchableText indexing for Venues.
+  [cekk]
 
 
 4.3.2 (2022-05-17)
