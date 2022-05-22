@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.3.3 (unreleased)
+4.3.3 (2022-05-22)
 ------------------
 
 - Fix SearchableText indexing for Venues.
