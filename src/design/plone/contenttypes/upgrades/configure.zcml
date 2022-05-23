@@ -521,7 +521,16 @@
         handler=".upgrades.to_5210"
         />
   </genericsetup:upgradeSteps>
-  
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="5210"
+      destination="5220"
+      >
+    <genericsetup:upgradeStep
+        title="Reindex SearchableText in Venue"
+        handler=".upgrades.to_5220"
+        />
+  </genericsetup:upgradeSteps>
   <genericsetup:upgradeSteps
       profile="design.plone.contenttypes:default"
       source="5210"
