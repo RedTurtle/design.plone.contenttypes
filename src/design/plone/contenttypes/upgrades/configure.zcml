@@ -533,7 +533,7 @@
   </genericsetup:upgradeSteps>
   <genericsetup:upgradeSteps
       profile="design.plone.contenttypes:default"
-      source="5210"
+      source="5220"
       destination="5300"
       >
     <genericsetup:upgradeStep
