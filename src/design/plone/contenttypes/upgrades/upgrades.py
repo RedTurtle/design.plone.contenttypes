@@ -887,3 +887,25 @@ def to_5220(context):
             logger.info("Progress: {}/{}".format(i, tot))
         obj = brain.getObject()
         obj.reindexObject(idxs=["SearchableText", "object_provides"])
+
+
+def to_5300(context):
+    update_profile(context, "plone-difftool")
+    update_profile(context, "repositorytool")
+
+    portal_types = api.portal.get_tool(name="portal_types")
+    for portal_type, fti in portal_types.items():
+        if portal_type in [
+            "CartellaModulistica",
+            "Documento",
+            "Link",
+            "Pagina Argomento",
+            "Persona",
+            "Servizio",
+            "UnitaOrganizzativa",
+            "Venue",
+        ]:
+            behaviors = list(getattr(fti, "behaviors", ()))
+            if "plone.versioning" not in behaviors:
+                behaviors.append("plone.versioning")
+                fti.behaviors = tuple(behaviors)

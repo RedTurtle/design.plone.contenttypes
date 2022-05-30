@@ -116,6 +116,7 @@ class TestUO(unittest.TestCase):
                 "design.plone.contenttypes.behavior.additional_help_infos",
                 "plone.translatable",
                 "kitconcept.seo",
+                "plone.versioning",
             ),
         )
 

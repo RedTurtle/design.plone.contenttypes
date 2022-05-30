@@ -34,6 +34,7 @@ class TestCartellaModulistica(unittest.TestCase):
                 "volto.blocks",
                 "plone.translatable",
                 "kitconcept.seo",
+                "plone.versioning",
             ),
         )
 
