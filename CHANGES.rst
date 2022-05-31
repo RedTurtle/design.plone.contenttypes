@@ -2,10 +2,24 @@ Changelog
 =========
 
 
-4.3.3 (unreleased)
+4.4.1 (unreleased)
 ------------------
 
 - Handle new Bando field: apertura_bando.
+  [cekk]
+
+
+4.4.0 (2022-05-31)
+------------------
+
+- Enable versioning also for: CartellaModulistica, Documento, Link, Pagina Argomento, Persona, Servizio, Unità Organizzativa, Venue.
+  [cekk]
+
+
+4.3.3 (2022-05-22)
+------------------
+
+- Fix SearchableText indexing for Venues.
   [cekk]
 
 
