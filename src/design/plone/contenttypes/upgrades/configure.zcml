@@ -531,4 +531,14 @@
         handler=".upgrades.to_5220"
         />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="5220"
+      destination="5300"
+      >
+    <genericsetup:upgradeStep
+        title="Add versioning to several content types"
+        handler=".upgrades.to_5300"
+        />
+  </genericsetup:upgradeSteps>
 </configure>

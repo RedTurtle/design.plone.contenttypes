@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<object>
+ <difftypes purge="False">
+  <type portal_type="CartellaModulistica">
+   <field name="any" difftype="Compound Diff for Dexterity types"/>
+  </type>
+  <type portal_type="Documento">
+   <field name="any" difftype="Compound Diff for Dexterity types"/>
+  </type>
+  <type portal_type="Pagina Argomento">
+   <field name="any" difftype="Compound Diff for Dexterity types"/>
+  </type>
+  <type portal_type="Persona">
+   <field name="any" difftype="Compound Diff for Dexterity types"/>
+  </type>
+  <type portal_type="Servizio">
+   <field name="any" difftype="Compound Diff for Dexterity types"/>
+  </type>
+  <type portal_type="UnitaOrganizzativa">
+   <field name="any" difftype="Compound Diff for Dexterity types"/>
+  </type>
+  <type portal_type="Venue">
+   <field name="any" difftype="Compound Diff for Dexterity types"/>
+  </type>
+  <type portal_type="Link">
+   <field name="any" difftype="Compound Diff for Dexterity types"/>
+  </type>
+ </difftypes>
+</object>
