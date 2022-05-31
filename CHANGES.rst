@@ -5,7 +5,8 @@ Changelog
 4.4.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Handle new Bando field: apertura_bando.
+  [cekk]
 
 
 4.4.0 (2022-05-31)
