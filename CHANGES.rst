@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.3.4 (unreleased)
+4.4.0 (2022-05-31)
 ------------------
 
 - Enable versioning also for: CartellaModulistica, Documento, Link, Pagina Argomento, Persona, Servizio, Unità Organizzativa, Venue.
