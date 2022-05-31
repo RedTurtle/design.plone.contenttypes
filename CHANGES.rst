@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.4.1 (unreleased)
+4.4.1 (2022-05-31)
 ------------------
 
 - Handle new Bando field: apertura_bando.
