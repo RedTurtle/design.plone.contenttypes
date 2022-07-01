@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from collective import dexteritytextindexer
 from collective.volto.blocksfield.field import BlocksField
 from design.plone.contenttypes.interfaces import IDesignPloneContentType
 from plone.app.event.base import default_timezone
@@ -170,3 +171,5 @@ class IBandoAgidSchema(IBandoSchema, IDesignPloneContentType):
         label=_("correlati_label", default="Contenuti collegati"),
         fields=["area_responsabile", "ufficio_responsabile"],
     )
+
+    dexteritytextindexer.searchable("text")
