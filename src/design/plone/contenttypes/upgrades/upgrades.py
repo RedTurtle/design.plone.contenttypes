@@ -909,3 +909,19 @@ def to_5300(context):
             if "plone.versioning" not in behaviors:
                 behaviors.append("plone.versioning")
                 fti.behaviors = tuple(behaviors)
+
+
+def to_5310(context):
+    """
+    Reindex Bandi
+    """
+    logger.info("Reindex SearchableText for Bandi items.")
+    catalog = api.portal.get_tool("portal_catalog")
+    i = 0
+    brains = catalog(portal_type="Bando")
+    tot = len(brains)
+    for brain in brains:
+        i += 1
+        if i % 500 == 0:
+            logger.info("Progress: {}/{}".format(i, tot))
+        brain.getObject().reindexObject(idxs=["SearchableText"])

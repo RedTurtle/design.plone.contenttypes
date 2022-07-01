@@ -541,4 +541,14 @@
         handler=".upgrades.to_5300"
         />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="5300"
+      destination="5310"
+      >
+    <genericsetup:upgradeStep
+        title="Reindex Bandi SearchableText (added text to index)"
+        handler=".upgrades.to_5310"
+        />
+  </genericsetup:upgradeSteps>
 </configure>

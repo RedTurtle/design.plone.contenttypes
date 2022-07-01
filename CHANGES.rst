@@ -5,7 +5,8 @@ Changelog
 4.4.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Index Bando text.
+  [cekk]
 
 
 4.4.1 (2022-05-31)
