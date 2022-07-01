@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.4.2 (unreleased)
+4.4.2 (2022-07-01)
 ------------------
 
 - Index Bando text.
