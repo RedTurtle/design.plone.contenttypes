@@ -19,7 +19,7 @@ RESOLVEUID_RE = re.compile(
 
 
 def _fix_headers(html):
-    document = lxml.html.fromstring(html)
+    document = lxml.html.fromstr    ing(html)
 
     # https://codepen.io/tomhodgins/pen/ybgMpN
     selector = '//*[substring-after(name(), "h") >= 4]'
@@ -132,7 +132,7 @@ def _fix_blocks(block):
 def _conversion_tool(html):
     if not draftjs_converter:
         raise Exception(
-            "DRAFTJS_CONVERTER_URL environment varialbe not set. Unable to convert html to draftjs."  #  noqa
+            "DRAFTJS_CONVERTER_URL environment varialbe not set. Unable to convert html to draftjs."
         )
     resp = requests.post(draftjs_converter, data={"html": html})
     if resp.status_code != 200:

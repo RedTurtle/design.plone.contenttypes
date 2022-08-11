@@ -326,7 +326,7 @@ def to_1016(context):
     )
 
 
-def to_2000(context):
+def to_2000(context):  # noqa: C901
     # remove volto.blocks behavior from news and events and add new one
     update_types(context)
     portal_types = api.portal.get_tool(name="portal_types")
