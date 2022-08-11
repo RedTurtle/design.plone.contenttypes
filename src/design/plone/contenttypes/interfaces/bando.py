@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from collective import dexteritytextindexer
 from collective.volto.blocksfield.field import BlocksField
 from design.plone.contenttypes.interfaces import IDesignPloneContentType
 from plone.app.event.base import default_timezone
@@ -49,6 +50,16 @@ class IBandoAgidSchema(IBandoSchema, IDesignPloneContentType):
         defaultFactory=getDefaultEnte,
         value_type=schema.TextLine(),
         missing_value=None,
+    )
+    apertura_bando = schema.Datetime(
+        title=_("apertura_bando_label", default="Opening date"),
+        description=_(
+            "apertura_bando_help",
+            default="Date and time of the opening of the announcement. Use "
+            "this field if you want to set a specific opening date. "
+            "If not set, the announcement will be open immediately.",
+        ),
+        required=False,
     )
     scadenza_domande_bando = schema.Datetime(
         title=_(
@@ -160,3 +171,5 @@ class IBandoAgidSchema(IBandoSchema, IDesignPloneContentType):
         label=_("correlati_label", default="Contenuti collegati"),
         fields=["area_responsabile", "ufficio_responsabile"],
     )
+
+    dexteritytextindexer.searchable("text")

@@ -52,6 +52,7 @@
     <element value="collective.dexteritytextindexer"/>
     <element value="plone.translatable"/>
     <element value="kitconcept.seo"/>
+    <element value="plone.versioning"/>
   </property>
 
   <!-- View information -->

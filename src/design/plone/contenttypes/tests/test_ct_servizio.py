@@ -74,6 +74,7 @@ class TestServizio(unittest.TestCase):
                 "collective.dexteritytextindexer",
                 "plone.translatable",
                 "kitconcept.seo",
+                "plone.versioning",
             ),
         )
 

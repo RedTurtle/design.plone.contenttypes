@@ -2,11 +2,32 @@ Changelog
 =========
 
 
-4.3.4 (unreleased)
+4.4.3 (unreleased)
 ------------------
 
 - Fix content-types behaviors for plone.volto update (re-disable volto.blocks in News Items and Events).
   [cekk]
+
+4.4.2 (2022-07-01)
+------------------
+
+- Index Bando text.
+  [cekk]
+
+
+4.4.1 (2022-05-31)
+------------------
+
+- Handle new Bando field: apertura_bando.
+  [cekk]
+
+
+4.4.0 (2022-05-31)
+------------------
+
+- Enable versioning also for: CartellaModulistica, Documento, Link, Pagina Argomento, Persona, Servizio, Unità Organizzativa, Venue.
+  [cekk]
+
 
 4.3.3 (2022-05-22)
 ------------------

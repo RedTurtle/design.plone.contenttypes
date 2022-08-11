@@ -537,8 +537,29 @@
       destination="5300"
       >
     <genericsetup:upgradeStep
-        title="Updated plone.volto: some fixes in content-types"
+        title="Add versioning to several content types"
         handler=".upgrades.to_5300"
         />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="5300"
+      destination="5310"
+      >
+    <genericsetup:upgradeStep
+        title="Reindex Bandi SearchableText (added text to index)"
+        handler=".upgrades.to_5310"
+        />
+  </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="5310"
+      destination="5400"
+      >
+    <genericsetup:upgradeStep
+        title="Updated plone.volto: some fixes in content-types"
+        handler=".upgrades.to_5400"
+        />
+  </genericsetup:upgradeSteps>
+
 </configure>
