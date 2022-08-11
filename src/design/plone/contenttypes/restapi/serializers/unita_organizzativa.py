@@ -8,6 +8,8 @@ from design.plone.contenttypes.interfaces.unita_organizzativa import (
 from design.plone.contenttypes.restapi.serializers.summary import (
     DefaultJSONSummarySerializer,
 )
+
+from plone import api
 from plone.restapi.interfaces import ISerializeToJson, ISerializeToJsonSummary
 from zope.component import adapter, getMultiAdapter
 from zope.interface import implementer
@@ -80,6 +82,23 @@ class UOSerializer(RelatedNewsSerializer):
             "contact_info": getattr(context, "contact_info", ""),
         }
 
+    def getUOServiziDoveRivolgersi(self, UID):
+        """Returns list of servizio having reference to
+        current object in servizio.dove_rivolgersi field
+        """
+        catalog = api.portal.get_tool("portal_catalog")
+        query = {
+            "service_venue": UID,
+            "portal_type": ["Servizio"],
+            "sort_on": "sortable_title",
+            "sort_order": "ascending",
+        }
+
+        return [
+            getMultiAdapter((i, self.request), ISerializeToJsonSummary)()
+            for i in catalog(**query)
+        ]
+
     def __call__(self, version=None, include_items=True):
         self.index = "news_uo"
         result = super(UOSerializer, self).__call__(
@@ -88,6 +107,8 @@ class UOSerializer(RelatedNewsSerializer):
         result["servizi_offerti"] = self.get_services()
         result["uo_parent"] = self.getParentUo()
         result["uo_children"] = self.getChildrenUo()
+        result["prestazioni"] = self.getUOServiziDoveRivolgersi(result.get("UID", ""))
+
         return result
 
 
@@ -96,6 +117,32 @@ class UOSerializer(RelatedNewsSerializer):
 class UOJSONSummarySerializer(DefaultJSONSummarySerializer):
     def __call__(self, force_all_metadata=False):
         data = super().__call__(force_all_metadata=force_all_metadata)
-        for field in ["address", "city", "zip_code", "email", "telefono"]:
+        fields = [
+            "address",
+            "city",
+            "zip_code",
+            "email",
+            "telefono",
+            "nome_sede",
+            "title",
+            "quartiere",
+            "circoscrizione",
+            "street",
+        ]
+
+        for field in fields:
             data[field] = getattr(self.context, field, "")
+
+        data["geolocation"] = self.getGeolocation()
+
         return data
+
+    def getGeolocation(self):
+        longitude = 0
+        latitude = 0
+
+        if getattr(self.context, "geolocation", None):
+            longitude = getattr(self.context.geolocation, "longitude", 0)
+            latitude = getattr(self.context.geolocation, "latitude", 0)
+
+        return {"longitude": longitude, "latitude": latitude}

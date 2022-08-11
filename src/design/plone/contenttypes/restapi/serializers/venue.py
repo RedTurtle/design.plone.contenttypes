@@ -93,7 +93,12 @@ class SerializeVenueToJsonSummary(DefaultJSONSummarySerializer):
             "riferimento_telefonico_struttura",
             "riferimento_mail_struttura",
             "riferimento_pec_struttura",
+            "quartiere",
+            "nome_sede",
+            "title",
+            "circoscrizione",
         ]
+
         for field in fields:
             value = getattr(self.context, field, None)
             if callable(value):

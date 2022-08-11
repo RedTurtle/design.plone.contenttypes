@@ -19,6 +19,7 @@ from zope.component import getUtility
 from zope.intid.interfaces import IIntIds
 from zope.schema.interfaces import IVocabularyFactory
 
+import transaction
 import unittest
 
 
@@ -245,3 +246,19 @@ class TestUO(unittest.TestCase):
         self.assertEqual(uo_children[0]["city"], self.uo_child.city)
         self.assertEqual(uo_children[0]["contact_info"], self.uo_child.contact_info)
         self.assertEqual(uo_children[0]["street"], self.uo_child.street)
+
+    def test_backref_to_servizio_dove_rivolgersi(self):
+        """Check backref to servizio in
+        dove rivolgersi field"""
+
+        self.service.dove_rivolgersi = [RelationValue(self.intids.getId(self.uo))]
+
+        self.service.reindexObject()
+        transaction.commit()
+
+        response = self.api_session.get(self.uo.absolute_url())
+
+        self.assertIn(
+            self.service.absolute_url(),
+            [i["@id"] for i in response.json()["prestazioni"]],
+        )
