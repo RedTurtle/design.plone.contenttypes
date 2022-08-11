@@ -19,7 +19,7 @@ RESOLVEUID_RE = re.compile(
 
 
 def _fix_headers(html):
-    document = lxml.html.fromstr    ing(html)
+    document = lxml.html.fromstring(html)
 
     # https://codepen.io/tomhodgins/pen/ybgMpN
     selector = '//*[substring-after(name(), "h") >= 4]'
