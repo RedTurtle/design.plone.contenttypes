@@ -132,7 +132,7 @@ def _fix_blocks(block):
 def _conversion_tool(html):
     if not draftjs_converter:
         raise Exception(
-            "DRAFTJS_CONVERTER_URL environment varialbe not set. Unable to convert html to draftjs."  #  noqa
+            "DRAFTJS_CONVERTER_URL environment varialbe not set. Unable to convert html to draftjs."  # noqa
         )
     resp = requests.post(draftjs_converter, data={"html": html})
     if resp.status_code != 200:
