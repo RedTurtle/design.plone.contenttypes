@@ -5,7 +5,7 @@ Changelog
 4.4.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Field tipologia_organizzazione in Unita Organizzativa ct. changed to required
 
 
 4.4.2 (2022-07-01)
