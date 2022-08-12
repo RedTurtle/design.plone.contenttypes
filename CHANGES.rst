@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.4.3 (unreleased)
+5.0.0 (2022-08-12)
 ------------------
 
 - Fix content-types behaviors for plone.volto update (re-disable volto.blocks in News Items and Events).
