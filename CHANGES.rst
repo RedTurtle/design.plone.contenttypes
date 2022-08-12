@@ -5,8 +5,8 @@ Changelog
 5.0.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Remove unused import in tests.
+  [cekk]
 
 5.0.0 (2022-08-12)
 ------------------

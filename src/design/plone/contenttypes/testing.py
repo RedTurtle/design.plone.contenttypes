@@ -10,7 +10,6 @@ from redturtle.volto.testing import RedturtleVoltoRestApiLayer
 
 import collective.address
 import collective.dexteritytextindexer
-import collective.folderishtypes
 import collective.venue
 import collective.volto.blocksfield
 import collective.volto.cookieconsent
