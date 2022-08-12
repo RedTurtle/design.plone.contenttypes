@@ -5,6 +5,8 @@ Changelog
 4.4.3 (unreleased)
 ------------------
 
+- Fix content-types behaviors for plone.volto update (re-disable volto.blocks in News Items and Events).
+  [cekk]
 - Field tipologia_organizzazione in Unita Organizzativa ct. changed to required
 
 
