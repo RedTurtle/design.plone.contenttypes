@@ -62,7 +62,7 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
             default="Specificare la tipologia di organizzazione: politica,"
             " amminsitrativa o di altro tipo.",
         ),
-        required=False,
+        required=True,
     )
 
     assessore_riferimento = RelationList(

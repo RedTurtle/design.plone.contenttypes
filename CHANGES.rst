@@ -2,11 +2,19 @@ Changelog
 =========
 
 
-4.4.3 (unreleased)
+5.0.1 (unreleased)
 ------------------
 
 - Backref of UO to Servizio
   [foxtrot-dfm1]
+
+5.0.0 (2022-08-12)
+------------------
+
+- Fix content-types behaviors for plone.volto update (re-disable volto.blocks in News Items and Events).
+  [cekk]
+- Field tipologia_organizzazione in Unita Organizzativa ct. changed to required
+
 
 4.4.2 (2022-07-01)
 ------------------
