@@ -7,6 +7,8 @@ Changelog
 
 - Backref of UO to Servizio
   [foxtrot-dfm1]
+- Remove unused import in tests.
+  [cekk]
 
 5.0.0 (2022-08-12)
 ------------------
