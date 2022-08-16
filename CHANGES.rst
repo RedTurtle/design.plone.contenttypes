@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-5.0.1 (unreleased)
+5.0.1 (2022-08-16)
 ------------------
 
 - Remove unused import in tests.
