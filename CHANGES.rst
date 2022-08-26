@@ -11,6 +11,8 @@ Changelog
 5.0.1 (2022-08-16)
 ------------------
 
+- Backref of UO to Servizio
+  [foxtrot-dfm1]
 - Remove unused import in tests.
   [cekk]
 
@@ -20,7 +22,7 @@ Changelog
 - Fix content-types behaviors for plone.volto update (re-disable volto.blocks in News Items and Events).
   [cekk]
 - Field tipologia_organizzazione in Unita Organizzativa ct. changed to required
-
+  [foxtrot-dfm1]
 
 4.4.2 (2022-07-01)
 ------------------
