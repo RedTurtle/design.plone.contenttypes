@@ -44,7 +44,7 @@ class TestPersona(unittest.TestCase):
                 "plone.basic",
                 "plone.locking",
                 "design.plone.contenttypes.behavior.additional_help_infos",
-                "collective.dexteritytextindexer",
+                "plone.textindexer",
                 "plone.translatable",
                 "kitconcept.seo",
                 "plone.versioning",

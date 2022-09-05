@@ -50,7 +50,7 @@
     <element value="plone.locking" />
     <element value="plone.leadimage" />
     <element value="volto.preview_image" />
-    <element value="collective.dexteritytextindexer"/>
+    <element value="plone.textindexer"/>
     <element value="volto.blocks" />
     <element value="plone.translatable"/>
     <element value="kitconcept.seo"/>

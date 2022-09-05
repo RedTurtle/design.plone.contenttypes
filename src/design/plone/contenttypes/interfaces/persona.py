@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from collective import dexteritytextindexer
+from plone.app.dexterity import textindexer
 from collective.volto.blocksfield.field import BlocksField
 from design.plone.contenttypes import _
 from design.plone.contenttypes.interfaces import IDesignPloneContentType
@@ -200,10 +200,10 @@ class IPersona(model.Schema, IDesignPloneContentType):
         fields=["curriculum_vitae", "atto_nomina"],
     )
     # SearchableText fields
-    dexteritytextindexer.searchable("ruolo")
-    dexteritytextindexer.searchable("competenze")
-    dexteritytextindexer.searchable("deleghe")
-    dexteritytextindexer.searchable("tipologia_persona")
-    dexteritytextindexer.searchable("telefono")
-    dexteritytextindexer.searchable("fax")
-    dexteritytextindexer.searchable("email")
+    textindexer.searchable("ruolo")
+    textindexer.searchable("competenze")
+    textindexer.searchable("deleghe")
+    textindexer.searchable("tipologia_persona")
+    textindexer.searchable("telefono")
+    textindexer.searchable("fax")
+    textindexer.searchable("email")

@@ -24,7 +24,7 @@
   <element value="design.plone.contenttypes.behavior.address_venue"/>
   <element value="design.plone.contenttypes.behavior.geolocation_venue"/>
   <element value="design.plone.contenttypes.behavior.additional_help_infos"/>
-  <element value="collective.dexteritytextindexer"/>
+  <element value="plone.textindexer"/>
   <element value="plone.translatable"/>
   <element value="kitconcept.seo"/>
   <element value="plone.versioning"/>

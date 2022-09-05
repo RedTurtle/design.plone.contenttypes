@@ -49,7 +49,7 @@
     <element value="plone.basic"/>
     <element value="plone.locking" />
     <element value="design.plone.contenttypes.behavior.additional_help_infos"/>
-    <element value="collective.dexteritytextindexer"/>
+    <element value="plone.textindexer"/>
     <element value="plone.translatable"/>
     <element value="kitconcept.seo"/>
     <element value="plone.versioning"/>

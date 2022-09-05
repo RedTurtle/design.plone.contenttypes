@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from collective import dexteritytextindexer
+from plone.app.dexterity import textindexer
 from collective.venue.interfaces import IVenue
 from design.plone.contenttypes import _
 from collective.volto.blocksfield.field import BlocksField
@@ -63,10 +63,10 @@ class IContatti(model.Schema):
         required=False,
     )
 
-    dexteritytextindexer.searchable("orario_pubblico")
-    dexteritytextindexer.searchable("email")
-    dexteritytextindexer.searchable("pec")
-    dexteritytextindexer.searchable("web")
+    textindexer.searchable("orario_pubblico")
+    textindexer.searchable("email")
+    textindexer.searchable("pec")
+    textindexer.searchable("web")
 
 
 @provider(IFormFieldProvider)

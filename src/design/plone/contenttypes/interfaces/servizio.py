@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from collective import dexteritytextindexer
+from plone.app.dexterity import textindexer
 from collective.volto.blocksfield.field import BlocksField
 from design.plone.contenttypes import _
 from design.plone.contenttypes.interfaces import IDesignPloneContentType
@@ -431,15 +431,15 @@ class IServizio(model.Schema, IDesignPloneContentType):
     )
 
     # SearchableText fields
-    dexteritytextindexer.searchable("sottotitolo")
-    dexteritytextindexer.searchable("a_chi_si_rivolge")
-    dexteritytextindexer.searchable("chi_puo_presentare")
-    dexteritytextindexer.searchable("come_si_fa")
-    dexteritytextindexer.searchable("cosa_si_ottiene")
-    dexteritytextindexer.searchable("cosa_serve")
-    dexteritytextindexer.searchable("area")
-    dexteritytextindexer.searchable("ufficio_responsabile")
-    dexteritytextindexer.searchable("copertura_geografica")
-    dexteritytextindexer.searchable("costi")
-    dexteritytextindexer.searchable("servizi_collegati")
-    dexteritytextindexer.searchable("link_siti_esterni")
+    textindexer.searchable("sottotitolo")
+    textindexer.searchable("a_chi_si_rivolge")
+    textindexer.searchable("chi_puo_presentare")
+    textindexer.searchable("come_si_fa")
+    textindexer.searchable("cosa_si_ottiene")
+    textindexer.searchable("cosa_serve")
+    textindexer.searchable("area")
+    textindexer.searchable("ufficio_responsabile")
+    textindexer.searchable("copertura_geografica")
+    textindexer.searchable("costi")
+    textindexer.searchable("servizi_collegati")
+    textindexer.searchable("link_siti_esterni")

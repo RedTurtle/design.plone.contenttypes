@@ -925,3 +925,19 @@ def to_5310(context):
         if i % 500 == 0:
             logger.info("Progress: {}/{}".format(i, tot))
         brain.getObject().reindexObject(idxs=["SearchableText"])
+
+
+def to_6000(context):
+    """ """
+    logger.info(
+        "Convert behavior: collective.dexteritytextindexer => plone.textindexer"
+    )
+    portal_types = api.portal.get_tool(name="portal_types")
+    for fti in portal_types.values():
+        behaviors = []
+        for behavior in getattr(fti, "behaviors", ()):
+            if behavior == "collective.dexteritytextindexer":
+                behavior = "plone.textindexer"
+            behaviors.append(behavior)
+
+        fti.behaviors = tuple(behaviors)

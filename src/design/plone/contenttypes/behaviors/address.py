@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from collective import dexteritytextindexer
+from plone.app.dexterity import textindexer
 from collective.address.behaviors import IAddress
 from plone.dexterity.interfaces import IDexterityContent
 from design.plone.contenttypes import _
@@ -21,7 +21,7 @@ class IAddressNomeSede(model.Schema):
         ),
         required=False,
     )
-    dexteritytextindexer.searchable("nome_sede")
+    textindexer.searchable("nome_sede")
 
 
 class IAddressLocal(model.Schema):
@@ -40,8 +40,8 @@ class IAddressLocal(model.Schema):
     )
 
     # searchabletext indexer
-    dexteritytextindexer.searchable("quartiere")
-    dexteritytextindexer.searchable("circoscrizione")
+    textindexer.searchable("quartiere")
+    textindexer.searchable("circoscrizione")
 
 
 @provider(IFormFieldProvider)

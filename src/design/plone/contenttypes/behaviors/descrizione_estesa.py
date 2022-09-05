@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from collective import dexteritytextindexer
+from plone.app.dexterity import textindexer
 from design.plone.contenttypes import _
 from design.plone.contenttypes.interfaces.documento import IDocumento
 from collective.volto.blocksfield.field import BlocksField
@@ -21,7 +21,7 @@ class IDescrizioneEstesaSchema(model.Schema):
         ),
     )
 
-    dexteritytextindexer.searchable("descrizione_estesa")
+    textindexer.searchable("descrizione_estesa")
 
 
 @provider(IFormFieldProvider)

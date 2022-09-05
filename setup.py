@@ -56,8 +56,7 @@ setup(
         # -*- Extra requirements: -*-
         "z3c.jbot",
         "plone.api>=1.8.4",
-        "plone.app.dexterity",
-        "collective.dexteritytextindexer",
+        "plone.app.dexterity>2.6.9",
         "collective.venue[geolocation]",
         "collective.volto.blocksfield",
         "plone.formwidget.geolocation",

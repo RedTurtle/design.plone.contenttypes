@@ -12,7 +12,7 @@
    <element value="design.plone.contenttypes.behavior.news"/>
    <element value="design.plone.contenttypes.behavior.argomenti"/>
    <element value="plone.constraintypes"/>
-   <element value="collective.dexteritytextindexer"/>
+   <element value="plone.textindexer"/>
    <element value="plone.translatable"/>
    <element value="kitconcept.seo"/>
  </property>

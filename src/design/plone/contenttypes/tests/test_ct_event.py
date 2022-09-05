@@ -48,7 +48,7 @@ class TestEvent(unittest.TestCase):
                 "plone.versioning",
                 "plone.locking",
                 "plone.constraintypes",
-                "collective.dexteritytextindexer",
+                "plone.textindexer",
                 "plone.translatable",
                 "kitconcept.seo",
             ),

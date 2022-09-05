@@ -112,7 +112,7 @@ class TestUO(unittest.TestCase):
                 "design.plone.contenttypes.behavior.geolocation_uo",
                 "design.plone.contenttypes.behavior.contatti_uo",
                 "design.plone.contenttypes.behavior.argomenti",
-                "collective.dexteritytextindexer",
+                "plone.textindexer",
                 "design.plone.contenttypes.behavior.additional_help_infos",
                 "plone.translatable",
                 "kitconcept.seo",

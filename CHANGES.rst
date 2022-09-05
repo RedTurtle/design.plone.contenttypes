@@ -5,8 +5,8 @@ Changelog
 4.4.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Remove collective.dexteritytextindexer dependency (it's in core).
+  [cekk]
 
 4.4.2 (2022-07-01)
 ------------------

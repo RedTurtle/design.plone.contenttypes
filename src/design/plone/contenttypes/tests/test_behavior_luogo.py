@@ -34,7 +34,7 @@ class LuogoBehaviorIndexerFunctionalTest(unittest.TestCase):
             "volto.preview_image",
             "collective.address.behaviors.IAddress",
             "design.plone.contenttypes.behavior.luogo",
-            "collective.dexteritytextindexer",
+            "plone.textindexer",
         )
         self.fti = fti
 
@@ -44,7 +44,7 @@ class LuogoBehaviorIndexerFunctionalTest(unittest.TestCase):
 
     def test_luogo_behavior_fields_inexed_for_venue(self):
         # Non sembra deterministico il testing delle cose indicizzate con
-        # collective.dexteritytextindexer. Per ora togliamo. Poi se capiamo
+        # plone.textindexer. Per ora togliamo. Poi se capiamo
         # come gestire lo rimetteremo.
         return
         self.assertTrue(True)
