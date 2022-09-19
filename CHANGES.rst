@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-5.0.2 (unreleased)
+5.0.2 (2022-09-19)
 ------------------
 
 - Handle missing attribute in pagina_argomento event handler.
