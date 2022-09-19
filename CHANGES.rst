@@ -5,7 +5,8 @@ Changelog
 5.0.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Handle missing attribute in pagina_argomento event handler.
+  [cekk]
 
 
 5.0.1 (2022-08-16)

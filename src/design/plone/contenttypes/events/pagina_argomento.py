@@ -10,7 +10,7 @@ def onModify(argomento, event):
     """ """
     should_update_references = False
     for descr in event.descriptions:
-        for fieldname in descr.attributes:
+        for fieldname in getattr(descr, "attributes", []):
             if fieldname == "IBasic.title":
                 should_update_references = True
     if not should_update_references:
