@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+from DateTime import DateTime
 from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING,
     DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
@@ -10,11 +10,11 @@ from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import SITE_OWNER_PASSWORD
 from plone.app.testing import TEST_USER_ID
 from plone.restapi.testing import RelativeSession
+from Products.CMFPlone.utils import getToolByName
+from transaction import commit
 from z3c.relationfield import RelationValue
 from zope.component import getUtility
 from zope.intid.interfaces import IIntIds
-from Products.CMFPlone.utils import getToolByName
-from transaction import commit
 
 import unittest
 
@@ -73,6 +73,9 @@ class TestLuogoApi(unittest.TestCase):
         self.news = api.content.create(
             container=self.portal, type="News Item", title="TestNews"
         )
+        self.news_published = api.content.create(
+            container=self.portal, type="News Item", title="TestNews published"
+        )
         self.service = api.content.create(
             container=self.portal, type="Servizio", title="TestService"
         )
@@ -83,10 +86,16 @@ class TestLuogoApi(unittest.TestCase):
         self.venue = api.content.create(
             container=self.portal, type="Venue", title="TestVenue"
         )
+
+        api.content.transition(obj=self.news_published, transition="publish")
+        self.news_published.setEffectiveDate(DateTime())
+        self.news_published.reindexObject()
+
         intids = getUtility(IIntIds)
 
         venue = RelationValue(intids.getId(self.venue))
         self.news.luoghi_correlati = [venue]
+        self.news_published.luoghi_correlati = [venue]
         self.service.dove_rivolgersi = [venue]
         self.uo.luoghi_correlati = [venue]
         pcatalog = getToolByName(self.portal, "portal_catalog")
@@ -152,7 +161,13 @@ class TestLuogoApi(unittest.TestCase):
 
     def test_venue_news(self):
         response = self.api_session.get(self.venue.absolute_url() + "?fullobjects")
+        res = response.json()
 
-        self.assertTrue(
-            response.json()["related_news"][0]["@id"], self.news.absolute_url()
+        self.assertEqual(len(res["related_news"]), 2)
+        self.assertEqual(
+            res["related_news"][0]["@id"], self.news_published.absolute_url()
+        )
+        self.assertEqual(
+            res["related_news"][1]["@id"],
+            self.news.absolute_url(),
         )
