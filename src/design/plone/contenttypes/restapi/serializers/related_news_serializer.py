@@ -6,6 +6,9 @@ from plone.restapi.interfaces import ISerializeToJson
 from zope.component import adapter
 from zope.interface import implementer
 from zope.interface import Interface
+from plone.restapi.interfaces import ISerializeToJsonSummary
+from plone.restapi.serializer.converters import json_compatible
+from zope.component import getMultiAdapter
 
 
 class SerializeFolderToJson(BaseSerializer):
@@ -25,20 +28,19 @@ class SerializeFolderToJson(BaseSerializer):
             "sort_order": "descending",
             "sort_limit": limit,
         }
-
         brains = catalog(**query)[:limit]
-        news = [
-            {
-                "title": x.Title or "",
-                "description": x.Description or "",
-                "effective": x.effective and x.effective.__str__() or "",
-                "@id": x.getURL() or "",
-                "typology": x.tipologia_notizia or "",
-            }
-            for x in brains
-        ]
-        result["related_news"] = news
+        result["related_news"] = [self.serialize_brain(x) for x in brains]
         return result
+
+    def serialize_brain(self, brain):
+        data = getMultiAdapter((brain, self.request), ISerializeToJsonSummary)()
+        if brain.effective.Date() != "1969/12/31":
+            data["effective"] = json_compatible(brain.effective)
+        else:
+            data["effective"] = None
+        data["typology"] = brain.tipologia_notizia or ""
+
+        return data
 
 
 @implementer(ISerializeToJson)

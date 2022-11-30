@@ -5,7 +5,8 @@ Changelog
 5.0.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix date format in related_news_serializer.
+  [cekk]
 
 
 5.0.2 (2022-09-19)
