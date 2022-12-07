@@ -28,7 +28,6 @@ class TestDocument(unittest.TestCase):
                 "plone.locking",
                 "volto.blocks",
                 "plone.versioning",
-                "plone.tableofcontents",
                 "design.plone.contenttypes.behavior.info_testata",
                 "design.plone.contenttypes.behavior.argomenti_document",
                 "plone.translatable",
