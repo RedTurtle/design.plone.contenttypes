@@ -7,7 +7,8 @@ Changelog
 
 - Fix date format in related_news_serializer.
   [cekk]
-
+- Remove plone.tableofcontents behavior from Document.
+  [cekk]
 
 5.0.2 (2022-09-19)
 ------------------

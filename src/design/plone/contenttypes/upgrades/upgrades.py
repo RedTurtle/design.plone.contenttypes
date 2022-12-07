@@ -931,3 +931,16 @@ def to_5310(context):
 def to_5400(context):
     logger.info('Remove "volto.blocks" behavior from News Item and Event.')
     remove_blocks_behavior(context)
+
+
+def to_5410(context):
+
+    # cleanup Document behaviors
+    portal_types = api.portal.get_tool(name="portal_types")
+    behaviors = portal_types["Document"].behaviors
+    to_remove = [
+        "plone.tableofcontents",
+    ]
+    portal_types["Document"].behaviors = tuple(
+        [x for x in behaviors if x not in to_remove]
+    )

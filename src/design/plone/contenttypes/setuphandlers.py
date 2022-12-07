@@ -21,11 +21,16 @@ def post_install(context):
     remove_blocks_behavior(context)
 
     portal_types = api.portal.get_tool(name="portal_types")
-    # add image fields at the end of document behaviors
+    # add image fields at the end of document behaviors and remove tableofcontents
     document_behaviors = [
         x
         for x in portal_types["Document"].behaviors
-        if x not in ["plone.leadimage", "volto.preview_image"]
+        if x
+        not in [
+            "plone.leadimage",
+            "volto.preview_image",
+            "plone.tableofcontents",
+        ]
     ]
     document_behaviors.extend(["plone.leadimage", "volto.preview_image"])
     portal_types["Document"].behaviors = tuple(document_behaviors)
