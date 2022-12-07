@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-5.0.3 (unreleased)
+5.0.3 (2022-12-07)
 ------------------
 
 - Fix date format in related_news_serializer.
