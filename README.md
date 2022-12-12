@@ -309,7 +309,6 @@ Alla creazione di una Persona, viene creata anche una struttura predefinita per 
 - ruolo
 - competenze
 - deleghe
-- tipologia_persona
 - telefono
 - email
 - informazioni_di_contatto

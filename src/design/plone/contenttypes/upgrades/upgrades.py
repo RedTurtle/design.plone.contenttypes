@@ -410,7 +410,7 @@ def to_2002(context):
     fixed_total = 0
     for brain in api.content.find(portal_type="Persona"):
         item = brain.getObject()
-        if item.tipologia_persona in type_mapping:
+        if hasattr(item, "tipologia_persona") and item.tipologia_persona in type_mapping: # noqa
             item.tipologia_persona = type_mapping[item.tipologia_persona]
             fixed_total += 1
         commit()
@@ -751,9 +751,14 @@ def to_4000(context):
         if ruolo not in ruoli[lang]:
             ruoli[lang].append(ruolo)
 
-    api.portal.set_registry_record(
-        "ruoli_persona", json.dumps(ruoli), interface=IDesignPloneSettings
-    )
+    if api.portal.get_registry_record(
+        "ruoli_persona",
+        interface=IDesignPloneSettings,
+        default=None
+    ):
+        api.portal.set_registry_record(
+            "ruoli_persona", json.dumps(ruoli), interface=IDesignPloneSettings
+        )
 
 
 def to_4100(context):

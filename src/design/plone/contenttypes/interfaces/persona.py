@@ -81,17 +81,6 @@ class IPersona(model.Schema, IDesignPloneContentType):
         required=False,
     )
 
-    tipologia_persona = schema.Choice(
-        title=_("tipologia_persona_label", default="Tipologia persona"),
-        description=_(
-            "tipologia_persona_help",
-            default="Seleziona la tipologia di persona: politica,"
-            " amministrativa o di altro tipo.",
-        ),
-        vocabulary="design.plone.contenttypes.TipologiaPersona",
-        required=True,
-    )
-
     data_insediamento = schema.Date(
         title=_("data_insediamento_label", default="Data insediamento"),
         description=_(
@@ -184,7 +173,6 @@ class IPersona(model.Schema, IDesignPloneContentType):
             "data_conclusione_incarico",
             "competenze",
             "deleghe",
-            "tipologia_persona",
             "data_insediamento",
             "biografia",
         ],
@@ -203,7 +191,6 @@ class IPersona(model.Schema, IDesignPloneContentType):
     dexteritytextindexer.searchable("ruolo")
     dexteritytextindexer.searchable("competenze")
     dexteritytextindexer.searchable("deleghe")
-    dexteritytextindexer.searchable("tipologia_persona")
     dexteritytextindexer.searchable("telefono")
     dexteritytextindexer.searchable("fax")
     dexteritytextindexer.searchable("email")

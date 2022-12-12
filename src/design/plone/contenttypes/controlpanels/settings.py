@@ -23,7 +23,7 @@ class IDesignPloneSettings(Interface):
             " a seconda delle lingue del sito.",
         ),
         required=True,
-        default=json.dumps({"it": ["Avviso", "Comunicato stampa", "Novità"]}),
+        default=json.dumps({"it": ["Avviso", "Comunicato (stampa)", "Notizia"]}),
     )
 
     tipologie_unita_organizzativa = SourceText(
@@ -53,50 +53,16 @@ class IDesignPloneSettings(Interface):
         default=json.dumps(
             {
                 "it": [
-                    "Accordi tra enti",
-                    "Atti normativi",
+                    "Accordo tra enti",
+                    "Atto normativo",
                     "Dataset",
-                    "Documenti (tecnici) di supporto",
-                    "Documenti albo pretorio",
-                    "Documenti attività politica",
-                    "Documenti funzionamento interno",
-                    "Istanze",
+                    "Documento (tecnico) di supporto",
+                    "Documento albo pretorio",
+                    "Documento attività politica",
+                    "Documento funzionamento interno",
+                    "Istanza",
                     "Modulistica",
-                ]
-            }
-        ),
-    )
-
-    tipologie_persona = SourceText(
-        title=_("tipologie_persona_label", default="Tipologie Persona"),
-        description=_(
-            "tipologie_persona_help",
-            default="Inserisci i valori utilizzabili per le tipologie di "
-            "una Persona. Se il sito è multilingua, puoi inserire "
-            "valori diversi a seconda delle lingue del sito.",
-        ),
-        required=True,
-        default=json.dumps({"it": ["Amministrativa", "Politica", "Altro tipo"]}),
-    )
-
-    ruoli_persona = SourceText(
-        title=_("ruoli_persona_label", default="Ruoli Persona"),
-        description=_(
-            "ruoli_persona_help",
-            default="Inserisci i valori utilizzabili per il ruolo di "
-            "una Persona. Se il sito è multilingua, puoi inserire "
-            "valori diversi a seconda delle lingue del sito.",
-        ),
-        required=True,
-        default=json.dumps(
-            {
-                "it": [
-                    "Assessore",
-                    "Sindaco",
-                    "Consigliere",
-                    "Referente ufficio",
-                    "Responsabile",
-                    "Presidente",
+                    "Documento di programmazione e rendicontazione",
                 ]
             }
         ),

@@ -23,7 +23,7 @@ class AllLifeEventsVocabulary(object):
         items = [
             (
                 "L1.0",
-                _("Iscrizione scuola/università e/o richiesta borsa di studio"),
+                _("Iscrizione Scuola/Università e/o richiesta borsa di studio"), # noqa
             ),
             ("L2.0", _("Invalidità")),
             (
@@ -37,13 +37,13 @@ class AllLifeEventsVocabulary(object):
             (
                 "L8.0",
                 _(
-                    "Compravendita/affitto casa/edifici/terreni, costruzione o ristrutturazione casa/edificio	"
+                    "Compravendita/affitto casa/edifici/terreni, costruzione o ristrutturazione casa/edificio" # noqa
                 ),
             ),
             ("L9.0", _("Cambio di residenza/domicilio")),
             (
                 "L11.0",
-                _("Richiesta passaporto, visto e assistenza viaggi internazionali"),
+                _("Richiesta passaporto, visto e assistenza viaggi internazionali"), # noqa
             ),
             ("L12.0", _("Nascita di un bambino, richiesta adozioni")),
             ("L13.0", _("Matrimonio e/o cambio stato civile")),
@@ -53,32 +53,28 @@ class AllLifeEventsVocabulary(object):
             (
                 "L17.0",
                 _(
-                    "Dichiarazione dei redditi, versamento e riscossione tributi/imposte e contributi"
+                    "Dichiarazione dei redditi, versamento e riscossione tributi/imposte e contributi" # noqa
                 ),
             ),
             ("L18.0", _("Accesso luoghi della cultura")),
             ("L19.0", _("Possesso, cura, smarrimento animale da compagnia")),
+            ("B1.0", _("Avvio impresa")),
+            ("B2.0", _("Avvio nuova attività professionale")),
+            ("B3.0", _("Richiesta licenze, permessi e certificati")),
+            ("B4.0", _("Registrazione impresa transfrontaliera")),
+            ("B5.0", _("Avvio e registrazione filiale")),
+            ("B6.0", _("Finanziamento impresa")),
+            ("B7.0", _("Gestione personale")),
+            ("B8.0", _("Pagamento tasse, iva e dogane")),
+            ("B9.0", _("Notifiche autorità")),
+            ("B10.0", _("Chiusura impresa e attività professionale")),
+            ("B11.0", _("Chiusura filiale")),
+            ("B12.0", _("Ristrutturazione impresa")),
+            ("B13.0", _("Vendita impresa")),
+            ("B14.0", _("Bancarotta")),
             (
-                "B1.0",
-                _("Iscrizione scuola/università e/o richiesta borsa di studio"),
-            ),
-            ("B2.0", _("Avvio impresa")),
-            ("B3.0", _("Avvio nuova attività professionale")),
-            ("B4.0", _("Richiesta licenze/permessi/certificati")),
-            ("B5.0", _("Registrazione impresa transfrontalier")),
-            ("B6.0", _("Avvio/registrazione filiale")),
-            ("B7.0", _("Finanziamento impresa")),
-            ("B8.0", _("Gestione personale")),
-            ("B9.0", _("Pagamento tasse, iva e dogane")),
-            ("B10.0", _("Notifiche autorità")),
-            ("B11.0", _("Chiusura impresa e attività professionale")),
-            ("B12.0", _("Chiusura filiale")),
-            ("B13.0", _("Ristrutturazione impresa")),
-            ("B14.0", _("Vendita impresa")),
-            ("B15.0", _("Bancarotta")),
-            (
-                "B16.0",
-                _("Partecipazione ad appalti pubblici nazionali e trasfrontalieri"),
+                "B15.0",
+                _("Partecipazione ad appalti pubblici nazionali e trasfrontalieri"), # noqa
             ),
         ]
         req = getRequest()
