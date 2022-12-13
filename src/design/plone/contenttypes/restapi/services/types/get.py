@@ -79,7 +79,6 @@ FIELDSETS_ORDER = {
     ],
     "Persona": [
         "default",
-        "ruolo",
         "contatti",
         "documenti",
         "informazioni",

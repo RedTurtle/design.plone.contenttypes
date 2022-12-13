@@ -52,14 +52,6 @@
       factory=".uo.uo_location"
       name="uo_location"
       />
-
-
-  <!-- persona -->
-  <adapter
-      factory=".persona.ruolo"
-      name="ruolo"
-      />
-
   <adapter
       factory=".persona.image_field_indexer"
       name="image_field"

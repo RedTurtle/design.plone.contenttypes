@@ -5,11 +5,6 @@ from plone.indexer.decorator import indexer
 
 
 @indexer(IPersona)
-def ruolo(context, **kw):
-    return getattr(context.aq_base, "ruolo", "")
-
-
-@indexer(IPersona)
 def image_field_indexer(obj):
     """"""
     base_obj = aq_base(obj)

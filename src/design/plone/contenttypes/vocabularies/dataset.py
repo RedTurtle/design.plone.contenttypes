@@ -34,16 +34,17 @@ class TemiDataset(object):
             ),
             VocabItem("energia", _("Energia")),
             VocabItem("ambiente", _("Ambiente")),
-            VocabItem("governo_e_settore_pubblico", _("Governo e settore pubblico")),
+            VocabItem("governo_e_settore_pubblico", _("Governo e settore pubblico")), # noqa
             VocabItem("salute", _("Salute")),
             VocabItem("tematiche_internazionali", _("Tematiche internazionali")),
             VocabItem(
                 "giustizia_sistema_giuridico_e_sicurezza_pubblica",
                 _("Giustizia, sistema giuridico e sicurezza pubblica"),
             ),
-            VocabItem("regioni_e_citta", _("Regioni e città")),
             VocabItem("popolazione_e_societa", _("Popolazione e società")),
+            VocabItem("regioni_e_citta", _("Regioni e città")),
             VocabItem("scienza_e_tecnologia", _("Scienza e tecnologia")),
+            VocabItem("trasporti", _("Trasporti")),
         ]
 
         if not IDexterityContent.providedBy(context):

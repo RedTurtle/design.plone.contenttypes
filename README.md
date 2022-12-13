@@ -306,7 +306,6 @@ Alla creazione di una Persona, viene creata anche una struttura predefinita per 
 
 ### Campi indicizzati nel SearchableText
 
-- ruolo
 - competenze
 - deleghe
 - telefono

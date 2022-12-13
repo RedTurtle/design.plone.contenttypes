@@ -24,15 +24,6 @@ class IPersona(model.Schema, IDesignPloneContentType):
             "La dimensione suggerita è 180x100 px.",
         ),
     )
-    ruolo = schema.Choice(
-        title=_("ruolo_label", default="Ruolo"),
-        description=_(
-            "ruolo_help",
-            default="Seleziona il ruolo della persona tra quelli disponibili.",
-        ),
-        vocabulary="design.plone.contenttypes.RuoliPersona",
-        required=True,
-    )
 
     organizzazione_riferimento = RelationList(
         title=_(
@@ -168,7 +159,6 @@ class IPersona(model.Schema, IDesignPloneContentType):
         "ruolo",
         label=_("ruolo_label", default="Ruolo"),
         fields=[
-            "ruolo",
             "organizzazione_riferimento",
             "data_conclusione_incarico",
             "competenze",
@@ -188,7 +178,6 @@ class IPersona(model.Schema, IDesignPloneContentType):
         fields=["curriculum_vitae", "atto_nomina"],
     )
     # SearchableText fields
-    dexteritytextindexer.searchable("ruolo")
     dexteritytextindexer.searchable("competenze")
     dexteritytextindexer.searchable("deleghe")
     dexteritytextindexer.searchable("telefono")

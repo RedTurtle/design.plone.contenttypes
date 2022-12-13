@@ -25,7 +25,7 @@
   <indexed_attr value="tassonomia_argomenti"/>
  </index>
  <index name="tipologia_documento" meta_type="KeywordIndex">
-  <indexed_attr value="tipologia_documento"/> 
+  <indexed_attr value="tipologia_documento"/>
  </index>
  <index name="ufficio_responsabile" meta_type="KeywordIndex">
   <indexed_attr value="ufficio_responsabile"/>
@@ -42,9 +42,6 @@
  <index name="tipologia_organizzazione" meta_type="KeywordIndex">
   <indexed_attr value="tipologia_organizzazione"/>
  </index>
- <index name="ruolo" meta_type="KeywordIndex">
-  <indexed_attr value="ruolo"/>
- </index>
  <index name="data_conclusione_incarico" meta_type="DateIndex">
   <indexed_attr value="data_conclusione_incarico"/>
  </index>
@@ -56,7 +53,6 @@
  <column value="event_location"/>
  <column value="Subject_bando"/>
  <column value="ufficio_responsabile_bando"/>
- <column value="ruolo"/>
  <column value="data_conclusione_incarico"/>
  <column value="parent"/>
  <column value="ente_bando"/>
