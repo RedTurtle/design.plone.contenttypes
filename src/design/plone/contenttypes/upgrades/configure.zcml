@@ -570,5 +570,14 @@
         title="Updated plone.volto: remove plone.tableofcontents behavior"
         handler=".upgrades.to_5410"
         />
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="6000"
+      destination="6000"
+      >
+    <genericsetup:upgradeStep
+        title="Plone6 and pip"
+        handler=".upgrades.to_6000"
+        />
   </genericsetup:upgradeSteps>
 </configure>

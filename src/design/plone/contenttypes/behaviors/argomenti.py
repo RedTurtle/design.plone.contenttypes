@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from collective import dexteritytextindexer
+from plone.app.dexterity import textindexer
 from design.plone.contenttypes import _
 from design.plone.contenttypes.interfaces.bando import IBandoAgidSchema
 from design.plone.contenttypes.interfaces.documento import IDocumento
@@ -62,7 +62,7 @@ class IArgomentiSchema(model.Schema):
         pattern_options={"maximumSelectionSize": 1},
     )
 
-    dexteritytextindexer.searchable("tassonomia_argomenti")
+    textindexer.searchable("tassonomia_argomenti")
 
 
 @provider(IFormFieldProvider)

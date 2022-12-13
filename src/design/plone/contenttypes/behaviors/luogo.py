@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from collective import dexteritytextindexer
+from plone.app.dexterity import textindexer
 from design.plone.contenttypes import _
 from collective.volto.blocksfield.field import BlocksField
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
@@ -197,7 +197,7 @@ class ILuogo(model.Schema):
     )
 
     # searchabletext indexer
-    dexteritytextindexer.searchable("descrizione_completa")
+    textindexer.searchable("descrizione_completa")
 
 
 @implementer(ILuogo)

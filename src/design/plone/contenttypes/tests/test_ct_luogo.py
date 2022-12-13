@@ -44,7 +44,7 @@ class TestLuogo(unittest.TestCase):
                 "design.plone.contenttypes.behavior.address_venue",
                 "design.plone.contenttypes.behavior.geolocation_venue",
                 "design.plone.contenttypes.behavior.additional_help_infos",
-                "collective.dexteritytextindexer",
+                "plone.textindexer",
                 "plone.translatable",
                 "kitconcept.seo",
                 "plone.versioning",

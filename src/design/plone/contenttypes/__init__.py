@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Init and utils."""
 from collective.address.behaviors import IAddress
-from collective.dexteritytextindexer import utils
+from plone.app.dexterity.textindexer import utils
 from zope.i18nmessageid import MessageFactory
 
 _ = MessageFactory("design.plone.contenttypes")

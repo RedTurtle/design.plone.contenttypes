@@ -29,7 +29,7 @@
     <element value="plone.versioning" />
     <element value="plone.locking" />
     <element value="plone.constraintypes" />
-    <element value="collective.dexteritytextindexer"/>
+    <element value="plone.textindexer"/>
     <element value="plone.translatable"/>
     <element value="kitconcept.seo"/>
     <!-- remove unused behaviors -->

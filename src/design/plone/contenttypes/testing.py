@@ -9,7 +9,7 @@ from redturtle.volto.testing import RedturtleVoltoRestApiLayer
 
 
 import collective.address
-import collective.dexteritytextindexer
+import collective.folderishtypes
 import collective.venue
 import collective.volto.blocksfield
 import collective.volto.cookieconsent
@@ -28,7 +28,6 @@ class DesignPloneContenttypesLayer(RedturtleVoltoLayer):
         # The z3c.autoinclude feature is disabled in the Plone fixture base
         # layer.
         super().setUpZope(app, configurationContext)
-        self.loadZCML(package=collective.dexteritytextindexer)
         self.loadZCML(package=collective.venue)
         self.loadZCML(package=collective.volto.blocksfield)
         self.loadZCML(package=design.plone.contenttypes, context=configurationContext)
@@ -65,7 +64,6 @@ DESIGN_PLONE_CONTENTTYPES_FUNCTIONAL_TESTING = FunctionalTesting(
 class DesignPloneContenttypesRestApiLayer(RedturtleVoltoRestApiLayer):
     def setUpZope(self, app, configurationContext):
         super().setUpZope(app, configurationContext)
-        self.loadZCML(package=collective.dexteritytextindexer)
         self.loadZCML(package=collective.venue)
         self.loadZCML(package=collective.volto.blocksfield)
         self.loadZCML(package=design.plone.contenttypes, context=configurationContext)

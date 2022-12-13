@@ -949,3 +949,19 @@ def to_5410(context):
     portal_types["Document"].behaviors = tuple(
         [x for x in behaviors if x not in to_remove]
     )
+
+
+def to_6000(context):
+    """ """
+    logger.info(
+        "Convert behavior: collective.dexteritytextindexer => plone.textindexer"  # noqa
+    )
+    portal_types = api.portal.get_tool(name="portal_types")
+    for fti in portal_types.values():
+        behaviors = []
+        for behavior in getattr(fti, "behaviors", ()):
+            if behavior == "collective.dexteritytextindexer":
+                behavior = "plone.textindexer"
+            behaviors.append(behavior)
+
+        fti.behaviors = tuple(behaviors)

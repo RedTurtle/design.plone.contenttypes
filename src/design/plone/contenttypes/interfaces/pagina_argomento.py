@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from collective import dexteritytextindexer
+from plone.app.dexterity import textindexer
 from design.plone.contenttypes import _
 from design.plone.contenttypes.interfaces import IDesignPloneContentType
 from plone.app.textfield import RichText
@@ -72,5 +72,5 @@ class IPaginaArgomento(model.Schema, IDesignPloneContentType):
     )
 
     # SearchableText fields
-    dexteritytextindexer.searchable("ulteriori_informazioni")
-    dexteritytextindexer.searchable("unita_amministrative_responsabili")
+    textindexer.searchable("ulteriori_informazioni")
+    textindexer.searchable("unita_amministrative_responsabili")

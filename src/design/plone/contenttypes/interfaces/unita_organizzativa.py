@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from collective import dexteritytextindexer
+from plone.app.dexterity import textindexer
 from collective.volto.blocksfield.field import BlocksField
 from design.plone.contenttypes import _
 from design.plone.contenttypes.interfaces import IDesignPloneContentType
@@ -230,7 +230,7 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
     form.order_after(contact_info="sedi_secondarie")
 
     # SearchableText indexers
-    dexteritytextindexer.searchable("competenze")
-    dexteritytextindexer.searchable("tipologia_organizzazione")
-    dexteritytextindexer.searchable("assessore_riferimento")
-    dexteritytextindexer.searchable("responsabile")
+    textindexer.searchable("competenze")
+    textindexer.searchable("tipologia_organizzazione")
+    textindexer.searchable("assessore_riferimento")
+    textindexer.searchable("responsabile")

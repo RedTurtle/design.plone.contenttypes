@@ -31,7 +31,7 @@ class TestPaginaArgomento(unittest.TestCase):
                 "plone.locking",
                 "plone.leadimage",
                 "volto.preview_image",
-                "collective.dexteritytextindexer",
+                "plone.textindexer",
                 "volto.blocks",
                 "plone.translatable",
                 "kitconcept.seo",

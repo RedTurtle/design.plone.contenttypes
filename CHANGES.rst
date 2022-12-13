@@ -5,8 +5,8 @@ Changelog
 5.0.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Remove collective.dexteritytextindexer dependency (it's in core).
+  [cekk]
 
 5.0.3 (2022-12-07)
 ------------------

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-from collective.dexteritytextindexer.converters import (
+from plone.app.dexterity.textindexer.converters import (
     DefaultDexterityTextIndexFieldConverter,
 )
-from collective.dexteritytextindexer.interfaces import IDexterityTextIndexFieldConverter
+from plone.app.dexterity.textindexer.interfaces import IDexterityTextIndexFieldConverter
 from plone.dexterity.interfaces import IDexterityContent
 from plone.restapi.interfaces import IBlockSearchableText
 from z3c.form.interfaces import IWidget

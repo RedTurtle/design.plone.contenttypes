@@ -7,7 +7,7 @@
  </property>
  <property name="behaviors" purge="False">
     <element value="design.plone.contenttypes.behavior.argomenti_bando"/>
-    <element value="collective.dexteritytextindexer"/>
+    <element value="plone.textindexer"/>
     <element value="plone.translatable"/>
     <element value="design.plone.contenttypes.behavior.servizi_correlati" remove="True"/>
     <element value="plone.richtext" remove="True" />

@@ -44,7 +44,7 @@ class TestNews(unittest.TestCase):
                 "design.plone.contenttypes.behavior.news",
                 "design.plone.contenttypes.behavior.argomenti",
                 "plone.constraintypes",
-                "collective.dexteritytextindexer",
+                "plone.textindexer",
                 "plone.translatable",
                 "kitconcept.seo",
             ),
