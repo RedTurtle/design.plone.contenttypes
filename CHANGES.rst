@@ -5,7 +5,8 @@ Changelog
 6.0.0a4 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Remove selection limit in ufficio_responsabile field for Servizio.
+  [foxtrot-dfm1]
 
 
 6.0.0a3 (2023-01-13)
