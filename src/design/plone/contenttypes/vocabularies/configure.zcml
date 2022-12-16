@@ -37,16 +37,6 @@
 
 
   <utility
-      name="design.plone.contenttypes.TipologiaPersona"
-      component=".controlapanel_vocabularies.TipologiePersonaFactory"
-      />
-
-  <utility
-      name="design.plone.contenttypes.RuoliPersona"
-      component=".controlapanel_vocabularies.RuoliPersonaFactory"
-      />
-
-  <utility
       name="design.plone.vocabularies.tipologie_notizia"
       component=".controlapanel_vocabularies.TipologieNotiziaFactory"
       />
