@@ -41,33 +41,6 @@ class IDesignPloneSettings(Interface):
         default=json.dumps({"it": ["Politica", "Amministrativa", "Altro"]}),
     )
 
-    tipologie_documento = SourceText(
-        title=_("tipologie_documento_label", default="Tipologie Documento"),
-        description=_(
-            "tipologie_documento_help",
-            default="Inserisci i valori utilizzabili per le tipologie di un "
-            "Documento. Se il sito è multilingua, puoi inserire "
-            "valori diversi a seconda delle lingue del sito.",
-        ),
-        required=True,
-        default=json.dumps(
-            {
-                "it": [
-                    "Accordo tra enti",
-                    "Atto normativo",
-                    "Dataset",
-                    "Documento (tecnico) di supporto",
-                    "Documento albo pretorio",
-                    "Documento attività politica",
-                    "Documento funzionamento interno",
-                    "Istanza",
-                    "Modulistica",
-                    "Documento di programmazione e rendicontazione",
-                ]
-            }
-        ),
-    )
-
     lead_image_dimension = List(
         title=_(
             "lead_image_dimension_label",

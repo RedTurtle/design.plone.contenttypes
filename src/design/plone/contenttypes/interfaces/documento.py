@@ -25,16 +25,6 @@ class IDocumento(model.Schema, IDesignPloneContentType):
         required=False,
     )
 
-    # tipologia_documento = schema.Choice(
-    #     title=_("tipologia_documento_label", default="Tipologia del documento"),
-    #     description=_(
-    #         "tipologia_documento_help",
-    #         default="Seleziona la tipologia del documento.",
-    #     ),
-    #     required=True,
-    #     vocabulary="design.plone.vocabularies.tipologie_documento",
-    # )
-
     ufficio_responsabile = RelationList(
         title=_(
             "ufficio_responsabile_documento_label",

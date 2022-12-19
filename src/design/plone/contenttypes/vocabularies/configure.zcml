@@ -23,27 +23,14 @@
       component=".people_vocabulary.PeopleVocabularyFactory"
       />
 
-
   <utility
       name="design.plone.contenttypes.AvailableServicesVocabulary"
       component=".available_services_vocabulary.AvailableServicesVocabularyFactory"
       />
 
-
-  <utility
-      name="design.plone.contenttypes.DocumentTypesVocabulary"
-      component=".document_types_vocabulary.DocumentTypesVocabularyFactory"
-      />
-
-
   <utility
       name="design.plone.vocabularies.tipologie_notizia"
       component=".controlapanel_vocabularies.TipologieNotiziaFactory"
-      />
-
-  <utility
-      name="design.plone.vocabularies.tipologie_documento"
-      component=".controlapanel_vocabularies.TipologieDocumentoFactory"
       />
 
   <utility

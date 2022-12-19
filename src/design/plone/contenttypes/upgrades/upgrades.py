@@ -425,7 +425,7 @@ def to_3000(context):
     multilanguage = [
         "tipologie_notizia",
         "tipologie_unita_organizzativa",
-        "tipologie_documento",
+        # "tipologie_documento",
         "tipologie_persona",
     ]
     simple = ["lead_image_dimension", "search_sections"]
