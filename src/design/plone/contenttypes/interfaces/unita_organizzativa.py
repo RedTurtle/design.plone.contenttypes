@@ -133,20 +133,6 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
         required=False,
     )
 
-    contact_info = BlocksField(
-        title=_("contact_info_label", default="Informazioni di contatto generiche"),
-        required=False,
-        description=_(
-            "uo_contact_info_description",
-            default="Inserisci eventuali informazioni di contatto aggiuntive "
-            "non contemplate nei campi precedenti. "
-            "Utilizza questo campo se ci sono dei contatti aggiuntivi rispetto"
-            " ai contatti della sede principale. Se inserisci un collegamento "
-            'con un indirizzo email, aggiungi "mailto:" prima dell\'indirizzo'
-            ", per farlo aprire direttamente nel client di posta.",
-        ),
-    )
-
     #  custom widgets
     form.widget(
         "persone_struttura",
@@ -224,10 +210,10 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
     model.fieldset(
         "contatti",
         label=_("contatti_label", default="Contatti"),
-        fields=["sede", "sedi_secondarie", "contact_info"],
+        fields=["sede", "sedi_secondarie"],
     )
     form.order_after(sedi_secondarie="IContattiUnitaOrganizzativa.orario_pubblico")
-    form.order_after(contact_info="sedi_secondarie")
+    # form.order_after(contact_info="sedi_secondarie")
 
     # SearchableText indexers
     textindexer.searchable("competenze")

@@ -50,6 +50,7 @@
     <element value="plone.relateditems"/>
     <element value="design.plone.contenttypes.behavior.argomenti"/>
     <element value="design.plone.contenttypes.behavior.additional_help_infos"/>
+    <element value="design.plone.contenttypes.behavior.contatti_servizio"/>
     <element value="plone.textindexer"/>
     <element value="plone.translatable"/>
     <element value="kitconcept.seo"/>

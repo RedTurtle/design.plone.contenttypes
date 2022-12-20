@@ -36,7 +36,7 @@ class IPuntoDiContatto(model.Schema, IDesignPloneContentType):
             default="Seleziona la/e persona/e che ha/hanno la carica e l'incarico.",
         ),
         value_type=RelationChoice(vocabulary="plone.app.vocabularies.Catalog"),
-        required=True,
+        required=False,
         default=[],
     )
 

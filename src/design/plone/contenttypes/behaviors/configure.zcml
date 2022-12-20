@@ -209,6 +209,30 @@
       marker=".contatti.IContattiVenue"
       />
   <plone:behavior
+      name="design.plone.contenttypes.behavior.contatti_servizio"
+      title="Contatti"
+      description="Behavior contatti per Servizio."
+      factory=".contatti.ContattiServizio"
+      provides=".contatti.IContattiServizio"
+      marker=".contatti.IContattiServizio"
+      />
+  <plone:behavior
+      name="design.plone.contenttypes.behavior.contatti_persona"
+      title="Contatti"
+      description="Behavior contatti per Persona."
+      factory=".contatti.ContattiPersona"
+      provides=".contatti.IContattiPersona"
+      marker=".contatti.IContattiPersona"
+      />
+  <plone:behavior
+      name="design.plone.contenttypes.behavior.contatti_event"
+      title="Contatti"
+      description="Behavior contatti per Event."
+      factory=".contatti.ContattiEvent"
+      provides=".contatti.IContattiEvent"
+      marker=".contatti.IContattiEvent"
+      />
+  <plone:behavior
       name="design.plone.contenttypes.behavior.geolocation_uo"
       title="Geolocatable"
       description="Behavior geolocatable per UO."

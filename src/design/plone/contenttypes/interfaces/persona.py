@@ -43,18 +43,6 @@ class IPersona(model.Schema, IDesignPloneContentType):
         required=False,
     )
 
-    data_conclusione_incarico = schema.Date(
-        title=_(
-            "data_conclusione_incarico_label",
-            default="Data conclusione incarico",
-        ),
-        description=_(
-            "data_conclusione_incarico_help",
-            default="Data di conclusione dell'incarico.",
-        ),
-        required=False,
-    )
-
     competenze = BlocksField(
         title=_("competenze_label", default="Competenze"),
         description=_(
@@ -72,16 +60,6 @@ class IPersona(model.Schema, IDesignPloneContentType):
         required=False,
     )
 
-    data_insediamento = schema.Date(
-        title=_("data_insediamento_label", default="Data insediamento"),
-        description=_(
-            "data_insediamento_help",
-            default="Solo per persona politica: specificare la data di"
-            " insediamento.",
-        ),
-        required=False,
-    )
-
     biografia = BlocksField(
         title=_("biografia_label", default="Biografia"),
         description=_(
@@ -92,37 +70,6 @@ class IPersona(model.Schema, IDesignPloneContentType):
         required=False,
     )
 
-    telefono = schema.List(
-        title=_("telefono_persona_label", default="Numero di telefono"),
-        description=_(
-            "telefono_persona_help",
-            default="Contatto telefonico della persona. E' possibile inserire "
-            'più di un numero. Premendo "Invio" o "tab" si può passare al '
-            "successivo da inserire.",
-        ),
-        value_type=schema.TextLine(),
-        missing_value=[],
-        default=[],
-        required=False,
-    )
-    fax = schema.TextLine(
-        title=_("fax_persona_label", default="Fax"),
-        description=_("fax_persona_help", default="Indicare un numero di fax."),
-        required=False,
-    )
-    email = schema.List(
-        title=_("email_persona_label", default="Indirizzo email"),
-        description=_(
-            "email_persona_help",
-            default="Contatto mail della persona. E' possibile inserire più"
-            ' di un indirizzo. Premendo "Invio" o "tab" si può passare al '
-            "successivo da inserire.",
-        ),
-        value_type=schema.TextLine(),
-        missing_value=[],
-        default=[],
-        required=False,
-    )
     curriculum_vitae = field.NamedBlobFile(
         title=_("curriculum_vitae_label", default="Curriculum vitae"),
         required=False,
@@ -134,14 +81,6 @@ class IPersona(model.Schema, IDesignPloneContentType):
         ),
     )
 
-    atto_nomina = field.NamedFile(
-        title=_("atto_nomina_label", default="Atto di nomina"),
-        required=False,
-        description=_(
-            "atto_nomina_help",
-            default="Inserire un file contenente l'atto di nomina della" " persona.",
-        ),
-    )
 
     # custom widgets
     form.widget(
@@ -160,22 +99,15 @@ class IPersona(model.Schema, IDesignPloneContentType):
         label=_("ruolo_label", default="Ruolo"),
         fields=[
             "organizzazione_riferimento",
-            "data_conclusione_incarico",
             "competenze",
             "deleghe",
-            "data_insediamento",
             "biografia",
         ],
     )
     model.fieldset(
-        "contatti",
-        label=_("contatti_label", default="Contatti"),
-        fields=["telefono", "fax", "email"],
-    )
-    model.fieldset(
         "documenti",
         label=_("documenti_label", default="Documenti"),
-        fields=["curriculum_vitae", "atto_nomina"],
+        fields=["curriculum_vitae"],
     )
 
     # SearchableText fields

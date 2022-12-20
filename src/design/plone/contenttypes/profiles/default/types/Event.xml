@@ -17,9 +17,10 @@
     <element value="design.plone.contenttypes.behavior.additional_help_infos" />
     <element value="design.plone.contenttypes.behavior.evento" />
     <element value="design.plone.contenttypes.behavior.luoghi_correlati_evento" />
-    <element value="design.plone.contenttypes.behavior.address_event" />
+    <element value="design.plone.contenttypes.behavior.address_event" remove="True"/>
     <element value="design.plone.contenttypes.behavior.geolocation_event" />
     <element value="design.plone.contenttypes.behavior.strutture_correlate" />
+    <element value="design.plone.contenttypes.behavior.contatti_event" />
     <element value="plone.dublincore" />
     <element value="plone.namefromtitle" />
     <element value="plone.allowdiscussion" />
