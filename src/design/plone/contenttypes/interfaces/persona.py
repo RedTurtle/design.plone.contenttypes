@@ -9,9 +9,16 @@ from plone.namedfile import field
 from plone.supermodel import model
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
-from zope import schema
 
 
+# TODO: migration script for these commented fields towards PDC
+# telefono
+# fax
+# email
+# TODO: migration script for these commented fields towards Incarico
+# atto_nomina
+# data_conclusione_incarico
+# data_insediamento
 class IPersona(model.Schema, IDesignPloneContentType):
     """Marker interface for contenttype Persona"""
 
@@ -81,7 +88,6 @@ class IPersona(model.Schema, IDesignPloneContentType):
         ),
     )
 
-
     # custom widgets
     form.widget(
         "organizzazione_riferimento",
@@ -113,6 +119,7 @@ class IPersona(model.Schema, IDesignPloneContentType):
     # SearchableText fields
     textindexer.searchable("competenze")
     textindexer.searchable("deleghe")
-    textindexer.searchable("telefono")
-    textindexer.searchable("fax")
-    textindexer.searchable("email")
+    # TODO: migration script for these commented fields towards PDC
+    # textindexer.searchable("telefono")
+    # textindexer.searchable("fax")
+    # textindexer.searchable("email")

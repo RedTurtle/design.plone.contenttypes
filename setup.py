@@ -59,6 +59,7 @@ setup(
         "plone.app.dexterity>2.6.9",
         "collective.venue[geolocation]",
         "collective.volto.blocksfield",
+        "collective.z3cform.datagridfield",
         "plone.formwidget.geolocation",
         "redturtle.volto",
         "redturtle.bandi",

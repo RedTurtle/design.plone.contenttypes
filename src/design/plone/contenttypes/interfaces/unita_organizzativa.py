@@ -11,6 +11,11 @@ from z3c.relationfield.schema import RelationList
 from zope import schema
 
 
+# TODO: migration script for these commented fields towards PDC
+# contact_info
+# Probabilmente non possibile trattandosi di un campo a blocchi
+# preferirei si arrangiassero le redazioni. Altrimenti si defaulta
+# ad un tipo a caso + tutto il testo e poi si arrangiano comunque
 class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
     """Marker interface for content type UnitaOrganizzativa"""
 
@@ -132,6 +137,7 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
         ),
         required=False,
     )
+
 
     #  custom widgets
     form.widget(

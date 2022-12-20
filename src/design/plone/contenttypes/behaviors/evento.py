@@ -100,47 +100,7 @@ class IEvento(model.Schema):
             " indicare il nome del contatto.",
         ),
     )
-    telefono = schema.TextLine(
-        title=_("telefono_event_help", default="Telefono"),
-        description=_(
-            "telefono_event_label",
-            default="Indicare un riferimento telefonico per poter contattare"
-            " gli organizzatori.",
-        ),
-        required=False,
-    )
-    fax = schema.TextLine(
-        title=_("fax_event_help", default="Fax"),
-        description=_("fax_event_label", default="Indicare un numero di fax."),
-        required=False,
-    )
-    reperibilita = schema.TextLine(
-        title=_("reperibilita", default="Reperibilità organizzatore"),
-        required=False,
-        description=_(
-            "reperibilita_help",
-            default="Indicare gli orari in cui l'organizzatore è"
-            " telefonicamente reperibile.",
-        ),
-    )
-    email = schema.TextLine(
-        title=_("email_event_label", default="E-mail"),
-        description=_(
-            "email_event_help",
-            default="Indicare un indirizzo mail per poter contattare"
-            " gli organizzatori.",
-        ),
-        required=False,
-    )
 
-    web = schema.TextLine(
-        title=_("web_event_label", default="Sito web"),
-        description=_(
-            "web_event_help",
-            default="Indicare un indirizzo web di riferimento a " "questo evento.",
-        ),
-        required=False,
-    )
     supportato_da = RelationList(
         title=_("supportato_da_label", default="Evento supportato da"),
         required=False,
@@ -210,17 +170,19 @@ class IEvento(model.Schema):
         fields=["orari"],
     )
     model.fieldset("costi", label=_("costi_label", default="Costi"), fields=["prezzo"])
+
+    # TODO: migration script for these commented fields towards PDC
     model.fieldset(
         "contatti",
         label=_("contatti_label", default="Contatti"),
         fields=[
             "organizzato_da_interno",
             "organizzato_da_esterno",
-            "telefono",
-            "fax",
-            "reperibilita",
-            "email",
-            "web",
+            # "telefono",
+            # "fax",
+            # "reperibilita",
+            # "email",
+            # "web",
             "supportato_da",
         ],
     )
