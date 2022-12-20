@@ -13,4 +13,6 @@
   <object name="RicevutaPagamento" meta_type="Dexterity FTI"/>
   <object name="Servizio" meta_type="Dexterity FTI"/>
   <object name="UnitaOrganizzativa" meta_type="Dexterity FTI"/>
+  <object name="Incarico" meta_type="Dexterity FTI"/>
+  <object name="PuntoDiContatto" meta_type="Dexterity FTI"/>
 </object>

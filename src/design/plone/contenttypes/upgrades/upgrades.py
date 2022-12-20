@@ -965,3 +965,10 @@ def to_6000(context):
             behaviors.append(behavior)
 
         fti.behaviors = tuple(behaviors)
+
+
+def to_6010(context):
+    """ """
+    update_types(context)
+    update_registry(context)
+    update_catalog(context)

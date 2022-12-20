@@ -51,6 +51,11 @@ FIELDSETS_ORDER = {
         "settings",
         "ownership",
     ],
+    "Incarico": [
+        'default',
+        'informazioni_compensi',
+        'date_e_informazioni',
+    ],
     "News Item": [
         "default",
         "dates",
@@ -87,6 +92,9 @@ FIELDSETS_ORDER = {
         "dates",
         "ownership",
         "settings",
+    ],
+    "PuntoDiContatto": [
+        'default',
     ],
     "Servizio": [
         "default",
