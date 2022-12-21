@@ -25,6 +25,7 @@ class PDCValueType(object):
             VocabItem("phone", _("Telefono")),
             VocabItem("web", _("URL")),
             VocabItem("email", _("Email")),
+            VocabItem("pec", _("PEC")),
             VocabItem("social", _("Social")),
             VocabItem("fax", _("Fax")),
 

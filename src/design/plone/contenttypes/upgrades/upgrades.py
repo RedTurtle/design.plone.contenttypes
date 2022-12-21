@@ -17,6 +17,9 @@ from zope.event import notify
 from zope.intid.interfaces import IIntIds
 from zope.lifecycleevent import ObjectModifiedEvent
 from zope.schema import getFields
+from zope.component import getUtility
+from zope.intid.interfaces import IIntIds
+from z3c.relationfield import RelationValue
 
 import logging
 import json
@@ -972,3 +975,108 @@ def to_6010(context):
     update_types(context)
     update_registry(context)
     update_catalog(context)
+    update_rolemap(context)
+
+
+def migrate_pdc_and_incarico(context):
+    # Cannot test rn, blid coding
+    update_types(context)
+    update_registry(context)
+    update_catalog(context)
+    update_rolemap(context)
+    type_mapping = {
+        "Persona": {
+            'PDC': {
+                "telefono": "phone",
+                "fax": "fax",
+                "email": "email",
+                "pec": "pec",
+            },
+            "Incarico": {
+                "atto_nomina": "atto_nomina",
+                "data_conclusione_incarico": "data_conclusione_incarico",
+                "data_insediamento": "data_insediamento",
+            }
+        },
+        "UnitaOrganizzativa": {
+            'PDC': {
+                "telefono": "phone",
+                "fax": "fax",
+                "email": "email",
+                "pec": "pec",
+            },
+        },
+        # TODO: tbc
+        "Event": {
+            'PDC': {
+                "telefono": "phone",
+                "fax": "fax",
+                "email": "email",
+                "pec": "pec",
+            },
+        },
+        # TODO: tbc
+        "Venue": {
+            'PDC': {
+                "telefono": "phone",
+                "fax": "fax",
+                "email": "email",
+                "pec": "pec",
+            },
+        },
+        # TODO: tbc
+        "Servizio": {
+            'PDC': {
+                "telefono": "phone",
+                "fax": "fax",
+                "email": "email",
+                "pec": "pec",
+            },
+        },
+    }
+
+    def createIncaricoAndMigratePersona(portal_type):
+        # Taxonomies work needs to be completed before
+        if portal_type != 'Persona':
+            return
+        pass
+
+    def createPDCandMigrateOldCTs(portal_type):
+        logger.info(f"Fixing Punto di Contatto for '{portal_type}'...") # noqa
+        fixed_total = 0
+        mapping = type_mapping[portal_type]["PDC"]
+        if not mapping:
+            logger.info(f"No need to fix Punto di Contatto for '{portal_type}: DONE")
+            return
+        for brain in api.content.find(portal_type=portal_type):
+            item = brain.getObject()
+            kwargs = {
+                "value_punto_contatto": [],
+                "persona": []
+            }
+            for key, value in mapping.items():
+                import pdb; pdb.set_trace()
+
+                if hasattr(item, key):
+                    kwargs["value_punto_contatto"].append({
+                        'pdc_type': value,
+                        'pdc_value': item[key]
+                    })
+
+            new_pdc = api.content.create(
+                type='PuntoDiContatto',
+                title=f"Punto di Contatto {item.id}",
+                container=item
+            )
+            intids = getUtility(IIntIds)
+            import pdb; pdb.set_trace()
+            item.contact_info = [RelationValue(intids.getId(new_pdc))]
+            fixed_total += 1
+
+        logger.info(f"Fixing Punto di Contatto for '{portal_type}: DONE")
+        logger.info("Updated {} objects".format(fixed_total))
+
+    for pt in type_mapping:
+        logger.info("Migrating existing CTs for use with new Incarico and PDC Content Types")
+        createPDCandMigrateOldCTs(pt)
+        createIncaricoAndMigratePersona(pt)
