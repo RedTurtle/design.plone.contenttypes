@@ -48,31 +48,8 @@ class IPuntoDiContatto(model.Schema, IDesignPloneContentType):
         required=True,
     )
 
-    persona = RelationList(
-        title=_(
-            "persona_incarico_label",
-            default="Persona",
-        ),
-        description=_(
-            "persona_incarico_help",
-            default="Seleziona la persona che ha la carica e l'incarico.",
-        ),
-        value_type=RelationChoice(vocabulary="plone.app.vocabularies.Catalog"),
-        required=False,
-        default=[],
-    )
-
     form.widget(
         "value_punto_contatto",
         DataGridFieldFactory,
     )
 
-    form.widget(
-        "persona",
-        RelatedItemsFieldWidget,
-        vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={
-            "maximumSelectionSize": 1,
-            "selectableTypes": ["Persona"],
-        },
-    )

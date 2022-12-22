@@ -39,19 +39,6 @@ class IIncarico(model.Schema, IDesignPloneContentType):
         required=False,
     )
 
-    persona = RelationList(
-        title=_(
-            "persona_incarico_label",
-            default="Persona",
-        ),
-        description=_(
-            "persona_incarico_help",
-            default="Seleziona la/e persona/e che ha/hanno la carica e l'incarico.",
-        ),
-        value_type=RelationChoice(vocabulary="plone.app.vocabularies.Catalog"),
-        required=True,
-        default=[],
-    )
 
     unita_organizzativa = RelationList(
         title=_(
@@ -131,15 +118,6 @@ class IIncarico(model.Schema, IDesignPloneContentType):
         },
     )
 
-    form.widget(
-        "persona",
-        RelatedItemsFieldWidget,
-        vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={
-            "maximumSelectionSize": 1,
-            "selectableTypes": ["Persona"],
-        },
-    )
     form.widget(
         "responsabile_struttura",
         RelatedItemsFieldWidget,

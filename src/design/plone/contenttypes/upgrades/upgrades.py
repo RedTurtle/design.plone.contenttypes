@@ -1025,14 +1025,15 @@ def migrate_pdc_and_incarico(context):
         # TODO: tbc
         "Venue": {
             'PDC': {
-                "telefono": "phone",
-                "fax": "fax",
-                "email": "email",
-                "pec": "pec",
+                "riferimento_telefonico_struttura": "phone",
+                "riferimento_fax_struttura": "fax",
+                "riferimento_mail_struttura": "email",
+                "riferimento_pec_struttura": "pec",
             },
         },
         # TODO: tbc
         "Servizio": {
+            # questi non sono presenti sul ct originale
             'PDC': {
                 "telefono": "phone",
                 "fax": "fax",
@@ -1043,9 +1044,43 @@ def migrate_pdc_and_incarico(context):
     }
 
     def createIncaricoAndMigratePersona(portal_type):
-        # Taxonomies work needs to be completed before
+        # Taxonomies work needs to be completed before, blind coding ahead
         if portal_type == 'Persona':
-            return
+            fixed_total = 0
+            for brain in api.content.find(portal_type=portal_type):
+                item = brain.getObject()
+                atto_nomina = item.atto_nomina
+                logger.info(f"Fixing Punto di Contatto for '{item.title}'...") # noqa
+                file_bog = api.content.find(context=item, depth=1, id='atti-nomina')
+                if not file_bog:
+                    try:
+                        file_bog = api.content.create(
+                            type="Document", id="atti-nomina", title="Atti Nomina", container=item
+                        )
+                    except Exception:
+                        logger.error("Error", Exception)
+
+                try:
+                    new_atto_nomina = api.content.create(
+                        type="File",
+                        id=atto_nomina.id,
+                        title=atto_nomina.title,
+                        container=item,
+                        **{'file': atto_nomina}
+                    )
+                    intids = getUtility(IIntIds)
+                    relation = [RelationValue(intids.getId(new_atto_nomina))]
+                    incarico = api.content.create(
+                        type="Incarico", title=item.ruolo.title, container=item
+                    )
+                    incarico.atto_nomina = relation
+                    item.atto_nomina = None
+                    fixed_total += 1
+                    logger.info(f"Fixing Punto di Contatto for '{item.title}'...:DONE") # noqa
+                except Exception:
+                    logger.error("Error", Exception)
+            logger.info("Updated {} objects".format(fixed_total))
+
         pass
 
     def createPDCandMigrateOldCTs(portal_type):
@@ -1076,6 +1111,7 @@ def migrate_pdc_and_incarico(context):
                 type='PuntoDiContatto',
                 title=f"Punto di Contatto {item.id}",
                 container=item,
+                **kwargs,
             )
             intids = getUtility(IIntIds)
             import pdb; pdb.set_trace()
