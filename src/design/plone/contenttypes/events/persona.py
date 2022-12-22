@@ -21,12 +21,6 @@ def personaCreateHandler(persona, event):
             "contains": ("Image",),
         },
         {"id": "curriculum-vitae", "title": "Curriculum vitae", "contains": ("File",)},
-        {"id": "compensi", "title": "Compensi", "contains": ("File",)},
-        {
-            "id": "importi-di-viaggio-e-o-servizi",
-            "title": "Importi di viaggio e/o servizi",
-            "contains": ("File",),
-        },
         {
             "id": "situazione-patrimoniale",
             "title": "Situazione patrimoniale",

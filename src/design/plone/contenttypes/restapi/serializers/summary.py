@@ -22,7 +22,7 @@ class DefaultJSONSummarySerializer(BaseSerializer):
         res = super().__call__(force_all_metadata=force_all_metadata)
         metadata_fields = self.metadata_fields()
         if self.context.portal_type == "Persona":
-            res["ruolo"] = self.context.ruolo
+            res["incarichi"] = self.get_incarichi()
         if self.context.portal_type == "Bando":
             if "bando_state" in metadata_fields or self.show_all_metadata_fields:
                 res["bando_state"] = self.get_bando_state()
@@ -106,3 +106,13 @@ class DefaultJSONSummarySerializer(BaseSerializer):
         bando = self.context.getObject()
         view = api.content.get_view("bando_view", context=bando, request=self.request)
         return view.getBandoState()
+
+    # TODO: use tipo incarico from taxonomy when taxonomies are ready
+    # instead of CT title
+    def get_incarichi(self):
+        try:
+            obj = self.context.getObject()
+        except AttributeError:
+            obj = self.context
+
+        return ', '.join([x.to_object.title for x in obj.incarichi])

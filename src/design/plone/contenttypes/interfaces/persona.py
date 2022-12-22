@@ -49,6 +49,22 @@ class IPersona(model.Schema, IDesignPloneContentType):
         default=[],
         required=False,
     )
+    incarichi = RelationList(
+        title=_(
+            "incarichi_label",
+            default="Incarichi",
+        ),
+        description=_(
+            "incarichi_help",
+            default="Seleziona la lista di incarichi della persona.",
+        ),
+        value_type=RelationChoice(
+            title=_("Incarichi"),
+            vocabulary="plone.app.vocabularies.Catalog",
+        ),
+        default=[],
+        required=False,
+    )
 
     competenze = BlocksField(
         title=_("competenze_label", default="Competenze"),
@@ -99,11 +115,22 @@ class IPersona(model.Schema, IDesignPloneContentType):
         },
     )
 
+    form.widget(
+        "incarichi",
+        RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
+        pattern_options={
+            "maximumSelectionSize": 10,
+            "selectableTypes": ["Incarico"],
+        },
+    )
+
     # custom fieldsets
     model.fieldset(
         "ruolo",
         label=_("ruolo_label", default="Ruolo"),
         fields=[
+            "incarichi",
             "organizzazione_riferimento",
             "competenze",
             "deleghe",
