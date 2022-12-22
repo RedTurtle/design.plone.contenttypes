@@ -979,11 +979,12 @@ def to_6010(context):
 
 
 def migrate_pdc_and_incarico(context):
-    # Cannot test rn, blid coding
+    # Cannot test rn, blind coding
     update_types(context)
     update_registry(context)
     update_catalog(context)
     update_rolemap(context)
+    # "field name in original ct": "field name in new ct"
     type_mapping = {
         "Persona": {
             'PDC': {
@@ -993,6 +994,12 @@ def migrate_pdc_and_incarico(context):
                 "pec": "pec",
             },
             "Incarico": {
+                # HOW? Need taxonomies also
+                # We could do:
+                # persona.ruolo.title = incarico.title
+                # persona.items.compensi = incarico.items.compensi?
+                "ruolo?": "incarico?",
+                # BlobFile to relation with Documento
                 "atto_nomina": "atto_nomina",
                 "data_conclusione_incarico": "data_conclusione_incarico",
                 "data_insediamento": "data_insediamento",
@@ -1037,14 +1044,16 @@ def migrate_pdc_and_incarico(context):
 
     def createIncaricoAndMigratePersona(portal_type):
         # Taxonomies work needs to be completed before
-        if portal_type != 'Persona':
+        if portal_type == 'Persona':
             return
         pass
 
     def createPDCandMigrateOldCTs(portal_type):
         logger.info(f"Fixing Punto di Contatto for '{portal_type}'...") # noqa
         fixed_total = 0
-        mapping = type_mapping[portal_type]["PDC"]
+        mapping = None
+        # mapping = type_mapping[portal_type]["PDC"]
+        # Reenable mapping to use
         if not mapping:
             logger.info(f"No need to fix Punto di Contatto for '{portal_type}: DONE")
             return
@@ -1066,7 +1075,7 @@ def migrate_pdc_and_incarico(context):
             new_pdc = api.content.create(
                 type='PuntoDiContatto',
                 title=f"Punto di Contatto {item.id}",
-                container=item
+                container=item,
             )
             intids = getUtility(IIntIds)
             import pdb; pdb.set_trace()

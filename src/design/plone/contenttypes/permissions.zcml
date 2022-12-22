@@ -96,6 +96,16 @@
         title="design.plone.contenttypes: Add Modulo"
         />
 
+    <permission
+        id="design.plone.contenttypes.AddIncarico"
+        title="design.plone.contenttypes: Add Incarico"
+        />
+
+    <permission
+        id="design.plone.contenttypes.AddPuntoDiContatto"
+        title="design.plone.contenttypes: Add PuntoDiContatto"
+        />
+
 
   </configure>
 
