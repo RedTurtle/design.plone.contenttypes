@@ -581,14 +581,4 @@
         handler=".upgrades.to_6000"
         />
   </genericsetup:upgradeSteps>
-  <genericsetup:upgradeSteps
-      profile="design.plone.contenttypes:default"
-      source="6000"
-      destination="6010"
-      >
-    <genericsetup:upgradeStep
-        title="Add CTs Incarico and PuntoDiContatto"
-        handler=".upgrades.to_6010"
-        />
-  </genericsetup:upgradeSteps>
 </configure>
