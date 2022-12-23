@@ -972,3 +972,8 @@ def to_6010(context):
     update_types(context)
     update_registry(context)
     update_catalog(context)
+
+
+def to_6011(context):
+    """ """
+    update_types(context)

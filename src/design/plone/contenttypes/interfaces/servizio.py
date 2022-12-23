@@ -8,6 +8,7 @@ from plone.autoform import directives as form
 from plone.supermodel import model
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
+from plone.namedfile import field
 from zope import schema
 
 
@@ -27,29 +28,29 @@ class IServizio(model.Schema, IDesignPloneContentType):
     # solo se il servizio
     # non e' attivo
     stato_servizio = schema.Bool(
-        title=_("stato_servizio_label", default="Servizio non attivo"),
+        title=_("stato_servizio_label", default="Servizio non fruibile"),
         required=False,
         description=_(
             "stato_servizio_help",
-            default="Indica se il servizio è effettivamente fruibile.",
+            default="Indica se il servizio è effettivamente fruibile; spuntare se non è fruibile.",
         ),
     )
 
     motivo_stato_servizio = BlocksField(
         title=_(
             "motivo_stato_servizio_label",
-            default="Motivo dello stato del servizio nel caso non sia attivo",
+            default="Motivo dello stato",
         ),
         required=False,
         description=_(
             "motivo_stato_servizio_help",
-            default="Descrizione del motivo per cui il servizio non è attivo.",
+            default="Descrizione del motivo per cui il servizio non è attivo. È obbligatorio se il campo precedente è spuntato.",
         ),
     )
 
     a_chi_si_rivolge = BlocksField(
-        title=_("a_chi_si_rivolge_label", default="A chi si rivolge"),
-        required=False,
+        title=_("a_chi_si_rivolge_label", default="A chi è rivolto"),
+        required=True,
         description=_(
             "a_chi_si_rivolge_help",
             default="A chi si rivolge questo servizio e chi può usufruirne.",
@@ -77,8 +78,8 @@ class IServizio(model.Schema, IDesignPloneContentType):
     )
 
     come_si_fa = BlocksField(
-        title=_("come_si_fa", default="Come si fa"),
-        required=False,
+        title=_("come_si_fa", default="Come fare"),
+        required=True,
         description=_(
             "come_si_fa_help",
             default="Descrizione della procedura da seguire per poter"
@@ -93,7 +94,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
             default="Indicare cosa si può ottenere dal servizio, ad esempio"
             " 'carta di identità elettronica', 'certificato di residenza'.",
         ),
-        required=False,
+        required=True,
     )
 
     procedure_collegate = BlocksField(
@@ -115,6 +116,20 @@ class IServizio(model.Schema, IDesignPloneContentType):
             " attivazione del servizio.",
         ),
         required=False,
+    )
+    # vocabolario dalle unita' organizzative presenti a catalogo?
+    canale_fisico = RelationList(
+        title=_("canale_fisico", default="Canale fisico"),
+        description=_(
+            "canale_fisico_help",
+            default="Sedi per la fruizione del servizio",
+        ),
+        required=True,
+        default=[],
+        value_type=RelationChoice(
+            title=_("Canale fisico"),
+            vocabulary="plone.app.vocabularies.Catalog",
+        ),
     )
 
     autenticazione = BlocksField(
@@ -165,7 +180,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
 
     tempi_e_scadenze = BlocksField(
         title=_("tempi_e_scadenze", default="Tempi e scadenze"),
-        required=False,
+        required=True,
         description=_(
             "tempi_e_scadenze_help",
             default="Descrivere le informazioni dettagliate riguardo eventuali tempi"
@@ -213,7 +228,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
 
     # vocabolario dalle unita' organizzative presenti a catalogo?
     ufficio_responsabile = RelationList(
-        title=_("ufficio_responsabile_erogazione", default="Uffici responsabili"),
+        title=_("ufficio_responsabile_erogazione", default="Unità organizzativa responsabile"),
         description=_(
             "ufficio_responsabile_help",
             default="Seleziona gli uffici responsabili dell'erogazione"
@@ -222,7 +237,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
         required=True,
         default=[],
         value_type=RelationChoice(
-            title=_("Ufficio responsabile"),
+            title=_("Unità organizzativa responsabile"),
             vocabulary="plone.app.vocabularies.Catalog",
         ),
     )
@@ -241,7 +256,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
     )
 
     altri_documenti = RelationList(
-        title="Documenti correlati",
+        title="Documenti",
         default=[],
         description=_(
             "altri_documenti_help",
@@ -293,6 +308,11 @@ class IServizio(model.Schema, IDesignPloneContentType):
             "identificativo_help",
             default="Eventuale codice identificativo del servizio.",
         ),
+    )
+
+    condizioni_di_servizio = field.NamedBlobFile(
+        title=_("condizioni_di_servizio", default="Condizioni di servizio"),
+        required=True
     )
 
     servizi_collegati = RelationList(
@@ -366,6 +386,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
         label=_("a_chi_si_rivolge_label", default="A chi si rivolge"),
         fields=["a_chi_si_rivolge", "chi_puo_presentare", "copertura_geografica"],
     )
+
     model.fieldset(
         "accedi_al_servizio",
         label=_("accedi_al_servizio_label", default="Accedere al servizio"),
@@ -374,6 +395,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
             "cosa_si_ottiene",
             "procedure_collegate",
             "canale_digitale",
+            "canale_fisico",
             "autenticazione",
             "dove_rivolgersi",
             "dove_rivolgersi_extra",
