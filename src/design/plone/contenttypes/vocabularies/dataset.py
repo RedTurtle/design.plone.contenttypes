@@ -34,7 +34,9 @@ class TemiDataset(object):
             ),
             VocabItem("energia", _("Energia")),
             VocabItem("ambiente", _("Ambiente")),
-            VocabItem("governo_e_settore_pubblico", _("Governo e settore pubblico")), # noqa
+            VocabItem(
+                "governo_e_settore_pubblico", _("Governo e settore pubblico")
+            ),  # noqa
             VocabItem("salute", _("Salute")),
             VocabItem("tematiche_internazionali", _("Tematiche internazionali")),
             VocabItem(

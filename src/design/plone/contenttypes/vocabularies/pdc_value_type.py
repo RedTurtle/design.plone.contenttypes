@@ -27,7 +27,6 @@ class PDCValueType(object):
             VocabItem("email", _("Email")),
             VocabItem("social", _("Social")),
             VocabItem("fax", _("Fax")),
-
         ]
         # Fix context if you are using the vocabulary in DataGridField.
         # See https://github.com/collective/collective.z3cform.datagridfield/issues/31:  # NOQA: 501

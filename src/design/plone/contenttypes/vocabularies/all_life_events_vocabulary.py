@@ -23,7 +23,7 @@ class AllLifeEventsVocabulary(object):
         items = [
             (
                 "L1.0",
-                _("Iscrizione Scuola/Università e/o richiesta borsa di studio"), # noqa
+                _("Iscrizione Scuola/Università e/o richiesta borsa di studio"),  # noqa
             ),
             ("L2.0", _("Invalidità")),
             (
@@ -37,13 +37,15 @@ class AllLifeEventsVocabulary(object):
             (
                 "L8.0",
                 _(
-                    "Compravendita/affitto casa/edifici/terreni, costruzione o ristrutturazione casa/edificio" # noqa
+                    "Compravendita/affitto casa/edifici/terreni, costruzione o ristrutturazione casa/edificio"  # noqa
                 ),
             ),
             ("L9.0", _("Cambio di residenza/domicilio")),
             (
                 "L11.0",
-                _("Richiesta passaporto, visto e assistenza viaggi internazionali"), # noqa
+                _(
+                    "Richiesta passaporto, visto e assistenza viaggi internazionali"
+                ),  # noqa
             ),
             ("L12.0", _("Nascita di un bambino, richiesta adozioni")),
             ("L13.0", _("Matrimonio e/o cambio stato civile")),
@@ -53,7 +55,7 @@ class AllLifeEventsVocabulary(object):
             (
                 "L17.0",
                 _(
-                    "Dichiarazione dei redditi, versamento e riscossione tributi/imposte e contributi" # noqa
+                    "Dichiarazione dei redditi, versamento e riscossione tributi/imposte e contributi"  # noqa
                 ),
             ),
             ("L18.0", _("Accesso luoghi della cultura")),
@@ -74,7 +76,9 @@ class AllLifeEventsVocabulary(object):
             ("B14.0", _("Bancarotta")),
             (
                 "B15.0",
-                _("Partecipazione ad appalti pubblici nazionali e trasfrontalieri"), # noqa
+                _(
+                    "Partecipazione ad appalti pubblici nazionali e trasfrontalieri"
+                ),  # noqa
             ),
         ]
         req = getRequest()

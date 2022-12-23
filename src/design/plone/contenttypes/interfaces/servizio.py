@@ -228,7 +228,10 @@ class IServizio(model.Schema, IDesignPloneContentType):
 
     # vocabolario dalle unita' organizzative presenti a catalogo?
     ufficio_responsabile = RelationList(
-        title=_("ufficio_responsabile_erogazione", default="Unità organizzativa responsabile"),
+        title=_(
+            "ufficio_responsabile_erogazione",
+            default="Unità organizzativa responsabile",
+        ),
         description=_(
             "ufficio_responsabile_help",
             default="Seleziona gli uffici responsabili dell'erogazione"
@@ -312,7 +315,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
 
     condizioni_di_servizio = field.NamedBlobFile(
         title=_("condizioni_di_servizio", default="Condizioni di servizio"),
-        required=True
+        required=True,
     )
 
     servizi_collegati = RelationList(
