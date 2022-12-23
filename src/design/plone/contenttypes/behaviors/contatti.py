@@ -164,6 +164,7 @@ class IContattiEvent(model.Schema):
         fields=["contact_info"],
     )
 
+
 @implementer(IContattiEvent)
 @adapter(IContattiEvent)
 class ContattiEvent(object):
@@ -180,6 +181,7 @@ class ContattiPersona(object):
 
     def __init__(self, context):
         self.context = context
+
 
 @implementer(IContattiServizio)
 @adapter(IServizio)

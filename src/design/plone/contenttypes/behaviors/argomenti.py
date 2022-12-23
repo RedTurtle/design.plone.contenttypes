@@ -66,8 +66,6 @@ class IArgomentiSchema(model.Schema):
     textindexer.searchable("tassonomia_argomenti")
 
 
-
-
 @provider(IFormFieldProvider)
 class IArgomenti(IArgomentiSchema):
     """ """
@@ -97,6 +95,7 @@ class IArgomentiServizio(IArgomentiSchema):
         required=True,
         default=[],
     )
+
 
 @provider(IFormFieldProvider)
 class IArgomentiDocumento(IArgomentiSchema):

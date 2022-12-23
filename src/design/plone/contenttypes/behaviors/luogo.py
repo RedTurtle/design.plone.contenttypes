@@ -88,7 +88,6 @@ class ILuogo(model.Schema):
         ),
     )
 
-
     # Decisono con Baio di toglierlo: visto il vocabolario, che in realtà sta
     # qui: https://github.com/italia/daf-ontologie-vocabolari-controllati/tree/master/VocabolariControllati/classifications-for-culture/subject-disciplines
     # riteniamo che possa non fregare nulla a nessuno di questa categorizzazione.

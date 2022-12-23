@@ -7,7 +7,6 @@ from zope.interface import implementer
 from zope.interface import Interface
 from zope.schema.interfaces import IField, IVocabularyFactory
 from collective.z3cform.datagridfield.interfaces import IRow
-from plone import api
 from plone.restapi.types.adapters import ListJsonSchemaProvider
 from plone.restapi.types.utils import get_fieldsets
 from plone.restapi.types.utils import get_jsonschema_properties
