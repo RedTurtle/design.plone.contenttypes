@@ -24,16 +24,6 @@ class INewsAdditionalFields(model.Schema):
         ),
     )
 
-    tipologia_notizia = schema.Choice(
-        title=_("tipologia_notizia_label", default="Tipologia notizia"),
-        description=_(
-            "tipologia_notizia_help",
-            default="Seleziona la tipologia della notizia.",
-        ),
-        required=True,
-        vocabulary="design.plone.vocabularies.tipologie_notizia",
-    )
-
     numero_progressivo_cs = schema.TextLine(
         title=_(
             "numero_progressivo_cs_label",
@@ -129,7 +119,7 @@ class INewsAdditionalFields(model.Schema):
 
     # custom fieldsets and order
     form.order_before(descrizione_estesa="ILeadImageBehavior.image")
-    form.order_before(tipologia_notizia="ILeadImageBehavior.image")
+    # form.order_before(tipologia_notizia="ILeadImageBehavior.image")
     form.order_before(numero_progressivo_cs="ILeadImageBehavior.image")
     form.order_before(a_cura_di="ILeadImageBehavior.image")
 

@@ -3,15 +3,6 @@
     i18n_domain="design.plone.contenttypes"
     >
 
-  <!-- Vocabolario attualmente inutile. Lasciato per memoria storica e per
-        non rifare il lavoro se ce lo chiedessero in futuro.
-    -->
-  <!-- <utility
-        component=".all_life_events_vocabulary.AllLifeEventsVocabularyFactory"
-        name="design.plone.contenttypes.AllLifeEventsVocabulary"
-    /> -->
-
-
   <utility
       name="design.plone.contenttypes.TagsVocabulary"
       component=".tags_vocabulary.TagsVocabularyFactory"
@@ -26,11 +17,6 @@
   <utility
       name="design.plone.contenttypes.AvailableServicesVocabulary"
       component=".available_services_vocabulary.AvailableServicesVocabularyFactory"
-      />
-
-  <utility
-      name="design.plone.vocabularies.tipologie_notizia"
-      component=".controlapanel_vocabularies.TipologieNotiziaFactory"
       />
 
   <utility
@@ -54,22 +40,20 @@
       />
 
   <utility
-      name="design.plone.vocabularies.tipologie_unita_organizzativa"
-      component=".controlapanel_vocabularies.TipologieUnitaOrganizzativaVocabularyFactory"
-      />
-
-  <utility
       name="design.plone.vocabularies.argomenti"
       component=".argomenti_vocabulary.ArgomentiVocabularyFactory"
       />
+
   <utility
       name="design.plone.vocabularies.event_location"
       component=".reference_vocabularies.EventLocationVocabularyFactory"
       />
+
   <utility
       name="design.plone.vocabularies.ufficio_responsabile"
       component=".reference_vocabularies.OfficeLocationVocabularyFactory"
       />
+
   <utility
       name="design.plone.vocabularies.uo_locations"
       component=".reference_vocabularies.UOLocationVocabularyFactory"

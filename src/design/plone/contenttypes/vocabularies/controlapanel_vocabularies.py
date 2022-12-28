@@ -30,16 +30,6 @@ class BaseVocabulary(object):
 
 
 @implementer(IVocabularyFactory)
-class TipologieNotizia(BaseVocabulary):
-    field = "tipologie_notizia"
-
-
-@implementer(IVocabularyFactory)
-class TipologieUnitaOrganizzativaVocabulary(BaseVocabulary):
-    field = "tipologie_unita_organizzativa"
-
-
-@implementer(IVocabularyFactory)
 class LeadImageDimension(BaseVocabulary):
     field = "lead_image_dimension"
 
@@ -59,5 +49,3 @@ class LeadImageDimension(BaseVocabulary):
 
 
 LeadImageDimensionFactory = LeadImageDimension()
-TipologieNotiziaFactory = TipologieNotizia()
-TipologieUnitaOrganizzativaVocabularyFactory = TipologieUnitaOrganizzativaVocabulary()

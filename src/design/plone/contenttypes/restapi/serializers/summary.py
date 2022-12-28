@@ -72,11 +72,12 @@ class DefaultJSONSummarySerializer(BaseSerializer):
     def get_design_meta_type(self):
         ttool = api.portal.get_tool("portal_types")
         if self.context.portal_type == "News Item":
-            return translate(
-                self.context.tipologia_notizia,
-                domain="design.plone.contenttypes",
-                context=self.request,
-            )
+            # return translate(
+            #     self.context.tipologia_notizia,
+            #     domain="design.plone.contenttypes",
+            #     context=self.request,
+            # )
+            return self.context.tipologia_notizia
         else:
             return translate(
                 ttool[self.context.portal_type].Title(), context=self.request

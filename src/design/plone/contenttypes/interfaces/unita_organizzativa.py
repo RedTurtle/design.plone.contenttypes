@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from plone.app.dexterity import textindexer
+from collective.taxonomy import generated
 from collective.volto.blocksfield.field import BlocksField
 from design.plone.contenttypes import _
 from design.plone.contenttypes.interfaces import IDesignPloneContentType
@@ -8,7 +9,6 @@ from plone.autoform import directives as form
 from plone.supermodel import model
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
-from zope import schema
 
 
 # TODO: migration script for these commented fields towards PDC
@@ -56,18 +56,6 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
         ),
         default=[],
         required=False,
-    )
-
-    tipologia_organizzazione = schema.Choice(
-        title=_("tipologia_organizzazione_label", default="Tipologia organizzazione"),
-        # vocabolario di rif sara' la lista delle tipologie di organizzazione
-        vocabulary="" "design.plone.vocabularies.tipologie_unita_organizzativa",
-        description=_(
-            "tipologia_organizzazione_help",
-            default="Specificare la tipologia di organizzazione: politica,"
-            " amminsitrativa o di altro tipo.",
-        ),
-        required=True,
     )
 
     assessore_riferimento = RelationList(
@@ -204,7 +192,6 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
         fields=[
             "legami_con_altre_strutture",
             "responsabile",
-            "tipologia_organizzazione",
             "assessore_riferimento",
         ],
     )
@@ -223,6 +210,5 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
 
     # SearchableText indexers
     textindexer.searchable("competenze")
-    textindexer.searchable("tipologia_organizzazione")
     textindexer.searchable("assessore_riferimento")
     textindexer.searchable("responsabile")

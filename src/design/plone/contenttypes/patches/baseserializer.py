@@ -10,6 +10,8 @@ We need a solution like that because for some different reasons:
    SerializeToJson and SerializeFolderToJson classes
 """
 
+from collective.taxonomy.vocabulary import Vocabulary
+from collective.taxonomy.utility import Taxonomy
 from plone.restapi.serializer.dxcontent import (
     SerializeToJson,
     SerializeFolderToJson,
@@ -87,3 +89,12 @@ def design_italia_serialize_folder_to_json_call(self, version=None, include_item
 
 def patch_base_folder_serializer():
     SerializeFolderToJson.__call__ = design_italia_serialize_folder_to_json_call
+
+
+def eea_api_taxonomy_taxonomy_call(self, context):
+    if not self.data:
+        return Vocabulary(self.name, {}, {}, {}, 2)
+
+    request = getattr(context, "REQUEST", None)
+    language = self.getCurrentLanguage(request)
+    return self.makeVocabulary(language)

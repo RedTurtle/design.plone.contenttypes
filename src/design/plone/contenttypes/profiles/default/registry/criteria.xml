@@ -11,7 +11,7 @@
             <element>plone.app.querystring.operation.selection.any</element>
             <element>plone.app.querystring.operation.selection.all</element>
         </value>
-       <value key="vocabulary">design.plone.vocabularies.tipologie_notizia</value>
+       <value key="vocabulary">collective.taxonomy.tipologia_notizia</value>
        <value key="group" i18n:translate="">Metadata</value>
     </records>
   <records interface="plone.app.querystring.interfaces.IQueryField"
@@ -29,7 +29,7 @@
     </records>
 
   <records interface="plone.app.querystring.interfaces.IQueryField"
-           prefix="plone.app.querystring.field.tassonomia_tipologia_documento">
+           prefix="plone.app.querystring.field.tipologia_documento">
         <value key="title" i18n:translate="">Tipologia documento</value>
         <value key="description" i18n:translate=""></value>
         <value key="enabled">True</value>
@@ -39,7 +39,8 @@
             <element>plone.app.querystring.operation.selection.all</element>
         </value>
         <value key="group" i18n:translate="">Metadata</value>
-        <value key="vocabulary">collective.taxonomy.tipologie_documento</value>
+        <value key="vocabulary">collective.taxonomy.tipologia_documento</value>
+        <value key="fetch_vocabulary">True</value>
   </records>
 
   <records interface="plone.app.querystring.interfaces.IQueryField"
@@ -104,7 +105,8 @@
         </value>
        <value key="group" i18n:translate="">Dates</value>
    </records>
-    <records interface="plone.app.querystring.interfaces.IQueryField"
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
            prefix="plone.app.querystring.field.tipologia_organizzazione">
         <value key="title" i18n:translate="">Tipologia organizzazione</value>
         <value key="description" i18n:translate=""></value>
@@ -114,10 +116,37 @@
             <element>plone.app.querystring.operation.selection.any</element>
             <element>plone.app.querystring.operation.selection.all</element>
         </value>
-       <value key="vocabulary">design.plone.vocabularies.tipologie_unita_organizzativa</value>
+       <value key="vocabulary">collective.taxonomy.tipologia_organizzazione</value>
        <value key="group" i18n:translate="">Metadata</value>
   </records>
 
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.business_events">
+        <value key="title" i18n:translate="">Eventi della vita delle imprese</value>
+        <value key="description" i18n:translate=""></value>
+        <value key="enabled">True</value>
+        <value key="sortable">False</value>
+        <value key="operations">
+            <element>plone.app.querystring.operation.selection.any</element>
+            <element>plone.app.querystring.operation.selection.all</element>
+        </value>
+       <value key="vocabulary">collective.taxonomy.business_events</value>
+       <value key="group" i18n:translate="">Metadata</value>
+  </records>
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.person_life_events">
+        <value key="title" i18n:translate="">Eventi della vita delle persone</value>
+        <value key="description" i18n:translate=""></value>
+        <value key="enabled">True</value>
+        <value key="sortable">False</value>
+        <value key="operations">
+            <element>plone.app.querystring.operation.selection.any</element>
+            <element>plone.app.querystring.operation.selection.all</element>
+        </value>
+       <value key="vocabulary">collective.taxonomy.person_life_events</value>
+       <value key="group" i18n:translate="">Metadata</value>
+  </records>
 
   <!-- cleanup -->
   <records interface="plone.app.querystring.interfaces.IQueryField"

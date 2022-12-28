@@ -64,6 +64,7 @@ setup(
         "redturtle.volto",
         "redturtle.bandi",
         "z3c.unconfigure",
+        "eea.api.taxonomy",
     ],
     extras_require={
         "test": [
