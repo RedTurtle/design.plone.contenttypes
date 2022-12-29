@@ -162,6 +162,118 @@
        <value key="group" i18n:translate="">Metadata</value>
   </records>
 
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.tipologia_incarico">
+        <value key="title" i18n:translate="">Tipologia di incarico</value>
+        <value key="description" i18n:translate=""></value>
+        <value key="enabled">True</value>
+        <value key="sortable">False</value>
+        <value key="operations">
+            <element>plone.app.querystring.operation.selection.any</element>
+            <element>plone.app.querystring.operation.selection.all</element>
+        </value>
+       <value key="vocabulary">collective.taxonomy.tipologia_incarico</value>
+       <value key="group" i18n:translate="">Metadata</value>
+  </records>
+
+   <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.tipologia_luogo">
+        <value key="title" i18n:translate="">Tipologia di luogo</value>
+        <value key="description" i18n:translate=""></value>
+        <value key="enabled">True</value>
+        <value key="sortable">False</value>
+        <value key="operations">
+            <element>plone.app.querystring.operation.selection.any</element>
+            <element>plone.app.querystring.operation.selection.all</element>
+        </value>
+       <value key="vocabulary">collective.taxonomy.tipologia_luogo</value>
+       <value key="group" i18n:translate="">Metadata</value>
+  </records>
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.tipologia_evento">
+        <value key="title" i18n:translate="">Tipologia di evento</value>
+        <value key="description" i18n:translate=""></value>
+        <value key="enabled">True</value>
+        <value key="sortable">False</value>
+        <value key="operations">
+            <element>plone.app.querystring.operation.selection.any</element>
+            <element>plone.app.querystring.operation.selection.all</element>
+        </value>
+       <value key="vocabulary">collective.taxonomy.tipologia_evento</value>
+       <value key="group" i18n:translate="">Metadata</value>
+  </records>
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.tipologia_pdc">
+        <value key="title" i18n:translate="">Tipologia di punto di contatto</value>
+        <value key="description" i18n:translate=""></value>
+        <value key="enabled">True</value>
+        <value key="sortable">False</value>
+        <value key="operations">
+            <element>plone.app.querystring.operation.selection.any</element>
+            <element>plone.app.querystring.operation.selection.all</element>
+        </value>
+       <value key="vocabulary">collective.taxonomy.tipologia_pdc</value>
+       <value key="group" i18n:translate="">Metadata</value>
+  </records>
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.tipologia_documenti_albopretorio">
+        <value key="title" i18n:translate="">Tipologia di documento albo pretorio</value>
+        <value key="description" i18n:translate=""></value>
+        <value key="enabled">True</value>
+        <value key="sortable">False</value>
+        <value key="operations">
+            <element>plone.app.querystring.operation.selection.any</element>
+            <element>plone.app.querystring.operation.selection.all</element>
+        </value>
+       <value key="vocabulary">collective.taxonomy.tipologia_documenti_albopretorio</value>
+       <value key="group" i18n:translate="">Metadata</value>
+  </records>
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.tipologia_frequenza_aggiornamento">
+        <value key="title" i18n:translate="">Tipologia di frequenza di aggiornamento</value>
+        <value key="description" i18n:translate=""></value>
+        <value key="enabled">True</value>
+        <value key="sortable">False</value>
+        <value key="operations">
+            <element>plone.app.querystring.operation.selection.any</element>
+            <element>plone.app.querystring.operation.selection.all</element>
+        </value>
+       <value key="vocabulary">collective.taxonomy.tipologia_frequenza_aggiornamento</value>
+       <value key="group" i18n:translate="">Metadata</value>
+  </records>
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.tipologia_stati_pratica">
+        <value key="title" i18n:translate="">Tipologia di stati di una pratica</value>
+        <value key="description" i18n:translate=""></value>
+        <value key="enabled">True</value>
+        <value key="sortable">False</value>
+        <value key="operations">
+            <element>plone.app.querystring.operation.selection.any</element>
+            <element>plone.app.querystring.operation.selection.all</element>
+        </value>
+       <value key="vocabulary">collective.taxonomy.tipologia_stati_pratica</value>
+       <value key="group" i18n:translate="">Metadata</value>
+  </records>
+
+    <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.tipologia_licenze">
+        <value key="title" i18n:translate="">Tipologia di licenze</value>
+        <value key="description" i18n:translate=""></value>
+        <value key="enabled">True</value>
+        <value key="sortable">False</value>
+        <value key="operations">
+            <element>plone.app.querystring.operation.selection.any</element>
+            <element>plone.app.querystring.operation.selection.all</element>
+        </value>
+       <value key="vocabulary">collective.taxonomy.tipologia_licenze</value>
+       <value key="group" i18n:translate="">Metadata</value>
+  </records>
+
   <!-- cleanup -->
   <records interface="plone.app.querystring.interfaces.IQueryField"
             prefix="plone.app.querystring.field.argomenti"

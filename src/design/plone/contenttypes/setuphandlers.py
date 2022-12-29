@@ -38,6 +38,10 @@ def post_install(context):
     # remove default ente
     api.portal.set_registry_record("default_ente", (), interface=IBandoSettings)
 
+    # TODO
+    # fargli caricare le tassonomie all'installazione
+    # assegnazione delle varie behavior ai tipi di contenuto
+
 
 def remove_blocks_behavior(context):
     portal_types = api.portal.get_tool(name="portal_types")
