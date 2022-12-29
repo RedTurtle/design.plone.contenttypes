@@ -35,11 +35,7 @@ def design_italia_serialize_to_json_call(self, version=None, include_items=True)
         self, version=version, include_items=include_items
     )
     if self.context.portal_type == "News Item":
-        result["design_italia_meta_type"] = translate(
-            self.context.tipologia_notizia,
-            domain=_._domain,
-            context=self.request,
-        )
+        result["design_italia_meta_type"] = self.context.tipologia_notizia
     else:
         result["design_italia_meta_type"] = translate(
             ttool[self.context.portal_type].Title(), context=self.request

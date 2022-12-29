@@ -119,7 +119,6 @@ class INewsAdditionalFields(model.Schema):
 
     # custom fieldsets and order
     form.order_before(descrizione_estesa="ILeadImageBehavior.image")
-    # form.order_before(tipologia_notizia="ILeadImageBehavior.image")
     form.order_before(numero_progressivo_cs="ILeadImageBehavior.image")
     form.order_before(a_cura_di="ILeadImageBehavior.image")
 

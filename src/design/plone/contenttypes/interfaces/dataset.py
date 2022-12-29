@@ -9,13 +9,6 @@ from zope import schema
 class IDataset(model.Schema):
     """Marker interface for Dataset"""
 
-    # TODO: aggiungere tassonomia e vocabolario rilevante fornito nelle linee guida  # noqa
-    temi = schema.Choice(
-        title=_("temi", default="Temi"),
-        vocabulary="design.plone.contenttypes.temi_dataset",
-        required=True,
-    )
-
     # TODO: identificativo dataset
 
     distribuzione = BlocksField(

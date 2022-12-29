@@ -25,11 +25,7 @@ class SerializeToJson(BaseSerializer):
         )
         ttool = api.portal.get_tool("portal_types")
         if self.context.portal_type == "News Item":
-            result["design_italia_meta_type"] = translate(
-                self.context.tipologia_notizia,
-                domain=_._domain,
-                context=self.request,
-            )
+            result["design_italia_meta_type"] = self.context.tipologia_notizia
         else:
             result["design_italia_meta_type"] = translate(
                 ttool[self.context.portal_type].Title(), context=self.request
@@ -47,11 +43,7 @@ class SerializeFolderToJson(BaseFolderSerializer):
         result["@id"] = self.context.absolute_url()
         ttool = api.portal.get_tool("portal_types")
         if self.context.portal_type == "News Item":
-            result["design_italia_meta_type"] = translate(
-                self.context.tipologia_notizia,
-                domain=_._domain,
-                context=self.request,
-            )
+            result["design_italia_meta_type"] = self.context.tipologia_notizia
         else:
             result["design_italia_meta_type"] = translate(
                 ttool[self.context.portal_type].Title(), context=self.request

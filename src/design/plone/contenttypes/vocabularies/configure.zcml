@@ -30,11 +30,6 @@
       />
 
   <utility
-      name="design.plone.contenttypes.temi_dataset"
-      component=".dataset.TemiDatasetFactory"
-      />
-
-  <utility
       name="design.plone.contenttypes.ListaAzioniPratica"
       component=".lista_azioni_pratica.ListaAzioniPraticaFactory"
       />
