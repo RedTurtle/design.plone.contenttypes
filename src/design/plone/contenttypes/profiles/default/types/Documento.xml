@@ -51,6 +51,11 @@
     <element value="plone.translatable"/>
     <element value="kitconcept.seo"/>
     <element value="plone.versioning"/>
+    <element value="collective.taxonomy.generated.person_life_events" />
+    <element value="collective.taxonomy.generated.business_events" />
+    <element value="collective.taxonomy.generated.tipologia_documenti_albopretorio" />
+    <element value="collective.taxonomy.generated.tipologia_documento" />
+    <element value="collective.taxonomy.generated.tipologia_licenze" />
   </property>
 
   <!-- View information -->

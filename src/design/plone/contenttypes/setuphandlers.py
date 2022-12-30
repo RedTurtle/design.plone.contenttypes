@@ -3,6 +3,8 @@ from plone import api
 from redturtle.bandi.interfaces.settings import IBandoSettings
 from Products.CMFPlone.interfaces import INonInstallable
 from zope.interface import implementer
+from design.plone.contenttypes.upgrades.upgrades import remove_blocks_behavior
+from design.plone.contenttypes.upgrades.upgrades import update_types
 
 
 @implementer(INonInstallable)
@@ -20,35 +22,36 @@ def post_install(context):
 
     remove_blocks_behavior(context)
 
+    # update behaviors
     portal_types = api.portal.get_tool(name="portal_types")
-    # add image fields at the end of document behaviors and remove tableofcontents
-    document_behaviors = [
-        x
-        for x in portal_types["Document"].behaviors
-        if x
-        not in [
-            "plone.leadimage",
-            "volto.preview_image",
-            "plone.tableofcontents",
+    BEHAVIORS = {
+        "Document": {
+            "in": [
+                "plone.leadimage",
+                "volto.preview_image",
+            ],
+            "out": [
+                "plone.leadimage",
+                "volto.preview_image",
+                "plone.tableofcontents",
+            ]
+        },
+    }
+    for ct in BEHAVIORS.keys():
+        ct_behaviors = [
+            x for x in portal_types[ct].behaviors if x not in BEHAVIORS[ct]["out"] # noqa
         ]
-    ]
-    document_behaviors.extend(["plone.leadimage", "volto.preview_image"])
-    portal_types["Document"].behaviors = tuple(document_behaviors)
+        ct_behaviors.extend(
+            [x for x in BEHAVIORS[ct]["in"] if x not in ct_behaviors]
+        )
+        portal_types[ct].behaviors = tuple(ct_behaviors)
 
     # remove default ente
     api.portal.set_registry_record("default_ente", (), interface=IBandoSettings)
 
-    # TODO
-    # fargli caricare le tassonomie all'installazione
-    # assegnazione delle varie behavior ai tipi di contenuto
 
-
-def remove_blocks_behavior(context):
-    portal_types = api.portal.get_tool(name="portal_types")
-    for ptype in ["News Item", "Event"]:
-        portal_types[ptype].behaviors = tuple(
-            [x for x in portal_types[ptype].behaviors if x != "volto.blocks"]
-        )
+def post_install_taxonomy(context):
+    update_types(context)
 
 
 def uninstall(context):

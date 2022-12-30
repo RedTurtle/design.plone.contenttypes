@@ -4,7 +4,6 @@ from collective.volto.blocksfield.field import BlocksField
 from copy import deepcopy
 from design.plone.contenttypes.controlpanels.settings import IDesignPloneSettings
 from design.plone.contenttypes.upgrades.draftjs_converter import to_draftjs
-from design.plone.contenttypes.setuphandlers import remove_blocks_behavior
 from plone import api
 from plone.app.textfield.value import RichTextValue
 from plone.app.upgrade.utils import installOrReinstallProduct
@@ -55,6 +54,13 @@ def update_catalog(context):
 def update_controlpanel(context):
     update_profile(context, "controlpanel")
 
+
+def remove_blocks_behavior(context):
+    portal_types = api.portal.get_tool(name="portal_types")
+    for ptype in ["News Item", "Event"]:
+        portal_types[ptype].behaviors = tuple(
+            [x for x in portal_types[ptype].behaviors if x != "volto.blocks"]
+        )
 
 def remap_fields(mapping):
     pc = api.portal.get_tool(name="portal_catalog")

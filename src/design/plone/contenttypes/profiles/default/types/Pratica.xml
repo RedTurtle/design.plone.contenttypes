@@ -48,6 +48,7 @@
     <element value="plone.basic"/>
     <element value="plone.locking" />
     <element value="plone.translatable"/>
+    <element value="collective.taxonomy.generated.tipologia_stati_pratica" />
   </property>
 
   <!-- View information -->

@@ -48,6 +48,9 @@
     <element value="plone.basic"/>
     <element value="plone.locking" />
     <element value="plone.translatable"/>
+    <element value="collective.taxonomy.generated.temi_dataset" />
+    <element value="collective.taxonomy.generated.tipologia_frequenza_aggiornamento" />
+    <element value="collective.taxonomy.generated.tipologia_licenze" />
   </property>
 
   <!-- View information -->

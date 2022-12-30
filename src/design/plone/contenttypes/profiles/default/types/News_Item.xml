@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <object name="News Item" meta_type="Dexterity FTI" i18n:domain="plone"
    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
-<property name="title" i18n:translate="">Notizie e comunicati stampa</property>
+
+<property name="title" i18n:translate="">
+  Notizie e comunicati stampa
+</property>
+
 <property name="allowed_content_types" purge="False">
     <element value="Document"/>
     <element value="Image" />
     <element value="File" />
  </property>
+
  <property name="behaviors" purge="False">
    <element value="volto.preview_image"/>
    <element value="design.plone.contenttypes.behavior.news"/>
@@ -15,6 +20,7 @@
    <element value="plone.textindexer"/>
    <element value="plone.translatable"/>
    <element value="kitconcept.seo"/>
+   <element value="collective.taxonomy.generated.tipologia_notizia" />
  </property>
 
 </object>

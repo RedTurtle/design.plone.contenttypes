@@ -42,6 +42,7 @@
       directory="profiles/behaviors"
       description="Registers taxonomies."
       provides="Products.GenericSetup.interfaces.EXTENSION"
+      post_handler=".setuphandlers.post_install_taxonomy"
       />
 
   <genericsetup:registerProfile

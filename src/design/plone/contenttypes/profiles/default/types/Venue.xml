@@ -28,6 +28,7 @@
   <element value="plone.translatable"/>
   <element value="kitconcept.seo"/>
   <element value="plone.versioning"/>
+  <element value="collective.taxonomy.generated.tipologia_luogo" />
   <!-- remove unused behaviors -->
   <element value="collective.address.behaviors.IContact" remove="True"/>
   <element value="collective.address.behaviors.ISocial" remove="True"/>
