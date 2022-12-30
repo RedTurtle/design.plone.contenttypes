@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
+from design.plone.contenttypes.controlpanels.settings import IDesignPloneSettings
 from design.plone.contenttypes.controlpanels.settings import (
-    IDesignPloneSettings,
     IDesignPloneSettingsControlpanel,
 )
 from plone.restapi.controlpanels import RegistryConfigletPanel
 from zope.component import adapter
-from zope.interface import Interface
 from zope.interface import implementer
+from zope.interface import Interface
 
 
 @adapter(Interface, Interface)

@@ -1,19 +1,17 @@
 # -*- coding: utf-8 -*-
+from design.plone.contenttypes.controlpanels.settings import IDesignPloneSettings
 from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING,
 )
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
+from transaction import commit
 from zope.component import getUtility
 from zope.schema.interfaces import IVocabularyFactory
-from transaction import commit
-from design.plone.contenttypes.controlpanels.settings import (
-    IDesignPloneSettings,
-)
 
-import unittest
 import json
+import unittest
 
 
 class TestControlpanelVocabularies(unittest.TestCase):

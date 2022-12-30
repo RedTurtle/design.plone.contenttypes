@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
-from design.plone.contenttypes.controlpanels.settings import (
-    IDesignPloneSettings,
-)
+from design.plone.contenttypes.controlpanels.settings import IDesignPloneSettings
 from plone import api
 from uuid import uuid4
 
-import logging
 import json
+import logging
 import six
 
 

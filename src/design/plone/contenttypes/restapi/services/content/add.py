@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from plone.restapi.services.content.add import FolderPost
 from plone.restapi.deserializer import json_body
+from plone.restapi.services.content.add import FolderPost
 
 import json
 

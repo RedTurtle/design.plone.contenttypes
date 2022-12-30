@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
-from plone.namedfile import field
-from plone.dexterity.interfaces import IDexterityContent
 from design.plone.contenttypes import _
 from plone.autoform.interfaces import IFormFieldProvider
+from plone.dexterity.interfaces import IDexterityContent
+from plone.namedfile import field
 from plone.supermodel import model
 from zope.component import adapter
-from zope.interface import provider, implementer
+from zope.interface import implementer
+from zope.interface import provider
 
 
 class IMultiFileSchema(model.Schema):

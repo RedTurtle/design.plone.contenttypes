@@ -1,19 +1,16 @@
 # -*- coding: utf-8 -*-
-from design.plone.contenttypes import _
 from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
 from plone import api
 from plone.dexterity.interfaces import IDexterityContainer
 from plone.dexterity.interfaces import IDexterityContent
 from plone.restapi.interfaces import ISerializeToJson
-from zope.component import adapter
-from zope.i18n import translate
-from zope.interface import implementer
-from plone.restapi.serializer.dxcontent import (
-    SerializeToJson as BaseSerializer,
-)
 from plone.restapi.serializer.dxcontent import (
     SerializeFolderToJson as BaseFolderSerializer,
 )
+from plone.restapi.serializer.dxcontent import SerializeToJson as BaseSerializer
+from zope.component import adapter
+from zope.i18n import translate
+from zope.interface import implementer
 
 
 @implementer(ISerializeToJson)

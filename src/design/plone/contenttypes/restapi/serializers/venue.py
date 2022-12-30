@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
-from .related_news_serializer import (
-    SerializeFolderToJson as RelatedNewsSerializer,
-)
-
+from .related_news_serializer import SerializeFolderToJson as RelatedNewsSerializer
 from Acquisition import aq_inner
 from collective.venue.interfaces import IVenue
 from design.plone.contenttypes.restapi.serializers.summary import (
@@ -13,7 +10,8 @@ from plone.restapi.interfaces import ISerializeToJson
 from plone.restapi.interfaces import ISerializeToJsonSummary
 from plone.restapi.serializer.converters import json_compatible
 from zc.relation.interfaces import ICatalog
-from zope.component import adapter, getMultiAdapter
+from zope.component import adapter
+from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.globalrequest import getRequest
 from zope.interface import implementer

@@ -4,9 +4,11 @@ from design.plone.contenttypes.interfaces.documento import IDocumento
 from design.plone.contenttypes.restapi.serializers.dxcontent import (
     SerializeFolderToJson,
 )
-from plone.restapi.interfaces import ISerializeToJson, ISerializeToJsonSummary
+from plone.restapi.interfaces import ISerializeToJson
+from plone.restapi.interfaces import ISerializeToJsonSummary
 from zc.relation.interfaces import ICatalog
-from zope.component import adapter, getMultiAdapter
+from zope.component import adapter
+from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.globalrequest import getRequest
 from zope.interface import implementer

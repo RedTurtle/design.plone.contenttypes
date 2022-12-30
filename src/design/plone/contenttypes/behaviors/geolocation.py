@@ -2,14 +2,13 @@
 from collective.geolocationbehavior.geolocation import IGeolocatable
 from collective.venue.interfaces import IVenue
 from design.plone.contenttypes import _
+from design.plone.contenttypes.interfaces.unita_organizzativa import IUnitaOrganizzativa
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.dexterity.interfaces import IDexterityContent
 from plone.supermodel import model
 from zope.component import adapter
-from zope.interface import provider, implementer
-from design.plone.contenttypes.interfaces.unita_organizzativa import (
-    IUnitaOrganizzativa,
-)
+from zope.interface import implementer
+from zope.interface import provider
 
 
 @provider(IFormFieldProvider)

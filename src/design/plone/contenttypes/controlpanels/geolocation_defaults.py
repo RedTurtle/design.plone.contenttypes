@@ -4,8 +4,8 @@ from plone.app.registry.browser.controlpanel import ControlPanelFormWrapper
 from plone.app.registry.browser.controlpanel import RegistryEditForm
 from plone.z3cform import layout
 from z3c.form import form
-from zope.schema import TextLine
 from zope.interface import Interface
+from zope.schema import TextLine
 
 
 class IGeolocationDefaults(Interface):

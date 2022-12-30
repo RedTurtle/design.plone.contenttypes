@@ -1,14 +1,16 @@
-<configure xmlns="http://namespaces.zope.org/zope"
-           xmlns:monkey="http://namespaces.plone.org/monkey"
-           i18n_domain="design.plone.contenttypes">
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:monkey="http://namespaces.plone.org/monkey"
+    i18n_domain="design.plone.contenttypes"
+    >
 
-	<include package="collective.monkeypatcher" />
+  <include package="collective.monkeypatcher" />
 
-    <monkey:patch
-        description="Patch Taxonomy class caller"
-        class="collective.taxonomy.utility.Taxonomy"
-        original="__call__"
-        replacement=".baseserializer.eea_api_taxonomy_taxonomy_call"
-        />
+  <monkey:patch
+      original="__call__"
+      replacement=".baseserializer.eea_api_taxonomy_taxonomy_call"
+      class="collective.taxonomy.utility.Taxonomy"
+      description="Patch Taxonomy class caller"
+      />
 
 </configure>

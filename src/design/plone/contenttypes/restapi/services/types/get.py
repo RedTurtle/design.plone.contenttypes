@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-from plone.restapi.services.types.get import TypesGet as BaseGet
-from zope.interface import implementer
-from zope.publisher.interfaces import IPublishTraverse
+from design.plone.contenttypes import _
 from design.plone.contenttypes.controlpanels.geolocation_defaults import (
     IGeolocationDefaults,
 )
-from zope.i18n import translate
 from plone import api
-from design.plone.contenttypes import _
+from plone.restapi.services.types.get import TypesGet as BaseGet
+from zope.i18n import translate
+from zope.interface import implementer
+from zope.publisher.interfaces import IPublishTraverse
 
 
 class FieldsetsMismatchError(Exception):

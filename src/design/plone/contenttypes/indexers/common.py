@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from plone.indexer.decorator import indexer
 from plone.dexterity.interfaces import IDexterityContent
+from plone.indexer.decorator import indexer
 
 
 @indexer(IDexterityContent)

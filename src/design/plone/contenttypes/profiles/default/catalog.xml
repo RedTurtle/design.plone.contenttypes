@@ -1,68 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<object name="portal_catalog" meta_type="Plone Catalog Tool">
- <index name="news_people" meta_type="KeywordIndex">
-  <indexed_attr value="news_people"/>
- </index>
-<index name="news_uo" meta_type="KeywordIndex">
-  <indexed_attr value="news_uo"/>
- </index>
-<index name="news_service" meta_type="KeywordIndex">
-  <indexed_attr value="news_service"/>
- </index>
-<index name="news_venue" meta_type="KeywordIndex">
-  <indexed_attr value="news_venue"/>
- </index>
-<index name="uo_location" meta_type="KeywordIndex">
-  <indexed_attr value="uo_location"/>
- </index>
-<index name="service_venue" meta_type="KeywordIndex">
-  <indexed_attr value="service_venue"/>
- </index>
- <index name="tassonomia_argomenti" meta_type="KeywordIndex">
-  <indexed_attr value="tassonomia_argomenti"/>
- </index>
- <index name="tipologia_documento" meta_type="KeywordIndex">
-  <indexed_attr value="tipologia_documento"/>
- </index>
- <index name="tipologia_notizia" meta_type="KeywordIndex">
-  <indexed_attr value="tipologia_notizia"/>
- </index>
- <index name="ufficio_responsabile" meta_type="KeywordIndex">
-  <indexed_attr value="ufficio_responsabile"/>
- </index>
- <index name="ufficio_responsabile_bando" meta_type="KeywordIndex">
-  <indexed_attr value="ufficio_responsabile_bando"/>
- </index>
- <index name="Subject_bando" meta_type="KeywordIndex">
-  <indexed_attr value="Subject_bando"/>
- </index>
- <index name="event_location" meta_type="KeywordIndex">
-  <indexed_attr value="event_location"/>
- </index>
- <index name="tipologia_organizzazione" meta_type="KeywordIndex">
-  <indexed_attr value="tipologia_organizzazione"/>
- </index>
- <index name="data_conclusione_incarico" meta_type="DateIndex">
-  <indexed_attr value="data_conclusione_incarico"/>
- </index>
+<object meta_type="Plone Catalog Tool"
+        name="portal_catalog"
+>
+  <index meta_type="KeywordIndex"
+         name="news_people"
+  >
+    <indexed_attr value="news_people" />
+  </index>
+  <index meta_type="KeywordIndex"
+         name="news_uo"
+  >
+    <indexed_attr value="news_uo" />
+  </index>
+  <index meta_type="KeywordIndex"
+         name="news_service"
+  >
+    <indexed_attr value="news_service" />
+  </index>
+  <index meta_type="KeywordIndex"
+         name="news_venue"
+  >
+    <indexed_attr value="news_venue" />
+  </index>
+  <index meta_type="KeywordIndex"
+         name="uo_location"
+  >
+    <indexed_attr value="uo_location" />
+  </index>
+  <index meta_type="KeywordIndex"
+         name="service_venue"
+  >
+    <indexed_attr value="service_venue" />
+  </index>
+  <index meta_type="KeywordIndex"
+         name="tassonomia_argomenti"
+  >
+    <indexed_attr value="tassonomia_argomenti" />
+  </index>
+  <index meta_type="KeywordIndex"
+         name="tipologia_documento"
+  >
+    <indexed_attr value="tipologia_documento" />
+  </index>
+  <index meta_type="KeywordIndex"
+         name="tipologia_notizia"
+  >
+    <indexed_attr value="tipologia_notizia" />
+  </index>
+  <index meta_type="KeywordIndex"
+         name="ufficio_responsabile"
+  >
+    <indexed_attr value="ufficio_responsabile" />
+  </index>
+  <index meta_type="KeywordIndex"
+         name="ufficio_responsabile_bando"
+  >
+    <indexed_attr value="ufficio_responsabile_bando" />
+  </index>
+  <index meta_type="KeywordIndex"
+         name="Subject_bando"
+  >
+    <indexed_attr value="Subject_bando" />
+  </index>
+  <index meta_type="KeywordIndex"
+         name="event_location"
+  >
+    <indexed_attr value="event_location" />
+  </index>
+  <index meta_type="KeywordIndex"
+         name="tipologia_organizzazione"
+  >
+    <indexed_attr value="tipologia_organizzazione" />
+  </index>
+  <index meta_type="DateIndex"
+         name="data_conclusione_incarico"
+  >
+    <indexed_attr value="data_conclusione_incarico" />
+  </index>
 
- <!-- metadata -->
- <column value="tipologia_notizia"/>
- <column value="tipologia_documento"/>
- <column value="tassonomia_argomenti"/>
- <column value="event_location"/>
- <column value="Subject_bando"/>
- <column value="ufficio_responsabile_bando"/>
- <column value="data_conclusione_incarico"/>
- <column value="parent"/>
- <column value="ente_bando"/>
- <column value="icona"/>
- <column value="update_note"/>
+  <!-- metadata -->
+  <column value="tipologia_notizia" />
+  <column value="tipologia_documento" />
+  <column value="tassonomia_argomenti" />
+  <column value="event_location" />
+  <column value="Subject_bando" />
+  <column value="ufficio_responsabile_bando" />
+  <column value="data_conclusione_incarico" />
+  <column value="parent" />
+  <column value="ente_bando" />
+  <column value="icona" />
+  <column value="update_note" />
 
- <!-- cleanup -->
- <index name="argomenti_correlati" remove="True" />
- <column value="argomenti_correlati" remove="True" />
- <index name="argomenti" remove="True" />
- <column value="argomenti" remove="True" />
+  <!-- cleanup -->
+  <index name="argomenti_correlati"
+         remove="True"
+  />
+  <column remove="True"
+          value="argomenti_correlati"
+  />
+  <index name="argomenti"
+         remove="True"
+  />
+  <column remove="True"
+          value="argomenti"
+  />
 
 </object>

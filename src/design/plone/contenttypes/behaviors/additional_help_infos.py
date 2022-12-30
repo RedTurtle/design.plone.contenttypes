@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
-from plone.app.dexterity import textindexer
-from design.plone.contenttypes import _
 from collective.volto.blocksfield.field import BlocksField
+from design.plone.contenttypes import _
+from plone.app.dexterity import textindexer
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.dexterity.interfaces import IDexterityContent
 from plone.supermodel import model
 from zope.component import adapter
-from zope.interface import provider, implementer
+from zope.interface import implementer
+from zope.interface import provider
 
 
 # TODO: valutare se aggiungere 'box_aiuto', in alcuni CT e' obbligatorio

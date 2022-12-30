@@ -11,20 +11,17 @@ We need a solution like that because for some different reasons:
 """
 
 from collective.taxonomy.vocabulary import Vocabulary
-from collective.taxonomy.utility import Taxonomy
-from plone.restapi.serializer.dxcontent import (
-    SerializeToJson,
-    SerializeFolderToJson,
-)
 from plone import api
 from plone.restapi.batching import HypermediaBatch
 from plone.restapi.deserializer import boolean_value
 from plone.restapi.interfaces import ISerializeToJson
 from plone.restapi.interfaces import ISerializeToJsonSummary
+from plone.restapi.serializer.dxcontent import SerializeFolderToJson
+from plone.restapi.serializer.dxcontent import SerializeToJson
 from Products.CMFCore.utils import getToolByName
 from zope.component import getMultiAdapter
 from zope.i18n import translate
-from design.plone.contenttypes import _
+
 
 original_serialize_to_json__call__ = SerializeToJson.__call__
 

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from plone.app.dexterity import textindexer
-from design.plone.contenttypes import _
 from collective.volto.blocksfield.field import BlocksField
+from design.plone.contenttypes import _
+from plone.app.dexterity import textindexer
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
 from plone.autoform.interfaces import IFormFieldProvider
@@ -11,7 +11,8 @@ from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
 from zope import schema
 from zope.component import adapter
-from zope.interface import provider, implementer
+from zope.interface import implementer
+from zope.interface import provider
 
 
 @provider(IFormFieldProvider)
@@ -90,7 +91,7 @@ class ILuogo(model.Schema):
 
 
     # Decisono con Baio di toglierlo: visto il vocabolario, che in realtà sta
-    # qui: https://github.com/italia/daf-ontologie-vocabolari-controllati/tree/master/VocabolariControllati/classifications-for-culture/subject-disciplines
+    # qui: https://github.com/italia/daf-ontologie-vocabolari-controllati/tree/master/VocabolariControllati/classifications-for-culture/subject-disciplines # noqa
     # riteniamo che possa non fregare nulla a nessuno di questa categorizzazione.
     #  # TODO: aggiungere il vocabolario da https://dataportal.daf.teamdigitale.it/#/vocabularies/subject-disciplines  # noqa
     # # quando ritornano i dati dopo la migrazione, bisognera' vedere dove sono

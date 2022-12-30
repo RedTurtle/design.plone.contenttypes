@@ -1,16 +1,18 @@
 # -*- coding: utf-8 -*-
-from plone.app.dexterity import textindexer
 from collective.volto.blocksfield.field import BlocksField
 from design.plone.contenttypes import _
+from plone.app.contenttypes.interfaces import INewsItem
+from plone.app.dexterity import textindexer
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
 from plone.autoform.interfaces import IFormFieldProvider
-from plone.app.contenttypes.interfaces import INewsItem
 from plone.supermodel import model
-from z3c.relationfield.schema import RelationChoice, RelationList
+from z3c.relationfield.schema import RelationChoice
+from z3c.relationfield.schema import RelationList
 from zope import schema
 from zope.component import adapter
-from zope.interface import provider, implementer
+from zope.interface import implementer
+from zope.interface import provider
 
 
 @provider(IFormFieldProvider)

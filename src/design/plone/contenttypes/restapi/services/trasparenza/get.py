@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 from plone import api
-from plone.restapi.interfaces import ISerializeToJson
-from zope.component import getMultiAdapter
-from zope.globalrequest import getRequest
 from plone.restapi.interfaces import IExpandableElement
+from plone.restapi.interfaces import ISerializeToJson
 from plone.restapi.interfaces import ISerializeToJsonSummary
 from plone.restapi.services import Service
+from Products.CMFCore.interfaces import IFolderish
 from zope.component import adapter
+from zope.component import getMultiAdapter
 from zope.component import queryMultiAdapter
+from zope.globalrequest import getRequest
 from zope.interface import implementer
 from zope.interface import Interface
-from Products.CMFCore.interfaces import IFolderish
 
 
 TRASPARENZA_FIELDS = [

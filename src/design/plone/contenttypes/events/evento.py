@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
 from design.plone.contenttypes.utils import create_default_blocks
-from Products.CMFPlone.interfaces import ISelectableConstrainTypes
 from plone import api
+from Products.CMFPlone.interfaces import ISelectableConstrainTypes
 
 
 def eventoCreateHandler(evento, event):

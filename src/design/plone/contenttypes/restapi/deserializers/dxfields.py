@@ -15,6 +15,7 @@ from zope.schema.interfaces import ISourceText
 
 import json
 
+
 KEYS_WITH_URL = ["linkUrl", "navigationRoot", "showMoreLink"]
 
 

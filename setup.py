@@ -42,7 +42,6 @@ setup(
         "PyPI": "https://pypi.python.org/pypi/design.plone.contenttypes",
         "Source": "https://github.com/collective/design.plone.contenttypes",
         "Tracker": "https://github.com/collective/design.plone.contenttypes/issues",
-        # 'Documentation': 'https://design.plone.contenttypes.readthedocs.io/en/latest/',
     },
     license="GPL version 2",
     packages=find_packages("src", exclude=["ez_setup"]),

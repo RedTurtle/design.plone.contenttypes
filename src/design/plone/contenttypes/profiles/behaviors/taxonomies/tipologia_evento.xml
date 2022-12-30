@@ -1,5 +1,11 @@
-<?xml version='1.0' encoding='utf-8'?>
-<vdex xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd" orderSignificant="false" profileType="hierarchicalTokenTerms" language="it">
+<?xml version="1.0" encoding="utf-8"?>
+<vdex xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      language="it"
+      orderSignificant="false"
+      profileType="hierarchicalTokenTerms"
+      xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd"
+>
   <vocabName>
     <langstring language="it">Tipo di evento</langstring>
   </vocabName>
@@ -385,13 +391,13 @@
   <term>
     <termIdentifier>eventi_sportivi</termIdentifier>
     <caption>
-      <langstring language="en"></langstring>
+      <langstring language="en" />
       <langstring language="it">Eventi sportivi</langstring>
     </caption>
     <term>
       <termIdentifier>manifestazione_sportiva</termIdentifier>
       <caption>
-        <langstring language="en"></langstring>
+        <langstring language="en" />
         <langstring language="it">Manifestazione sportiva</langstring>
       </caption>
       <term>
@@ -427,7 +433,7 @@
       <term>
         <termIdentifier>raduno_sportivo</termIdentifier>
         <caption>
-          <langstring language="en"></langstring>
+          <langstring language="en" />
           <langstring language="it">Raduno sportivo</langstring>
         </caption>
       </term>

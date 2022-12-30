@@ -18,4 +18,3 @@ msgstr ""
 #: CMFPlone/interfaces/controlpanel.py:1432
 msgid "To identify things like Twitter Cards. Do not include the \"@\" prefix character."
 msgstr "Per identificare cose come le Twitter Card. Non includere il carattere \"@\" come prefisso."
-

@@ -22,27 +22,19 @@ class TagsVocabulary(object):
         # Just an example list of content for our vocabulary,
         # this can be any static or dynamic data, a catalog result for example.
         items = [
-            VocabItem(
-                "accesso_all_informazione",
-                _("Accesso all'informazione")
-            ),
+            VocabItem("accesso_all_informazione", _("Accesso all'informazione")),
             VocabItem("acqua", _("Acqua")),
             VocabItem("agricoltura", _("Agricoltura")),
             VocabItem("animale_domestico", _("Animale domestico")),
             VocabItem("aria", _("Aria")),
-            VocabItem(
-                "assistenza_agli_anziani", _("Assistenza agli invalidi")
-            ),
+            VocabItem("assistenza_agli_anziani", _("Assistenza agli invalidi")),
             VocabItem("assistenza_sociale", _("Assistenza sociale")),
             VocabItem("associazioni", _("Associazioni")),
             VocabItem("bilancio", _("Bilancio")),
             VocabItem("commercio_all_ingresso", _("Commercio all'ingrosso")),
             VocabItem("commercio_al_minuto", _("Commercio al minuto")),
             VocabItem("commercio_ambulante", _("Commercio ambulante")),
-            VocabItem(
-                "comunicazione_istituzionale",
-                _("Comunicazione istituzionale")
-            ),
+            VocabItem("comunicazione_istituzionale", _("Comunicazione istituzionale")),
             VocabItem("comunicazione_politica", _("Comunicazione politica")),
             VocabItem("concordi", _("Concorsi")),
             VocabItem("covid_19", _("Covid - 19")),
@@ -50,9 +42,7 @@ class TagsVocabulary(object):
             VocabItem("energie_rinnovabili", _("Energie rinnovabili")),
             VocabItem("estero", _("Estero")),
             VocabItem("foreste", _("Foreste")),
-            VocabItem(
-                "formazione_professionale", _("Formazione professionale")
-            ),
+            VocabItem("formazione_professionale", _("Formazione professionale")),
             VocabItem("gemellaggi", _("Gemellaggi")),
             VocabItem("gestione_rifiuti", _("Gestione rifiuti")),
             VocabItem("giustizia", _("Giustizia")),
@@ -87,9 +77,7 @@ class TagsVocabulary(object):
             VocabItem("sviluppo_sostenibile", _("Sviluppo sostenibile")),
             VocabItem("tassa_sui_servizi", _("Tassa sui servizi")),
             VocabItem("tempo_libero", _("Tempo libero")),
-            VocabItem(
-                "trasparenza_amministrativa", _("Trasparenza amministrativa")
-            ),
+            VocabItem("trasparenza_amministrativa", _("Trasparenza amministrativa")),
             VocabItem("trasporto_pubblico", _("Trasporto pubblico")),
             VocabItem("turismo", _("Turismo")),
             VocabItem("urbanizzazione", _("Urbanizzazione")),

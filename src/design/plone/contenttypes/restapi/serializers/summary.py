@@ -8,9 +8,11 @@ from redturtle.volto.restapi.serializer.summary import (
 from zope.component import adapter
 from zope.component import getMultiAdapter
 from zope.i18n import translate
-from zope.interface import Interface
 from zope.interface import implementer
+from zope.interface import Interface
+
 import re
+
 
 RESOLVEUID_RE = re.compile(".*?/resolve[Uu]id/([^/]*)/?(.*)$")
 
@@ -102,7 +104,8 @@ class DefaultJSONSummarySerializer(BaseSerializer):
 
     def get_bando_state(self):
         """
-        E' il metodo più safe per ottenere lo stato del bando, anche se non il più veloce
+        È il metodo più safe per ottenere lo stato del bando
+        anche se non il più veloce
         """
         bando = self.context.getObject()
         view = api.content.get_view("bando_view", context=bando, request=self.request)

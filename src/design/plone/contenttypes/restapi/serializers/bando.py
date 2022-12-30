@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 from .dxcontent import SerializeFolderToJson as BaseSerializer
+from design.plone.contenttypes.interfaces.bando import IBandoAgidSchema
 from plone.restapi.interfaces import ISerializeToJson
 from zope.component import adapter
 from zope.interface import implementer
 from zope.interface import Interface
-from design.plone.contenttypes.interfaces.bando import IBandoAgidSchema
 
 
 @implementer(ISerializeToJson)

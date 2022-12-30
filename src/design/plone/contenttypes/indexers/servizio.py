@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from plone.indexer.decorator import indexer
 from design.plone.contenttypes.interfaces.servizio import IServizio
+from plone.indexer.decorator import indexer
 
 
 @indexer(IServizio)

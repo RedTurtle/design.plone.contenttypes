@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-s
+from plone import api
 from Products.CMFPlone.utils import safe_unicode
 from uuid import uuid4
-from plone import api
 
 import logging
 import lxml
 import os
 import re
 import requests
+
 
 logger = logging.getLogger(__name__)
 
@@ -132,7 +133,7 @@ def _fix_blocks(block):
 def _conversion_tool(html):
     if not draftjs_converter:
         raise Exception(
-            "DRAFTJS_CONVERTER_URL environment varialbe not set. Unable to convert html to draftjs."
+            "DRAFTJS_CONVERTER_URL environment varialbe not set. Unable to convert html to draftjs."  # noqa
         )
     resp = requests.post(draftjs_converter, data={"html": html})
     if resp.status_code != 200:

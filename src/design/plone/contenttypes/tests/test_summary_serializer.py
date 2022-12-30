@@ -11,8 +11,8 @@ from plone.restapi.interfaces import ISerializeToJson
 from plone.restapi.interfaces import ISerializeToJsonSummary
 from plone.restapi.testing import RelativeSession
 from transaction import commit
-from zope.component import getMultiAdapter
 from z3c.relationfield import RelationValue
+from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.intid.interfaces import IIntIds
 

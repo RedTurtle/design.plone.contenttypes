@@ -1,5 +1,7 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<object name="portal_types" meta_type="Plone Types Tool">
+<?xml version="1.0" encoding="utf-8"?>
+<object meta_type="Plone Types Tool"
+        name="portal_types"
+>
   <property name="title">Controls the available contenttypes in your portal</property>
   <object name="CartellaModulistica" meta_type="Dexterity FTI"/>
   <object name="Dataset" meta_type="Dexterity FTI"/>

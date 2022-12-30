@@ -8,12 +8,12 @@ from plone.restapi.interfaces import IFieldSerializer
 from plone.restapi.interfaces import ISerializeToJsonSummary
 from plone.restapi.serializer.converters import json_compatible
 from plone.restapi.services import Service
+from Products.CMFCore.interfaces import IFolderish
 from zope.component import adapter
 from zope.component import queryMultiAdapter
 from zope.interface import implementer
 from zope.interface import Interface
 from zope.schema import getFields
-from Products.CMFCore.interfaces import IFolderish
 
 
 @implementer(IExpandableElement)

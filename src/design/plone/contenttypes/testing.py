@@ -3,10 +3,9 @@ from plone.app.testing import applyProfile
 from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
 from plone.testing import z2
-from zope.configuration import xmlconfig
 from redturtle.volto.testing import RedturtleVoltoLayer
 from redturtle.volto.testing import RedturtleVoltoRestApiLayer
-
+from zope.configuration import xmlconfig
 
 import collective.address
 import collective.folderishtypes

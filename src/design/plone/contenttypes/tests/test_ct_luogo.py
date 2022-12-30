@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 from DateTime import DateTime
 from design.plone.contenttypes.testing import (
-    DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING,
     DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
+)
+from design.plone.contenttypes.testing import (
+    DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING,
 )
 from plone import api
 from plone.app.testing import setRoles

@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 from design.plone.contenttypes.patches.baseserializer import (
-    patch_base_serializer,
     patch_base_folder_serializer,
 )
+from design.plone.contenttypes.patches.baseserializer import patch_base_serializer
+
 import logging
+
 
 logger = logging.getLogger("design.plone.contenttypes.patches")
 

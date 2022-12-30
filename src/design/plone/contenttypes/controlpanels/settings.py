@@ -4,7 +4,10 @@ from plone.app.registry.browser.controlpanel import ControlPanelFormWrapper
 from plone.app.registry.browser.controlpanel import RegistryEditForm
 from plone.restapi.controlpanels.interfaces import IControlpanel
 from zope.interface import Interface
-from zope.schema import List, TextLine, SourceText, Bool
+from zope.schema import Bool
+from zope.schema import List
+from zope.schema import SourceText
+from zope.schema import TextLine
 
 import json
 

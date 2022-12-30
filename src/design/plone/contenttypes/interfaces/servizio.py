@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-from plone.app.dexterity import textindexer
 from collective.volto.blocksfield.field import BlocksField
 from design.plone.contenttypes import _
 from design.plone.contenttypes.interfaces import IDesignPloneContentType
+from plone.app.dexterity import textindexer
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
 from plone.supermodel import model

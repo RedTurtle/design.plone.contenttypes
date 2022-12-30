@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-from plone import api
-from redturtle.bandi.interfaces.settings import IBandoSettings
-from Products.CMFPlone.interfaces import INonInstallable
-from zope.interface import implementer
 from design.plone.contenttypes.upgrades.upgrades import remove_blocks_behavior
 from design.plone.contenttypes.upgrades.upgrades import update_types
+from plone import api
+from Products.CMFPlone.interfaces import INonInstallable
+from redturtle.bandi.interfaces.settings import IBandoSettings
+from zope.interface import implementer
 
 
 @implementer(INonInstallable)
@@ -34,16 +34,16 @@ def post_install(context):
                 "plone.leadimage",
                 "volto.preview_image",
                 "plone.tableofcontents",
-            ]
+            ],
         },
     }
     for ct in BEHAVIORS.keys():
         ct_behaviors = [
-            x for x in portal_types[ct].behaviors if x not in BEHAVIORS[ct]["out"] # noqa
+            x
+            for x in portal_types[ct].behaviors
+            if x not in BEHAVIORS[ct]["out"]  # noqa
         ]
-        ct_behaviors.extend(
-            [x for x in BEHAVIORS[ct]["in"] if x not in ct_behaviors]
-        )
+        ct_behaviors.extend([x for x in BEHAVIORS[ct]["in"] if x not in ct_behaviors])
         portal_types[ct].behaviors = tuple(ct_behaviors)
 
     # remove default ente

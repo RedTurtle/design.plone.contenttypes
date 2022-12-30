@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
+from design.plone.contenttypes import _
 from plone.restapi.types.adapters import ObjectJsonSchemaProvider
 from plone.restapi.types.interfaces import IJsonSchemaProvider
-from zope.component import adapter, getUtility
+from zope.component import adapter
+from zope.component import getUtility
 from zope.i18n import translate
 from zope.interface import implementer
 from zope.interface import Interface

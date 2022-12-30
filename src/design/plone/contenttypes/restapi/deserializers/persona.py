@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
+from AccessControl import getSecurityManager
 from design.plone.contenttypes.interfaces.persona import IPersona
 from plone.restapi.deserializer import json_body
-from plone.restapi.interfaces import IDeserializeFromJson
-from zope.interface import implementer
-from zope.component import adapter
-from zope.interface import Interface
-from AccessControl import getSecurityManager
 from plone.restapi.deserializer.dxcontent import DeserializeFromJson
+from plone.restapi.interfaces import IDeserializeFromJson
+from zope.component import adapter
+from zope.interface import implementer
+from zope.interface import Interface
 
 
 @implementer(IDeserializeFromJson)

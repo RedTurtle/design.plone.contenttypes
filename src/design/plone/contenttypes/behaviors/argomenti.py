@@ -1,17 +1,19 @@
 # -*- coding: utf-8 -*-
-from plone.app.dexterity import textindexer
 from design.plone.contenttypes import _
 from design.plone.contenttypes.interfaces.bando import IBandoAgidSchema
 from design.plone.contenttypes.interfaces.documento import IDocumento
 from plone.app.contenttypes.interfaces import IDocument
+from plone.app.dexterity import textindexer
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.dexterity.interfaces import IDexterityContent
 from plone.supermodel import model
-from z3c.relationfield.schema import RelationChoice, RelationList
+from z3c.relationfield.schema import RelationChoice
+from z3c.relationfield.schema import RelationList
 from zope.component import adapter
-from zope.interface import provider, implementer
+from zope.interface import implementer
+from zope.interface import provider
 
 
 class IArgomentiSchema(model.Schema):

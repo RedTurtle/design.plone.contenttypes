@@ -3,12 +3,12 @@ from .dxcontent import SerializeFolderToJson as BaseSerializer
 from design.plone.contenttypes.interfaces.servizio import IServizio
 from plone import api
 from plone.restapi.interfaces import ISerializeToJson
-from zope.component import adapter
-from zope.interface import implementer
-from zope.interface import Interface
 from plone.restapi.interfaces import ISerializeToJsonSummary
 from plone.restapi.serializer.converters import json_compatible
+from zope.component import adapter
 from zope.component import getMultiAdapter
+from zope.interface import implementer
+from zope.interface import Interface
 
 
 class SerializeFolderToJson(BaseSerializer):
