@@ -417,6 +417,11 @@ Per aggiornare le traduzioni, basta usare lo script `update_locales` dentro alla
 
 # Contribuisci
 
+Questo pacchetto usa pre-commit per cui prima di iniziare a sviluppare:
+- installa pre-commit come dipendenza del tuo ambiente di lavoro
+- fai *pre-commit install* per installare gli hook
+
+
 - Issue Tracker: https://github.com/redturtle/design.plone.contenttypes/issues
 - Codice sorgente: https://github.com/redturtle/design.plone.contenttypes
 
