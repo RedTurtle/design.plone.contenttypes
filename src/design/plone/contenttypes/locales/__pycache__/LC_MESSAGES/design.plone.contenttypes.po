@@ -1,18 +1,22 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# Language  translations for PACKAGE package.
+# Roman Kysil <roman@folix.local>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2023-01-03 17:03+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2023-01-03 18:01+0100\n"
+"Last-Translator: Roman Kysil <roman@folix.local>\n"
+"Language-Team: Language\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 "Language-Code: en\n"
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: DOMAIN\n"
+"Domain: design.plone.contenttypes\n"
+"Language: __pycache__\n"
 
 #: design/plone/contenttypes/vocabularies/tags_vocabulary.py:32
 msgid "Abitazione"
@@ -1515,7 +1519,6 @@ msgstr ""
 msgid "geolocation_field_validator_label"
 msgstr ""
 
-#. Default: "Indicare l'eventuale circoscrizione in cui si trova questo luogo"
 #: design/plone/contenttypes/behaviors/address.py:38
 msgid "help_circoscrizione"
 msgstr ""
@@ -1545,7 +1548,6 @@ msgstr ""
 msgid "help_nome_sede"
 msgstr ""
 
-#. Default: "Indicare l'eventuale quartiere in cui si trova questo luogo"
 #: design/plone/contenttypes/behaviors/address.py:32
 msgid "help_quartiere"
 msgstr ""

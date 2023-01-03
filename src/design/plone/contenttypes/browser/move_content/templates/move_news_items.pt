@@ -43,7 +43,7 @@
             <div>
                 <h2>Found ${tot_results} items</h2>
                 <ul style="list-style-type: none;">
-                    <li i18n:translate="">
+                    <li>
                       <div class="field">
                         <input id="select_all" type="checkbox"/>
                         <h4 style="display: inline">Select all</h4>
@@ -53,7 +53,7 @@
                         <div class="field">
                             <input type="checkbox" tal:attributes="name item/UID">
                             <a href="${item/getURL}" tal:content="item/Title"></a><br>
-                            <p><span i18n:translate="">Contained by<span> ${python: '/'.join(item.getPath().split('/')[:-1])}</p>
+                            <p><span i18n:translate="">Contained by</span> ${python: '/'.join(item.getPath().split('/')[:-1])}</p>
                         </div>
                     </li>
                 </ul>
