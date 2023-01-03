@@ -24,6 +24,9 @@
  <index name="tassonomia_argomenti" meta_type="KeywordIndex">
   <indexed_attr value="tassonomia_argomenti"/>
  </index>
+ <index name="tassonomia_argomenti_uid" meta_type="KeywordIndex">
+    <indexed_attr value="tassonomia_argomenti_uid"/>
+ </index>
  <index name="tipologia_documento" meta_type="KeywordIndex">
   <indexed_attr value="tipologia_documento"/> 
  </index>
