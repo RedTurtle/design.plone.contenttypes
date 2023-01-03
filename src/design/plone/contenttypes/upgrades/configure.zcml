@@ -572,13 +572,14 @@
         />
   </genericsetup:upgradeSteps>
   <genericsetup:upgradeSteps
-        profile="design.plone.contenttypes:default"
-        source="5410"
-        destination="5500">
-        
-        <genericsetup:upgradeStep
-            title="Add new index for Argomenti UID"
-            handler=".upgrades.to_5500"
+      profile="design.plone.contenttypes:default"
+      source="5410"
+      destination="5500"
+      >
+
+    <genericsetup:upgradeStep
+        title="Add new index for Argomenti UID"
+        handler=".upgrades.to_5500"
         />
-    </genericsetup:upgradeSteps>
+  </genericsetup:upgradeSteps>
 </configure>
