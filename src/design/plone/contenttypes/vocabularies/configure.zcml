@@ -86,6 +86,12 @@
       component=".argomenti_vocabulary.ArgomentiVocabularyFactory"
       />
   <utility
+      name="design.plone.vocabularies.argomenti_uid"
+      component=".argomenti_vocabulary.ArgomentiUIDVocabularyFactory"
+      />
+
+
+  <utility
       name="design.plone.vocabularies.event_location"
       component=".reference_vocabularies.EventLocationVocabularyFactory"
       />
