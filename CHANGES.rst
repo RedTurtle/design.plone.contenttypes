@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-5.0.4 (unreleased)
+5.1.0 (2023-01-03)
 ------------------
 
 - Remove selection limit in ufficio_responsabile field for Servizio.
