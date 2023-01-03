@@ -10,6 +10,16 @@
       package="z3c.jbot"
       file="meta.zcml"
       />
+
+  <plone:static
+      directory="static"
+      name="design.plone.contenttypes"
+      type="plone"
+      />
+
+  <!-- Include packages -->
+  <include package=".move_content" />
+
   <browser:jbot
       directory="overrides"
       layer="design.plone.contenttypes.interfaces.IDesignPloneContenttypesLayer"
