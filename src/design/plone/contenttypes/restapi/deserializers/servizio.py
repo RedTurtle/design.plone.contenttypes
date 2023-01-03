@@ -15,7 +15,6 @@ TITLE_MAX_LEN = 160
 DESCRIPTION_MAX_LEN = 160
 EMPTY_BLOCK_MARKER = {"@type": "text"}
 MANDATORY_RICH_TEXT_FIELDS = [
-    "motivo_stato_servizio",
     "a_chi_si_rivolge",
     "come_si_fa",
     "cosa_serve",
@@ -69,8 +68,6 @@ class DeserializeServizioFromJson(DeserializeFromJson):
 
         title = data.get("title")
         description = data.get("description")
-        # stato_servizio = data.get('stato_servizio')
-        # motivo_stato_servizio = data.get('motivo_stato_servizio')
 
         if is_post:
             # Title validation
@@ -98,20 +95,7 @@ class DeserializeServizioFromJson(DeserializeFromJson):
                 )
 
             for field in MANDATORY_RICH_TEXT_FIELDS:
-                if field == "motivo_stato_servizio":
-                    if (
-                        data.get("stato_servizio")
-                        and not data.get("motivo_stato_servizio")
-                    ) or (
-                        data.get("stato_servizio")
-                        and not text_in_block(data.get("motivo_stato_servizio"))
-                    ):
-                        errors.append(
-                            new_error(
-                                "Indicare il motivo per cui il servizio non è fruibile"
-                            )
-                        )
-                elif field not in data:
+                if field not in data:
                     errors.append(new_error("Il campo {} è obbligatorio".format(field)))
                 elif field in data and not text_in_block(data.get(field)):
                     errors.append(new_error("Il campo {} è obbligatorio".format(field)))
@@ -141,32 +125,8 @@ class DeserializeServizioFromJson(DeserializeFromJson):
                 )
 
             for field in MANDATORY_RICH_TEXT_FIELDS:
-                if field == "motivo_stato_servizio":
-                    if (
-                        "stato_servizio" in data
-                        and data.get("stato_servizio")
-                        and not text_in_block(data.get(field))
-                    ):
-                        errors.append(
-                            new_error(
-                                "Indicare il motivo per cui il servizio non è fruibile"
-                            )
-                        )
-                elif field in data and not text_in_block(data.get(field)):
+                if field in data and not text_in_block(data.get(field)):
                     errors.append(new_error("Il campo {} è obbligatorio".format(field)))
-
-            # Per questo campo dobbiamo controllare anche il contesto: potrei aver
-            # già scritto sull'oggetto che il servizio non è fruibile e modificare
-            # solo lo stato
-            if (
-                "stato_servizio" not in data
-                and getattr(self.context, "stato_servizio")
-                and data.get("motivo_stato_servizio")
-                and not text_in_block(data.get("motivo_stato_servizio"))
-            ):
-                errors.append(
-                    new_error("Indicare il motivo per cui il servizio non è fruibile")
-                )
 
         if errors:
             raise BadRequest(errors)
