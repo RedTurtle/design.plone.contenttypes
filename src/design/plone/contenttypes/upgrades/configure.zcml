@@ -572,6 +572,7 @@
         />
   </genericsetup:upgradeSteps>
   <genericsetup:upgradeSteps
+<<<<<<< HEAD
       profile="design.plone.contenttypes:default"
       source="6000"
       destination="6000"
@@ -641,4 +642,15 @@
         handler=".upgrades.update_taxonomies_on_blocks"
         />
   </genericsetup:upgradeSteps>
+=======
+        profile="design.plone.contenttypes:default"
+        source="5410"
+        destination="5500">
+        
+        <genericsetup:upgradeStep
+            title="Add new index for Argomenti UID"
+            handler=".upgrades.to_5500"
+        />
+    </genericsetup:upgradeSteps>
+>>>>>>> edd7357 (new indexer/criteria for related arguments)
 </configure>
