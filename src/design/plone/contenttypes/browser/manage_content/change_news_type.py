@@ -35,8 +35,8 @@ class View(BrowserView):
             return
 
         if (
-            not news_new_type in self.news_types()
-            or not old_news_type in self.news_types_in_catalog()
+            news_new_type not in self.news_types()
+            or old_news_type not in self.news_types_in_catalog()
         ):
             self.context.plone_utils.addPortalMessage(_("Bad data was send"), "error")
 
