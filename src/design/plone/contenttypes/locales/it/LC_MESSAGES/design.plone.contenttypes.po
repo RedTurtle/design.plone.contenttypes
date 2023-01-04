@@ -62,6 +62,10 @@ msgstr ""
 msgid "All the selected items will be moved to indicated path"
 msgstr "Tutti gli elementi selezionati saranno spostati nella cartella indicata"
 
+#: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:20
+msgid "All the already existing News Types"
+msgstr "I tipi delle notizie che esistono sul sito"
+
 #: design/plone/contenttypes/vocabularies/dataset.py:36
 msgid "Ambiente"
 msgstr ""
@@ -144,6 +148,10 @@ msgstr ""
 msgid "Avvio/registrazione filiale"
 msgstr ""
 
+#: design/plone/contenttypes/browser/manage_content/change_news_type.py:41
+msgid "Bad data was send"
+msgstr "Sono stati inviati i dati insufficenti"
+
 #: design/plone/contenttypes/vocabularies/all_life_events_vocabulary.py:78
 msgid "Bancarotta"
 msgstr ""
@@ -203,6 +211,10 @@ msgstr ""
 #: design/plone/contenttypes/profiles/default/types/CartellaModulistica.xml
 msgid "Cartella Modulistica"
 msgstr ""
+
+#: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:11
+msgid "Change News Type"
+msgstr "Cambia il tipo delle novità"
 
 #: design/plone/contenttypes/vocabularies/all_life_events_vocabulary.py:75
 msgid "Chiusura filiale"
@@ -547,14 +559,22 @@ msgstr ""
 msgid "Nazione"
 msgstr ""
 
-#: design/plone/contenttypes/browser/move_content/templates/move_news_items.pt:19
+#: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:19
 msgid "News Type"
-msgstr "Tipo Notizia"
+msgstr "Tipo delle notizie"
+
+#: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:28
+msgid "News Type to substitute"
+msgstr "Tipo delle notizie da sostituire"
 
 #. Default: "Nome e cognome"
 #: design/plone/contenttypes/restapi/services/types/get.py:152
 msgid "Nome e Cognome"
 msgstr ""
+
+#: design/plone/contenttypes/browser/manage_content/change_news_type.py:34
+msgid "Not enaught data"
+msgstr "Non abbastanza dati"
 
 #: design/plone/contenttypes/vocabularies/all_life_events_vocabulary.py:73
 msgid "Notifiche autorità"
@@ -760,6 +780,10 @@ msgstr ""
 #: design/plone/contenttypes/vocabularies/tags_vocabulary.py:46
 msgid "Tempo libero"
 msgstr ""
+
+#: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:29
+msgid "The News Type selected above will be substituted by the selected value"
+msgstr "Il tipo delle notizie selezionato sopra sarà sostituito dal tipo selezionato"
 
 #: design/plone/contenttypes/vocabularies/tags_vocabulary.py:51
 msgid "Traffico urbano"
