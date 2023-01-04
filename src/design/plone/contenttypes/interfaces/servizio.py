@@ -111,6 +111,15 @@ class IServizio(model.Schema, IDesignPloneContentType):
         title=_("canale_digitale", default="Canale digitale"),
         description=_(
             "canale_digitale_help",
+            default="Testo di introduzione del canale digitale",
+        ),
+        required=False,
+    )
+
+    canale_digitale_link = schema.URI(
+        title=_("canale_digitale_link", default="Link al canale digitale"),
+        description=_(
+            "canale_digitale_link_help",
             default="Collegamento con l'eventuale canale digitale di"
             " attivazione del servizio.",
         ),
@@ -374,6 +383,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
             "cosa_si_ottiene",
             "procedure_collegate",
             "canale_digitale",
+            "canale_digitale_link",
             "autenticazione",
             "dove_rivolgersi",
             "dove_rivolgersi_extra",
