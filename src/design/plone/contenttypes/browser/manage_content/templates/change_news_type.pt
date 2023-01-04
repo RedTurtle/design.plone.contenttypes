@@ -16,17 +16,17 @@
        <div class="form">
             <form action="${context/portal_url}/change_news_type" method="POST">
                 <div class="field">
-                    <label for="news_type_in_catalog">News Type</label>
-                    <div class="formHelp">
-                        Find all the already existing News Types
+                    <label for="news_type_in_catalog" i18n:translate="">News Type</label>
+                    <div class="formHelp" i18n:translate="">
+                        All the already existing News Types
                     </div>
                     <select name="news_type_in_catalog" tal:define="news_types python: view.news_types_in_catalog()">
                       <option tal:repeat="news_type_in_catalog news_types"
                               tal:content="news_type_in_catalog"
                               tal:attributes="selected python: request.form.get('news_type_in_catalog', '') == news_type_in_catalog; value news_type_in_catalog"/>
                     </select><br>
-                    <label for="news_type_portal" style="margin-top: 1em;">News Type to substitute</label>
-                    <div class="formHelp">
+                    <label for="news_type_portal" style="margin-top: 1em;" i18n:translate="">News Type to substitute</label>
+                    <div class="formHelp" i18n:translate="">
                        The News Type selected above will be substituted by the selected value
                     </div>
                     <select name="news_type_portal" tal:define="news_types python: view.news_types()">
