@@ -52,9 +52,9 @@ FIELDSETS_ORDER = {
         "ownership",
     ],
     "Incarico": [
-        'default',
-        'informazioni_compensi',
-        'date_e_informazioni',
+        "default",
+        "informazioni_compensi",
+        "date_e_informazioni",
     ],
     "News Item": [
         "default",
@@ -94,7 +94,7 @@ FIELDSETS_ORDER = {
         "settings",
     ],
     "PuntoDiContatto": [
-        'default',
+        "default",
     ],
     "Servizio": [
         "default",
@@ -230,6 +230,10 @@ class TypesGet(BaseGet):
 
         return result
 
+    def customize_servizio_schema(self, result):
+        result.get("required").append("description")
+        return result
+
     def reply(self):
         result = super(TypesGet, self).reply()
 
@@ -248,6 +252,8 @@ class TypesGet(BaseGet):
                 result = self.customize_venue_schema(result)
             if pt == "Document":
                 result = self.customize_document_schema(result)
+            if pt == "Servizio":
+                result = self.customize_servizio_schema(result)
             result = self.customize_versioning_fields_fieldset(result)
         return result
 

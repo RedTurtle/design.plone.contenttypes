@@ -591,4 +591,12 @@
         handler=".upgrades.to_6010"
         />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeStep
+      title="Update servizio"
+      description=""
+      profile="design.plone.contenttypes:default"
+      source="6010"
+      destination="6011"
+      handler=".upgrades.to_6011"
+      />
 </configure>

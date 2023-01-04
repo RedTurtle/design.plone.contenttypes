@@ -44,4 +44,4 @@ reports/
 !src/design
 pyvenv.cfg
 .Python
-.history/*
+.history/

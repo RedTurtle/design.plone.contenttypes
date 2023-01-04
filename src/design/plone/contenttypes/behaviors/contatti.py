@@ -36,7 +36,10 @@ class IContattiUnitaOrganizzativa(model.Schema):
         "contact_info",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={"maximumSelectionSize": 10, "selectableTypes": ["PuntoDiContatto"]},
+        pattern_options={
+            "maximumSelectionSize": 10,
+            "selectableTypes": ["PuntoDiContatto"],
+        },
     )
 
 
@@ -63,7 +66,10 @@ class IContattiPersona(model.Schema):
         "contact_info",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={"maximumSelectionSize": 10, "selectableTypes": ["PuntoDiContatto"]},
+        pattern_options={
+            "maximumSelectionSize": 10,
+            "selectableTypes": ["PuntoDiContatto"],
+        },
     )
     model.fieldset(
         "contatti",
@@ -94,7 +100,10 @@ class IContattiServizio(model.Schema):
         "contact_info",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={"maximumSelectionSize": 10, "selectableTypes": ["PuntoDiContatto"]},
+        pattern_options={
+            "maximumSelectionSize": 10,
+            "selectableTypes": ["PuntoDiContatto"],
+        },
     )
     model.fieldset(
         "contatti",
@@ -125,7 +134,10 @@ class IContattiVenue(model.Schema):
         "contact_info",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={"maximumSelectionSize": 10, "selectableTypes": ["PuntoDiContatto"]},
+        pattern_options={
+            "maximumSelectionSize": 10,
+            "selectableTypes": ["PuntoDiContatto"],
+        },
     )
     model.fieldset(
         "contatti",
@@ -156,13 +168,17 @@ class IContattiEvent(model.Schema):
         "contact_info",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={"maximumSelectionSize": 10, "selectableTypes": ["PuntoDiContatto"]},
+        pattern_options={
+            "maximumSelectionSize": 10,
+            "selectableTypes": ["PuntoDiContatto"],
+        },
     )
     model.fieldset(
         "contatti",
         label=_("contatti_label", default="Contatti"),
         fields=["contact_info"],
     )
+
 
 @implementer(IContattiEvent)
 @adapter(IContattiEvent)
@@ -180,6 +196,7 @@ class ContattiPersona(object):
 
     def __init__(self, context):
         self.context = context
+
 
 @implementer(IContattiServizio)
 @adapter(IServizio)

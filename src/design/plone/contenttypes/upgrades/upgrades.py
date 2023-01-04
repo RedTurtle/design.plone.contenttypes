@@ -977,6 +977,11 @@ def to_6010(context):
     update_rolemap(context)
 
 
+def to_6011(context):
+    """ """
+    update_types(context)
+
+
 def migrate_pdc_and_incarico(context):
     # Cannot test rn, blind coding
     update_types(context)

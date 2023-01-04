@@ -75,6 +75,15 @@
       marker=".argomenti.IArgomentiBando"
       />
   <plone:behavior
+      name="design.plone.contenttypes.behavior.argomenti_servizio"
+      title="Argomento Servizio"
+      description="Argomento Servizio"
+      factory=".argomenti.ArgomentiServizio"
+      provides=".argomenti.IArgomentiServizio"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      marker=".argomenti.IArgomentiServizio"
+      />
+  <plone:behavior
       name="design.plone.contenttypes.behavior.luoghi_correlati"
       title="Luoghi correlati"
       description=""
