@@ -24,15 +24,8 @@ def post_install(context):
     portal_types = api.portal.get_tool(name="portal_types")
     BEHAVIORS = {
         "Document": {
-            "in": [
-                "plone.leadimage",
-                "volto.preview_image",
-            ],
-            "out": [
-                "plone.leadimage",
-                "volto.preview_image",
-                "plone.tableofcontents",
-            ],
+            "in": ["plone.leadimage", "volto.preview_image",],
+            "out": ["plone.leadimage", "volto.preview_image", "plone.tableofcontents",],
         },
     }
     for ct in BEHAVIORS.keys():
@@ -49,7 +42,9 @@ def post_install(context):
 
 
 def post_install_taxonomy(context):
-    context.runImportStepFromProfile("profile-design.plone.contenttypes:default", "typeinfo", True)
+    context.runImportStepFromProfile(
+        "profile-design.plone.contenttypes:default", "typeinfo", True
+    )
 
 
 def uninstall(context):

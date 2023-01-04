@@ -14,9 +14,7 @@ from plone.restapi.indexers import SearchableText_blocks
 TITLE_MAX_LEN = 160
 DESCRIPTION_MAX_LEN = 255
 EMPTY_BLOCK_MARKER = {"@type": "text"}
-MANDATORY_RICH_TEXT_FIELDS = [
-    "competenze"
-]
+MANDATORY_RICH_TEXT_FIELDS = ["competenze"]
 
 
 def new_error(message):
@@ -68,7 +66,9 @@ class DeserializeUnitaOrganizzativaFromJson(DeserializeFromJson):
         if is_post:
             # Title validation
             if not title:
-                errors.append(new_error("Il titolo dell'unità organizzativa è obbligatorio"))
+                errors.append(
+                    new_error("Il titolo dell'unità organizzativa è obbligatorio")
+                )
             elif len(title) > TITLE_MAX_LEN:
                 errors.append(
                     new_error(
@@ -80,7 +80,9 @@ class DeserializeUnitaOrganizzativaFromJson(DeserializeFromJson):
 
             # description validation
             if not description:
-                errors.append(new_error("La descrizione dell'unità organizzativa è obbligatorio"))
+                errors.append(
+                    new_error("La descrizione dell'unità organizzativa è obbligatorio")
+                )
             elif len(description) > DESCRIPTION_MAX_LEN:
                 errors.append(
                     new_error(
@@ -131,7 +133,9 @@ class DeserializeUnitaOrganizzativaFromJson(DeserializeFromJson):
                 # Se siamo nella patch siamo in modifica. Se siamo in modifica e siamo su un
                 # sito che ha avuto upgrade alla versione pnrr può essere che dei campi obbligatori
                 # un tempo non lo fossero e quindi arriviamo fino a qui
-                if field not in data and not text_in_block(getattr(self.context, field)):
+                if field not in data and not text_in_block(
+                    getattr(self.context, field)
+                ):
                     errors.append(new_error("Il campo {} è obbligatorio".format(field)))
 
         if errors:

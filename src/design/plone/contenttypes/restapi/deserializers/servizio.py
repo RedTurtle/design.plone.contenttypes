@@ -132,7 +132,9 @@ class DeserializeServizioFromJson(DeserializeFromJson):
                 # Se siamo nella patch siamo in modifica. Se siamo in modifica e siamo su un
                 # sito che ha avuto upgrade alla versione pnrr può essere che dei campi obbligatori
                 # un tempo non lo fossero e quindi arriviamo fino a qui
-                if field not in data and not text_in_block(getattr(self.context, field)):
+                if field not in data and not text_in_block(
+                    getattr(self.context, field)
+                ):
                     errors.append(new_error("Il campo {} è obbligatorio".format(field)))
 
         if errors:

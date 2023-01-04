@@ -119,4 +119,4 @@ class DefaultJSONSummarySerializer(BaseSerializer):
         except AttributeError:
             obj = self.context
 
-        return ', '.join([x.to_object.title for x in obj.incarichi])
+        return ", ".join([x.to_object.title for x in obj.incarichi])

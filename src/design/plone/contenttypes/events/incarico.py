@@ -15,14 +15,12 @@ def incaricoCreateHandler(incarico, event):
     """
 
     FOLDERS = [
-
         {"id": "compensi-file", "title": "Compensi", "contains": ("File",)},
         {
             "id": "importi-di-viaggio-e-o-servizi",
             "title": "Importi di viaggio e/o servizi",
             "contains": ("File",),
         },
-
     ]
     for folder in FOLDERS:
         if folder["id"] in incarico:
