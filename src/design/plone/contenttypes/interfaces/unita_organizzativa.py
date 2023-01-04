@@ -24,7 +24,7 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
             "uo_competenze_help",
             default="Descrizione dei compiti assegnati alla struttura.",
         ),
-        required=False,
+        required=True,
     )
 
     legami_con_altre_strutture = RelationList(
@@ -88,7 +88,7 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
             "persone_struttura_help",
             default="Seleziona la lista delle persone che compongono" " la struttura.",
         ),
-        required=False,
+        required=True,
     )
 
     sede = RelationList(
@@ -105,11 +105,11 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
         value_type=RelationChoice(
             title=_("Sede"), vocabulary="plone.app.vocabularies.Catalog"
         ),
-        required=False,
+        required=True,
     )
 
     sedi_secondarie = RelationList(
-        title=_("sedi_secondarie_label", default="Sedi secondarie"),
+        title=_("sedi_secondarie_label", default="Altre sedi"),
         default=[],
         description=_(
             "sedi_secondarie_help",

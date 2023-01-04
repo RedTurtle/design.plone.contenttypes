@@ -234,6 +234,16 @@ class TypesGet(BaseGet):
         result.get("required").append("description")
         return result
 
+    def customize_uo_schema(self, result):
+        result.get("required").append("description")
+        versioning_fields = ["contact_info"]
+        for field in versioning_fields:
+            for fieldset in result["fieldsets"]:
+                if fieldset.get("id") == "contatti" and field in fieldset["fields"]:
+                    fieldset["fields"].remove(field)
+                    fieldset["fields"].insert(0, field)
+        return result
+
     def reply(self):
         result = super(TypesGet, self).reply()
 
@@ -254,6 +264,8 @@ class TypesGet(BaseGet):
                 result = self.customize_document_schema(result)
             if pt == "Servizio":
                 result = self.customize_servizio_schema(result)
+            if pt == "UnitaOrganizzativa":
+                result = self.customize_uo_schema(result)
             result = self.customize_versioning_fields_fieldset(result)
         return result
 

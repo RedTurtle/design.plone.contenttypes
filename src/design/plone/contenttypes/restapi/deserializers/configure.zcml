@@ -5,6 +5,7 @@
 
   <adapter factory=".persona.DeserializePersonaFromJson" />
   <adapter factory=".servizio.DeserializeServizioFromJson" />
+  <adapter factory=".unitaorganizzativa.DeserializeUnitaOrganizzativaFromJson" />
   <adapter factory=".dxfields.GeolocationFieldDeserializer" />
   <adapter factory=".dxfields.SourceTextDeserializer" />
 </configure>
