@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from design.plone.contenttypes.upgrades.upgrades import remove_blocks_behavior
-from design.plone.contenttypes.upgrades.upgrades import update_types
 from plone import api
 from Products.CMFPlone.interfaces import INonInstallable
 from redturtle.bandi.interfaces.settings import IBandoSettings
@@ -51,9 +49,17 @@ def post_install(context):
 
 
 def post_install_taxonomy(context):
-    update_types(context)
+    context.runImportStepFromProfile("profile-design.plone.contenttypes:default", "typeinfo", True)
 
 
 def uninstall(context):
     """Uninstall script"""
     # Do something at the end of the uninstallation of this package.
+
+
+def remove_blocks_behavior(context):
+    portal_types = api.portal.get_tool(name="portal_types")
+    for ptype in ["News Item", "Event"]:
+        portal_types[ptype].behaviors = tuple(
+            [x for x in portal_types[ptype].behaviors if x != "volto.blocks"]
+        )
