@@ -7,7 +7,7 @@ Changelog
 5.1.1 (unreleased)
 ------------------
 
-- New view `move_news_item`.
+- New view 'move_news_items'.
   [foxtrot-dfm1]
 
 
