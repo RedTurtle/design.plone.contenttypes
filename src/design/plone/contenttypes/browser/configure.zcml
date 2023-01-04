@@ -5,6 +5,8 @@
     i18n_domain="design.plone.contenttypes"
     >
 
+  <include package=".manage_content" />
+
   <!-- Set overrides folder for Just-a-Bunch-Of-Templates product -->
   <include
       package="z3c.jbot"
@@ -26,6 +28,7 @@
       class=".trasparenza.DettagliProcedimentiView"
       permission="zope2.View"
       />
+
   <configure package="plone.app.dexterity.browser">
     <browser:page
         name="modulistica_view"
