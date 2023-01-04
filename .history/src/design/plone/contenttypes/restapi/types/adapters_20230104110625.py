@@ -9,12 +9,14 @@ from zope.interface import implementer
 from zope.interface import Interface
 from zope.schema.interfaces import IField, IVocabularyFactory
 from collective.z3cform.datagridfield.interfaces import IRow
+from plone import api
 from plone.restapi.types.adapters import ListJsonSchemaProvider
 from plone.restapi.types.utils import get_fieldsets
 from plone.restapi.types.utils import get_jsonschema_properties
 from plone.restapi.types.utils import iter_fields
 from zope.schema.interfaces import IList
 from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
+from design.plone.contenttypes import _
 
 
 @adapter(IField, Interface, Interface)

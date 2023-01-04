@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object meta_type="Plone Types Tool"
+        name="portal_types"
+>
+  <property name="title">Controls the available contenttypes in your portal</property>
+<<<<<<< HEAD
+  <object meta_type="Dexterity FTI"
+          name="CartellaModulistica"
+  />
+  <object meta_type="Dexterity FTI"
+          name="Dataset"
+  />
+  <object meta_type="Dexterity FTI"
+          name="Documento Personale"
+  />
+  <object meta_type="Dexterity FTI"
+          name="Documento"
+  />
+  <object meta_type="Dexterity FTI"
+          name="Messaggio"
+  />
+  <object meta_type="Dexterity FTI"
+          name="Modulo"
+  />
+  <object meta_type="Dexterity FTI"
+          name="Pagina Argomento"
+  />
+  <object meta_type="Dexterity FTI"
+          name="Persona"
+  />
+  <object meta_type="Dexterity FTI"
+          name="Pratica"
+  />
+  <object meta_type="Dexterity FTI"
+          name="RicevutaPagamento"
+  />
+  <object meta_type="Dexterity FTI"
+          name="Servizio"
+  />
+  <object meta_type="Dexterity FTI"
+          name="UnitaOrganizzativa"
+  />
+=======
+  <object name="CartellaModulistica" meta_type="Dexterity FTI"/>
+  <object name="Dataset" meta_type="Dexterity FTI"/>
+  <object name="Documento Personale" meta_type="Dexterity FTI"/>
+  <object name="Documento" meta_type="Dexterity FTI"/>
+  <object name="Messaggio" meta_type="Dexterity FTI"/>
+  <object name="Modulo" meta_type="Dexterity FTI"/>
+  <object name="Pagina Argomento" meta_type="Dexterity FTI"/>
+  <object name="Persona" meta_type="Dexterity FTI"/>
+  <object name="Pratica" meta_type="Dexterity FTI"/>
+  <object name="RicevutaPagamento" meta_type="Dexterity FTI"/>
+  <object name="Servizio" meta_type="Dexterity FTI"/>
+  <object name="UnitaOrganizzativa" meta_type="Dexterity FTI"/>
+  <object name="Incarico" meta_type="Dexterity FTI"/>
+  <object name="PuntoDiContatto" meta_type="Dexterity FTI"/>
+>>>>>>> pnrr
+</object>

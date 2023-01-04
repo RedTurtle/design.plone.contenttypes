@@ -17,6 +17,9 @@ from zope.event import notify
 from zope.intid.interfaces import IIntIds
 from zope.lifecycleevent import ObjectModifiedEvent
 from zope.schema import getFields
+from zope.component import getUtility
+from zope.intid.interfaces import IIntIds
+from z3c.relationfield import RelationValue
 
 import json
 import logging

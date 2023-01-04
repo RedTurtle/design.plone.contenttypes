@@ -18,10 +18,9 @@ from zope.intid.interfaces import IIntIds
 from zope.lifecycleevent import ObjectModifiedEvent
 from zope.schema import getFields
 
-import json
 import logging
+import json
 import six
-
 
 logger = logging.getLogger(__name__)
 
@@ -411,10 +410,7 @@ def to_2002(context):
     fixed_total = 0
     for brain in api.content.find(portal_type="Persona"):
         item = brain.getObject()
-        if (
-            hasattr(item, "tipologia_persona")
-            and item.tipologia_persona in type_mapping
-        ):  # noqa
+        if hasattr(item, "tipologia_persona") and item.tipologia_persona in type_mapping: # noqa
             item.tipologia_persona = type_mapping[item.tipologia_persona]
             fixed_total += 1
         commit()
@@ -756,7 +752,9 @@ def to_4000(context):
             ruoli[lang].append(ruolo)
 
     if api.portal.get_registry_record(
-        "ruoli_persona", interface=IDesignPloneSettings, default=None
+        "ruoli_persona",
+        interface=IDesignPloneSettings,
+        default=None
     ):
         api.portal.set_registry_record(
             "ruoli_persona", json.dumps(ruoli), interface=IDesignPloneSettings
