@@ -36,7 +36,10 @@ class IContattiUnitaOrganizzativa(model.Schema):
         "contact_info",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={"maximumSelectionSize": 10, "selectableTypes": ["PuntoDiContatto"]},
+        pattern_options={
+            "maximumSelectionSize": 10,
+            "selectableTypes": ["PuntoDiContatto"],
+        },
     )
     model.fieldset(
         "contatti",
@@ -68,7 +71,10 @@ class IContattiPersona(model.Schema):
         "contact_info",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={"maximumSelectionSize": 10, "selectableTypes": ["PuntoDiContatto"]},
+        pattern_options={
+            "maximumSelectionSize": 10,
+            "selectableTypes": ["PuntoDiContatto"],
+        },
     )
     model.fieldset(
         "contatti",
@@ -99,7 +105,10 @@ class IContattiServizio(model.Schema):
         "contact_info",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={"maximumSelectionSize": 10, "selectableTypes": ["PuntoDiContatto"]},
+        pattern_options={
+            "maximumSelectionSize": 10,
+            "selectableTypes": ["PuntoDiContatto"],
+        },
     )
     model.fieldset(
         "contatti",
@@ -130,7 +139,10 @@ class IContattiVenue(model.Schema):
         "contact_info",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={"maximumSelectionSize": 10, "selectableTypes": ["PuntoDiContatto"]},
+        pattern_options={
+            "maximumSelectionSize": 10,
+            "selectableTypes": ["PuntoDiContatto"],
+        },
     )
     model.fieldset(
         "contatti",
@@ -161,7 +173,10 @@ class IContattiEvent(model.Schema):
         "contact_info",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={"maximumSelectionSize": 10, "selectableTypes": ["PuntoDiContatto"]},
+        pattern_options={
+            "maximumSelectionSize": 10,
+            "selectableTypes": ["PuntoDiContatto"],
+        },
     )
     model.fieldset(
         "contatti",

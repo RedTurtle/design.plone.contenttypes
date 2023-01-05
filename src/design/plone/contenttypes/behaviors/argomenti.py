@@ -2,6 +2,7 @@
 from design.plone.contenttypes import _
 from design.plone.contenttypes.interfaces.bando import IBandoAgidSchema
 from design.plone.contenttypes.interfaces.documento import IDocumento
+from design.plone.contenttypes.interfaces.servizio import IServizio
 from plone.app.contenttypes.interfaces import IDocument
 from plone.app.dexterity import textindexer
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
@@ -20,7 +21,7 @@ class IArgomentiSchema(model.Schema):
     """Marker interface for Argomenti"""
 
     tassonomia_argomenti = RelationList(
-        title=_("tassonomia_argomenti_label", default="Tassonomia argomenti"),
+        title=_("tassonomia_argomenti_label", default="Argomenti"),
         description=_(
             "tassonomia_argomenti_help",
             default="Seleziona una lista di argomenti d'interesse per questo"
@@ -77,6 +78,25 @@ class IArgomenti(IArgomentiSchema):
         fields=["correlato_in_evidenza"],
     )
     form.order_after(correlato_in_evidenza="IRelatedItems.relatedItems")
+
+
+@provider(IFormFieldProvider)
+class IArgomentiServizio(IArgomentiSchema):
+
+    tassonomia_argomenti = RelationList(
+        title=_("tassonomia_argomenti_label", default="Argomenti"),
+        description=_(
+            "tassonomia_argomenti_help",
+            default="Seleziona una lista di argomenti d'interesse per questo"
+            " contenuto.",
+        ),
+        value_type=RelationChoice(
+            title=_("Argomenti correlati"),
+            vocabulary="plone.app.vocabularies.Catalog",
+        ),
+        required=True,
+        default=[],
+    )
 
 
 @provider(IFormFieldProvider)
@@ -153,6 +173,15 @@ class ArgomentiBando(object):
 @implementer(IArgomentiDocument)
 @adapter(IDocument)
 class ArgomentiDocument(object):
+    """"""
+
+    def __init__(self, context):
+        self.context = context
+
+
+@implementer(IArgomentiServizio)
+@adapter(IServizio)
+class ArgomentiServizio(object):
     """"""
 
     def __init__(self, context):

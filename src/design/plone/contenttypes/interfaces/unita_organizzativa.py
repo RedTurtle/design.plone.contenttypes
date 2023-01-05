@@ -125,7 +125,6 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
         required=False,
     )
 
-
     #  custom widgets
     form.widget(
         "persone_struttura",
