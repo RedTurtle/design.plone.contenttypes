@@ -60,7 +60,7 @@ msgstr ""
 
 #: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:20
 msgid "All the already existing News Types"
-msgstr "Tipi Notizia presenti sul sito"
+msgstr "Tipologie Notizie presenti sul sito"
 
 #: design/plone/contenttypes/browser/move_content/templates/move_news_items.pt:62
 msgid "All the selected items will be moved to indicated path"
