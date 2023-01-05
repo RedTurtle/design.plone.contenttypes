@@ -4,15 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-<<<<<<< HEAD
-<<<<<<< HEAD
 "POT-Creation-Date: 2023-01-05 10:07+0000\n"
-=======
-"POT-Creation-Date: 2023-01-04 15:13+0000\n"
->>>>>>> 520873c (Update locales)
-=======
-"POT-Creation-Date: 2023-01-05 10:14+0000\n"
->>>>>>> c8cb22c (Update locales)
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
