@@ -218,7 +218,7 @@ msgstr ""
 
 #: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:11
 msgid "Change News Type"
-msgstr "Cambia il tipo delle novità"
+msgstr "Cambia la Tipologia Notizia"
 
 #: design/plone/contenttypes/vocabularies/all_life_events_vocabulary.py:75
 msgid "Chiusura filiale"
@@ -379,7 +379,7 @@ msgstr ""
 
 #: design/plone/contenttypes/browser/move_content/templates/move_news_items.pt:20
 msgid "Find news with this News Type"
-msgstr ""
+msgstr "Trova le notizie con la Tipologia Notizia indicata"
 
 #: design/plone/contenttypes/configure.zcml:52
 msgid "Fix control panel of design.plone.contenttypes add-on."
@@ -566,11 +566,11 @@ msgstr ""
 #: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:19
 #: design/plone/contenttypes/browser/move_content/templates/move_news_items.pt:19
 msgid "News Type"
-msgstr ""
+msgstr "Tipologia Notizia"
 
 #: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:28
 msgid "News Type to substitute"
-msgstr ""
+msgstr "Tipologia Notizia da sostituire"
 
 #. Default: "Nome e cognome"
 #: design/plone/contenttypes/restapi/services/types/get.py:152
@@ -788,7 +788,7 @@ msgstr ""
 
 #: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:29
 msgid "The News Type selected above will be substituted by the selected value"
-msgstr ""
+msgstr "La Tipologia Notizia indicata sopra sarà sostituita dalla tipologia notizia selezionata"
 
 #: design/plone/contenttypes/vocabularies/tags_vocabulary.py:51
 msgid "Traffico urbano"
