@@ -375,7 +375,7 @@ msgstr ""
 
 #: design/plone/contenttypes/browser/move_content/templates/move_news_items.pt:27
 msgid "Find news with the indicated Path"
-msgstr ""
+msgstr "Trova le Notizie nella cartella indicata"
 
 #: design/plone/contenttypes/browser/move_content/templates/move_news_items.pt:20
 msgid "Find news with this News Type"
