@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-01-05 10:34+0000\n"
+"POT-Creation-Date: 2023-01-05 13:48+0000\n"
 "PO-Revision-Date: 2023-01-03 18:01+0100\n"
 "Last-Translator: Roman Kysil <roman@folix.local>\n"
 "Language-Team: Language\n"
@@ -66,7 +66,7 @@ msgstr ""
 msgid "All the already existing News Types"
 msgstr ""
 
-#: design/plone/contenttypes/browser/move_content/templates/move_news_items.pt:62
+#: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:62
 msgid "All the selected items will be moved to indicated path"
 msgstr ""
 
@@ -152,7 +152,7 @@ msgstr ""
 msgid "Avvio/registrazione filiale"
 msgstr ""
 
-#: design/plone/contenttypes/browser/manage_content/change_news_type.py:41
+#: design/plone/contenttypes/browser/manage_content/change_news_type.py:48
 msgid "Bad data was send"
 msgstr ""
 
@@ -244,7 +244,7 @@ msgstr ""
 msgid "Condizioni e organizzazione del lavoro"
 msgstr ""
 
-#: design/plone/contenttypes/browser/move_content/templates/move_news_items.pt:56
+#: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:56
 msgid "Contained by"
 msgstr ""
 
@@ -373,11 +373,11 @@ msgstr ""
 msgid "Finanziamento impresa"
 msgstr ""
 
-#: design/plone/contenttypes/browser/move_content/templates/move_news_items.pt:27
+#: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:27
 msgid "Find news with the indicated Path"
 msgstr ""
 
-#: design/plone/contenttypes/browser/move_content/templates/move_news_items.pt:20
+#: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:20
 msgid "Find news with this News Type"
 msgstr ""
 
@@ -431,7 +431,7 @@ msgstr ""
 msgid "Impostazioni Design Plone"
 msgstr ""
 
-#: design/plone/contenttypes/browser/move_content/move_news_items.py:33
+#: design/plone/contenttypes/browser/manage_content/move_news_items.py:33
 msgid "Indicated path is not valid"
 msgstr ""
 
@@ -483,11 +483,11 @@ msgstr ""
 msgid "Istruzione, cultura e sport"
 msgstr ""
 
-#: design/plone/contenttypes/browser/move_content/move_news_items.py:45
+#: design/plone/contenttypes/browser/manage_content/move_news_items.py:45
 msgid "Items move was failed"
 msgstr ""
 
-#: design/plone/contenttypes/browser/move_content/move_news_items.py:50
+#: design/plone/contenttypes/browser/manage_content/move_news_items.py:50
 msgid "Items moved with success"
 msgstr ""
 
@@ -539,15 +539,15 @@ msgstr ""
 msgid "Mostra la data di modifica."
 msgstr ""
 
-#: design/plone/contenttypes/browser/move_content/templates/move_news_items.pt:69
+#: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:69
 msgid "Move"
 msgstr ""
 
-#: design/plone/contenttypes/browser/move_content/templates/move_news_items.pt:11
+#: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:11
 msgid "Move News Items"
 msgstr ""
 
-#: design/plone/contenttypes/browser/move_content/templates/move_news_items.pt:61
+#: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:61
 msgid "Move to Path"
 msgstr ""
 
@@ -564,7 +564,7 @@ msgid "Nazione"
 msgstr ""
 
 #: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:19
-#: design/plone/contenttypes/browser/move_content/templates/move_news_items.pt:19
+#: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:19
 msgid "News Type"
 msgstr ""
 
@@ -577,7 +577,7 @@ msgstr ""
 msgid "Nome e Cognome"
 msgstr ""
 
-#: design/plone/contenttypes/browser/manage_content/change_news_type.py:34
+#: design/plone/contenttypes/browser/manage_content/change_news_type.py:41
 msgid "Not enaught data"
 msgstr ""
 
@@ -706,7 +706,7 @@ msgstr ""
 msgid "Scienza e tecnologia"
 msgstr ""
 
-#: design/plone/contenttypes/browser/move_content/templates/move_news_items.pt:26
+#: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:26
 msgid "Search Path"
 msgstr ""
 
@@ -788,6 +788,10 @@ msgstr ""
 
 #: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:29
 msgid "The News Type selected above will be substituted by the selected value"
+msgstr ""
+
+#: design/plone/contenttypes/browser/manage_content/change_news_type.py:86
+msgid "The News Types was changed with success"
 msgstr ""
 
 #: design/plone/contenttypes/vocabularies/tags_vocabulary.py:51
