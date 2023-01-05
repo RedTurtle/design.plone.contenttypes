@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-01-03 17:03+0000\n"
+"POT-Creation-Date: 2023-01-05 10:06+0000\n"
 "PO-Revision-Date: 2023-01-03 18:01+0100\n"
 "Last-Translator: Roman Kysil <roman@folix.local>\n"
 "Language-Team: Language\n"
@@ -60,6 +60,10 @@ msgstr ""
 
 #: design/plone/contenttypes/vocabularies/dataset.py:28
 msgid "Agricoltura, pesca, silvicoltura e prodotti alimentari"
+msgstr ""
+
+#: design/plone/contenttypes/browser/move_content/templates/move_news_items.pt:62
+msgid "All the selected items will be moved to indicated path"
 msgstr ""
 
 #: design/plone/contenttypes/vocabularies/dataset.py:36
@@ -357,6 +361,14 @@ msgstr ""
 msgid "Finanziamento impresa"
 msgstr ""
 
+#: design/plone/contenttypes/browser/move_content/templates/move_news_items.pt:27
+msgid "Find news with the indicated Path"
+msgstr ""
+
+#: design/plone/contenttypes/browser/move_content/templates/move_news_items.pt:20
+msgid "Find news with this News Type"
+msgstr ""
+
 #: design/plone/contenttypes/configure.zcml:52
 msgid "Fix control panel of design.plone.contenttypes add-on."
 msgstr ""
@@ -523,6 +535,10 @@ msgstr ""
 msgid "Move News Items"
 msgstr ""
 
+#: design/plone/contenttypes/browser/move_content/templates/move_news_items.pt:61
+msgid "Move to Path"
+msgstr ""
+
 #: design/plone/contenttypes/behaviors/configure.zcml:243
 msgid "Multi File"
 msgstr ""
@@ -533,6 +549,10 @@ msgstr ""
 
 #: design/plone/contenttypes/controlpanels/geolocation_defaults.py:28
 msgid "Nazione"
+msgstr ""
+
+#: design/plone/contenttypes/browser/move_content/templates/move_news_items.pt:19
+msgid "News Type"
 msgstr ""
 
 #. Default: "Nome e cognome"
@@ -663,6 +683,10 @@ msgstr ""
 
 #: design/plone/contenttypes/vocabularies/dataset.py:46
 msgid "Scienza e tecnologia"
+msgstr ""
+
+#: design/plone/contenttypes/browser/move_content/templates/move_news_items.pt:26
+msgid "Search Path"
 msgstr ""
 
 #: design/plone/contenttypes/interfaces/unita_organizzativa.py:114
