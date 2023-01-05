@@ -57,7 +57,7 @@ class ILuogo(model.Schema):
             default="Indicare tutte le informazioni relative alla modalità di"
             " accesso al luogo",
         ),
-        required=False,
+        required=True,
     )
 
     struttura_responsabile_correlati = RelationList(
@@ -89,6 +89,16 @@ class ILuogo(model.Schema):
         ),
     )
 
+    orario_pubblico = BlocksField(
+        title=_("orario_pubblico", default="Orario per il pubblico"),
+        required=False,
+        description=_(
+            "orario_pubblico_help",
+            default="Orario di apertura al pubblico del luogo ed eventuali "
+            "regole di accesso (es prenotazione).",
+        ),
+    )
+
     # Decisono con Baio di toglierlo: visto il vocabolario, che in realtà sta
     # qui: https://github.com/italia/daf-ontologie-vocabolari-controllati/tree/master/VocabolariControllati/classifications-for-culture/subject-disciplines # noqa
     # riteniamo che possa non fregare nulla a nessuno di questa categorizzazione.
@@ -105,10 +115,17 @@ class ILuogo(model.Schema):
 
     # TODO: importare il db del MIBAC, codice DBUnico / ISIL.
     # Non compare nel frontend
-    # identificativo_mibac = schema.TextLine(
-    #     title=_("identificativo_mibac", default="Identificativo"),
-    #     required=False,
-    # )
+    identificativo_mibac = schema.TextLine(
+        title=_("identificativo_mibac", default="Identificativo"),
+        required=False,
+        description=_(
+            "identificativo_mibac_help",
+            default="Codice identificativo del luogo. Nel MIBAC c'è"
+            " il codice del DBUnico per i luoghi della cultura e il codice"
+            " ISIL per le biblioteche. Non deve comparire nel"
+            " frontend del sito.",
+        ),
+    )
 
     # custom fieldsets and order
     form.order_after(nome_alternativo="IBasic.title")
@@ -124,6 +141,15 @@ class ILuogo(model.Schema):
         fields=["modalita_accesso"],
     )
 
+    model.fieldset(
+        "categorization", fields=["identificativo_mibac"],
+    )
+
+    model.fieldset(
+        "orari",
+        label=_("orari_label", default="Orari di apertura"),
+        fields=["orario_pubblico"],
+    )
     # TODO: migration script for these commented fields towards PDC
     model.fieldset(
         "contatti",
