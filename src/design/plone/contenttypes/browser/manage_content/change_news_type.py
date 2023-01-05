@@ -82,4 +82,8 @@ class View(BrowserView):
 
                     item.blocks = blocks
 
+        self.context.plone_utils.addPortalMessage(
+            _("The News Types was changed with success"), "info"
+        )
+
         return
