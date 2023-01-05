@@ -11,7 +11,6 @@ from collective.z3cform.datagridfield.datagridfield import DataGridFieldFactory
 from collective.z3cform.datagridfield.row import DictRow
 
 
-
 class IPDCValueSchema(model.Schema):
     pdc_type = schema.Choice(
         title=_("pdc_type_label", default="Tipo"),
@@ -31,6 +30,7 @@ class IPDCValueSchema(model.Schema):
         ),
         required=True,
         default="",
+        max_length=255,
     )
 
 
@@ -76,4 +76,3 @@ class IPuntoDiContatto(model.Schema, IDesignPloneContentType):
             "selectableTypes": ["Persona"],
         },
     )
-
