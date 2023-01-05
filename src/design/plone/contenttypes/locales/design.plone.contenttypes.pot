@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-01-05 15:45+0000\n"
+"POT-Creation-Date: 2023-01-05 16:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,7 +61,7 @@ msgstr ""
 msgid "Agricoltura, pesca, silvicoltura e prodotti alimentari"
 msgstr ""
 
-#: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:21
+#: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:22
 msgid "All the already existing News Types"
 msgstr ""
 
@@ -562,12 +562,12 @@ msgstr ""
 msgid "Nazione"
 msgstr ""
 
-#: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:20
+#: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:21
 #: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:20
 msgid "News Type"
 msgstr ""
 
-#: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:29
+#: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:30
 msgid "News Type to substitute"
 msgstr ""
 
@@ -649,11 +649,11 @@ msgid "Protezione sociale"
 msgstr ""
 
 #: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:13
-msgid "Questo tool viene usato per cambiare il valore del campo 'Tipologia Notizia' in tutte le notizie che hanno il valore del campo selezionato."
+msgid "Questo tool viene usato per cambiare il valore del campo 'Tipologia Notizia' in tutte le notizie che hanno il valore del campo selezionato. Fa anche il giro su tutti i blocchi elenco"
 msgstr ""
 
 #: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:13
-msgid "Questo tool viewne usato per trovare e spostare le Notizie con una Tipologia Notizia determinata."
+msgid "Questo tool viene usato per trovare e spostare le Notizie con una Tipologia Notizia determinata."
 msgstr ""
 
 #: design/plone/contenttypes/vocabularies/dataset.py:44
@@ -777,6 +777,10 @@ msgstr ""
 msgid "Studente"
 msgstr ""
 
+#: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:43
+msgid "Substitute"
+msgstr ""
+
 #: design/plone/contenttypes/behaviors/configure.zcml:49
 msgid "Tassonomia argomenti"
 msgstr ""
@@ -793,7 +797,7 @@ msgstr ""
 msgid "Tempo libero"
 msgstr ""
 
-#: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:30
+#: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:31
 msgid "The News Type selected above will be substituted by the selected value"
 msgstr ""
 
