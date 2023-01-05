@@ -34,6 +34,7 @@ class View(BrowserView):
                     )
                     return
 
+                # in the generator expression below we are trying to extract the News Items uuids form the form
                 for item_uid in [i for i, j in self.request.form.items() if j == "on"]:
                     item = api.content.get(UID=item_uid)
                     if item:
@@ -48,6 +49,10 @@ class View(BrowserView):
 
                 self.context.plone_utils.addPortalMessage(
                     _("Items moved with success"), "info"
+                )
+            else:
+                self.context.plone_utils.addPortalMessage(
+                    _("The path was not indicated"), "warning"
                 )
 
     def news_results(self):
