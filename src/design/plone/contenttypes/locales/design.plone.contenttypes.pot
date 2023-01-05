@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-01-04 15:13+0000\n"
+"POT-Creation-Date: 2023-01-05 10:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,10 +61,12 @@ msgstr ""
 msgid "Agricoltura, pesca, silvicoltura e prodotti alimentari"
 msgstr ""
 
-#: design/plone/contenttypes/browser/move_content/templates/move_news_items.pt:62
-msgid "All the selected items will be moved to indicated path"
 #: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:20
 msgid "All the already existing News Types"
+msgstr ""
+
+#: design/plone/contenttypes/browser/move_content/templates/move_news_items.pt:62
+msgid "All the selected items will be moved to indicated path"
 msgstr ""
 
 #: design/plone/contenttypes/vocabularies/dataset.py:36
@@ -560,11 +562,8 @@ msgstr ""
 msgid "Nazione"
 msgstr ""
 
-#: design/plone/contenttypes/browser/move_content/templates/move_news_items.pt:19
-msgid "News Type"
-msgstr ""
-
 #: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:19
+#: design/plone/contenttypes/browser/move_content/templates/move_news_items.pt:19
 msgid "News Type"
 msgstr ""
 

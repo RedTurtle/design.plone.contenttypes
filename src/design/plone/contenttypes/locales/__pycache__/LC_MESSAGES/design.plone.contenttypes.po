@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-01-05 10:06+0000\n"
+"POT-Creation-Date: 2023-01-05 10:14+0000\n"
 "PO-Revision-Date: 2023-01-03 18:01+0100\n"
 "Last-Translator: Roman Kysil <roman@folix.local>\n"
 "Language-Team: Language\n"
@@ -60,6 +60,10 @@ msgstr ""
 
 #: design/plone/contenttypes/vocabularies/dataset.py:28
 msgid "Agricoltura, pesca, silvicoltura e prodotti alimentari"
+msgstr ""
+
+#: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:20
+msgid "All the already existing News Types"
 msgstr ""
 
 #: design/plone/contenttypes/browser/move_content/templates/move_news_items.pt:62
@@ -148,6 +152,10 @@ msgstr ""
 msgid "Avvio/registrazione filiale"
 msgstr ""
 
+#: design/plone/contenttypes/browser/manage_content/change_news_type.py:41
+msgid "Bad data was send"
+msgstr ""
+
 #: design/plone/contenttypes/vocabularies/all_life_events_vocabulary.py:78
 msgid "Bancarotta"
 msgstr ""
@@ -206,6 +214,10 @@ msgstr ""
 
 #: design/plone/contenttypes/profiles/default/types/CartellaModulistica.xml
 msgid "Cartella Modulistica"
+msgstr ""
+
+#: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:11
+msgid "Change News Type"
 msgstr ""
 
 #: design/plone/contenttypes/vocabularies/all_life_events_vocabulary.py:75
@@ -551,13 +563,22 @@ msgstr ""
 msgid "Nazione"
 msgstr ""
 
+#: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:19
 #: design/plone/contenttypes/browser/move_content/templates/move_news_items.pt:19
 msgid "News Type"
+msgstr ""
+
+#: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:28
+msgid "News Type to substitute"
 msgstr ""
 
 #. Default: "Nome e cognome"
 #: design/plone/contenttypes/restapi/services/types/get.py:152
 msgid "Nome e Cognome"
+msgstr ""
+
+#: design/plone/contenttypes/browser/manage_content/change_news_type.py:34
+msgid "Not enaught data"
 msgstr ""
 
 #: design/plone/contenttypes/vocabularies/all_life_events_vocabulary.py:73
@@ -763,6 +784,10 @@ msgstr ""
 
 #: design/plone/contenttypes/vocabularies/tags_vocabulary.py:46
 msgid "Tempo libero"
+msgstr ""
+
+#: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:29
+msgid "The News Type selected above will be substituted by the selected value"
 msgstr ""
 
 #: design/plone/contenttypes/vocabularies/tags_vocabulary.py:51
