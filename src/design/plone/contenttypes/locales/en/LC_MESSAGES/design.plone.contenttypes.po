@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-01-05 14:19+0000\n"
+"POT-Creation-Date: 2023-01-05 15:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -147,8 +147,8 @@ msgstr ""
 msgid "Avvio/registrazione filiale"
 msgstr ""
 
-#: design/plone/contenttypes/browser/manage_content/change_news_type.py:48
-msgid "Bad data was send"
+#: design/plone/contenttypes/browser/manage_content/change_news_type.py:52
+msgid "Bad old or new 'tipologia_notizia' was send"
 msgstr ""
 
 #: design/plone/contenttypes/vocabularies/all_life_events_vocabulary.py:78
@@ -239,7 +239,7 @@ msgstr ""
 msgid "Condizioni e organizzazione del lavoro"
 msgstr ""
 
-#: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:56
+#: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:57
 msgid "Contained by"
 msgstr ""
 
@@ -368,11 +368,11 @@ msgstr ""
 msgid "Finanziamento impresa"
 msgstr ""
 
-#: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:27
+#: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:28
 msgid "Find news with the indicated Path, put attention than generaly sites have the root name \"/Plone/\""
 msgstr ""
 
-#: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:20
+#: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:21
 msgid "Find news with this News Type"
 msgstr ""
 
@@ -478,11 +478,11 @@ msgstr ""
 msgid "Istruzione, cultura e sport"
 msgstr ""
 
-#: design/plone/contenttypes/browser/manage_content/move_news_items.py:45
+#: design/plone/contenttypes/browser/manage_content/move_news_items.py:46
 msgid "Items move was failed"
 msgstr ""
 
-#: design/plone/contenttypes/browser/manage_content/move_news_items.py:50
+#: design/plone/contenttypes/browser/manage_content/move_news_items.py:51
 msgid "Items moved with success"
 msgstr ""
 
@@ -534,7 +534,7 @@ msgstr ""
 msgid "Mostra la data di modifica."
 msgstr ""
 
-#: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:69
+#: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:70
 msgid "Move"
 msgstr ""
 
@@ -542,7 +542,7 @@ msgstr ""
 msgid "Move News Items"
 msgstr ""
 
-#: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:61
+#: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:62
 msgid "Move to Path"
 msgstr ""
 
@@ -558,12 +558,12 @@ msgstr ""
 msgid "Nazione"
 msgstr ""
 
-#: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:19
-#: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:19
+#: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:20
+#: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:20
 msgid "News Type"
 msgstr ""
 
-#: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:28
+#: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:29
 msgid "News Type to substitute"
 msgstr ""
 
@@ -572,12 +572,12 @@ msgstr ""
 msgid "Nome e Cognome"
 msgstr ""
 
-#: design/plone/contenttypes/browser/manage_content/change_news_type.py:41
-msgid "Not enaught data"
-msgstr ""
-
 #: design/plone/contenttypes/vocabularies/all_life_events_vocabulary.py:73
 msgid "Notifiche autorità"
+msgstr ""
+
+#: design/plone/contenttypes/browser/manage_content/change_news_type.py:42
+msgid "One of the fields was not populated"
 msgstr ""
 
 #: design/plone/contenttypes/interfaces/persona.py:48
@@ -644,6 +644,14 @@ msgstr ""
 msgid "Protezione sociale"
 msgstr ""
 
+#: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:13
+msgid "Questo tool viene usato per cambiare il valore del campo 'Tipologia Notizia' in tutte le notizie che hanno il valore del campo selezionato."
+msgstr ""
+
+#: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:13
+msgid "Questo tool viewne usato per trovare e spostare le Notizie con una Tipologia Notizia determinata."
+msgstr ""
+
 #: design/plone/contenttypes/vocabularies/dataset.py:44
 msgid "Regioni e città"
 msgstr ""
@@ -701,7 +709,7 @@ msgstr ""
 msgid "Scienza e tecnologia"
 msgstr ""
 
-#: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:26
+#: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:27
 msgid "Search Path"
 msgstr ""
 
@@ -781,12 +789,16 @@ msgstr ""
 msgid "Tempo libero"
 msgstr ""
 
-#: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:29
+#: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:30
 msgid "The News Type selected above will be substituted by the selected value"
 msgstr ""
 
-#: design/plone/contenttypes/browser/manage_content/change_news_type.py:86
+#: design/plone/contenttypes/browser/manage_content/change_news_type.py:87
 msgid "The News Types was changed with success"
+msgstr ""
+
+#: design/plone/contenttypes/browser/manage_content/move_news_items.py:55
+msgid "The path was not indicated"
 msgstr ""
 
 #: design/plone/contenttypes/vocabularies/tags_vocabulary.py:51

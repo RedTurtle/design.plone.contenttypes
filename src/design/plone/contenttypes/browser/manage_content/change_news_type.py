@@ -38,23 +38,24 @@ class View(BrowserView):
         news_new_type = self.request.form.get("news_type_portal", "")
 
         if not old_news_type or not news_new_type:
-            self.context.plone_utils.addPortalMessage(_("Not enaught data"), "error")
+            self.context.plone_utils.addPortalMessage(
+                _("One of the fields was not populated"), "error"
+            )
             return
 
         if (
             news_new_type not in self.news_types()
             or old_news_type not in self.news_types_in_catalog()
         ):
-            self.context.plone_utils.addPortalMessage(_("Bad data was send"), "error")
-
-        news_to_update = [
-            i.getObject()
-            for i in api.portal.get_tool("portal_catalog")(
-                tipologia_notizia=old_news_type
+            # It will happen only if the form will be used by somebody cunning
+            self.context.plone_utils.addPortalMessage(
+                _("Bad old or new 'tipologia_notizia' was send"), "error"
             )
-        ]
 
-        for news in news_to_update:
+        for news in api.portal.get_tool("portal_catalog")(
+            tipologia_notizia=old_news_type
+        ):
+            news = news.getObject()
             news.tipologia_notizia = news_new_type
             news.reindexObject(idxs=["tipologia_notizia"])
 

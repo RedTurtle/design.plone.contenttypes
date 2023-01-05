@@ -11,6 +11,7 @@
         <h1 i18n:translate="">Move News Items</h1>
     </metal:content-title>
     <metal:content-description fill-slot="content-description" i18n:translate="">
+      Questo tool viewne usato per trovare e spostare le Notizie con una Tipologia Notizia determinata.
     </metal:content-description>
     <metal:content-core fill-slot="content-core">
        <div class="form">
@@ -20,7 +21,7 @@
                     <div class="formHelp" i18n:translate="">
                         Find news with this News Type
                     </div>
-                    <select name="news_type" tal:define="news_types python: view.news_types()">
+                    <select name="news_type" tal:define="news_types view/news_types">
                       <option tal:repeat="news_type news_types" tal:content="news_type/title" tal:attributes="selected python: request.form.get('news_type', '') == news_type.value; value news_type/value"/>
                     </select><br>
 		    <label for="news_type" style="margin-top: 2em;" i18n:translate="">Search Path</label>
