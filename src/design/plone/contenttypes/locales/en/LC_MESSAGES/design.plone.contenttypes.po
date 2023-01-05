@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-01-05 10:34+0000\n"
+"POT-Creation-Date: 2023-01-05 10:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -58,12 +58,10 @@ msgstr ""
 msgid "Agricoltura, pesca, silvicoltura e prodotti alimentari"
 msgstr ""
 
-#: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:20
-msgid "All the already existing News Types"
-msgstr "Tipologie Notizie presenti sul sito"
-
 #: design/plone/contenttypes/browser/move_content/templates/move_news_items.pt:62
 msgid "All the selected items will be moved to indicated path"
+#: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:20
+msgid "All the already existing News Types"
 msgstr ""
 
 #: design/plone/contenttypes/vocabularies/dataset.py:36
@@ -214,7 +212,7 @@ msgstr ""
 
 #: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:11
 msgid "Change News Type"
-msgstr "Sostituisci Tipologia Notizia"
+msgstr ""
 
 #: design/plone/contenttypes/vocabularies/all_life_events_vocabulary.py:75
 msgid "Chiusura filiale"
@@ -371,11 +369,11 @@ msgstr ""
 
 #: design/plone/contenttypes/browser/move_content/templates/move_news_items.pt:27
 msgid "Find news with the indicated Path"
-msgstr "Cartella della ricerca"
+msgstr ""
 
 #: design/plone/contenttypes/browser/move_content/templates/move_news_items.pt:20
 msgid "Find news with this News Type"
-msgstr "Tipo Notizia da trovare sul sito"
+msgstr ""
 
 #: design/plone/contenttypes/configure.zcml:52
 msgid "Fix control panel of design.plone.contenttypes add-on."
@@ -559,14 +557,17 @@ msgstr ""
 msgid "Nazione"
 msgstr ""
 
-#: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:19
 #: design/plone/contenttypes/browser/move_content/templates/move_news_items.pt:19
 msgid "News Type"
-msgstr "Tipologia Notizia"
+msgstr ""
+
+#: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:19
+msgid "News Type"
+msgstr ""
 
 #: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:28
 msgid "News Type to substitute"
-msgstr "Tipologia Notizia da sostituire"
+msgstr ""
 
 #. Default: "Nome e cognome"
 #: design/plone/contenttypes/restapi/services/types/get.py:152
@@ -784,7 +785,7 @@ msgstr ""
 
 #: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:29
 msgid "The News Type selected above will be substituted by the selected value"
-msgstr "Tipologia Notizia selezionata sopra sarà sostituita dalla tipologia selezionata"
+msgstr ""
 
 #: design/plone/contenttypes/vocabularies/tags_vocabulary.py:51
 msgid "Traffico urbano"
