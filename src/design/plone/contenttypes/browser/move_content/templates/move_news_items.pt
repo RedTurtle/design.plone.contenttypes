@@ -16,15 +16,15 @@
        <div class="form">
             <form action="${context/portal_url}/move_news_items" method="POST">
                 <div class="field">
-                    <label for="news_type">News Type</label>
-                    <div class="formHelp">
+                    <label for="news_type" i18n:translate="">News Type</label>
+                    <div class="formHelp" i18n:translate="">
                         Find news with this News Type
                     </div>
                     <select name="news_type" tal:define="news_types python: view.news_types()">
                       <option tal:repeat="news_type news_types" tal:content="news_type/title" tal:attributes="selected python: request.form.get('news_type', '') == news_type.value; value news_type/value"/>
                     </select><br>
-                    <label for="news_type" style="margin-top: 2em;">Search Path</label>
-                    <div class="formHelp">
+		    <label for="news_type" style="margin-top: 2em;" i18n:translate="">Search Path</label>
+                    <div class="formHelp" i18n:translate="" >
                       Find news with the indicated Path
                     </div>
                     <input type="text" name="path" tal:attributes="value python: view.request.form.get('path', '')">
@@ -58,8 +58,8 @@
                     </li>
                 </ul>
               <div class="field">
-                <label for="to_url">Move to Path</label>
-                 <div class="formHelp">
+                <label for="to_url" i18n:translate="">Move to Path</label>
+		<div class="formHelp" i18n:translate="">
                   All the selected items will be moved to indicated path
                  </div>
                 <input type="text" name="to_path"/>
