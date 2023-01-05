@@ -154,7 +154,7 @@ msgstr ""
 
 #: design/plone/contenttypes/browser/manage_content/change_news_type.py:52
 msgid "Bad old or new 'tipologia_notizia' was send"
-msgstr ""
+msgstr "La vecchia o la nuova Tipologia Notizia non è stata inserita"
 
 #: design/plone/contenttypes/vocabularies/all_life_events_vocabulary.py:78
 msgid "Bancarotta"
