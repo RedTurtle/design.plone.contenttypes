@@ -40,11 +40,10 @@
                     </select>
                 </div>
                 <div class="formControls">
-                    <input id="substitute"
+                    <button id="substitute"
                            name="substitute"
                            class="submit-widget button-field context"
-                           value="Substitute"
-                           type="submit">
+                           type="submit" i18n:translate="">Substitute</button>
                 </div>
             </form>
         </div>
