@@ -13,6 +13,8 @@
 
   <adapter factory=".searchabletext_indexers.RelationChoiceFieldConverter" />
   <adapter factory=".searchabletext_indexers.RelationListFieldConverter" />
+  <!-- <adapter factory=".searchabletext_indexers.PDCFieldConverter" /> -->
+  <!-- <adapter factory=".searchabletext_indexers.PDCValueFieldConverter" /> -->
 
   <adapter
       factory=".searchabletext_indexers.TextBlockSearchableText"

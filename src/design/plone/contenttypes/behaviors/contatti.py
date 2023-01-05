@@ -38,6 +38,11 @@ class IContattiUnitaOrganizzativa(model.Schema):
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={"maximumSelectionSize": 10, "selectableTypes": ["PuntoDiContatto"]},
     )
+    model.fieldset(
+        "contatti",
+        label=_("contatti_label", default="Contatti"),
+        fields=["contact_info"],
+    )
 
 
 @provider(IFormFieldProvider)
@@ -164,6 +169,7 @@ class IContattiEvent(model.Schema):
         fields=["contact_info"],
     )
 
+
 @implementer(IContattiEvent)
 @adapter(IContattiEvent)
 class ContattiEvent(object):
@@ -180,6 +186,7 @@ class ContattiPersona(object):
 
     def __init__(self, context):
         self.context = context
+
 
 @implementer(IContattiServizio)
 @adapter(IServizio)

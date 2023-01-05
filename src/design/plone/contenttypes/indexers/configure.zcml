@@ -56,6 +56,11 @@
       factory=".persona.image_field_indexer"
       name="image_field"
       />
+
+  <adapter
+      factory=".punto_di_contatto.PuntoDiContattoMoreTextToIndex"
+      name="IPuntoDiContatto"
+  />
   <!-- only metadata -->
 
 </configure>

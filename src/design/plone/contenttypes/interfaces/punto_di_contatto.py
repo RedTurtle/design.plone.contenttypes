@@ -11,6 +11,7 @@ from collective.z3cform.datagridfield.datagridfield import DataGridFieldFactory
 from collective.z3cform.datagridfield.row import DictRow
 
 
+
 class IPDCValueSchema(model.Schema):
     pdc_type = schema.Choice(
         title=_("pdc_type_label", default="Tipo"),
@@ -18,7 +19,7 @@ class IPDCValueSchema(model.Schema):
             "type_help",
             default="Tipo",
         ),
-        vocabulary="design.plone.contenttypes.pdc_value_type",
+        vocabulary="collective.taxonomy.tipologia_pdc",
         required=True,
         default="",
     )
@@ -47,9 +48,32 @@ class IPuntoDiContatto(model.Schema, IDesignPloneContentType):
         ),
         required=True,
     )
+    persona = RelationList(
+        title=_(
+            "persona_incarico_label",
+            default="Persona",
+        ),
+        description=_(
+            "persona_incarico_help",
+            default="Seleziona la/e persona/e che ha/hanno la carica e l'incarico.",
+        ),
+        value_type=RelationChoice(vocabulary="plone.app.vocabularies.Catalog"),
+        required=False,
+        default=[],
+    )
 
     form.widget(
         "value_punto_contatto",
         DataGridFieldFactory,
+    )
+
+    form.widget(
+        "persona",
+        RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
+        pattern_options={
+            "maximumSelectionSize": 10,
+            "selectableTypes": ["Persona"],
+        },
     )
 
