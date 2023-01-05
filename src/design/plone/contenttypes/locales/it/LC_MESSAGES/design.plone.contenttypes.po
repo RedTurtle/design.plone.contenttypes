@@ -375,7 +375,7 @@ msgstr ""
 
 #: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:27
 msgid "Find news with the indicated Path, put attention than generaly sites have the root name \"/Plone/\""
-msgstr "Trova le notizie in path indicato. Attenzione, in maggior parte dei casi il sito ha il nome \"/Plone/\"
+msgstr "Trova le notizie in path indicato. Attenzione, in maggior parte dei casi il sito ha il nome \"/Plone/\""
 
 #: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:20
 msgid "Find news with this News Type"
