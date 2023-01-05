@@ -992,7 +992,7 @@ def migrate_pdc_and_incarico(context):
     type_mapping = {
         "Persona": {
             'PDC': {
-                "telefono": "phone",
+                "telefono": "telefono",
                 "fax": "fax",
                 "email": "email",
                 "pec": "pec",
@@ -1011,7 +1011,7 @@ def migrate_pdc_and_incarico(context):
         },
         "UnitaOrganizzativa": {
             'PDC': {
-                "telefono": "phone",
+                "telefono": "telefono",
                 "fax": "fax",
                 "email": "email",
                 "pec": "pec",
@@ -1020,7 +1020,7 @@ def migrate_pdc_and_incarico(context):
         # TODO: tbc
         "Event": {
             'PDC': {
-                "telefono": "phone",
+                "telefono": "telefono",
                 "fax": "fax",
                 "email": "email",
                 "pec": "pec",
@@ -1029,7 +1029,7 @@ def migrate_pdc_and_incarico(context):
         # TODO: tbc
         "Venue": {
             'PDC': {
-                "riferimento_telefonico_struttura": "phone",
+                "riferimento_telefonico_struttura": "telefono",
                 "riferimento_fax_struttura": "fax",
                 "riferimento_mail_struttura": "email",
                 "riferimento_pec_struttura": "pec",
@@ -1039,7 +1039,7 @@ def migrate_pdc_and_incarico(context):
         "Servizio": {
             # questi non sono presenti sul ct originale
             'PDC': {
-                "telefono": "phone",
+                "telefono": "telefono",
                 "fax": "fax",
                 "email": "email",
                 "pec": "pec",
@@ -1080,6 +1080,7 @@ def migrate_pdc_and_incarico(context):
                     incarico.atto_nomina = relation
                     item.atto_nomina = None
                     fixed_total += 1
+                    commit()
                     logger.info(f"Fixing Punto di Contatto for '{item.title}'...:DONE") # noqa
                 except Exception:
                     logger.error("Error", Exception)
@@ -1121,6 +1122,7 @@ def migrate_pdc_and_incarico(context):
             # import pdb; pdb.set_trace()
             item.contact_info = [RelationValue(intids.getId(new_pdc))]
             fixed_total += 1
+            commit()
 
         logger.info(f"Fixing Punto di Contatto for '{portal_type}: DONE")
         logger.info("Updated {} objects".format(fixed_total))
