@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-01-05 10:07+0000\n"
+"POT-Creation-Date: 2023-01-05 14:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -381,7 +381,7 @@ msgid "Finanziamento impresa"
 msgstr ""
 
 #: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:27
-msgid "Find news with the indicated Path"
+msgid "Find news with the indicated Path, put attention than generaly sites have the root name \"/Plone/\""
 msgstr ""
 
 #: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:20

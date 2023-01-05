@@ -55,12 +55,11 @@ class View(BrowserView):
         path = self.request.form.get("path", "")
         query = {}
 
-        if news_type:
-            query["tipologia_notizia"] = news_type
-            if path:
-                query["path"] = path
+        query["tipologia_notizia"] = news_type
+        if path:
+            query["path"] = path
 
-            return api.portal.get_tool("portal_catalog")(**query)
+        return api.portal.get_tool("portal_catalog")(**query)
 
     def news_types(self):
         return getUtility(
