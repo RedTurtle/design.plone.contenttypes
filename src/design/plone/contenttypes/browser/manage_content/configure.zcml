@@ -13,4 +13,12 @@
       permission="cmf.ManagePortal"
       />
 
+  <browser:page
+      name="move_news_items"
+      for="*"
+      class=".move_news_items.View"
+      template="templates/move_news_items.pt"
+      permission="cmf.ManagePortal"
+      />
+
 </configure>
