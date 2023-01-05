@@ -53,7 +53,7 @@ class View(BrowserView):
     def news_results(self):
         news_type = self.request.form.get("news_type", "")
         path = self.request.form.get("path", "")
-        query = {}
+        query = {"portal_type": "News Item"}
 
         query["tipologia_notizia"] = news_type
         if path:
