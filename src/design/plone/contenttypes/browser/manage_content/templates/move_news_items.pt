@@ -11,7 +11,7 @@
         <h1 i18n:translate="">Move News Items</h1>
     </metal:content-title>
     <metal:content-description fill-slot="content-description" i18n:translate="">
-      Questo tool viewne usato per trovare e spostare le Notizie con una Tipologia Notizia determinata.
+      Questo tool viene usato per trovare e spostare le Notizie con una Tipologia Notizia determinata.
     </metal:content-description>
     <metal:content-core fill-slot="content-core">
        <div class="form">
