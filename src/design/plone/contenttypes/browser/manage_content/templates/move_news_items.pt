@@ -25,7 +25,7 @@
                     </select><br>
 		    <label for="news_type" style="margin-top: 2em;" i18n:translate="">Search Path</label>
                     <div class="formHelp" i18n:translate="" >
-                      Find news with the indicated Path
+                      Find news with the indicated Path, put attention than generaly sites have the root name "/Plone/"
                     </div>
                     <input type="text" name="path" tal:attributes="value python: view.request.form.get('path', '')">
                 </div>
