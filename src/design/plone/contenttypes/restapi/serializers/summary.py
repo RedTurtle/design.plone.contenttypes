@@ -5,12 +5,15 @@ from plone.restapi.interfaces import ISerializeToJsonSummary
 from redturtle.volto.restapi.serializer.summary import (
     DefaultJSONSummarySerializer as BaseSerializer,
 )
+from design.plone.contenttypes.interfaces.incarico import IIncarico
 from zope.component import adapter
-from zope.component import getMultiAdapter
+from zope.component import getMultiAdapter, getUtility
 from zope.i18n import translate
 from zope.interface import implementer
 from zope.interface import Interface
-
+from collective.taxonomy.interfaces import ITaxonomy
+from collective.taxonomy import PATH_SEPARATOR
+from plone.restapi.serializer.converters import json_compatible
 import re
 
 
@@ -119,4 +122,24 @@ class DefaultJSONSummarySerializer(BaseSerializer):
         except AttributeError:
             obj = self.context
 
-        return ', '.join([x.to_object.title for x in obj.incarichi])
+        return ", ".join([x.to_object.title for x in obj.incarichi])
+
+
+@implementer(ISerializeToJsonSummary)
+@adapter(IIncarico, IDesignPloneContenttypesLayer)
+class IncaricoDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
+    def __call__(self, force_all_metadata=False):
+        res = super().__call__(force_all_metadata=force_all_metadata)
+        taxonomy = getUtility(ITaxonomy, name="collective.taxonomy.tipologia_incarico")
+        taxonomy_voc = taxonomy.makeVocabulary(self.request.get("LANGUAGE"))
+        if "taxonomy_tipologia_incarico" not in res:
+            res["taxonomy_tipologia_incarico"] = taxonomy_voc.inv_data.get(
+                self.context.taxonomy_tipologia_incarico
+            ).replace(PATH_SEPARATOR, "")
+        if "data_inizio_incarico" not in res:
+            res["data_inizio_incarico"] = json_compatible(
+                self.context.data_inizio_incarico
+            )
+        if "compensi" not in res:
+            res["compensi"] = json_compatible(self.context.compensi)
+        return res

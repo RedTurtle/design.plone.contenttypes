@@ -26,10 +26,7 @@ class PersonaSerializer(SerializeFolderToJson):
         intids = getUtility(IIntIds)
         items = []
         relations = catalog.findRelations(
-            dict(
-                to_id=intids.getId(aq_inner(self.context)),
-                from_attribute=field,
-            )
+            dict(to_id=intids.getId(aq_inner(self.context)), from_attribute=field,)
         )
 
         for rel in relations:

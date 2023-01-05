@@ -10,7 +10,6 @@ from plone.supermodel import model
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
 
-
 # TODO: migration script for these commented fields towards PDC
 # telefono
 # fax
@@ -34,8 +33,7 @@ class IPersona(model.Schema, IDesignPloneContentType):
 
     organizzazione_riferimento = RelationList(
         title=_(
-            "organizzazione_riferimento_label",
-            default="Organizzazione di riferimento",
+            "organizzazione_riferimento_label", default="Organizzazione di riferimento",
         ),
         description=_(
             "organizzazione_riferimento_help",
@@ -50,17 +48,12 @@ class IPersona(model.Schema, IDesignPloneContentType):
         required=False,
     )
     incarichi = RelationList(
-        title=_(
-            "incarichi_label",
-            default="Incarichi",
-        ),
+        title=_("incarichi_label", default="Incarichi",),
         description=_(
-            "incarichi_help",
-            default="Seleziona la lista di incarichi della persona.",
+            "incarichi_help", default="Seleziona la lista di incarichi della persona.",
         ),
         value_type=RelationChoice(
-            title=_("Incarichi"),
-            vocabulary="plone.app.vocabularies.Catalog",
+            title=_("Incarichi"), vocabulary="plone.app.vocabularies.Catalog",
         ),
         default=[],
         required=False,
@@ -77,8 +70,7 @@ class IPersona(model.Schema, IDesignPloneContentType):
     deleghe = BlocksField(
         title=_("deleghe_label", default="Deleghe"),
         description=_(
-            "deleghe_help",
-            default="Elenco delle deleghe a capo della persona.",
+            "deleghe_help", default="Elenco delle deleghe a capo della persona.",
         ),
         required=False,
     )
@@ -119,10 +111,7 @@ class IPersona(model.Schema, IDesignPloneContentType):
         "incarichi",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={
-            "maximumSelectionSize": 10,
-            "selectableTypes": ["Incarico"],
-        },
+        pattern_options={"maximumSelectionSize": 10, "selectableTypes": ["Incarico"],},
     )
 
     # custom fieldsets
