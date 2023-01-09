@@ -123,6 +123,21 @@ class IArgomentiServizio(IArgomentiSchema):
 class IArgomentiDocumento(IArgomentiSchema):
     """ """
 
+    tassonomia_argomenti = RelationList(
+        title=_("tassonomia_argomenti_label", default="Argomenti"),
+        description=_(
+            "tassonomia_argomenti_help",
+            default="Seleziona una lista di argomenti d'interesse per questo"
+            " contenuto.",
+        ),
+        value_type=RelationChoice(
+            title=_("Argomenti correlati"),
+            vocabulary="plone.app.vocabularies.Catalog",
+        ),
+        required=True,
+        default=[],
+    )
+
     model.fieldset(
         "correlati",
         label=_("correlati_label", default="Contenuti collegati"),

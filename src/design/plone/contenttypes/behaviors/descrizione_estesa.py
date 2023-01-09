@@ -58,6 +58,15 @@ class IDescrizioneEstesaServizio(model.Schema):
 class IDescrizioneEstesaDocumento(IDescrizioneEstesaSchema):
     """ """
 
+    descrizione_estesa = BlocksField(
+        title=_("descrizione_estesa", default="Descrizione estesa"),
+        required=True,
+        description=_(
+            "descrizione_estesa_help",
+            default="Descrizione dettagliata e completa.",
+        ),
+    )
+
     model.fieldset(
         "descrizione",
         label=_("descrizione_label", default="Descrizione"),
