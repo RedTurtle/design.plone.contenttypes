@@ -14,10 +14,7 @@ class IIncarico(model.Schema, IDesignPloneContentType):
     """Marker interface for content type Incarico"""
 
     compensi = BlocksField(
-        title=_(
-            "compensi_incarico_label",
-            default="Compensi",
-        ),
+        title=_("compensi_incarico_label", default="Compensi",),
         description=_(
             "compensi_incarico_help",
             default="Solo per incarico politico: compensi di qualsiasi natura"
@@ -40,10 +37,7 @@ class IIncarico(model.Schema, IDesignPloneContentType):
     )
 
     unita_organizzativa = RelationList(
-        title=_(
-            "unita_organizzativa_incarico_label",
-            default="Unità organizzativa",
-        ),
+        title=_("unita_organizzativa_incarico_label", default="Unità organizzativa",),
         description=_(
             "unita_organizzativa_incarico_help",
             default="Seleziona l'organizzazione presso la quale svolge l'incarico.",
@@ -51,8 +45,7 @@ class IIncarico(model.Schema, IDesignPloneContentType):
         required=False,
         default=[],
         value_type=RelationChoice(
-            title=_("Unità organizzativa"),
-            vocabulary="plone.app.vocabularies.Catalog",
+            title=_("Unità organizzativa"), vocabulary="plone.app.vocabularies.Catalog",
         ),
     )
 
@@ -75,8 +68,7 @@ class IIncarico(model.Schema, IDesignPloneContentType):
     )
 
     data_inizio_incarico = schema.Date(
-        title=_("data_inizio_incarico", default="Data inizio incarico"),
-        required=True,
+        title=_("data_inizio_incarico", default="Data inizio incarico"), required=True,
     )
 
     data_conclusione_incarico = schema.Date(
@@ -85,15 +77,11 @@ class IIncarico(model.Schema, IDesignPloneContentType):
     )
 
     data_insediamento = schema.Date(
-        title=_("data_insediamento", default="Data insediamento"),
-        required=False,
+        title=_("data_insediamento", default="Data insediamento"), required=False,
     )
 
     atto_nomina = RelationList(
-        title=_(
-            "atto_nomina_incarico_label",
-            default="Atto di nomina",
-        ),
+        title=_("atto_nomina_incarico_label", default="Atto di nomina",),
         description=_(
             "atto_nomina_incarico_help",
             default="Inserire riferimento all'atto di nomina della persona",
@@ -101,8 +89,7 @@ class IIncarico(model.Schema, IDesignPloneContentType):
         required=False,
         default=[],
         value_type=RelationChoice(
-            title=_("Atto di nomina"),
-            vocabulary="plone.app.vocabularies.Catalog",
+            title=_("Atto di nomina"), vocabulary="plone.app.vocabularies.Catalog",
         ),
     )
 
@@ -131,10 +118,7 @@ class IIncarico(model.Schema, IDesignPloneContentType):
         "atto_nomina",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={
-            "maximumSelectionSize": 1,
-            "selectableTypes": ["Documento"],
-        },
+        pattern_options={"maximumSelectionSize": 1, "selectableTypes": ["Documento"],},
     )
 
     #  custom fieldsets

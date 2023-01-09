@@ -11,20 +11,14 @@ from zope import schema
 class IPDCValueSchema(model.Schema):
     pdc_type = schema.Choice(
         title=_("pdc_type_label", default="Tipo"),
-        description=_(
-            "type_help",
-            default="Tipo",
-        ),
+        description=_("type_help", default="Tipo",),
         vocabulary="design.plone.contenttypes.pdc_value_type",
         required=True,
         default="",
     )
     pdc_value = schema.TextLine(
         title=_("pdc_value_label", default="Contatto"),
-        description=_(
-            "pdc_value_help",
-            default="Contatto",
-        ),
+        description=_("pdc_value_help", default="Contatto",),
         required=True,
         default="",
     )
@@ -46,6 +40,5 @@ class IPuntoDiContatto(model.Schema, IDesignPloneContentType):
     )
 
     form.widget(
-        "value_punto_contatto",
-        DataGridFieldFactory,
+        "value_punto_contatto", DataGridFieldFactory,
     )

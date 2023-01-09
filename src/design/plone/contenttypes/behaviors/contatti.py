@@ -42,6 +42,11 @@ class IContattiUnitaOrganizzativa(model.Schema):
             "selectableTypes": ["PuntoDiContatto"],
         },
     )
+    model.fieldset(
+        "contatti",
+        label=_("contatti_label", default="Contatti"),
+        fields=["contact_info"],
+    )
 
 
 @provider(IFormFieldProvider)
