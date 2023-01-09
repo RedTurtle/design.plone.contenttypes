@@ -232,6 +232,8 @@ class TypesGet(BaseGet):
 
     def customize_servizio_schema(self, result):
         result.get("required").append("description")
+        result.get("required").append("milestone_description")
+        result.get("required").append("milestone")
         return result
 
     def reply(self):

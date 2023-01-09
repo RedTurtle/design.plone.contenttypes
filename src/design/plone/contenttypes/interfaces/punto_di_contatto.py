@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
 from design.plone.contenttypes import _
 from design.plone.contenttypes.interfaces import IDesignPloneContentType
-from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
 from plone.supermodel import model
-from z3c.relationfield.schema import RelationChoice
-from z3c.relationfield.schema import RelationList
 from zope import schema
 from collective.z3cform.datagridfield.datagridfield import DataGridFieldFactory
 from collective.z3cform.datagridfield.row import DictRow
@@ -52,4 +49,3 @@ class IPuntoDiContatto(model.Schema, IDesignPloneContentType):
         "value_punto_contatto",
         DataGridFieldFactory,
     )
-

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from AccessControl.unauthorized import Unauthorized
 from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
+from design.plone.contenttypes.interfaces.servizio import IServizio
 from plone import api
 from plone.dexterity.interfaces import IDexterityContent
 from plone.restapi.interfaces import IBlockFieldSerializationTransformer
@@ -13,7 +14,7 @@ from zope.component import getMultiAdapter
 from zope.component import subscribers
 from zope.globalrequest import getRequest
 from zope.interface import implementer
-from zope.schema.interfaces import ISourceText
+from zope.schema.interfaces import ISourceText, IList
 
 import json
 
@@ -28,6 +29,22 @@ class SourceTextSerializer(DefaultFieldSerializer):
         value = super(SourceTextSerializer, self).__call__()
         if self.field.getName() == "search_sections":
             return json.dumps(serialize_data(context=self.context, json_data=value))
+        return value
+
+
+@implementer(IFieldSerializer)
+@adapter(IList, IServizio, IDesignPloneContenttypesLayer)
+class TempiEScadenzeValueSerializer(DefaultFieldSerializer):
+    def __call__(self):
+        value = super(TempiEScadenzeValueSerializer, self).__call__()
+
+        patched_timeline = []
+        if self.field.getName() == 'timeline_tempi_scadenze':
+            for entry in value:
+                if entry.get("data_scadenza", "1969-01-01") == "1969-01-01":
+                    entry["data_scadenza"] = ""
+                patched_timeline.append(entry)
+            return json_compatible(patched_timeline)
         return value
 
 

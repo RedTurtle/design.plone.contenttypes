@@ -7,4 +7,5 @@
   <adapter factory=".servizio.DeserializeServizioFromJson" />
   <adapter factory=".dxfields.GeolocationFieldDeserializer" />
   <adapter factory=".dxfields.SourceTextDeserializer" />
+   <adapter factory=".dxfields.TimelineTempiEScadenzeFieldDeserializer" />
 </configure>

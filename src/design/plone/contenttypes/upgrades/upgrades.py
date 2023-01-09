@@ -1103,7 +1103,6 @@ def migrate_pdc_and_incarico(context):
                 "persona": []
             }
             for key, value in mapping.items():
-                import pdb; pdb.set_trace()
 
                 if hasattr(item, key):
                     kwargs["value_punto_contatto"].append({
@@ -1118,7 +1117,6 @@ def migrate_pdc_and_incarico(context):
                 **kwargs,
             )
             intids = getUtility(IIntIds)
-            import pdb; pdb.set_trace()
             item.contact_info = [RelationValue(intids.getId(new_pdc))]
             fixed_total += 1
 

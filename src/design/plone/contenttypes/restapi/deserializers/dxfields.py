@@ -12,6 +12,9 @@ from zope.component import subscribers
 from zope.i18n import translate
 from zope.interface import implementer
 from zope.schema.interfaces import ISourceText
+from datetime import datetime
+from design.plone.contenttypes.interfaces.servizio import IServizio
+from zope.schema.interfaces import IList
 
 import json
 
@@ -75,3 +78,34 @@ class SourceTextDeserializer(DefaultFieldDeserializer):
                             blocks[id] = block_value
             value = json.dumps(data)
         return value
+
+
+@implementer(IFieldDeserializer)
+@adapter(IList, IServizio, IDesignPloneContenttypesLayer)
+class TimelineTempiEScadenzeFieldDeserializer(DefaultFieldDeserializer):
+    """
+    Volto returns a string in date field, Plone expects <class datetime.date>
+    and throws error during validation. Patched.
+    Since I cannot have an empty value in data_scadenza (which is NOT a required
+    field), I'll have to do some serializing magic in Servizio serializer.
+    """
+    def __call__(self, value):
+        if self.field.getName() != "timeline_tempi_scadenze":
+            return super().__call__(value)
+        timeline = []
+        for item in value:
+            data_scadenza = datetime.strptime(
+                item.get("data_scadenza", "1969-01-01"), "%Y-%m-%d"
+            ).date()
+            entry = {
+                "milestone": item.get("milestone", ""),
+                "milestone_description": item.get("milestone_description", ""),
+                "interval_qt": item.get("interval_qt", ""),
+                "interval_type": item.get("interval_type", ""),
+                "data_scadenza": data_scadenza
+            }
+
+            timeline.append(entry)
+
+        self.field.validate(timeline)
+        return timeline
