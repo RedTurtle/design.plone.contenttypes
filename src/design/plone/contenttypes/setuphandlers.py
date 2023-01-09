@@ -24,8 +24,15 @@ def post_install(context):
     portal_types = api.portal.get_tool(name="portal_types")
     BEHAVIORS = {
         "Document": {
-            "in": ["plone.leadimage", "volto.preview_image",],
-            "out": ["plone.leadimage", "volto.preview_image", "plone.tableofcontents",],
+            "in": [
+                "plone.leadimage",
+                "volto.preview_image",
+            ],
+            "out": [
+                "plone.leadimage",
+                "volto.preview_image",
+                "plone.tableofcontents",
+            ],
         },
     }
     for ct in BEHAVIORS.keys():
