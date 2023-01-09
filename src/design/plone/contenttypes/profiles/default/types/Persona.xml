@@ -51,12 +51,12 @@
     <element value="plone.categorization" />
     <element value="plone.basic" />
     <element value="plone.locking" />
-    <element value="design.plone.contenttypes.behavior.additional_help_infos"/>
-    <element value="design.plone.contenttypes.behavior.contatti_persona"/>
-    <element value="plone.textindexer"/>
-    <element value="plone.translatable"/>
-    <element value="kitconcept.seo"/>
-    <element value="plone.versioning"/>
+    <element value="design.plone.contenttypes.behavior.additional_help_infos" />
+    <element value="design.plone.contenttypes.behavior.contatti_persona" />
+    <element value="plone.textindexer" />
+    <element value="plone.translatable" />
+    <element value="kitconcept.seo" />
+    <element value="plone.versioning" />
   </property>
 
   <!-- View information -->

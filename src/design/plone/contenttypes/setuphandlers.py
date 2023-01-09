@@ -49,7 +49,9 @@ def post_install(context):
 
 
 def post_install_taxonomy(context):
-    context.runImportStepFromProfile("profile-design.plone.contenttypes:default", "typeinfo", True)
+    context.runImportStepFromProfile(
+        "profile-design.plone.contenttypes:default", "typeinfo", True
+    )
 
 
 def uninstall(context):

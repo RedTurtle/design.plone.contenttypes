@@ -48,7 +48,10 @@ class VenueSerializer(RelatedNewsSerializer):
         offices = []
         for attr in ["sede", "sedi_secondarie"]:
             relations = catalog.findRelations(
-                dict(to_id=intids.getId(aq_inner(self.context)), from_attribute=attr,)
+                dict(
+                    to_id=intids.getId(aq_inner(self.context)),
+                    from_attribute=attr,
+                )
             )
 
             for rel in relations:

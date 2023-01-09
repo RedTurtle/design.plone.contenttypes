@@ -142,7 +142,8 @@ class ILuogo(model.Schema):
     )
 
     model.fieldset(
-        "categorization", fields=["identificativo_mibac"],
+        "categorization",
+        fields=["identificativo_mibac"],
     )
 
     model.fieldset(

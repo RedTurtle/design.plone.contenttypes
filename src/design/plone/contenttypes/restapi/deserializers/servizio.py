@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 from design.plone.contenttypes.interfaces.servizio import IServizio
-from plone.restapi.deserializer import json_body
-from plone.restapi.interfaces import IDeserializeFromJson
-from zope.interface import implementer
-from zope.component import adapter
-from zope.interface import Interface
-from plone.restapi.deserializer.dxcontent import DeserializeFromJson
-from zExceptions import BadRequest
 from plone.restapi.behaviors import IBlocks
+from plone.restapi.deserializer import json_body
+from plone.restapi.deserializer.dxcontent import DeserializeFromJson
 from plone.restapi.indexers import SearchableText_blocks
+from plone.restapi.interfaces import IDeserializeFromJson
+from zExceptions import BadRequest
+from zope.component import adapter
+from zope.interface import implementer
+from zope.interface import Interface
 
 
 TITLE_MAX_LEN = 160
@@ -76,7 +76,7 @@ class DeserializeServizioFromJson(DeserializeFromJson):
             elif len(title) > TITLE_MAX_LEN:
                 errors.append(
                     new_error(
-                        "Il titolo può avere una lunghezza di massimo {} caratteri".format(
+                        "Il titolo può avere una lunghezza di massimo {} caratteri".format(  # noqa
                             TITLE_MAX_LEN
                         )
                     )
@@ -88,7 +88,7 @@ class DeserializeServizioFromJson(DeserializeFromJson):
             elif len(description) > DESCRIPTION_MAX_LEN:
                 errors.append(
                     new_error(
-                        "La descrizione del servizio deve avere una lunghezza di massimo {} caratteri".format(
+                        "La descrizione del servizio deve avere una lunghezza di massimo {} caratteri".format(  # noqa
                             DESCRIPTION_MAX_LEN
                         )
                     )
@@ -107,7 +107,7 @@ class DeserializeServizioFromJson(DeserializeFromJson):
             if title and len(title) > TITLE_MAX_LEN:
                 errors.append(
                     new_error(
-                        "Il titolo può avere una lunghezza di massimo {} caratteri".format(
+                        "Il titolo può avere una lunghezza di massimo {} caratteri".format(  # noqa
                             TITLE_MAX_LEN
                         )
                     )
@@ -118,7 +118,7 @@ class DeserializeServizioFromJson(DeserializeFromJson):
             if description and len(description) > DESCRIPTION_MAX_LEN:
                 errors.append(
                     new_error(
-                        "La descrizione del servizio deve avere una lunghezza di massimo {} caratteri".format(
+                        "La descrizione del servizio deve avere una lunghezza di massimo {} caratteri".format(  # noqa
                             DESCRIPTION_MAX_LEN
                         )
                     )

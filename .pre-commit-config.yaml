@@ -2,7 +2,7 @@
 # See https://pre-commit.com/hooks.html for more hooks
 
 default_language_version:
-  python: python3.8
+  python: python3.9
 
 default_stages: [commit, push]
 
@@ -17,11 +17,11 @@ repos:
     rev: 22.6.0
     hooks:
       - id: black
-        args: ["--line-length=88", "--check", "--diff", "--force-exclude=migrations", "src/"]
-#        args: ["--line-length=88", "--force-exclude=migrations", "src/"]
+#        args: ["--line-length=88", "--check", "--diff", "--force-exclude=migrations", "src/"]
+        args: ["--line-length=88", "--force-exclude=migrations", "src/"]
         types: [python]
         entry: black
-  - repo: https://gitlab.com/pycqa/flake8
+  - repo: https://github.com/PyCQA/flake8.git
     rev: "3.9.2"
     hooks:
       - id: flake8

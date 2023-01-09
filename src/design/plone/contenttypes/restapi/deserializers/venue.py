@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 from collective.venue.interfaces import IVenue
-from plone.restapi.deserializer import json_body
-from plone.restapi.interfaces import IDeserializeFromJson
-from zope.interface import implementer
-from zope.component import adapter
-from zope.interface import Interface
-from plone.restapi.deserializer.dxcontent import DeserializeFromJson
-from zExceptions import BadRequest
 from plone.restapi.behaviors import IBlocks
+from plone.restapi.deserializer import json_body
+from plone.restapi.deserializer.dxcontent import DeserializeFromJson
 from plone.restapi.indexers import SearchableText_blocks
+from plone.restapi.interfaces import IDeserializeFromJson
+from zExceptions import BadRequest
+from zope.component import adapter
+from zope.interface import implementer
+from zope.interface import Interface
 
 
 TITLE_MAX_LEN = 160
@@ -71,7 +71,7 @@ class DeserializeLuogoFromJson(DeserializeFromJson):
             elif len(title) > TITLE_MAX_LEN:
                 errors.append(
                     new_error(
-                        "Il titolo può avere una lunghezza di massimo {} caratteri".format(
+                        "Il titolo può avere una lunghezza di massimo {} caratteri".format(  # noqa
                             TITLE_MAX_LEN
                         )
                     )
@@ -83,7 +83,7 @@ class DeserializeLuogoFromJson(DeserializeFromJson):
             elif len(description) > DESCRIPTION_MAX_LEN:
                 errors.append(
                     new_error(
-                        "La descrizione del luogo deve avere una lunghezza di massimo {} caratteri".format(
+                        "La descrizione del luogo deve avere una lunghezza di massimo {} caratteri".format(  # noqa
                             DESCRIPTION_MAX_LEN
                         )
                     )
@@ -112,7 +112,7 @@ class DeserializeLuogoFromJson(DeserializeFromJson):
             if title and len(title) > TITLE_MAX_LEN:
                 errors.append(
                     new_error(
-                        "Il titolo può avere una lunghezza di massimo {} caratteri".format(
+                        "Il titolo può avere una lunghezza di massimo {} caratteri".format(  # noqa
                             TITLE_MAX_LEN
                         )
                     )
@@ -123,7 +123,7 @@ class DeserializeLuogoFromJson(DeserializeFromJson):
             if description and len(description) > DESCRIPTION_MAX_LEN:
                 errors.append(
                     new_error(
-                        "La descrizione del luogo deve avere una lunghezza di massimo {} caratteri".format(
+                        "La descrizione del luogo deve avere una lunghezza di massimo {} caratteri".format(  # noqa
                             DESCRIPTION_MAX_LEN
                         )
                     )
@@ -142,9 +142,10 @@ class DeserializeLuogoFromJson(DeserializeFromJson):
                 if field in data and not text_in_block(data.get(field)):
                     errors.append(new_error("Il campo {} è obbligatorio".format(field)))
 
-                # Se siamo nella patch siamo in modifica. Se siamo in modifica e siamo su un
-                # sito che ha avuto upgrade alla versione pnrr può essere che dei campi obbligatori
-                # un tempo non lo fossero e quindi arriviamo fino a qui
+                # Se siamo nella patch siamo in modifica. Se siamo in modifica e siamo
+                # su un sito che ha avuto upgrade alla versione pnrr può essere che dei
+                # campi obbligatori #un tempo non lo fossero e quindi arriviamo fino a
+                # qui
                 if field not in data and not text_in_block(
                     getattr(self.context, field)
                 ):

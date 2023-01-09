@@ -39,7 +39,6 @@ class IIncarico(model.Schema, IDesignPloneContentType):
         required=False,
     )
 
-
     unita_organizzativa = RelationList(
         title=_(
             "unita_organizzativa_incarico_label",
