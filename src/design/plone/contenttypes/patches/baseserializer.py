@@ -32,7 +32,12 @@ def design_italia_serialize_to_json_call(self, version=None, include_items=True)
         self, version=version, include_items=include_items
     )
     if self.context.portal_type == "News Item":
-        result["design_italia_meta_type"] = self.context.tipologia_notizia
+        try:
+            tipologia_news = self.context.taxonomy_tipologia_notizia
+        except AttributeError:
+            # fallback if we don't have c.taxonomy configured yet
+            tipologia_news = self.context.tipologia_notizia
+        result["design_italia_meta_type"] = tipologia_news
     else:
         result["design_italia_meta_type"] = translate(
             ttool[self.context.portal_type].Title(), context=self.request
