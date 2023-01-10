@@ -39,7 +39,7 @@ class TempiEScadenzeValueSerializer(DefaultFieldSerializer):
         value = super(TempiEScadenzeValueSerializer, self).__call__()
 
         patched_timeline = []
-        if self.field.getName() == 'timeline_tempi_scadenze':
+        if self.field.getName() == 'timeline_tempi_scadenze' and value:
             for entry in value:
                 if entry.get("data_scadenza", "1969-01-01") == "1969-01-01":
                     entry["data_scadenza"] = ""
