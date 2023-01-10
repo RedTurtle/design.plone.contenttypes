@@ -27,6 +27,7 @@ class IEvento(model.Schema):
         ),
         required=False,
     )
+
     descrizione_estesa = BlocksField(
         title=_("descrizione_estesa", default="Descrizione estesa"),
         required=False,
@@ -35,6 +36,7 @@ class IEvento(model.Schema):
             default="Descrizione dettagliata e completa.",
         ),
     )
+
     descrizione_destinatari = BlocksField(
         title=_("descrizione_destinatari", default="Descrizione destinatari"),
         required=False,
@@ -69,14 +71,16 @@ class IEvento(model.Schema):
     )
 
     prezzo = BlocksField(
-        title=_("prezzo", default="Prezzo"),
+        title=_("prezzo", default="Costo"),
         required=False,
         description=_(
             "prezzo_help",
-            default="Indicare il prezzo dell'evento, se presente, specificando"
-            " se esistono formati diversi.",
+            default="Eventuale costo dell'evento (se ci sono uno o più biglietti), "
+            "con link all'alcquisto se disponibile",
         ),
     )
+
+    # campi presenti nelle vecchie grafiche che abbiamo deciso di continuare a mostrare
     organizzato_da_interno = RelationList(
         title=_("organizzato_da_interno_label", default="Organizzato da"),
         default=[],
@@ -91,7 +95,6 @@ class IEvento(model.Schema):
             "sovrascrivere alcuni dati di contatto, utilizzare i seguenti campi.",  # noqa
         ),
     )
-
     organizzato_da_esterno = BlocksField(
         title=_("organizzato_da_esterno_label", default="Organizzatore"),
         required=False,
@@ -101,7 +104,6 @@ class IEvento(model.Schema):
             " indicare il nome del contatto.",
         ),
     )
-
     supportato_da = RelationList(
         title=_("supportato_da_label", default="Evento supportato da"),
         required=False,
@@ -113,8 +115,7 @@ class IEvento(model.Schema):
         ),
     )
 
-    # TODO: come fare il rating/recensione dell'evento
-
+    # campi aggiunti con il pnrr
     patrocinato_da = schema.TextLine(
         title=_("patrocinato_da_label", default="Patrocinato da"),
         required=False,
@@ -124,7 +125,78 @@ class IEvento(model.Schema):
         ),
     )
 
+    evento_genitore = RelationList(
+        title=_("evento_genitore_label", default="Evento genitore"),
+        required=False,
+        default=[],
+        value_type=RelationChoice(vocabulary="plone.app.vocabularies.Catalog"),
+        description=_(
+            "evento_genitore_help",
+            default="Un evento può essere parte di un altro evento definito come "
+            '"genitore" (ad es. "Mostra sul Rinascimento" è parte '
+            "dell'evento \"Festival dell'Arte\")",
+        ),
+    )
+
+    appuntamenti = RelationList(
+        title=_("appuntamenti_label", default="Appuntamenti"),
+        required=False,
+        default=[],
+        value_type=RelationChoice(vocabulary="plone.app.vocabularies.Catalog"),
+        description=_(
+            "appuntamenti_help",
+            default="Link agli eventi figlio (solo se l'evento in questione è "
+            "evento genitore)",
+        ),
+    )
+
+    parteciperanno = RelationList(
+        title=_("parteciperanno_label", default="Parteciperanno (Persone)"),
+        required=False,
+        default=[],
+        value_type=RelationChoice(vocabulary="plone.app.vocabularies.Catalog"),
+        description=_(
+            "parteciperanno_help",
+            default="Link a persone dell'amministrazione che interverranno all'evento",
+        ),
+    )
+
+    a_chi_si_rivolge = BlocksField(
+        title=_("a_chi_si_rivolge_label", default="A chi è rivolto"),
+        required=True,
+        description=_(
+            "a_chi_si_rivolge_help",
+            default="Descrizione testuale dei principali destinatari dell'Evento",
+        ),
+    )
+
     # custom widgets
+    form.widget(
+        "evento_genitore",
+        RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
+        pattern_options={
+            "maximumSelectionSize": 1,
+            "selectableTypes": ["Evento"],
+        },
+    )
+    form.widget(
+        "appuntamenti",
+        RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
+        pattern_options={
+            "selectableTypes": ["Evento"],
+        },
+    )
+    form.widget(
+        "parteciperanno",
+        RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
+        pattern_options={
+            "maximumSelectionSize": 1,
+            "selectableTypes": ["Persone"],
+        },
+    )
     form.widget(
         "supportato_da",
         RelatedItemsFieldWidget,
@@ -171,26 +243,15 @@ class IEvento(model.Schema):
         fields=["orari"],
     )
     model.fieldset("costi", label=_("costi_label", default="Costi"), fields=["prezzo"])
-
-    # TODO: migration script for these commented fields towards PDC
     model.fieldset(
         "contatti",
         label=_("contatti_label", default="Contatti"),
         fields=[
             "organizzato_da_interno",
             "organizzato_da_esterno",
-            # "telefono",
-            # "fax",
-            # "reperibilita",
-            # "email",
-            # "web",
             "supportato_da",
+            "patrocinato_da",
         ],
-    )
-    model.fieldset(
-        "informazioni",
-        label=_("informazioni_label", default="Ulteriori informazioni"),
-        fields=["patrocinato_da"],
     )
 
     textindexer.searchable("descrizione_estesa")

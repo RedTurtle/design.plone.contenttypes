@@ -16,12 +16,12 @@ def eventoCreateHandler(evento, event):
     """
     if not IDesignPloneContenttypesLayer.providedBy(evento.REQUEST):
         return
-    if "multimedia" not in evento.keys():
+    if "immagini" not in evento.keys():
         galleria = api.content.create(
             container=evento,
             type="Document",
-            title="Multimedia",
-            id="multimedia",
+            title="Immagini",
+            id="immagini",
         )
         create_default_blocks(context=galleria)
 
@@ -32,6 +32,25 @@ def eventoCreateHandler(evento, event):
 
         with api.env.adopt_roles(["Reviewer"]):
             api.content.transition(obj=galleria, transition="publish")
+
+    if not IDesignPloneContenttypesLayer.providedBy(evento.REQUEST):
+        return
+    if "video" not in evento.keys():
+        galleria_video = api.content.create(
+            container=evento,
+            type="Document",
+            title="Video",
+            id="video",
+        )
+        create_default_blocks(context=galleria_video)
+
+        # select  constraints
+        constraintsGalleriaVideo = ISelectableConstrainTypes(galleria_video)
+        constraintsGalleriaVideo.setConstrainTypesMode(1)
+        constraintsGalleriaVideo.setLocallyAllowedTypes(("Link"))
+
+        with api.env.adopt_roles(["Reviewer"]):
+            api.content.transition(obj=galleria_video, transition="publish")
 
     if "sponsor_evento" not in evento.keys():
         sponsor = api.content.create(
@@ -53,7 +72,7 @@ def eventoCreateHandler(evento, event):
         documenti = api.content.create(
             container=evento,
             type="Document",
-            title="Documenti",
+            title="Allegati",
             id="documenti",
         )
         create_default_blocks(context=documenti)
