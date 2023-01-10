@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from design.plone.contenttypes.interfaces.servizio import IServizio
+from design.plone.contenttypes.interfaces.documento import IDocumento
 from plone.restapi.behaviors import IBlocks
 from plone.restapi.deserializer import json_body
 from plone.restapi.deserializer.dxcontent import DeserializeFromJson
@@ -15,11 +15,8 @@ TITLE_MAX_LEN = 160
 DESCRIPTION_MAX_LEN = 160
 EMPTY_BLOCK_MARKER = {"@type": "text"}
 MANDATORY_RICH_TEXT_FIELDS = [
-    "a_chi_si_rivolge",
-    "come_si_fa",
-    "cosa_serve",
-    "cosa_si_ottiene",
-    "tempi_e_scadenze",
+    "descrizione_estesa",
+    "formati_disponibili",
 ]
 
 
@@ -52,8 +49,8 @@ def text_in_block(blocks):
 
 
 @implementer(IDeserializeFromJson)
-@adapter(IServizio, Interface)
-class DeserializeServizioFromJson(DeserializeFromJson):
+@adapter(IDocumento, Interface)
+class DeserializeDocumentoFromJson(DeserializeFromJson):
     def __call__(
         self, validate_all=False, data=None, create=False
     ):  # noqa: ignore=C901
@@ -140,6 +137,6 @@ class DeserializeServizioFromJson(DeserializeFromJson):
 
         if errors:
             raise BadRequest(errors)
-        return super(DeserializeServizioFromJson, self).__call__(
+        return super(DeserializeDocumentoFromJson, self).__call__(
             validate_all=False, data=data, create=False
         )

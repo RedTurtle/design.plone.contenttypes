@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
+from collective.z3cform.datagridfield.datagridfield import DataGridFieldFactory
+from collective.z3cform.datagridfield.row import DictRow
 from design.plone.contenttypes import _
 from design.plone.contenttypes.interfaces import IDesignPloneContentType
 from plone.autoform import directives as form
 from plone.supermodel import model
 from zope import schema
-from collective.z3cform.datagridfield.datagridfield import DataGridFieldFactory
-from collective.z3cform.datagridfield.row import DictRow
 
 
 class IPDCValueSchema(model.Schema):
@@ -40,7 +40,7 @@ class IPuntoDiContatto(model.Schema, IDesignPloneContentType):
         description=_(
             "value_punto_contatto_help",
             default="Il valore del punto di contatto: il numero compreso di prefisso "
-            "internazionale (se telefono), l'account (se social network), l'URL (se sito o pagina web), l'indirizzo email (se email).",
+            "internazionale (se telefono), l'account (se social network), l'URL (se sito o pagina web), l'indirizzo email (se email).",  # noqa
         ),
         required=True,
     )

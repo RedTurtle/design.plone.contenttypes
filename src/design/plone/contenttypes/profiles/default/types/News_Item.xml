@@ -24,7 +24,7 @@
   >
     <element value="volto.preview_image" />
     <element value="design.plone.contenttypes.behavior.news" />
-    <element value="design.plone.contenttypes.behavior.argomenti" />
+    <element value="design.plone.contenttypes.behavior.argomenti_news" />
     <element value="plone.constraintypes" />
     <element value="plone.textindexer" />
     <element value="plone.translatable" />

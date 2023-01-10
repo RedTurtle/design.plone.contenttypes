@@ -1,17 +1,18 @@
 # -*- coding: utf-8 -*-
 from collective.venue.interfaces import IVenue
 from design.plone.contenttypes import _
+from design.plone.contenttypes.interfaces.persona import IPersona
+from design.plone.contenttypes.interfaces.servizio import IServizio
+from design.plone.contenttypes.interfaces.unita_organizzativa import IUnitaOrganizzativa
+from plone.app.z3cform.widget import RelatedItemsFieldWidget
+from plone.autoform import directives as form
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
 from zope.component import adapter
-from plone.app.z3cform.widget import RelatedItemsFieldWidget
-from plone.autoform import directives as form
-from zope.interface import provider, implementer
-from design.plone.contenttypes.interfaces.unita_organizzativa import IUnitaOrganizzativa
-from design.plone.contenttypes.interfaces.persona import IPersona
-from design.plone.contenttypes.interfaces.servizio import IServizio
+from zope.interface import implementer
+from zope.interface import provider
 
 
 @provider(IFormFieldProvider)
@@ -40,6 +41,11 @@ class IContattiUnitaOrganizzativa(model.Schema):
             "maximumSelectionSize": 10,
             "selectableTypes": ["PuntoDiContatto"],
         },
+    )
+    model.fieldset(
+        "contatti",
+        label=_("contatti_label", default="Contatti"),
+        fields=["contact_info"],
     )
 
 

@@ -84,6 +84,7 @@ FIELDSETS_ORDER = {
     ],
     "Persona": [
         "default",
+        "ruolo",
         "contatti",
         "documenti",
         "informazioni",
@@ -166,6 +167,12 @@ class TypesGet(BaseGet):
         """
         Unico modo per spostare il campo "notes"
         """
+        result.get("required").append("description")
+        result.get("required").append("image")
+        result.get("required").append("street")
+        result.get("required").append("city")
+        result.get("required").append("zip_code")
+        result.get("required").append("geolocation")
 
         if "properties" in result:
             if "country" in result["properties"]:
@@ -234,6 +241,32 @@ class TypesGet(BaseGet):
         result.get("required").append("description")
         return result
 
+    def customize_uo_schema(self, result):
+        result.get("required").append("description")
+        versioning_fields = ["contact_info"]
+        for field in versioning_fields:
+            for fieldset in result["fieldsets"]:
+                if fieldset.get("id") == "contatti" and field in fieldset["fields"]:
+                    fieldset["fields"].remove(field)
+                    fieldset["fields"].insert(0, field)
+        return result
+
+    def customize_news_schema(self, result):
+        result.get("required").append("description")
+        if self.context.portal_type == "News Item":
+            # we are in a news and not in container
+            review_state = self.context.portal_workflow.getInfoFor(
+                self.context, "review_state"
+            )
+            if review_state == "published":
+                result.get("required").append("effective")
+
+        return result
+
+    def customize_documento_schema(self, result):
+        result.get("required").append("description")
+        return result
+
     def reply(self):
         result = super(TypesGet, self).reply()
 
@@ -254,6 +287,12 @@ class TypesGet(BaseGet):
                 result = self.customize_document_schema(result)
             if pt == "Servizio":
                 result = self.customize_servizio_schema(result)
+            if pt == "UnitaOrganizzativa":
+                result = self.customize_uo_schema(result)
+            if pt == "News Item":
+                result = self.customize_news_schema(result)
+            if pt == "Documento":
+                result = self.customize_documento_schema(result)
             result = self.customize_versioning_fields_fieldset(result)
         return result
 

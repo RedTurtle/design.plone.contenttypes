@@ -5,10 +5,10 @@ from design.plone.contenttypes.interfaces import IDesignPloneContentType
 from plone.app.dexterity import textindexer
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
+from plone.namedfile import field
 from plone.supermodel import model
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
-from plone.namedfile import field
 from zope import schema
 from collective.z3cform.datagridfield.row import DictRow
 from collective.z3cform.datagridfield.datagridfield import DataGridFieldFactory
@@ -88,7 +88,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
         required=False,
         description=_(
             "stato_servizio_help",
-            default="Indica se il servizio è effettivamente fruibile; spuntare se non è fruibile.",
+            default="Indica se il servizio è effettivamente fruibile; spuntare se non è fruibile.",  # noqa
         ),
     )
 
@@ -100,7 +100,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
         required=False,
         description=_(
             "motivo_stato_servizio_help",
-            default="Descrizione del motivo per cui il servizio non è attivo. È obbligatorio se il campo precedente è spuntato.",
+            default="Descrizione del motivo per cui il servizio non è attivo. È obbligatorio se il campo precedente è spuntato.",  # noqa
         ),
     )
 

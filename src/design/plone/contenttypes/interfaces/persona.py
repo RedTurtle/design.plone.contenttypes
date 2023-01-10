@@ -19,6 +19,8 @@ from z3c.relationfield.schema import RelationList
 # atto_nomina
 # data_conclusione_incarico
 # data_insediamento
+
+
 class IPersona(model.Schema, IDesignPloneContentType):
     """Marker interface for contenttype Persona"""
 

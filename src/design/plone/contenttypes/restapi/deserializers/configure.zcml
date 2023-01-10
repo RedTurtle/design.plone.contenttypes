@@ -5,7 +5,11 @@
 
   <adapter factory=".persona.DeserializePersonaFromJson" />
   <adapter factory=".servizio.DeserializeServizioFromJson" />
+  <adapter factory=".unitaorganizzativa.DeserializeUnitaOrganizzativaFromJson" />
   <adapter factory=".dxfields.GeolocationFieldDeserializer" />
+  <adapter factory=".venue.DeserializeLuogoFromJson" />
   <adapter factory=".dxfields.SourceTextDeserializer" />
-   <adapter factory=".dxfields.TimelineTempiEScadenzeFieldDeserializer" />
+  <adapter factory=".dxfields.TimelineTempiEScadenzeFieldDeserializer" />
+  <adapter factory=".news.DeserializeNewsFromJson" />
+  <adapter factory=".documento.DeserializeDocumentoFromJson" />
 </configure>

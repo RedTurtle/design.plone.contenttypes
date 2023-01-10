@@ -31,6 +31,7 @@
     <element value="design.plone.contenttypes.behavior.address_venue" />
     <element value="design.plone.contenttypes.behavior.geolocation_venue" />
     <element value="design.plone.contenttypes.behavior.additional_help_infos" />
+    <element value="design.plone.contenttypes.behavior.luoghi_correlati" />
     <element value="plone.textindexer" />
     <element value="plone.translatable" />
     <element value="kitconcept.seo" />
