@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from design.plone.contenttypes.interfaces.servizio import IServizio
+from collective.venue.interfaces import IVenue
 from plone.restapi.behaviors import IBlocks
 from plone.restapi.deserializer import json_body
 from plone.restapi.deserializer.dxcontent import DeserializeFromJson
@@ -14,13 +14,7 @@ from zope.interface import Interface
 TITLE_MAX_LEN = 160
 DESCRIPTION_MAX_LEN = 160
 EMPTY_BLOCK_MARKER = {"@type": "text"}
-MANDATORY_RICH_TEXT_FIELDS = [
-    "a_chi_si_rivolge",
-    "come_si_fa",
-    "cosa_serve",
-    "cosa_si_ottiene",
-    "tempi_e_scadenze",
-]
+MANDATORY_RICH_TEXT_FIELDS = ["modalita_accesso"]
 
 
 def new_error(message):
@@ -52,8 +46,8 @@ def text_in_block(blocks):
 
 
 @implementer(IDeserializeFromJson)
-@adapter(IServizio, Interface)
-class DeserializeServizioFromJson(DeserializeFromJson):
+@adapter(IVenue, Interface)
+class DeserializeLuogoFromJson(DeserializeFromJson):
     def __call__(
         self, validate_all=False, data=None, create=False
     ):  # noqa: ignore=C901
@@ -68,11 +62,12 @@ class DeserializeServizioFromJson(DeserializeFromJson):
 
         title = data.get("title")
         description = data.get("description")
+        geolocation = data.get("geolocation")
 
         if is_post:
             # Title validation
             if not title:
-                errors.append(new_error("Il titolo del servizio è obbligatorio"))
+                errors.append(new_error("Il titolo del luogo è obbligatorio"))
             elif len(title) > TITLE_MAX_LEN:
                 errors.append(
                     new_error(
@@ -84,14 +79,23 @@ class DeserializeServizioFromJson(DeserializeFromJson):
 
             # description validation
             if not description:
-                errors.append(new_error("La descrizione del servizio è obbligatorio"))
+                errors.append(new_error("La descrizione del luogo è obbligatorio"))
             elif len(description) > DESCRIPTION_MAX_LEN:
                 errors.append(
                     new_error(
-                        "La descrizione del servizio deve avere una lunghezza di massimo {} caratteri".format(  # noqa
+                        "La descrizione del luogo deve avere una lunghezza di massimo {} caratteri".format(  # noqa
                             DESCRIPTION_MAX_LEN
                         )
                     )
+                )
+
+            if (
+                not geolocation
+                or not geolocation.get("latitude")
+                or not geolocation.get("longitude")
+            ):
+                errors.append(
+                    new_error("La geolocalizzazione del luogo è un dato obbligatorio")
                 )
 
             for field in MANDATORY_RICH_TEXT_FIELDS:
@@ -101,9 +105,10 @@ class DeserializeServizioFromJson(DeserializeFromJson):
                     errors.append(new_error("Il campo {} è obbligatorio".format(field)))
 
         if is_patch:
+
             # Title validation
             if "title" in data and not title:
-                errors.append(new_error("Il titolo del servizio è obbligatorio"))
+                errors.append(new_error("Il titolo del luogo è obbligatorio"))
             if title and len(title) > TITLE_MAX_LEN:
                 errors.append(
                     new_error(
@@ -114,32 +119,45 @@ class DeserializeServizioFromJson(DeserializeFromJson):
                 )
             # description validation
             if "description" in data and not description:
-                errors.append(new_error("La descrizione del servizio è obbligatorio"))
+                errors.append(new_error("La descrizione del luogo è obbligatorio"))
             if description and len(description) > DESCRIPTION_MAX_LEN:
                 errors.append(
                     new_error(
-                        "La descrizione del servizio deve avere una lunghezza di massimo {} caratteri".format(  # noqa
+                        "La descrizione del luogo deve avere una lunghezza di massimo {} caratteri".format(  # noqa
                             DESCRIPTION_MAX_LEN
                         )
                     )
                 )
-            if "description" not in data and not self.context.description:
-                errors.append(new_error("La descrizione del servizio è obbligatorio"))
+
+            if "geolocation" in data and (
+                not geolocation
+                or not geolocation.get("latitude")
+                or not geolocation.get("longitude")
+            ):
+                errors.append(
+                    new_error("La geolocalizzazione del luogo è un dato obbligatorio")
+                )
 
             for field in MANDATORY_RICH_TEXT_FIELDS:
                 if field in data and not text_in_block(data.get(field)):
                     errors.append(new_error("Il campo {} è obbligatorio".format(field)))
+
                 # Se siamo nella patch siamo in modifica. Se siamo in modifica e siamo
-                # su un sito che ha avuto upgrade alla versione pnrr può essere che
-                # dei campi obbligatori un tempo non lo fossero e quindi arriviamo
-                # fino a qui
+                # su un sito che ha avuto upgrade alla versione pnrr può essere che dei
+                # campi obbligatori #un tempo non lo fossero e quindi arriviamo fino a
+                # qui
                 if field not in data and not text_in_block(
                     getattr(self.context, field)
                 ):
                     errors.append(new_error("Il campo {} è obbligatorio".format(field)))
 
+            if "geolocation" not in data and not getattr(self.context, "geolocation"):
+                errors.append(
+                    new_error("La geolocalizzazione del luogo è un dato obbligatorio")
+                )
+
         if errors:
             raise BadRequest(errors)
-        return super(DeserializeServizioFromJson, self).__call__(
+        return super(DeserializeLuogoFromJson, self).__call__(
             validate_all=False, data=data, create=False
         )

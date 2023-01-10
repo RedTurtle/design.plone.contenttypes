@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from design.plone.contenttypes.interfaces.servizio import IServizio
+from design.plone.contenttypes.interfaces.unita_organizzativa import IUnitaOrganizzativa
 from plone.restapi.behaviors import IBlocks
 from plone.restapi.deserializer import json_body
 from plone.restapi.deserializer.dxcontent import DeserializeFromJson
@@ -12,15 +12,9 @@ from zope.interface import Interface
 
 
 TITLE_MAX_LEN = 160
-DESCRIPTION_MAX_LEN = 160
+DESCRIPTION_MAX_LEN = 255
 EMPTY_BLOCK_MARKER = {"@type": "text"}
-MANDATORY_RICH_TEXT_FIELDS = [
-    "a_chi_si_rivolge",
-    "come_si_fa",
-    "cosa_serve",
-    "cosa_si_ottiene",
-    "tempi_e_scadenze",
-]
+MANDATORY_RICH_TEXT_FIELDS = ["competenze"]
 
 
 def new_error(message):
@@ -52,8 +46,8 @@ def text_in_block(blocks):
 
 
 @implementer(IDeserializeFromJson)
-@adapter(IServizio, Interface)
-class DeserializeServizioFromJson(DeserializeFromJson):
+@adapter(IUnitaOrganizzativa, Interface)
+class DeserializeUnitaOrganizzativaFromJson(DeserializeFromJson):
     def __call__(
         self, validate_all=False, data=None, create=False
     ):  # noqa: ignore=C901
@@ -72,7 +66,9 @@ class DeserializeServizioFromJson(DeserializeFromJson):
         if is_post:
             # Title validation
             if not title:
-                errors.append(new_error("Il titolo del servizio è obbligatorio"))
+                errors.append(
+                    new_error("Il titolo dell'unità organizzativa è obbligatorio")
+                )
             elif len(title) > TITLE_MAX_LEN:
                 errors.append(
                     new_error(
@@ -84,11 +80,13 @@ class DeserializeServizioFromJson(DeserializeFromJson):
 
             # description validation
             if not description:
-                errors.append(new_error("La descrizione del servizio è obbligatorio"))
+                errors.append(
+                    new_error("La descrizione dell'unità organizzativa è obbligatorio")
+                )
             elif len(description) > DESCRIPTION_MAX_LEN:
                 errors.append(
                     new_error(
-                        "La descrizione del servizio deve avere una lunghezza di massimo {} caratteri".format(  # noqa
+                        "La descrizione deve avere una lunghezza di massimo {} caratteri".format(  # noqa
                             DESCRIPTION_MAX_LEN
                         )
                     )
@@ -104,6 +102,7 @@ class DeserializeServizioFromJson(DeserializeFromJson):
             # Title validation
             if "title" in data and not title:
                 errors.append(new_error("Il titolo del servizio è obbligatorio"))
+
             if title and len(title) > TITLE_MAX_LEN:
                 errors.append(
                     new_error(
@@ -123,12 +122,14 @@ class DeserializeServizioFromJson(DeserializeFromJson):
                         )
                     )
                 )
+
             if "description" not in data and not self.context.description:
                 errors.append(new_error("La descrizione del servizio è obbligatorio"))
 
             for field in MANDATORY_RICH_TEXT_FIELDS:
                 if field in data and not text_in_block(data.get(field)):
                     errors.append(new_error("Il campo {} è obbligatorio".format(field)))
+
                 # Se siamo nella patch siamo in modifica. Se siamo in modifica e siamo
                 # su un sito che ha avuto upgrade alla versione pnrr può essere che
                 # dei campi obbligatori un tempo non lo fossero e quindi arriviamo
@@ -140,6 +141,6 @@ class DeserializeServizioFromJson(DeserializeFromJson):
 
         if errors:
             raise BadRequest(errors)
-        return super(DeserializeServizioFromJson, self).__call__(
+        return super(DeserializeUnitaOrganizzativaFromJson, self).__call__(
             validate_all=False, data=data, create=False
         )

@@ -3,8 +3,8 @@ from Acquisition import aq_base
 from collective.volto.blocksfield.field import BlocksField
 from copy import deepcopy
 from design.plone.contenttypes.controlpanels.settings import IDesignPloneSettings
-from design.plone.contenttypes.upgrades.draftjs_converter import to_draftjs
 from design.plone.contenttypes.setuphandlers import remove_blocks_behavior
+from design.plone.contenttypes.upgrades.draftjs_converter import to_draftjs
 from plone import api
 from plone.app.textfield.value import RichTextValue
 from plone.app.upgrade.utils import installOrReinstallProduct
@@ -1007,7 +1007,7 @@ def migrate_pdc_and_incarico(context):
                 "atto_nomina": "atto_nomina",
                 "data_conclusione_incarico": "data_conclusione_incarico",
                 "data_insediamento": "data_insediamento",
-            }
+            },
         },
         "UnitaOrganizzativa": {
             'PDC': {
@@ -1049,17 +1049,20 @@ def migrate_pdc_and_incarico(context):
 
     def createIncaricoAndMigratePersona(portal_type):
         # Taxonomies work needs to be completed before, blind coding ahead
-        if portal_type == 'Persona':
+        if portal_type == "Persona":
             fixed_total = 0
             for brain in api.content.find(portal_type=portal_type):
                 item = brain.getObject()
                 atto_nomina = item.atto_nomina
-                logger.info(f"Fixing Punto di Contatto for '{item.title}'...") # noqa
-                file_bog = api.content.find(context=item, depth=1, id='atti-nomina')
+                logger.info(f"Fixing Punto di Contatto for '{item.title}'...")  # noqa
+                file_bog = api.content.find(context=item, depth=1, id="atti-nomina")
                 if not file_bog:
                     try:
                         file_bog = api.content.create(
-                            type="Document", id="atti-nomina", title="Atti Nomina", container=item
+                            type="Document",
+                            id="atti-nomina",
+                            title="Atti Nomina",
+                            container=item,
                         )
                     except Exception:
                         logger.error("Error", Exception)
@@ -1070,7 +1073,7 @@ def migrate_pdc_and_incarico(context):
                         id=atto_nomina.id,
                         title=atto_nomina.title,
                         container=item,
-                        **{'file': atto_nomina}
+                        **{"file": atto_nomina},
                     )
                     intids = getUtility(IIntIds)
                     relation = [RelationValue(intids.getId(new_atto_nomina))]
@@ -1080,8 +1083,9 @@ def migrate_pdc_and_incarico(context):
                     incarico.atto_nomina = relation
                     item.atto_nomina = None
                     fixed_total += 1
-                    commit()
-                    logger.info(f"Fixing Punto di Contatto for '{item.title}'...:DONE") # noqa
+                    logger.info(
+                        f"Fixing Punto di Contatto for '{item.title}'...:DONE"
+                    )  # noqa
                 except Exception:
                     logger.error("Error", Exception)
             logger.info("Updated {} objects".format(fixed_total))
@@ -1089,7 +1093,7 @@ def migrate_pdc_and_incarico(context):
         pass
 
     def createPDCandMigrateOldCTs(portal_type):
-        logger.info(f"Fixing Punto di Contatto for '{portal_type}'...") # noqa
+        logger.info(f"Fixing Punto di Contatto for '{portal_type}'...")  # noqa
         fixed_total = 0
         mapping = None
         # mapping = type_mapping[portal_type]["PDC"]
@@ -1099,27 +1103,27 @@ def migrate_pdc_and_incarico(context):
             return
         for brain in api.content.find(portal_type=portal_type):
             item = brain.getObject()
-            kwargs = {
-                "value_punto_contatto": [],
-                "persona": []
-            }
+            kwargs = {"value_punto_contatto": [], "persona": []}
             for key, value in mapping.items():
-                # import pdb; pdb.set_trace()
+                # import pdb
+
+                # pdb.set_trace()
 
                 if hasattr(item, key):
-                    kwargs["value_punto_contatto"].append({
-                        'pdc_type': value,
-                        'pdc_value': item[key]
-                    })
+                    kwargs["value_punto_contatto"].append(
+                        {"pdc_type": value, "pdc_value": item[key]}
+                    )
 
             new_pdc = api.content.create(
-                type='PuntoDiContatto',
+                type="PuntoDiContatto",
                 title=f"Punto di Contatto {item.id}",
                 container=item,
                 **kwargs,
             )
             intids = getUtility(IIntIds)
-            # import pdb; pdb.set_trace()
+            # import pdb
+
+            # pdb.set_trace()
             item.contact_info = [RelationValue(intids.getId(new_pdc))]
             fixed_total += 1
             commit()
@@ -1128,6 +1132,8 @@ def migrate_pdc_and_incarico(context):
         logger.info("Updated {} objects".format(fixed_total))
 
     for pt in type_mapping:
-        logger.info("Migrating existing CTs for use with new Incarico and PDC Content Types")
+        logger.info(
+            "Migrating existing CTs for use with new Incarico and PDC Content Types"
+        )
         createPDCandMigrateOldCTs(pt)
         createIncaricoAndMigratePersona(pt)

@@ -30,4 +30,8 @@ class SerializeServizioToJsonSummary(DefaultJSONSummarySerializer):
                 )
                 value = serializer()
                 summary[name] = value
+
+        parent = self.context.aq_inner.aq_parent
+        summary["parent_title"] = parent.title
+        summary["parent_url"] = parent.absolute_url()
         return summary

@@ -40,7 +40,12 @@ class SerializeFolderToJson(BaseFolderSerializer):
         result["@id"] = self.context.absolute_url()
         ttool = api.portal.get_tool("portal_types")
         if self.context.portal_type == "News Item":
-            result["design_italia_meta_type"] = self.context.tipologia_notizia
+            try:
+                tipologia_news = self.context.taxonomy_tipologia_notizia
+            except AttributeError:
+                # fallback if we don't have c.taxonomy configured yet
+                tipologia_news = self.context.tipologia_notizia
+            result["design_italia_meta_type"] = tipologia_news
         else:
             result["design_italia_meta_type"] = translate(
                 ttool[self.context.portal_type].Title(), context=self.request

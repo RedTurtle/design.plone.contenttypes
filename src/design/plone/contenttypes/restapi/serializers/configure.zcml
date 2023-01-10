@@ -5,6 +5,7 @@
 
   <!-- summary -->
   <adapter factory=".summary.DefaultJSONSummarySerializer" />
+  <adapter factory=".summary.IncaricoDefaultJSONSummarySerializer" />
 
   <adapter factory=".dxcontent.SerializeFolderToJson" />
   <adapter factory=".dxcontent.SerializeToJson" />

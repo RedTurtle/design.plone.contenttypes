@@ -147,17 +147,21 @@
       <role name="Owner" />
       <role name="Contributor" />
     </permission>
-    <permission name="design.plone.contenttypes: Add Incarico" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="Owner"/>
-      <role name="Contributor"/>
+    <permission acquire="True"
+                name="design.plone.contenttypes: Add Incarico"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="Owner" />
+      <role name="Contributor" />
     </permission>
-    <permission name="design.plone.contenttypes: Add PuntoDiContatto" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="Owner"/>
-      <role name="Contributor"/>
+    <permission acquire="True"
+                name="design.plone.contenttypes: Add PuntoDiContatto"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="Owner" />
+      <role name="Contributor" />
     </permission>
 
   </permissions>

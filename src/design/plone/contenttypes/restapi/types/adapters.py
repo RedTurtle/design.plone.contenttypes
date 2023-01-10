@@ -1,20 +1,21 @@
 # -*- coding: utf-8 -*-
+from collective.z3cform.datagridfield.interfaces import IRow
 from design.plone.contenttypes import _
+from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
+from plone.restapi.types.adapters import ListJsonSchemaProvider
 from plone.restapi.types.adapters import ObjectJsonSchemaProvider
 from plone.restapi.types.interfaces import IJsonSchemaProvider
+from plone.restapi.types.utils import get_fieldsets
+from plone.restapi.types.utils import get_jsonschema_properties
+from plone.restapi.types.utils import iter_fields
 from zope.component import adapter
 from zope.component import getUtility
 from zope.i18n import translate
 from zope.interface import implementer
 from zope.interface import Interface
-from zope.schema.interfaces import IField, IVocabularyFactory
-from collective.z3cform.datagridfield.interfaces import IRow
-from plone.restapi.types.adapters import ListJsonSchemaProvider
-from plone.restapi.types.utils import get_fieldsets
-from plone.restapi.types.utils import get_jsonschema_properties
-from plone.restapi.types.utils import iter_fields
+from zope.schema.interfaces import IField
 from zope.schema.interfaces import IList
-from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
+from zope.schema.interfaces import IVocabularyFactory
 
 
 @adapter(IField, Interface, Interface)
