@@ -15,6 +15,7 @@ from zope.schema.interfaces import ISourceText
 from datetime import datetime
 from design.plone.contenttypes.interfaces.servizio import IServizio
 from zope.schema.interfaces import IList
+from zExceptions import BadRequest
 
 import json
 
@@ -88,21 +89,26 @@ class TimelineTempiEScadenzeFieldDeserializer(DefaultFieldDeserializer):
     and throws error during validation. Patched.
     Since I cannot have an empty value in data_scadenza (which is NOT a required
     field), I'll have to do some serializing magic in Servizio serializer.
+    Also validate milestone field, frontend should take care of it, but you never know.
     """
     def __call__(self, value):
         if self.field.getName() != "timeline_tempi_scadenze":
             return super().__call__(value)
         timeline = []
         for item in value:
-            data_scadenza = datetime.strptime(
-                item.get("data_scadenza", "1969-01-01"), "%Y-%m-%d"
-            ).date()
+            if not item.get("milestone", None):
+                raise BadRequest({
+                    "error": "ValidationError",
+                    "message": "Il campo {} è obbligatorio".format("Titolo della fase")
+                })
             entry = {
                 "milestone": item.get("milestone", ""),
                 "milestone_description": item.get("milestone_description", ""),
                 "interval_qt": item.get("interval_qt", ""),
                 "interval_type": item.get("interval_type", ""),
-                "data_scadenza": data_scadenza
+                "data_scadenza": datetime.strptime(
+                    item.get("data_scadenza") or "1969-01-01", "%Y-%m-%d"
+                ).date()
             }
 
             timeline.append(entry)

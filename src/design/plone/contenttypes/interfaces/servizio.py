@@ -33,15 +33,6 @@ class ITempiEScadenzeValueSchema(model.Schema):
         required=True,
         default="",
     )
-    milestone_description = schema.TextLine(
-        title=_("milestone_description_label", default="Sottotitolo"),
-        description=_(
-            "milestone_description_help",
-            default="Sottotitolo della fase",
-        ),
-        required=False,
-        default="",
-    )
     interval_qt = schema.TextLine(
         title=_("interval_qt_label", default="Intervallo"),
         description=_(
@@ -55,8 +46,17 @@ class ITempiEScadenzeValueSchema(model.Schema):
         title=_("interval_type_label", default="Tipo intervallo"),
         description=_(
             "interval_type_help",
-            default="Tipo di intervallo della fase, possono essere "
-            "ore, giorni, settimane, mesi, anni.",
+            default="Ad esempio: "
+            "ore, giorni, settimane, mesi.",
+        ),
+        required=False,
+        default="",
+    )
+    milestone_description = schema.TextLine(
+        title=_("milestone_description_label", default="Sottotitolo"),
+        description=_(
+            "milestone_description_help",
+            default="Sottotitolo della fase",
         ),
         required=False,
         default="",
@@ -243,6 +243,16 @@ class IServizio(model.Schema, IDesignPloneContentType):
         required=False,
     )
 
+    tempi_e_scadenze = BlocksField(
+        title=_("tempi_e_scadenze", default="Tempi e scadenze"),
+        required=True,
+        description=_(
+            "tempi_e_scadenze_help",
+            default="Descrivere le informazioni dettagliate riguardo eventuali tempi"
+            " e scadenze di questo servizio.",
+        ),
+    )
+
     timeline_tempi_scadenze = schema.List(
         title=_("timeline_tempi_scadenze", default="Timeline tempi e scadenze"),
         default=[],
@@ -253,17 +263,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
             "un titolo descritttivo di tale scadenza e, opzionalmente, informazioni sulle"
             " date o gli intervalli di tempo che intercorrono tra una fase e la successiva.",
         ),
-        required=True,
-    )
-
-    tempi_e_scadenze = BlocksField(
-        title=_("tempi_e_scadenze", default="Tempi e scadenze"),
-        required=True,
-        description=_(
-            "tempi_e_scadenze_help",
-            default="Descrivere le informazioni dettagliate riguardo eventuali tempi"
-            " e scadenze di questo servizio.",
-        ),
+        required=False,
     )
 
     cosa_serve = BlocksField(
@@ -502,7 +502,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
     model.fieldset(
         "tempi_e_scadenze",
         label=_("tempi_e_scadenze_label", default="Tempi e scadenze"),
-        fields=["timeline_tempi_scadenze", "tempi_e_scadenze"],
+        fields=["tempi_e_scadenze", "timeline_tempi_scadenze"],
     )
 
     model.fieldset(
