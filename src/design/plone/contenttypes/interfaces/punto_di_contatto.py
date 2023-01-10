@@ -15,7 +15,7 @@ class IPDCValueSchema(model.Schema):
             "type_help",
             default="Tipo",
         ),
-        vocabulary="design.plone.contenttypes.pdc_value_type",
+        vocabulary="collective.taxonomy.tipologia_pdc",
         required=True,
         default="",
     )

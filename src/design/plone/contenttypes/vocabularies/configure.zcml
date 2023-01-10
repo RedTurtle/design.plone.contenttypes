@@ -53,10 +53,5 @@
       name="design.plone.vocabularies.uo_locations"
       component=".reference_vocabularies.UOLocationVocabularyFactory"
       />
-  <utility
-      name="design.plone.contenttypes.pdc_value_type"
-      component=".pdc_value_type.PDCValueTypeFactory"
-      />
-
 
 </configure>

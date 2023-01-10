@@ -47,7 +47,7 @@ def eventoCreateHandler(evento, event):
         # select  constraints
         constraintsGalleriaVideo = ISelectableConstrainTypes(galleria_video)
         constraintsGalleriaVideo.setConstrainTypesMode(1)
-        constraintsGalleriaVideo.setLocallyAllowedTypes(("Link"))
+        constraintsGalleriaVideo.setLocallyAllowedTypes(("Link",))
 
         with api.env.adopt_roles(["Reviewer"]):
             api.content.transition(obj=galleria_video, transition="publish")
