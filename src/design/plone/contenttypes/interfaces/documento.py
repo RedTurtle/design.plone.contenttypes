@@ -36,11 +36,11 @@ class IDocumento(model.Schema, IDesignPloneContentType):
             default="Il numero di protocollo del documento.",
         ),
         max_length=255,
-        required=True,
+        required=False,
     )
     data_protocollo = schema.Date(
         title=_("data_protocollo", default="Data del protocollo"),
-        required=True,
+        required=False,
     )
     # descrizione = BlocksField(
     #     title=_("descrizione_label", default="Descrizione"),
@@ -127,7 +127,7 @@ class IDocumento(model.Schema, IDesignPloneContentType):
             "licenza_distribuzione_help",
             default="La licenza con il quale viene distribuito questo documento.",
         ),
-        required=True,
+        required=False,
     )
 
     riferimenti_normativi = BlocksField(
@@ -162,10 +162,7 @@ class IDocumento(model.Schema, IDesignPloneContentType):
         "dataset",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={
-            "maximumSelectionSize": 10,
-            "selectableTypes": ["Dataset"],
-        },
+        pattern_options={"maximumSelectionSize": 10, "selectableTypes": ["Dataset"]},
     )
 
     servizi = RelationList(
@@ -187,10 +184,7 @@ class IDocumento(model.Schema, IDesignPloneContentType):
         "servizi",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={
-            "maximumSelectionSize": 20,
-            "selectableTypes": ["Servizio"],
-        },
+        pattern_options={"maximumSelectionSize": 20, "selectableTypes": ["Servizio"]},
     )
 
     documenti_allegati = RelationList(
@@ -268,7 +262,9 @@ class IDocumento(model.Schema, IDesignPloneContentType):
     )
     form.order_after(area_responsabile="ufficio_responsabile")
     form.order_after(autori="area_responsabile")
-    form.order_after(licenza_distribuzione="autori")
+    form.order_after(
+        licenza_distribuzione="IDescrizioneEstesaDocumento.descrizione_estesa"
+    )
     form.order_after(
         riferimenti_normativi="IAdditionalHelpInfos.ulteriori_informazioni"
     )
