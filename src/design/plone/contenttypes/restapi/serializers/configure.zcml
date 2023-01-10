@@ -23,4 +23,5 @@
   <adapter factory=".documento.DocumentoSerializer" />
   <adapter factory=".cartella_modulistica.CartellaModulisticaSerializer" />
   <adapter factory=".punto_di_contatto.PuntoDiContattoSerializer" />
+  <adapter factory=".punto_di_contatto.SerializePuntoDiContattoToJsonSummary" />
 </configure>

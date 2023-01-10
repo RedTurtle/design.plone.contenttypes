@@ -1,18 +1,46 @@
 # -*- coding: utf-8 -*-
 from .related_news_serializer import SerializeFolderToJson
 from Acquisition import aq_inner
+from design.plone.contenttypes.restapi.serializers.summary import (
+    DefaultJSONSummarySerializer,
+)
 from design.plone.contenttypes.interfaces.punto_di_contatto import IPuntoDiContatto
+from plone.dexterity.utils import iterSchemata
+from plone.restapi.interfaces import IFieldSerializer
 from plone.restapi.interfaces import ISerializeToJson
 from plone.restapi.interfaces import ISerializeToJsonSummary
 from zc.relation.interfaces import ICatalog
 from zope.component import adapter
 from zope.component import getMultiAdapter
 from zope.component import getUtility
+from zope.component import queryMultiAdapter
 from zope.globalrequest import getRequest
 from zope.interface import implementer
 from zope.interface import Interface
 from zope.intid.interfaces import IIntIds
+from zope.schema import getFields
 from zope.security import checkPermission
+
+
+@implementer(ISerializeToJsonSummary)
+@adapter(IPuntoDiContatto, Interface)
+class SerializePuntoDiContattoToJsonSummary(DefaultJSONSummarySerializer):
+    def __call__(self, force_all_metadata=False):
+        summary = super().__call__(force_all_metadata=force_all_metadata)
+        fields = ["value_punto_contatto"]
+        for schema in iterSchemata(self.context):
+            for name, field in getFields(schema).items():
+                if name not in fields:
+                    continue
+
+                # serialize the field
+                serializer = queryMultiAdapter(
+                    (field, self.context, self.request), IFieldSerializer
+                )
+                value = serializer()
+                summary[name] = value
+
+        return summary
 
 
 @implementer(ISerializeToJson)
