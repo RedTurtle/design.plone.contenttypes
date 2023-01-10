@@ -4,7 +4,7 @@ from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
 from plone.dexterity.interfaces import IDexterityContent
 from plone.formwidget.geolocation.geolocation import Geolocation
 from plone.formwidget.geolocation.interfaces import IGeolocationField
-from plone.restapi.deserializer.dxfields import DefaultFieldDeserializer
+from plone.restapi.deserializer.dxfields import DefaultFieldDeserializer, CollectionFieldDeserializer
 from plone.restapi.interfaces import IBlockFieldDeserializationTransformer
 from plone.restapi.interfaces import IFieldDeserializer
 from zope.component import adapter
@@ -83,7 +83,7 @@ class SourceTextDeserializer(DefaultFieldDeserializer):
 
 @implementer(IFieldDeserializer)
 @adapter(IList, IServizio, IDesignPloneContenttypesLayer)
-class TimelineTempiEScadenzeFieldDeserializer(DefaultFieldDeserializer):
+class TimelineTempiEScadenzeFieldDeserializer(CollectionFieldDeserializer):
     """
     Volto returns a string in date field, Plone expects <class datetime.date>
     and throws error during validation. Patched.
@@ -92,7 +92,7 @@ class TimelineTempiEScadenzeFieldDeserializer(DefaultFieldDeserializer):
     Also validate milestone field, frontend should take care of it, but you never know.
     """
     def __call__(self, value):
-        if self.field.getName() != "timeline_tempi_scadenze":
+        if self.field.getName() != "timeline_tempi_scadenze" or not value:
             return super().__call__(value)
         timeline = []
         for item in value:
