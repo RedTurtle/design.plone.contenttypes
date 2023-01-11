@@ -411,6 +411,15 @@ class IServizio(model.Schema, IDesignPloneContentType):
 
     # custom widgets
     form.widget(
+        "canale_fisico",
+        RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
+        pattern_options={
+            "maximumSelectionSize": 10,
+            "selectableTypes": ["UnitaOrganizzativa"],
+        },
+    )
+    form.widget(
         "dove_rivolgersi",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
