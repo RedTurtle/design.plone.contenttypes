@@ -33,7 +33,6 @@ class IPersona(model.Schema, IDesignPloneContentType):
             "La dimensione suggerita è 180x100 px.",
         ),
     )
-
     organizzazione_riferimento = RelationList(
         title=_(
             "organizzazione_riferimento_label",
@@ -51,7 +50,7 @@ class IPersona(model.Schema, IDesignPloneContentType):
         default=[],
         required=False,
     )
-    incarichi = RelationList(
+    incarichi_persona = RelationList(
         title=_(
             "incarichi_label",
             default="Incarichi",
@@ -118,7 +117,7 @@ class IPersona(model.Schema, IDesignPloneContentType):
     )
 
     form.widget(
-        "incarichi",
+        "incarichi_persona",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
@@ -132,7 +131,7 @@ class IPersona(model.Schema, IDesignPloneContentType):
         "ruolo",
         label=_("ruolo_label", default="Ruolo"),
         fields=[
-            "incarichi",
+            "incarichi_persona",
             "organizzazione_riferimento",
             "competenze",
             "deleghe",

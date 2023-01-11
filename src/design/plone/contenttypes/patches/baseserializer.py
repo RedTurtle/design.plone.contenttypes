@@ -33,7 +33,7 @@ def design_italia_serialize_to_json_call(self, version=None, include_items=True)
     )
     if self.context.portal_type == "News Item":
         try:
-            tipologia_news = self.context.taxonomy_tipologia_notizia
+            tipologia_news = self.context.tipologia_notizia
         except AttributeError:
             # fallback if we don't have c.taxonomy configured yet
             tipologia_news = self.context.tipologia_notizia

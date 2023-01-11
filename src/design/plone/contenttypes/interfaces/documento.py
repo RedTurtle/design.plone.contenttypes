@@ -4,7 +4,6 @@ from design.plone.contenttypes import _
 from design.plone.contenttypes.interfaces import IDesignPloneContentType
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
-from plone.namedfile import field
 from plone.supermodel import model
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
@@ -50,22 +49,22 @@ class IDocumento(model.Schema, IDesignPloneContentType):
     #     ),
     #     required=True,
     # )
-    url = schema.URI(
-        title=_("url_documento_label", default="Link al documento"),
-        description=_(
-            "url_documento_help",
-            default="Link al documento vero e proprio, in un formato scaricabile attraverso una URL.",  # noqa
-        ),
-        required=False,
-    )
-    file_correlato = field.NamedBlobFile(
-        title=_("file_correlato_label", default="File correlato"),
-        description=_(
-            "file_correlato_help",
-            default="Se non è presente un link ad una risorsa esterna, ricordarsi di caricare l'allegato vero e proprio",  # noqa
-        ),
-        required=False,
-    )
+    # url = schema.URI(
+    #     title=_("url_documento_label", default="Link al documento"),
+    #     description=_(
+    #         "url_documento_help",
+    #         default="Link al documento vero e proprio, in un formato scaricabile attraverso una URL.",  # noqa
+    #     ),
+    #     required=False,
+    # )
+    # file_correlato = field.NamedBlobFile(
+    #     title=_("file_correlato_label", default="File correlato"),
+    #     description=_(
+    #         "file_correlato_help",
+    #         default="Se non è presente un link ad una risorsa esterna, ricordarsi di caricare l'allegato vero e proprio",  # noqa
+    #     ),
+    #     required=False,
+    # )
     ufficio_responsabile = RelationList(
         title=_(
             "ufficio_responsabile_documento_label",
@@ -165,27 +164,27 @@ class IDocumento(model.Schema, IDesignPloneContentType):
         pattern_options={"maximumSelectionSize": 10, "selectableTypes": ["Dataset"]},
     )
 
-    servizi = RelationList(
-        title=_(
-            "servizi_label",
-            default="Servizi collegati",
-        ),
-        description=_(
-            "servizi_help",
-            default="Servizi collegati al documento",
-        ),
-        default=[],
-        required=False,
-        value_type=RelationChoice(vocabulary="plone.app.vocabularies.Catalog"),
-    )
+    # servizi = RelationList(
+    #     title=_(
+    #         "servizi_label",
+    #         default="Servizi collegati",
+    #     ),
+    #     description=_(
+    #         "servizi_help",
+    #         default="Servizi collegati al documento",
+    #     ),
+    #     default=[],
+    #     required=False,
+    #     value_type=RelationChoice(vocabulary="plone.app.vocabularies.Catalog"),
+    # )
 
-    # custom widgets
-    form.widget(
-        "servizi",
-        RelatedItemsFieldWidget,
-        vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={"maximumSelectionSize": 20, "selectableTypes": ["Servizio"]},
-    )
+    # # custom widgets
+    # form.widget(
+    #     "servizi",
+    #     RelatedItemsFieldWidget,
+    #     vocabulary="plone.app.vocabularies.Catalog",
+    #     pattern_options={"maximumSelectionSize": 20, "selectableTypes": ["Servizio"]},
+    # )
 
     documenti_allegati = RelationList(
         title=_(

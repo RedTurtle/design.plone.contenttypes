@@ -23,7 +23,11 @@ class RelationListFieldSerializer(DefaultRelationListFieldSerializer):
         for value in self.get_value():
             if not value:
                 continue
-            content = value.to_object
+            try:
+                content = value.to_object
+            except AttributeError:
+                # we'll migrate to PDC, right now we have Blocks
+                continue
             if not content:
                 continue
             if not api.user.has_permission("View", obj=content):

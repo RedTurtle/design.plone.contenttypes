@@ -56,6 +56,7 @@
     <element value="plone.translatable" />
     <element value="kitconcept.seo" />
     <element value="plone.versioning" />
+    <element value="collective.taxonomy.generated.tipologia_incarico" />
   </property>
 
   <!-- View information -->

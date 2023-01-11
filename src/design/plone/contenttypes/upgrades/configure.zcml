@@ -599,4 +599,25 @@
       destination="6011"
       handler=".upgrades.to_6011"
       />
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="6011"
+      destination="7000"
+      >
+    <genericsetup:upgradeStep
+        title="Persone: Update for PNRR"
+        description="Create Incarichi folder"
+        handler=".upgrades.create_incarichi_folder"
+        />
+    <genericsetup:upgradeStep
+        title="Persone: Update for PNRR"
+        description="Create incarichi objects"
+        handler=".upgrades.create_incarico_for_persona"
+        />
+    <genericsetup:upgradeStep
+        title="Persone: Update for PNRR"
+        description="Create incarichi objects"
+        handler=".upgrades.create_pdc"
+        />
+  </genericsetup:upgradeSteps>
 </configure>
