@@ -3,7 +3,7 @@ from collective.taxonomy import PATH_SEPARATOR
 from collective.taxonomy.interfaces import ITaxonomy
 from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
 from design.plone.contenttypes.interfaces.incarico import IIncarico
-from design.plone.contenttypes.interfaces.persona import IPersona
+from design.plone.contenttypes.interfaces.punto_di_contatto import IPuntoDiContatto
 from plone import api
 from plone.restapi.interfaces import ISerializeToJsonSummary
 from plone.restapi.serializer.converters import json_compatible
@@ -16,7 +16,6 @@ from zope.component import getUtility
 from zope.i18n import translate
 from zope.interface import implementer
 from zope.interface import Interface
-from zope.schema import getFieldsInOrder
 
 import re
 
@@ -150,15 +149,9 @@ class IncaricoDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
 
 
 @implementer(ISerializeToJsonSummary)
-@adapter(IPersona, IDesignPloneContenttypesLayer)
-class PersonaDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
+@adapter(IPuntoDiContatto, IDesignPloneContenttypesLayer)
+class PuntoDiContattoDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
     def __call__(self, force_all_metadata=False):
         res = super().__call__(force_all_metadata=force_all_metadata)
-        fields = dict(getFieldsInOrder(IPersona))
-        field = fields["foto_persona"]
-        images_info_adapter = getMultiAdapter(
-            (field, self.context, IDesignPloneContenttypesLayer)
-        )
-        if images_info_adapter:
-            res["foto_persona"] = images_info_adapter()
+        res["value_punto_contatto"] = self.context.value_punto_contatto
         return res
