@@ -136,9 +136,9 @@ class IncaricoDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
         res = super().__call__(force_all_metadata=force_all_metadata)
         taxonomy = getUtility(ITaxonomy, name="collective.taxonomy.tipologia_incarico")
         taxonomy_voc = taxonomy.makeVocabulary(self.request.get("LANGUAGE"))
-        if "taxonomy_tipologia_incarico" not in res:
-            res["taxonomy_tipologia_incarico"] = taxonomy_voc.inv_data.get(
-                self.context.taxonomy_tipologia_incarico
+        if "tipologia_incarico" not in res:
+            res["tipologia_incarico"] = taxonomy_voc.inv_data.get(
+                self.context.tipologia_incarico
             ).replace(PATH_SEPARATOR, "")
         if "data_inizio_incarico" not in res:
             res["data_inizio_incarico"] = json_compatible(

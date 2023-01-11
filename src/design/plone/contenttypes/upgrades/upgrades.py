@@ -1161,7 +1161,7 @@ def create_incarichi_folder(context):
         persona = brain.getObject()
         if target["id"] in persona:
             logger.info(
-                f"{colors.YELLOW} {persona.title} contiene già la cartella incrichi {colors.ENDC}"  # noqa
+                f"{colors.YELLOW} {persona.title} contiene già la cartella incarichi {colors.ENDC}"  # noqa
             )
             continue
         suboject = api.content.create(
@@ -1186,7 +1186,7 @@ def create_incarico_for_persona(context):
     logger.info(
         f"{colors.DARKCYAN} Inizio a creare gli incarichi delle persone {colors.ENDC}"
     )
-    intids = getUtility(IIntIds)
+    # intids = getUtility(IIntIds)
     pc = api.portal.get_tool(name="portal_catalog")
     wftool = api.portal.get_tool(name="portal_workflow")
     brains = pc({"portal_type": "Persona"})
@@ -1204,7 +1204,8 @@ def create_incarico_for_persona(context):
         incarico = api.content.create(
             type="Incarico", title=persona.ruolo, container=incarichi_folder
         )
-        incarico.persona = [RelationValue(intids.getId(persona))]
+        # incarico.persona = [RelationValue(intids.getId(persona))]
+        api.relation.create(source=incarico, target=persona, relationship="persona")
         if safe_hasattr(persona, "organizzazione_riferimento"):
             incarico.unita_organizzativa = persona.organizzazione_riferimento
 
@@ -1229,15 +1230,19 @@ def create_incarico_for_persona(context):
                 filename=persona.atto_nomina.filename,
                 contentType="application/pdf",
             )
-            atto_nomina.taxonomy_tipologia_documento = ["documento_attivita_politica"]
-            incarico.atto_nomina = [RelationValue(intids.getId(atto_nomina))]
+            atto_nomina.tipologia_documento = ["documento_attivita_politica"]
+            # incarico.atto_nomina = [RelationValue(intids.getId(atto_nomina))]
+            api.relation.create(
+                source=incarico, target=atto_nomina, relationship="atto_nomina"
+            )
 
         if safe_hasattr(persona, "tipologia_persona"):
-            incarico.taxonomy_tipologia_incarico = MAPPING_TIPO[
-                persona.tipologia_persona
-            ]
+            incarico.tipologia_incarico = MAPPING_TIPO[persona.tipologia_persona]
 
-        persona.incarichi_persona = [RelationValue(intids.getId(incarico))]
+        # persona.incarichi_persona = [RelationValue(intids.getId(incarico))]
+        api.relation.create(
+            source=persona, target=incarico, relationship="incarichi_persona"
+        )
 
         if api.content.get_state(obj=persona) == "published":
             wftool.doActionFor(incarico, "publish")
