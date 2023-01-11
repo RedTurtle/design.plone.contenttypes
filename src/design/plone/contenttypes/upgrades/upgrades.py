@@ -999,7 +999,7 @@ def migrate_pdc_and_incarico(context):
                 "fax": "fax",
                 "email": "email",
                 "pec": "pec",
-            },
+            },  # noqa
             "Incarico": {
                 # HOW? Need taxonomies also
                 # We could do:
@@ -1028,7 +1028,7 @@ def migrate_pdc_and_incarico(context):
                 "fax": "fax",
                 "email": "email",
                 "pec": "pec",
-            },
+            },  # noqa
         },
         # TODO: tbc
         "Venue": {
@@ -1047,7 +1047,7 @@ def migrate_pdc_and_incarico(context):
                 "fax": "fax",
                 "email": "email",
                 "pec": "pec",
-            },
+            },  # noqa
         },
     }
 
@@ -1148,6 +1148,16 @@ class colors(object):
     RED = "\033[91m"
     DARKCYAN = "\033[36m"
     YELLOW = "\033[93m"
+
+
+def to_7000(context):
+    update_types(context)
+    update_registry(context)
+    update_catalog(context)
+    update_rolemap(context)
+    logger.info(
+        f"{colors.DARKCYAN} Upgraded types, registry, catalog and rolemap {colors.ENDC}"  # noqa
+    )
 
 
 def create_incarichi_folder(context):
@@ -1265,7 +1275,8 @@ def create_incarico_for_persona(context):
 
 
 def create_pdc(context):
-    portal_types = ["UnitaOrganizzativa", "Persona", "Event", "Venue"]  # ?
+    portal_types = ["UnitaOrganizzativa", "Persona", "Event", "Venue"]
+    portal_types = ["Persona"]
     MAPPINGS = {
         "Persona": {
             "telefono": "telefono",
@@ -1309,25 +1320,22 @@ def create_pdc(context):
         wftool.doActionFor(punti_contatto, "publish")
         logger.info(
             f"{colors.GREEN} Creato cartella punti di contatto nella radice del portal{colors.ENDC}"  # noqa
-        )  # noqa
+        )
     else:
         punti_contatto = portal[punti_contatto_id]
 
     for portal_type in portal_types:
         brains = pc(**{"portal_type": portal_type})
+        logger.info(
+            f"{colors.YELLOW} Stiamo per creare i PDC per {len(brains)} oggetti di tipo {portal_type}{colors.ENDC}"  # noqa
+        )
         for brain in brains:
             obj = brain.getObject()
-            mapping = MAPPINGS["portal_type"]
-            pdc = api.content.create(
-                type="PuntoDiContatto",
-                title=f"Punto di contatto per: {obj.title}",
-                container=punti_contatto,
-            )
-            api.relation.create(source=obj, target=pdc, relationship="contact_info")
+            mapping = MAPPINGS[portal_type]
             data = []
             for field in mapping:
                 field_value = getattr(obj, field, None)
-                if field_value:
+                if not field_value:
                     continue
                 if type(field_value) != list:
                     # in some case we have a f*****g list
@@ -1335,19 +1343,23 @@ def create_pdc(context):
                         field_value,
                     ]
                 for value in field_value:
-                    data.append(
-                        {
-                            "pdc_type": mapping[field],
-                            "pdc_value": field_value,
-                        }
-                    )
+                    data.append({"pdc_type": mapping[field], "pdc_value": value})
+
+            if not data:
+                continue
+
+            try:
+                del obj.contact_info
+            except AttributeError:
+                pass
+
+            pdc = api.content.create(
+                type="PuntoDiContatto",
+                title=f"Punto di contatto per: {obj.title}",
+                container=punti_contatto,
+            )
+            api.relation.create(source=obj, target=pdc, relationship="contact_info")
             pdc.value_punto_contatto = data
-
-
-# TODO
-# collegarsi
-
-
-# occhio che nel summary della UO devono esserci le info del punto di contatto...
-# se la UO ha più punti di contatto?
-#
+            logger.info(
+                f"{colors.GREEN} Creato il punto di contatto per {obj.title}({obj.absolute_url()}){colors.ENDC}"  # noqa
+            )
