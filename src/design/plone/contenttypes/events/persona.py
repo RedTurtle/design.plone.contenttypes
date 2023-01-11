@@ -31,21 +31,14 @@ def personaCreateHandler(persona, event):
             "title": "Dichiarazione dei redditi",
             "contains": ("File",),
         },
-        {
-            "id": "spese-elettorali",
-            "title": "Spese elettorali",
-            "contains": ("File",),
-        },
+        {"id": "spese-elettorali", "title": "Spese elettorali", "contains": ("File",)},
         {
             "id": "variazione-situazione-patrimoniale",
             "title": "Variazione situazione patrimoniale",
             "contains": ("File",),
         },
-        {
-            "id": "altre-cariche",
-            "title": "Altre cariche",
-            "contains": ("File",),
-        },
+        {"id": "altre-cariche", "title": "Altre cariche", "contains": ("File",)},
+        {"id": "incarichi", "title": "Incarichi", "contains": ("Incarico",)},
     ]
     for folder in FOLDERS:
         if folder["id"] in persona:

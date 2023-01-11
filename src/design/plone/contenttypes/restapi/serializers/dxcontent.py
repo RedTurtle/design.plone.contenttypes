@@ -41,7 +41,7 @@ class SerializeFolderToJson(BaseFolderSerializer):
         ttool = api.portal.get_tool("portal_types")
         if self.context.portal_type == "News Item":
             try:
-                tipologia_news = self.context.taxonomy_tipologia_notizia
+                tipologia_news = self.context.tipologia_notizia
             except AttributeError:
                 # fallback if we don't have c.taxonomy configured yet
                 tipologia_news = self.context.tipologia_notizia
