@@ -14,7 +14,8 @@ from zope.component import getMultiAdapter
 from zope.component import subscribers
 from zope.globalrequest import getRequest
 from zope.interface import implementer
-from zope.schema.interfaces import ISourceText, IList
+from zope.schema.interfaces import IList
+from zope.schema.interfaces import ISourceText
 
 import json
 
@@ -39,10 +40,8 @@ class TempiEScadenzeValueSerializer(DefaultFieldSerializer):
         value = super(TempiEScadenzeValueSerializer, self).__call__()
 
         patched_timeline = []
-        if self.field.getName() == 'timeline_tempi_scadenze' and value:
+        if self.field.getName() == "timeline_tempi_scadenze" and value:
             for entry in value:
-                if entry.get("data_scadenza", "1969-01-01") == "1969-01-01":
-                    entry["data_scadenza"] = ""
                 patched_timeline.append(entry)
             return json_compatible(patched_timeline)
         return value

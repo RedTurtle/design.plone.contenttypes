@@ -1,21 +1,22 @@
 # -*- coding: utf-8 -*-
+from datetime import datetime
 from design.plone.contenttypes import _
 from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
+from design.plone.contenttypes.interfaces.servizio import IServizio
 from plone.dexterity.interfaces import IDexterityContent
 from plone.formwidget.geolocation.geolocation import Geolocation
 from plone.formwidget.geolocation.interfaces import IGeolocationField
-from plone.restapi.deserializer.dxfields import DefaultFieldDeserializer, CollectionFieldDeserializer
+from plone.restapi.deserializer.dxfields import CollectionFieldDeserializer
+from plone.restapi.deserializer.dxfields import DefaultFieldDeserializer
 from plone.restapi.interfaces import IBlockFieldDeserializationTransformer
 from plone.restapi.interfaces import IFieldDeserializer
+from zExceptions import BadRequest
 from zope.component import adapter
 from zope.component import subscribers
 from zope.i18n import translate
 from zope.interface import implementer
-from zope.schema.interfaces import ISourceText
-from datetime import datetime
-from design.plone.contenttypes.interfaces.servizio import IServizio
 from zope.schema.interfaces import IList
-from zExceptions import BadRequest
+from zope.schema.interfaces import ISourceText
 
 import json
 
@@ -91,24 +92,33 @@ class TimelineTempiEScadenzeFieldDeserializer(CollectionFieldDeserializer):
     field), I'll have to do some serializing magic in Servizio serializer.
     Also validate milestone field, frontend should take care of it, but you never know.
     """
+
     def __call__(self, value):
         if self.field.getName() != "timeline_tempi_scadenze" or not value:
             return super().__call__(value)
+
         timeline = []
         for item in value:
             if not item.get("milestone", None):
-                raise BadRequest({
-                    "error": "ValidationError",
-                    "message": "Il campo {} è obbligatorio".format("Titolo della fase")
-                })
+                raise BadRequest(
+                    {
+                        "error": "ValidationError",
+                        "message": "Il campo {} è obbligatorio".format(
+                            "Titolo della fase"
+                        ),
+                    }
+                )
+
             entry = {
                 "milestone": item.get("milestone", ""),
                 "milestone_description": item.get("milestone_description", ""),
                 "interval_qt": item.get("interval_qt", ""),
                 "interval_type": item.get("interval_type", ""),
                 "data_scadenza": datetime.strptime(
-                    item.get("data_scadenza") or "1969-01-01", "%Y-%m-%d"
+                    item["data_scadenza"], "%Y-%m-%d"
                 ).date()
+                if item.get("data_scadenza", None)
+                else None,  # noqa
             }
 
             timeline.append(entry)

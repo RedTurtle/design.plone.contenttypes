@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 from collective.volto.blocksfield.field import BlocksField
+from collective.z3cform.datagridfield.datagridfield import DataGridFieldFactory
+from collective.z3cform.datagridfield.row import DictRow
 from design.plone.contenttypes import _
 from design.plone.contenttypes.interfaces import IDesignPloneContentType
 from plone.app.dexterity import textindexer
+from plone.app.z3cform.widget import DateFieldWidget
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
 from plone.namedfile import field
@@ -10,9 +13,6 @@ from plone.supermodel import model
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
 from zope import schema
-from collective.z3cform.datagridfield.row import DictRow
-from collective.z3cform.datagridfield.datagridfield import DataGridFieldFactory
-from plone.app.z3cform.widget import DateFieldWidget
 
 
 class ITempiEScadenzeValueSchema(model.Schema):
@@ -46,8 +46,7 @@ class ITempiEScadenzeValueSchema(model.Schema):
         title=_("interval_type_label", default="Tipo intervallo"),
         description=_(
             "interval_type_help",
-            default="Ad esempio: "
-            "ore, giorni, settimane, mesi.",
+            default="Ad esempio: " "ore, giorni, settimane, mesi.",
         ),
         required=False,
         default="",
@@ -259,9 +258,10 @@ class IServizio(model.Schema, IDesignPloneContentType):
         value_type=DictRow(schema=ITempiEScadenzeValueSchema),
         description=_(
             "timeline_tempi_scadenze_help",
-            default="Timeline tempi e scadenze del servizio: indicare per ogni scadenza "
-            "un titolo descritttivo di tale scadenza e, opzionalmente, informazioni sulle"
-            " date o gli intervalli di tempo che intercorrono tra una fase e la successiva.",
+            default="Timeline tempi e scadenze del servizio: indicare per ogni "
+            "scadenza un titolo descritttivo di tale scadenza e, opzionalmente,"
+            " informazioni sulle date o gli intervalli di tempo che "
+            "intercorrono tra una fase e la successiva.",
         ),
         required=False,
     )
