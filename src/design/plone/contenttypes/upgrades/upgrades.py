@@ -1018,6 +1018,7 @@ def migrate_pdc_and_incarico(context):
                 "fax": "fax",
                 "email": "email",
                 "pec": "pec",
+                "web": "web",
             },
         },
         # TODO: tbc
@@ -1201,6 +1202,11 @@ def create_incarico_for_persona(context):
 
         incarichi_folder = persona["incarichi"]
 
+        if incarichi_folder.values():
+            logger.info(
+                f"{colors.RED}{persona.title} ha già un incarico creato {colors.ENDC}"
+            )  # noqa
+
         incarico = api.content.create(
             type="Incarico", title=persona.ruolo, container=incarichi_folder
         )
@@ -1256,3 +1262,92 @@ def create_incarico_for_persona(context):
     logger.info(
         f"{colors.DARKCYAN} Finito di creare gli incarichi delle persone{colors.ENDC}"
     )
+
+
+def create_pdc(context):
+    portal_types = ["UnitaOrganizzativa", "Persona", "Event", "Venue"]  # ?
+    MAPPINGS = {
+        "Persona": {
+            "telefono": "telefono",
+            "fax": "fax",
+            "email": "email",
+            "pec": "pec",
+        },
+        "UnitaOrganizzativa": {
+            "telefono": "telefono",
+            "fax": "fax",
+            "email": "email",
+            "pec": "pec",
+            "web": "url",
+        },
+        "Event": {
+            "telefono": "telefono",
+            "fax": "fax",
+            "email": "email",
+            "web": "url",
+        },
+        "Venue": {
+            "telefono": "telefono",
+            "fax": "fax",
+            "email": "email",
+            "pec": "pec",
+            "web": "url",
+        },
+    }
+    pc = api.portal.get_tool(name="portal_catalog")
+    wftool = api.portal.get_tool(name="portal_workflow")
+    portal = api.portal.get()
+    punti_contatto_id = "punti-di-contatto"
+    punti_contatto_title = "Punti di contatto"
+    if "punti-di-contatto" not in portal:
+        punti_contatto = api.content.create(
+            type="Document",
+            id=punti_contatto_id,
+            title=punti_contatto_title,
+            container=portal,
+        )
+        wftool.doActionFor(punti_contatto, "publish")
+        logger.info(
+            f"{colors.GREEN} Creato cartella punti di contatto nella radice del portal{colors.ENDC}"  # noqa
+        )  # noqa
+    else:
+        punti_contatto = portal[punti_contatto_id]
+
+    for portal_type in portal_types:
+        brains = pc(**{"portal_type": portal_type})
+        for brain in brains:
+            obj = brain.getObject()
+            mapping = MAPPINGS["portal_type"]
+            pdc = api.content.create(
+                type="PuntoDiContatto",
+                title=f"Punto di contatto per: {obj.title}",
+                container=punti_contatto,
+            )
+            api.relation.create(source=obj, target=pdc, relationship="contact_info")
+            data = []
+            for field in mapping:
+                field_value = getattr(obj, field, None)
+                if field_value:
+                    continue
+                if type(field_value) != list:
+                    # in some case we have a f*****g list
+                    field_value = [
+                        field_value,
+                    ]
+                for value in field_value:
+                    data.append(
+                        {
+                            "pdc_type": mapping[field],
+                            "pdc_value": field_value,
+                        }
+                    )
+            pdc.value_punto_contatto = data
+
+
+# TODO
+# collegarsi
+
+
+# occhio che nel summary della UO devono esserci le info del punto di contatto...
+# se la UO ha più punti di contatto?
+#

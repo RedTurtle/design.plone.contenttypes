@@ -23,6 +23,12 @@
     </caption>
   </term>
   <term>
+    <termIdentifier>fax</termIdentifier>
+    <caption>
+      <langstring language="it">Fax</langstring>
+    </caption>
+  </term>
+  <term>
     <termIdentifier>url</termIdentifier>
     <caption>
       <langstring language="it">URL</langstring>

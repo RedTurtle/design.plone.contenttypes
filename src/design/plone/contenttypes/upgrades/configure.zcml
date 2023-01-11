@@ -614,5 +614,10 @@
         description="Create incarichi objects"
         handler=".upgrades.create_incarico_for_persona"
         />
+    <genericsetup:upgradeStep
+        title="Persone: Update for PNRR"
+        description="Create incarichi objects"
+        handler=".upgrades.create_pdc"
+        />
   </genericsetup:upgradeSteps>
 </configure>
