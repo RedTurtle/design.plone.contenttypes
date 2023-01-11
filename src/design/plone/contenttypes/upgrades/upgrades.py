@@ -1276,7 +1276,6 @@ def create_incarico_for_persona(context):
 
 def create_pdc(context):
     portal_types = ["UnitaOrganizzativa", "Persona", "Event", "Venue"]
-    portal_types = ["Persona"]
     MAPPINGS = {
         "Persona": {
             "telefono": "telefono",
