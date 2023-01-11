@@ -6,6 +6,7 @@
   <!-- summary -->
   <adapter factory=".summary.DefaultJSONSummarySerializer" />
   <adapter factory=".summary.IncaricoDefaultJSONSummarySerializer" />
+  <adapter factory=".summary.PersonaDefaultJSONSummarySerializer" />
 
   <adapter factory=".dxcontent.SerializeFolderToJson" />
   <adapter factory=".dxcontent.SerializeToJson" />
@@ -22,4 +23,5 @@
   <adapter factory=".bando.BandoSerializer" />
   <adapter factory=".documento.DocumentoSerializer" />
   <adapter factory=".cartella_modulistica.CartellaModulisticaSerializer" />
+
 </configure>
