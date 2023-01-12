@@ -160,5 +160,8 @@ class PersonaDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
             (field, self.context, IDesignPloneContenttypesLayer)
         )
         if images_info_adapter:
-            res["foto_persona"] = images_info_adapter()
+            res["image_scales"] = {
+                "foto_persona": [images_info_adapter()],
+            }
+        res["image_field"] = "foto_persona"
         return res
