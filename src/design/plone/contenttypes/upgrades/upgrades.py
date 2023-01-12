@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_base
+from collective.taxonomy.interfaces import ITaxonomy
 from collective.volto.blocksfield.field import BlocksField
 from copy import deepcopy
 from design.plone.contenttypes.controlpanels.settings import IDesignPloneSettings
@@ -8,6 +9,7 @@ from design.plone.contenttypes.upgrades.draftjs_converter import to_draftjs
 from plone import api
 from plone.app.textfield.value import RichTextValue
 from plone.app.upgrade.utils import installOrReinstallProduct
+from plone.base.utils import get_installer
 from plone.dexterity.utils import iterSchemata
 from plone.namedfile.file import NamedBlobFile
 from Products.CMFPlone.interfaces import ISelectableConstrainTypes
@@ -15,6 +17,7 @@ from Products.CMFPlone.utils import safe_hasattr
 from redturtle.bandi.interfaces.settings import IBandoSettings
 from transaction import commit
 from z3c.relationfield import RelationValue
+from zope.component import getUtilitiesFor
 from zope.component import getUtility
 from zope.event import notify
 from zope.intid.interfaces import IIntIds
@@ -995,7 +998,7 @@ def migrate_pdc_and_incarico(context):
     type_mapping = {
         "Persona": {
             "PDC": {
-                "telefono": "phone",
+                "telefono": "telefono",
                 "fax": "fax",
                 "email": "email",
                 "pec": "pec",
@@ -1014,7 +1017,7 @@ def migrate_pdc_and_incarico(context):
         },
         "UnitaOrganizzativa": {
             "PDC": {
-                "telefono": "phone",
+                "telefono": "telefono",
                 "fax": "fax",
                 "email": "email",
                 "pec": "pec",
@@ -1024,7 +1027,7 @@ def migrate_pdc_and_incarico(context):
         # TODO: tbc
         "Event": {
             "PDC": {
-                "telefono": "phone",
+                "telefono": "telefono",
                 "fax": "fax",
                 "email": "email",
                 "pec": "pec",
@@ -1033,7 +1036,7 @@ def migrate_pdc_and_incarico(context):
         # TODO: tbc
         "Venue": {
             "PDC": {
-                "riferimento_telefonico_struttura": "phone",
+                "riferimento_telefonico_struttura": "telefono",
                 "riferimento_fax_struttura": "fax",
                 "riferimento_mail_struttura": "email",
                 "riferimento_pec_struttura": "pec",
@@ -1043,7 +1046,7 @@ def migrate_pdc_and_incarico(context):
         "Servizio": {
             # questi non sono presenti sul ct originale
             "PDC": {
-                "telefono": "phone",
+                "telefono": "telefono",
                 "fax": "fax",
                 "email": "email",
                 "pec": "pec",
@@ -1109,10 +1112,6 @@ def migrate_pdc_and_incarico(context):
             item = brain.getObject()
             kwargs = {"value_punto_contatto": [], "persona": []}
             for key, value in mapping.items():
-                # import pdb
-
-                # pdb.set_trace()
-
                 if hasattr(item, key):
                     kwargs["value_punto_contatto"].append(
                         {"pdc_type": value, "pdc_value": item[key]}
@@ -1130,6 +1129,7 @@ def migrate_pdc_and_incarico(context):
             # pdb.set_trace()
             item.contact_info = [RelationValue(intids.getId(new_pdc))]
             fixed_total += 1
+            commit()
 
         logger.info(f"Fixing Punto di Contatto for '{portal_type}: DONE")
         logger.info("Updated {} objects".format(fixed_total))
@@ -1151,6 +1151,25 @@ class colors(object):
 
 
 def to_7000(context):
+
+    installer = get_installer(context=api.portal.get())
+    installer.install_product("eea.api.taxonomy")
+    logger.info(
+        f"{colors.DARKCYAN} eea.api.taxonomy and collective.taxonomy installed {colors.ENDC}"  # noqa
+    )
+    # no more available
+    # installer.install_product("design.plone.contentypes", profile="taxonomy")
+    context.runImportStepFromProfile(
+        "design.plone.contenttypes:taxonomy", "collective.taxonomy"
+    )
+    for utility_name, utility in list(getUtilitiesFor(ITaxonomy)):
+        utility.updateBehavior(**{"field_prefix": ""})
+        logger.info(
+            f"{colors.DARKCYAN} Change taxonomy prefix for {utility_name} {colors.ENDC}"  # noqa
+        )
+    logger.info(
+        f"{colors.DARKCYAN} design.plone.contentypes taxonomies imported {colors.ENDC}"  # noqa
+    )
     update_types(context)
     update_registry(context)
     update_catalog(context)
@@ -1216,9 +1235,18 @@ def create_incarico_for_persona(context):
             logger.info(
                 f"{colors.RED}{persona.title} ha già un incarico creato {colors.ENDC}"
             )  # noqa
+            continue
+
+        if safe_hasattr(persona, "ruolo"):
+            incarico_title = persona.ruolo
+        else:
+            logger.info(
+                f"{colors.RED} Attenzione: {persona.title} non ha un ruolo {colors.ENDC}"  # noqa
+            )
+            incarico_title = persona.title
 
         incarico = api.content.create(
-            type="Incarico", title=persona.ruolo, container=incarichi_folder
+            type="Incarico", title=incarico_title, container=incarichi_folder
         )
         # incarico.persona = [RelationValue(intids.getId(persona))]
         api.relation.create(source=incarico, target=persona, relationship="persona")
@@ -1240,7 +1268,7 @@ def create_incarico_for_persona(context):
                 title="Atto di nomina",
                 container=incarico,
             )
-            atto_nomina.description = f"Atto di nomina di {persona.title} per il ruolo di {persona.ruolo}"  # noqa
+            atto_nomina.description = f"Atto di nomina di {persona.title} per il ruolo di {incarico_title}"  # noqa
             atto_nomina.file_correlato = NamedBlobFile(
                 data=persona.atto_nomina.data,
                 filename=persona.atto_nomina.filename,
@@ -1304,6 +1332,17 @@ def create_pdc(context):
             "web": "url",
         },
     }
+
+    def migrated_contact_info(source):
+        # we check if we have attribute, if it's a list and no more a json (block field)
+        # finally we check if we have at least a value.
+        if (
+            safe_hasattr(source, "contact_info")
+            and type(obj.contact_info) == list
+            and len(obj.contact_info) > 0
+        ):
+            return True
+
     pc = api.portal.get_tool(name="portal_catalog")
     wftool = api.portal.get_tool(name="portal_workflow")
     portal = api.portal.get()
@@ -1347,11 +1386,14 @@ def create_pdc(context):
             if not data:
                 continue
 
-            try:
+            if not migrated_contact_info(obj):
                 obj.old_contact_info = obj.contact_info
                 del obj.contact_info
-            except AttributeError:
-                pass
+            else:
+                logger.info(
+                    f"{colors.RED} Esiste già un punto di contatto per {obj.title}({obj.absolute_url()}){colors.ENDC}"  # noqa
+                )
+                continue
 
             pdc = api.content.create(
                 type="PuntoDiContatto",

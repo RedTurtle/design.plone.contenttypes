@@ -102,10 +102,12 @@ class UOSerializer(RelatedNewsSerializer):
         result = super(UOSerializer, self).__call__(
             version=version, include_items=include_items
         )
-        result["servizi_offerti"] = self.get_services()
-        result["uo_parent"] = self.getParentUo()
-        result["uo_children"] = self.getChildrenUo()
-        result["prestazioni"] = self.getUOServiziDoveRivolgersi(result.get("UID", ""))
+        result["servizi_offerti"] = json_compatible(self.get_services())
+        result["uo_parent"] = json_compatible(self.getParentUo())
+        result["uo_children"] = json_compatible(self.getChildrenUo())
+        result["prestazioni"] = json_compatible(
+            self.getUOServiziDoveRivolgersi(result.get("UID", ""))
+        )
 
         return result
 

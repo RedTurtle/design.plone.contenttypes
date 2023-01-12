@@ -602,12 +602,12 @@
   <genericsetup:upgradeSteps
       profile="design.plone.contenttypes:default"
       source="6011"
-      destination="7000"
+      destination="7001"
       >
     <genericsetup:upgradeStep
         title="Persone: Update for PNRR"
         description="Create Incarichi folder"
-        handler=".upgrades.to_7000"
+        handler=".upgrades.to_7001"
         />
     <genericsetup:upgradeStep
         title="Persone: Update for PNRR"
