@@ -1150,7 +1150,7 @@ class colors(object):
     YELLOW = "\033[93m"
 
 
-def to_7000(context):
+def to_7001(context):
 
     installer = get_installer(context=api.portal.get())
     installer.install_product("eea.api.taxonomy")
