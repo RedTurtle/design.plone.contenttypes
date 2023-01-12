@@ -18,6 +18,9 @@ from zope.schema.interfaces import IList
 from zope.schema.interfaces import IVocabularyFactory
 
 
+DATAGRID_FIELDS = ["value_punto_contatto", "timeline_tempi_scadenze"]
+
+
 @adapter(IField, Interface, Interface)
 @implementer(IJsonSchemaProvider)
 class LeadImageJsonSchemaProvider(ObjectJsonSchemaProvider):
@@ -50,7 +53,7 @@ class LeadImageJsonSchemaProvider(ObjectJsonSchemaProvider):
 @implementer(IJsonSchemaProvider)
 class DataGridFieldJsonSchemaProvider(ListJsonSchemaProvider):
     def get_widget(self):
-        if self.field.getName() == "value_punto_contatto":
+        if self.field.getName() in DATAGRID_FIELDS:
             return "data_grid"
         return super().get_widget()
 

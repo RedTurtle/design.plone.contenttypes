@@ -11,6 +11,7 @@
   <adapter factory=".dxcontent.SerializeFolderToJson" />
   <adapter factory=".dxcontent.SerializeToJson" />
   <adapter factory=".dxfields.SourceTextSerializer" />
+  <adapter factory=".dxfields.TempiEScadenzeValueSerializer" />
   <adapter factory=".modulo.SerializeModuloToJsonSummary" />
   <adapter factory=".persona.PersonaSerializer" />
   <adapter factory=".persona.PersonaDefaultJSONSummarySerializer" />
