@@ -5,7 +5,9 @@ Changelog
 6.0.0a2 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Fixed upgrade step
+- minor fix
+  [lucabel]
 
 
 6.0.0a1 (2023-01-12)
