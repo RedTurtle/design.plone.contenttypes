@@ -118,13 +118,14 @@ class UOJSONSummarySerializer(DefaultJSONSummarySerializer):
             "address",
             "city",
             "zip_code",
-            "email",
-            "telefono",
+            # "email",
+            # "telefono",
             "nome_sede",
             "title",
             "quartiere",
             "circoscrizione",
             "street",
+            "contact_info",
         ]
 
         for field in fields:

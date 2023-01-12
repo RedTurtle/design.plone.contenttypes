@@ -607,6 +607,11 @@
     <genericsetup:upgradeStep
         title="Persone: Update for PNRR"
         description="Create Incarichi folder"
+        handler=".upgrades.to_7000"
+        />
+    <genericsetup:upgradeStep
+        title="Persone: Update for PNRR"
+        description="Create Incarichi folder"
         handler=".upgrades.create_incarichi_folder"
         />
     <genericsetup:upgradeStep
@@ -616,7 +621,7 @@
         />
     <genericsetup:upgradeStep
         title="Persone: Update for PNRR"
-        description="Create incarichi objects"
+        description="Create PDC objects"
         handler=".upgrades.create_pdc"
         />
   </genericsetup:upgradeSteps>
