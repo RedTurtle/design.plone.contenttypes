@@ -9,6 +9,7 @@
   <adapter factory=".dxfields.GeolocationFieldDeserializer" />
   <adapter factory=".venue.DeserializeLuogoFromJson" />
   <adapter factory=".dxfields.SourceTextDeserializer" />
+  <adapter factory=".dxfields.TimelineTempiEScadenzeFieldDeserializer" />
   <adapter factory=".news.DeserializeNewsFromJson" />
   <adapter factory=".documento.DeserializeDocumentoFromJson" />
 </configure>

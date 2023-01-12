@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 from collective.volto.blocksfield.field import BlocksField
+from collective.z3cform.datagridfield.datagridfield import DataGridFieldFactory
+from collective.z3cform.datagridfield.row import DictRow
 from design.plone.contenttypes import _
 from design.plone.contenttypes.interfaces import IDesignPloneContentType
 from plone.app.dexterity import textindexer
+from plone.app.z3cform.widget import DateFieldWidget
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
 from plone.namedfile import field
@@ -10,6 +13,58 @@ from plone.supermodel import model
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
 from zope import schema
+
+
+class ITempiEScadenzeValueSchema(model.Schema):
+    data_scadenza = schema.Date(
+        title=_("data_scadenza_label", default="Data scadenza"),
+        description=_(
+            "data_scadenza_help",
+            default="Data di scadenza della fase",
+        ),
+        required=False,
+    )
+    milestone = schema.TextLine(
+        title=_("milestone_label", default="Titolo"),
+        description=_(
+            "milestone_help",
+            default="Titolo della fase",
+        ),
+        required=True,
+        default="",
+    )
+    interval_qt = schema.TextLine(
+        title=_("interval_qt_label", default="Intervallo"),
+        description=_(
+            "interval_qt_help",
+            default="Intervallo della fase",
+        ),
+        required=False,
+        default="",
+    )
+    interval_type = schema.TextLine(
+        title=_("interval_type_label", default="Tipo intervallo"),
+        description=_(
+            "interval_type_help",
+            default="Ad esempio: " "ore, giorni, settimane, mesi.",
+        ),
+        required=False,
+        default="",
+    )
+    milestone_description = schema.TextLine(
+        title=_("milestone_description_label", default="Sottotitolo"),
+        description=_(
+            "milestone_description_help",
+            default="Sottotitolo della fase",
+        ),
+        required=False,
+        default="",
+    )
+
+    form.widget(
+        "data_scadenza",
+        DateFieldWidget,
+    )
 
 
 class IServizio(model.Schema, IDesignPloneContentType):
@@ -197,6 +252,20 @@ class IServizio(model.Schema, IDesignPloneContentType):
         ),
     )
 
+    timeline_tempi_scadenze = schema.List(
+        title=_("timeline_tempi_scadenze", default="Timeline tempi e scadenze"),
+        default=[],
+        value_type=DictRow(schema=ITempiEScadenzeValueSchema),
+        description=_(
+            "timeline_tempi_scadenze_help",
+            default="Timeline tempi e scadenze del servizio: indicare per ogni "
+            "scadenza un titolo descritttivo di tale scadenza e, opzionalmente,"
+            " informazioni sulle date o gli intervalli di tempo che "
+            "intercorrono tra una fase e la successiva.",
+        ),
+        required=False,
+    )
+
     cosa_serve = BlocksField(
         title=_("cosa_serve", default="Cosa serve"),
         required=True,
@@ -342,6 +411,15 @@ class IServizio(model.Schema, IDesignPloneContentType):
 
     # custom widgets
     form.widget(
+        "canale_fisico",
+        RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
+        pattern_options={
+            "maximumSelectionSize": 10,
+            "selectableTypes": ["UnitaOrganizzativa"],
+        },
+    )
+    form.widget(
         "dove_rivolgersi",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
@@ -391,6 +469,10 @@ class IServizio(model.Schema, IDesignPloneContentType):
             # "basePath": "/",
         },
     )
+    form.widget(
+        "timeline_tempi_scadenze",
+        DataGridFieldFactory,
+    )
 
     # custom fieldset and order
     model.fieldset(
@@ -429,7 +511,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
     model.fieldset(
         "tempi_e_scadenze",
         label=_("tempi_e_scadenze_label", default="Tempi e scadenze"),
-        fields=["tempi_e_scadenze"],
+        fields=["tempi_e_scadenze", "timeline_tempi_scadenze"],
     )
 
     model.fieldset(

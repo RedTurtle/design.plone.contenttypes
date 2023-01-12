@@ -140,6 +140,7 @@ class DeserializeServizioFromJson(DeserializeFromJson):
 
         if errors:
             raise BadRequest(errors)
+
         return super(DeserializeServizioFromJson, self).__call__(
             validate_all=False, data=data, create=False
         )
