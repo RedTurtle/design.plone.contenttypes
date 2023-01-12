@@ -14,7 +14,6 @@
   <adapter factory=".dxfields.SourceTextSerializer" />
   <adapter factory=".modulo.SerializeModuloToJsonSummary" />
   <adapter factory=".persona.PersonaSerializer" />
-  <adapter factory=".persona.PersonaDefaultJSONSummarySerializer" />
   <adapter factory=".related_news_serializer.ServizioSerializer" />
   <adapter factory=".relationfield.RelationListFieldSerializer" />
   <adapter factory=".servizio.SerializeServizioToJsonSummary" />

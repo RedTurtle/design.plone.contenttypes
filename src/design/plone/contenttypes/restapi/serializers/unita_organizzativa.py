@@ -60,7 +60,7 @@ class UOSerializer(RelatedNewsSerializer):
         for child in children:
             data = getMultiAdapter((child, self.request), ISerializeToJsonSummary)()
             data.update(self.getAdditionalInfos(context=child))
-            res.append(data)
+            res.append(json_compatible(data))
         return res
 
     def getParentUo(self):
@@ -70,7 +70,7 @@ class UOSerializer(RelatedNewsSerializer):
 
         data = getMultiAdapter((parent, self.request), ISerializeToJsonSummary)()
         data.update(self.getAdditionalInfos(context=parent))
-        return data
+        return json_compatible(data)
 
     def getAdditionalInfos(self, context):
         return {
