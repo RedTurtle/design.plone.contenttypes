@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-6.0.0a2 (unreleased)
+6.0.0a2 (2023-01-12)
 --------------------
 
 - Fixed upgrade step
