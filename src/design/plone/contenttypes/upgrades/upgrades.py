@@ -1348,6 +1348,7 @@ def create_pdc(context):
                 continue
 
             try:
+                obj.old_contact_info = obj.contact_info
                 del obj.contact_info
             except AttributeError:
                 pass
