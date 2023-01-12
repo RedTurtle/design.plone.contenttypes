@@ -136,15 +136,22 @@ class IncaricoDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
         taxonomy = getUtility(ITaxonomy, name="collective.taxonomy.tipologia_incarico")
         taxonomy_voc = taxonomy.makeVocabulary(self.request.get("LANGUAGE"))
         if "tipologia_incarico" not in res:
-            res["tipologia_incarico"] = taxonomy_voc.inv_data.get(
-                self.context.tipologia_incarico
-            ).replace(PATH_SEPARATOR, "")
+            if self.context.tipologia_incarico:
+                res["tipologia_incarico"] = taxonomy_voc.inv_data.get(
+                    self.context.tipologia_incarico
+                ).replace(PATH_SEPARATOR, "")
+            else:
+                res["tipologia_incarico"] = json_compatible(None)
         if "data_inizio_incarico" not in res:
             res["data_inizio_incarico"] = json_compatible(
                 self.context.data_inizio_incarico
             )
+        else:
+            res["data_inizio_incarico"] = json_compatible(None)
         if "compensi" not in res:
             res["compensi"] = json_compatible(self.context.compensi)
+        else:
+            res["compensi"] = json_compatible([])
         return res
 
 
