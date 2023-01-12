@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 from .related_news_serializer import SerializeFolderToJson
 from Acquisition import aq_inner
+from design.plone.contenttypes.interfaces.punto_di_contatto import IPuntoDiContatto
 from design.plone.contenttypes.restapi.serializers.summary import (
     DefaultJSONSummarySerializer,
 )
-from design.plone.contenttypes.interfaces.punto_di_contatto import IPuntoDiContatto
 from plone.dexterity.utils import iterSchemata
 from plone.restapi.interfaces import IFieldSerializer
 from plone.restapi.interfaces import ISerializeToJson
@@ -62,7 +62,11 @@ class PuntoDiContattoSerializer(SerializeFolderToJson):
 
         for rel in relations:
             obj = intids.queryObject(rel.from_id)
-            if obj is not None and checkPermission("zope2.View", obj) and getattr(obj, 'portal_type', None) == portal_type:
+            if (
+                obj is not None
+                and checkPermission("zope2.View", obj)
+                and getattr(obj, "portal_type", None) == portal_type
+            ):
                 summary = getMultiAdapter(
                     (obj, getRequest()), ISerializeToJsonSummary
                 )()
@@ -73,10 +77,18 @@ class PuntoDiContattoSerializer(SerializeFolderToJson):
         result = super(PuntoDiContattoSerializer, self).__call__(
             version=version, include_items=include_items
         )
-        strutture_correlate = self.related_contents(field="contact_info", portal_type="UnitaOrganizzativa")
-        servizi_correlati = self.related_contents(field="contact_info", portal_type="Servizio")
-        luoghi_correlati = self.related_contents(field="contact_info", portal_type="Venue")
-        persone_correlate = self.related_contents(field="contact_info", portal_type="Persona")
+        strutture_correlate = self.related_contents(
+            field="contact_info", portal_type="UnitaOrganizzativa"
+        )
+        servizi_correlati = self.related_contents(
+            field="contact_info", portal_type="Servizio"
+        )
+        luoghi_correlati = self.related_contents(
+            field="contact_info", portal_type="Venue"
+        )
+        persone_correlate = self.related_contents(
+            field="contact_info", portal_type="Persona"
+        )
 
         if strutture_correlate:
             result["strutture_correlate"] = strutture_correlate

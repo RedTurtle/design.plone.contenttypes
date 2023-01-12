@@ -994,7 +994,7 @@ def migrate_pdc_and_incarico(context):
     # "field name in original ct": "field name in new ct"
     type_mapping = {
         "Persona": {
-            'PDC': {
+            "PDC": {
                 "telefono": "telefono",
                 "fax": "fax",
                 "email": "email",
@@ -1013,7 +1013,7 @@ def migrate_pdc_and_incarico(context):
             },
         },
         "UnitaOrganizzativa": {
-            'PDC': {
+            "PDC": {
                 "telefono": "telefono",
                 "fax": "fax",
                 "email": "email",
@@ -1023,7 +1023,7 @@ def migrate_pdc_and_incarico(context):
         },
         # TODO: tbc
         "Event": {
-            'PDC': {
+            "PDC": {
                 "telefono": "telefono",
                 "fax": "fax",
                 "email": "email",
@@ -1032,7 +1032,7 @@ def migrate_pdc_and_incarico(context):
         },
         # TODO: tbc
         "Venue": {
-            'PDC': {
+            "PDC": {
                 "riferimento_telefonico_struttura": "telefono",
                 "riferimento_fax_struttura": "fax",
                 "riferimento_mail_struttura": "email",
@@ -1042,7 +1042,7 @@ def migrate_pdc_and_incarico(context):
         # TODO: tbc
         "Servizio": {
             # questi non sono presenti sul ct originale
-            'PDC': {
+            "PDC": {
                 "telefono": "telefono",
                 "fax": "fax",
                 "email": "email",
