@@ -1243,7 +1243,7 @@ def create_incarico_for_persona(context):
             logger.info(
                 f"{colors.RED} Attenzione: {persona.title} non ha un ruolo {colors.ENDC}"  # noqa
             )
-            incarico_title = persona.title
+            incarico_title = f"Incarico di {persona.title}"
 
         incarico = api.content.create(
             type="Incarico", title=incarico_title, container=incarichi_folder
