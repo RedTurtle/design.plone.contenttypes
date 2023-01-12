@@ -8,6 +8,7 @@ from design.plone.contenttypes.restapi.serializers.summary import (
 from plone import api
 from plone.restapi.interfaces import ISerializeToJson
 from plone.restapi.interfaces import ISerializeToJsonSummary
+from plone.restapi.serializer.converters import json_compatible
 from zc.relation.interfaces import ICatalog
 from zope.component import adapter
 from zope.component import getMultiAdapter
@@ -129,7 +130,10 @@ class UOJSONSummarySerializer(DefaultJSONSummarySerializer):
         ]
 
         for field in fields:
-            data[field] = getattr(self.context, field, "")
+            if field == "contact_info":
+                data[field] = json_compatible(getattr(self.context, field, ""))
+            else:
+                data[field] = getattr(self.context, field, "")
 
         data["geolocation"] = self.getGeolocation()
 
