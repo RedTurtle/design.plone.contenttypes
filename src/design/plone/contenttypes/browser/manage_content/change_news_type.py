@@ -6,7 +6,6 @@ from plone import api
 
 from copy import deepcopy
 from logging import getLogger
-import transaction
 
 from design.plone.contenttypes import _
 
