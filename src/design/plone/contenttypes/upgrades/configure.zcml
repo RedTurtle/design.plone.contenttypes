@@ -625,4 +625,20 @@
         handler=".upgrades.create_pdc"
         />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="7001"
+      destination="7002"
+      >
+    <genericsetup:upgradeStep
+        title="Persone: Update for PNRR - migrazione Tassonomie"
+        description="Migrazione delle tassonomie sui contenttypes"
+        handler=".upgrades.update_taxonomies"
+        />
+    <genericsetup:upgradeStep
+        title="Persone: Update for PNRR - migrazione Tassonomie"
+        description="Migrazione delle tassonomie sui blocchi"
+        handler=".upgrades.update_taxonomies_on_blocks"
+        />
+  </genericsetup:upgradeSteps>
 </configure>

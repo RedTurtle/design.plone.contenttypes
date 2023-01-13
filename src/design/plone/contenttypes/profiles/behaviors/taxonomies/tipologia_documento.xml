@@ -59,4 +59,11 @@
       <langstring language="it">Istanza</langstring>
     </caption>
   </term>
+  <term>
+    <termIdentifier>dataset</termIdentifier>
+    <caption>
+      <langstring language="en" />
+      <langstring language="it">Dataset</langstring>
+    </caption>
+  </term>
 </vdex>
