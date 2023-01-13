@@ -34,18 +34,14 @@ class View(BrowserView):
                     )
                     return
 
-                # in the generator expression below we are trying to extract the News Items uuids form the form
-                for item_uid in [i for i, j in self.request.form.items() if j == "on"]:
-                    item = api.content.get(UID=item_uid)
+                for name, value in self.request.form.items():
+                    if value != "on":
+                        return
+
+                    item = api.content.get(UID=name)
+
                     if item:
-                        try:
-                            api.content.move(item, move_to)
-                        except Exception as e:
-                            logger.error(f"Couldn'move items due to {e}")
-                            self.context.plone_utils.addPortalMessage(
-                                _("Items move was failed"), "error"
-                            )
-                            return
+                        api.content.move(item, move_to)
 
                 self.context.plone_utils.addPortalMessage(
                     _("Items moved with success"), "info"

@@ -37,9 +37,15 @@ class View(BrowserView):
         old_news_type = self.request.form.get("news_type_in_catalog", "")
         news_new_type = self.request.form.get("news_type_portal", "")
 
-        if not old_news_type or not news_new_type:
+        if not old_news_type:
             self.context.plone_utils.addPortalMessage(
-                _("One of the fields was not populated"), "error"
+                _("The old type field was not populated"), "error"
+            )
+            return
+
+        if not news_new_type:
+            self.context.plone_utils.addPortalMessage(
+                _("The new type field was not populated"), "error"
             )
             return
 
