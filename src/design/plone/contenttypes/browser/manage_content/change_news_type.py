@@ -84,5 +84,3 @@ class View(BrowserView):
         self.context.plone_utils.addPortalMessage(
             _("The News Types was changed with success"), "info"
         )
-
-    transaction.commit()
