@@ -50,6 +50,18 @@ class View(BrowserView):
             )
             return
 
+        if news_new_type not in self.news_types():
+            self.context.plone_utils.addPortalMessage(
+                _("The new News Type was not found between available values"), "error"
+            )
+            return
+
+        if old_news_type not in self.news_types_in_catalog():
+            self.context.plone_utils.addPortalMessage(
+                _("The old News Type was not found between available values"), "error"
+            )
+            return
+
         for news in api.portal.get_tool("portal_catalog")(
             tipologia_notizia=old_news_type
         ):
