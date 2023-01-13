@@ -42,6 +42,7 @@
                 <div class="formControls">
                     <button id="substitute"
                            name="substitute"
+                           value="true"
                            class="submit-widget button-field context"
                            type="submit" i18n:translate="">Substitute</button>
                 </div>
