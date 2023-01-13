@@ -55,7 +55,7 @@ class IPuntoDiContatto(model.Schema, IDesignPloneContentType):
         ),
         description=_(
             "persona_incarico_help",
-            default="Seleziona la/e persona/e che ha/hanno la carica e l'incarico.",
+            default="Se una persona è un punto di contatto di un'altra Tipologia",
         ),
         value_type=RelationChoice(vocabulary="plone.app.vocabularies.Catalog"),
         required=False,
