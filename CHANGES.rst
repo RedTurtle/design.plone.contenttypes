@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-6.0.0a3 (unreleased)
+6.0.0a3 (2023-01-13)
 --------------------
 
 - Update upgrade steps to change types information
