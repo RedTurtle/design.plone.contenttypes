@@ -1,11 +1,7 @@
 # -*- coding: utf-8 -*-
 from .related_news_serializer import SerializeFolderToJson
 from Acquisition import aq_inner
-from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
 from design.plone.contenttypes.interfaces.persona import IPersona
-from design.plone.contenttypes.restapi.serializers.summary import (
-    DefaultJSONSummarySerializer,
-)
 from plone.restapi.interfaces import ISerializeToJson
 from plone.restapi.interfaces import ISerializeToJsonSummary
 from zc.relation.interfaces import ICatalog
@@ -16,7 +12,6 @@ from zope.globalrequest import getRequest
 from zope.interface import implementer
 from zope.interface import Interface
 from zope.intid.interfaces import IIntIds
-from zope.schema import getFieldsInOrder
 from zope.security import checkPermission
 
 
@@ -61,18 +56,3 @@ class PersonaSerializer(SerializeFolderToJson):
         if assessore_di:
             result["assessore_di"] = assessore_di
         return result
-
-
-@implementer(ISerializeToJsonSummary)
-@adapter(IPersona, IDesignPloneContenttypesLayer)
-class PersonaDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
-    def __call__(self, force_all_metadata=False):
-        res = super().__call__(force_all_metadata=force_all_metadata)
-        fields = dict(getFieldsInOrder(IPersona))
-        field = fields["foto_persona"]
-        images_info_adapter = getMultiAdapter(
-            (field, self.context, IDesignPloneContenttypesLayer)
-        )
-        if images_info_adapter:
-            res["foto_persona"] = images_info_adapter()
-        return res

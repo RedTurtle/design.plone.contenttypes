@@ -6,6 +6,9 @@ from design.plone.contenttypes.interfaces import IDesignPloneContentType
 from plone.autoform import directives as form
 from plone.supermodel import model
 from zope import schema
+from plone.app.z3cform.widget import RelatedItemsFieldWidget
+from z3c.relationfield.schema import RelationChoice
+from z3c.relationfield.schema import RelationList
 
 
 class IPDCValueSchema(model.Schema):
@@ -27,6 +30,7 @@ class IPDCValueSchema(model.Schema):
         ),
         required=True,
         default="",
+        max_length=255,
     )
 
 
@@ -44,8 +48,31 @@ class IPuntoDiContatto(model.Schema, IDesignPloneContentType):
         ),
         required=True,
     )
+    persona = RelationList(
+        title=_(
+            "persona_incarico_label",
+            default="Persona",
+        ),
+        description=_(
+            "persona_incarico_help",
+            default="Seleziona la/e persona/e che ha/hanno la carica e l'incarico.",
+        ),
+        value_type=RelationChoice(vocabulary="plone.app.vocabularies.Catalog"),
+        required=False,
+        default=[],
+    )
 
     form.widget(
         "value_punto_contatto",
         DataGridFieldFactory,
+    )
+
+    form.widget(
+        "persona",
+        RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
+        pattern_options={
+            "maximumSelectionSize": 10,
+            "selectableTypes": ["Persona"],
+        },
     )
