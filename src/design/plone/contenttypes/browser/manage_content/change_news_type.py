@@ -6,6 +6,7 @@ from plone import api
 
 from copy import deepcopy
 from logging import getLogger
+import transaction
 
 from design.plone.contenttypes import _
 
@@ -49,15 +50,6 @@ class View(BrowserView):
             )
             return
 
-        if (
-            news_new_type not in self.news_types()
-            or old_news_type not in self.news_types_in_catalog()
-        ):
-            # It will happen only if the form will be used by somebody cunning
-            self.context.plone_utils.addPortalMessage(
-                _("Bad old or new 'tipologia_notizia' was send"), "error"
-            )
-
         for news in api.portal.get_tool("portal_catalog")(
             tipologia_notizia=old_news_type
         ):
@@ -93,4 +85,4 @@ class View(BrowserView):
             _("The News Types was changed with success"), "info"
         )
 
-        return
+    transaction.commit()
