@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-01-05 16:14+0000\n"
+"POT-Creation-Date: 2023-01-13 10:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -152,7 +152,7 @@ msgstr ""
 msgid "Avvio/registrazione filiale"
 msgstr ""
 
-#: design/plone/contenttypes/browser/manage_content/change_news_type.py:52
+#: design/plone/contenttypes/browser/manage_content/change_news_type.py:58
 msgid "Bad old or new 'tipologia_notizia' was send"
 msgstr "La vecchia o la nuova Tipologia Notizia non è stata inserita"
 
@@ -483,11 +483,7 @@ msgstr ""
 msgid "Istruzione, cultura e sport"
 msgstr ""
 
-#: design/plone/contenttypes/browser/manage_content/move_news_items.py:46
-msgid "Items move was failed"
-msgstr "Spostamento dei dati è fallito"
-
-#: design/plone/contenttypes/browser/manage_content/move_news_items.py:51
+#: design/plone/contenttypes/browser/manage_content/move_news_items.py:47
 msgid "Items moved with success"
 msgstr "Gli elementi sono stati spostati con successo"
 
@@ -580,10 +576,6 @@ msgstr ""
 #: design/plone/contenttypes/vocabularies/all_life_events_vocabulary.py:73
 msgid "Notifiche autorità"
 msgstr ""
-
-#: design/plone/contenttypes/browser/manage_content/change_news_type.py:42
-msgid "One of the fields was not populated"
-msgstr "Uno dei campi non è stato inserito"
 
 #: design/plone/contenttypes/interfaces/persona.py:48
 msgid "Organizzazione di riferimento"
@@ -802,11 +794,19 @@ msgstr ""
 msgid "The News Type selected above will be substituted by the selected value"
 msgstr "La Tipologia Notizia indicata sopra sarà sostituita dalla tipologia notizia selezionata"
 
-#: design/plone/contenttypes/browser/manage_content/change_news_type.py:87
+#: design/plone/contenttypes/browser/manage_content/change_news_type.py:93
 msgid "The News Types was changed with success"
 msgstr "Le Tiplogie Notizie sono state sostituite con successo"
 
-#: design/plone/contenttypes/browser/manage_content/move_news_items.py:55
+#: design/plone/contenttypes/browser/manage_content/change_news_type.py:48
+msgid "The new type field was not populated"
+msgstr "Il campo del nuovo tipo non è stato popolato"
+
+#: design/plone/contenttypes/browser/manage_content/change_news_type.py:42
+msgid "The old type field was not populated"
+msgstr "l campo del vecchio tipo non è stato popolato"
+
+#: design/plone/contenttypes/browser/manage_content/move_news_items.py:51
 msgid "The path was not indicated"
 msgstr "Il path non è stato indicato"
 
