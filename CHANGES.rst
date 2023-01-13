@@ -5,7 +5,9 @@ Changelog
 6.0.0a3 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Update upgrade steps to change types information
+  according to new AGID AI
+  [lucabel]
 
 
 6.0.0a2 (2023-01-12)
