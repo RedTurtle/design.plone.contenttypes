@@ -36,7 +36,7 @@ class View(BrowserView):
 
                 for name, value in self.request.form.items():
                     if value != "on":
-                        return
+                        continue
 
                     item = api.content.get(UID=name)
 
