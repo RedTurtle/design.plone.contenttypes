@@ -22,6 +22,7 @@ import plone.app.caching
 import plone.formwidget.geolocation
 import plone.restapi
 import redturtle.bandi
+import redturtle.prenotazioni
 import redturtle.volto
 
 
@@ -36,6 +37,7 @@ class DesignPloneContenttypesLayer(RedturtleVoltoLayer):
         self.loadZCML(package=design.plone.contenttypes, context=configurationContext)
         self.loadZCML(package=plone.formwidget.geolocation)
         self.loadZCML(name="overrides.zcml", package=design.plone.contenttypes)
+        self.loadZCML(redturtle.prenotazioni)
         xmlconfig.file(
             "configure.zcml",
             design.plone.contenttypes,
@@ -49,6 +51,7 @@ class DesignPloneContenttypesLayer(RedturtleVoltoLayer):
 
     def setUpPloneSite(self, portal):
         super().setUpPloneSite(portal)
+        applyProfile(portal, "redturtle.prenotazioni:default")
         applyProfile(portal, "design.plone.contenttypes:default")
 
 

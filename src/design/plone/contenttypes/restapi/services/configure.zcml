@@ -8,6 +8,8 @@
   <include package=".types" />
   <include package=".scadenziario" />
   <include package=".trasparenza" />
+  <include package=".prenotazioni_folders_list" />
+
 
   <adapter
       factory=".controlpanel.DesignPloneSettings"
