@@ -125,31 +125,6 @@ class IEvento(model.Schema):
         ),
     )
 
-    evento_genitore = RelationList(
-        title=_("evento_genitore_label", default="Evento genitore"),
-        required=False,
-        default=[],
-        value_type=RelationChoice(vocabulary="plone.app.vocabularies.Catalog"),
-        description=_(
-            "evento_genitore_help",
-            default="Un evento può essere parte di un altro evento definito come "
-            '"genitore" (ad es. "Mostra sul Rinascimento" è parte '
-            "dell'evento \"Festival dell'Arte\")",
-        ),
-    )
-
-    appuntamenti = RelationList(
-        title=_("appuntamenti_label", default="Appuntamenti"),
-        required=False,
-        default=[],
-        value_type=RelationChoice(vocabulary="plone.app.vocabularies.Catalog"),
-        description=_(
-            "appuntamenti_help",
-            default="Link agli eventi figlio (solo se l'evento in questione è "
-            "evento genitore)",
-        ),
-    )
-
     parteciperanno = RelationList(
         title=_("parteciperanno_label", default="Parteciperanno (Persone)"),
         required=False,
@@ -171,23 +146,6 @@ class IEvento(model.Schema):
     )
 
     # custom widgets
-    form.widget(
-        "evento_genitore",
-        RelatedItemsFieldWidget,
-        vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={
-            "maximumSelectionSize": 1,
-            "selectableTypes": ["Evento"],
-        },
-    )
-    form.widget(
-        "appuntamenti",
-        RelatedItemsFieldWidget,
-        vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={
-            "selectableTypes": ["Evento"],
-        },
-    )
     form.widget(
         "parteciperanno",
         RelatedItemsFieldWidget,
