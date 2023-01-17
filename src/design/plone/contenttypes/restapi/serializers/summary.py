@@ -6,8 +6,10 @@ from design.plone.contenttypes.interfaces.incarico import IIncarico
 from design.plone.contenttypes.interfaces.persona import IPersona
 from design.plone.contenttypes.interfaces.punto_di_contatto import IPuntoDiContatto
 from plone import api
+from plone.app.contenttypes.interfaces import IEvent
 from plone.restapi.interfaces import ISerializeToJsonSummary
 from plone.restapi.serializer.converters import json_compatible
+from plone.volto.behaviors.preview import IPreview
 from redturtle.volto.restapi.serializer.summary import (
     DefaultJSONSummarySerializer as BaseSerializer,
 )
@@ -182,4 +184,23 @@ class PersonaDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
                     "foto_persona": [images_info_adapter()],
                 }
             res["image_field"] = "foto_persona"
+        return res
+
+
+@implementer(ISerializeToJsonSummary)
+@adapter(IEvent, IDesignPloneContenttypesLayer)
+class EventDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
+    def __call__(self, force_all_metadata=False):
+        res = super().__call__(force_all_metadata=force_all_metadata)
+        fields = dict(getFieldsInOrder(IPreview))
+        field = fields.get("preview_image", None)
+        if field:
+            images_info_adapter = getMultiAdapter(
+                (field, self.context, IDesignPloneContenttypesLayer)
+            )
+            if images_info_adapter:
+                res["image_scales"] = {
+                    "preview_image": [images_info_adapter()],
+                }
+            res["image_field"] = "preview_image"
         return res

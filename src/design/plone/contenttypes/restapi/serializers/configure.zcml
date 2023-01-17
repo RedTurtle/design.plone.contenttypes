@@ -8,6 +8,7 @@
   <adapter factory=".summary.IncaricoDefaultJSONSummarySerializer" />
   <adapter factory=".summary.PersonaDefaultJSONSummarySerializer" />
   <adapter factory=".summary.PuntoDiContattoDefaultJSONSummarySerializer" />
+  <adapter factory=".summary.EventDefaultJSONSummarySerializer" />
 
   <adapter factory=".dxcontent.SerializeFolderToJson" />
   <adapter factory=".dxcontent.SerializeToJson" />
