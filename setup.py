@@ -64,6 +64,7 @@ setup(
         "redturtle.bandi",
         "z3c.unconfigure",
         "eea.api.taxonomy",
+        "plone.app.dexterity"
     ],
     extras_require={
         "test": [
