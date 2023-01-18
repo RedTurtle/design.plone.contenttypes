@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-5.1.1 (unreleased)
+5.1.1 (2023-01-18)
 ------------------
 
 - New view 'change_news_type'.
