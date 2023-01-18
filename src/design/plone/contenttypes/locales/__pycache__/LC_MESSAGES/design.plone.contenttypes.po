@@ -1,18 +1,22 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# Language  translations for PACKAGE package.
+# Roman Kysil <roman@folix.local>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2023-01-13 13:15+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2023-01-03 18:01+0100\n"
+"Last-Translator: Roman Kysil <roman@folix.local>\n"
+"Language-Team: Language\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 "Language-Code: en\n"
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: DOMAIN\n"
+"Domain: design.plone.contenttypes\n"
+"Language: __pycache__\n"
 
 #: design/plone/contenttypes/vocabularies/tags_vocabulary.py:32
 msgid "Abitazione"
@@ -60,11 +64,11 @@ msgstr ""
 
 #: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:22
 msgid "All the already existing News Types"
-msgstr "Tipologie Notizie presenti sul sito"
+msgstr ""
 
 #: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:63
 msgid "All the selected items will be moved to indicated path"
-msgstr "Tutti gli elementi selezionati saranno spostati nella cartella indicata"
+msgstr ""
 
 #: design/plone/contenttypes/vocabularies/dataset.py:36
 msgid "Ambiente"
@@ -210,7 +214,7 @@ msgstr ""
 
 #: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:11
 msgid "Change News Type"
-msgstr "Cambia la Tipologia Notizia"
+msgstr ""
 
 #: design/plone/contenttypes/vocabularies/all_life_events_vocabulary.py:75
 msgid "Chiusura filiale"
@@ -238,7 +242,7 @@ msgstr ""
 
 #: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:57
 msgid "Contained by"
-msgstr "Contenuto da"
+msgstr ""
 
 #: design/plone/contenttypes/behaviors/configure.zcml:202
 msgid "Contatti"
@@ -367,11 +371,11 @@ msgstr ""
 
 #: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:28
 msgid "Find news with the indicated Path, put attention than generaly sites have the root name \"/Plone/\""
-msgstr "Trova le notizie in path indicato. Attenzione, in maggior parte dei casi il sito ha il nome \"/Plone/\""
+msgstr ""
 
 #: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:21
 msgid "Find news with this News Type"
-msgstr "Trova le notizie con la Tipologia Notizia indicata"
+msgstr ""
 
 #: design/plone/contenttypes/configure.zcml:52
 msgid "Fix control panel of design.plone.contenttypes add-on."
@@ -425,7 +429,7 @@ msgstr ""
 
 #: design/plone/contenttypes/browser/manage_content/move_news_items.py:33
 msgid "Indicated path is not valid"
-msgstr "Path indicato non è valido"
+msgstr ""
 
 #: design/plone/contenttypes/behaviors/configure.zcml:170
 msgid "Info per la testata"
@@ -477,7 +481,7 @@ msgstr ""
 
 #: design/plone/contenttypes/browser/manage_content/move_news_items.py:47
 msgid "Items moved with success"
-msgstr "Gli elementi sono stati spostati con successo"
+msgstr ""
 
 #: design/plone/contenttypes/vocabularies/lista_azioni_pratica.py:28
 msgid "Leggere"
@@ -529,15 +533,15 @@ msgstr ""
 
 #: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:70
 msgid "Move"
-msgstr "Sposta"
+msgstr ""
 
 #: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:11
 msgid "Move News Items"
-msgstr "Sposta le notizie"
+msgstr ""
 
 #: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:62
 msgid "Move to Path"
-msgstr "Sposta nella cartella"
+msgstr ""
 
 #: design/plone/contenttypes/behaviors/configure.zcml:243
 msgid "Multi File"
@@ -554,11 +558,11 @@ msgstr ""
 #: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:21
 #: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:20
 msgid "News Type"
-msgstr "Tipologia Notizia"
+msgstr ""
 
 #: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:30
 msgid "News Type to substitute"
-msgstr "Tipologia Notizia da sostituire"
+msgstr ""
 
 #. Default: "Nome e cognome"
 #: design/plone/contenttypes/restapi/services/types/get.py:152
@@ -700,7 +704,7 @@ msgstr ""
 
 #: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:27
 msgid "Search Path"
-msgstr "Cartella della ricerca"
+msgstr ""
 
 #: design/plone/contenttypes/interfaces/unita_organizzativa.py:114
 msgid "Sede"
@@ -764,7 +768,7 @@ msgstr ""
 
 #: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:43
 msgid "Substitute"
-msgstr "Sostituisci"
+msgstr ""
 
 #: design/plone/contenttypes/behaviors/configure.zcml:49
 msgid "Tassonomia argomenti"
@@ -784,31 +788,31 @@ msgstr ""
 
 #: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:31
 msgid "The News Type selected above will be substituted by the selected value"
-msgstr "La Tipologia Notizia indicata sopra sarà sostituita dalla tipologia notizia selezionata"
+msgstr ""
 
 #: design/plone/contenttypes/browser/manage_content/change_news_type.py:97
 msgid "The News Types was changed with success"
-msgstr "Le Tiplogie Notizie sono state sostituite con successo"
+msgstr ""
 
 #: design/plone/contenttypes/browser/manage_content/change_news_type.py:55
 msgid "The new News Type was not found between available values"
-msgstr "La Tipologia Notizia nuova non è stata trovata tra i valori possibli"
+msgstr ""
 
 #: design/plone/contenttypes/browser/manage_content/change_news_type.py:49
 msgid "The new type field was not populated"
-msgstr "Il campo del nuovo tipo non è stato popolato"
+msgstr ""
 
 #: design/plone/contenttypes/browser/manage_content/change_news_type.py:61
 msgid "The old News Type was not found between available values"
-msgstr "La Tipologia Notizia vecchia non è stata trovata tra i valori possibli"
+msgstr ""
 
 #: design/plone/contenttypes/browser/manage_content/change_news_type.py:43
 msgid "The old type field was not populated"
-msgstr "l campo del vecchio tipo non è stato popolato"
+msgstr ""
 
 #: design/plone/contenttypes/browser/manage_content/move_news_items.py:51
 msgid "The path was not indicated"
-msgstr "Il path non è stato indicato"
+msgstr ""
 
 #: design/plone/contenttypes/vocabularies/tags_vocabulary.py:51
 msgid "Traffico urbano"
@@ -1588,7 +1592,6 @@ msgstr ""
 msgid "geolocation_field_validator_label"
 msgstr ""
 
-#. Default: "Indicare l'eventuale circoscrizione in cui si trova questo luogo"
 #: design/plone/contenttypes/behaviors/address.py:38
 msgid "help_circoscrizione"
 msgstr ""
@@ -1618,7 +1621,6 @@ msgstr ""
 msgid "help_nome_sede"
 msgstr ""
 
-#. Default: "Indicare l'eventuale quartiere in cui si trova questo luogo"
 #: design/plone/contenttypes/behaviors/address.py:32
 msgid "help_quartiere"
 msgstr ""

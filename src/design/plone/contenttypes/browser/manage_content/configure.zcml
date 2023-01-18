@@ -1,0 +1,24 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="design.plone.contenttypes"
+    >
+
+  <browser:page
+      name="change_news_type"
+      for="*"
+      class=".change_news_type.View"
+      template="templates/change_news_type.pt"
+      permission="cmf.ManagePortal"
+      />
+
+  <browser:page
+      name="move_news_items"
+      for="*"
+      class=".move_news_items.View"
+      template="templates/move_news_items.pt"
+      permission="cmf.ManagePortal"
+      />
+
+</configure>

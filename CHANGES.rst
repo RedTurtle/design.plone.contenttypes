@@ -5,7 +5,10 @@ Changelog
 5.1.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- New view 'change_news_type'.
+  [foxtrot-dfm1]
+- New view 'move_news_items'.
+  [foxtrot-dfm1]
 
 
 5.1.0 (2023-01-03)

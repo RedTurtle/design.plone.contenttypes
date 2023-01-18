@@ -10,6 +10,16 @@
       package="z3c.jbot"
       file="meta.zcml"
       />
+
+  <plone:static
+      directory="static"
+      name="design.plone.contenttypes"
+      type="plone"
+      />
+
+  <!-- Include packages -->
+  <include package=".manage_content" />
+
   <browser:jbot
       directory="overrides"
       layer="design.plone.contenttypes.interfaces.IDesignPloneContenttypesLayer"
@@ -26,6 +36,7 @@
       class=".trasparenza.DettagliProcedimentiView"
       permission="zope2.View"
       />
+
   <configure package="plone.app.dexterity.browser">
     <browser:page
         name="modulistica_view"
