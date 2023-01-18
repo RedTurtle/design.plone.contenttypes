@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 from collective.z3cform.datagridfield.interfaces import IRow
 from design.plone.contenttypes import _
-from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
-from plone.restapi.types.adapters import ListJsonSchemaProvider
 from plone.restapi.types.adapters import ObjectJsonSchemaProvider
 from plone.restapi.types.interfaces import IJsonSchemaProvider
 from plone.restapi.types.utils import get_fieldsets
@@ -14,7 +12,6 @@ from zope.i18n import translate
 from zope.interface import implementer
 from zope.interface import Interface
 from zope.schema.interfaces import IField
-from zope.schema.interfaces import IList
 from zope.schema.interfaces import IVocabularyFactory
 
 
@@ -47,15 +44,6 @@ class LeadImageJsonSchemaProvider(ObjectJsonSchemaProvider):
             schema["description"] = translate(msgid, context=self.request)
 
         return schema
-
-
-@adapter(IList, Interface, IDesignPloneContenttypesLayer)
-@implementer(IJsonSchemaProvider)
-class DataGridFieldJsonSchemaProvider(ListJsonSchemaProvider):
-    def get_widget(self):
-        if self.field.getName() in DATAGRID_FIELDS:
-            return "data_grid"
-        return super().get_widget()
 
 
 @adapter(IRow, Interface, Interface)
