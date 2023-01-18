@@ -472,6 +472,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
     form.widget(
         "timeline_tempi_scadenze",
         DataGridFieldFactory,
+        frontendOptions={"widget": "data_grid"},
     )
 
     # custom fieldset and order
