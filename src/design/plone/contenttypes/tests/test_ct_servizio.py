@@ -22,6 +22,7 @@ WIDGET_PROPERTY_CHECKS = {
         "selectableTypes": ["Pagina Argomento"],
     },
     "ufficio_responsabile": {
+        "maximumSelectionSize": 10,
         "selectableTypes": ["UnitaOrganizzativa"],
     },
     "area": {
