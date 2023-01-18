@@ -1756,3 +1756,18 @@ def update_patrocinato_da(self):
         )
         obj.reindexObject()
     logger.info(f"{colors.DARKCYAN} End of update {colors.ENDC}")
+
+
+def to_7008(context):
+    """Adds PrenotazioniFoldersContainer object to Servizio c.t. object"""
+    update_types(context)
+    catalog = api.portal.get_tool("portal_catalog")
+    for servizio in catalog(portal_type="Servizio"):
+        if not catalog(
+            portal_type="PrenotazioniFolderContainer", path=servizio.getPath()
+        ):
+            api.content.create(
+                type="PrenotazioniFolderContainer",
+                title="Cartella delle prenotazioni",
+                container=servizio.getObject(),
+            )
