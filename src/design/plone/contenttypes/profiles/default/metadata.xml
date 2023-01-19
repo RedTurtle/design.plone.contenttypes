@@ -6,6 +6,7 @@
     <dependency>profile-collective.venue:default</dependency>
     <dependency>profile-redturtle.volto:default</dependency>
     <dependency>profile-eea.api.taxonomy:default</dependency>
+    <dependency>profile-collective.z3cform.datagridfield:default</dependency>
     <dependency>profile-design.plone.contenttypes:taxonomy</dependency>
   </dependencies>
 </metadata>
