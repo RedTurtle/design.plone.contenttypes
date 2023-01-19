@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-6.0.0a4 (unreleased)
+6.0.0a4 (2023-01-19)
 --------------------
 
 - add image to event summary.
