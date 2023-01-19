@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-6.0.0a5 (unreleased)
+6.0.0a5 (2023-01-19)
 --------------------
 
 - Fix patch for collective.taxonomy.
