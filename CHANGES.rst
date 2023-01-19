@@ -4,7 +4,10 @@ Changelog
 
 6.0.0a4 (unreleased)
 --------------------
-- Nothing changed yet
+- New view 'change_news_type'
+  [foxtrot-dfm1]
+-  New view 'move_news_items'
+  [foxtrot-dfm1]
 
 
 6.0.0a3 (2023-01-13)
@@ -30,19 +33,6 @@ Changelog
   [cekk]
 - Adjustments to the pnrr.
   [deodorhunter, lucabel, eikichi18]
-
-5.1.0 (2023-01-03)
-------------------
-
-- Remove selection limit in ufficio_responsabile field for Servizio.
-  [foxtrot-dfm1]
-- Add new indexer "tassonomia_argomenti_uid" that indexes related Argomenti UIDs.
-  [cekk]
-- Change collection criteria to use new index.
-  [cekk]
-- Upgrade-step to convert old blocks with new criteria.
-  [cekk]
-
 
 
 5.0.3 (2022-12-07)
