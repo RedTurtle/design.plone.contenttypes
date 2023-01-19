@@ -652,4 +652,15 @@
         handler=".upgrades.update_taxonomies_on_blocks"
         />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="7002"
+      destination="7003"
+      >
+    <genericsetup:upgradeStep
+        title="Persone: Update for PNRR - pulizia contact_info delle UO"
+        description="I vecchi campi contact_info delle UO non devono contenere stringhe"
+        handler=".upgrades.update_uo_contact_info"
+        />
+  </genericsetup:upgradeSteps>
 </configure>

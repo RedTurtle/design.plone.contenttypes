@@ -327,9 +327,7 @@ def to_1016(context):
             sections.append({"title": item.title, "linkUrl": [item.UID()]})
     settings = [{"rootPath": "/", "items": sections}]
     api.portal.set_registry_record(
-        "search_sections",
-        json.dumps(settings),
-        interface=IDesignPloneSettings,
+        "search_sections", json.dumps(settings), interface=IDesignPloneSettings,
     )
 
 
@@ -448,9 +446,7 @@ def to_3000(context):
         try:
             value = api.portal.get_registry_record(old_entry.format(field))
             api.portal.set_registry_record(
-                field,
-                json.dumps({"it": value}),
-                interface=IDesignPloneSettings,
+                field, json.dumps({"it": value}), interface=IDesignPloneSettings,
             )
         except Exception:
             continue
@@ -958,6 +954,7 @@ def to_5410(context):
         [x for x in behaviors if x not in to_remove]
     )
 
+
 def to_5500(context):
     update_registry(context)
     update_catalog(context)
@@ -1018,6 +1015,7 @@ def to_5500(context):
                     if blocks:
                         fix_block(blocks, argomenti_mapping)
                         setattr(item, name, value)
+
 
 def to_6000(context):
     """ """
@@ -1607,3 +1605,16 @@ def update_taxonomies_on_blocks(context):
         f"{colors.DARKCYAN} Terminato l'update dei blocchi {colors.ENDC}"  # noqa
     )
 
+
+def update_uo_contact_info(context):
+    brains = api.portal.get_tool("portal_catalog")(portal_type="UnitaOrganizzativa")
+    logger.info(
+        f"{colors.DARKCYAN} Inizio la pulzia delle {len(brains)} UO campo contact_info {colors.ENDC}"  # noqa
+    )
+    for brain in brains:
+        obj = brain.getObject()
+        if type(obj.contact_info) == dict:
+            del obj.contact_info
+            logger.info(
+                f"{colors.GREEN} Modifica della UO senza punto di contatto {colors.ENDC}"  # noqa
+            )

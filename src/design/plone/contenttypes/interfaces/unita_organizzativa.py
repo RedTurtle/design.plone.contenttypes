@@ -203,7 +203,7 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
     # custom fieldsets and order
     model.fieldset(
         "cosa_fa",
-        label=_("cosa_fa_label", default="Cosa fa"),
+        label=_("cosa_fa_label", default="Competenze"),
         fields=["competenze"],
     )
     model.fieldset(
