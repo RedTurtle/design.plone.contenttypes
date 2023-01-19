@@ -5,7 +5,8 @@ Changelog
 6.0.0a5 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Fix patch for collective.taxonomy.
+  [eikichi18]
 
 
 6.0.0a4 (2023-01-19)
