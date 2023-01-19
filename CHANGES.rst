@@ -5,7 +5,12 @@ Changelog
 6.0.0a4 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- add image to event summary.
+  [lucabel]
+- fix datagrid field frontend widget declaration.
+  [roman]
+- removed unused field evento_genitore e appuntamenti from event ct.
+  [eikichi18]
 
 
 6.0.0a3 (2023-01-13)
