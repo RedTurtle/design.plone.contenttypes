@@ -4,10 +4,11 @@ Changelog
 
 6.0.0a6 (unreleased)
 --------------------
-5.1.2 (unreleased)
-------------------
-
-- Nothing changed yet.
+- various fixes
+- add Event summary serializer to get image information
+  also on parent
+- merge with last master update
+  [lucabel]
 
 
 6.0.0a5 (2023-01-19)

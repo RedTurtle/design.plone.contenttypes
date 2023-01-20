@@ -20,7 +20,7 @@ class IContattiUnitaOrganizzativa(model.Schema):
     contact_info = RelationList(
         title=_(
             "contact_info_label",
-            default="Informazioni di contatto",
+            default="Punti di contatto dell'unità organizzativa",
         ),
         description=_(
             "contact_info_help",

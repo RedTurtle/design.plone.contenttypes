@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
+from collective.taxonomy.interfaces import ITaxonomy
 from plone import api
 from Products.CMFPlone.interfaces import INonInstallable
 from redturtle.bandi.interfaces.settings import IBandoSettings
+from zope.component import getUtilitiesFor
 from zope.interface import implementer
 
 
@@ -52,6 +54,10 @@ def post_install_taxonomy(context):
     context.runImportStepFromProfile(
         "profile-design.plone.contenttypes:default", "typeinfo", True
     )
+    # C'è una versione di collective.taxonomies in cui quel campo non viene
+    # settato correttamente.
+    for utility_name, utility in list(getUtilitiesFor(ITaxonomy)):
+        utility.updateBehavior(**{"field_prefix": ""})
 
 
 def uninstall(context):

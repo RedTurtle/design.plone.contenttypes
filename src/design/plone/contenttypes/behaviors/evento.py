@@ -152,7 +152,7 @@ class IEvento(model.Schema):
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "maximumSelectionSize": 1,
-            "selectableTypes": ["Persone"],
+            "selectableTypes": ["Persona"],
         },
     )
     form.widget(
