@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-6.0.0a7 (unreleased)
+6.0.0a7 (2023-01-20)
 --------------------
 
 - Fix persona role handling: take the role from the connected incarico object
