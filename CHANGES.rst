@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-6.0.0a6 (unreleased)
+6.0.0a6 (2023-01-20)
 --------------------
 - various fixes
 - add Event summary serializer to get image information
