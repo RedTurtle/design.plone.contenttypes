@@ -33,6 +33,11 @@
       name="tassonomia_argomenti"
       />
   <adapter
+      factory=".common.tassonomia_argomenti_uid"
+      name="tassonomia_argomenti_uid"
+      />
+
+  <adapter
       factory=".common.ufficio_responsabile"
       name="ufficio_responsabile"
       />

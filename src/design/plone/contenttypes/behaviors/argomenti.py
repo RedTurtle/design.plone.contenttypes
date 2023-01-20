@@ -189,25 +189,19 @@ class Argomenti(object):
 
 @implementer(IArgomentiDocumento)
 @adapter(IDocumento)
-class ArgomentiDocumento(object):
+class ArgomentiDocumento(Argomenti):
     """"""
-
-    def __init__(self, context):
-        self.context = context
 
 
 @implementer(IArgomentiBando)
 @adapter(IBandoAgidSchema)
-class ArgomentiBando(object):
+class ArgomentiBando(Argomenti):
     """"""
-
-    def __init__(self, context):
-        self.context = context
 
 
 @implementer(IArgomentiDocument)
 @adapter(IDocument)
-class ArgomentiDocument(object):
+class ArgomentiDocument(Argomenti):
     """"""
 
     def __init__(self, context):

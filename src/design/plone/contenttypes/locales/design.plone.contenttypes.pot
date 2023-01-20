@@ -1,10 +1,10 @@
-# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
-# SOME DESCRIPTIVE TITLE.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#--- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+#SOME DESCRIPTIVE TITLE.
+#FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-04-21 09:38+0000\n"
+"POT-Creation-Date: 2023-01-13 13:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,6 +61,14 @@ msgstr ""
 msgid "Agricoltura, pesca, silvicoltura e prodotti alimentari"
 msgstr ""
 
+#: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:22
+msgid "All the already existing News Types"
+msgstr ""
+
+#: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:63
+msgid "All the selected items will be moved to indicated path"
+msgstr ""
+
 #: design/plone/contenttypes/vocabularies/dataset.py:36
 msgid "Ambiente"
 msgstr ""
@@ -73,7 +81,7 @@ msgstr ""
 msgid "Anziano"
 msgstr ""
 
-#: design/plone/contenttypes/interfaces/bando.py:123
+#: design/plone/contenttypes/interfaces/bando.py:134
 #: design/plone/contenttypes/interfaces/documento.py:67
 #: design/plone/contenttypes/interfaces/servizio.py:239
 msgid "Area"
@@ -203,6 +211,10 @@ msgstr ""
 msgid "Cartella Modulistica"
 msgstr ""
 
+#: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:11
+msgid "Change News Type"
+msgstr ""
+
 #: design/plone/contenttypes/vocabularies/all_life_events_vocabulary.py:75
 msgid "Chiusura filiale"
 msgstr ""
@@ -225,6 +237,10 @@ msgstr ""
 
 #: design/plone/contenttypes/vocabularies/tags_vocabulary.py:41
 msgid "Condizioni e organizzazione del lavoro"
+msgstr ""
+
+#: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:57
+msgid "Contained by"
 msgstr ""
 
 #: design/plone/contenttypes/behaviors/configure.zcml:202
@@ -352,6 +368,14 @@ msgstr ""
 msgid "Finanziamento impresa"
 msgstr ""
 
+#: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:28
+msgid "Find news with the indicated Path, put attention than generaly sites have the root name \"/Plone/\""
+msgstr ""
+
+#: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:21
+msgid "Find news with this News Type"
+msgstr ""
+
 #: design/plone/contenttypes/configure.zcml:52
 msgid "Fix control panel of design.plone.contenttypes add-on."
 msgstr ""
@@ -402,6 +426,10 @@ msgstr ""
 msgid "Impostazioni Design Plone"
 msgstr ""
 
+#: design/plone/contenttypes/browser/manage_content/move_news_items.py:33
+msgid "Indicated path is not valid"
+msgstr ""
+
 #: design/plone/contenttypes/behaviors/configure.zcml:170
 msgid "Info per la testata"
 msgstr ""
@@ -448,6 +476,10 @@ msgstr ""
 
 #: design/plone/contenttypes/vocabularies/dataset.py:33
 msgid "Istruzione, cultura e sport"
+msgstr ""
+
+#: design/plone/contenttypes/browser/manage_content/move_news_items.py:47
+msgid "Items moved with success"
 msgstr ""
 
 #: design/plone/contenttypes/vocabularies/lista_azioni_pratica.py:28
@@ -498,6 +530,18 @@ msgstr ""
 msgid "Mostra la data di modifica."
 msgstr ""
 
+#: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:70
+msgid "Move"
+msgstr ""
+
+#: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:11
+msgid "Move News Items"
+msgstr ""
+
+#: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:62
+msgid "Move to Path"
+msgstr ""
+
 #: design/plone/contenttypes/behaviors/configure.zcml:243
 msgid "Multi File"
 msgstr ""
@@ -508,6 +552,15 @@ msgstr ""
 
 #: design/plone/contenttypes/controlpanels/geolocation_defaults.py:28
 msgid "Nazione"
+msgstr ""
+
+#: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:21
+#: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:20
+msgid "News Type"
+msgstr ""
+
+#: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:30
+msgid "News Type to substitute"
 msgstr ""
 
 #. Default: "Nome e cognome"
@@ -583,6 +636,14 @@ msgstr ""
 msgid "Protezione sociale"
 msgstr ""
 
+#: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:13
+msgid "Questo tool viene usato per cambiare il valore del campo 'Tipologia Notizia' in tutte le notizie che hanno il valore del campo selezionato. Fa anche il giro su tutti i blocchi elenco"
+msgstr ""
+
+#: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:13
+msgid "Questo tool viene usato per trovare e spostare le Notizie con una Tipologia Notizia determinata."
+msgstr ""
+
 #: design/plone/contenttypes/vocabularies/dataset.py:44
 msgid "Regioni e città"
 msgstr ""
@@ -638,6 +699,10 @@ msgstr ""
 
 #: design/plone/contenttypes/vocabularies/dataset.py:46
 msgid "Scienza e tecnologia"
+msgstr ""
+
+#: design/plone/contenttypes/browser/manage_content/templates/move_news_items.pt:27
+msgid "Search Path"
 msgstr ""
 
 #: design/plone/contenttypes/interfaces/unita_organizzativa.py:114
@@ -700,6 +765,10 @@ msgstr ""
 msgid "Studente"
 msgstr ""
 
+#: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:43
+msgid "Substitute"
+msgstr ""
+
 #: design/plone/contenttypes/behaviors/configure.zcml:49
 msgid "Tassonomia argomenti"
 msgstr ""
@@ -714,6 +783,34 @@ msgstr ""
 
 #: design/plone/contenttypes/vocabularies/tags_vocabulary.py:46
 msgid "Tempo libero"
+msgstr ""
+
+#: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:31
+msgid "The News Type selected above will be substituted by the selected value"
+msgstr ""
+
+#: design/plone/contenttypes/browser/manage_content/change_news_type.py:97
+msgid "The News Types was changed with success"
+msgstr ""
+
+#: design/plone/contenttypes/browser/manage_content/change_news_type.py:55
+msgid "The new News Type was not found between available values"
+msgstr ""
+
+#: design/plone/contenttypes/browser/manage_content/change_news_type.py:49
+msgid "The new type field was not populated"
+msgstr ""
+
+#: design/plone/contenttypes/browser/manage_content/change_news_type.py:61
+msgid "The old News Type was not found between available values"
+msgstr ""
+
+#: design/plone/contenttypes/browser/manage_content/change_news_type.py:43
+msgid "The old type field was not populated"
+msgstr ""
+
+#: design/plone/contenttypes/browser/manage_content/move_news_items.py:51
+msgid "The path was not indicated"
 msgstr ""
 
 #: design/plone/contenttypes/vocabularies/tags_vocabulary.py:51
@@ -740,7 +837,7 @@ msgstr ""
 msgid "Turismo"
 msgstr ""
 
-#: design/plone/contenttypes/interfaces/bando.py:106
+#: design/plone/contenttypes/interfaces/bando.py:117
 #: design/plone/contenttypes/interfaces/documento.py:50
 #: design/plone/contenttypes/interfaces/servizio.py:225
 msgid "Ufficio responsabile"
@@ -819,7 +916,7 @@ msgid "a_cura_di_persone_label"
 msgstr ""
 
 #. Default: "Accedere al servizio"
-#: design/plone/contenttypes/interfaces/servizio.py:371
+#: design/plone/contenttypes/interfaces/servizio.py:370
 msgid "accedi_al_servizio_label"
 msgstr ""
 
@@ -848,6 +945,16 @@ msgstr ""
 msgid "altri_documenti_help"
 msgstr ""
 
+#. Default: "Date and time of the opening of the announcement. Use this field if you want to set a specific opening date. If not set, the announcement will be open immediately."
+#: design/plone/contenttypes/interfaces/bando.py:56
+msgid "apertura_bando_help"
+msgstr ""
+
+#. Default: "Opening date"
+#: design/plone/contenttypes/interfaces/bando.py:55
+msgid "apertura_bando_label"
+msgstr ""
+
 #. Default: "Area"
 #: design/plone/contenttypes/interfaces/servizio.py:231
 msgid "area"
@@ -864,13 +971,13 @@ msgid "area_responsabile_documento_personale"
 msgstr ""
 
 #. Default: "Seleziona l'area amministrativa responsabile del documento."
-#: design/plone/contenttypes/interfaces/bando.py:116
+#: design/plone/contenttypes/interfaces/bando.py:127
 #: design/plone/contenttypes/interfaces/documento.py:60
 msgid "area_responsabile_help"
 msgstr ""
 
 #. Default: "Area responsabile del documento"
-#: design/plone/contenttypes/interfaces/bando.py:112
+#: design/plone/contenttypes/interfaces/bando.py:123
 #: design/plone/contenttypes/interfaces/documento.py:56
 msgid "area_responsabile_label"
 msgstr ""
@@ -976,7 +1083,7 @@ msgid "casi_particolari_help"
 msgstr ""
 
 #. Default: "Casi particolari"
-#: design/plone/contenttypes/interfaces/servizio.py:402
+#: design/plone/contenttypes/interfaces/servizio.py:401
 msgid "casi_particolari_label"
 msgstr ""
 
@@ -1090,7 +1197,7 @@ msgid "cosa_serve_help"
 msgstr ""
 
 #. Default: "Cosa serve"
-#: design/plone/contenttypes/interfaces/servizio.py:385
+#: design/plone/contenttypes/interfaces/servizio.py:384
 msgid "cosa_serve_label"
 msgstr ""
 
@@ -1116,7 +1223,7 @@ msgid "costi"
 msgstr ""
 
 #. Default: "Costi e vincoli"
-#: design/plone/contenttypes/interfaces/servizio.py:390
+#: design/plone/contenttypes/interfaces/servizio.py:389
 msgid "costi_e_vincoli_label"
 msgstr ""
 
@@ -1319,7 +1426,7 @@ msgstr ""
 
 #. Default: "Documenti"
 #: design/plone/contenttypes/interfaces/persona.py:199
-#: design/plone/contenttypes/interfaces/servizio.py:413
+#: design/plone/contenttypes/interfaces/servizio.py:412
 msgid "documenti_label"
 msgstr ""
 
@@ -1660,7 +1767,7 @@ msgid "link_siti_esterni_help"
 msgstr ""
 
 #. Default: "Link utili"
-#: design/plone/contenttypes/interfaces/servizio.py:418
+#: design/plone/contenttypes/interfaces/servizio.py:417
 msgid "link_utili_label"
 msgstr ""
 
@@ -2021,12 +2128,12 @@ msgid "ricerca_in_testata_label"
 msgstr ""
 
 #. Default: "Ulteriori informazioni non previste negli altri campi; si può trattare di contatti o note informative la cui conoscenza è indispensabile per la partecipazione al bando"
-#: design/plone/contenttypes/interfaces/bando.py:85
+#: design/plone/contenttypes/interfaces/bando.py:96
 msgid "riferimenti_bando_agid_help"
 msgstr ""
 
 #. Default: "Ulteriori informazioni"
-#: design/plone/contenttypes/interfaces/bando.py:84
+#: design/plone/contenttypes/interfaces/bando.py:95
 msgid "riferimenti_bando_agid_label"
 msgstr ""
 
@@ -2096,12 +2203,12 @@ msgid "ruolo_label"
 msgstr ""
 
 #. Default: "Data entro la quale sarà possibile far pervenire domande e richieste di chiarimento a chi eroga il bando"
-#: design/plone/contenttypes/interfaces/bando.py:58
+#: design/plone/contenttypes/interfaces/bando.py:69
 msgid "scadenza_domande_bando_help"
 msgstr ""
 
 #. Default: "Termine per le richieste di chiarimenti"
-#: design/plone/contenttypes/interfaces/bando.py:54
+#: design/plone/contenttypes/interfaces/bando.py:65
 msgid "scadenza_domande_bando_label"
 msgstr ""
 
@@ -2358,7 +2465,7 @@ msgid "tempi_e_scadenze_help"
 msgstr ""
 
 #. Default: "Tempi e scadenze"
-#: design/plone/contenttypes/interfaces/servizio.py:396
+#: design/plone/contenttypes/interfaces/servizio.py:395
 msgid "tempi_e_scadenze_label"
 msgstr ""
 
@@ -2378,12 +2485,12 @@ msgstr ""
 msgid "testata_fieldset_label"
 msgstr ""
 
-#: design/plone/contenttypes/interfaces/bando.py:27
+#: design/plone/contenttypes/interfaces/bando.py:28
 msgid "text_help"
 msgstr ""
 
 #. Default: "Testo"
-#: design/plone/contenttypes/interfaces/bando.py:26
+#: design/plone/contenttypes/interfaces/bando.py:27
 msgid "text_label"
 msgstr ""
 
@@ -2493,12 +2600,12 @@ msgid "trasparenza_fieldset_label"
 msgstr ""
 
 #. Default: "Seleziona l'ufficio responsabile di questo bando."
-#: design/plone/contenttypes/interfaces/bando.py:99
+#: design/plone/contenttypes/interfaces/bando.py:110
 msgid "ufficio_responsabile_bando_help"
 msgstr ""
 
 #. Default: "Ufficio responsabile del bando"
-#: design/plone/contenttypes/interfaces/bando.py:95
+#: design/plone/contenttypes/interfaces/bando.py:106
 msgid "ufficio_responsabile_bando_label"
 msgstr ""
 

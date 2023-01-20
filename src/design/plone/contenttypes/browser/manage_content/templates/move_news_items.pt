@@ -1,0 +1,83 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="design.plone.contenttypes">
+
+<body>
+    <metal:content-title fill-slot="content-title">
+        <h1 i18n:translate="">Move News Items</h1>
+    </metal:content-title>
+    <metal:content-description fill-slot="content-description" i18n:translate="">
+      Questo tool viene usato per trovare e spostare le Notizie con una Tipologia Notizia determinata.
+    </metal:content-description>
+    <metal:content-core fill-slot="content-core">
+       <div class="form">
+            <form action="${context/portal_url}/move_news_items" method="POST">
+                <div class="field">
+                    <label for="news_type" i18n:translate="">News Type</label>
+                    <div class="formHelp" i18n:translate="">
+                        Find news with this News Type
+                    </div>
+                    <select name="news_type" tal:define="news_types view/news_types">
+                      <option tal:repeat="news_type news_types" tal:content="news_type/title" tal:attributes="selected python: request.form.get('news_type', '') == news_type.value; value news_type/value"/>
+                    </select><br>
+		    <label for="news_type" style="margin-top: 2em;" i18n:translate="">Search Path</label>
+                    <div class="formHelp" i18n:translate="" >
+                      Find news with the indicated Path, put attention than generaly sites have the root name "/Plone/"
+                    </div>
+                    <input type="text" name="path" tal:attributes="value python: view.request.form.get('path', '')">
+                </div>
+                <div class="formControls">
+                    <input id="search"
+                           name="search"
+                           class="submit-widget button-field context"
+                           value="Search"
+                           type="submit">
+                </div>
+            </form>
+        </div>
+        <div class="form" tal:define="results python:view.news_results();tot_results python: results and len(results) or 0" tal:condition="results">
+          <form action="${context/portal_url}/move_news_items" method="POST" >
+            <div>
+                <h2>Found ${tot_results} items</h2>
+                <ul style="list-style-type: none;">
+                    <li>
+                      <div class="field">
+                        <input id="select_all" type="checkbox"/>
+                        <h4 style="display: inline">Select all</h4>
+                      </div>
+                      </li>
+                    <li tal:repeat="item results">
+                        <div class="field">
+                            <input type="checkbox" tal:attributes="name item/UID">
+                            <a href="${item/getURL}" tal:content="item/Title"></a><br>
+                            <p><span i18n:translate="">Contained by</span> ${python: '/'.join(item.getPath().split('/')[:-1])}</p>
+                        </div>
+                    </li>
+                </ul>
+              <div class="field">
+                <label for="to_url" i18n:translate="">Move to Path</label>
+		<div class="formHelp" i18n:translate="">
+                  All the selected items will be moved to indicated path
+                 </div>
+                <input type="text" name="to_path"/>
+              </div>
+            </div>
+            <div class="formControls">
+              <button id="move"
+                     name="move"
+                     class="submit-widget button-field context"
+                     type="submit"
+                     value="move"
+                     i18n:translate="">Move</button>
+            </div>
+          </form>
+        </div>
+      <script src="${view/get_resource_js}"></script>
+    </metal:content-core>
+</body>
+
+</html>

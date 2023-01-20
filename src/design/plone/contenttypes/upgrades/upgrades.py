@@ -958,6 +958,66 @@ def to_5410(context):
         [x for x in behaviors if x not in to_remove]
     )
 
+def to_5500(context):
+    update_registry(context)
+    update_catalog(context)
+
+    argomenti_mapping = {
+        x.Title: x.UID for x in api.content.find(portal_type="Pagina Argomento")
+    }
+
+    def fix_block(blocks, argomenti_mapping):
+        for block in blocks.values():
+            if block.get("@type", "") == "listing":
+                for query in block.get("querystring", {}).get("query", []):
+                    if query["i"] == "tassonomia_argomenti":
+                        new_values = []
+                        for v in query["v"]:
+                            uid = argomenti_mapping.get(v, "")
+                            if uid:
+                                new_values.append(uid)
+                        query["i"] = "tassonomia_argomenti_uid"
+                        query["v"] = new_values
+                        logger.info(" - {}".format(brain.getURL()))
+
+    pc = api.portal.get_tool(name="portal_catalog")
+    brains = pc()
+    tot = len(brains)
+    i = 0
+    for brain in brains:
+        i += 1
+        if i % 1000 == 0:
+            logger.info("Progress: {}/{}".format(i, tot))
+        item_obj = brain.getObject()
+        item = aq_base(brain.getObject())
+
+        # reindex argomenti indexes
+        if brain.tassonomia_argomenti:
+            item_obj.reindexObject(
+                idxs=["tassonomia_argomenti", "tassonomia_argomenti_uid"]
+            )
+
+        if getattr(item, "blocks", {}):
+            blocks = deepcopy(item.blocks)
+            if blocks:
+                fix_block(blocks, argomenti_mapping)
+                item.blocks = blocks
+        for schema in iterSchemata(item):
+            # fix blocks in blocksfields
+            for name, field in getFields(schema).items():
+                if name == "blocks":
+                    blocks = deepcopy(item.blocks)
+                    if blocks:
+                        fix_block(blocks, argomenti_mapping)
+                        item.blocks = blocks
+                elif isinstance(field, BlocksField):
+                    value = deepcopy(field.get(item))
+                    if not value:
+                        continue
+                    blocks = value.get("blocks", {})
+                    if blocks:
+                        fix_block(blocks, argomenti_mapping)
+                        setattr(item, name, value)
 
 def to_6000(context):
     """ """
@@ -1546,3 +1606,4 @@ def update_taxonomies_on_blocks(context):
     logger.info(
         f"{colors.DARKCYAN} Terminato l'update dei blocchi {colors.ENDC}"  # noqa
     )
+

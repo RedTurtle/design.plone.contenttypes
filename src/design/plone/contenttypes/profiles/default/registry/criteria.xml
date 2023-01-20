@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-          i18n:domain="plone"
->
+<registry xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n:domain="plone">
+
   <records interface="plone.app.querystring.interfaces.IQueryField"
            prefix="plone.app.querystring.field.tipologia_notizia"
   >
@@ -41,7 +40,35 @@
     <value key="group"
            i18n:translate=""
     >Metadata</value>
+</records>
+          
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+             prefix="plone.app.querystring.field.tassonomia_argomenti_uid">
+        <value key="title" i18n:translate="">Argomenti correlati</value>
+        <value key="description" i18n:translate="">Argomenti correlati (con uid)</value>
+        <value key="enabled">True</value>
+        <value key="sortable">False</value>
+        <value key="operations">
+            <element>plone.app.querystring.operation.selection.any</element>
+            <element>plone.app.querystring.operation.selection.all</element>
+        </value>
+       <value key="vocabulary">design.plone.vocabularies.argomenti_uid</value>
+       <value key="group" i18n:translate="">Metadata</value>
   </records>
+
+   <records interface="plone.app.querystring.interfaces.IQueryField"
+             prefix="plone.app.querystring.field.ruolo">
+        <value key="title" i18n:translate="">Ruolo</value>
+        <value key="description" i18n:translate="">Ruolo</value>
+        <value key="enabled">True</value>
+        <value key="sortable">False</value>
+        <value key="operations">
+            <element>plone.app.querystring.operation.selection.any</element>
+            <element>plone.app.querystring.operation.selection.all</element>
+        </value>
+       <value key="vocabulary">design.plone.contenttypes.RuoliPersona</value>
+       <value key="group" i18n:translate="">Metadata</value>
+   </records>
 
   <records interface="plone.app.querystring.interfaces.IQueryField"
            prefix="plone.app.querystring.field.tipologia_documento"
@@ -420,4 +447,8 @@
            remove="True"
   >
 </records>
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.tassonomia_argomenti"
+           remove="True">
+    </records>
 </registry>
