@@ -5,7 +5,8 @@ Changelog
 6.0.0a7 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Fix persona role handling: take the role from the connected incarico object
+  [lucabel]
 
 
 6.0.0a6 (2023-01-20)
