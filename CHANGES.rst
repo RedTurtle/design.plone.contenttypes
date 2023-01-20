@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+6.0.0a7 (unreleased)
+--------------------
+
+- Nothing changed yet.
+
+
 6.0.0a6 (2023-01-20)
 --------------------
 - various fixes
