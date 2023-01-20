@@ -29,7 +29,7 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
 
     legami_con_altre_strutture = RelationList(
         title=_(
-            "legami_altre_strutture_label", default="Servizi o uffici di riferimento"
+            "legami_altre_strutture_label", default="Strutture o uffici di riferimento"
         ),
         default=[],
         description=_(

@@ -662,5 +662,10 @@
         description="I vecchi campi contact_info delle UO non devono contenere stringhe"
         handler=".upgrades.update_uo_contact_info"
         />
+    <genericsetup:upgradeStep
+        title="Argomenti: Reintrodotto indice per uid"
+        description=""
+        handler=".upgrades.readd_tassonomia_argomenti_uid"
+        />
   </genericsetup:upgradeSteps>
 </configure>

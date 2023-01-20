@@ -60,6 +60,16 @@ def update_controlpanel(context):
     update_profile(context, "controlpanel")
 
 
+def reindex_catalog(context, idxs):
+    pc = api.portal.get_tool(name="portal_catalog")
+    brains = pc()
+    for brain in brains:
+        if idxs:
+            brain.getObject().reindexObject(idxs=idxs)
+        else:
+            brain.getObject().reindexObject()
+
+
 def remap_fields(mapping):
     pc = api.portal.get_tool(name="portal_catalog")
     brains = pc()
@@ -327,7 +337,9 @@ def to_1016(context):
             sections.append({"title": item.title, "linkUrl": [item.UID()]})
     settings = [{"rootPath": "/", "items": sections}]
     api.portal.set_registry_record(
-        "search_sections", json.dumps(settings), interface=IDesignPloneSettings,
+        "search_sections",
+        json.dumps(settings),
+        interface=IDesignPloneSettings,
     )
 
 
@@ -446,7 +458,9 @@ def to_3000(context):
         try:
             value = api.portal.get_registry_record(old_entry.format(field))
             api.portal.set_registry_record(
-                field, json.dumps({"it": value}), interface=IDesignPloneSettings,
+                field,
+                json.dumps({"it": value}),
+                interface=IDesignPloneSettings,
             )
         except Exception:
             continue
@@ -1471,6 +1485,9 @@ def create_pdc(context):
             api.relation.create(source=obj, target=pdc, relationship="contact_info")
 
             pdc.value_punto_contatto = data
+            # publish
+            wftool.doActionFor(pdc, "publish")
+
             logger.info(
                 f"{colors.GREEN} Creato il punto di contatto per {obj.title}({obj.absolute_url()}){colors.ENDC}"  # noqa
             )
@@ -1618,3 +1635,13 @@ def update_uo_contact_info(context):
             logger.info(
                 f"{colors.GREEN} Modifica della UO senza punto di contatto {colors.ENDC}"  # noqa
             )
+
+
+def readd_tassonomia_argomenti_uid(context):
+    logger.info(
+        f"{colors.DARKCYAN} Aggiungo la tassonomia_argomenti_uid e reindicizzo{colors.ENDC}"  # noqa
+    )
+    update_catalog(context)
+    update_registry(context)
+    idxs = ["tassonomia_argomenti_uid", "tassonomia_argomenti"]
+    reindex_catalog(context, idxs)
