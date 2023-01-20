@@ -36,57 +36,27 @@ msgstr "La data in cui l'elemento verrà pubblicato. Se non viene inserita alcun
 msgid "help_expiration_date"
 msgstr "La data di scadenza del documento. Dopo questa data, il documento sarà reso automaticamente invisibile agli altri visitatori. Se non viene inserita alcuna data il documento rimarrà visibile indefinitamente."
 
-
-#. Default: "This site uses the open source Content Management System ${plone}. It meets the Web Content Accessibility Guidelines (<a hre
-f=\"https://www.w3.org/TR/WCAG20/\">${wcag} v2.1</a>) level 'AA' for people with disabilities, including blindness and low vision, deafne
-ss and hearing loss, learning disabilities, cognitive limitations, limited movement, speech disabilities, photosensitivity, and combinati
-ons of these."
 #: CMFPlone/browser/templates/accessibility-info.pt:21
 msgid "description_accessibility_info"
-msgstr "Questo sito utilizza il Content Management System ${plone}. Soddisfa le linee guida \"Web Content Accessibility Guidelines\" (<a
-href=\"http://www.w3.org/TR/WCAG20/\">${wcag}) v2.0</a> al livello \"AA\" per persone con disabilità, inclusi non vedenti e ipovedenti,
-non udenti e ipoudenti, con difficoltà di apprendimento, limitazioni cognitive, limitazioni motorie, difficoltà di linguaggio, sensibil
-ità alla luce nonché combinazioni delle precedenti."
+msgstr "Questo sito utilizza il Content Management System ${plone}. Soddisfa le linee guida \"Web Content Accessibility Guidelines\" (<a href=\"http://www.w3.org/TR/WCAG20/\">${wcag}) v2.0</a> al livello \"AA\" per persone con disabilità, inclusi non vedenti e ipovedenti, non udenti e ipoudenti, con difficoltà di apprendimento, limitazioni cognitive, limitazioni motorie, difficoltà di linguaggio, sensibil ità alla luce nonché combinazioni delle precedenti."
 
-
-#. Default: "A number of checkpoints in ${wcag} 2.1 and ${atag} 2.0 guidelines are subjective; there may be instances where interpretatio
-ns vary."
 #: CMFPlone/browser/templates/accessibility-info.pt:57
 msgid "description_wcag_aa_rating"
-msgstr "Alcuni checkpoint nelle linee guida ${wcag} 2.0 e ${atag} 2.0 sono soggettivi; in alcuni circostanze le interpretazioni potrebber
-o variare."
+msgstr "Alcuni checkpoint nelle linee guida ${wcag} 2.0 e ${atag} 2.0 sono soggettivi; in alcuni circostanze le interpretazioni potrebbero variare."
 
 #. Default: "${user_name} &#8217;s dashboard"
 #: plone.app.portlets/plone/app/portlets/dashboard/dashboard.pt:20
 msgid "heading_dashboard"
 msgstr "Bacheca di ${user_name}"
 
-#. Default: "<p> If you have enabled <em>Virtual host rewriting takes place front of the caching proxy</em> above, and your site is reach
-able via multiple domains (e.g. <code>http://example.com:80</code> vs. <code>http://www.example.com:80</code>), enter all available domai
-ns here, one per line. This will ensure that purge requests are sent for all domains where applicable. Note that it is more efficient to
-configure the front-most web server to simply redirect all requests to a single domain, so that Zope only \"sees\" a single domain. </p>
-<p> It is safe to leave this list blank if you are not using a caching proxy, if you are not using virtual hosting, if virtual host rewri
-ting takes place behind the caching proxy, or if you only have a single virtually hosted domain name. </p>"
 #: plone.app.caching/plone/app/caching/browser/controlpanel.pt:269
 msgid "help_domains"
-msgstr "<p> Se l'opzione \"<em>Le riscritture del Virtual Host avvengono prima del proxy di caching</em>\" è abilitata, e se il sito è
-raggiungibile da domini multipli (es. <code>http://example.com:80</code> e <code>http://www.example.com:80</code>), inserire qui tutti i
-domini disponibili, uno per linea. Questo assicura che le richieste di rimozione vengano inviate a tutti i domini, dove possibile. Notare
- che è più efficiente configurare il web server più esterno per redirigere semplicemente tutte le richieste verso un singolo dominio,
-così che Zope \"veda\" un singolo dominio.</p><p>È più sicuro lasciare questa lista vuota nei seguenti casi: non si sta utilizzando un
- proxy di caching, oppure non si sta utilizzando il virtual hosting, oppure le riscritture del virtual host avvengono <em>dopo</em> il pr
-oxy di caching oppure si utilizza un singolo nome di dominio con il virtual host.</p>"
+msgstr "<p> Se l'opzione \"<em>Le riscritture del Virtual Host avvengono prima del proxy di caching</em>\" è abilitata, e se il sito è raggiungibile da domini multipli (es. <code>http://example.com:80</code> e <code>http://www.example.com:80</code>), inserire qui tutti i domini disponibili, uno per linea. Questo assicura che le richieste di rimozione vengano inviate a tutti i domini, dove possibile. Notare che è più efficiente configurare il web server più esterno per redirigere semplicemente tutte le richieste verso un singolo dominio, così che Zope \"veda\" un singolo dominio.</p><p>È più sicuro lasciare questa lista vuota nei seguenti casi: non si sta utilizzando un proxy di caching, oppure non si sta utilizzando il virtual hosting, oppure le riscritture del virtual host avvengono <em>dopo</em> il proxy di caching oppure si utilizza un singolo nome di dominio con il virtual host.</p>"
 
 
-#. Default: "By default, permissions from the container of this item are inherited. If you disable this, only the explicitly defined shar
-ing permissions will be valid. In the overview, the symbol ${image_link_icon} indicates an inherited value. Similarly, the symbol ${image
-_confirm_icon} indicates a global role, which is managed by the site administrator."
 #: plone.app.workflow/plone/app/workflow/browser/sharing.pt:154
 msgid "help_inherit_local_roles"
-msgstr "Di norma, i permessi di questo elemento vengono ereditati dal contenitore. Se disabiliti questa opzione, verranno considerati sol
-o i permessi di condivisione definiti esplicitamente. Nel sommario, il simbolo ${image_confirm_icon} indica una impostazione ereditata. A
-nalogamente, il simbolo ${image_link_icon} indica un ruolo globale. Questi sono gestiti dall'amministratore del sito nelle impostazioni d
-el portale."
+msgstr "Di norma, i permessi di questo elemento vengono ereditati dal contenitore. Se disabiliti questa opzione, verranno considerati solo i permessi di condivisione definiti esplicitamente. Nel sommario, il simbolo ${image_confirm_icon} indica una impostazione ereditata. Analogamente, il simbolo ${image_link_icon} indica un ruolo globale. Questi sono gestiti dall'amministratore del sito nelle impostazioni del portale."
 
 #. Default: "Apply changes"
 #: CMFPlone/controlpanel/browser/usergroups_groupsoverview.pt:201
@@ -166,7 +136,5 @@ msgstr "Nuovo stato"
 msgid "types_controlpanel_old_state"
 msgstr "Stato precedente"
 
-#. Default: "Related content"
-#: plone.app.layout/plone/app/layout/viewlets/document_relateditems.pt:12
 msgid "label_related_items"
 msgstr "Contenuti correlati"

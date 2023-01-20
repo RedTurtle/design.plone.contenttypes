@@ -6,6 +6,7 @@
     >
 
   <browser:page
+<<<<<<< HEAD
       name="change_news_type"
       for="*"
       class=".change_news_type.View"
@@ -18,6 +19,11 @@
       for="*"
       class=".move_news_items.View"
       template="templates/move_news_items.pt"
+=======
+      name="check_servizi"
+      for="*"
+      class=".check_servizi.CheckServizi"
+>>>>>>> fix some problems and add a view to check old services
       permission="cmf.ManagePortal"
       />
 
