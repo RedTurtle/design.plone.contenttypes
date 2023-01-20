@@ -61,7 +61,10 @@
       factory=".persona.image_field_indexer"
       name="image_field"
       />
-
+  <adapter
+      factory=".persona.ruolo"
+      name="ruolo"
+      />
   <adapter
       factory=".punto_di_contatto.PuntoDiContattoMoreTextToIndex"
       name="IPuntoDiContatto"

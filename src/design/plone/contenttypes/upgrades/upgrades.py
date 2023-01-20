@@ -1645,3 +1645,15 @@ def readd_tassonomia_argomenti_uid(context):
     update_registry(context)
     idxs = ["tassonomia_argomenti_uid", "tassonomia_argomenti"]
     reindex_catalog(context, idxs)
+
+
+def update_ruolo_indexing(context):
+    logger.info(
+        f"{colors.DARKCYAN} Reindex del ruolo nelle persone {colors.ENDC}"  # noqa
+    )
+    idxs = ["ruolo"]
+    pc = api.portal.get_tool("portal_catalog")
+    brains = pc(portal_type="Persona")
+    for brain in brains:
+        persona = brain.getObject()
+        persona.reindexObject(idxs=idxs)

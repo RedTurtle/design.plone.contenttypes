@@ -668,4 +668,15 @@
         handler=".upgrades.readd_tassonomia_argomenti_uid"
         />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="7003"
+      destination="7004"
+      >
+    <genericsetup:upgradeStep
+        title="Persone: update ruolo indexing"
+        description=""
+        handler=".upgrades.update_ruolo_indexing"
+        />
+  </genericsetup:upgradeSteps>
 </configure>
