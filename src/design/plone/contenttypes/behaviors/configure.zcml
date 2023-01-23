@@ -57,6 +57,15 @@
       marker=".argomenti.IArgomentiNews"
       />
   <plone:behavior
+      name="design.plone.contenttypes.behavior.argomenti_evento"
+      title="Argomenti"
+      description="Tassonomia argomenti evento"
+      factory=".argomenti.ArgomentiEvento"
+      provides=".argomenti.IArgomentiEvento"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      marker=".argomenti.IArgomentiEvento"
+      />
+  <plone:behavior
       name="design.plone.contenttypes.behavior.argomenti_document"
       title="Argomenti Document"
       description="Tassonomia argomenti per i Document"

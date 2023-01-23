@@ -136,6 +136,7 @@ class DeserializeNewsFromJson(DeserializeFromJson):
 
         if errors:
             raise BadRequest(errors)
+
         return super(DeserializeNewsFromJson, self).__call__(
             validate_all=False, data=data, create=False
         )
