@@ -5,7 +5,10 @@ Changelog
 6.0.0a8 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Fixed some field in event and news ct.
+- Add news argomenti_evento behavior for event.
+- Remove old argomenti behavior for news item.
+  [eikichi18]
 
 
 6.0.0a7 (2023-01-20)
