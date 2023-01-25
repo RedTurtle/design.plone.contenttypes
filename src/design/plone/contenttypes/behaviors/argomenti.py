@@ -101,6 +101,26 @@ class IArgomentiNews(IArgomentiSchema):
 
 
 @provider(IFormFieldProvider)
+class IArgomentiEvento(IArgomentiSchema):
+    """ """
+
+    tassonomia_argomenti = RelationList(
+        title=_("tassonomia_argomenti_label", default="Argomenti"),
+        description=_(
+            "tassonomia_argomenti_help",
+            default="Seleziona una lista di argomenti d'interesse per questo"
+            " contenuto.",
+        ),
+        value_type=RelationChoice(
+            title=_("Argomenti correlati"),
+            vocabulary="plone.app.vocabularies.Catalog",
+        ),
+        required=True,
+        default=[],
+    )
+
+
+@provider(IFormFieldProvider)
 class IArgomentiServizio(IArgomentiSchema):
 
     tassonomia_argomenti = RelationList(
@@ -189,25 +209,19 @@ class Argomenti(object):
 
 @implementer(IArgomentiDocumento)
 @adapter(IDocumento)
-class ArgomentiDocumento(object):
+class ArgomentiDocumento(Argomenti):
     """"""
-
-    def __init__(self, context):
-        self.context = context
 
 
 @implementer(IArgomentiBando)
 @adapter(IBandoAgidSchema)
-class ArgomentiBando(object):
+class ArgomentiBando(Argomenti):
     """"""
-
-    def __init__(self, context):
-        self.context = context
 
 
 @implementer(IArgomentiDocument)
 @adapter(IDocument)
-class ArgomentiDocument(object):
+class ArgomentiDocument(Argomenti):
     """"""
 
     def __init__(self, context):
@@ -226,6 +240,15 @@ class ArgomentiServizio(object):
 @implementer(IArgomentiNews)
 @adapter(IServizio)
 class ArgomentiNews(object):
+    """"""
+
+    def __init__(self, context):
+        self.context = context
+
+
+@implementer(IArgomentiEvento)
+@adapter(IServizio)
+class ArgomentiEvento(object):
     """"""
 
     def __init__(self, context):

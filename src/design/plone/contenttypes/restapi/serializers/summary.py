@@ -7,15 +7,16 @@ from design.plone.contenttypes.interfaces.persona import IPersona
 from design.plone.contenttypes.interfaces.punto_di_contatto import IPuntoDiContatto
 from plone import api
 from plone.app.contenttypes.interfaces import IEvent
+from plone.base.interfaces import IImageScalesAdapter
 from plone.restapi.interfaces import ISerializeToJsonSummary
 from plone.restapi.serializer.converters import json_compatible
-from plone.volto.behaviors.preview import IPreview
 from redturtle.volto.restapi.serializer.summary import (
     DefaultJSONSummarySerializer as BaseSerializer,
 )
 from zope.component import adapter
 from zope.component import getMultiAdapter
 from zope.component import getUtility
+from zope.component import queryMultiAdapter
 from zope.i18n import translate
 from zope.interface import implementer
 from zope.interface import Interface
@@ -192,15 +193,21 @@ class PersonaDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
 class EventDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
     def __call__(self, force_all_metadata=False):
         res = super().__call__(force_all_metadata=force_all_metadata)
-        fields = dict(getFieldsInOrder(IPreview))
-        field = fields.get("preview_image", None)
-        if field:
-            images_info_adapter = getMultiAdapter(
-                (field, self.context, IDesignPloneContenttypesLayer)
+
+        # Il summary dell'evento riceve in ingresso un obj generico che può
+        # essere un brain (gli items figli dell'evento) oppure un oggtto (il
+        # parent). Gli attributi per le immagini vengono presi solo nel caso
+        # del brain perché sono informazioni a catalogo. Per cui se non abbiamo
+        # le informazioni, le calcoliamo come fanno gli indexer
+        if not res.get("image_scales") and not res.get("image_field"):
+            adapter = queryMultiAdapter(
+                (self.context, self.request), IImageScalesAdapter
             )
-            if images_info_adapter:
-                res["image_scales"] = {
-                    "preview_image": [images_info_adapter()],
-                }
-            res["image_field"] = "preview_image"
+            scales = adapter()
+            if scales:
+                res["image_scales"] = scales
+            if "preview_image" in scales:
+                res["image_field"] = "preview_image"
+            elif "image" in scales:
+                res["image_field"] = "image"
         return res

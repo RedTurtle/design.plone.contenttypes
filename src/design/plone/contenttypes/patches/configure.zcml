@@ -8,9 +8,11 @@
 
   <monkey:patch
       original="__call__"
-      replacement=".baseserializer.eea_api_taxonomy_taxonomy_call"
+      replacement=".patches.eea_api_taxonomy_taxonomy_call"
       class="collective.taxonomy.utility.Taxonomy"
       description="Patch Taxonomy class caller"
+      order="2000"
+      preserveOriginal="true"
       />
 
 </configure>

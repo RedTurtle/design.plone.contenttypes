@@ -60,6 +60,16 @@ def update_controlpanel(context):
     update_profile(context, "controlpanel")
 
 
+def reindex_catalog(context, idxs):
+    pc = api.portal.get_tool(name="portal_catalog")
+    brains = pc()
+    for brain in brains:
+        if idxs:
+            brain.getObject().reindexObject(idxs=idxs)
+        else:
+            brain.getObject().reindexObject()
+
+
 def remap_fields(mapping):
     pc = api.portal.get_tool(name="portal_catalog")
     brains = pc()
@@ -959,6 +969,68 @@ def to_5410(context):
     )
 
 
+def to_5500(context):
+    update_registry(context)
+    update_catalog(context)
+
+    argomenti_mapping = {
+        x.Title: x.UID for x in api.content.find(portal_type="Pagina Argomento")
+    }
+
+    def fix_block(blocks, argomenti_mapping):
+        for block in blocks.values():
+            if block.get("@type", "") == "listing":
+                for query in block.get("querystring", {}).get("query", []):
+                    if query["i"] == "tassonomia_argomenti":
+                        new_values = []
+                        for v in query["v"]:
+                            uid = argomenti_mapping.get(v, "")
+                            if uid:
+                                new_values.append(uid)
+                        query["i"] = "tassonomia_argomenti_uid"
+                        query["v"] = new_values
+                        logger.info(" - {}".format(brain.getURL()))
+
+    pc = api.portal.get_tool(name="portal_catalog")
+    brains = pc()
+    tot = len(brains)
+    i = 0
+    for brain in brains:
+        i += 1
+        if i % 1000 == 0:
+            logger.info("Progress: {}/{}".format(i, tot))
+        item_obj = brain.getObject()
+        item = aq_base(brain.getObject())
+
+        # reindex argomenti indexes
+        if brain.tassonomia_argomenti:
+            item_obj.reindexObject(
+                idxs=["tassonomia_argomenti", "tassonomia_argomenti_uid"]
+            )
+
+        if getattr(item, "blocks", {}):
+            blocks = deepcopy(item.blocks)
+            if blocks:
+                fix_block(blocks, argomenti_mapping)
+                item.blocks = blocks
+        for schema in iterSchemata(item):
+            # fix blocks in blocksfields
+            for name, field in getFields(schema).items():
+                if name == "blocks":
+                    blocks = deepcopy(item.blocks)
+                    if blocks:
+                        fix_block(blocks, argomenti_mapping)
+                        item.blocks = blocks
+                elif isinstance(field, BlocksField):
+                    value = deepcopy(field.get(item))
+                    if not value:
+                        continue
+                    blocks = value.get("blocks", {})
+                    if blocks:
+                        fix_block(blocks, argomenti_mapping)
+                        setattr(item, name, value)
+
+
 def to_6000(context):
     """ """
     logger.info(
@@ -1413,6 +1485,9 @@ def create_pdc(context):
             api.relation.create(source=obj, target=pdc, relationship="contact_info")
 
             pdc.value_punto_contatto = data
+            # publish
+            wftool.doActionFor(pdc, "publish")
+
             logger.info(
                 f"{colors.GREEN} Creato il punto di contatto per {obj.title}({obj.absolute_url()}){colors.ENDC}"  # noqa
             )
@@ -1546,3 +1621,39 @@ def update_taxonomies_on_blocks(context):
     logger.info(
         f"{colors.DARKCYAN} Terminato l'update dei blocchi {colors.ENDC}"  # noqa
     )
+
+
+def update_uo_contact_info(context):
+    brains = api.portal.get_tool("portal_catalog")(portal_type="UnitaOrganizzativa")
+    logger.info(
+        f"{colors.DARKCYAN} Inizio la pulzia delle {len(brains)} UO campo contact_info {colors.ENDC}"  # noqa
+    )
+    for brain in brains:
+        obj = brain.getObject()
+        if type(obj.contact_info) == dict:
+            del obj.contact_info
+            logger.info(
+                f"{colors.GREEN} Modifica della UO senza punto di contatto {colors.ENDC}"  # noqa
+            )
+
+
+def readd_tassonomia_argomenti_uid(context):
+    logger.info(
+        f"{colors.DARKCYAN} Aggiungo la tassonomia_argomenti_uid e reindicizzo{colors.ENDC}"  # noqa
+    )
+    update_catalog(context)
+    update_registry(context)
+    idxs = ["tassonomia_argomenti_uid", "tassonomia_argomenti"]
+    reindex_catalog(context, idxs)
+
+
+def update_ruolo_indexing(context):
+    logger.info(
+        f"{colors.DARKCYAN} Reindex del ruolo nelle persone {colors.ENDC}"  # noqa
+    )
+    idxs = ["ruolo"]
+    pc = api.portal.get_tool("portal_catalog")
+    brains = pc(portal_type="Persona")
+    for brain in brains:
+        persona = brain.getObject()
+        persona.reindexObject(idxs=idxs)

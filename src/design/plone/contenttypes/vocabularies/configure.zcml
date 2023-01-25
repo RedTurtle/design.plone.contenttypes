@@ -40,6 +40,12 @@
       />
 
   <utility
+      name="design.plone.vocabularies.argomenti_uid"
+      component=".argomenti_vocabulary.ArgomentiUIDVocabularyFactory"
+      />
+
+
+  <utility
       name="design.plone.vocabularies.event_location"
       component=".reference_vocabularies.EventLocationVocabularyFactory"
       />
@@ -52,6 +58,11 @@
   <utility
       name="design.plone.vocabularies.uo_locations"
       component=".reference_vocabularies.UOLocationVocabularyFactory"
+      />
+
+  <utility
+      name="design.plone.contenttypes.RuoliPersona"
+      component=".people_vocabulary.RuoliPersonaFactory"
       />
 
 </configure>

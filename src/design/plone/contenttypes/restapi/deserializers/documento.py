@@ -15,7 +15,7 @@ TITLE_MAX_LEN = 160
 DESCRIPTION_MAX_LEN = 160
 EMPTY_BLOCK_MARKER = {"@type": "text"}
 MANDATORY_RICH_TEXT_FIELDS = [
-    "descrizione_estesa",
+    # "descrizione_estesa",
     "formati_disponibili",
 ]
 

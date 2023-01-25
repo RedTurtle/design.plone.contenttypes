@@ -43,3 +43,22 @@ class PeopleVocabulary(object):
 
 
 PeopleVocabularyFactory = PeopleVocabulary()
+
+
+@implementer(IVocabularyFactory)
+class RuoliPersona(object):
+    """ """
+
+    def __call__(self, context):
+        portal_catalog = api.portal.get_tool("portal_catalog")
+        unique_values = portal_catalog.uniqueValuesFor("ruolo")
+        terms = []
+        for unique_value in unique_values:
+            terms.append(
+                SimpleTerm(value=unique_value, token=unique_value, title=unique_value)
+            )
+        # Create a SimpleVocabulary from the terms list and return it:
+        return SimpleVocabulary(terms)
+
+
+RuoliPersonaFactory = RuoliPersona()

@@ -18,3 +18,123 @@ msgstr ""
 #: CMFPlone/interfaces/controlpanel.py:1432
 msgid "To identify things like Twitter Cards. Do not include the \"@\" prefix character."
 msgstr "Per identificare cose come le Twitter Card. Non includere il carattere \"@\" come prefisso."
+
+#. Default: "Summary"
+#: plone.app.dexterity/plone/app/dexterity/behaviors/metadata.py:72
+#: plone.app.viewletmanager/plone/app/viewletmanager/manage-viewlets.pt:39
+msgid "label_description"
+msgstr "Descrizione"
+
+#. Default: "If this date is in the future, the content will not show up in listings and searches until this date."
+#: plone.app.dexterity/plone/app/dexterity/behaviors/metadata.py:143
+msgid "help_effective_date"
+msgstr "La data in cui l'elemento verrà pubblicato. Se non viene inserita alcuna data l'elemento viene pubblicato immediatamente."
+
+
+#. Default: "When this date is reached, the content will no longer be visible in listings and searches."
+#: plone.app.dexterity/plone/app/dexterity/behaviors/metadata.py:154
+msgid "help_expiration_date"
+msgstr "La data di scadenza del documento. Dopo questa data, il documento sarà reso automaticamente invisibile agli altri visitatori. Se non viene inserita alcuna data il documento rimarrà visibile indefinitamente."
+
+#: CMFPlone/browser/templates/accessibility-info.pt:21
+msgid "description_accessibility_info"
+msgstr "Questo sito utilizza il Content Management System ${plone}. Soddisfa le linee guida \"Web Content Accessibility Guidelines\" (<a href=\"http://www.w3.org/TR/WCAG20/\">${wcag}) v2.0</a> al livello \"AA\" per persone con disabilità, inclusi non vedenti e ipovedenti, non udenti e ipoudenti, con difficoltà di apprendimento, limitazioni cognitive, limitazioni motorie, difficoltà di linguaggio, sensibil ità alla luce nonché combinazioni delle precedenti."
+
+#: CMFPlone/browser/templates/accessibility-info.pt:57
+msgid "description_wcag_aa_rating"
+msgstr "Alcuni checkpoint nelle linee guida ${wcag} 2.0 e ${atag} 2.0 sono soggettivi; in alcuni circostanze le interpretazioni potrebbero variare."
+
+#. Default: "${user_name} &#8217;s dashboard"
+#: plone.app.portlets/plone/app/portlets/dashboard/dashboard.pt:20
+msgid "heading_dashboard"
+msgstr "Bacheca di ${user_name}"
+
+#: plone.app.caching/plone/app/caching/browser/controlpanel.pt:269
+msgid "help_domains"
+msgstr "<p> Se l'opzione \"<em>Le riscritture del Virtual Host avvengono prima del proxy di caching</em>\" è abilitata, e se il sito è raggiungibile da domini multipli (es. <code>http://example.com:80</code> e <code>http://www.example.com:80</code>), inserire qui tutti i domini disponibili, uno per linea. Questo assicura che le richieste di rimozione vengano inviate a tutti i domini, dove possibile. Notare che è più efficiente configurare il web server più esterno per redirigere semplicemente tutte le richieste verso un singolo dominio, così che Zope \"veda\" un singolo dominio.</p><p>È più sicuro lasciare questa lista vuota nei seguenti casi: non si sta utilizzando un proxy di caching, oppure non si sta utilizzando il virtual hosting, oppure le riscritture del virtual host avvengono <em>dopo</em> il proxy di caching oppure si utilizza un singolo nome di dominio con il virtual host.</p>"
+
+
+#: plone.app.workflow/plone/app/workflow/browser/sharing.pt:154
+msgid "help_inherit_local_roles"
+msgstr "Di norma, i permessi di questo elemento vengono ereditati dal contenitore. Se disabiliti questa opzione, verranno considerati solo i permessi di condivisione definiti esplicitamente. Nel sommario, il simbolo ${image_confirm_icon} indica una impostazione ereditata. Analogamente, il simbolo ${image_link_icon} indica un ruolo globale. Questi sono gestiti dall'amministratore del sito nelle impostazioni del portale."
+
+#. Default: "Apply changes"
+#: CMFPlone/controlpanel/browser/usergroups_groupsoverview.pt:201
+#: CMFPlone/controlpanel/browser/usergroups_usersoverview.pt:213
+#: plone.app.users/plone/app/users/browser/registersettingspanel.py:32
+msgid "label_apply_changes"
+msgstr "Applica le modifiche"
+
+#. Default: "View full-size image"
+#: plone.app.contenttypes/plone/app/contenttypes/browser/templates/image.pt:57
+#: plone.namedfile/plone/namedfile/test.pt:68
+msgid "label_click_to_view_full_image"
+msgstr "Clicca per vedere l'immagine alle dimensioni originali…"
+
+#. Default: "Event"
+#: plone.app.contentrules/plone/app/contentrules/browser/templates/controlpanel.pt:127
+msgid "label_contentrules_rule_event"
+msgstr "evento"
+
+#. Default: "Content rule"
+#: plone.app.contentrules/plone/app/contentrules/browser/templates/controlpanel.pt:126
+msgid "label_contentrules_rule_listing"
+msgstr "regola di contenuto"
+
+#. Default: "— ${location}"
+#: plone.app.contenttypes/plone/app/contenttypes/browser/templates/listing.pt:71
+msgid "label_event_byline_location"
+msgstr "— ${location},"
+
+#. Default: "For an introduction to Plone, documentation, demos, add-ons, support, and community, visit"
+#: CMFPlone/browser/templates/plone-overview.pt:34
+msgid "label_plone_org_description"
+msgstr "Per la documentazione, i prodotti aggiuntivi, il supporto tecnico e la comunità visita"
+
+#. Default: "Powered by Plone"
+#: CMFPlone/browser/templates/colophon.pt:11
+#: plone.app.layout/plone/app/layout/viewlets/colophon.pt:6
+#: plone.app.theming/resources/theme/theme1/overrides/plone.app.layout.viewlets.colophon.pt:8
+msgid "label_powered_by_plone"
+msgstr "Realizzato con Plone & Python"
+
+#. Default: "Required"
+#: CMFPlone/controlpanel/browser/redirects-controlpanel.pt:69
+#: CMFPlone/controlpanel/browser/redirects-manage.pt:60
+msgid "label_required"
+msgstr "(Obbligatorio)"
+
+#. Default: "Search for an error log entry <span class=\"formHelp\"> (such as \"1257962690.640.49636048561\") </span>"
+#: CMFPlone/controlpanel/browser/error_log_form.pt:83
+msgid "label_search_entry"
+msgstr "Ricerca un elemento dei log <span class=\"formHelp\">(per esempio \"1257962690.640.49636048561\"))</span>"
+
+#. Default: "Users"
+#: plone.app.users/plone/app/users/browser/memberregistration.pt:23
+#: plone.app.users/plone/app/users/browser/schema_layout.pt:29
+msgid "label_users"
+msgstr "Utenti"
+
+#. Default: "Group Name"
+#: CMFPlone/controlpanel/browser/usergroups_groupsoverview.pt:107
+#: CMFPlone/controlpanel/browser/usergroups_usermembership.pt:72
+msgid "listingheader_group_name"
+msgstr "Nome del gruppo"
+
+#. Default: "Error Log (most recent first)"
+#: CMFPlone/controlpanel/browser/error_log_form.pt:40
+msgid "summary_exception_log"
+msgstr "Registro delle eccezioni (per prime le più recenti)"
+
+#. Default: "New State:"
+#: CMFPlone/controlpanel/browser/types.pt:218
+msgid "types_controlpanel_new_state"
+msgstr "Nuovo stato"
+
+#. Default: "Old State:"
+#: CMFPlone/controlpanel/browser/types.pt:217
+msgid "types_controlpanel_old_state"
+msgstr "Stato precedente"
+
+msgid "label_related_items"
+msgstr "Contenuti correlati"

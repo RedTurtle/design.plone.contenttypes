@@ -2,12 +2,55 @@ Changelog
 =========
 
 
-6.0.0a4 (unreleased)
+6.0.0a9 (unreleased)
 --------------------
 - New view 'change_news_type'
   [foxtrot-dfm1]
 -  New view 'move_news_items'
   [foxtrot-dfm1]
+
+
+6.0.0a8 (2023-01-23)
+--------------------
+
+- Fixed some field in event and news ct.
+- Add news argomenti_evento behavior for event.
+- Remove old argomenti behavior for news item.
+  [eikichi18]
+
+
+6.0.0a7 (2023-01-20)
+--------------------
+
+- Fix persona role handling: take the role from the connected incarico object
+  [lucabel]
+
+
+6.0.0a6 (2023-01-20)
+--------------------
+- various fixes
+- add Event summary serializer to get image information
+  also on parent
+- merge with last master update
+  [lucabel]
+
+
+6.0.0a5 (2023-01-19)
+--------------------
+
+- Fix patch for collective.taxonomy.
+  [eikichi18]
+
+
+6.0.0a4 (2023-01-19)
+--------------------
+
+- add image to event summary.
+  [lucabel]
+- fix datagrid field frontend widget declaration.
+  [roman]
+- removed unused field evento_genitore e appuntamenti from event ct.
+  [eikichi18]
 
 
 6.0.0a3 (2023-01-13)
@@ -34,6 +77,26 @@ Changelog
 - Adjustments to the pnrr.
   [deodorhunter, lucabel, eikichi18]
 
+5.1.1 (2023-01-18)
+------------------
+
+- New view 'change_news_type'.
+  [foxtrot-dfm1]
+- New view 'move_news_items'.
+  [foxtrot-dfm1]
+
+
+5.1.0 (2023-01-03)
+------------------
+
+- Remove selection limit in ufficio_responsabile field for Servizio.
+  [foxtrot-dfm1]
+- Add new indexer "tassonomia_argomenti_uid" that indexes related Argomenti UIDs.
+  [cekk]
+- Change collection criteria to use new index.
+  [cekk]
+- Upgrade-step to convert old blocks with new criteria.
+  [cekk]
 
 5.0.3 (2022-12-07)
 ------------------

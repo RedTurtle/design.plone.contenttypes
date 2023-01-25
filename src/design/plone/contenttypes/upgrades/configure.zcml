@@ -573,6 +573,17 @@
   </genericsetup:upgradeSteps>
   <genericsetup:upgradeSteps
       profile="design.plone.contenttypes:default"
+      source="5410"
+      destination="5500"
+      >
+
+    <genericsetup:upgradeStep
+        title="Add new index for Argomenti UID"
+        handler=".upgrades.to_5500"
+        />
+  </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
       source="6000"
       destination="6000"
       >
@@ -639,6 +650,33 @@
         title="Persone: Update for PNRR - migrazione Tassonomie"
         description="Migrazione delle tassonomie sui blocchi"
         handler=".upgrades.update_taxonomies_on_blocks"
+        />
+  </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="7002"
+      destination="7003"
+      >
+    <genericsetup:upgradeStep
+        title="Persone: Update for PNRR - pulizia contact_info delle UO"
+        description="I vecchi campi contact_info delle UO non devono contenere stringhe"
+        handler=".upgrades.update_uo_contact_info"
+        />
+    <genericsetup:upgradeStep
+        title="Argomenti: Reintrodotto indice per uid"
+        description=""
+        handler=".upgrades.readd_tassonomia_argomenti_uid"
+        />
+  </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="7003"
+      destination="7004"
+      >
+    <genericsetup:upgradeStep
+        title="Persone: update ruolo indexing"
+        description=""
+        handler=".upgrades.update_ruolo_indexing"
         />
   </genericsetup:upgradeSteps>
 </configure>

@@ -60,7 +60,7 @@ class IDescrizioneEstesaDocumento(IDescrizioneEstesaSchema):
 
     descrizione_estesa = BlocksField(
         title=_("descrizione_estesa", default="Descrizione estesa"),
-        required=True,
+        required=False,
         description=_(
             "descrizione_estesa_help",
             default="Descrizione dettagliata e completa.",

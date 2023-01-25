@@ -30,7 +30,7 @@ class IEvento(model.Schema):
 
     descrizione_estesa = BlocksField(
         title=_("descrizione_estesa", default="Descrizione estesa"),
-        required=False,
+        required=True,
         description=_(
             "descrizione_estesa_help",
             default="Descrizione dettagliata e completa.",
@@ -44,21 +44,6 @@ class IEvento(model.Schema):
             "descrizione_destinatari_help",
             default="Descrizione dei principali interlocutori dell'evento.",
         ),
-    )
-
-    persone_amministrazione = RelationList(
-        title="Persone dell'amministrazione che partecipano all'evento",
-        default=[],
-        value_type=RelationChoice(
-            title=_("Persona dell'amministrazione"),
-            vocabulary="plone.app.vocabularies.Catalog",
-        ),
-        description=_(
-            "persone_amministrazione_help",
-            default="Elenco delle persone dell'amministrazione che"
-            " parteciperanno all'evento.",
-        ),
-        required=False,
     )
 
     orari = BlocksField(
@@ -125,7 +110,7 @@ class IEvento(model.Schema):
         ),
     )
 
-    parteciperanno = RelationList(
+    persone_amministrazione = RelationList(
         title=_("parteciperanno_label", default="Parteciperanno (Persone)"),
         required=False,
         default=[],
@@ -147,20 +132,11 @@ class IEvento(model.Schema):
 
     # custom widgets
     form.widget(
-        "parteciperanno",
-        RelatedItemsFieldWidget,
-        vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={
-            "maximumSelectionSize": 1,
-            "selectableTypes": ["Persone"],
-        },
-    )
-    form.widget(
         "supportato_da",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "maximumSelectionSize": 1,
+            "maximumSelectionSize": 10,
             "selectableTypes": ["UnitaOrganizzativa"],
         },
     )
