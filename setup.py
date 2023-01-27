@@ -64,7 +64,6 @@ setup(
         "redturtle.bandi",
         "z3c.unconfigure",
         "eea.api.taxonomy",
-        "plone.app.dexterity"
     ],
     extras_require={
         "test": [
@@ -78,6 +77,8 @@ setup(
             "plone.app.robotframework[debug]",
             "collective.MockMailHost",
             "redturtle.prenotazioni",
+            "collective.folderishtypes",
+            "redturtle.prenotazioni"
         ]
     },
     entry_points="""
