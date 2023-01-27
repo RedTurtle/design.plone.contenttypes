@@ -66,6 +66,10 @@ msgstr "Tipologie Notizie presenti sul sito"
 msgid "All the selected items will be moved to indicated path"
 msgstr "Tutti gli elementi selezionati saranno spostati nella cartella indicata"
 
+#: design/plone/contenttypes/browser/manage_content/templates/change_news_type.pt:20
+msgid "All the already existing News Types"
+msgstr "I tipi delle notizie che esistono sul sito"
+
 #: design/plone/contenttypes/vocabularies/dataset.py:36
 msgid "Ambiente"
 msgstr ""
@@ -796,7 +800,7 @@ msgstr "La Tipologia Notizia nuova non è stata trovata tra i valori possibli"
 
 #: design/plone/contenttypes/browser/manage_content/change_news_type.py:49
 msgid "The new type field was not populated"
-msgstr "Il campo del nuovo tipo non è stato popolato"
+msgstr "Il campo della avitabile Tipologia Notizia non è stato popolato"
 
 #: design/plone/contenttypes/browser/manage_content/change_news_type.py:61
 msgid "The old News Type was not found between available values"
@@ -804,7 +808,7 @@ msgstr "La Tipologia Notizia vecchia non è stata trovata tra i valori possibli"
 
 #: design/plone/contenttypes/browser/manage_content/change_news_type.py:43
 msgid "The old type field was not populated"
-msgstr "l campo del vecchio tipo non è stato popolato"
+msgstr "l campo della Tipologia Notizia esistente non è stato popolato"
 
 #: design/plone/contenttypes/browser/manage_content/move_news_items.py:51
 msgid "The path was not indicated"

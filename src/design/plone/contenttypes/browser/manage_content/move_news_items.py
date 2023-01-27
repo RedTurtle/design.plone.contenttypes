@@ -1,14 +1,14 @@
-from zope.schema.interfaces import IVocabularyFactory
-from zope.component import getUtility
+from collective.taxonomy.interfaces import ITaxonomy
+from design.plone.contenttypes import _
 from plone import api
 from plone.memoize import ram
 from Products.Five import BrowserView
+from zope.component import getUtility
+from zope.interface.interfaces import ComponentLookupError
 
-from plone.app.contenttypes import _
-
-import time
 import logging
 import pkg_resources
+import time
 
 
 JS_TEMPLATE = (
@@ -64,9 +64,17 @@ class View(BrowserView):
         return api.portal.get_tool("portal_catalog")(**query)
 
     def news_types(self):
-        return getUtility(
-            IVocabularyFactory, "design.plone.vocabularies.tipologie_notizia"
-        )(self.context)
+        try:
+            taxonomy = getUtility(
+                ITaxonomy, name="collective.taxonomy.tipologia_notizia"
+            )
+        except ComponentLookupError:
+            self.context.plone_utils.addPortalMessage(
+                _("Il vocabolario dei valori non è stato trovato"), "error"
+            )
+            return
+
+        return taxonomy.makeVocabulary(self.request.get("LANGUAGE"))
 
     @ram.cache(lambda *args: time.time() // (60 * 60))
     def get_version(self):
