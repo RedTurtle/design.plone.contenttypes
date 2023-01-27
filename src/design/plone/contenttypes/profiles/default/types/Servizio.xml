@@ -26,6 +26,7 @@
     <element value="Document" />
     <element value="Image" />
     <element value="File" />
+    <element value="Folder" />
     <!-- integration btw design.plone.contenttypes and redturtle.prenotazioni -->
     <element value="PrenotazioniFolderContainer" />
   </property>
