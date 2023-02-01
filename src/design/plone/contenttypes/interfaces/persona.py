@@ -57,7 +57,7 @@ class IPersona(model.Schema, IDesignPloneContentType):
         ),
         description=_(
             "incarichi_help",
-            default="Seleziona la lista di incarichi della persona.",
+            default="Seleziona l'incarico corrente della persona.",
         ),
         value_type=RelationChoice(
             title=_("Incarichi"),

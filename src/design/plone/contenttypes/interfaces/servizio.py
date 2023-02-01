@@ -186,7 +186,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
         title=_("canale_fisico", default="Canale fisico"),
         description=_(
             "canale_fisico_help",
-            default="Sedi per la fruizione del servizio",
+            default="Unità organizzative per la fruizione del servizio",
         ),
         required=True,
         default=[],
