@@ -118,7 +118,11 @@ class INewsAdditionalFields(model.Schema):
             "maximumSelectionSize": 50,
         },
     )
-
+    model.fieldset(
+        "correlati",
+        label=_("correlati_label", default="Contenuti collegati"),
+        fields=["notizie_correlate"],
+    )
     # custom fieldsets and order
     form.order_before(descrizione_estesa="ILeadImageBehavior.image")
     form.order_before(numero_progressivo_cs="ILeadImageBehavior.image")
