@@ -690,6 +690,8 @@
         handler=".upgrades.fix_ctaxonomy_indexes_and_metadata"
         />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
       source="7005"
       destination="7006"
       >
