@@ -16,28 +16,22 @@ from zope import schema
 
 
 class ITempiEScadenzeValueSchema(model.Schema):
-    data_scadenza = schema.Date(
-        title=_("data_scadenza_label", default="Data scadenza"),
-        description=_(
-            "data_scadenza_help",
-            default="Data di scadenza della fase",
-        ),
-        required=False,
-    )
+
     milestone = schema.TextLine(
         title=_("milestone_label", default="Titolo"),
-        description=_(
-            "milestone_help",
-            default="Titolo della fase",
-        ),
         required=True,
+        default="",
+    )
+    milestone_description = schema.TextLine(
+        title=_("milestone_description_label", default="Sottotitolo"),
+        required=False,
         default="",
     )
     interval_qt = schema.TextLine(
         title=_("interval_qt_label", default="Intervallo"),
         description=_(
             "interval_qt_help",
-            default="Intervallo della fase",
+            default="Intervallo della fase (es. 1)",
         ),
         required=False,
         default="",
@@ -51,14 +45,9 @@ class ITempiEScadenzeValueSchema(model.Schema):
         required=False,
         default="",
     )
-    milestone_description = schema.TextLine(
-        title=_("milestone_description_label", default="Sottotitolo"),
-        description=_(
-            "milestone_description_help",
-            default="Sottotitolo della fase",
-        ),
+    data_scadenza = schema.Date(
+        title=_("data_scadenza_label", default="Data scadenza"),
         required=False,
-        default="",
     )
 
     form.widget(
@@ -259,9 +248,12 @@ class IServizio(model.Schema, IDesignPloneContentType):
         description=_(
             "timeline_tempi_scadenze_help",
             default="Timeline tempi e scadenze del servizio: indicare per ogni "
-            "scadenza un titolo descritttivo di tale scadenza e, opzionalmente,"
-            " informazioni sulle date o gli intervalli di tempo che "
-            "intercorrono tra una fase e la successiva.",
+            "scadenza un titolo descrittivo ed un eventuale sottotitolo."
+            "Per ogni scadenza, selezionare opzionalmente o l'intervallo (Campi"
+            ' "Intervallo" e "Tipo Intervallo", es. "1" e "settimana"),'
+            ' oppure direttamente una data di scadenza (campo: "Data Scadenza"'
+            ", esempio 31/12/2023). "
+            'Se vengono compilati entrambi, ha priorità il campo "Data Scadenza".',
         ),
         required=False,
     )
