@@ -68,6 +68,8 @@ def get_taxonomy_information(field_name, context, res):
         #     return res
 
         def get_fullterms(token):
+            if not token:
+                return None
             title = taxonomy_voc.inv_data.get(token)
             if title.startswith(PATH_SEPARATOR):
                 title.replace(PATH_SEPARATOR, "", 1)
