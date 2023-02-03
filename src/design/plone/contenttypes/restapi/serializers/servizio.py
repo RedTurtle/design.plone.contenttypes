@@ -20,7 +20,6 @@ from zope.schema import getFields
 @adapter(IServizio, Interface)
 class SerializeServizioToJsonSummary(DefaultJSONSummarySerializer):
     def __call__(self, force_all_metadata=False):
-        # import pdb;pdb.set_trace()
         summary = super().__call__(force_all_metadata=force_all_metadata)
         fields = ["canale_digitale"]
         for schema in iterSchemata(self.context):
