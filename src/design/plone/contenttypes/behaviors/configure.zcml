@@ -196,14 +196,6 @@
       marker=".info_testata.IInfoTestata"
       />
   <plone:behavior
-      name="design.plone.contenttypes.behavior.address_uo"
-      title="Address UO"
-      description="Behavior address per UO."
-      factory=".address.AddressUnitaOrganizzativa"
-      provides=".address.IAddressUnitaOrganizzativa"
-      marker=".address.IAddressUnitaOrganizzativa"
-      />
-  <plone:behavior
       name="design.plone.contenttypes.behavior.address_venue"
       title="Address Venue"
       description="Behavior address per Venue."

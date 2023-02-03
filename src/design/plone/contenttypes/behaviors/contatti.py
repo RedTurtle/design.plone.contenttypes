@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 from collective.venue.interfaces import IVenue
+from collective.volto.blocksfield.field import BlocksField
 from design.plone.contenttypes import _
 from design.plone.contenttypes.interfaces.persona import IPersona
 from design.plone.contenttypes.interfaces.servizio import IServizio
 from design.plone.contenttypes.interfaces.unita_organizzativa import IUnitaOrganizzativa
+from plone.app.dexterity import textindexer
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
 from plone.autoform.interfaces import IFormFieldProvider
@@ -33,6 +35,15 @@ class IContattiUnitaOrganizzativa(model.Schema):
             vocabulary="plone.app.vocabularies.Catalog",
         ),
     )
+    orario_pubblico = BlocksField(
+        title=_("orario_pubblico_label", default="Orario per il pubblico"),
+        description=_(
+            "orario_pubblico_help",
+            default="Indicare eventuali orari di accesso al pubblico",
+        ),
+        required=False,
+    )
+
     form.widget(
         "contact_info",
         RelatedItemsFieldWidget,
@@ -45,8 +56,10 @@ class IContattiUnitaOrganizzativa(model.Schema):
     model.fieldset(
         "contatti",
         label=_("contatti_label", default="Contatti"),
-        fields=["contact_info"],
+        fields=["contact_info", "orario_pubblico"],
     )
+
+    textindexer.searchable("orario_pubblico")
 
 
 @provider(IFormFieldProvider)

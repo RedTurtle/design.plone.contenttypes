@@ -50,8 +50,10 @@
     <element value="plone.leadimage" />
     <element value="volto.preview_image" />
     <element value="plone.relateditems" />
-    <element value="design.plone.contenttypes.behavior.address_uo" />
-    <element value="design.plone.contenttypes.behavior.geolocation_uo" />
+    <element value="design.plone.contenttypes.behavior.address_uo"
+             remove="True"/>
+    <element value="design.plone.contenttypes.behavior.geolocation_uo"
+             remove ="True"/>
     <element value="design.plone.contenttypes.behavior.contatti_uo" />
     <element value="design.plone.contenttypes.behavior.argomenti" />
     <element value="plone.textindexer" />

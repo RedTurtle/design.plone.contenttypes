@@ -29,7 +29,7 @@
     <indexed_attr value="tassonomia_argomenti_uid"/>
  </index>
  <index name="tipologia_documento" meta_type="KeywordIndex">
-  <indexed_attr value="tipologia_documento"/> 
+  <indexed_attr value="tipologia_documento"/>
  </index>
  <index name="ufficio_responsabile" meta_type="KeywordIndex">
   <indexed_attr value="ufficio_responsabile"/>

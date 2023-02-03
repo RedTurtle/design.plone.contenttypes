@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from collective.address.behaviors import IAddress
 from design.plone.contenttypes import _
-from design.plone.contenttypes.interfaces.unita_organizzativa import IUnitaOrganizzativa
 from plone.app.dexterity import textindexer
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.dexterity.interfaces import IDexterityContent
@@ -46,24 +45,6 @@ class IAddressLocal(model.Schema):
 
 
 @provider(IFormFieldProvider)
-class IAddressUnitaOrganizzativa(IAddress, IAddressNomeSede, IAddressLocal):
-
-    model.fieldset(
-        "contatti",
-        label=_("contatti_label", default="Contatti"),
-        fields=[
-            "nome_sede",
-            "street",
-            "zip_code",
-            "city",
-            "quartiere",
-            "circoscrizione",
-            "country",
-        ],
-    )
-
-
-@provider(IFormFieldProvider)
 class IAddressVenue(IAddress, IAddressLocal):
     """"""
 
@@ -98,15 +79,6 @@ class IAddressEvent(IAddress, IAddressNomeSede, IAddressLocal):
             "country",
         ],
     )
-
-
-@implementer(IAddressUnitaOrganizzativa)
-@adapter(IUnitaOrganizzativa)
-class AddressUnitaOrganizzativa(object):
-    """ """
-
-    def __init__(self, context):
-        self.context = context
 
 
 @implementer(IAddressVenue)

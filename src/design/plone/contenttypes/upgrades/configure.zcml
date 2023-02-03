@@ -690,4 +690,13 @@
         handler=".upgrades.fix_ctaxonomy_indexes_and_metadata"
         />
   </genericsetup:upgradeSteps>
+      source="7005"
+      destination="7006"
+      >
+    <genericsetup:upgradeStep
+        title="Persone: update ruolo indexing"
+        description=""
+        handler=".upgrades.update_types"
+        />
+  </genericsetup:upgradeSteps>
 </configure>
