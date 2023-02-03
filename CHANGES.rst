@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-6.0.0a10 (unreleased)
+6.0.0a10 (2023-02-03)
 ---------------------
 
 - Update some tickets to show or hide fields
