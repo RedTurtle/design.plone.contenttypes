@@ -2,7 +2,13 @@ Changelog
 =========
 
 
-6.0.0a9 (unreleased)
+6.0.0a10 (unreleased)
+---------------------
+
+- Nothing changed yet.
+
+
+6.0.0a9 (2023-02-02)
 --------------------
 - New view 'change_news_type'
   [foxtrot-dfm1]
