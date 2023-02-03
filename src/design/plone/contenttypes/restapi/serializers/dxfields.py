@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from AccessControl.unauthorized import Unauthorized
+from Acquisition import aq_inner
 from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
 from plone import api
 from plone.dexterity.interfaces import IDexterityContent
@@ -8,12 +9,15 @@ from plone.restapi.interfaces import IFieldSerializer
 from plone.restapi.interfaces import ISerializeToJsonSummary
 from plone.restapi.serializer.converters import json_compatible
 from plone.restapi.serializer.dxfields import DefaultFieldSerializer
+from plone.namedfile.interfaces import INamedFileField
 from zope.component import adapter
 from zope.component import getMultiAdapter
 from zope.component import subscribers
 from zope.globalrequest import getRequest
 from zope.interface import implementer
 from zope.schema.interfaces import ISourceText
+
+from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
 
 import json
 
@@ -28,6 +32,40 @@ class SourceTextSerializer(DefaultFieldSerializer):
         if self.field.getName() == "search_sections":
             return json.dumps(serialize_data(context=self.context, json_data=value))
         return value
+
+
+@adapter(INamedFileField, IDexterityContent, IDesignPloneContenttypesLayer)
+class FileFieldViewModeSerializer(DefaultFieldSerializer):
+    """Ovveride the basic DX serializer to handle the visulize file functionality"""
+
+    def __call__(self):
+        namedfile = self.field.get(self.context)
+        if namedfile is None:
+            return
+
+        url = "/".join(
+            (
+                self.context.absolute_url(),
+                self.get_file_view_mode(namedfile.contentType),
+                self.field.__name__,
+            )
+        )
+        result = {
+            "filename": namedfile.filename,
+            "content-type": namedfile.contentType,
+            "size": namedfile.getSize(),
+            "download": url,
+        }
+
+        return json_compatible(result)
+
+    def get_file_view_mode(self, content_type):
+        """Pdf view depends on the visualize_files property in thq aq_chain"""
+        if self.context and "pdf" in content_type:
+            if getattr(aq_inner(self.context), "visualize_files", None):
+                return "@@display-file"
+
+        return "@@download"
 
 
 def serialize_data(context, json_data, show_children=False):
