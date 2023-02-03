@@ -185,15 +185,16 @@ class IServizio(model.Schema, IDesignPloneContentType):
         ),
     )
 
-    autenticazione = BlocksField(
-        title=_("autenticazione", default="Autenticazione"),
-        description=_(
-            "autenticazione_help",
-            default="Indicare, se previste, le modalità di autenticazione"
-            " necessarie per poter accedere al servizio.",
-        ),
-        required=False,
-    )
+    # US38344 rimuovere
+    # autenticazione = BlocksField(
+    #     title=_("autenticazione", default="Autenticazione"),
+    #     description=_(
+    #         "autenticazione_help",
+    #         default="Indicare, se previste, le modalità di autenticazione"
+    #         " necessarie per poter accedere al servizio.",
+    #     ),
+    #     required=False,
+    # )
 
     dove_rivolgersi = RelationList(
         title="Dove rivolgersi",
@@ -483,7 +484,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
             "canale_digitale",
             "canale_digitale_link",
             "canale_fisico",
-            "autenticazione",
+            # "autenticazione",
             "dove_rivolgersi",
             "dove_rivolgersi_extra",
             "prenota_appuntamento",
@@ -536,8 +537,10 @@ class IServizio(model.Schema, IDesignPloneContentType):
 
     model.fieldset(
         "categorization",
-        fields=["codice_ipa", "settore_merceologico", "identificativo"],
+        fields=["identificativo"],
     )
+
+    model.fieldset("informazioni", fields=["codice_ipa", "settore_merceologico"])
 
     # SearchableText fields
     textindexer.searchable("sottotitolo")
