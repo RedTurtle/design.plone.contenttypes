@@ -337,9 +337,7 @@ def to_1016(context):
             sections.append({"title": item.title, "linkUrl": [item.UID()]})
     settings = [{"rootPath": "/", "items": sections}]
     api.portal.set_registry_record(
-        "search_sections",
-        json.dumps(settings),
-        interface=IDesignPloneSettings,
+        "search_sections", json.dumps(settings), interface=IDesignPloneSettings,
     )
 
 
@@ -458,9 +456,7 @@ def to_3000(context):
         try:
             value = api.portal.get_registry_record(old_entry.format(field))
             api.portal.set_registry_record(
-                field,
-                json.dumps({"it": value}),
-                interface=IDesignPloneSettings,
+                field, json.dumps({"it": value}), interface=IDesignPloneSettings,
             )
         except Exception:
             continue
@@ -1677,6 +1673,9 @@ def fix_ctaxonomy_indexes_and_metadata(context):
         "taxonomy_tipologia_pdc",
         "taxonomy_tipologia_stati_pratica",
     ]
+    import pdb
+
+    pdb.set_trace()
     good_names = [name.replace("taxonomy_", "") for name in bad_names]
     catalog = api.portal.get_tool(name="portal_catalog")
     catalog_metadata = catalog.schema()
@@ -1693,24 +1692,24 @@ def fix_ctaxonomy_indexes_and_metadata(context):
             catalog.delIndex(name)
             logger.info(f"{colors.GREEN} Remove {name} from indexes {colors.ENDC}")
 
-        context.runImportStepFromProfile(
-            "design.plone.contenttypes:taxonomy", "collective.taxonomy"
-        )
-        brains = catalog.search(
-            portal_type=[
-                "News Item",
-                "Event",
-                "Venue",
-                "Servizio",
-                "Documento",
-                "Dataset",
-                "UnitaOrganizzativa",
-                "Incarico",
-                "Pratica",
-            ]
-        )
-        logger.info(f"{colors.GREEN} Reindex contents with taxonomies {colors.ENDC}")
-        for brain in brains:
-            obj = brain.getObject()
-            obj.reindexObject(idxs=good_names)
-        logger.info(f"{colors.GREEN} End of update {colors.ENDC}")
+    context.runImportStepFromProfile(
+        "design.plone.contenttypes:taxonomy", "collective.taxonomy"
+    )
+    brains = catalog(
+        portal_type=[
+            "News Item",
+            "Event",
+            "Venue",
+            "Servizio",
+            "Documento",
+            "Dataset",
+            "UnitaOrganizzativa",
+            "Incarico",
+            "Pratica",
+        ]
+    )
+    logger.info(f"{colors.GREEN} Reindex contents with taxonomies {colors.ENDC}")
+    for brain in brains:
+        obj = brain.getObject()
+        obj.reindexObject(idxs=good_names)
+    logger.info(f"{colors.GREEN} End of update {colors.ENDC}")
