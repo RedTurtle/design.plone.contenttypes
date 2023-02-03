@@ -14,7 +14,6 @@ from design.plone.contenttypes.interfaces.unita_organizzativa import (
 
 @provider(IFormFieldProvider)
 class IGeolocatableUnitaOrganizzativa(IGeolocatable):
-
     model.fieldset(
         "contatti",
         label=_("contatti_label", default="Contatti"),
@@ -24,7 +23,6 @@ class IGeolocatableUnitaOrganizzativa(IGeolocatable):
 
 @provider(IFormFieldProvider)
 class IGeolocatableVenue(IGeolocatable):
-
     model.fieldset(
         "dove", label=_("dove_label", default="Dove"), fields=["geolocation"]
     )
@@ -32,7 +30,6 @@ class IGeolocatableVenue(IGeolocatable):
 
 @provider(IFormFieldProvider)
 class IGeolocatableEvent(IGeolocatable):
-
     model.fieldset(
         "luogo",
         label=_("luogo_label", default="Luogo"),

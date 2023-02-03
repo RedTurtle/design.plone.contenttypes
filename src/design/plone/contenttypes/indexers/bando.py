@@ -11,5 +11,4 @@ def ufficio_responsabile_bando(context, **kw):
 
 @indexer(IBandoAgidSchema)
 def Subject_bando(context, **kw):
-
     return context.Subject

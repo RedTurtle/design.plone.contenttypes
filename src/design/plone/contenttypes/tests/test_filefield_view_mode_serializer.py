@@ -15,7 +15,6 @@ import unittest
 
 
 class SummarySerializerTest(unittest.TestCase):
-
     layer = DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING
 
     def setUp(self):
@@ -50,7 +49,6 @@ class SummarySerializerTest(unittest.TestCase):
         self.api_session.close()
 
     def test_if_visualize_files_false_so_download(self):
-
         response = self.api_session.get(self.modulo.absolute_url()).json()
 
         self.assertIn("@@download", response["file_principale"]["download"])

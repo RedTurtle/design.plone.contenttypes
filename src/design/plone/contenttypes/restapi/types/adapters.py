@@ -14,7 +14,6 @@ from design.plone.contenttypes import _
 @implementer(IJsonSchemaProvider)
 class LeadImageJsonSchemaProvider(ObjectJsonSchemaProvider):
     def get_size_vocabulary(self):
-
         factory = getUtility(
             IVocabularyFactory, "design.plone.vocabularies.leadimage_dimension"
         )

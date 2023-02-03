@@ -12,7 +12,6 @@ from zope.interface import provider, implementer
 
 # TODO: merge with NEWS
 class ILuoghiCorrelatiSchema(model.Schema):
-
     luoghi_correlati = RelationList(
         title=_("luoghi_correlati_label", default="Luoghi correlati"),
         description=_(

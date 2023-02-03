@@ -12,7 +12,6 @@ import unittest
 
 
 class LuogoBehaviorIndexerFunctionalTest(unittest.TestCase):
-
     layer = DESIGN_PLONE_CONTENTTYPES_FUNCTIONAL_TESTING
 
     def setUp(self):

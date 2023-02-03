@@ -13,7 +13,6 @@ from zope.interface import provider, implementer
 # e bisognerebbe metterlo unifrme per tutti in barba alle linee guida
 @provider(IFormFieldProvider)
 class IAdditionalHelpInfos(model.Schema):
-
     ulteriori_informazioni = BlocksField(
         title=_("ulteriori_informazioni", default="Ulteriori informazioni"),
         description=_(

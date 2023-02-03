@@ -78,7 +78,6 @@ def remap_fields(mapping):
 
 
 def to_1001(context):
-
     update_types(context)
 
     # cleanup event behaviors
@@ -107,7 +106,6 @@ def to_1001(context):
 
 
 def to_1003(context):
-
     update_types(context)
 
     mapping = {
@@ -934,7 +932,6 @@ def to_5400(context):
 
 
 def to_5410(context):
-
     # cleanup Document behaviors
     portal_types = api.portal.get_tool(name="portal_types")
     behaviors = portal_types["Document"].behaviors

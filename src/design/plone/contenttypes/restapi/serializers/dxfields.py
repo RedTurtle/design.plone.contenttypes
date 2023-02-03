@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from AccessControl.unauthorized import Unauthorized
 from Acquisition import aq_inner
-from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
 from plone import api
 from plone.dexterity.interfaces import IDexterityContent
 from plone.restapi.interfaces import IBlockFieldSerializationTransformer
