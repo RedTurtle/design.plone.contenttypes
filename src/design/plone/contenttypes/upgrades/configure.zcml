@@ -679,4 +679,15 @@
         handler=".upgrades.update_ruolo_indexing"
         />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="7004"
+      destination="7005"
+      >
+    <genericsetup:upgradeStep
+        title="Fix eventual taxonomy mess"
+        description=""
+        handler=".upgrades.fix_ctaxonomy_indexes_and_metadata"
+        />
+  </genericsetup:upgradeSteps>
 </configure>

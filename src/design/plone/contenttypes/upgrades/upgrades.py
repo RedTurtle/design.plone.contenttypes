@@ -1657,3 +1657,60 @@ def update_ruolo_indexing(context):
     for brain in brains:
         persona = brain.getObject()
         persona.reindexObject(idxs=idxs)
+
+
+def fix_ctaxonomy_indexes_and_metadata(context):
+    logger.info(f"{colors.DARKCYAN} Fix taxonomy indexes {colors.ENDC}")  # noqa
+    bad_names = [
+        "taxonomy_person_life_events",
+        "taxonomy_business_events",
+        "taxonomy_temi_dataset",
+        "taxonomy_tipologia_documenti_albopretorio",
+        "taxonomy_tipologia_documento",
+        "taxonomy_tipologia_evento",
+        "taxonomy_tipologia_frequenza_aggiornamento",
+        "taxonomy_tipologia_incarico",
+        "taxonomy_tipologia_licenze",
+        "taxonomy_tipologia_luogo",
+        "taxonomy_tipologia_notizia",
+        "taxonomy_tipologia_organizzazione",
+        "taxonomy_tipologia_pdc",
+        "taxonomy_tipologia_stati_pratica",
+    ]
+    good_names = [name.replace("taxonomy_", "") for name in bad_names]
+    catalog = api.portal.get_tool(name="portal_catalog")
+    catalog_metadata = catalog.schema()
+    catalog_indexes = catalog.indexes()
+
+    for name in bad_names:
+        # metadata
+        if name in catalog_metadata:
+            catalog.delColumn(name)
+            logger.info(f"{colors.GREEN} Remove {name} from metadata {colors.ENDC}")
+
+        # indexes
+        if name in catalog_indexes:
+            catalog.delIndex(name)
+            logger.info(f"{colors.GREEN} Remove {name} from indexes {colors.ENDC}")
+
+        context.runImportStepFromProfile(
+            "design.plone.contenttypes:taxonomy", "collective.taxonomy"
+        )
+        brains = catalog.search(
+            portal_type=[
+                "News Item",
+                "Event",
+                "Venue",
+                "Servizio",
+                "Documento",
+                "Dataset",
+                "UnitaOrganizzativa",
+                "Incarico",
+                "Pratica",
+            ]
+        )
+        logger.info(f"{colors.GREEN} Reindex contents with taxonomies {colors.ENDC}")
+        for brain in brains:
+            obj = brain.getObject()
+            obj.reindexObject(idxs=good_names)
+        logger.info(f"{colors.GREEN} End of update {colors.ENDC}")
