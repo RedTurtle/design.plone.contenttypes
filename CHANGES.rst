@@ -5,7 +5,7 @@ Changelog
 6.0.0a11 (unreleased)
 ---------------------
 
-- Nothing changed yet.
+- Fix upgrade step.
 
 
 6.0.0a10 (2023-02-03)
