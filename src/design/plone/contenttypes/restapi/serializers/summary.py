@@ -2,14 +2,19 @@
 from collective.taxonomy import PATH_SEPARATOR
 from collective.taxonomy.interfaces import ITaxonomy
 from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
+from design.plone.contenttypes.interfaces.dataset import IDataset
+from design.plone.contenttypes.interfaces.documento import IDocumento
 from design.plone.contenttypes.interfaces.incarico import IIncarico
 from design.plone.contenttypes.interfaces.persona import IPersona
+from design.plone.contenttypes.interfaces.pratica import IPratica
 from design.plone.contenttypes.interfaces.punto_di_contatto import IPuntoDiContatto
 from plone import api
 from plone.app.contenttypes.interfaces import IEvent
+from plone.app.contenttypes.interfaces import INewsItem
 from plone.base.interfaces import IImageScalesAdapter
 from plone.restapi.interfaces import ISerializeToJsonSummary
 from plone.restapi.serializer.converters import json_compatible
+from Products.ZCatalog.interfaces import ICatalogBrain
 from redturtle.volto.restapi.serializer.summary import (
     DefaultJSONSummarySerializer as BaseSerializer,
 )
@@ -17,6 +22,7 @@ from zope.component import adapter
 from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.component import queryMultiAdapter
+from zope.globalrequest import getRequest
 from zope.i18n import translate
 from zope.interface import implementer
 from zope.interface import Interface
@@ -26,6 +32,85 @@ import re
 
 
 RESOLVEUID_RE = re.compile(".*?/resolve[Uu]id/([^/]*)/?(.*)$")
+
+
+def get_taxonomy_information(field_name, context, res):
+    """
+    Get the proper values for taxonomy fields
+    """
+    request = getRequest()
+    taxonomy = getUtility(ITaxonomy, name=f"collective.taxonomy.{field_name}")
+    taxonomy_voc = taxonomy.makeVocabulary(request.get("LANGUAGE"))
+
+    # il summary di un fullobject torna un value
+    # il summary di un brain torna una lista (collective.taxonomy ha motivi per
+    # fare così).
+
+    # se abbiamo il summary di un fullobject o il summary di un brain non importa
+    # ritorna quello che avevi in pancia, se non avevi nulla.
+
+    # Hai quel campo compilato? Ti trasformo come serve al frontend
+    if ICatalogBrain.providedBy(context):
+        fullterms = []
+        # delle volte posso avere il brain senza quel dato
+        if field_name not in res:
+            res[field_name] = getattr(context, field_name)
+
+        for token in res[field_name]:
+            title = taxonomy_voc.inv_data.get(token)
+            if title.startswith(PATH_SEPARATOR):
+                title.replace(PATH_SEPARATOR, "", 1)
+            fullterms.append({"token": token, "title": title})
+        res[field_name] = fullterms
+    else:
+        value = getattr(context, field_name)
+        # if not value:
+        #     return res
+
+        def get_fullterms(token):
+            title = taxonomy_voc.inv_data.get(token)
+            if title.startswith(PATH_SEPARATOR):
+                title.replace(PATH_SEPARATOR, "", 1)
+            return {
+                "token": token,
+                "title": title,
+            }
+
+        if isinstance(value, list):
+            res[field_name] = [get_fullterms(token) for token in value]
+        elif isinstance(value, str):
+            res[field_name] = get_fullterms(value)
+
+    return res
+
+
+def get_taxonomy_information_by_type(res, context):
+    portal_type = res.get("portal_type", None) or res.get("@type")
+    portal_type_mapping = {
+        "News Item": ("tipologia_notizia",),
+        "Event": ("tipologia_evento",),
+        "Venue": ("tipologia_luogo",),
+        "Dataset": (
+            "temi_dataset",
+            "tipologia_frequenza_aggiornamento",
+            "tipologia_licenze",
+        ),
+        "Documento": (
+            "tipologia_documenti_albopretorio",
+            "tipologia_documento",
+            "tipologia_licenze",
+            "person_life_events",
+            "business_events",
+        ),
+        "Pratica": ("tipologia_stati_pratica",),
+        "UnitaOrganizzativa": ("tipologia_organizzazione",),
+        "Incarico": ("tipologia_incarico",),
+        "Servizio": ("person_life_events", "business_events"),
+    }
+    for field_name in portal_type_mapping.get(portal_type, []):
+        get_taxonomy_information(field_name, context, res)
+
+    return res
 
 
 @implementer(ISerializeToJsonSummary)
@@ -58,6 +143,8 @@ class DefaultJSONSummarySerializer(BaseSerializer):
         if "tassonomia_argomenti" in res:
             if res["tassonomia_argomenti"]:
                 res["tassonomia_argomenti"] = self.expand_tassonomia_argomenti()
+
+        get_taxonomy_information_by_type(res, self.context)
 
         if self.is_get_call():
             res["has_children"] = self.has_children()
@@ -138,15 +225,7 @@ class DefaultJSONSummarySerializer(BaseSerializer):
 class IncaricoDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
     def __call__(self, force_all_metadata=False):
         res = super().__call__(force_all_metadata=force_all_metadata)
-        taxonomy = getUtility(ITaxonomy, name="collective.taxonomy.tipologia_incarico")
-        taxonomy_voc = taxonomy.makeVocabulary(self.request.get("LANGUAGE"))
-        if "tipologia_incarico" not in res:
-            if self.context.tipologia_incarico:
-                res["tipologia_incarico"] = taxonomy_voc.inv_data.get(
-                    self.context.tipologia_incarico
-                ).replace(PATH_SEPARATOR, "")
-            else:
-                res["tipologia_incarico"] = json_compatible(None)
+        get_taxonomy_information("tipologia_incarico", self.context, res)
         if "data_inizio_incarico" not in res:
             res["data_inizio_incarico"] = json_compatible(
                 self.context.data_inizio_incarico
@@ -193,7 +272,7 @@ class PersonaDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
 class EventDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
     def __call__(self, force_all_metadata=False):
         res = super().__call__(force_all_metadata=force_all_metadata)
-
+        get_taxonomy_information("tipologia_evento", self.context, res)
         # Il summary dell'evento riceve in ingresso un obj generico che può
         # essere un brain (gli items figli dell'evento) oppure un oggtto (il
         # parent). Gli attributi per le immagini vengono presi solo nel caso
@@ -210,4 +289,46 @@ class EventDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
                 res["image_field"] = "preview_image"
             elif "image" in scales:
                 res["image_field"] = "image"
+        return res
+
+
+@implementer(ISerializeToJsonSummary)
+@adapter(INewsItem, IDesignPloneContenttypesLayer)
+class NewsDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
+    def __call__(self, force_all_metadata=False):
+        res = super().__call__(force_all_metadata=force_all_metadata)
+        get_taxonomy_information("tipologia_notizia", self.context, res)
+        return res
+
+
+@implementer(ISerializeToJsonSummary)
+@adapter(IDataset, IDesignPloneContenttypesLayer)
+class DatasetDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
+    def __call__(self, force_all_metadata=False):
+        res = super().__call__(force_all_metadata=force_all_metadata)
+        get_taxonomy_information("temi_dataset", self.context, res)
+        get_taxonomy_information("tipologia_frequenza_aggiornamento", self.context, res)
+        get_taxonomy_information("tipologia_licenze", self.context, res)
+        return res
+
+
+@implementer(ISerializeToJsonSummary)
+@adapter(IDocumento, IDesignPloneContenttypesLayer)
+class DocumentoPubblicoDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
+    def __call__(self, force_all_metadata=False):
+        res = super().__call__(force_all_metadata=force_all_metadata)
+        get_taxonomy_information("tipologia_documenti_albopretorio", self.context, res)
+        get_taxonomy_information("tipologia_documento", self.context, res)
+        get_taxonomy_information("tipologia_licenze", self.context, res)
+        get_taxonomy_information("person_life_events", self.context, res)
+        get_taxonomy_information("business_events", self.context, res)
+        return res
+
+
+@implementer(ISerializeToJsonSummary)
+@adapter(IPratica, IDesignPloneContenttypesLayer)
+class PraticaDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
+    def __call__(self, force_all_metadata=False):
+        res = super().__call__(force_all_metadata=force_all_metadata)
+        get_taxonomy_information("tipologia_stati_pratica", self.context, res)
         return res

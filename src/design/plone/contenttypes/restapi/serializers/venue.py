@@ -5,6 +5,9 @@ from collective.venue.interfaces import IVenue
 from design.plone.contenttypes.restapi.serializers.summary import (
     DefaultJSONSummarySerializer,
 )
+from design.plone.contenttypes.restapi.serializers.summary import (
+    get_taxonomy_information,
+)
 from plone import api
 from plone.restapi.interfaces import ISerializeToJson
 from plone.restapi.interfaces import ISerializeToJsonSummary
@@ -102,4 +105,7 @@ class SerializeVenueToJsonSummary(DefaultJSONSummarySerializer):
             if callable(value):
                 value = value()
             summary[field] = json_compatible(value)
+
+        get_taxonomy_information("tipologia_luogo", self.context, summary)
+
         return summary
