@@ -5,7 +5,11 @@ Changelog
 6.0.0a10 (unreleased)
 ---------------------
 
-- Nothing changed yet.
+- Update some tickets to show or hide fields
+  in Servizo and UO.
+  Fix problems with taxonomies
+  upgrade steps to clean catalog
+  [lucabel]
 
 
 6.0.0a9 (2023-02-02)
