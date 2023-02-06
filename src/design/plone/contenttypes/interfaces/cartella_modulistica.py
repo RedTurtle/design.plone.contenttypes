@@ -11,7 +11,7 @@ class ICartellaModulistica(model.Schema, IDesignPloneContentType):
 
     visualize_files = schema.Bool(
         title=_("visualize_files", default="Visualizza i file allegati"),
-        description="Visualizza i fai nei tutti i contentuti della cartella al posto di scaricare immediatamente",
+        description="Visualizza i file nei tutti i contentuti della cartella al posto di scaricare immediatamente",
         required=False,
         default=False,
     )
