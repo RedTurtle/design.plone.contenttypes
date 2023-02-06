@@ -4,7 +4,8 @@ Changelog
 5.1.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix label of CartellaModulisitica visualize_files field
+  [foxtrot-dfm1]
 
 
 5.1.2 (2023-02-06)
