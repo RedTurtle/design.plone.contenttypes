@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-6.0.0a13 (unreleased)
+6.0.0a13 (2023-02-06)
 ---------------------
 
 - Fix field description
