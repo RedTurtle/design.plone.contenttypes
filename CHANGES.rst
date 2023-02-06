@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-6.0.0a12 (unreleased)
+6.0.0a12 (2023-02-06)
 ---------------------
 
 - Cambiato descrizione tempi e scadenze
