@@ -2,6 +2,13 @@ Changelog
 =========
 
 
+6.0.0a12 (unreleased)
+---------------------
+
+- Cambiato descrizione tempi e scadenze
+  [lucabel]
+
+
 6.0.0a11 (2023-02-03)
 ---------------------
 

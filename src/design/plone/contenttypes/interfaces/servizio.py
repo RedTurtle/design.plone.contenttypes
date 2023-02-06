@@ -249,7 +249,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
         description=_(
             "timeline_tempi_scadenze_help",
             default="Timeline tempi e scadenze del servizio: indicare per ogni "
-            "scadenza un titolo descrittivo ed un eventuale sottotitolo."
+            "scadenza un titolo descrittivo ed un eventuale sottotitolo. "
             "Per ogni scadenza, selezionare opzionalmente o l'intervallo (Campi"
             ' "Intervallo" e "Tipo Intervallo", es. "1" e "settimana"),'
             ' oppure direttamente una data di scadenza (campo: "Data Scadenza"'
