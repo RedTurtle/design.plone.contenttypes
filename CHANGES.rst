@@ -5,7 +5,10 @@ Changelog
 6.0.0a13 (unreleased)
 ---------------------
 
-- Nothing changed yet.
+- Fix field description
+  Fix bug with taxonomies for old contenttypes
+  Change field fieldset
+  [lucabel]
 
 
 6.0.0a12 (2023-02-06)
