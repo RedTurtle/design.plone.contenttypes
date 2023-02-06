@@ -1,7 +1,7 @@
 Changelog
 =========
 
-5.1.3 (unreleased)
+5.1.3 (2023-02-06)
 ------------------
 
 - Fix label of CartellaModulisitica visualize_files field
