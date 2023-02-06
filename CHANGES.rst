@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-5.1.2 (unreleased)
+5.1.2 (2023-02-06)
 ------------------
 
 - All the file fields download link view method of child contents depends
