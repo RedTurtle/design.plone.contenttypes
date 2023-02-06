@@ -57,20 +57,18 @@ def get_taxonomy_information(field_name, context, res):
             res[field_name] = getattr(context, field_name)
 
         for token in res[field_name]:
-            title = taxonomy_voc.inv_data.get(token)
+            title = taxonomy_voc.inv_data.get(token, None)
             if title.startswith(PATH_SEPARATOR):
                 title = title.replace(PATH_SEPARATOR, "", 1)
             fullterms.append({"token": token, "title": title})
         res[field_name] = fullterms
     else:
-        value = getattr(context, field_name)
-        # if not value:
-        #     return res
+        value = getattr(context, field_name, None)
 
         def get_fullterms(token):
             if not token:
                 return None
-            title = taxonomy_voc.inv_data.get(token)
+            title = taxonomy_voc.inv_data.get(token, None)
             if title.startswith(PATH_SEPARATOR):
                 title = title.replace(PATH_SEPARATOR, "", 1)
             return {
