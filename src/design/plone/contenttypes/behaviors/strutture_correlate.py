@@ -12,7 +12,6 @@ from zope.interface import provider, implementer
 
 @provider(IFormFieldProvider)
 class IStruttureCorrelate(model.Schema):
-
     strutture_politiche = RelationList(
         title="Strutture politiche coinvolte",
         default=[],

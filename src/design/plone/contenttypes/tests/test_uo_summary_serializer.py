@@ -13,7 +13,6 @@ import unittest
 
 
 class UOSummarySerializerTest(unittest.TestCase):
-
     layer = DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING
 
     def setUp(self):

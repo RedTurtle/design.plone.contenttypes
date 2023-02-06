@@ -5,7 +5,9 @@ Changelog
 5.1.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- All the file fields download link view method of child contents depends
+  on the CartellaModulistica c.t. visualize_files field
+  [foxtrot-dfm1]
 
 
 5.1.1 (2023-01-18)
@@ -106,7 +108,7 @@ Changelog
 ------------------
 
 - Add custom expand_events method in scadenziario endpoints, because in plone.app.events >= 3.2.13
-  that method changed and breaks our integration. We keep previous version of that method to 
+  that method changed and breaks our integration. We keep previous version of that method to
   not re-implement scadenziario endpoints.
   [cekk]
 

@@ -58,7 +58,6 @@ class TestDocument(unittest.TestCase):
 
 
 class TestDocumentoApi(unittest.TestCase):
-
     layer = DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING
 
     def setUp(self):

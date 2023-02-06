@@ -87,7 +87,6 @@ class TrasparenzaItems(object):
             )
             data = serializer()
             if child.portal_type == "Document":
-
                 if IFolderish.providedBy(child):
                     children = [
                         x

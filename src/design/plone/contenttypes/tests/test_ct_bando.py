@@ -39,7 +39,6 @@ class TestBando(unittest.TestCase):
         self.assertEqual(default_ente, ())
 
     def test_bando_substructure_created(self):
-
         bando = api.content.create(container=self.portal, type="Bando", title="Bando")
 
         self.assertIn("documenti", bando.keys())

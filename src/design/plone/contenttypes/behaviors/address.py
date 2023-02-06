@@ -46,7 +46,6 @@ class IAddressLocal(model.Schema):
 
 @provider(IFormFieldProvider)
 class IAddressUnitaOrganizzativa(IAddress, IAddressNomeSede, IAddressLocal):
-
     model.fieldset(
         "contatti",
         label=_("contatti_label", default="Contatti"),

@@ -18,7 +18,6 @@ class SchemaTweaks(object):
         self.schema = schema
 
     def __call__(self):
-
         if self.schema.getName() == "IRelatedItems":
             fieldset = Fieldset(
                 "correlati",

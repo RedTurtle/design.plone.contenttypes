@@ -80,7 +80,6 @@ class IContattiUnitaOrganizzativa(IContatti):
 
 @provider(IFormFieldProvider)
 class IContattiVenue(IContatti):
-
     model.fieldset(
         "orari",
         label=_("orari_label", default="Orari di apertura"),

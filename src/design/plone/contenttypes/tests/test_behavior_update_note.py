@@ -18,7 +18,6 @@ import transaction
 
 
 class TestUpdateNoteBehavior(unittest.TestCase):
-
     layer = DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING
 
     def setUp(self):
@@ -35,7 +34,6 @@ class TestUpdateNoteBehavior(unittest.TestCase):
         self.api_session.close()
 
     def test_is_enabled_in_bando(self):
-
         portal_types = api.portal.get_tool(name="portal_types")
         self.assertIn(
             "design.plone.contenttypes.behavior.update_note",
