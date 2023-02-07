@@ -10,8 +10,11 @@ class ICartellaModulistica(model.Schema, IDesignPloneContentType):
     """Cartella Modulistica"""
 
     visualize_files = schema.Bool(
-        title=_("visualize_files", default="Visualizza i file allegati"),
-        description="Visualizza i file nei tutti i contentuti della cartella al posto di scaricare immediatamente",
+        title=_("visualize_files_title", default="Mostra i PDF in anteprima"),
+        description=_(
+            "visulize_files_description",
+            default="Permette di aprire l'anteprima di tutti i PDF di questa cartella in una tab separata, altrimenti i PDF vengono scaricati",
+        ),
         required=False,
         default=False,
     )

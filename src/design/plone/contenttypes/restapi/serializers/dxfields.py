@@ -35,7 +35,7 @@ class SourceTextSerializer(DefaultFieldSerializer):
 
 @adapter(INamedFileField, IDexterityContent, IDesignPloneContenttypesLayer)
 class FileFieldViewModeSerializer(DefaultFieldSerializer):
-    """Ovveride the basic DX serializer to handle the visulize file functionality"""
+    """Ovveride the basic DX serializer to handle the visualize file functionality"""
 
     def __call__(self):
         namedfile = self.field.get(self.context)
