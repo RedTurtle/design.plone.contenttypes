@@ -4,13 +4,13 @@ Changelog
 5.1.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Fix lables.
+  [foxtrot-dfm1]
 
 5.1.3 (2023-02-06)
 ------------------
 
-- Fix label of CartellaModulisitica visualize_files field
+- Fix label of CartellaModulisitica visualize_files field.
   [foxtrot-dfm1]
 
 
@@ -18,7 +18,7 @@ Changelog
 ------------------
 
 - All the file fields download link view method of child contents depends
-  on the CartellaModulistica c.t. visualize_files field
+  on the CartellaModulistica c.t. visualize_files field.
   [foxtrot-dfm1]
 
 
