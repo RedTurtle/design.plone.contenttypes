@@ -5,7 +5,8 @@ Changelog
 6.0.0a15 (unreleased)
 ---------------------
 
-- Nothing changed yet.
+- Fixed tipologia_notizia in serializer.
+  [eikichi18]
 
 
 6.0.0a14 (2023-02-08)
