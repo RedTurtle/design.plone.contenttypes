@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-6.0.0a14 (unreleased)
+6.0.0a14 (2023-02-08)
 ---------------------
 
 - Fixed design_italia_meta_type data in summary for News Item.
