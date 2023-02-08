@@ -15,7 +15,6 @@ from zope.interface import provider
 # TODO: merge with NEWS
 @provider(IFormFieldProvider)
 class IServiziCorrelati(model.Schema):
-
     servizi_correlati = RelationList(
         title=_("servizi_correlati_label", default="Servizi correlati"),
         description=_(

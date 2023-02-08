@@ -66,7 +66,6 @@ class TestEvent(unittest.TestCase):
 
 
 class TestEventApi(unittest.TestCase):
-
     layer = DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING
 
     def setUp(self):

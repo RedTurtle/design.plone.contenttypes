@@ -19,7 +19,6 @@ import unittest
 
 
 class VocabulariesControlpanelTest(unittest.TestCase):
-
     layer = DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING
 
     def setUp(self):
@@ -110,7 +109,6 @@ class VocabulariesControlpanelTest(unittest.TestCase):
     def test_api_do_not_return_related_items_with_effective_date_in_future_for_anon(
         self,
     ):
-
         present = api.content.create(
             container=self.portal, type="Document", title="present"
         )

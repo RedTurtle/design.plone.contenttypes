@@ -143,7 +143,6 @@ class IArgomentiEvento(IArgomentiSchema):
 
 @provider(IFormFieldProvider)
 class IArgomentiServizio(IArgomentiSchema):
-
     tassonomia_argomenti = RelationList(
         title=_("tassonomia_argomenti_label", default="Argomenti"),
         description=_(

@@ -10,7 +10,6 @@ from zope.site.hooks import getSite
 
 
 class ReferencesVocabulary(object):
-
     INDEX = ""
 
     def get_all_index_values(self):
@@ -32,19 +31,16 @@ class ReferencesVocabulary(object):
 
 @implementer(IVocabularyFactory)
 class EventLocationVocabulary(ReferencesVocabulary):
-
     INDEX = "event_location"
 
 
 @implementer(IVocabularyFactory)
 class OfficeLocationVocabulary(ReferencesVocabulary):
-
     INDEX = "ufficio_responsabile"
 
 
 @implementer(IVocabularyFactory)
 class UOLocationVocabulary(ReferencesVocabulary):
-
     INDEX = "uo_location"
 
 

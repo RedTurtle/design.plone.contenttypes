@@ -16,7 +16,6 @@ from zope import schema
 
 
 class ITempiEScadenzeValueSchema(model.Schema):
-
     milestone = schema.TextLine(
         title=_("milestone_label", default="Titolo"),
         required=True,

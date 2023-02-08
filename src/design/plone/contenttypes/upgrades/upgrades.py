@@ -95,7 +95,6 @@ def remap_fields(mapping):
 
 
 def to_1001(context):
-
     update_types(context)
 
     # cleanup event behaviors
@@ -124,7 +123,6 @@ def to_1001(context):
 
 
 def to_1003(context):
-
     update_types(context)
 
     mapping = {
@@ -957,7 +955,6 @@ def to_5400(context):
 
 
 def to_5410(context):
-
     # cleanup Document behaviors
     portal_types = api.portal.get_tool(name="portal_types")
     behaviors = portal_types["Document"].behaviors
@@ -1223,7 +1220,6 @@ class colors(object):
 
 
 def to_7001(context):
-
     installer = get_installer(context=api.portal.get())
     installer.install_product("eea.api.taxonomy")
     logger.info(
@@ -1304,7 +1300,6 @@ def create_incarico_for_persona(context):
         "Altro tipo": "altro",
     }
     for brain in brains:
-
         persona = brain.getObject()
 
         incarichi_folder = persona["incarichi"]
@@ -1596,7 +1591,6 @@ def update_taxonomies_on_blocks(context):
                 for block in blocks.values():
                     if block.get("@type", "") == "listing":
                         for query in block.get("querystring", {}).get("query", []):
-
                             if query["i"] in [
                                 "tipologia_notizia",
                                 "tipologia_documento",

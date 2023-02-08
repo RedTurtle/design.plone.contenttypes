@@ -9,7 +9,6 @@ import unittest
 
 
 class MoveNewsItemView(unittest.TestCase):
-
     layer = DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING
 
     def setUp(self):

@@ -51,7 +51,6 @@ class DeserializeLuogoFromJson(DeserializeFromJson):
     def __call__(
         self, validate_all=False, data=None, create=False
     ):  # noqa: ignore=C901
-
         if data is None:
             data = json_body(self.request)
 
@@ -105,7 +104,6 @@ class DeserializeLuogoFromJson(DeserializeFromJson):
                     errors.append(new_error("Il campo {} è obbligatorio".format(field)))
 
         if is_patch:
-
             # Title validation
             if "title" in data and not title:
                 errors.append(new_error("Il titolo del luogo è obbligatorio"))
