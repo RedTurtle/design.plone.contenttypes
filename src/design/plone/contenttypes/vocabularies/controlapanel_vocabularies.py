@@ -15,7 +15,6 @@ logger = logging.getLogger(__name__)
 
 class BaseVocabulary(object):
     def __call__(self, context):
-
         values = get_settings_for_language(field=self.field)
         if not values:
             return SimpleVocabulary([])
@@ -34,7 +33,6 @@ class LeadImageDimension(BaseVocabulary):
     field = "lead_image_dimension"
 
     def __call__(self, context):
-
         values = api.portal.get_registry_record(
             self.field, interface=IDesignPloneSettings, default=[]
         )

@@ -124,7 +124,6 @@ class TestServizioApi(unittest.TestCase):
         self.assertEqual(res[0].UID, servizio.UID())
 
     def test_a_chi_si_rivolge_indexed_in_searchabletext(self):
-
         #  Servizio is the only ct with this field
         servizio = api.content.create(
             container=self.portal,
@@ -139,7 +138,6 @@ class TestServizioApi(unittest.TestCase):
         self.assertEqual(res[0].UID, servizio.UID())
 
     def test_chi_puo_presentare_indexed_in_searchabletext(self):
-
         #  Servizio is the only ct with this field
         servizio = api.content.create(
             container=self.portal,
@@ -154,7 +152,6 @@ class TestServizioApi(unittest.TestCase):
         self.assertEqual(res[0].UID, servizio.UID())
 
     def test_come_si_fa_indexed_in_searchabletext(self):
-
         #  Servizio is the only ct with this field
         servizio = api.content.create(
             container=self.portal,
@@ -169,7 +166,6 @@ class TestServizioApi(unittest.TestCase):
         self.assertEqual(res[0].UID, servizio.UID())
 
     def test_cosa_si_ottiene_indexed_in_searchabletext(self):
-
         #  Servizio is the only ct with this field
         servizio = api.content.create(
             container=self.portal,
@@ -184,7 +180,6 @@ class TestServizioApi(unittest.TestCase):
         self.assertEqual(res[0].UID, servizio.UID())
 
     def test_cosa_serve_indexed_in_searchabletext(self):
-
         #  Servizio is the only ct with this field
         servizio = api.content.create(
             container=self.portal,
@@ -199,7 +194,6 @@ class TestServizioApi(unittest.TestCase):
         self.assertEqual(res[0].UID, servizio.UID())
 
     def test_ulteriori_informazioni_indexed_in_searchabletext(self):
-
         #  Servizio is the only ct with this field
         servizio = api.content.create(
             container=self.portal,

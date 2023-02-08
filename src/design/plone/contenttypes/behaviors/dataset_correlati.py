@@ -15,7 +15,6 @@ from zope.interface import provider
 # TODO: merge with NEWS
 @provider(IFormFieldProvider)
 class IDatasetCorrelati(model.Schema):
-
     dataset_correlati = RelationList(
         title=_("dataset_correlati_label", default="Dataset correlati"),
         description=_(

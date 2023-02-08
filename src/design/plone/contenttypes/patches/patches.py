@@ -2,7 +2,6 @@ from collective.taxonomy.vocabulary import Vocabulary
 
 
 def eea_api_taxonomy_taxonomy_call(self, context):
-
     if not self.data:
         return Vocabulary(self.name, {}, {}, {}, 2)
 

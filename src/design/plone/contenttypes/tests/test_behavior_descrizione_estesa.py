@@ -15,7 +15,6 @@ import unittest
 
 
 class TestDescrizioneEstesaBehavior(unittest.TestCase):
-
     layer = DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING
 
     def setUp(self):
@@ -32,7 +31,6 @@ class TestDescrizioneEstesaBehavior(unittest.TestCase):
         self.api_session.close()
 
     def test_descrizione_estesa_indexed(self):
-
         # Servizio have design.plone.contenttypes.behavior.descrizione_estesa
         # behavior
         servizio = api.content.create(

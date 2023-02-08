@@ -26,7 +26,6 @@ class ISearchForm(Interface):
 
 @implementer(ISearchForm)
 class CheckServizi(form.Form):
-
     ignoreContext = True
     # template = ViewPageTemplateFile("templates/check_servizi.pt")
     prefix = ""

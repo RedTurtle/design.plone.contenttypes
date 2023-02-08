@@ -19,7 +19,6 @@ def showModifiedDefaultValue(context=None):
 
 @provider(IFormFieldProvider)
 class IShowModified(model.Schema):
-
     show_modified = schema.Bool(
         title=_("show_modified_label", default="Mostra la data di ultima modifica"),
         description=_(

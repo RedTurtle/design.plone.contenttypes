@@ -17,7 +17,6 @@ import unittest
 
 
 class TestShowModifiedBehavior(unittest.TestCase):
-
     layer = DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING
 
     def setUp(self):
@@ -41,7 +40,6 @@ class TestShowModifiedBehavior(unittest.TestCase):
         transaction.commit()
 
     def test_if_not_set_return_site_default(self):
-
         page = api.content.create(
             container=self.portal,
             type="Document",
@@ -65,7 +63,6 @@ class TestShowModifiedBehavior(unittest.TestCase):
         self.assertFalse(resp.json().get("show_modified", None))
 
     def test_if_set_will_override_default(self):
-
         page = api.content.create(
             container=self.portal,
             type="Document",

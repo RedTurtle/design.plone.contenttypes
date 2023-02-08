@@ -20,7 +20,6 @@ import unittest
 
 
 class SummarySerializerTest(unittest.TestCase):
-
     layer = DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING
 
     def setUp(self):
@@ -44,7 +43,6 @@ class SummarySerializerTest(unittest.TestCase):
         self.api_session.close()
 
     def test_has_children_returned_in_get_content(self):
-
         api.content.create(container=self.document, type="Document", title="empty")
         api.content.create(container=self.document, type="Document", title="filled")
 
@@ -65,7 +63,6 @@ class SummarySerializerTest(unittest.TestCase):
         self.assertTrue(items[1]["has_children"])
 
     def test_has_children_not_returned_in_searches(self):
-
         api.content.create(container=self.document, type="Document", title="empty")
         api.content.create(container=self.document, type="Document", title="filled")
 
@@ -88,7 +85,6 @@ class SummarySerializerTest(unittest.TestCase):
         self.assertNotIn("has_children", items[1])
 
     def test_has_children_not_returned_in_backend_serialization(self):
-
         empty = api.content.create(
             container=self.document, type="Document", title="empty"
         )
@@ -151,7 +147,6 @@ class SummarySerializerTest(unittest.TestCase):
         self.assertEqual(serializer["remoteUrl"], self.document.absolute_url())
 
     def test_summary_return_persona_role(self):
-
         api.content.create(
             container=self.portal, type="Persona", title="John Doe", ruolo="unknown"
         )
