@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from collective.taxonomy import PATH_SEPARATOR
 from collective.taxonomy.interfaces import ITaxonomy
 from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
 from plone import api
@@ -24,14 +25,20 @@ class SerializeToJson(BaseSerializer):
         )
         ttool = api.portal.get_tool("portal_types")
         if self.context.portal_type == "News Item":
-            taxonomy = getUtility(
-                ITaxonomy, name="collective.taxonomy.tipologia_notizia"
-            )
-            taxonomy_voc = taxonomy.makeVocabulary(self.request.get("LANGUAGE"))
+            if self.context.tipologia_notizia:
+                taxonomy = getUtility(
+                    ITaxonomy, name="collective.taxonomy.tipologia_notizia"
+                )
+                taxonomy_voc = taxonomy.makeVocabulary(self.request.get("LANGUAGE"))
 
-            result["design_italia_meta_type"] = taxonomy_voc.inv_data.get(
-                self.context.tipologia_notizia[0], None
-            )
+                title = taxonomy_voc.inv_data.get(
+                    self.context.tipologia_notizia[0], None
+                )
+
+                if title.startswith(PATH_SEPARATOR):
+                    result["design_italia_meta_type"] = title.replace(
+                        PATH_SEPARATOR, "", 1
+                    )
         else:
             result["design_italia_meta_type"] = translate(
                 ttool[self.context.portal_type].Title(), context=self.request
@@ -50,14 +57,20 @@ class SerializeFolderToJson(BaseFolderSerializer):
         ttool = api.portal.get_tool("portal_types")
 
         if self.context.portal_type == "News Item":
-            taxonomy = getUtility(
-                ITaxonomy, name="collective.taxonomy.tipologia_notizia"
-            )
-            taxonomy_voc = taxonomy.makeVocabulary(self.request.get("LANGUAGE"))
+            if self.context.tipologia_notizia:
+                taxonomy = getUtility(
+                    ITaxonomy, name="collective.taxonomy.tipologia_notizia"
+                )
+                taxonomy_voc = taxonomy.makeVocabulary(self.request.get("LANGUAGE"))
 
-            result["design_italia_meta_type"] = taxonomy_voc.inv_data.get(
-                self.context.tipologia_notizia[0], None
-            )
+                title = taxonomy_voc.inv_data.get(
+                    self.context.tipologia_notizia[0], None
+                )
+
+                if title.startswith(PATH_SEPARATOR):
+                    result["design_italia_meta_type"] = title.replace(
+                        PATH_SEPARATOR, "", 1
+                    )
         else:
             result["design_italia_meta_type"] = translate(
                 ttool[self.context.portal_type].Title(), context=self.request

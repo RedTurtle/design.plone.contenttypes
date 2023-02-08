@@ -171,16 +171,19 @@ class DefaultJSONSummarySerializer(BaseSerializer):
 
     def get_design_meta_type(self):
         ttool = api.portal.get_tool("portal_types")
-        if self.context.portal_type == "News Item" and self.context.tipologia_notizia:
-            taxonomy = getUtility(
-                ITaxonomy, name="collective.taxonomy.tipologia_notizia"
-            )
-            taxonomy_voc = taxonomy.makeVocabulary(self.request.get("LANGUAGE"))
-            title = taxonomy_voc.inv_data.get(self.context.tipologia_notizia[0], None)
-            if title.startswith(PATH_SEPARATOR):
-                title = title.replace(PATH_SEPARATOR, "", 1)
+        if self.context.portal_type == "News Item":
+            if self.context.tipologia_notizia:
+                taxonomy = getUtility(
+                    ITaxonomy, name="collective.taxonomy.tipologia_notizia"
+                )
+                taxonomy_voc = taxonomy.makeVocabulary(self.request.get("LANGUAGE"))
+                title = taxonomy_voc.inv_data.get(
+                    self.context.tipologia_notizia[0], None
+                )
+                if title.startswith(PATH_SEPARATOR):
+                    title = title.replace(PATH_SEPARATOR, "", 1)
 
-            return title
+                return title
         else:
             return translate(
                 ttool[self.context.portal_type].Title(), context=self.request
