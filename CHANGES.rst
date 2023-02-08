@@ -5,7 +5,9 @@ Changelog
 6.0.0a16 (unreleased)
 ---------------------
 
-- Nothing changed yet.
+- Improved github action for automatic deploy.
+- Fixed tipologia_notizia in serializer.
+  [eikichi18]
 
 
 6.0.0a15 (2023-02-08)
