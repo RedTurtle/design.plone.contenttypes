@@ -177,9 +177,11 @@ class DefaultJSONSummarySerializer(BaseSerializer):
                     ITaxonomy, name="collective.taxonomy.tipologia_notizia"
                 )
                 taxonomy_voc = taxonomy.makeVocabulary(self.request.get("LANGUAGE"))
-                title = taxonomy_voc.inv_data.get(
-                    self.context.tipologia_notizia[0], None
-                )
+                if isinstance(self.context.tipologia_notizia, list):
+                    token = self.context.tipologia_notizia[0]
+                else:
+                    token = self.context.tipologia_notizia
+                title = taxonomy_voc.inv_data.get(token, None)
                 if title.startswith(PATH_SEPARATOR):
                     title = title.replace(PATH_SEPARATOR, "", 1)
 
