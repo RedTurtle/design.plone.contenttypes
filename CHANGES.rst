@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-6.0.0a16 (unreleased)
+6.0.0a16 (2023-02-08)
 ---------------------
 
 - Improved github action for automatic deploy.
