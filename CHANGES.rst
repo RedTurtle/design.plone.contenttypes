@@ -5,7 +5,8 @@ Changelog
 6.0.0a14 (unreleased)
 ---------------------
 
-- Nothing changed yet.
+- Fixed design_italia_meta_type data in summary for News Item.
+  [eikichi18]
 
 
 6.0.0a13 (2023-02-06)
