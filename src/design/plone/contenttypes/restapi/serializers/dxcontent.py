@@ -31,9 +31,7 @@ class SerializeToJson(BaseSerializer):
                 )
                 taxonomy_voc = taxonomy.makeVocabulary(self.request.get("LANGUAGE"))
 
-                title = taxonomy_voc.inv_data.get(
-                    self.context.tipologia_notizia[0], None
-                )
+                title = taxonomy_voc.inv_data.get(self.context.tipologia_notizia, None)
 
                 if title.startswith(PATH_SEPARATOR):
                     result["design_italia_meta_type"] = title.replace(
@@ -63,9 +61,7 @@ class SerializeFolderToJson(BaseFolderSerializer):
                 )
                 taxonomy_voc = taxonomy.makeVocabulary(self.request.get("LANGUAGE"))
 
-                title = taxonomy_voc.inv_data.get(
-                    self.context.tipologia_notizia[0], None
-                )
+                title = taxonomy_voc.inv_data.get(self.context.tipologia_notizia, None)
 
                 if title.startswith(PATH_SEPARATOR):
                     result["design_italia_meta_type"] = title.replace(
