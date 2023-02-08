@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-6.0.0a15 (unreleased)
+6.0.0a15 (2023-02-08)
 ---------------------
 
 - Fixed tipologia_notizia in serializer.
