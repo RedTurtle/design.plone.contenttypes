@@ -5,7 +5,8 @@ Changelog
 6.0.0a17 (unreleased)
 ---------------------
 
-- Nothing changed yet.
+- Improved check for taxonomy data.
+  [sabrina-bongiovanni]
 
 
 6.0.0a16 (2023-02-08)
