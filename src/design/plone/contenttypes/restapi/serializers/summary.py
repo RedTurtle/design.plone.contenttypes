@@ -54,11 +54,11 @@ def get_taxonomy_information(field_name, context, res):
         fullterms = []
         # delle volte posso avere il brain senza quel dato
         if field_name not in res:
-            res[field_name] = getattr(context, field_name)
+            res[field_name] = getattr(context, field_name, [])
 
         for token in res[field_name]:
             title = taxonomy_voc.inv_data.get(token, None)
-            if title.startswith(PATH_SEPARATOR):
+            if title and title.startswith(PATH_SEPARATOR):
                 title = title.replace(PATH_SEPARATOR, "", 1)
             fullterms.append({"token": token, "title": title})
         res[field_name] = fullterms
@@ -69,7 +69,7 @@ def get_taxonomy_information(field_name, context, res):
             if not token:
                 return None
             title = taxonomy_voc.inv_data.get(token, None)
-            if title.startswith(PATH_SEPARATOR):
+            if title and title.startswith(PATH_SEPARATOR):
                 title = title.replace(PATH_SEPARATOR, "", 1)
             return {
                 "token": token,
@@ -182,7 +182,7 @@ class DefaultJSONSummarySerializer(BaseSerializer):
                 else:
                     token = self.context.tipologia_notizia
                 title = taxonomy_voc.inv_data.get(token, None)
-                if title.startswith(PATH_SEPARATOR):
+                if title and title.startswith(PATH_SEPARATOR):
                     title = title.replace(PATH_SEPARATOR, "", 1)
 
                 return title
