@@ -1,7 +1,7 @@
 Changelog
 =========
 
-5.1.5 (unreleased)
+5.1.5 (2023-02-15)
 ------------------
 
 - @modulistica-items honors the currently logged-in user roles to access inactive contents (expired and not yet published).
