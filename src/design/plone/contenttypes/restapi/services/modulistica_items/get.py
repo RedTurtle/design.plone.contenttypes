@@ -41,10 +41,10 @@ class ModulisticaItems(object):
         if context is None:
             context = self.context
         res = []
-        for child in context.listFolderContents():
-            if child.portal_type == "Document" and child.getId() == "multimedia":
+        for brain in context.getFolderContents():
+            if brain.portal_type == "Document" and brain.getId == "multimedia":
                 continue
-
+            child = brain.getObject()
             serializer = queryMultiAdapter(
                 (child, self.request), ISerializeToJsonSummary
             )
