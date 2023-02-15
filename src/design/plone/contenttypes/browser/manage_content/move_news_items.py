@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from zope.schema.interfaces import IVocabularyFactory
 from zope.component import getUtility
 from plone import api

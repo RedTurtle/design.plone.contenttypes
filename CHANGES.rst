@@ -4,7 +4,8 @@ Changelog
 5.1.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- @modulistica-items honors the currently logged-in user roles to access inactive contents (expired and not yet published).
+  [cekk]
 
 
 5.1.4 (2023-02-07)
