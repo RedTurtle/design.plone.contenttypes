@@ -6,7 +6,7 @@ from zope.component import getMultiAdapter
 
 class PrenotazioniFoldersList(Service):
     def reply(self):
-        """Filds the PrenotableFolders inside of Servizio
+        """Lists the PrenotableFolders inside of Servizio
         Returns:
             list: List of PrenotableFolders serialized to JSON summary
         """

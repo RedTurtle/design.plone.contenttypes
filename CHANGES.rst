@@ -89,6 +89,8 @@ Changelog
 
 6.0.0a9 (2023-02-02)
 --------------------
+- Integration with redturtle.prenotazioni
+  [foxtrot-dfm1]
 - New view 'change_news_type'
   [foxtrot-dfm1]
 -  New view 'move_news_items'

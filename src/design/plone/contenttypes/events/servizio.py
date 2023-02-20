@@ -31,7 +31,7 @@ def servizioCreateHandler(servizio, event):
 
 
 def prenotazioni_folder_create(servizio, event):
-    """Create Prenotazioni folder iside of create object"""
+    """Create Prenotazioni folder inside of the created object"""
     if not api.portal.get_tool("portal_catalog")(
         portal_type="PrenotazioniFolderContainer",
         path="/".join(servizio.getPhysicalPath()),

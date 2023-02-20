@@ -53,8 +53,6 @@ class TestServicePrnotazioniFoldersList(unittest.TestCase):
             container=self.prenotazioni_folders_folder,
         )
 
-        transaction.commit()
-
         res = self.api_session.get(
             self.servizio.absolute_url() + "/" + self.testing_view_name
         ).json()

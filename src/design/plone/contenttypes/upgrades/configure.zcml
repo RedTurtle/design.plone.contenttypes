@@ -722,5 +722,5 @@
         description=""
         handler=".upgrades.to_7008"
         />
-  </genericsetup:upgradeSteps>
+   </genericsetup:upgradeSteps>
 </configure>

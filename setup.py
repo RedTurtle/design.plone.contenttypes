@@ -77,8 +77,6 @@ setup(
             "plone.app.robotframework[debug]",
             "collective.MockMailHost",
             "redturtle.prenotazioni",
-            "collective.folderishtypes",
-            "redturtle.prenotazioni"
         ]
     },
     entry_points="""
