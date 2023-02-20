@@ -5,6 +5,8 @@ Changelog
 6.0.0a17 (unreleased)
 ---------------------
 
+- Start implement a view to check service for new data
+  [lucabel]
 - Improved check for taxonomy data.
   [sabrina-bongiovanni]
 
