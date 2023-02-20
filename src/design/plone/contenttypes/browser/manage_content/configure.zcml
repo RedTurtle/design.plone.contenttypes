@@ -20,5 +20,12 @@
       template="templates/move_news_items.pt"
       permission="cmf.ManagePortal"
       />
+  <browser:page
+      name="check_servizi"
+      for="*"
+      class=".check_servizi.CheckServizi"
+      template="templates/check_servizi.pt"
+      permission="cmf.ManagePortal"
+      />
 
 </configure>
