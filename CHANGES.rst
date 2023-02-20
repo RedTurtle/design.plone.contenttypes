@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-6.0.0a17 (unreleased)
+6.0.0a17 (2023-02-20)
 ---------------------
 
 - Start implement a view to check service for new data
