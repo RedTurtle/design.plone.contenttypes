@@ -8,7 +8,7 @@ from redturtle.volto.testing import RedturtleVoltoRestApiLayer
 from zope.configuration import xmlconfig
 
 import collective.address
-import collective.folderishtypes
+# import collective.folderishtypes
 import collective.venue
 import collective.volto.blocksfield
 import collective.volto.cookieconsent
@@ -19,6 +19,9 @@ import plone.formwidget.geolocation
 import plone.restapi
 import redturtle.bandi
 import redturtle.volto
+import eea.api.taxonomy
+import collective.taxonomy
+import collective.z3cform.datagridfield
 
 
 class DesignPloneContenttypesLayer(RedturtleVoltoLayer):
@@ -39,6 +42,9 @@ class DesignPloneContenttypesLayer(RedturtleVoltoLayer):
         )
         self.loadZCML(package=redturtle.bandi)
         self.loadZCML(package=kitconcept.seo)
+        self.loadZCML(package=eea.api.taxonomy)
+        self.loadZCML(package=collective.taxonomy)
+        self.loadZCML(package=collective.z3cform.datagridfield)
 
     def setUpPloneSite(self, portal):
         super().setUpPloneSite(portal)
@@ -75,6 +81,9 @@ class DesignPloneContenttypesRestApiLayer(RedturtleVoltoRestApiLayer):
         )
         self.loadZCML(package=redturtle.bandi)
         self.loadZCML(package=kitconcept.seo)
+        self.loadZCML(package=eea.api.taxonomy)
+        self.loadZCML(package=collective.taxonomy)
+        self.loadZCML(package=collective.z3cform.datagridfield)
 
     def setUpPloneSite(self, portal):
         super().setUpPloneSite(portal)
