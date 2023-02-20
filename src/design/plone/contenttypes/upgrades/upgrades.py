@@ -1617,6 +1617,28 @@ def update_taxonomies_on_blocks(context):
     )
 
 
+def add_ioprenoto_folder(context):
+    """Adds PrenotazioniFoldersContainer object to Servizio c.t. object"""
+    catalog = api.portal.get_tool("portal_catalog")
+    for servizio in catalog(portal_type="Servizio"):
+        if not catalog(
+            portal_type="PrenotazioniFolderContainer", path=servizio.getPath()
+        ):
+            container = servizio.getObject()
+            if "PrenotazioniFolderContainer" in getattr(
+                context, "allowedContentTypes", None
+            ):
+                api.content.create(
+                    type="PrenotazioniFolderContainer",
+                    title="Cartella delle prenotazioni",
+                    container=container,
+                )
+            else:
+                raise Exception(
+                    "Can not mirgate so as PrenotazioniFolderContainer is not allowed"
+                )
+
+
 def update_uo_contact_info(context):
     brains = api.portal.get_tool("portal_catalog")(portal_type="UnitaOrganizzativa")
     logger.info(
@@ -1756,18 +1778,3 @@ def update_patrocinato_da(self):
         )
         obj.reindexObject()
     logger.info(f"{colors.DARKCYAN} End of update {colors.ENDC}")
-
-
-def to_7008(context):
-    """Adds PrenotazioniFoldersContainer object to Servizio c.t. object"""
-    update_types(context)
-    catalog = api.portal.get_tool("portal_catalog")
-    for servizio in catalog(portal_type="Servizio"):
-        if not catalog(
-            portal_type="PrenotazioniFolderContainer", path=servizio.getPath()
-        ):
-            api.content.create(
-                type="PrenotazioniFolderContainer",
-                title="Cartella delle prenotazioni",
-                container=servizio.getObject(),
-            )

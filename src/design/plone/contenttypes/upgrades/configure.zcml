@@ -720,7 +720,7 @@
     <genericsetup:upgradeStep
         title="iocomune-ioprenoto integration"
         description=""
-        handler=".upgrades.to_7008"
+        handler=".upgrades.add_ioprenoto_folder"
         />
    </genericsetup:upgradeSteps>
 </configure>
