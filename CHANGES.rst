@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-6.0.0a18 (unreleased)
+6.0.0a18 (2023-02-22)
 ---------------------
 
 - First release of check_service view; need to test on
