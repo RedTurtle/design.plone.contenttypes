@@ -22,29 +22,28 @@
 
       <tal:main metal:fill-slot="prefs_configlet_main">
         <h1>Verifica dello stato dei servizi</h1>
+        <div tal:condition="view/is_anonymous">
+          Non hai i permessi per vedere questo elenco di informazioni. Se pensi
+          che questo non sia corretto verifica di essere autenticato oppure rivolgiti
+          agli amministratori del sito.
+        </div>
         <div class="lista_servizi"
-             tal:define="
-               servizi view/get_servizi;
-             "
-        >
+             tal:condition="not:view/is_anonymous"
+             tal:define="servizi view/get_servizi;">
+             <p class="lead" tal:condition="servizi">
+               La lista seguente elenca tutti quei servizi per i quali non sono 
+               ancora stati aggiunti i campi che AGID indica come obbligatori.
+               Ogni redattore può vedere in questa lista tutti i servizi e,
+               cliccando su ognuno, andare alla vista di dettaglio del servizio,
+               editarlo e compilare tutti i campi obbligatori.</p>
           <ul>
             <li class="categoria"
-                tal:repeat="categoria servizi"
-            >
-              <tal:block tal:define="
-                           categoria_url python:servizi[categoria]['url'];
-                         ">
-                <h2><a "=""
-                     href="${categoria_url}"
-                     target="_blank"
-                  >${categoria}</a></h2>
+                tal:repeat="categoria servizi">
+              <tal:block tal:define="categoria_url python:servizi[categoria]['url'];">
+                <h2><a  href="${categoria_url}" target="_blank">${categoria}</a></h2>
                 <ul>
-                  <li class="servizio"
-                      tal:repeat="servizio python:servizi[categoria]['children']"
-                  >
-                    <h5><a href="${servizio/url}"
-                         target="_blank"
-                      >${servizio/title}</a></h5>
+                  <li class="servizio" tal:repeat="servizio python:servizi[categoria]['children']">
+                    <h5><a href="${servizio/url}" target="_blank">${servizio/title}</a></h5>
                   </li>
                 </ul>
               </tal:block>

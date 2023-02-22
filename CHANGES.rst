@@ -5,7 +5,9 @@ Changelog
 6.0.0a18 (unreleased)
 ---------------------
 
-- Nothing changed yet.
+- First release of check_service view; need to test on
+  a staging
+  [lucabel]
 
 
 6.0.0a17 (2023-02-20)

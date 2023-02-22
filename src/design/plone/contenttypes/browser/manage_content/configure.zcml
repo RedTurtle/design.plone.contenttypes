@@ -25,7 +25,7 @@
       for="*"
       class=".check_servizi.CheckServizi"
       template="templates/check_servizi.pt"
-      permission="cmf.ManagePortal"
+      permission="zope2.Public"
       />
 
 </configure>
