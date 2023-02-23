@@ -241,6 +241,10 @@ class TypesGet(BaseGet):
         result.get("required").append("description")
         return result
 
+    def customize_evento_schema(self, result):
+        result.get("required").append("description")
+        return result
+
     def customize_uo_schema(self, result):
         result.get("required").append("description")
         versioning_fields = ["contact_info"]
@@ -293,6 +297,8 @@ class TypesGet(BaseGet):
                 result = self.customize_news_schema(result)
             if pt == "Documento":
                 result = self.customize_documento_schema(result)
+            if pt == "Event":
+                result = self.customize_evento_schema(result)
             result = self.customize_versioning_fields_fieldset(result)
         return result
 

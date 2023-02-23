@@ -20,7 +20,7 @@
     <element value="plone.eventbasic" />
     <element value="plone.leadimage" />
     <element value="volto.preview_image" />
-    <element remote="True"
+    <element remove="True"
              value="design.plone.contenttypes.behavior.argomenti"
     />
     <element value="design.plone.contenttypes.behavior.argomenti_evento" />

@@ -38,11 +38,11 @@ class IEvento(model.Schema):
     )
 
     descrizione_destinatari = BlocksField(
-        title=_("descrizione_destinatari", default="Descrizione destinatari"),
-        required=False,
+        title=_("a_chi_si_rivolge_label", default="A chi è rivolto"),
+        required=True,
         description=_(
-            "descrizione_destinatari_help",
-            default="Descrizione dei principali interlocutori dell'evento.",
+            "a_chi_si_rivolge_help",
+            default="Descrizione testuale dei principali destinatari dell'Evento",
         ),
     )
 
@@ -118,15 +118,6 @@ class IEvento(model.Schema):
         description=_(
             "parteciperanno_help",
             default="Link a persone dell'amministrazione che interverranno all'evento",
-        ),
-    )
-
-    a_chi_si_rivolge = BlocksField(
-        title=_("a_chi_si_rivolge_label", default="A chi è rivolto"),
-        required=True,
-        description=_(
-            "a_chi_si_rivolge_help",
-            default="Descrizione testuale dei principali destinatari dell'Evento",
         ),
     )
 
