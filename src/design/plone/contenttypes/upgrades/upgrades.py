@@ -335,9 +335,7 @@ def to_1016(context):
             sections.append({"title": item.title, "linkUrl": [item.UID()]})
     settings = [{"rootPath": "/", "items": sections}]
     api.portal.set_registry_record(
-        "search_sections",
-        json.dumps(settings),
-        interface=IDesignPloneSettings,
+        "search_sections", json.dumps(settings), interface=IDesignPloneSettings,
     )
 
 
@@ -456,9 +454,7 @@ def to_3000(context):
         try:
             value = api.portal.get_registry_record(old_entry.format(field))
             api.portal.set_registry_record(
-                field,
-                json.dumps({"it": value}),
-                interface=IDesignPloneSettings,
+                field, json.dumps({"it": value}), interface=IDesignPloneSettings,
             )
         except Exception:
             continue
@@ -1709,3 +1705,51 @@ def fix_ctaxonomy_indexes_and_metadata(context):
         obj = brain.getObject()
         obj.reindexObject(idxs=good_names)
     logger.info(f"{colors.GREEN} End of update {colors.ENDC}")
+
+
+def update_patrocinato_da(self):
+    EMPTY_BLOCKS_FIELD = {"blocks": {}, "blocks_layout": {"items": []}}
+    logger.info(
+        f"{colors.DARKCYAN} Change patrocinato_da field in events {colors.ENDC}"
+    )
+    pc = api.portal.get_tool(name="portal_catalog")
+    for brain in pc(portal_type="Event"):
+        obj = brain.getObject()
+        patrocinato_da = getattr(obj, "patrocinato_da")
+        if patrocinato_da == EMPTY_BLOCKS_FIELD:
+            logger.info(
+                f"{colors.YELLOW} Nessuna informazione da modificare{colors.ENDC}"
+            )
+            continue
+        logger.info(
+            f"{colors.GREEN} Modificato patrocinato_da per {obj.absolute_url()} {colors.ENDC}"
+        )
+
+        setattr(
+            obj,
+            "patrocinato_da",
+            {
+                "blocks": {
+                    "d252fe92-ce88-4866-b77d-501e7275cfc0": {
+                        "@type": "text",
+                        "text": {
+                            "blocks": [
+                                {
+                                    "data": {},
+                                    "depth": 0,
+                                    "entityRanges": [],
+                                    "inlineStyleRanges": [],
+                                    "key": "e23it",
+                                    "text": patrocinato_da,
+                                    "type": "unstyled",
+                                }
+                            ],
+                            "entityMap": {},
+                        },
+                    }
+                },
+                "blocks_layout": {"items": ["d252fe92-ce88-4866-b77d-501e7275cfc0"]},
+            },
+        )
+        obj.reindexObject()
+    logger.info(f"{colors.DARKCYAN} End of update {colors.ENDC}")
