@@ -8,20 +8,21 @@ from redturtle.volto.testing import RedturtleVoltoRestApiLayer
 from zope.configuration import xmlconfig
 
 import collective.address
+import collective.taxonomy
+
 # import collective.folderishtypes
 import collective.venue
 import collective.volto.blocksfield
 import collective.volto.cookieconsent
+import collective.z3cform.datagridfield
 import design.plone.contenttypes
+import eea.api.taxonomy
 import kitconcept.seo
 import plone.app.caching
 import plone.formwidget.geolocation
 import plone.restapi
 import redturtle.bandi
 import redturtle.volto
-import eea.api.taxonomy
-import collective.taxonomy
-import collective.z3cform.datagridfield
 
 
 class DesignPloneContenttypesLayer(RedturtleVoltoLayer):

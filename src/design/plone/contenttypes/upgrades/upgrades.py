@@ -335,7 +335,9 @@ def to_1016(context):
             sections.append({"title": item.title, "linkUrl": [item.UID()]})
     settings = [{"rootPath": "/", "items": sections}]
     api.portal.set_registry_record(
-        "search_sections", json.dumps(settings), interface=IDesignPloneSettings,
+        "search_sections",
+        json.dumps(settings),
+        interface=IDesignPloneSettings,
     )
 
 
@@ -454,7 +456,9 @@ def to_3000(context):
         try:
             value = api.portal.get_registry_record(old_entry.format(field))
             api.portal.set_registry_record(
-                field, json.dumps({"it": value}), interface=IDesignPloneSettings,
+                field,
+                json.dumps({"it": value}),
+                interface=IDesignPloneSettings,
             )
         except Exception:
             continue
@@ -1721,9 +1725,8 @@ def update_patrocinato_da(self):
                 f"{colors.YELLOW} Nessuna informazione da modificare{colors.ENDC}"
             )
             continue
-        logger.info(
-            f"{colors.GREEN} Modificato patrocinato_da per {obj.absolute_url()} {colors.ENDC}"
-        )
+        url = obj.absolute_url()
+        logger.info(f"{colors.GREEN} patrocinato_da ({url}){colors.ENDC}")
 
         setattr(
             obj,
