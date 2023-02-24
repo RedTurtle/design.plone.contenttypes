@@ -31,7 +31,7 @@
              tal:condition="not:view/is_anonymous"
              tal:define="servizi view/get_servizi;">
              <p class="lead" tal:condition="servizi">
-               La lista seguente elenca tutti quei servizi per i quali non sono 
+               La lista seguente elenca tutti quei servizi per i quali non sono
                ancora stati aggiunti i campi che AGID indica come obbligatori.
                Ogni redattore può vedere in questa lista tutti i servizi e,
                cliccando su ognuno, andare alla vista di dettaglio del servizio,
