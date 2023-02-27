@@ -712,4 +712,15 @@
         handler=".upgrades.update_patrocinato_da"
         />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="7007"
+      destination="7008"
+      >
+    <genericsetup:upgradeStep
+        title="iocomune-ioprenoto integration"
+        description=""
+        handler=".upgrades.add_ioprenoto_folder"
+        />
+  </genericsetup:upgradeSteps>
 </configure>

@@ -1,5 +1,7 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.zope.org/plone"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="design.plone.contenttypes"
     >
 
@@ -74,6 +76,14 @@
            zope.lifecycleevent.interfaces.IObjectModifiedEvent"
       handler=".common.onModify"
       />
+
+  <configure zcml:condition="installed redturtle.prenotazioni">
+    <subscriber
+        for="design.plone.contenttypes.interfaces.servizio.IServizio
+             zope.lifecycleevent.interfaces.IObjectAddedEvent"
+        handler=".servizio.prenotazioni_folder_create"
+        />
+  </configure>
 
 
 </configure>

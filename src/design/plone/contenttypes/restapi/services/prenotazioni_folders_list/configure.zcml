@@ -1,0 +1,19 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    i18n_domain="plone"
+    >
+
+  <configure zcml:condition="installed redturtle.prenotazioni">
+    <plone:service
+        method="GET"
+        accept="application/json"
+        factory=".get.PrenotazioniFoldersList"
+        for="design.plone.contenttypes.interfaces.servizio.IServizio"
+        permission="zope2.View"
+        name="@prenotazioni_folders-list"
+        />
+  </configure>
+
+</configure>

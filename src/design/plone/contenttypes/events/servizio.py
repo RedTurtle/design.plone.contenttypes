@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from design.plone.contenttypes import _
 from design.plone.contenttypes.utils import create_default_blocks
 from plone import api
 from Products.CMFPlone.interfaces import ISelectableConstrainTypes
@@ -27,3 +28,16 @@ def servizioCreateHandler(servizio, event):
             childConstraints = ISelectableConstrainTypes(child)
             childConstraints.setConstrainTypesMode(1)
             childConstraints.setLocallyAllowedTypes(folder["contains"])
+
+
+def prenotazioni_folder_create(servizio, event):
+    """Create Prenotazioni folder inside of the created object"""
+    if not api.portal.get_tool("portal_catalog")(
+        portal_type="PrenotazioniFolderContainer",
+        path="/".join(servizio.getPhysicalPath()),
+    ):
+        api.content.create(
+            type="PrenotazioniFolderContainer",
+            title=_("Cartella delle prenotazioni"),
+            container=servizio,
+        )

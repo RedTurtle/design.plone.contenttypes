@@ -14,15 +14,18 @@ import collective.taxonomy
 import collective.venue
 import collective.volto.blocksfield
 import collective.volto.cookieconsent
-import collective.z3cform.datagridfield
 import design.plone.contenttypes
-import eea.api.taxonomy
 import kitconcept.seo
 import plone.app.caching
 import plone.formwidget.geolocation
 import plone.restapi
 import redturtle.bandi
+import redturtle.prenotazioni
+import eea.api.taxonomy
 import redturtle.volto
+import collective.z3cform.datagridfield
+import collective.taxonomy
+import collective.contentrules.mailfromfield
 
 
 class DesignPloneContenttypesLayer(RedturtleVoltoLayer):
@@ -36,6 +39,11 @@ class DesignPloneContenttypesLayer(RedturtleVoltoLayer):
         self.loadZCML(package=design.plone.contenttypes, context=configurationContext)
         self.loadZCML(package=plone.formwidget.geolocation)
         self.loadZCML(name="overrides.zcml", package=design.plone.contenttypes)
+        self.loadZCML(package=redturtle.prenotazioni)
+        self.loadZCML(package=eea.api.taxonomy)
+        self.loadZCML(package=collective.z3cform.datagridfield)
+        self.loadZCML(package=collective.taxonomy)
+        self.loadZCML(package=collective.contentrules.mailfromfield)
         xmlconfig.file(
             "configure.zcml",
             design.plone.contenttypes,
@@ -75,6 +83,11 @@ class DesignPloneContenttypesRestApiLayer(RedturtleVoltoRestApiLayer):
         self.loadZCML(package=design.plone.contenttypes, context=configurationContext)
         self.loadZCML(package=plone.formwidget.geolocation)
         self.loadZCML(name="overrides.zcml", package=design.plone.contenttypes)
+        self.loadZCML(package=redturtle.prenotazioni)
+        self.loadZCML(package=eea.api.taxonomy)
+        self.loadZCML(package=collective.z3cform.datagridfield)
+        self.loadZCML(package=collective.taxonomy)
+        self.loadZCML(package=collective.contentrules.mailfromfield)
         xmlconfig.file(
             "configure.zcml",
             design.plone.contenttypes,
@@ -89,6 +102,7 @@ class DesignPloneContenttypesRestApiLayer(RedturtleVoltoRestApiLayer):
     def setUpPloneSite(self, portal):
         super().setUpPloneSite(portal)
         applyProfile(portal, "design.plone.contenttypes:default")
+        applyProfile(portal, "redturtle.prenotazioni:default")
 
 
 DESIGN_PLONE_CONTENTTYPES_API_FIXTURE = DesignPloneContenttypesRestApiLayer()
