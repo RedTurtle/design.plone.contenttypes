@@ -722,5 +722,5 @@
         description=""
         handler=".upgrades.add_ioprenoto_folder"
         />
-   </genericsetup:upgradeSteps>
+  </genericsetup:upgradeSteps>
 </configure>

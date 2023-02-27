@@ -45,6 +45,26 @@ class IAddressLocal(model.Schema):
 
 
 @provider(IFormFieldProvider)
+<<<<<<< HEAD
+=======
+class IAddressUnitaOrganizzativa(IAddress, IAddressNomeSede, IAddressLocal):
+    model.fieldset(
+        "contatti",
+        label=_("contatti_label", default="Contatti"),
+        fields=[
+            "nome_sede",
+            "street",
+            "zip_code",
+            "city",
+            "quartiere",
+            "circoscrizione",
+            "country",
+        ],
+    )
+
+
+@provider(IFormFieldProvider)
+>>>>>>> f21291a (Blacked and zprettied, make code great again)
 class IAddressVenue(IAddress, IAddressLocal):
     """"""
 
