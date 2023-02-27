@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-6.0.0a110 (unreleased)
+6.0.0a20 (unreleased)
 ----------------------
 
 - Nothing changed yet.
