@@ -41,9 +41,9 @@ def design_italia_serialize_to_json_call(self, version=None, include_items=True)
             )
             taxonomy_voc = taxonomy.makeVocabulary(self.request.get("LANGUAGE"))
 
-            title = taxonomy_voc.inv_data.get(self.context.tipologia_notizia, None)
+            title = taxonomy_voc.inv_data.get(self.context.tipologia_notizia, "")
 
-            if title and title.startswith(PATH_SEPARATOR):
+            if title.startswith(PATH_SEPARATOR):
                 result["design_italia_meta_type"] = title.replace(PATH_SEPARATOR, "", 1)
     else:
         result["design_italia_meta_type"] = translate(
