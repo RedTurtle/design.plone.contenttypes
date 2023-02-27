@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-6.0.0a19 (unreleased)
+6.0.0a19 (2023-02-27)
 ---------------------
 
 - Change event schema: "patrocinato da"  right now is a
