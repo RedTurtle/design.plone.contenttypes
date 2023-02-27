@@ -5,7 +5,9 @@ Changelog
 6.0.0a19 (unreleased)
 ---------------------
 
-- Nothing changed yet.
+- Change event schema: "patrocinato da"  right now is a
+  rich text
+  [lucabel]
 
 
 6.0.0a18 (2023-02-22)

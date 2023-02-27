@@ -1709,3 +1709,50 @@ def fix_ctaxonomy_indexes_and_metadata(context):
         obj = brain.getObject()
         obj.reindexObject(idxs=good_names)
     logger.info(f"{colors.GREEN} End of update {colors.ENDC}")
+
+
+def update_patrocinato_da(self):
+    EMPTY_BLOCKS_FIELD = {"blocks": {}, "blocks_layout": {"items": []}}
+    logger.info(
+        f"{colors.DARKCYAN} Change patrocinato_da field in events {colors.ENDC}"
+    )
+    pc = api.portal.get_tool(name="portal_catalog")
+    for brain in pc(portal_type="Event"):
+        obj = brain.getObject()
+        patrocinato_da = getattr(obj, "patrocinato_da")
+        if patrocinato_da == EMPTY_BLOCKS_FIELD:
+            logger.info(
+                f"{colors.YELLOW} Nessuna informazione da modificare{colors.ENDC}"
+            )
+            continue
+        url = obj.absolute_url()
+        logger.info(f"{colors.GREEN} patrocinato_da ({url}){colors.ENDC}")
+
+        setattr(
+            obj,
+            "patrocinato_da",
+            {
+                "blocks": {
+                    "d252fe92-ce88-4866-b77d-501e7275cfc0": {
+                        "@type": "text",
+                        "text": {
+                            "blocks": [
+                                {
+                                    "data": {},
+                                    "depth": 0,
+                                    "entityRanges": [],
+                                    "inlineStyleRanges": [],
+                                    "key": "e23it",
+                                    "text": patrocinato_da,
+                                    "type": "unstyled",
+                                }
+                            ],
+                            "entityMap": {},
+                        },
+                    }
+                },
+                "blocks_layout": {"items": ["d252fe92-ce88-4866-b77d-501e7275cfc0"]},
+            },
+        )
+        obj.reindexObject()
+    logger.info(f"{colors.DARKCYAN} End of update {colors.ENDC}")

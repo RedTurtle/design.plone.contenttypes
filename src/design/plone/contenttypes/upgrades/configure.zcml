@@ -701,4 +701,15 @@
         handler=".upgrades.update_types"
         />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="7006"
+      destination="7007"
+      >
+    <genericsetup:upgradeStep
+        title="Evento: update patrocinato da"
+        description=""
+        handler=".upgrades.update_patrocinato_da"
+        />
+  </genericsetup:upgradeSteps>
 </configure>

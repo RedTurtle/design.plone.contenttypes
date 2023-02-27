@@ -1,6 +1,6 @@
 from plone import api
-from Products.Five import BrowserView
 from Products.CMFPlone.utils import safe_hasattr
+from Products.Five import BrowserView
 
 
 class CheckServizi(BrowserView):

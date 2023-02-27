@@ -100,8 +100,8 @@ class IEvento(model.Schema):
         ),
     )
 
-    # campi aggiunti con il pnrr
-    patrocinato_da = schema.TextLine(
+    #  campi aggiunti con il pnrr
+    patrocinato_da = BlocksField(
         title=_("patrocinato_da_label", default="Patrocinato da"),
         required=False,
         description=_(
