@@ -61,7 +61,7 @@ class SerializeFolderToJson(BaseFolderSerializer):
                 )
                 taxonomy_voc = taxonomy.makeVocabulary(self.request.get("LANGUAGE"))
 
-                title = taxonomy_voc.inv_data.get(self.context.tipologia_notizia, None)
+                title = taxonomy_voc.inv_data.get(self.context.tipologia_notizia, "")
 
                 if title.startswith(PATH_SEPARATOR):
                     result["design_italia_meta_type"] = title.replace(
