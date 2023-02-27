@@ -6,6 +6,7 @@ from copy import deepcopy
 from design.plone.contenttypes.controlpanels.settings import IDesignPloneSettings
 from design.plone.contenttypes.setuphandlers import remove_blocks_behavior
 from design.plone.contenttypes.upgrades.draftjs_converter import to_draftjs
+from design.plone.contenttypes.utils import create_default_blocks
 from plone import api
 from plone.app.textfield.value import RichTextValue
 from plone.app.upgrade.utils import installOrReinstallProduct
@@ -1756,3 +1757,36 @@ def update_patrocinato_da(self):
         )
         obj.reindexObject()
     logger.info(f"{colors.DARKCYAN} End of update {colors.ENDC}")
+
+
+def update_folder_for_gallery(self):
+    logger.info(f"{colors.DARKCYAN} Update events {colors.ENDC}")
+    pc = api.portal.get_tool(name="portal_catalog")
+    for brain in pc(portal_type="Event"):
+        evento = brain.getObject()
+
+        logger.info(f"{colors.DARKCYAN} Event: {evento.absolute_url()} {colors.ENDC}")
+        if "multimedia" in evento.keys():
+            renamed_event = api.content.rename(evento["multimedia"], new_id="immagini")
+            renamed_event.title = "Immagini"
+            renamed_event.reindexObject(idxs=["id", "title"])
+            logger.info(f"{colors.GREEN} Rename multimedia {colors.ENDC}")
+
+        if "video" not in evento.keys():
+            galleria_video = api.content.create(
+                container=evento,
+                type="Document",
+                title="Video",
+                id="video",
+            )
+            create_default_blocks(context=galleria_video)
+
+            # select  constraints
+            constraintsGalleriaVideo = ISelectableConstrainTypes(galleria_video)
+            constraintsGalleriaVideo.setConstrainTypesMode(1)
+            constraintsGalleriaVideo.setLocallyAllowedTypes(("Link",))
+
+            with api.env.adopt_roles(["Reviewer"]):
+                api.content.transition(obj=galleria_video, transition="publish")
+
+            logger.info(f"{colors.GREEN} Create video {colors.ENDC}")

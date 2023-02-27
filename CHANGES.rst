@@ -5,7 +5,9 @@ Changelog
 6.0.0a20 (unreleased)
 ----------------------
 
-- Nothing changed yet.
+- Add a new upgrade step to rename "multimedia" in "immagini"
+  under an event and add the new "video" folder.
+  [lucabel]
 
 
 6.0.0a19 (2023-02-27)
