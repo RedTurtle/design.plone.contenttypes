@@ -2,8 +2,8 @@ Changelog
 =========
 
 
-6.0.0a20 (unreleased)
-----------------------
+6.0.0a20 (2023-02-27)
+---------------------
 
 - Add a new upgrade step to rename "multimedia" in "immagini"
   under an event and add the new "video" folder.
