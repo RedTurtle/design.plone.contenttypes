@@ -14,9 +14,7 @@ import collective.taxonomy
 import collective.venue
 import collective.volto.blocksfield
 import collective.volto.cookieconsent
-import collective.z3cform.datagridfield
 import design.plone.contenttypes
-import eea.api.taxonomy
 import kitconcept.seo
 import plone.app.caching
 import plone.formwidget.geolocation
