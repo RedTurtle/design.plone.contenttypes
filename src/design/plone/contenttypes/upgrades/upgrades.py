@@ -1544,7 +1544,7 @@ def update_taxonomies(context):
         )
         for brain in brains:
             obj = brain.getObject()
-            obj_language = getattr(obj, "language", "it")
+            obj_language = getattr(obj, "language", "it") or "it"
             for taxonomy in TYPE_TO_TAXONOMIES_MAPPING[portal_type]:
                 old_value = getattr(obj, taxonomy)
                 if (
