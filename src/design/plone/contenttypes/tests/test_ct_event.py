@@ -1,11 +1,7 @@
 # -*- coding: utf-8 -*-
 from design.plone.contenttypes.schema_overrides import SchemaTweaks
-from design.plone.contenttypes.testing import (
-    DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
-)
-from design.plone.contenttypes.testing import (
-    DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING,
-)
+from design.plone.contenttypes.testing import DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING
+from design.plone.contenttypes.testing import DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import SITE_OWNER_NAME
@@ -21,6 +17,7 @@ import unittest
 
 class TestEvent(unittest.TestCase):
     layer = DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING
+    maxDiff = None
 
     def setUp(self):
         """Custom shared utility setup for tests."""
@@ -34,7 +31,7 @@ class TestEvent(unittest.TestCase):
                 "plone.eventbasic",
                 "plone.leadimage",
                 "volto.preview_image",
-                "design.plone.contenttypes.behavior.argomenti",
+                "design.plone.contenttypes.behavior.argomenti_evento",
                 "plone.eventrecurrence",
                 "design.plone.contenttypes.behavior.additional_help_infos",
                 "design.plone.contenttypes.behavior.evento",
@@ -42,6 +39,7 @@ class TestEvent(unittest.TestCase):
                 "design.plone.contenttypes.behavior.address_event",
                 "design.plone.contenttypes.behavior.geolocation_event",
                 "design.plone.contenttypes.behavior.strutture_correlate",
+                "design.plone.contenttypes.behavior.contatti_event",
                 "plone.dublincore",
                 "plone.namefromtitle",
                 "plone.allowdiscussion",
@@ -54,6 +52,7 @@ class TestEvent(unittest.TestCase):
                 "plone.textindexer",
                 "plone.translatable",
                 "kitconcept.seo",
+                "collective.taxonomy.generated.tipologia_evento",
             ),
         )
 
@@ -90,13 +89,13 @@ class TestEventApi(unittest.TestCase):
         event = self.portal["evento"]
 
         self.assertEqual(
-            sorted(["multimedia", "documenti", "sponsor_evento"]),
+            sorted(["documenti", "immagini", "sponsor_evento", "video"]),
             sorted(event.keys()),
         )
 
-        self.assertEqual(event["multimedia"].portal_type, "Document")
-        self.assertEqual(event["multimedia"].constrain_types_mode, 1)
-        self.assertEqual(event["multimedia"].locally_allowed_types, ("Image", "Link"))
+        self.assertEqual(event["immagini"].portal_type, "Document")
+        self.assertEqual(event["immagini"].constrain_types_mode, 1)
+        self.assertEqual(event["immagini"].locally_allowed_types, ("Image", "Link"))
 
         self.assertEqual(event["sponsor_evento"].portal_type, "Document")
         self.assertEqual(event["sponsor_evento"].constrain_types_mode, 1)
@@ -106,10 +105,13 @@ class TestEventApi(unittest.TestCase):
         self.assertEqual(event["documenti"].constrain_types_mode, 1)
         self.assertEqual(event["documenti"].locally_allowed_types, ("File",))
 
-        multimedia_wf = api.content.get_state(obj=event["multimedia"])
-        sponsor_wf = api.content.get_state(obj=event["sponsor_evento"])
-        documenti_wf = api.content.get_state(obj=event["documenti"])
+        self.assertEqual(event["video"].portal_type, "Document")
+        self.assertEqual(event["video"].constrain_types_mode, 1)
+        self.assertEqual(event["video"].locally_allowed_types, ("Link",))
 
-        self.assertEqual(multimedia_wf, "published")
-        self.assertEqual(sponsor_wf, "published")
-        self.assertEqual(documenti_wf, "published")
+        self.assertEqual(api.content.get_state(obj=event["immagini"]), "published")
+        self.assertEqual(api.content.get_state(obj=event["video"]), "published")
+        self.assertEqual(
+            api.content.get_state(obj=event["sponsor_evento"]), "published"
+        )
+        self.assertEqual(api.content.get_state(obj=event["documenti"]), "published")

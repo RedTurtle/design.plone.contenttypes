@@ -1,11 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from design.plone.contenttypes.testing import (
-    DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
-)
-from design.plone.contenttypes.testing import (
-    DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING,
-)
+from design.plone.contenttypes.testing import DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING
+from design.plone.contenttypes.testing import DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import SITE_OWNER_NAME
@@ -43,6 +39,7 @@ class TestPersona(unittest.TestCase):
                 "plone.basic",
                 "plone.locking",
                 "design.plone.contenttypes.behavior.additional_help_infos",
+                "design.plone.contenttypes.behavior.contatti_persona",
                 "plone.textindexer",
                 "plone.translatable",
                 "kitconcept.seo",
@@ -52,7 +49,7 @@ class TestPersona(unittest.TestCase):
 
     def test_persona_ct_title(self):
         portal_types = api.portal.get_tool(name="portal_types")
-        self.assertEqual("Persona", portal_types["Persona"].title)
+        self.assertEqual("Persona pubblica", portal_types["Persona"].title)
 
 
 class TestPersonaEndpoint(unittest.TestCase):

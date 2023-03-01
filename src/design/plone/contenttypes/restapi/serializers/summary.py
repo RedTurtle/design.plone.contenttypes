@@ -54,8 +54,7 @@ def get_taxonomy_information(field_name, context, res):
         fullterms = []
         # delle volte posso avere il brain senza quel dato
         if field_name not in res:
-            res[field_name] = getattr(context, field_name, [])
-
+            res[field_name] = getattr(context, field_name, None) or []
         for token in res[field_name]:
             title = taxonomy_voc.inv_data.get(token, None)
             if title and title.startswith(PATH_SEPARATOR):
@@ -182,14 +181,13 @@ class DefaultJSONSummarySerializer(BaseSerializer):
                 else:
                     token = self.context.tipologia_notizia
                 title = taxonomy_voc.inv_data.get(token, None)
-                if title and title.startswith(PATH_SEPARATOR):
-                    title = title.replace(PATH_SEPARATOR, "", 1)
-
-                return title
-        else:
-            return translate(
-                ttool[self.context.portal_type].Title(), context=self.request
-            )
+                if title:
+                    if title.startswith(PATH_SEPARATOR):
+                        title = title.replace(PATH_SEPARATOR, "", 1)
+                    return title
+        return translate(
+            ttool[self.context.portal_type].Title(), context=self.request
+        )
 
     def expand_tassonomia_argomenti(self):
         try:

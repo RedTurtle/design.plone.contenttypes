@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
 from DateTime import DateTime
-from design.plone.contenttypes.testing import (
-    DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
-)
+from design.plone.contenttypes.testing import DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import SITE_OWNER_NAME
@@ -145,12 +143,12 @@ class VocabulariesControlpanelTest(unittest.TestCase):
         api.user.create(
             email="foo@example.com",
             username="foo",
-            password="secret",
+            password="secret!!!",
         )
 
         api_session = RelativeSession(self.portal_url)
         api_session.headers.update({"Accept": "application/json"})
-        api_session.auth = ("foo", "secret")
+        api_session.auth = ("foo", "secret!!!")
 
         present = api.content.create(
             container=self.portal, type="Document", title="present"

@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-from design.plone.contenttypes.testing import (
-    DESIGN_PLONE_CONTENTTYPES_FUNCTIONAL_TESTING,
-)
+from design.plone.contenttypes.testing import DESIGN_PLONE_CONTENTTYPES_FUNCTIONAL_TESTING
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
@@ -13,6 +11,7 @@ import unittest
 
 class LuogoBehaviorIndexerFunctionalTest(unittest.TestCase):
     layer = DESIGN_PLONE_CONTENTTYPES_FUNCTIONAL_TESTING
+    maxDiff = None
 
     def setUp(self):
         self.portal = self.layer["portal"]

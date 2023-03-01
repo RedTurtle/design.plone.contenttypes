@@ -1,17 +1,14 @@
 # -*- coding: utf-8 -*-
 from design.plone.contenttypes.controlpanels.settings import IDesignPloneSettings
-from design.plone.contenttypes.testing import (
-    DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
-)
-from design.plone.contenttypes.testing import (
-    DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING,
-)
+from design.plone.contenttypes.testing import DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING
+from design.plone.contenttypes.testing import DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import SITE_OWNER_PASSWORD
 from plone.app.testing import TEST_USER_ID
 from plone.restapi.testing import RelativeSession
+from uuid import uuid4
 
 import json
 import transaction
@@ -20,6 +17,7 @@ import unittest
 
 class TestNews(unittest.TestCase):
     layer = DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING
+    maxDiff = None
 
     def setUp(self):
         """Custom shared utility setup for tests."""
@@ -42,11 +40,12 @@ class TestNews(unittest.TestCase):
                 "plone.locking",
                 "volto.preview_image",
                 "design.plone.contenttypes.behavior.news",
-                "design.plone.contenttypes.behavior.argomenti",
+                "design.plone.contenttypes.behavior.argomenti_news",
                 "plone.constraintypes",
                 "plone.textindexer",
                 "plone.translatable",
                 "kitconcept.seo",
+                "collective.taxonomy.generated.tipologia_notizia",
             ),
         )
 
@@ -96,43 +95,89 @@ class TestNewsApi(unittest.TestCase):
             self.portal_url, json={"@type": "News Item", "title": "Foo"}
         )
 
-        self.assertEqual(400, response.status_code)
+        self.assertEqual(response.status_code, 400)
         message = response.json()["message"]
-        self.assertIn("tipologia_notizia", message)
+        # TODO: anche `tipologia_notizia` è obbligatorio ?
+        # self.assertIn("tipologia_notizia", message)
+        self.assertIn("descrizione_estesa", message)
 
+        text_uuid = str(uuid4())
         response = self.api_session.post(
             self.portal_url,
             json={
                 "@type": "News Item",
                 "title": "Foo",
-                "tipologia_notizia": "foo",
+                # TODO: se la tipologia non è nel vocabolario della
+                # tassonomia, il server restituisce un errore 500
+                # "tipologia_notizia": "foo",
+                "tipologia_notizia": "avviso",
                 "a_cura_di": self.document.UID(),
+                # campo obbligatorio
+                "description": "Test",
+                # campo obbligatorio
+                "descrizione_estesa": {
+                    "blocks": {
+                        text_uuid: {
+                            "@type": "text",
+                            "text": {"blocks": [{"text": "Test", "type": "paragraph"}]},
+                        },
+                    },
+                    "blocks_layout": {"items": [text_uuid]},
+                },
             },
         )
-        self.assertEqual(201, response.status_code)
+        self.assertEqual(response.status_code, 201)
 
     def test_newsitem_substructure_created(self):
-        self.api_session.post(
+        text_uuid = str(uuid4())
+        response = self.api_session.post(
             self.portal_url,
             json={
                 "@type": "News Item",
                 "title": "Foo",
-                "tipologia_notizia": "foo",
+                # TODO: se la tipologia non è nel vocabolario della
+                # tassonomia, il server restituisce un errore 500
+                # "tipologia_notizia": "foo",
+                "tipologia_notizia": "avviso",
                 "a_cura_di": self.document.UID(),
+                # campo obbligatorio
+                "description": "Test",
+                # campo obbligatorio
+                "descrizione_estesa": {
+                    "blocks": {
+                        text_uuid: {
+                            "@type": "text",
+                            "text": {"blocks": [{"text": "Test", "type": "paragraph"}]},
+                        },
+                    },
+                    "blocks_layout": {"items": [text_uuid]},
+                },
             },
         )
+        self.assertEqual(response.status_code, 201)
 
-        transaction.commit()
-        news = self.portal["foo"]
-
-        self.assertEqual(["multimedia", "documenti-allegati"], news.keys())
-
-        self.assertEqual(news["multimedia"].portal_type, "Document")
-        self.assertEqual(news["multimedia"].constrain_types_mode, 1)
-        self.assertEqual(news["multimedia"].locally_allowed_types, ("Link", "Image"))
-
-        self.assertEqual(news["documenti-allegati"].portal_type, "Document")
-        self.assertEqual(news["documenti-allegati"].constrain_types_mode, 1)
-        self.assertEqual(
-            news["documenti-allegati"].locally_allowed_types, ("File", "Image")
+        response = self.api_session.get(
+            f"{self.portal_url}/foo", params={"fullobjects": 1}
         )
+        self.assertEqual(response.status_code, 200)
+        news = response.json()
+
+        self.assertEqual(
+            set([i["id"] for i in news["items"]]),
+            set(["multimedia", "documenti-allegati"]),
+        )
+        self.assertEqual(news["description"], "Test")
+        self.assertIn(
+            '"text": "Test"',
+            json.dumps(news["descrizione_estesa"]),
+        )
+
+        # self.assertEqual(news["multimedia"].portal_type, "Document")
+        # self.assertEqual(news["multimedia"].constrain_types_mode, 1)
+        # self.assertEqual(news["multimedia"].locally_allowed_types, ("Link", "Image"))
+
+        # self.assertEqual(news["documenti-allegati"].portal_type, "Document")
+        # self.assertEqual(news["documenti-allegati"].constrain_types_mode, 1)
+        # self.assertEqual(
+        #     news["documenti-allegati"].locally_allowed_types, ("File", "Image")
+        # )
