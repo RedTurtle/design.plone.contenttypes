@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-6.0.0a21 (unreleased)
+6.0.0a21 (2023-03-01)
 ---------------------
 
 - Better handle default language in upgrade-step
