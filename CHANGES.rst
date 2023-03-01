@@ -5,7 +5,8 @@ Changelog
 6.0.0a21 (unreleased)
 ---------------------
 
-- Nothing changed yet.
+- Better handle default language in upgrade-step
+  [cekk]
 
 
 6.0.0a20 (2023-02-27)
