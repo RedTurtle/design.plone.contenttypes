@@ -1,6 +1,31 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
+
+.. image:: https://img.shields.io/pypi/v/design.plone.contenttypes.svg
+    :target: https://pypi.python.org/pypi/design.plone.contenttypes/
+    :alt: Latest Version
+
+.. image:: https://img.shields.io/pypi/pyversions/design.plone.contenttypes.svg?style=plastic
+    :target: https://pypi.python.org/pypi/design.plone.contenttypes/
+    :alt: Supported - Python Versions
+
+.. image:: https://img.shields.io/pypi/dm/design.plone.contenttypes.svg
+    :target: https://pypi.python.org/pypi/design.plone.contenttypes/
+    :alt: Number of PyPI downloads
+    
+.. image:: https://img.shields.io/pypi/l/design.plone.contenttypes.svg
+    :target: https://pypi.python.org/pypi/design.plone.contenttypes/
+    :alt: License
+
+.. image:: https://github.com/collective/design.plone.contenttypes/actions/workflows/tests.yml/badge.svg
+    :target: https://github.com/collective/design.plone.contenttypes/actions
+    :alt: Tests
+
+.. image:: https://coveralls.io/repos/github/collective/design.plone.contenttypes/badge.svg?branch=master
+    :target: https://coveralls.io/github/collective/design.plone.contenttypes?branch=master
+    :alt: Coverage
+
 - [Design Plone Content-types](#design-plone-content-types)
 - [Features](#features)
 - [Tipi di contenuto](#tipi-di-contenuto)
