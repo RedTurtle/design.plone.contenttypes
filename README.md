@@ -2,29 +2,13 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
-.. image:: https://img.shields.io/pypi/v/design.plone.contenttypes.svg
-    :target: https://pypi.python.org/pypi/design.plone.contenttypes/
-    :alt: Latest Version
+[![Latest Version](https://img.shields.io/pypi/v/design.plone.contenttypes.svg)](https://pypi.python.org/pypi/design.plone.contenttypes/)
+[![Supported - Python Versions](https://img.shields.io/pypi/pyversions/design.plone.contenttypes.svg?style=plastic)](https://pypi.python.org/pypi/design.plone.contenttypes/)
+[![Number of PyPI downloads](https://img.shields.io/pypi/dm/design.plone.contenttypes.svg)](https://pypi.python.org/pypi/design.plone.contenttypes/)
+[![License](https://img.shields.io/pypi/l/design.plone.contenttypes.svg)](https://pypi.python.org/pypi/design.plone.contenttypes/)
+[![Tests](https://github.com/collective/design.plone.contenttypes/actions/workflows/tests.yml/badge.svg)](https://github.com/collective/design.plone.contenttypes/actions)
+[![Coverage](https://coveralls.io/repos/github/collective/design.plone.contenttypes/badge.svg?branch=master)](https://coveralls.io/github/collective/design.plone.contenttypes?branch=master)
 
-.. image:: https://img.shields.io/pypi/pyversions/design.plone.contenttypes.svg?style=plastic
-    :target: https://pypi.python.org/pypi/design.plone.contenttypes/
-    :alt: Supported - Python Versions
-
-.. image:: https://img.shields.io/pypi/dm/design.plone.contenttypes.svg
-    :target: https://pypi.python.org/pypi/design.plone.contenttypes/
-    :alt: Number of PyPI downloads
-    
-.. image:: https://img.shields.io/pypi/l/design.plone.contenttypes.svg
-    :target: https://pypi.python.org/pypi/design.plone.contenttypes/
-    :alt: License
-
-.. image:: https://github.com/collective/design.plone.contenttypes/actions/workflows/tests.yml/badge.svg
-    :target: https://github.com/collective/design.plone.contenttypes/actions
-    :alt: Tests
-
-.. image:: https://coveralls.io/repos/github/collective/design.plone.contenttypes/badge.svg?branch=master
-    :target: https://coveralls.io/github/collective/design.plone.contenttypes?branch=master
-    :alt: Coverage
 
 - [Design Plone Content-types](#design-plone-content-types)
 - [Features](#features)
