@@ -33,7 +33,7 @@ jobs:
           buildout -N -t 3
       - name: Run tests
         run: |
-          bin/test
+          bin/test-coverage
       - name: Coveralls
         uses: AndreMiras/coveralls-python-action@develop
         with:
