@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from design.plone.contenttypes.testing import DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING
+from design.plone.contenttypes.testing import (
+    DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING,
+)
 from plone import api
 
 import unittest

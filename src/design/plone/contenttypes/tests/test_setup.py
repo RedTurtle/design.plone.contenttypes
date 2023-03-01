@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 """Setup tests for this package."""
 from design.plone.contenttypes.controlpanels.settings import IDesignPloneSettings
-from design.plone.contenttypes.testing import DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING
+from design.plone.contenttypes.testing import (
+    DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING,
+)
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID

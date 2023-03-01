@@ -185,9 +185,7 @@ class DefaultJSONSummarySerializer(BaseSerializer):
                     if title.startswith(PATH_SEPARATOR):
                         title = title.replace(PATH_SEPARATOR, "", 1)
                     return title
-        return translate(
-            ttool[self.context.portal_type].Title(), context=self.request
-        )
+        return translate(ttool[self.context.portal_type].Title(), context=self.request)
 
     def expand_tassonomia_argomenti(self):
         try:

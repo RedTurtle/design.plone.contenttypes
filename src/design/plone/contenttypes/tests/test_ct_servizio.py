@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
 """Setup tests for this package."""
-from design.plone.contenttypes.testing import DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING  # noqa
-from design.plone.contenttypes.testing import DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING  # noqa
+from design.plone.contenttypes.testing import (
+    DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
+)  # noqa
+from design.plone.contenttypes.testing import (
+    DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING,
+)  # noqa
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import SITE_OWNER_NAME

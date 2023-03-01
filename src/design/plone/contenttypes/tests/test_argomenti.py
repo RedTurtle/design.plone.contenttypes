@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-from design.plone.contenttypes.testing import DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING
+from design.plone.contenttypes.testing import (
+    DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
+)
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import SITE_OWNER_NAME
