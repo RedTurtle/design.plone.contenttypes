@@ -1612,26 +1612,27 @@ def update_taxonomies_on_blocks(context):
     )
 
 
-def add_ioprenoto_folder(context):
-    """Adds PrenotazioniFoldersContainer object to Servizio c.t. object"""
-    catalog = api.portal.get_tool("portal_catalog")
-    for servizio in catalog(portal_type="Servizio"):
-        if not catalog(
-            portal_type="PrenotazioniFolderContainer", path=servizio.getPath()
-        ):
-            container = servizio.getObject()
-            if "PrenotazioniFolderContainer" in getattr(
-                context, "allowedContentTypes", None
-            ):
-                api.content.create(
-                    type="PrenotazioniFolderContainer",
-                    title="Cartella delle prenotazioni",
-                    container=container,
-                )
-            else:
-                raise Exception(
-                    "Can not mirgate so as PrenotazioniFolderContainer is not allowed"
-                )
+# XXX: le prenotazioni non sono necessariamente all'interno del servizio
+# def add_ioprenoto_folder(context):
+#     """Adds PrenotazioniFoldersContainer object to Servizio c.t. object"""
+#     catalog = api.portal.get_tool("portal_catalog")
+#     for servizio in catalog(portal_type="Servizio"):
+#         if not catalog(
+#             portal_type="PrenotazioniFolderContainer", path=servizio.getPath()
+#         ):
+#             container = servizio.getObject()
+#             if "PrenotazioniFolderContainer" in getattr(
+#                 context, "allowedContentTypes", None
+#             ):
+#                 api.content.create(
+#                     type="PrenotazioniFolderContainer",
+#                     title="Cartella delle prenotazioni",
+#                     container=container,
+#                 )
+#             else:
+#                 raise Exception(
+#                     "Can not mirgate so as PrenotazioniFolderContainer is not allowed"
+#                 )
 
 
 def update_uo_contact_info(context):

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# TODO: skip se redturtle.prenotazioni non è presente
 from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
 )
@@ -51,6 +52,7 @@ class TestServicePrnotazioniFoldersList(unittest.TestCase):
             title="prenotazioni_folder",
             container=self.prenotazioni_folders_folder,
         )
+        transaction.commit()
 
         res = self.api_session.get(
             self.servizio.absolute_url() + "/" + self.testing_view_name

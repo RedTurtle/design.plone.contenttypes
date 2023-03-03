@@ -14,6 +14,8 @@ class MoveNewsItemView(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer["portal"]
         self.request = self.layer["request"]
+        # default values are set in italian
+        self.request["LANGUAGE"] = "it"
         self.view = api.content.get_view(
             "move_news_items", context=self.portal, request=self.request
         )
@@ -28,18 +30,18 @@ class MoveNewsItemView(unittest.TestCase):
         self.news_item = api.content.create(
             type="News Item",
             title="news item",
-            tipologia_notizia="Notizia",
+            tipologia_notizia="notizia",
             container=self.portal,
         )
         self.news_item1 = api.content.create(
             type="News Item",
             title="news item1",
-            tipologia_notizia="Notizia",
+            tipologia_notizia="notizia",
             container=self.news_container,
         )
 
     def test_news_result(self):
-        self.view.request.form["news_type"] = "Notizia"
+        self.view.request.form["news_type"] = "notizia"
 
         result = self.view.news_results()
 

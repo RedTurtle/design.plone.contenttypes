@@ -717,18 +717,11 @@
       source="7007"
       destination="7008"
       >
-  </genericsetup:upgradeSteps>
-    <genericsetup:upgradeStep
-        title="iocomune-ioprenoto integration"
-        description=""
-        handler=".upgrades.add_ioprenoto_folder"
-        />
-  </genericsetup:upgradeSteps>
+
     <genericsetup:upgradeStep
         title="Evento: update folder for gallery"
         description=""
         handler=".upgrades.update_folder_for_gallery"
         />
   </genericsetup:upgradeSteps>
-
 </configure>

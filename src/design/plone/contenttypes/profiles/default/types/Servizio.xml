@@ -26,9 +26,13 @@
     <element value="Document" />
     <element value="Image" />
     <element value="File" />
-    <element value="Folder" />
-    <!-- integration btw design.plone.contenttypes and redturtle.prenotazioni -->
-    <element value="PrenotazioniFolderContainer" />
+    <!-- 
+      * integration btw design.plone.contenttypes and redturtle.prenotazioni
+        TODO: rivalutare se è necessario, o se i folder e i folder delle prenotazioni
+              vanno creati manualmente al di fuori del servizio
+    -->
+      <element value="PrenotazioniFolderContainer" />
+      <element value="Folder" />
   </property>
   <!-- Schema, class and security -->
   <property name="add_permission">design.plone.contenttypes.AddServizio</property>

@@ -30,14 +30,19 @@ def servizioCreateHandler(servizio, event):
             childConstraints.setLocallyAllowedTypes(folder["contains"])
 
 
+# TODO: rivalutare se è necessario, o se i folder delle prenotazioni
+#      vanno creati manualmente al di fuori del servizio
 def prenotazioni_folder_create(servizio, event):
-    """Create Prenotazioni folder inside of the created object"""
-    if not api.portal.get_tool("portal_catalog")(
-        portal_type="PrenotazioniFolderContainer",
-        path="/".join(servizio.getPhysicalPath()),
-    ):
-        api.content.create(
-            type="PrenotazioniFolderContainer",
-            title=_("Cartella delle prenotazioni"),
-            container=servizio,
-        )
+    """Create Prenotazioni folder inside of the created object,
+    but only if `redturtle.prenotazioni` is installed.
+    """
+    if api.portal.get_tool("portal_types").get("PrenotazioniFolderContainer"):
+        if not api.portal.get_tool("portal_catalog")(
+            portal_type="PrenotazioniFolderContainer",
+            path="/".join(servizio.getPhysicalPath()),
+        ):
+            api.content.create(
+                type="PrenotazioniFolderContainer",
+                title=_("Cartella delle prenotazioni"),
+                container=servizio,
+            )
