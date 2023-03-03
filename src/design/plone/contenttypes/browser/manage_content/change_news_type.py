@@ -8,6 +8,8 @@ from Products.Five.browser import BrowserView
 from zope.component import getUtility
 from zope.interface.interfaces import ComponentLookupError
 
+import json
+
 
 logger = getLogger(__name__)
 
@@ -83,6 +85,8 @@ class View(BrowserView):
                 blocks = deepcopy(item.blocks)
 
                 if blocks:
+                    if isinstance(blocks, str):
+                        blocks = json.loads(blocks)
                     for block in blocks.values():
                         if block.get("@type", "") == "listing":
                             for query in block.get("querystring", {}).get("query", []):

@@ -33,7 +33,9 @@ def design_italia_serialize_to_json_call(self, version=None, include_items=True)
     result = original_serialize_to_json__call__(
         self, version=version, include_items=include_items
     )
-
+    result["design_italia_meta_type"] = translate(
+        ttool[self.context.portal_type].Title(), context=self.request
+    )
     if self.context.portal_type == "News Item":
         if self.context.tipologia_notizia:
             taxonomy = getUtility(
@@ -45,11 +47,6 @@ def design_italia_serialize_to_json_call(self, version=None, include_items=True)
 
             if title and title.startswith(PATH_SEPARATOR):
                 result["design_italia_meta_type"] = title.replace(PATH_SEPARATOR, "", 1)
-    else:
-        result["design_italia_meta_type"] = translate(
-            ttool[self.context.portal_type].Title(), context=self.request
-        )
-
     return result
 
 

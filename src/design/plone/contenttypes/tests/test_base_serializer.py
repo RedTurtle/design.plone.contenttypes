@@ -48,8 +48,9 @@ class TestBaseSerializer(unittest.TestCase):
         Other types shoule return their own portal_type.
         """
         response_news = self.api_session.get(self.news.absolute_url() + "?fullobjects")
-        self.assertTrue(
-            response_news.json()["design_italia_meta_type"] == "Comunicati stampa"
+        self.assertEqual(
+            response_news.json()["design_italia_meta_type"],
+            "Notizie e comunicati stampa",
         )
 
     def test_design_italia_meta_type_with_type_different_from_news(self):
@@ -60,6 +61,7 @@ class TestBaseSerializer(unittest.TestCase):
         response_service = self.api_session.get(
             self.service.absolute_url() + "?fullobjects"
         )
-        self.assertTrue(
-            response_service.json()["design_italia_meta_type"] == "Servizio"
+        self.assertEqual(
+            response_service.json()["design_italia_meta_type"],
+            "Servizio",
         )

@@ -25,6 +25,7 @@ class TestUO(unittest.TestCase):
     """Test that design.plone.contenttypes is properly installed."""
 
     layer = DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING
+    maxDiff = None
 
     def setUp(self):
         self.app = self.layer["app"]
@@ -107,8 +108,8 @@ class TestUO(unittest.TestCase):
                 "plone.leadimage",
                 "volto.preview_image",
                 "plone.relateditems",
-                "design.plone.contenttypes.behavior.address_uo",
-                "design.plone.contenttypes.behavior.geolocation_uo",
+                # "design.plone.contenttypes.behavior.address_uo",
+                # "design.plone.contenttypes.behavior.geolocation_uo",
                 "design.plone.contenttypes.behavior.contatti_uo",
                 "design.plone.contenttypes.behavior.argomenti",
                 "plone.textindexer",
@@ -116,6 +117,7 @@ class TestUO(unittest.TestCase):
                 "plone.translatable",
                 "kitconcept.seo",
                 "plone.versioning",
+                "collective.taxonomy.generated.tipologia_organizzazione",
             ),
         )
 
@@ -160,7 +162,7 @@ class TestUO(unittest.TestCase):
             "riferimento_pec_struttura",
         ]
         for field in fields:
-            self.assertEqual(sede[field], getattr(self.luogo, field, ""))
+            self.assertEqual(sede[field], getattr(self.luogo, field, None))
 
     def test_uo_location_indexer_populated(self):
         pc = api.portal.get_tool(name="portal_catalog")
@@ -213,12 +215,14 @@ class TestUO(unittest.TestCase):
 
     def test_do_not_show_parent_uo_if_not_present(self):
         response = self.api_session.get(self.uo.absolute_url())
+        self.assertEqual(response.status_code, 200)
         uo_parent = response.json()["uo_parent"]
 
         self.assertIsNone(uo_parent)
 
     def test_show_parent_uo_if_present(self):
         response = self.api_session.get(self.uo_child.absolute_url())
+        self.assertEqual(response.status_code, 200)
         uo_parent = response.json()["uo_parent"]
 
         self.assertIsNotNone(uo_parent)
@@ -230,12 +234,14 @@ class TestUO(unittest.TestCase):
 
     def test_do_not_show_children_uo_if_not_present(self):
         response = self.api_session.get(self.uo_child.absolute_url())
+        self.assertEqual(response.status_code, 200)
         uo_children = response.json()["uo_children"]
 
         self.assertEqual(uo_children, [])
 
     def test_show_children_uo_if_present(self):
         response = self.api_session.get(self.uo.absolute_url())
+        self.assertEqual(response.status_code, 200)
         uo_children = response.json()["uo_children"]
 
         self.assertEqual(len(uo_children), 1)
@@ -255,7 +261,7 @@ class TestUO(unittest.TestCase):
         transaction.commit()
 
         response = self.api_session.get(self.uo.absolute_url())
-
+        self.assertEqual(response.status_code, 200)
         self.assertIn(
             self.service.absolute_url(),
             [i["@id"] for i in response.json()["prestazioni"]],

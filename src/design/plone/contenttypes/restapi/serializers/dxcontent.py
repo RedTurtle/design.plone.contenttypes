@@ -24,6 +24,9 @@ class SerializeToJson(BaseSerializer):
             version=version, include_items=include_items
         )
         ttool = api.portal.get_tool("portal_types")
+        result["design_italia_meta_type"] = translate(
+            ttool[self.context.portal_type].Title(), context=self.request
+        )
         if self.context.portal_type == "News Item":
             if self.context.tipologia_notizia:
                 taxonomy = getUtility(
@@ -33,14 +36,10 @@ class SerializeToJson(BaseSerializer):
 
                 title = taxonomy_voc.inv_data.get(self.context.tipologia_notizia, None)
 
-                if title.startswith(PATH_SEPARATOR):
+                if title and title.startswith(PATH_SEPARATOR):
                     result["design_italia_meta_type"] = title.replace(
                         PATH_SEPARATOR, "", 1
                     )
-        else:
-            result["design_italia_meta_type"] = translate(
-                ttool[self.context.portal_type].Title(), context=self.request
-            )
         return result
 
 
@@ -54,6 +53,9 @@ class SerializeFolderToJson(BaseFolderSerializer):
         result["@id"] = self.context.absolute_url()
         ttool = api.portal.get_tool("portal_types")
 
+        result["design_italia_meta_type"] = translate(
+            ttool[self.context.portal_type].Title(), context=self.request
+        )
         if self.context.portal_type == "News Item":
             if self.context.tipologia_notizia:
                 taxonomy = getUtility(
@@ -63,14 +65,10 @@ class SerializeFolderToJson(BaseFolderSerializer):
 
                 title = taxonomy_voc.inv_data.get(self.context.tipologia_notizia, None)
 
-                if title.startswith(PATH_SEPARATOR):
+                if title and title.startswith(PATH_SEPARATOR):
                     result["design_italia_meta_type"] = title.replace(
                         PATH_SEPARATOR, "", 1
                     )
-        else:
-            result["design_italia_meta_type"] = translate(
-                ttool[self.context.portal_type].Title(), context=self.request
-            )
         if "items_total" not in result:
             # siamo in un sotto-elemento di quello richiesto dalla query.
             #  ritorniamo il numero di elementi totale, senza doverli ritornare

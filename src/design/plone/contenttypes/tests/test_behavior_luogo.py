@@ -13,6 +13,7 @@ import unittest
 
 class LuogoBehaviorIndexerFunctionalTest(unittest.TestCase):
     layer = DESIGN_PLONE_CONTENTTYPES_FUNCTIONAL_TESTING
+    maxDiff = None
 
     def setUp(self):
         self.portal = self.layer["portal"]

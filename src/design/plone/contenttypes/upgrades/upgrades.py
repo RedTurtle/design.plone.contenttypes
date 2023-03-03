@@ -515,9 +515,6 @@ def to_volto13(context):  # noqa: C901
         for block in blocks.values():
             if block.get("@type", "") == "listing":
                 if block.get("template", False) and not block.get("variation", False):
-                    # import pdb
-
-                    # pdb.set_trace()
                     logger.error("- {}".format(url))
                 if block.get("template", False) and block.get("variation", False):
                     logger.error("- {}".format(url))
@@ -1194,9 +1191,6 @@ def migrate_pdc_and_incarico(context):
                 **kwargs,
             )
             intids = getUtility(IIntIds)
-            # import pdb
-
-            # pdb.set_trace()
             item.contact_info = [RelationValue(intids.getId(new_pdc))]
             fixed_total += 1
             commit()
