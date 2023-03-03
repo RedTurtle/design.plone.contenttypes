@@ -145,12 +145,12 @@ class VocabulariesControlpanelTest(unittest.TestCase):
         api.user.create(
             email="foo@example.com",
             username="foo",
-            password="secret",
+            password="secret!!!",
         )
 
         api_session = RelativeSession(self.portal_url)
         api_session.headers.update({"Accept": "application/json"})
-        api_session.auth = ("foo", "secret")
+        api_session.auth = ("foo", "secret!!!")
 
         present = api.content.create(
             container=self.portal, type="Document", title="present"

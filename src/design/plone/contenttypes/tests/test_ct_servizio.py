@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 """Setup tests for this package."""
-from design.plone.contenttypes.testing import (  # noqa
+from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
-)
-from design.plone.contenttypes.testing import (  # noqa
+)  # noqa
+from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING,
-)
+)  # noqa
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import SITE_OWNER_NAME
@@ -45,6 +45,7 @@ WIDGET_PROPERTY_CHECKS = {
 
 class TestServizio(unittest.TestCase):
     layer = DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING
+    maxDiff = None
 
     def setUp(self):
         """Custom shared utility setup for tests."""
@@ -69,12 +70,15 @@ class TestServizio(unittest.TestCase):
                 "plone.leadimage",
                 "volto.preview_image",
                 "plone.relateditems",
-                "design.plone.contenttypes.behavior.argomenti",
+                "design.plone.contenttypes.behavior.argomenti_servizio",
                 "design.plone.contenttypes.behavior.additional_help_infos",
+                "design.plone.contenttypes.behavior.contatti_servizio",
                 "plone.textindexer",
                 "plone.translatable",
                 "kitconcept.seo",
                 "plone.versioning",
+                "collective.taxonomy.generated.person_life_events",
+                "collective.taxonomy.generated.business_events",
             ),
         )
 

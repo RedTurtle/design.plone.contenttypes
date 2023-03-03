@@ -18,6 +18,7 @@ import unittest
 
 class TestShowModifiedBehavior(unittest.TestCase):
     layer = DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING
+    maxDiff = None
 
     def setUp(self):
         self.app = self.layer["app"]

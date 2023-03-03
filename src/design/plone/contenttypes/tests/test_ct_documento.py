@@ -21,6 +21,7 @@ import unittest
 
 class TestDocument(unittest.TestCase):
     layer = DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING
+    maxDiff = None
 
     def setUp(self):
         """Custom shared utility setup for tests."""
@@ -48,6 +49,11 @@ class TestDocument(unittest.TestCase):
                 "plone.translatable",
                 "kitconcept.seo",
                 "plone.versioning",
+                "collective.taxonomy.generated.person_life_events",
+                "collective.taxonomy.generated.business_events",
+                "collective.taxonomy.generated.tipologia_documenti_albopretorio",
+                "collective.taxonomy.generated.tipologia_documento",
+                "collective.taxonomy.generated.tipologia_licenze",
             ),
         )
 
