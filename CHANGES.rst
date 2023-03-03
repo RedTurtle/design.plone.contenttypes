@@ -2,11 +2,26 @@ Changelog
 =========
 
 
-6.0.0a110 (unreleased)
-----------------------
+6.0.0a22 (unreleased)
+---------------------
 
 - Integration with redturtle.prenotazioni
   [foxtrot-dfm1]
+
+6.0.0a21 (2023-03-01)
+---------------------
+
+- Better handle default language in upgrade-step
+  [cekk]
+
+
+6.0.0a20 (2023-02-27)
+---------------------
+
+- Add a new upgrade step to rename "multimedia" in "immagini"
+  under an event and add the new "video" folder.
+  [lucabel]
+
 
 6.0.0a19 (2023-02-27)
 ---------------------
