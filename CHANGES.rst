@@ -5,7 +5,8 @@ Changelog
 6.0.0a22 (unreleased)
 ---------------------
 
-- Nothing changed yet.
+- timeline_tempi_scadenze non più obbligatorio
+  [pnicolli]
 
 
 6.0.0a21 (2023-03-01)
