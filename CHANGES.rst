@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-6.0.0a22 (unreleased)
+6.0.0a22 (2023-03-07)
 ---------------------
 
 - timeline_tempi_scadenze non più obbligatorio
