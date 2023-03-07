@@ -6,3 +6,4 @@ include *.GPL
 include *.disabled
 include *.txt
 exclude .flake8
+exclude .pre-commit-config.yaml
