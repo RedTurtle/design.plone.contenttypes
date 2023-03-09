@@ -717,11 +717,11 @@
       source="7007"
       destination="7008"
       >
+
     <genericsetup:upgradeStep
         title="Evento: update folder for gallery"
         description=""
         handler=".upgrades.update_folder_for_gallery"
         />
   </genericsetup:upgradeSteps>
-
 </configure>

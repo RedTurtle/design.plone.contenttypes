@@ -5,8 +5,8 @@ Changelog
 6.0.0a23 (unreleased)
 ---------------------
 
-- Nothing changed yet.
-
+- Optional integration with redturtle.prenotazioni
+  [foxtrot-dfm1]
 
 6.0.0a22 (2023-03-07)
 ---------------------
