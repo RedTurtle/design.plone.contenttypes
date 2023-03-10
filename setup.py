@@ -40,8 +40,8 @@ setup(
     url="https://github.com/collective/design.plone.contenttypes",
     project_urls={
         "PyPI": "https://pypi.python.org/pypi/design.plone.contenttypes",
-        "Source": "https://github.com/collective/design.plone.contenttypes",
-        "Tracker": "https://github.com/collective/design.plone.contenttypes/issues",
+        "Source": "https://github.com/RedTurtle/design.plone.contenttypes",
+        "Tracker": "https://github.com/RedTurtle/design.plone.contenttypes/issues",
         # 'Documentation': 'https://design.plone.contenttypes.readthedocs.io/en/latest/',
     },
     license="GPL version 2",
