@@ -602,6 +602,7 @@
         handler=".upgrades.to_6010"
         />
   </genericsetup:upgradeSteps>
+  
   <genericsetup:upgradeStep
       title="Update servizio"
       description=""
@@ -610,6 +611,7 @@
       destination="6011"
       handler=".upgrades.to_6011"
       />
+  
   <genericsetup:upgradeSteps
       profile="design.plone.contenttypes:default"
       source="6011"
@@ -618,24 +620,25 @@
     <genericsetup:upgradeStep
         title="Persone: Update for PNRR"
         description="Create Incarichi folder"
-        handler=".upgrades.to_7001"
+        handler=".to_7001.to_7001"
         />
     <genericsetup:upgradeStep
         title="Persone: Update for PNRR"
         description="Create Incarichi folder"
-        handler=".upgrades.create_incarichi_folder"
+        handler=".to_7001.create_incarichi_folder"
         />
     <genericsetup:upgradeStep
         title="Persone: Update for PNRR"
         description="Create incarichi objects"
-        handler=".upgrades.create_incarico_for_persona"
+        handler=".to_7001.create_incarico_for_persona"
         />
     <genericsetup:upgradeStep
         title="Persone: Update for PNRR"
         description="Create PDC objects"
-        handler=".upgrades.create_pdc"
+        handler=".to_7001.create_pdc"
         />
   </genericsetup:upgradeSteps>
+
   <genericsetup:upgradeSteps
       profile="design.plone.contenttypes:default"
       source="7001"
@@ -644,14 +647,15 @@
     <genericsetup:upgradeStep
         title="Persone: Update for PNRR - migrazione Tassonomie"
         description="Migrazione delle tassonomie sui contenttypes"
-        handler=".upgrades.update_taxonomies"
+        handler=".to_7002.update_taxonomies"
         />
     <genericsetup:upgradeStep
         title="Persone: Update for PNRR - migrazione Tassonomie"
         description="Migrazione delle tassonomie sui blocchi"
-        handler=".upgrades.update_taxonomies_on_blocks"
+        handler=".to_7002.update_taxonomies_on_blocks"
         />
   </genericsetup:upgradeSteps>
+  
   <genericsetup:upgradeSteps
       profile="design.plone.contenttypes:default"
       source="7002"
@@ -668,6 +672,7 @@
         handler=".upgrades.readd_tassonomia_argomenti_uid"
         />
   </genericsetup:upgradeSteps>
+
   <genericsetup:upgradeSteps
       profile="design.plone.contenttypes:default"
       source="7003"
@@ -679,6 +684,7 @@
         handler=".upgrades.update_ruolo_indexing"
         />
   </genericsetup:upgradeSteps>
+  
   <genericsetup:upgradeSteps
       profile="design.plone.contenttypes:default"
       source="7004"
@@ -690,6 +696,7 @@
         handler=".upgrades.fix_ctaxonomy_indexes_and_metadata"
         />
   </genericsetup:upgradeSteps>
+  
   <genericsetup:upgradeSteps
       profile="design.plone.contenttypes:default"
       source="7005"
@@ -701,6 +708,7 @@
         handler=".upgrades.update_types"
         />
   </genericsetup:upgradeSteps>
+
   <genericsetup:upgradeSteps
       profile="design.plone.contenttypes:default"
       source="7006"
@@ -712,6 +720,7 @@
         handler=".upgrades.update_patrocinato_da"
         />
   </genericsetup:upgradeSteps>
+  
   <genericsetup:upgradeSteps
       profile="design.plone.contenttypes:default"
       source="7007"
