@@ -1,7 +1,7 @@
 Changelog
 =========
 
-5.1.6 (unreleased)
+5.1.6 (2023-03-16)
 ------------------
 
 - Enable plone.excludefromnavigation for Venue ct.
