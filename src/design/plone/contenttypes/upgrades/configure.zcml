@@ -582,4 +582,14 @@
         handler=".upgrades.to_5500"
         />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="5500"
+      destination="5600"
+      >
+    <genericsetup:upgradeStep
+        title="Add plone.excludefromnavigation to Venue"
+        handler=".upgrades.to_5600"
+        />
+  </genericsetup:upgradeSteps>
 </configure>

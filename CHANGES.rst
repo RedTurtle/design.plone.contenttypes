@@ -4,7 +4,8 @@ Changelog
 5.1.6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Enable plone.excludefromnavigation for Venue ct.
+  [cekk]
 
 
 5.1.5 (2023-02-15)
