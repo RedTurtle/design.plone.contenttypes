@@ -97,6 +97,8 @@ def create_incarico_for_persona(context):
         "Amministrativa": "amministrativo",
         "Politica": "politico",
         "Altro tipo": "altro",
+        "politica": "politico",  # parma
+        "amministrativa": "amministrativo",  # parma
     }
     for brain in brains:
         persona = brain.getObject()
@@ -133,7 +135,7 @@ def create_incarico_for_persona(context):
             incarico.data_conclusione_incarico = persona.data_conclusione_incarico
 
         atto_nomina = None
-        if safe_hasattr(persona, "atto_nomina"):
+        if safe_hasattr(persona, "atto_nomina") and getattr(persona, "atto_nomina"):
             atto_nomina = api.content.create(
                 type="Documento",
                 id="atto-di-nomina",
@@ -150,6 +152,9 @@ def create_incarico_for_persona(context):
             # incarico.atto_nomina = [RelationValue(intids.getId(atto_nomina))]
             api.relation.create(
                 source=incarico, target=atto_nomina, relationship="atto_nomina"
+            )
+            logger.info(
+                f"{colors.GREEN} Creato atto nomina per {persona.title} {colors.ENDC}"
             )
 
         if safe_hasattr(persona, "tipologia_persona"):

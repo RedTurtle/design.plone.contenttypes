@@ -7,6 +7,7 @@ Changelog
 
 - Optional integration with redturtle.prenotazioni
   [foxtrot-dfm1]
+- Update upgrade step after some more use case [lucabel]
 
 6.0.0a22 (2023-03-07)
 ---------------------

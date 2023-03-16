@@ -1,8 +1,8 @@
-from .upgrades import logger
 from .upgrades import colors
+from .upgrades import logger
 from Acquisition import aq_base
-from plone import api
 from copy import deepcopy
+from plone import api
 
 
 TYPE_TO_TAXONOMIES_MAPPING = {
@@ -59,9 +59,6 @@ def update_taxonomies(context):
         logger.info(
             f"{colors.DARKCYAN} Modifica delle tassonomie per {len(brains)} {portal_type}{colors.ENDC}"  # noqa
         )
-        import pdb
-
-        pdb.set_trace()
         for brain in brains:
             obj = brain.getObject()
             obj_language = getattr(obj, "language", "it") or "it"
@@ -69,15 +66,25 @@ def update_taxonomies(context):
                 mapping = TYPE_TO_TAXONOMIES_MAPPING[portal_type][taxonomy][
                     obj_language
                 ]
-                old_value = getattr(aq_base(obj), taxonomy)
-                if old_value and old_value in mapping:
-                    new_value = mapping[old_value]
-                    if taxonomy == "tipologia_documento":
-                        new_value = [new_value]
-                    setattr(obj, taxonomy, new_value)
-                    logger.info(
-                        f"{colors.GREEN} Modifica della tassonomia '{taxonomy}' di {obj.title} da {old_value} a {new_value}{colors.ENDC}"  # noqa
-                    )
+                old_value = getattr(aq_base(obj), taxonomy, None)
+                if type(old_value) == list:
+                    # this is a sort of race condition.
+                    # we already have created ct Documento for attonomina
+                    # in case we are using atto di nomina, skip
+                    if obj.portal_type != "Documento":
+                        raise Exception
+                    if obj.id != "atto-di-nomina":
+                        raise Exception
+                    continue
+                else:
+                    if old_value and old_value in mapping:
+                        new_value = mapping[old_value]
+                        if taxonomy == "tipologia_documento":
+                            new_value = [new_value]
+                        setattr(obj, taxonomy, new_value)
+                        logger.info(
+                            f"{colors.GREEN} Modifica della tassonomia '{taxonomy}' di {obj.title} da {old_value} a {new_value}{colors.ENDC}"  # noqa
+                        )
             obj.reindexObject()
 
 
@@ -87,9 +94,6 @@ def update_taxonomies_on_blocks(context):
     https://github.com/RedTurtle/design.plone.contenttypes/pull/139/files#diff-330d75e9be6e5193ab4622582fe7031d05094784e08aa3ada201a4e3d1642632R33
     """
     # https://www.comune.novellara.re.it/novita/notizie/archivio-notizie
-    import pdb
-
-    pdb.set_trace()
 
     logger.info(
         f"{colors.DARKCYAN} Update dei blocchi listing basati sulle nuove tassonomie {colors.ENDC}"  # noqa

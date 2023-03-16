@@ -40,7 +40,7 @@ class TestControlpanelVocabularies(unittest.TestCase):
         )
         commit()
 
-    # vocabulary design.plone.vocabularies.tipologie_notizia => collective.taxonomy.tipologia_notizia
+    # vocabulary design.plone.vocabularies.tipologie_notizia => collective.taxonomy.tipologia_notizia  # noqa
     def test_tipologia_notizia_vocab(self):
         # factory = getUtility(
         #     IVocabularyFactory, "design.plone.vocabularies.tipologie_notizia"
