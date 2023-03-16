@@ -15,6 +15,7 @@
   <element value="plone.app.dexterity.behaviors.id.IShortName"/>
   <element value="plone.app.dexterity.behaviors.metadata.IBasic"/>
   <element value="plone.app.dexterity.behaviors.metadata.ICategorization"/>
+  <element value="plone.excludefromnavigation"/>
   <element value="plone.relateditems" />
   <element value="plone.leadimage"/>
   <element value="volto.preview_image" />
