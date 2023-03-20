@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from .related_news_serializer import SerializeFolderToJson as RelatedNewsSerializer
+from .dxcontent import SerializeFolderToJson as BaseSerializer
 from Acquisition import aq_inner
 from design.plone.contenttypes.interfaces.unita_organizzativa import IUnitaOrganizzativa
 from design.plone.contenttypes.restapi.serializers.summary import (
@@ -25,7 +25,7 @@ from zope.security import checkPermission
 
 @implementer(ISerializeToJson)
 @adapter(IUnitaOrganizzativa, Interface)
-class UOSerializer(RelatedNewsSerializer):
+class UOSerializer(BaseSerializer):
     def get_services(self):
         """ """
         catalog = getUtility(ICatalog)

@@ -127,12 +127,6 @@ class TestUO(unittest.TestCase):
             "Unita Organizzativa", portal_types["UnitaOrganizzativa"].title
         )
 
-    def test_uo_service_related_news(self):
-        response = self.api_session.get(self.uo.absolute_url() + "?fullobjects")
-        self.assertTrue(
-            response.json()["related_news"][0]["@id"], self.news.absolute_url()
-        )
-
     def test_uo_service_related_service_show_only_services(self):
         response = self.api_session.get(self.uo.absolute_url() + "?fullobjects")
         self.assertEqual(
