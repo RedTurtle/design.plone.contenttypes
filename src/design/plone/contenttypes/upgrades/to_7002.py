@@ -11,7 +11,9 @@ TYPE_TO_TAXONOMIES_MAPPING = {
             "it": {
                 "Avviso": "avviso",
                 "Comunicato stampa": "comunicato_stampa",
+                "Comunicato (stampa)": "comunicato_stampa",
                 "Novit\u00e0": "notizia",
+                "Notizia": "notizia",
             }
         }
     },
