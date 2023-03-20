@@ -143,11 +143,25 @@ def create_incarico_for_persona(context):
                 container=incarico,
             )
             atto_nomina.description = f"Atto di nomina di {persona.title} per il ruolo di {incarico_title}"  # noqa
-            atto_nomina.file_correlato = NamedBlobFile(
+            # questo sotto rimane valido col vecchio schema del documento pubblico
+            # atto_nomina.file_correlato = NamedBlobFile(
+            #     data=persona.atto_nomina.data,
+            #     filename=persona.atto_nomina.filename,
+            #     contentType="application/pdf",
+            # )
+            # invece aggiungiamo un modulo sotto al documento
+            modulo_atto_nomina = api.content.create(
+                type="Modulo",
+                id="atto-di-nomina",
+                title="Atto di nomina",
+                container=atto_nomina,
+            )
+            modulo_atto_nomina.file_principale = NamedBlobFile(
                 data=persona.atto_nomina.data,
                 filename=persona.atto_nomina.filename,
                 contentType="application/pdf",
             )
+
             atto_nomina.tipologia_documento = ["documento_attivita_politica"]
             # incarico.atto_nomina = [RelationValue(intids.getId(atto_nomina))]
             api.relation.create(
