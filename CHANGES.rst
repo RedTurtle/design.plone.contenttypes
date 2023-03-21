@@ -4,12 +4,7 @@ Changelog
 
 6.0.0a23 (unreleased)
 ---------------------
-5.1.7 (unreleased)
-------------------
 
-- Optional integration with redturtle.prenotazioni
-  [foxtrot-dfm1]
-- Update upgrade step after some more use case [lucabel]
 
 6.0.0a22 (2023-03-07)
 ---------------------
@@ -186,6 +181,13 @@ Changelog
   [cekk]
 - Adjustments to the pnrr.
   [deodorhunter, lucabel, eikichi18]
+
+5.1.7 (unreleased)
+------------------
+
+- Optional integration with redturtle.prenotazioni
+  [foxtrot-dfm1]
+- Update upgrade step after some more use case [lucabel]
 
 5.1.6 (2023-03-16)
 ------------------
