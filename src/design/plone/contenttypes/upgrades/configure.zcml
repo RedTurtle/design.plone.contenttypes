@@ -733,4 +733,15 @@
         handler=".upgrades.update_folder_for_gallery"
         />
   </genericsetup:upgradeSteps>
+
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="7008"
+      destination="7009"
+      >
+    <genericsetup:upgradeStep
+        title="Add plone.excludefromnavigation to Venue"
+        handler=".upgrades.to_7009"
+        />
+  </genericsetup:upgradeSteps>
 </configure>

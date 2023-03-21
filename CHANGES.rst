@@ -4,6 +4,8 @@ Changelog
 
 6.0.0a23 (unreleased)
 ---------------------
+5.1.7 (unreleased)
+------------------
 
 - Optional integration with redturtle.prenotazioni
   [foxtrot-dfm1]
@@ -184,6 +186,41 @@ Changelog
   [cekk]
 - Adjustments to the pnrr.
   [deodorhunter, lucabel, eikichi18]
+
+5.1.6 (2023-03-16)
+------------------
+
+- Enable plone.excludefromnavigation for Venue ct.
+  [cekk]
+
+
+5.1.5 (2023-02-15)
+------------------
+
+- @modulistica-items honors the currently logged-in user roles to access inactive contents (expired and not yet published).
+  [cekk]
+
+
+5.1.4 (2023-02-07)
+------------------
+
+- Fix lables.
+  [foxtrot-dfm1]
+
+5.1.3 (2023-02-06)
+------------------
+
+- Fix label of CartellaModulisitica visualize_files field.
+  [foxtrot-dfm1]
+
+
+5.1.2 (2023-02-06)
+------------------
+
+- All the file fields download link view method of child contents depends
+  on the CartellaModulistica c.t. visualize_files field.
+  [foxtrot-dfm1]
+
 
 5.1.1 (2023-01-18)
 ------------------

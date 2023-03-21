@@ -1404,3 +1404,25 @@ def update_folder_for_gallery(self):
                 api.content.transition(obj=galleria_video, transition="publish")
 
             logger.info(f"{colors.GREEN} Create video {colors.ENDC}")
+
+
+def to_7009(context):
+    portal_types = api.portal.get_tool(name="portal_types")
+    behaviors = list(portal_types["Venue"].behaviors)
+    if "plone.excludefromnavigation" in behaviors:
+        return
+    logger.info("Enable plone.excludefromnavigation behavior")
+    behaviors.append("plone.excludefromnavigation")
+    portal_types["Venue"].behaviors = tuple(behaviors)
+    logger.info("Reindex Venue objects")
+    brains = api.content.find(portal_type="Venue")
+    tot = len(brains)
+    i = 0
+    for brain in brains:
+        i += 1
+        if i % 100 == 0:
+            logger.info("Progress: {}/{}".format(i, tot))
+        venue = brain.getObject()
+        if not getattr(venue, "exclude_from_nav", None):
+            setattr(venue, "exclude_from_nav", False)
+            venue.reindexObject(idxs=["exclude_from_nav"])
