@@ -39,6 +39,7 @@ class TestLuogo(unittest.TestCase):
                 "plone.app.dexterity.behaviors.id.IShortName",
                 "plone.app.dexterity.behaviors.metadata.IBasic",
                 "plone.app.dexterity.behaviors.metadata.ICategorization",
+                "plone.excludefromnavigation",
                 "plone.relateditems",
                 "plone.leadimage",
                 "volto.preview_image",

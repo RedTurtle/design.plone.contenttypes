@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from Acquisition import aq_base
 from collective.taxonomy.interfaces import ITaxonomy
 from copy import deepcopy
