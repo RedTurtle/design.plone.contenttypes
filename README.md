@@ -42,6 +42,10 @@
 
 Pacchetto per la gestione dei content-type per un sito Agid con Plone.
 
+La versione 5.* di [`design.plone.contenttypes`](https://github.com/RedTurtle/design.plone.contenttypes/tree/v5.x)
+è compatibile con le versioni 4.* di [`design.plone.policy`](https://github.com/RedTurtle/design.plone.policy/tree/v4.x) e 
+le versioni 6.* e 7.* del tema Volto [`design-comuni-plone-theme`](https://github.com/italia/design-comuni-plone-theme/tree/io-comune-v1).
+
 # Features
 
 Installando questo pacchetto, si rendono disponibili diversi content-type per la
