@@ -2,7 +2,7 @@ name: Toc
 on:
   push:
     branches:
-      - master
+      - main
 jobs:
   update-toc:
     name: TOC Generator and auto-commit

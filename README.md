@@ -7,7 +7,7 @@
 [![Number of PyPI downloads](https://img.shields.io/pypi/dm/design.plone.contenttypes.svg)](https://pypi.python.org/pypi/design.plone.contenttypes/)
 [![License](https://img.shields.io/pypi/l/design.plone.contenttypes.svg)](https://pypi.python.org/pypi/design.plone.contenttypes/)
 [![Tests](https://github.com/RedTurtle/design.plone.contenttypes/actions/workflows/test.yml/badge.svg)](https://github.com/collective/design.plone.contenttypes/actions)
-[![Coverage](https://coveralls.io/repos/github/RedTurtle/design.plone.contenttypes/badge.svg?branch=master)](https://coveralls.io/github/RedTurtle/design.plone.contenttypes?branch=master)
+[![Coverage](https://coveralls.io/repos/github/RedTurtle/design.plone.contenttypes/badge.svg?branch=main)](https://coveralls.io/github/RedTurtle/design.plone.contenttypes?branch=main)
 
 
 - [Design Plone Content-types](#design-plone-content-types)
