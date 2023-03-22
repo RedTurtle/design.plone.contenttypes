@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
 from collective.z3cform.datagridfield.interfaces import IRow
 from design.plone.contenttypes import _
+from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
 from plone.restapi.types.adapters import ObjectJsonSchemaProvider
+from redturtle.volto.types.adapters import (
+    TextLineJsonSchemaProvider as BaseTextLineJsonSchemaProvider,
+)
 from plone.restapi.types.interfaces import IJsonSchemaProvider
 from plone.restapi.types.utils import get_fieldsets
 from plone.restapi.types.utils import get_jsonschema_properties
@@ -12,8 +16,8 @@ from zope.i18n import translate
 from zope.interface import implementer
 from zope.interface import Interface
 from zope.schema.interfaces import IField
+from zope.schema.interfaces import ITextLine
 from zope.schema.interfaces import IVocabularyFactory
-
 
 DATAGRID_FIELDS = ["value_punto_contatto", "timeline_tempi_scadenze"]
 
@@ -89,3 +93,15 @@ class DataGridRowJsonSchemaProvider(ObjectJsonSchemaProvider):
         info["required"] = required
         info["properties"] = properties
         return info
+
+
+@adapter(ITextLine, Interface, IDesignPloneContenttypesLayer)
+@implementer(IJsonSchemaProvider)
+class TextLineJsonSchemaProvider(BaseTextLineJsonSchemaProvider):
+    def get_widget(self):
+        """
+        Force url widget to some fields
+        """
+        if self.field.__name__ == "canale_digitale_link":
+            return "url"
+        return super().get_widget()
