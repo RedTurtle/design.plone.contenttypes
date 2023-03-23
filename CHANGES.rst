@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+6.0.1 (unreleased)
+------------------
+
+- Nothing changed yet.
+
+
 6.0.0 (2023-03-23)
 ------------------
 - improve upgrade step
