@@ -4,7 +4,8 @@ Changelog
 
 6.0.0a23 (unreleased)
 ---------------------
-
+- improve upgrade step
+  [lucabel]
 
 6.0.0a22 (2023-03-07)
 ---------------------
