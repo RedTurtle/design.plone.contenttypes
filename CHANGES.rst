@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-6.0.0a23 (unreleased)
+6.0.0 (unreleased)
 ---------------------
 - improve upgrade step
   [lucabel]
