@@ -10,6 +10,7 @@
 
 - [Design Plone Content-types](#design-plone-content-types)
 - [Features](#features)
+- [Compatibilità](#compatibilit%C3%A0)
 - [Tipi di contenuto](#tipi-di-contenuto)
   - [Elenco tipi implementati](#elenco-tipi-implementati)
   - [Bando](#bando)
