@@ -120,9 +120,9 @@ def get_item_children(item):
 @adapter(ITextLine, IServizio, IDesignPloneContenttypesLayer)
 class ServizioTextLineFieldSerializer(DefaultFieldSerializer):
     def __call__(self):
-        if self.field.getName() != "canale_digitale_link":
-            return super().__call__()
         value = self.get_value()
+        if self.field.getName() != "canale_digitale_link" or not value:
+            return super().__call__()
 
         path = replace_link_variables_by_paths(context=self.context, url=value)
         match = RESOLVEUID_RE.match(path)
