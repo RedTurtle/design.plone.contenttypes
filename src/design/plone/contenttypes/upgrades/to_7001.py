@@ -284,7 +284,8 @@ def create_pdc(context):
             if not migrated_contact_info(obj):
                 obj.old_contact_info = obj.contact_info
                 if obj.portal_type == "UnitaOrganizzativa":
-                    del obj.contact_info
+                    if obj.contact_info:
+                        del obj.contact_info
             else:
                 logger.info(
                     f"{colors.RED} Esiste già un punto di contatto per {obj.title}({obj.absolute_url()}){colors.ENDC}"  # noqa
