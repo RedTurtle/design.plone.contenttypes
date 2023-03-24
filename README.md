@@ -10,6 +10,7 @@
 
 - [Design Plone Content-types](#design-plone-content-types)
 - [Features](#features)
+- [Compatibilità](#compatibilit%C3%A0)
 - [Tipi di contenuto](#tipi-di-contenuto)
   - [Elenco tipi implementati](#elenco-tipi-implementati)
   - [Bando](#bando)
@@ -53,6 +54,12 @@ Pacchetto per la gestione dei content-type per un sito Agid con Plone.
 
 Installando questo pacchetto, si rendono disponibili diversi content-type per la
 gestione di un sito Agid con Plone e Volto.
+
+
+# Compatibilità
+
+- Plone 6.0, design.plone.policy 5.*, design.plone.contenttypes 6.*
+- Plone 5.2, design.plone.policy 4.*, design.plone.contenttypes 5.*
 
 # Tipi di contenuto
 

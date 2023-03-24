@@ -112,7 +112,8 @@ def create_incarico_for_persona(context):
             continue
 
         if safe_hasattr(persona, "ruolo"):
-            incarico_title = persona.ruolo
+            # we could have the attribute and then remove the value
+            incarico_title = persona.ruolo or f"Incarico di {persona.title}"
         else:
             logger.info(
                 f"{colors.RED} Attenzione: {persona.title} non ha un ruolo {colors.ENDC}"  # noqa
@@ -171,7 +172,7 @@ def create_incarico_for_persona(context):
                 f"{colors.GREEN} Creato atto nomina per {persona.title} {colors.ENDC}"
             )
 
-        if safe_hasattr(persona, "tipologia_persona"):
+        if safe_hasattr(persona, "tipologia_persona") and persona.tipologia_persona:
             incarico.tipologia_incarico = MAPPING_TIPO[persona.tipologia_persona]
 
         # persona.incarichi_persona = [RelationValue(intids.getId(incarico))]
