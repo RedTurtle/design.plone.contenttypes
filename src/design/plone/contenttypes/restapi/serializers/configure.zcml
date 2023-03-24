@@ -23,6 +23,7 @@
   <adapter factory=".dxcontent.SerializeToJson" />
   <adapter factory=".dxfields.SourceTextSerializer" />
   <adapter factory=".dxfields.TempiEScadenzeValueSerializer" />
+  <adapter factory=".dxfields.ServizioTextLineFieldSerializer" />
   <adapter factory=".persona.PersonaSerializer" />
   <adapter factory=".related_news_serializer.ServizioSerializer" />
   <adapter factory=".relationfield.RelationListFieldSerializer" />
@@ -32,5 +33,4 @@
   <adapter factory=".documento.DocumentoSerializer" />
   <adapter factory=".cartella_modulistica.CartellaModulisticaSerializer" />
   <adapter factory=".punto_di_contatto.PuntoDiContattoSerializer" />
-  <adapter factory=".dxfields.FileFieldViewModeSerializer" />
 </configure>

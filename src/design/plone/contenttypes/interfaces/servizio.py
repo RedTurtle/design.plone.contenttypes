@@ -7,6 +7,7 @@ from design.plone.contenttypes.interfaces import IDesignPloneContentType
 from plone.app.dexterity import textindexer
 from plone.app.z3cform.widget import DateFieldWidget
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
+from plone.app.z3cform.widget import LinkFieldWidget
 from plone.autoform import directives as form
 from plone.namedfile import field
 from plone.supermodel import model
@@ -160,7 +161,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
         required=False,
     )
 
-    canale_digitale_link = schema.URI(
+    canale_digitale_link = schema.TextLine(
         title=_("canale_digitale_link", default="Link al canale digitale"),
         description=_(
             "canale_digitale_link_help",
@@ -465,6 +466,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
         DataGridFieldFactory,
         frontendOptions={"widget": "data_grid"},
     )
+    form.widget("canale_digitale_link", LinkFieldWidget)
 
     # custom fieldset and order
     model.fieldset(

@@ -12,6 +12,7 @@ from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import SITE_OWNER_PASSWORD
 from plone.app.testing import TEST_USER_ID
 from plone.restapi.testing import RelativeSession
+from transaction import commit
 
 import unittest
 
@@ -113,6 +114,11 @@ class TestServizioApi(unittest.TestCase):
             )
             self.assertTrue(properties[field]["type"] == "array")
 
+    def test_canale_digitale_link_widget_set_in_schema(self):
+        response = self.api_session.get("/@types/Servizio")
+        res = response.json()
+        self.assertEqual(res["properties"]["canale_digitale_link"]["widget"], "url")
+
     def test_sottotitolo_indexed_in_searchabletext(self):
         #  Servizio is the only ct with this field
         servizio = api.content.create(
@@ -210,3 +216,67 @@ class TestServizioApi(unittest.TestCase):
 
         self.assertEqual(len(res), 1)
         self.assertEqual(res[0].UID, servizio.UID())
+
+    def test_canale_digitale_link_serialized_as_url(self):
+        page = api.content.create(
+            container=self.portal, type="Document", title="Document"
+        )
+        servizio = api.content.create(
+            container=self.portal,
+            type="Servizio",
+            title="Test servizio",
+            canale_digitale_link="/plone/resolveuid/{}".format(page.UID()),
+        )
+
+        commit()
+        res = self.api_session.get(servizio.absolute_url()).json()
+        self.assertEqual(res["canale_digitale_link"], page.absolute_url())
+
+    def test_canale_digitale_link_deserialized_as_plone_internal_url(self):
+        page = api.content.create(
+            container=self.portal, type="Document", title="Document"
+        )
+
+        servizio = api.content.create(
+            container=self.portal,
+            type="Servizio",
+            title="Test servizio",
+            description="xxx",
+            a_chi_si_rivolge={
+                "blocks": {"xxx": {"@type": "foo", "searchableText": "aiuto"}},
+                "blocks_layout": {"items": ["xxx"]},
+            },
+            canale_digitale={
+                "blocks": {"xxx": {"@type": "foo", "searchableText": "aiuto"}},
+                "blocks_layout": {"items": ["xxx"]},
+            },
+            come_si_fa={
+                "blocks": {"xxx": {"@type": "foo", "searchableText": "aiuto"}},
+                "blocks_layout": {"items": ["xxx"]},
+            },
+            cosa_serve={
+                "blocks": {"xxx": {"@type": "foo", "searchableText": "aiuto"}},
+                "blocks_layout": {"items": ["xxx"]},
+            },
+            cosa_si_ottiene={
+                "blocks": {"xxx": {"@type": "foo", "searchableText": "aiuto"}},
+                "blocks_layout": {"items": ["xxx"]},
+            },
+            tempi_e_scadenze={
+                "blocks": {"xxx": {"@type": "foo", "searchableText": "aiuto"}},
+                "blocks_layout": {"items": ["xxx"]},
+            },
+        )
+
+        commit()
+
+        self.api_session.patch(
+            servizio.absolute_url(),
+            json={"canale_digitale_link": page.absolute_url()},
+        )
+
+        commit()
+        self.assertEqual(
+            servizio.canale_digitale_link,
+            "${{portal_url}}/resolveuid/{}".format(page.UID()),
+        )

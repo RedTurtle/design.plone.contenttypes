@@ -5,8 +5,10 @@ Changelog
 6.0.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Add serializer/deserializer for canale_digitale_link to handle internal/external links like remoteURL field.
+  [cekk]
+- Force canale_digitale_link return `url` widget in Servizio schema.
+  [cekk]
 
 6.0.0 (2023-03-23)
 ------------------
