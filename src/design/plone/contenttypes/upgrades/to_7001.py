@@ -5,6 +5,7 @@ from .upgrades import update_catalog
 from .upgrades import update_registry
 from .upgrades import update_rolemap
 from .upgrades import update_types
+from Acquisition import aq_base
 from collective.taxonomy.interfaces import ITaxonomy
 from plone import api
 from plone.base.utils import get_installer
@@ -282,9 +283,9 @@ def create_pdc(context):
                 continue
 
             if not migrated_contact_info(obj):
-                obj.old_contact_info = obj.contact_info
-                if obj.portal_type == "UnitaOrganizzativa":
-                    if obj.contact_info:
+                if hasattr(aq_base(obj), "contact_info"):
+                    obj.old_contact_info = obj.contact_info
+                    if obj.portal_type == "UnitaOrganizzativa":
                         del obj.contact_info
             else:
                 logger.info(
