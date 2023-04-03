@@ -141,7 +141,6 @@ class TestDocumentoApi(unittest.TestCase):
         self.assertEqual(self.documento["my-image"].portal_type, "Modulo")
 
     def test_cant_patch_document_that_has_no_required_fields(self):
-
         new_documento = api.content.create(
             container=self.portal, type="Documento", title="Foo"
         )

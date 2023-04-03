@@ -282,7 +282,6 @@ class TestServizioApi(unittest.TestCase):
         )
 
     def test_cant_patch_servizio_that_has_no_required_fields(self):
-
         service = api.content.create(
             container=self.portal, type="Servizio", title="Foo"
         )

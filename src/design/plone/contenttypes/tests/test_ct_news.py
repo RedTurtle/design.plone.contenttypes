@@ -187,7 +187,6 @@ class TestNewsApi(unittest.TestCase):
         # )
 
     def test_cant_patch_news_that_has_no_required_fields(self):
-
         news = api.content.create(container=self.portal, type="News Item", title="Foo")
         transaction.commit()
         resp = self.api_session.patch(

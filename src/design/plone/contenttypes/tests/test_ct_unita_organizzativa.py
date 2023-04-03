@@ -262,7 +262,6 @@ class TestUO(unittest.TestCase):
         )
 
     def test_cant_patch_uo_that_has_no_required_fields(self):
-
         uo = api.content.create(
             container=self.portal, type="UnitaOrganizzativa", title="Foo"
         )
