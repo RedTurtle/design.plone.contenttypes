@@ -61,77 +61,92 @@ class DeserializeNewsFromJson(DeserializeFromJson):
         is_patch = method == "PATCH"
         errors = []
 
-        title = data.get("title")
-        description = data.get("description")
+        if list(data.keys()) != ["ordering"]:
+            title = data.get("title")
+            description = data.get("description")
 
-        if is_post:
-            # Title validation
-            if not title:
-                errors.append(new_error("Il titolo del servizio è obbligatorio"))
-            elif len(title) > TITLE_MAX_LEN:
-                errors.append(
-                    new_error(
-                        "Il titolo può avere una lunghezza di massimo {} caratteri".format(  # noqa
-                            TITLE_MAX_LEN
+            if is_post:
+                # Title validation
+                if not title:
+                    errors.append(new_error("Il titolo del servizio è obbligatorio"))
+                elif len(title) > TITLE_MAX_LEN:
+                    errors.append(
+                        new_error(
+                            "Il titolo può avere una lunghezza di massimo {} caratteri".format(  # noqa
+                                TITLE_MAX_LEN
+                            )
                         )
                     )
-                )
 
-            # description validation
-            if not description:
-                errors.append(new_error("La descrizione del servizio è obbligatorio"))
-            elif len(description) > DESCRIPTION_MAX_LEN:
-                errors.append(
-                    new_error(
-                        "La descrizione del servizio deve avere una lunghezza di massimo {} caratteri".format(  # noqa
-                            DESCRIPTION_MAX_LEN
+                # description validation
+                if not description:
+                    errors.append(
+                        new_error("La descrizione del servizio è obbligatoria")
+                    )
+                elif len(description) > DESCRIPTION_MAX_LEN:
+                    errors.append(
+                        new_error(
+                            "La descrizione del servizio deve avere una lunghezza di massimo {} caratteri".format(  # noqa
+                                DESCRIPTION_MAX_LEN
+                            )
                         )
                     )
-                )
 
-            for field in MANDATORY_RICH_TEXT_FIELDS:
-                if field not in data:
-                    errors.append(new_error("Il campo {} è obbligatorio".format(field)))
-                elif field in data and not text_in_block(data.get(field)):
-                    errors.append(new_error("Il campo {} è obbligatorio".format(field)))
+                for field in MANDATORY_RICH_TEXT_FIELDS:
+                    if field not in data:
+                        errors.append(
+                            new_error("Il campo {} è obbligatorio".format(field))
+                        )
+                    elif field in data and not text_in_block(data.get(field)):
+                        errors.append(
+                            new_error("Il campo {} è obbligatorio".format(field))
+                        )
 
-        if is_patch:
-            # Title validation
-            if "title" in data and not title:
-                errors.append(new_error("Il titolo del servizio è obbligatorio"))
-            if title and len(title) > TITLE_MAX_LEN:
-                errors.append(
-                    new_error(
-                        "Il titolo può avere una lunghezza di massimo {} caratteri".format(  # noqa
-                            TITLE_MAX_LEN
+            if is_patch:
+                # Title validation
+                if "title" in data and not title:
+                    errors.append(new_error("Il titolo del servizio è obbligatorio"))
+                if title and len(title) > TITLE_MAX_LEN:
+                    errors.append(
+                        new_error(
+                            "Il titolo può avere una lunghezza di massimo {} caratteri".format(  # noqa
+                                TITLE_MAX_LEN
+                            )
                         )
                     )
-                )
-            # description validation
-            if "description" in data and not description:
-                errors.append(new_error("La descrizione del servizio è obbligatorio"))
-            if description and len(description) > DESCRIPTION_MAX_LEN:
-                errors.append(
-                    new_error(
-                        "La descrizione del servizio deve avere una lunghezza di massimo {} caratteri".format(  # noqa
-                            DESCRIPTION_MAX_LEN
+                # description validation
+                if "description" in data and not description:
+                    errors.append(
+                        new_error("La descrizione del servizio è obbligatoria")
+                    )
+                if description and len(description) > DESCRIPTION_MAX_LEN:
+                    errors.append(
+                        new_error(
+                            "La descrizione del servizio deve avere una lunghezza di massimo {} caratteri".format(  # noqa
+                                DESCRIPTION_MAX_LEN
+                            )
                         )
                     )
-                )
-            if "description" not in data and not self.context.description:
-                errors.append(new_error("La descrizione del servizio è obbligatorio"))
+                if "description" not in data and not self.context.description:
+                    errors.append(
+                        new_error("La descrizione del servizio è obbligatoria")
+                    )
 
-            for field in MANDATORY_RICH_TEXT_FIELDS:
-                if field in data and not text_in_block(data.get(field)):
-                    errors.append(new_error("Il campo {} è obbligatorio".format(field)))
-                # Se siamo nella patch siamo in modifica. Se siamo in modifica e siamo
-                # su un sito che ha avuto upgrade alla versione pnrr può essere che
-                # dei campi obbligatori un tempo non lo fossero e quindi arriviamo
-                # fino a qui
-                if field not in data and not text_in_block(
-                    getattr(self.context, field)
-                ):
-                    errors.append(new_error("Il campo {} è obbligatorio".format(field)))
+                for field in MANDATORY_RICH_TEXT_FIELDS:
+                    if field in data and not text_in_block(data.get(field)):
+                        errors.append(
+                            new_error("Il campo {} è obbligatorio".format(field))
+                        )
+                    # Se siamo nella patch siamo in modifica. Se siamo in modifica e siamo
+                    # su un sito che ha avuto upgrade alla versione pnrr può essere che
+                    # dei campi obbligatori un tempo non lo fossero e quindi arriviamo
+                    # fino a qui
+                    if field not in data and not text_in_block(
+                        getattr(self.context, field)
+                    ):
+                        errors.append(
+                            new_error("Il campo {} è obbligatorio".format(field))
+                        )
 
         if errors:
             raise BadRequest(errors)
