@@ -107,7 +107,7 @@ class DeserializeUnitaOrganizzativaFromJson(DeserializeFromJson):
             if is_patch:
                 # Title validation
                 if "title" in data and not title:
-                    errors.append(new_error("Il titolo del servizio è obbligatorio"))
+                    errors.append(new_error("Il titolo è obbligatorio"))
 
                 if title and len(title) > TITLE_MAX_LEN:
                     errors.append(
@@ -119,22 +119,18 @@ class DeserializeUnitaOrganizzativaFromJson(DeserializeFromJson):
                     )
                 # description validation
                 if "description" in data and not description:
-                    errors.append(
-                        new_error("La descrizione del servizio è obbligatoria")
-                    )
+                    errors.append(new_error("La descrizione è obbligatoria"))
                 if description and len(description) > DESCRIPTION_MAX_LEN:
                     errors.append(
                         new_error(
-                            "La descrizione del servizio deve avere una lunghezza di massimo {} caratteri".format(  # noqa
+                            "La descrizione deve avere una lunghezza di massimo {} caratteri".format(  # noqa
                                 DESCRIPTION_MAX_LEN
                             )
                         )
                     )
 
                 if "description" not in data and not self.context.description:
-                    errors.append(
-                        new_error("La descrizione del servizio è obbligatoria")
-                    )
+                    errors.append(new_error("La descrizione è obbligatoria"))
 
                 for field in MANDATORY_RICH_TEXT_FIELDS:
                     if field in data and not text_in_block(data.get(field)):

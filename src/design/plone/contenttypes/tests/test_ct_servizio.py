@@ -294,9 +294,7 @@ class TestServizioApi(unittest.TestCase):
             },
         )
         self.assertEqual(resp.status_code, 400)
-        self.assertIn(
-            "La descrizione del servizio è obbligatoria", resp.json()["message"]
-        )
+        self.assertIn("La descrizione è obbligatoria", resp.json()["message"])
 
     def test_can_sort_service_that_has_no_required_fields(self):
         document = api.content.create(
