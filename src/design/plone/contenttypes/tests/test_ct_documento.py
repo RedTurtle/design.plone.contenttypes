@@ -139,3 +139,39 @@ class TestDocumentoApi(unittest.TestCase):
         transaction.commit()
 
         self.assertEqual(self.documento["my-image"].portal_type, "Modulo")
+
+    def test_cant_patch_document_that_has_no_required_fields(self):
+
+        new_documento = api.content.create(
+            container=self.portal, type="Documento", title="Foo"
+        )
+        transaction.commit()
+        resp = self.api_session.patch(
+            new_documento.absolute_url(),
+            json={
+                "title": "Foo modified",
+            },
+        )
+        self.assertEqual(resp.status_code, 400)
+        self.assertIn(
+            "La descrizione del servizio è obbligatoria", resp.json()["message"]
+        )
+
+    def test_can_sort_document_that_has_no_required_fields(self):
+        new_documento = api.content.create(
+            container=self.portal, type="Documento", title="Foo"
+        )
+        transaction.commit()
+
+        self.assertEqual(self.documento, self.portal.listFolderContents()[0])
+        self.assertEqual(new_documento, self.portal.listFolderContents()[1])
+
+        resp = self.api_session.patch(
+            self.portal_url,
+            json={"ordering": {"delta": -1, "obj_id": new_documento.getId()}},
+        )
+        transaction.commit()
+
+        self.assertEqual(resp.status_code, 204)
+        self.assertEqual(self.documento, self.portal.listFolderContents()[1])
+        self.assertEqual(new_documento, self.portal.listFolderContents()[0])

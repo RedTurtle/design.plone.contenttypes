@@ -280,3 +280,42 @@ class TestServizioApi(unittest.TestCase):
             servizio.canale_digitale_link,
             "${{portal_url}}/resolveuid/{}".format(page.UID()),
         )
+
+    def test_cant_patch_servizio_that_has_no_required_fields(self):
+
+        service = api.content.create(
+            container=self.portal, type="Servizio", title="Foo"
+        )
+        commit()
+        resp = self.api_session.patch(
+            service.absolute_url(),
+            json={
+                "title": "Foo modified",
+            },
+        )
+        self.assertEqual(resp.status_code, 400)
+        self.assertIn(
+            "La descrizione del servizio è obbligatoria", resp.json()["message"]
+        )
+
+    def test_can_sort_service_that_has_no_required_fields(self):
+        document = api.content.create(
+            container=self.portal, type="Document", title="Document"
+        )
+        service = api.content.create(
+            container=self.portal, type="Servizio", title="Foo"
+        )
+        commit()
+
+        self.assertEqual(document, self.portal.listFolderContents()[0])
+        self.assertEqual(service, self.portal.listFolderContents()[1])
+
+        resp = self.api_session.patch(
+            self.portal_url,
+            json={"ordering": {"delta": -1, "obj_id": service.getId()}},
+        )
+        commit()
+
+        self.assertEqual(resp.status_code, 204)
+        self.assertEqual(document, self.portal.listFolderContents()[1])
+        self.assertEqual(service, self.portal.listFolderContents()[0])

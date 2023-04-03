@@ -260,3 +260,38 @@ class TestUO(unittest.TestCase):
             self.service.absolute_url(),
             [i["@id"] for i in response.json()["prestazioni"]],
         )
+
+    def test_cant_patch_uo_that_has_no_required_fields(self):
+
+        uo = api.content.create(
+            container=self.portal, type="UnitaOrganizzativa", title="Foo"
+        )
+        commit()
+        resp = self.api_session.patch(
+            uo.absolute_url(),
+            json={
+                "title": "Foo modified",
+            },
+        )
+        self.assertEqual(resp.status_code, 400)
+        self.assertIn(
+            "La descrizione del servizio è obbligatoria", resp.json()["message"]
+        )
+
+    def test_can_sort_uo_that_has_no_required_fields(self):
+        uo = api.content.create(
+            container=self.portal, type="UnitaOrganizzativa", title="Foo"
+        )
+        commit()
+        self.assertEqual(self.bando, self.portal.listFolderContents()[-2])
+        self.assertEqual(uo, self.portal.listFolderContents()[-1])
+
+        resp = self.api_session.patch(
+            self.portal_url,
+            json={"ordering": {"delta": -1, "obj_id": uo.getId()}},
+        )
+        commit()
+
+        self.assertEqual(resp.status_code, 204)
+        self.assertEqual(self.bando, self.portal.listFolderContents()[-1])
+        self.assertEqual(uo, self.portal.listFolderContents()[-2])
