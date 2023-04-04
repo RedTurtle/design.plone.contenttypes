@@ -12,6 +12,8 @@ Changelog
 - Do not purge allowed_content_types filter for Servizio.
   [cekk]
 
+- Fix patch/post validations for required fields: do not return errors when sorting items.
+  [cekk]
 
 6.0.0 (2023-03-23)
 ------------------
