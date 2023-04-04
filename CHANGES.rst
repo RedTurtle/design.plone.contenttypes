@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-5.1.7 (unreleased)
+5.1.7 (2023-04-04)
 ------------------
 
 - Do not purge allowed_content_types filter for Servizio.
