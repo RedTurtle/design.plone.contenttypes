@@ -7,6 +7,7 @@
   <adapter factory=".servizio.DeserializeServizioFromJson" />
   <adapter factory=".unitaorganizzativa.DeserializeUnitaOrganizzativaFromJson" />
   <adapter factory=".dxfields.GeolocationFieldDeserializer" />
+  <adapter factory=".dxfields.LinkTextLineFieldDeserializer" />
   <adapter factory=".venue.DeserializeLuogoFromJson" />
   <adapter factory=".dxfields.SourceTextDeserializer" />
   <adapter factory=".dxfields.TimelineTempiEScadenzeFieldDeserializer" />

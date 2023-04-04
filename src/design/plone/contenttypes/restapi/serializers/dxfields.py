@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 from AccessControl.unauthorized import Unauthorized
-from Acquisition import aq_inner
 from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
 from design.plone.contenttypes.interfaces.servizio import IServizio
 from plone import api
+from plone.app.contenttypes.utils import replace_link_variables_by_paths
 from plone.dexterity.interfaces import IDexterityContent
-from plone.namedfile.interfaces import INamedFileField
+from plone.outputfilters.browser.resolveuid import uuidToURL
 from plone.restapi.interfaces import IBlockFieldSerializationTransformer
 from plone.restapi.interfaces import IFieldSerializer
 from plone.restapi.interfaces import ISerializeToJsonSummary
@@ -18,10 +18,12 @@ from zope.globalrequest import getRequest
 from zope.interface import implementer
 from zope.schema.interfaces import IList
 from zope.schema.interfaces import ISourceText
+from zope.schema.interfaces import ITextLine
 
 import json
+import re
 
-
+RESOLVEUID_RE = re.compile(".*?/resolve[Uu]id/([^/]*)/?(.*)$")
 KEYS_WITH_URL = ["linkUrl", "navigationRoot", "showMoreLink"]
 
 
@@ -47,40 +49,6 @@ class TempiEScadenzeValueSerializer(DefaultFieldSerializer):
                 patched_timeline.append(entry)
             return json_compatible(patched_timeline)
         return value
-
-
-@adapter(INamedFileField, IDexterityContent, IDesignPloneContenttypesLayer)
-class FileFieldViewModeSerializer(DefaultFieldSerializer):
-    """Ovveride the basic DX serializer to handle the visualize file functionality"""
-
-    def __call__(self):
-        namedfile = self.field.get(self.context)
-        if namedfile is None:
-            return
-
-        url = "/".join(
-            (
-                self.context.absolute_url(),
-                self.get_file_view_mode(namedfile.contentType),
-                self.field.__name__,
-            )
-        )
-        result = {
-            "filename": namedfile.filename,
-            "content-type": namedfile.contentType,
-            "size": namedfile.getSize(),
-            "download": url,
-        }
-
-        return json_compatible(result)
-
-    def get_file_view_mode(self, content_type):
-        """Pdf view depends on the visualize_files property in thq aq_chain"""
-        if self.context and "pdf" in content_type:
-            if getattr(aq_inner(self.context), "visualize_files", None):
-                return "@@display-file"
-
-        return "@@download"
 
 
 def serialize_data(context, json_data, show_children=False):
@@ -147,3 +115,26 @@ def get_item_children(item):
         getMultiAdapter((brain, getRequest()), ISerializeToJsonSummary)()
         for brain in brains
     ]
+
+
+@adapter(ITextLine, IServizio, IDesignPloneContenttypesLayer)
+class ServizioTextLineFieldSerializer(DefaultFieldSerializer):
+    def __call__(self):
+        value = self.get_value()
+        if self.field.getName() != "canale_digitale_link" or not value:
+            return super().__call__()
+
+        path = replace_link_variables_by_paths(context=self.context, url=value)
+        match = RESOLVEUID_RE.match(path)
+        if match:
+            uid, suffix = match.groups()
+            value = uuidToURL(uid)
+        else:
+            portal = getMultiAdapter(
+                (self.context, self.context.REQUEST), name="plone_portal_state"
+            ).portal()
+            ref_obj = portal.restrictedTraverse(path, None)
+            if ref_obj:
+                value = ref_obj.absolute_url()
+
+        return json_compatible(value)

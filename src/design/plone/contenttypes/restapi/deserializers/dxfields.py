@@ -6,17 +6,23 @@ from design.plone.contenttypes.interfaces.servizio import IServizio
 from plone.dexterity.interfaces import IDexterityContent
 from plone.formwidget.geolocation.geolocation import Geolocation
 from plone.formwidget.geolocation.interfaces import IGeolocationField
+from plone.restapi.deserializer.blocks import path2uid
 from plone.restapi.deserializer.dxfields import CollectionFieldDeserializer
 from plone.restapi.deserializer.dxfields import DefaultFieldDeserializer
+from plone.restapi.deserializer.dxfields import (
+    TextLineFieldDeserializer as BaseTextLineDeserializer,
+)
 from plone.restapi.interfaces import IBlockFieldDeserializationTransformer
 from plone.restapi.interfaces import IFieldDeserializer
 from zExceptions import BadRequest
 from zope.component import adapter
+from zope.component import getMultiAdapter
 from zope.component import subscribers
 from zope.i18n import translate
 from zope.interface import implementer
 from zope.schema.interfaces import IList
 from zope.schema.interfaces import ISourceText
+from zope.schema.interfaces import ITextLine
 
 import json
 
@@ -125,3 +131,19 @@ class TimelineTempiEScadenzeFieldDeserializer(CollectionFieldDeserializer):
 
         self.field.validate(timeline)
         return timeline
+
+
+@implementer(IFieldDeserializer)
+@adapter(ITextLine, IServizio, IDesignPloneContenttypesLayer)
+class LinkTextLineFieldDeserializer(BaseTextLineDeserializer):
+    def __call__(self, value):
+        value = super().__call__(value)
+        if self.field.getName() == "canale_digitale_link":
+            portal = getMultiAdapter(
+                (self.context, self.context.REQUEST), name="plone_portal_state"
+            ).portal()
+
+            transformed_url = path2uid(context=portal, link=value)
+            if transformed_url != value and "resolveuid" in transformed_url:
+                value = "${{portal_url}}/{uid}".format(uid=transformed_url)
+        return value
