@@ -9,6 +9,9 @@ Changelog
   [cekk]
 - Force canale_digitale_link return `url` widget in Servizio schema.
   [cekk]
+- Do not purge allowed_content_types filter for Servizio.
+  [cekk]
+
 - Fix patch/post validations for required fields: do not return errors when sorting items.
   [cekk]
 
