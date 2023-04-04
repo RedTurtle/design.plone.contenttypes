@@ -9,6 +9,8 @@ Changelog
   [cekk]
 - Force canale_digitale_link return `url` widget in Servizio schema.
   [cekk]
+- Fix patch/post validations for required fields: do not return errors when sorting items.
+  [cekk]
 
 6.0.0 (2023-03-23)
 ------------------

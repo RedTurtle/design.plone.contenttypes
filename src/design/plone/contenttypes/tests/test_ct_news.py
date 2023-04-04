@@ -185,3 +185,32 @@ class TestNewsApi(unittest.TestCase):
         # self.assertEqual(
         #     news["documenti-allegati"].locally_allowed_types, ("File", "Image")
         # )
+
+    def test_cant_patch_news_that_has_no_required_fields(self):
+        news = api.content.create(container=self.portal, type="News Item", title="Foo")
+        transaction.commit()
+        resp = self.api_session.patch(
+            news.absolute_url(),
+            json={
+                "title": "Foo modified",
+            },
+        )
+        self.assertEqual(resp.status_code, 400)
+        self.assertIn("La descrizione è obbligatoria", resp.json()["message"])
+
+    def test_can_sort_news_that_has_no_required_fields(self):
+        news = api.content.create(container=self.portal, type="News Item", title="News")
+        transaction.commit()
+
+        self.assertEqual(self.document, self.portal.listFolderContents()[0])
+        self.assertEqual(news, self.portal.listFolderContents()[1])
+
+        resp = self.api_session.patch(
+            self.portal_url,
+            json={"ordering": {"delta": -1, "obj_id": news.getId()}},
+        )
+        transaction.commit()
+
+        self.assertEqual(resp.status_code, 204)
+        self.assertEqual(self.document, self.portal.listFolderContents()[1])
+        self.assertEqual(news, self.portal.listFolderContents()[0])
