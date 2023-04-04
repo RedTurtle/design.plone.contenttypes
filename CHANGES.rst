@@ -4,7 +4,8 @@ Changelog
 5.1.7 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Do not purge allowed_content_types filter for Servizio.
+  [cekk]
 
 
 5.1.6 (2023-03-16)
