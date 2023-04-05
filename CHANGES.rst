@@ -14,6 +14,8 @@ Changelog
 
 - Fix patch/post validations for required fields: do not return errors when sorting items.
   [cekk]
+- Add "Atto di nomina" link in incarico summary serializer
+  [lucabel]
 
 6.0.0 (2023-03-23)
 ------------------

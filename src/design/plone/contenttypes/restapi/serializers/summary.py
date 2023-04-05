@@ -15,9 +15,7 @@ from plone.base.interfaces import IImageScalesAdapter
 from plone.restapi.interfaces import ISerializeToJsonSummary
 from plone.restapi.serializer.converters import json_compatible
 from Products.ZCatalog.interfaces import ICatalogBrain
-from redturtle.volto.restapi.serializer.summary import (
-    DefaultJSONSummarySerializer as BaseSerializer,
-)
+from redturtle.volto.restapi.serializer.summary import DefaultJSONSummarySerializer as BaseSerializer
 from zope.component import adapter
 from zope.component import getMultiAdapter
 from zope.component import getUtility
@@ -240,6 +238,12 @@ class IncaricoDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
             res["compensi"] = json_compatible(self.context.compensi)
         else:
             res["compensi"] = json_compatible([])
+        if "atto_di_nomina" not in res:
+            res["atto_di_nomina"] = None
+            atto = getattr(self.context, "atto_nomina", None)
+            if atto and not atto[0].isBroken():
+                atto = atto[0].to_object
+                res["atto_di_nomina"] = atto.absolute_url()
         return res
 
 
