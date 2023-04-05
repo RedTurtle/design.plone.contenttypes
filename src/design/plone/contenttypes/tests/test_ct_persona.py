@@ -126,3 +126,22 @@ class TestPersonaEndpoint(unittest.TestCase):
         self.assertIn("assessore_di", list(res.keys()))
         self.assertEqual(len(res["assessore_di"]), 1)
         self.assertEqual(res["assessore_di"][0]["title"], uo.title)
+
+    def test_atto_di_nomina_incarico(self):
+        incarico = api.content.create(
+            container=self.persona.incarichi, type="Incarico", title="Sindaco"
+        )
+        commit()
+        atto_nomina = api.content.create(
+            container=incarico, type="Documento", title="Atto di nomina"
+        )
+        commit()
+        intids = getUtility(IIntIds)
+        self.persona.incarichi_persona = [RelationValue(intids.getId(incarico))]
+        incarico.atto_nomina = [RelationValue(intids.getId(atto_nomina))]
+        commit()
+        response = self.api_session.get(self.persona.absolute_url())
+        res = response.json()
+        self.assertEqual(len(res["incarichi_persona"]), 1)
+        self.assertEqual(res["incarichi_persona"][0]["title"], incarico.title)
+        self.assertIn("atto_di_nomina", list(res["incarichi_persona"][0].keys()))

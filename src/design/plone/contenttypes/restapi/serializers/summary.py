@@ -240,6 +240,12 @@ class IncaricoDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
             res["compensi"] = json_compatible(self.context.compensi)
         else:
             res["compensi"] = json_compatible([])
+        if "atto_di_nomina" not in res:
+            res["atto_di_nomina"] = None
+            atto = getattr(self.context, "atto_nomina", None)
+            if atto and not atto[0].isBroken():
+                atto = atto[0].to_object
+                res["atto_di_nomina"] = atto.absolute_url()
         return res
 
 
