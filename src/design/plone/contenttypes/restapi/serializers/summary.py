@@ -15,7 +15,9 @@ from plone.base.interfaces import IImageScalesAdapter
 from plone.restapi.interfaces import ISerializeToJsonSummary
 from plone.restapi.serializer.converters import json_compatible
 from Products.ZCatalog.interfaces import ICatalogBrain
-from redturtle.volto.restapi.serializer.summary import DefaultJSONSummarySerializer as BaseSerializer
+from redturtle.volto.restapi.serializer.summary import (
+    DefaultJSONSummarySerializer as BaseSerializer,
+)
 from zope.component import adapter
 from zope.component import getMultiAdapter
 from zope.component import getUtility
