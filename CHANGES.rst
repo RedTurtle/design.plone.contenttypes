@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-6.0.1 (unreleased)
+6.0.1 (2023-04-06)
 ------------------
 
 - Fix None type itereation attempt in relation field adapter
