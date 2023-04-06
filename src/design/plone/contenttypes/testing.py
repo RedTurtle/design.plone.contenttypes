@@ -21,7 +21,6 @@ import eea.api.taxonomy
 import kitconcept.seo
 import plone.app.caching
 import plone.formwidget.geolocation
-import plone.restapi
 import redturtle.bandi
 import redturtle.prenotazioni
 import redturtle.volto
