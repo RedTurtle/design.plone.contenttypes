@@ -3,7 +3,7 @@ relative_files = True
 
 [report]
 include =
-    */src/redturtle/*
+    */src/design/*
 omit =
     */test*
     */upgrades/*
