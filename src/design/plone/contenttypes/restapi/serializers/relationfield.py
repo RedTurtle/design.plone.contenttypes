@@ -20,7 +20,7 @@ from zope.interface import implementer
 class RelationListFieldSerializer(DefaultRelationListFieldSerializer):
     def __call__(self):
         data = []
-        for value in self.get_value():
+        for value in self.get_value() or ():
             if not value:
                 continue
             try:
