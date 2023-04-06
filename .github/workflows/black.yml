@@ -28,7 +28,7 @@ jobs:
 
       # install black
       - name: install black
-        run: pip install black
+        run: pip install black==21.12b0 click==8.0.4
 
       # run black
       - name: run black
