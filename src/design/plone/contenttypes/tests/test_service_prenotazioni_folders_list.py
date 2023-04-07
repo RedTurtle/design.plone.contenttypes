@@ -33,6 +33,9 @@ class TestServicePrenotazioniFoldersList(unittest.TestCase):
         self.servizio = api.content.create(
             type="Servizio", title="servizio", container=self.portal
         )
+        self.prenotazioni_folder_container = api.content.create(
+            type="PrenotazioniFolderContainer", title="prenotazioni", container=self.servizio
+        )
 
         transaction.commit()
 
@@ -47,7 +50,7 @@ class TestServicePrenotazioniFoldersList(unittest.TestCase):
         prenotazione_folder = api.content.create(
             type="PrenotazioniFolder",
             title="prenotazioni_folder",
-            container=self.servizio,
+            container=self.prenotazioni_folder_container,
         )
         transaction.commit()
 
