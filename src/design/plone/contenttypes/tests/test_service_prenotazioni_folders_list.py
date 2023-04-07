@@ -14,7 +14,7 @@ import transaction
 import unittest
 
 
-class TestServicePrnotazioniFoldersList(unittest.TestCase):
+class TestServicePrenotazioniFoldersList(unittest.TestCase):
     layer = DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING
 
     def setUp(self):
@@ -33,9 +33,6 @@ class TestServicePrnotazioniFoldersList(unittest.TestCase):
         self.servizio = api.content.create(
             type="Servizio", title="servizio", container=self.portal
         )
-        self.prenotazioni_folders_folder = api.content.create(
-            type="Folder", title="PrenotazioniFolders", container=self.servizio
-        )
 
         transaction.commit()
 
@@ -50,7 +47,7 @@ class TestServicePrnotazioniFoldersList(unittest.TestCase):
         prenotazione_folder = api.content.create(
             type="PrenotazioniFolder",
             title="prenotazioni_folder",
-            container=self.prenotazioni_folders_folder,
+            container=self.servizio,
         )
         transaction.commit()
 
