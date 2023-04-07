@@ -386,7 +386,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
 
     condizioni_di_servizio = field.NamedBlobFile(
         title=_("condizioni_di_servizio", default="Condizioni di servizio"),
-        required=True,
+        required=False,
     )
 
     servizi_collegati = RelationList(
