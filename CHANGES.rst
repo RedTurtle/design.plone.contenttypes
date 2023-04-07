@@ -5,7 +5,8 @@ Changelog
 6.0.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix condizioni_di_servizio field, no more required.
+  [eikichi18]
 
 
 6.0.1 (2023-04-06)
