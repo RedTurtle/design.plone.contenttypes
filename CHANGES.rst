@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-6.0.2 (unreleased)
+6.0.2 (2023-04-11)
 ------------------
 
 - Fix condizioni_di_servizio field, no more required.
