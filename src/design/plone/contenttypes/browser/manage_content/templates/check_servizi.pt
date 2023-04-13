@@ -13,6 +13,7 @@
 
     </metal:block>
     <metal:block fill-slot="style_slot">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
       <style>
        li.categoria{margin-bottom:2em}
        #content-header,
@@ -40,6 +41,9 @@
             position: sticky;
             top: 0;
             z-index: 2;
+        }
+        table.services thead tr th.service_title{
+            width: 250px;
         }
       </style>
     </metal:block>
@@ -88,8 +92,7 @@
                 <table class="services">
                   <thead>
                     <tr>
-                      <th><span></span></th>
-                      <th><span>Titolo</span></th>
+                      <th class="service_title"><span>Titolo</span></th>
                       <th><span>Descrizione</span></th>
                       <th><span>Condizioni di servizio</span></th>
                       <th><span>Argomenti</span></th>
@@ -108,18 +111,17 @@
                       <td><a href="${servizio/url}"
                            target="_blank"
                         >${servizio/title}</a></td>
-                      <td><span tal:content="servizio/data/title"></span></td>
-                      <td><span tal:content="servizio/data/description"></span></td>
-                      <td><span tal:content="servizio/data/condizioni_di_servizio"></span></td>
-                      <td><span tal:content="servizio/data/tassonomia_argomenti"></span></td>
-                      <td><span tal:content="servizio/data/a_chi_si_rivolge"></span></td>
-                      <td><span tal:content="servizio/data/come_si_fa"></span></td>
-                      <td><span tal:content="servizio/data/cosa_si_ottiene"></span></td>
-                      <td><span tal:content="servizio/data/canale_fisico"></span></td>
-                      <td><span tal:content="servizio/data/cosa_serve"></span></td>
-                      <td><span tal:content="servizio/data/tempi_e_scadenze"></span></td>
-                      <td><span tal:content="servizio/data/ufficio_responsabile"></span></td>
-                      <td><span tal:content="servizio/data/contact_info"></span></td>
+                      <td><span tal:content="structure servizio/data/description"></span></td>
+                      <td><span tal:content="structure servizio/data/condizioni_di_servizio"></span></td>
+                      <td><span tal:content="structure servizio/data/tassonomia_argomenti"></span></td>
+                      <td><span tal:content="structure servizio/data/a_chi_si_rivolge"></span></td>
+                      <td><span tal:content="structure servizio/data/come_si_fa"></span></td>
+                      <td><span tal:content="structure servizio/data/cosa_si_ottiene"></span></td>
+                      <td><span tal:content="structure servizio/data/canale_fisico"></span></td>
+                      <td><span tal:content="structure servizio/data/cosa_serve"></span></td>
+                      <td><span tal:content="structure servizio/data/tempi_e_scadenze"></span></td>
+                      <td><span tal:content="structure servizio/data/ufficio_responsabile"></span></td>
+                      <td><span tal:content="structure servizio/data/contact_info"></span></td>
                     </tr>
                   </tbody>
                 </table>

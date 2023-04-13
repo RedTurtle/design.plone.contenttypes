@@ -6,6 +6,8 @@ from Products.Five import BrowserView
 from zope.interface import implementer
 
 
+FLAG = '<i class="fa-solid fa-check"></i>'
+
 FIELDS = [
     "title",
     "description",
@@ -74,55 +76,55 @@ class CheckServizi(BrowserView):
                     "title": servizio.title,
                     "url": servizio.absolute_url().replace("/api/", "/"),
                     "data": {
-                        "title": getattr(servizio, "title") and "X" or "",
+                        "title": getattr(servizio, "title") and FLAG or "",
                         "description": getattr(servizio, "description", None)
-                        and "X"
+                        and FLAG
                         or "",
                         "condizioni_di_servizio": getattr(
                             servizio, "condizioni_di_servizio", None
                         )
-                        and "X"
+                        and FLAG
                         or "",
                         "tassonomia_argomenti": getattr(
                             servizio, "tassonomia_argomenti", None
                         )
-                        and "X"
+                        and FLAG
                         or "",
                         "a_chi_si_rivolge": text_in_block(
                             getattr(servizio, "a_chi_si_rivolge", None)
                         )
-                        and "X"
+                        and FLAG
                         or "",
                         "come_si_fa": text_in_block(
                             getattr(servizio, "come_si_fa", None)
                         )
-                        and "X"
+                        and FLAG
                         or "",
                         "cosa_si_ottiene": text_in_block(
                             getattr(servizio, "cosa_si_ottiene", None)
                         )
-                        and "X"
+                        and FLAG
                         or "",
                         "canale_fisico": getattr(servizio, "canale_fisico", None)
-                        and "X"
+                        and FLAG
                         or "",
                         "cosa_serve": text_in_block(
                             getattr(servizio, "cosa_serve", None)
                         )
-                        and "X"
+                        and FLAG
                         or "",
                         "tempi_e_scadenze": text_in_block(
                             getattr(servizio, "tempi_e_scadenze", None)
                         )
-                        and "X"
+                        and FLAG
                         or "",
                         "ufficio_responsabile": getattr(
                             servizio, "ufficio_responsabile", None
                         )
-                        and "X"
+                        and FLAG
                         or "",
                         "contact_info": getattr(servizio, "contact_info", None)
-                        and "X"
+                        and FLAG
                         or "",
                     },
                 }
