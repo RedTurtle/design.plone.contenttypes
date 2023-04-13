@@ -108,7 +108,7 @@ class IContattiServizio(model.Schema):
             "contact_info_help",
             default="I contatti per il servizio.",
         ),
-        required=True,
+        required=False,
         default=[],
         value_type=RelationChoice(
             title=_("Contatti"),
