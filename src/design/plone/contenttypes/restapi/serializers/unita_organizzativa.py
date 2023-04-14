@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from .dxcontent import SerializeFolderToJson as BaseSerializer
 from Acquisition import aq_inner
+from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
 from design.plone.contenttypes.interfaces.unita_organizzativa import IUnitaOrganizzativa
 from design.plone.contenttypes.restapi.serializers.summary import (
     DefaultJSONSummarySerializer,
@@ -20,7 +21,9 @@ from zope.globalrequest import getRequest
 from zope.interface import implementer
 from zope.interface import Interface
 from zope.intid.interfaces import IIntIds
+from zope.schema import getFieldsInOrder
 from zope.security import checkPermission
+from plone.volto.behaviors.preview import IPreview
 
 
 @implementer(ISerializeToJson)
@@ -143,6 +146,18 @@ class UOJSONSummarySerializer(DefaultJSONSummarySerializer):
         data["geolocation"] = self.getGeolocation()
 
         get_taxonomy_information("tipologia_organizzazione", self.context, data)
+
+        fields = dict(getFieldsInOrder(IPreview))
+        field = fields.get("preview_image", None)
+        if field:
+            images_info_adapter = getMultiAdapter(
+                (field, self.context, IDesignPloneContenttypesLayer)
+            )
+            if images_info_adapter:
+                data["image_scales"] = {
+                    "preview_image": [images_info_adapter()],
+                }
+            data["image_field"] = "preview_image"
 
         return data
 
