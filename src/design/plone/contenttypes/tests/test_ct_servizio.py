@@ -11,9 +11,14 @@ from plone.app.testing import setRoles
 from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import SITE_OWNER_PASSWORD
 from plone.app.testing import TEST_USER_ID
+from plone.namedfile.file import NamedBlobImage
 from plone.restapi.testing import RelativeSession
 from transaction import commit
+from z3c.relationfield import RelationValue
+from zope.component import getUtility
+from zope.intid.interfaces import IIntIds
 
+import os
 import unittest
 
 
@@ -316,3 +321,23 @@ class TestServizioApi(unittest.TestCase):
         self.assertEqual(resp.status_code, 204)
         self.assertEqual(document, self.portal.listFolderContents()[1])
         self.assertEqual(service, self.portal.listFolderContents()[0])
+
+    def test_ufficio_responsabile_has_image(self):
+        uo = api.content.create(
+            container=self.portal, type="UnitaOrganizzativa", title="UO 1"
+        )
+        service = api.content.create(
+            container=self.portal, type="Servizio", title="Foo"
+        )
+        filename = os.path.join(os.path.dirname(__file__), "example.png")
+        uo.preview_image = NamedBlobImage(
+            data=open(filename, "rb").read(),
+            filename="example.png",
+            contentType="image/png",
+        )
+        intids = getUtility(IIntIds)
+        service.ufficio_responsabile = [RelationValue(intids.getId(uo))]
+        commit()
+        res = self.api_session.get(service.absolute_url()).json()
+        self.assertEqual(res["ufficio_responsabile"][0]["image_field"], "preview_image")
+        self.assertTrue(res["ufficio_responsabile"][0]["image_scales"])
