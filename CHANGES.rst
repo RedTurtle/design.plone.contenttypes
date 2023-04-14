@@ -5,7 +5,8 @@ Changelog
 6.0.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Change UO summary serializer to return preview_image info.
+  [lucabel]
 
 
 6.0.2 (2023-04-11)
