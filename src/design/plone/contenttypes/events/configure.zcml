@@ -77,13 +77,4 @@
       handler=".common.onModify"
       />
 
-  <configure zcml:condition="installed redturtle.prenotazioni">
-    <subscriber
-        for="design.plone.contenttypes.interfaces.servizio.IServizio
-             zope.lifecycleevent.interfaces.IObjectAddedEvent"
-        handler=".servizio.prenotazioni_folder_create"
-        />
-  </configure>
-
-
 </configure>

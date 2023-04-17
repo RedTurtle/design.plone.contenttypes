@@ -5,7 +5,8 @@ Changelog
 6.0.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Remove redturtle.prenotazioni integration.
+  [cekk]
 
 
 6.0.2 (2023-04-11)

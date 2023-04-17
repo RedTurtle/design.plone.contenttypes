@@ -10,12 +10,6 @@
   <include package=".scadenziario" />
   <include package=".trasparenza" />
 
-  <include
-      package=".prenotazioni_folders_list"
-      zcml:condition="installed redturtle.prenotazioni"
-      />
-
-
   <adapter
       factory=".controlpanel.DesignPloneSettings"
       provides="design.plone.contenttypes.controlpanels.settings.IDesignPloneSettingsControlpanel"
