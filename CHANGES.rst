@@ -5,7 +5,10 @@ Changelog
 6.0.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Change check_servizi making optional the check for
+  field "condizioni_di_servizio" and removing the check for
+  the "contact_info" field.
+  [lucabel]
 
 
 6.0.2 (2023-04-11)
