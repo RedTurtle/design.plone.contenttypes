@@ -8,6 +8,8 @@ Changelog
 - Change check_servizi making optional the check for
   field "condizioni_di_servizio" and removing the check for
   the "contact_info" field.
+  Import a fontawesome cdn in this view to show the "V" icon.
+  Change some minor style in the check_servizi view.
   [lucabel]
 
 
