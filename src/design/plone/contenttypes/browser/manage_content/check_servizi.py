@@ -7,21 +7,6 @@ from zope.interface import implementer
 
 FLAG = '<i class="fa-solid fa-check"></i>'
 
-FIELDS = [
-    "title",
-    "description",
-    "condizioni_di_servizio",
-    "tassonomia_argomenti",
-    "a_chi_si_rivolge",
-    "come_si_fa",
-    "cosa_si_ottiene",
-    "canale_fisico",
-    "cosa_serve",
-    "tempi_e_scadenze",
-    "ufficio_responsabile",
-    "contact_info",
-]
-
 
 def text_in_block(blocks):
     @implementer(IBlocks)
@@ -71,7 +56,6 @@ class CheckServizi(BrowserView):
                 getattr(servizio, "tempi_e_scadenze", None)
             ),
             "ufficio_responsabile": getattr(servizio, "ufficio_responsabile", None),
-            "contact_info": getattr(servizio, "contact_info", None),
         }
 
     def get_servizi(self):
@@ -139,9 +123,6 @@ class CheckServizi(BrowserView):
                         "ufficio_responsabile": information_dict.get(
                             "ufficio_responsabile"
                         )
-                        and FLAG
-                        or "",
-                        "contact_info": information_dict.get("contact_info")
                         and FLAG
                         or "",
                     },

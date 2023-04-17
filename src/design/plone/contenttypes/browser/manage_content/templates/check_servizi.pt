@@ -136,7 +136,6 @@
                       <th><span>Cosa serve</span></th>
                       <th><span>Tempi e scadenze</span></th>
                       <th><span>Unit&agrave; org. responsabile</span></th>
-                      <th><span>Contatto</span></th>
                       <tr>
                       </tr></tr></thead>
                   <tbody>
@@ -154,8 +153,6 @@
                       <td><span tal:content="structure servizio/data/cosa_serve"></span></td>
                       <td><span tal:content="structure servizio/data/tempi_e_scadenze"></span></td>
                       <td><span tal:content="structure servizio/data/ufficio_responsabile"></span></td>
-                      <td><span tal:content="structure servizio/data/contact_info"></span></td>
-
                     </tr>
                   </tbody>
                 </table>
