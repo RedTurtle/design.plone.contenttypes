@@ -45,6 +45,22 @@
         table.services thead tr th.service_title{
             width: 250px;
         }
+        .forms{
+          margin-top: 1em;
+          margin-bottom: 1em;
+          text-align:center;
+        }
+        .forms input{
+            border: none; /* Remove borders */
+            color: white; /* Add a text color */
+            padding: 14px 28px; /* Add some padding */
+            cursor: pointer; /* Add a pointer cursor on mouse-over */
+            background-color: #2196F3;
+            border-radius: 12px;
+        }
+        .forms input:hover{
+            background: #0b7dda;
+        }
       </style>
     </metal:block>
     <tal:main metal:fill-slot="prefs_configlet_wrapper">
@@ -56,6 +72,7 @@
           che questo non sia corretto verifica di essere autenticato oppure rivolgiti
           agli amministratori del sito.
         </div>
+
         <div class="lista_servizi"
              tal:define="
                servizi view/get_servizi;
@@ -70,6 +87,22 @@
                Ogni redattore pu&ograve; vedere in questa lista tutti i servizi e,
                cliccando su ognuno, andare alla vista di dettaglio del servizio,
             editarlo e compilare tutti i campi obbligatori.</p>
+
+        <div class="forms">
+          <div tal:condition="view/cds">
+            <form action="${context/absolute_url}/@@check_servizi">
+              <input type="Submit" value="Cerca senza condizioni di servizio" />
+            </form>
+          </div>
+          <div tal:condition="not:view/cds">
+            <form action="${context/absolute_url}/@@check_servizi">
+              <input type="hidden" name="condizioni_di_servizio" value="True" />
+              <input type="Submit" value="Cerca con condizioni di servizio" />
+            </form>
+          </div>
+        </div>
+
+
           <ul>
             <li class="categoria"
                 tal:repeat="categoria servizi"
@@ -94,7 +127,7 @@
                     <tr>
                       <th class="service_title"><span>Titolo</span></th>
                       <th><span>Descrizione</span></th>
-                      <th><span>Condizioni di servizio</span></th>
+                      <th tal:condition="view/cds"><span>Condizioni di servizio</span></th>
                       <th><span>Argomenti</span></th>
                       <th><span>A chi &egrave; rivolto</span></th>
                       <th><span>Come fare per</span></th>
@@ -112,7 +145,7 @@
                            target="_blank"
                         >${servizio/title}</a></td>
                       <td><span tal:content="structure servizio/data/description"></span></td>
-                      <td><span tal:content="structure servizio/data/condizioni_di_servizio"></span></td>
+                      <td tal:condition="view/cds"><span tal:content="servizio/data/condizioni_di_servizio"></span></td>
                       <td><span tal:content="structure servizio/data/tassonomia_argomenti"></span></td>
                       <td><span tal:content="structure servizio/data/a_chi_si_rivolge"></span></td>
                       <td><span tal:content="structure servizio/data/come_si_fa"></span></td>
@@ -122,6 +155,7 @@
                       <td><span tal:content="structure servizio/data/tempi_e_scadenze"></span></td>
                       <td><span tal:content="structure servizio/data/ufficio_responsabile"></span></td>
                       <td><span tal:content="structure servizio/data/contact_info"></span></td>
+
                     </tr>
                   </tbody>
                 </table>
