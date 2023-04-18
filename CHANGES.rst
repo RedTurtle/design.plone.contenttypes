@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-6.0.3 (unreleased)
+6.0.3 (2023-04-18)
 ------------------
 
 - Change check_servizi making optional the check for
