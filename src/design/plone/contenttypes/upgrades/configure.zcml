@@ -744,4 +744,15 @@
         handler=".upgrades.to_7009"
         />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="7009"
+      destination="7010"
+      >
+    <genericsetup:upgradeStep
+        title="Upgrade for CMFPlone syndication"
+        handler=".upgrades.to_7010"
+        />
+  </genericsetup:upgradeSteps>
+
 </configure>

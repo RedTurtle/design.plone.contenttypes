@@ -9,7 +9,9 @@ from design.plone.contenttypes.utils import create_default_blocks
 from plone import api
 from plone.app.textfield.value import RichTextValue
 from plone.app.upgrade.utils import installOrReinstallProduct
+from plone.base.interfaces.syndication import ISiteSyndicationSettings
 from plone.dexterity.utils import iterSchemata
+from plone.registry.interfaces import IRegistry
 from Products.CMFPlone.interfaces import ISelectableConstrainTypes
 from redturtle.bandi.interfaces.settings import IBandoSettings
 from transaction import commit
@@ -1426,3 +1428,64 @@ def to_7009(context):
         if not getattr(venue, "exclude_from_nav", None):
             setattr(venue, "exclude_from_nav", False)
             venue.reindexObject(idxs=["exclude_from_nav"])
+
+
+def to_7010(context):
+    registry = getUtility(IRegistry)
+    prefix = "Products.CMFPlone.interfaces.syndication.ISiteSyndicationSettings"
+
+    # get the old values
+    old_attributes = [
+        attribute for attribute in registry.records if attribute.startswith(prefix)
+    ]
+    if not old_attributes:
+        logger.info(
+            f"{colors.GREEN} We already have the correct interface. Nothing to do here! {colors.ENDC}"
+        )
+        return
+    old_values = {
+        attribute.split(".")[-1]: registry.records[attribute].value
+        for attribute in old_attributes
+    }
+    logger.info(
+        f"{colors.DARKCYAN} Deleting old ISiteSyndicationSettings Records {colors.ENDC}"
+    )
+    # delete the old records
+    for attribute in old_attributes:
+        del registry.records[attribute]
+
+    # import the new interface
+    logger.info(f"{colors.DARKCYAN} Setup new interface in the registry {colors.ENDC}")
+    context.runImportStepFromProfile(
+        "profile-design.plone.contenttypes:fix_syndication", "plone.app.registry", False
+    )
+    logger.info(
+        f"{colors.DARKCYAN} Set the old values into the new registry records{colors.ENDC}"
+    )
+    # set the old values into the new records
+    for attribute in old_values:
+        alert_attributes = ["show_syndication_button", "show_syndication_link"]
+        if attribute in alert_attributes and old_values[attribute] == None:  # noqa
+            old_values[attribute] = False
+            logger.info(
+                f"{colors.RED } Fix {attribute} to {old_values[attribute]} {colors.ENDC}"
+            )
+
+        if attribute == "site_rss_items" and old_values[attribute]:
+            logger.info(
+                f"{colors.RED} Manually fix {attribute} with old value"
+                f" {old_values[attribute]} {colors.ENDC}"
+            )
+            continue
+
+        logger.info(
+            f"{colors.DARKCYAN} Set {attribute} to  {old_values[attribute]} {colors.ENDC}"
+        )
+        api.portal.set_registry_record(
+            name=attribute,
+            value=old_values[attribute],
+            interface=ISiteSyndicationSettings,
+        )
+    logger.info(
+        f"{colors.GREEN}ISiteSyndicationSettings interface fixed! {colors.ENDC}"
+    )

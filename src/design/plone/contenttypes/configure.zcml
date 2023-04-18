@@ -57,6 +57,14 @@
       directory="profiles/to_3000"
       />
 
+  <genericsetup:registerProfile
+      name="fix_syndication"
+      title="Design Plone: Fix Syndication after Plone6 Migration"
+      description="After Plone6 migration syndication is broken"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/fix_syndication"
+      />
+
   <utility
       factory=".setuphandlers.HiddenProfiles"
       name="design.plone.contenttypes-hiddenprofiles"
