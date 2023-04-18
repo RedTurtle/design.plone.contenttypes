@@ -1463,17 +1463,36 @@ def to_7010(context):
         f"{colors.DARKCYAN} Set the old values into the new registry records{colors.ENDC}"
     )
     # set the old values into the new records
+    default_values = {
+        "allowed": True,
+        "allowed_feed_types": (
+            "RSS|RSS 1.0",
+            "rss.xml|RSS 2.0",
+            "atom.xml|Atom",
+            "itunes.xml|iTunes",
+        ),
+        "default_enabled": False,
+        "max_items": 15,
+        "render_body": False,
+        "search_rss_enabled": True,
+        "show_author_info": True,
+        "show_syndication_button": False,
+        "show_syndication_link": False,
+        "site_rss_items": tuple()
+    }
+
     for attribute in old_values:
-        alert_attributes = ["show_syndication_button", "show_syndication_link"]
-        if attribute in alert_attributes and old_values[attribute] == None:  # noqa
-            old_values[attribute] = False
+        # we could have None value and we can't set None with set_registry_record
+        # so we can set the value to the default.
+        if old_values[attribute] == None:  # noqa
+            old_values[attribute] = default_values[attribute]
             logger.info(
-                f"{colors.RED } Fix {attribute} to {old_values[attribute]} {colors.ENDC}"
+                f"{colors.RED } Fix {attribute} to default: {old_values[attribute]} {colors.ENDC}"
             )
 
         if attribute == "site_rss_items" and old_values[attribute]:
             logger.info(
-                f"{colors.RED} Manually fix {attribute} with old value"
+                f"{colors.RED} Please manually fix {attribute} with old value"
                 f" {old_values[attribute]} {colors.ENDC}"
             )
             continue
