@@ -1478,7 +1478,7 @@ def to_7010(context):
         "show_author_info": True,
         "show_syndication_button": False,
         "show_syndication_link": False,
-        "site_rss_items": tuple()
+        "site_rss_items": tuple(),
     }
 
     for attribute in old_values:
