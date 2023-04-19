@@ -22,7 +22,6 @@ import kitconcept.seo
 import plone.app.caching
 import plone.formwidget.geolocation
 import redturtle.bandi
-import redturtle.prenotazioni
 import redturtle.volto
 
 
@@ -85,18 +84,11 @@ class DesignPloneContenttypesRestApiLayer(RedturtleVoltoRestApiLayer):
         self.loadZCML(package=redturtle.bandi)
         self.loadZCML(package=kitconcept.seo)
 
-        # TODO: valutare un layer a parte per i test di redturtle.prenotazioni
-        self.loadZCML(package=redturtle.prenotazioni)
-        self.loadZCML(package=collective.z3cform.datagridfield)
-        self.loadZCML(package=collective.contentrules.mailfromfield)
-
         self.loadZCML(name="overrides.zcml", package=design.plone.contenttypes)
 
     def setUpPloneSite(self, portal):
         super().setUpPloneSite(portal)
         applyProfile(portal, "design.plone.contenttypes:default")
-        # TODO: valutare un layer a parte per i test di redturtle.prenotazioni
-        applyProfile(portal, "redturtle.prenotazioni:default")
 
 
 DESIGN_PLONE_CONTENTTYPES_API_FIXTURE = DesignPloneContenttypesRestApiLayer()

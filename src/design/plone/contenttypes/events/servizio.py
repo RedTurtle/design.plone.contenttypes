@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from design.plone.contenttypes import _
 from design.plone.contenttypes.utils import create_default_blocks
 from plone import api
 from Products.CMFPlone.interfaces import ISelectableConstrainTypes
@@ -28,21 +27,3 @@ def servizioCreateHandler(servizio, event):
             childConstraints = ISelectableConstrainTypes(child)
             childConstraints.setConstrainTypesMode(1)
             childConstraints.setLocallyAllowedTypes(folder["contains"])
-
-
-# TODO: rivalutare se è necessario, o se i folder delle prenotazioni
-#      vanno creati manualmente al di fuori del servizio
-def prenotazioni_folder_create(servizio, event):
-    """Create Prenotazioni folder inside of the created object,
-    but only if `redturtle.prenotazioni` is installed.
-    """
-    if api.portal.get_tool("portal_types").get("PrenotazioniFolderContainer"):
-        if not api.portal.get_tool("portal_catalog")(
-            portal_type="PrenotazioniFolderContainer",
-            path="/".join(servizio.getPhysicalPath()),
-        ):
-            api.content.create(
-                type="PrenotazioniFolderContainer",
-                title=_("Cartella delle prenotazioni"),
-                container=servizio,
-            )
