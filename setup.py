@@ -16,7 +16,7 @@ long_description = "\n\n".join(
 
 setup(
     name="design.plone.contenttypes",
-    version="6.0.2.dev0",
+    version="6.0.4.dev0",
     description="DesignItalia contenty types",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -77,10 +77,6 @@ setup(
             "plone.app.contenttypes",
             "plone.app.robotframework[debug]",
             "collective.MockMailHost",
-            "redturtle.prenotazioni",
-        ],
-        "ioprenoto": [
-            "redturtle.prenotazioni",
         ],
     },
     entry_points="""

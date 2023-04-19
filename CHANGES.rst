@@ -2,10 +2,29 @@ Changelog
 =========
 
 
-6.0.2 (unreleased)
+6.0.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Remove redturtle.prenotazioni integration.
+  [cekk]
+
+
+6.0.3 (2023-04-18)
+------------------
+
+- Change check_servizi making optional the check for
+  field "condizioni_di_servizio" and removing the check for
+  the "contact_info" field.
+  Import a fontawesome cdn in this view to show the "V" icon.
+  Change some minor style in the check_servizi view.
+  [lucabel]
+
+
+6.0.2 (2023-04-11)
+------------------
+
+- Fix condizioni_di_servizio field, no more required.
+  [eikichi18]
 
 
 6.0.1 (2023-04-06)

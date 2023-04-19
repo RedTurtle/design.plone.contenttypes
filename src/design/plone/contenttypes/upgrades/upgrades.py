@@ -9,7 +9,9 @@ from design.plone.contenttypes.utils import create_default_blocks
 from plone import api
 from plone.app.textfield.value import RichTextValue
 from plone.app.upgrade.utils import installOrReinstallProduct
+from plone.base.interfaces.syndication import ISiteSyndicationSettings
 from plone.dexterity.utils import iterSchemata
+from plone.registry.interfaces import IRegistry
 from Products.CMFPlone.interfaces import ISelectableConstrainTypes
 from redturtle.bandi.interfaces.settings import IBandoSettings
 from transaction import commit
@@ -1209,29 +1211,6 @@ class colors(object):
     YELLOW = "\033[93m"
 
 
-# XXX: le prenotazioni non sono necessariamente all'interno del servizio
-# def add_ioprenoto_folder(context):
-#     """Adds PrenotazioniFoldersContainer object to Servizio c.t. object"""
-#     catalog = api.portal.get_tool("portal_catalog")
-#     for servizio in catalog(portal_type="Servizio"):
-#         if not catalog(
-#             portal_type="PrenotazioniFolderContainer", path=servizio.getPath()
-#         ):
-#             container = servizio.getObject()
-#             if "PrenotazioniFolderContainer" in getattr(
-#                 context, "allowedContentTypes", None
-#             ):
-#                 api.content.create(
-#                     type="PrenotazioniFolderContainer",
-#                     title="Cartella delle prenotazioni",
-#                     container=container,
-#                 )
-#             else:
-#                 raise Exception(
-#                     "Can not mirgate so as PrenotazioniFolderContainer is not allowed"
-#                 )
-
-
 def update_uo_contact_info(context):
     brains = api.portal.get_tool("portal_catalog")(portal_type="UnitaOrganizzativa")
     logger.info(
@@ -1426,3 +1405,83 @@ def to_7009(context):
         if not getattr(venue, "exclude_from_nav", None):
             setattr(venue, "exclude_from_nav", False)
             venue.reindexObject(idxs=["exclude_from_nav"])
+
+
+def to_7010(context):
+    registry = getUtility(IRegistry)
+    prefix = "Products.CMFPlone.interfaces.syndication.ISiteSyndicationSettings"
+
+    # get the old values
+    old_attributes = [
+        attribute for attribute in registry.records if attribute.startswith(prefix)
+    ]
+    if not old_attributes:
+        logger.info(
+            f"{colors.GREEN} We already have the correct interface. Nothing to do here! {colors.ENDC}"
+        )
+        return
+    old_values = {
+        attribute.split(".")[-1]: registry.records[attribute].value
+        for attribute in old_attributes
+    }
+    logger.info(
+        f"{colors.DARKCYAN} Deleting old ISiteSyndicationSettings Records {colors.ENDC}"
+    )
+    # delete the old records
+    for attribute in old_attributes:
+        del registry.records[attribute]
+
+    # import the new interface
+    logger.info(f"{colors.DARKCYAN} Setup new interface in the registry {colors.ENDC}")
+    context.runImportStepFromProfile(
+        "profile-design.plone.contenttypes:fix_syndication", "plone.app.registry", False
+    )
+    logger.info(
+        f"{colors.DARKCYAN} Set the old values into the new registry records{colors.ENDC}"
+    )
+    # set the old values into the new records
+    default_values = {
+        "allowed": True,
+        "allowed_feed_types": (
+            "RSS|RSS 1.0",
+            "rss.xml|RSS 2.0",
+            "atom.xml|Atom",
+            "itunes.xml|iTunes",
+        ),
+        "default_enabled": False,
+        "max_items": 15,
+        "render_body": False,
+        "search_rss_enabled": True,
+        "show_author_info": True,
+        "show_syndication_button": False,
+        "show_syndication_link": False,
+        "site_rss_items": tuple(),
+    }
+
+    for attribute in old_values:
+        # we could have None value and we can't set None with set_registry_record
+        # so we can set the value to the default.
+        if old_values[attribute] == None:  # noqa
+            old_values[attribute] = default_values[attribute]
+            logger.info(
+                f"{colors.RED } Fix {attribute} to default: {old_values[attribute]} {colors.ENDC}"
+            )
+
+        if attribute == "site_rss_items" and old_values[attribute]:
+            logger.info(
+                f"{colors.RED} Please manually fix {attribute} with old value"
+                f" {old_values[attribute]} {colors.ENDC}"
+            )
+            continue
+
+        logger.info(
+            f"{colors.DARKCYAN} Set {attribute} to  {old_values[attribute]} {colors.ENDC}"
+        )
+        api.portal.set_registry_record(
+            name=attribute,
+            value=old_values[attribute],
+            interface=ISiteSyndicationSettings,
+        )
+    logger.info(
+        f"{colors.GREEN}ISiteSyndicationSettings interface fixed! {colors.ENDC}"
+    )
