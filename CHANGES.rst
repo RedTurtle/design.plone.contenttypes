@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-6.0.4 (unreleased)
+6.0.4 (2023-04-19)
 ------------------
 
 - Remove redturtle.prenotazioni integration.
