@@ -8,7 +8,6 @@ from redturtle.volto.testing import RedturtleVoltoRestApiLayer
 from zope.configuration import xmlconfig
 
 import collective.address
-import collective.contentrules.mailfromfield
 import collective.taxonomy
 
 # import collective.folderishtypes
