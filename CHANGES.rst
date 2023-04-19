@@ -7,6 +7,8 @@ Changelog
 
 - Remove redturtle.prenotazioni integration.
   [cekk]
+- Fix syndication.
+  [lucabel]
 
 
 6.0.3 (2023-04-18)
