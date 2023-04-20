@@ -75,6 +75,7 @@ class DesignPloneContenttypesRestApiLayer(RedturtleVoltoRestApiLayer):
         self.loadZCML(package=plone.formwidget.geolocation)
         self.loadZCML(package=eea.api.taxonomy)
         self.loadZCML(package=collective.taxonomy)
+        self.loadZCML(package=collective.z3cform.datagridfield)
         xmlconfig.file(
             "configure.zcml",
             design.plone.contenttypes,
