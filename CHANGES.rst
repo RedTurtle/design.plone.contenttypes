@@ -2,11 +2,22 @@ Changelog
 =========
 
 
-6.0.4 (unreleased)
+6.0.5 (unreleased)
+------------------
+
+- Re-add FileFieldViewModeSerializer accidentally deleted.
+  [cekk]
+- Fix broken tests.
+  [cekk]
+
+
+6.0.4 (2023-04-19)
 ------------------
 
 - Remove redturtle.prenotazioni integration.
   [cekk]
+- Fix syndication.
+  [lucabel]
 
 
 6.0.3 (2023-04-18)
