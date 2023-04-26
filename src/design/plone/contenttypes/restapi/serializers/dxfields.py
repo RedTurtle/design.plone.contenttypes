@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 from AccessControl.unauthorized import Unauthorized
+from Acquisition import aq_inner
 from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
 from design.plone.contenttypes.interfaces.servizio import IServizio
 from plone import api
 from plone.app.contenttypes.utils import replace_link_variables_by_paths
 from plone.dexterity.interfaces import IDexterityContent
+from plone.namedfile.interfaces import INamedFileField
 from plone.outputfilters.browser.resolveuid import uuidToURL
 from plone.restapi.interfaces import IBlockFieldSerializationTransformer
 from plone.restapi.interfaces import IFieldSerializer
@@ -49,6 +51,40 @@ class TempiEScadenzeValueSerializer(DefaultFieldSerializer):
                 patched_timeline.append(entry)
             return json_compatible(patched_timeline)
         return value
+
+
+@adapter(INamedFileField, IDexterityContent, IDesignPloneContenttypesLayer)
+class FileFieldViewModeSerializer(DefaultFieldSerializer):
+    """Ovveride the basic DX serializer to handle the visualize file functionality"""
+
+    def __call__(self):
+        namedfile = self.field.get(self.context)
+        if namedfile is None:
+            return
+
+        url = "/".join(
+            (
+                self.context.absolute_url(),
+                self.get_file_view_mode(namedfile.contentType),
+                self.field.__name__,
+            )
+        )
+        result = {
+            "filename": namedfile.filename,
+            "content-type": namedfile.contentType,
+            "size": namedfile.getSize(),
+            "download": url,
+        }
+
+        return json_compatible(result)
+
+    def get_file_view_mode(self, content_type):
+        """Pdf view depends on the visualize_files property in thq aq_chain"""
+        if self.context and "pdf" in content_type:
+            if getattr(aq_inner(self.context), "visualize_files", None):
+                return "@@display-file"
+
+        return "@@download"
 
 
 def serialize_data(context, json_data, show_children=False):

@@ -5,7 +5,10 @@ Changelog
 6.0.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Re-add FileFieldViewModeSerializer accidentally deleted.
+  [cekk]
+- Fix broken tests.
+  [cekk]
 
 
 6.0.4 (2023-04-19)
