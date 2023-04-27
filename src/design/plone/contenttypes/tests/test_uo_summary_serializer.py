@@ -83,5 +83,5 @@ class UOSummarySerializerTest(unittest.TestCase):
         res = response.json()
         contact_info = res["uo_children"][0]["contact_info"]
         sede = res["uo_children"][0]["sede"]
-        self.assertEqual(contact_info["@type"], "PuntoDiContatto")
-        self.assertEqual(sede["@type"], "Venue")
+        self.assertEqual(contact_info[0]["@type"], "PuntoDiContatto")
+        self.assertEqual(sede[0]["@type"], "Venue")
