@@ -5,6 +5,8 @@ Changelog
 6.0.5 (unreleased)
 ------------------
 
+- Add sede in UO summary serializer
+  [lucabel]
 - Re-add FileFieldViewModeSerializer accidentally deleted.
   [cekk]
 - Fix broken tests.
