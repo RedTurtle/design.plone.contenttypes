@@ -91,7 +91,8 @@
              tal:condition="servizi">Per quanto riguarda la colonna <strong>canale di accesso</strong>,
             nei servizi, abbiamo canale fisico e canale digitale. Il canale digitale,
             è calcolato su due campi: uno testuale descrittivo e uno contenente il link per
-            l'accesso.
+            l'accesso. È obbligatorio compilare o il canale fisico oppure i due campi relativi al canale
+            digitale per seguire le direttive indicate da AGID.
             Nella tabella sotto si troverà scritto "D" nel caso nel servizio siano compilati
             i due campi del canale digitale, "F" nel caso sia compilato il canale fisico e
             "D e F" nel caso siano compilati tutti i campi relativi al canale di accesso.</p>
