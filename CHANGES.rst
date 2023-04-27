@@ -9,6 +9,8 @@ Changelog
   [cekk]
 - Fix broken tests.
   [cekk]
+- Fix check_servizi view and made optional canale_fisico in Servizio
+  [lucabel]
 
 
 6.0.4 (2023-04-19)
