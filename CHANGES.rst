@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-6.0.6 (unreleased)
+6.0.6 (2023-04-28)
 ------------------
 
 - Added images serialization to the summary serializer of the UO content type;
