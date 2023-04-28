@@ -121,21 +121,12 @@ class UOJSONSummarySerializer(DefaultJSONSummarySerializer):
     def __call__(self, force_all_metadata=False):
         data = super().__call__(force_all_metadata=force_all_metadata)
         fields = [
-            "address",
-            "city",
-            "zip_code",
-            # "email",
-            # "telefono",
-            "nome_sede",
-            "title",
-            "quartiere",
-            "circoscrizione",
-            "street",
             "contact_info",
+            "sede",
         ]
 
         for field in fields:
-            if field == "contact_info":
+            if field in ("contact_info", "sede"):
                 data[field] = json_compatible(getattr(self.context, field, ""))
             else:
                 data[field] = getattr(self.context, field, "")
