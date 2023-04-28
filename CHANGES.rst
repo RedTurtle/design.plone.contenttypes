@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-6.0.5 (unreleased)
+6.0.5 (2023-04-28)
 ------------------
 
 - Remove address, city, zip_code, nome_sede, title,
