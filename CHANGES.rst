@@ -5,7 +5,10 @@ Changelog
 6.0.5 (unreleased)
 ------------------
 
-- Add sede in UO summary serializer
+- Remove address, city, zip_code, nome_sede, title,
+  quartiere, circoscrizione, street from UO summary 
+  serializer and add sede in thery place in the 
+  UO summary serializer
   [lucabel]
 - Re-add FileFieldViewModeSerializer accidentally deleted.
   [cekk]
