@@ -5,15 +5,17 @@ Changelog
 6.0.6 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Added images serialization to the summary serializer of the UO content type;
+  If both the image and preview image are present, the 'image_field' attribute
+  is forced to contain 'preview_image'.
+  [lucabel]
 
 6.0.5 (2023-04-28)
 ------------------
 
 - Remove address, city, zip_code, nome_sede, title,
-  quartiere, circoscrizione, street from UO summary 
-  serializer and add sede in thery place in the 
+  quartiere, circoscrizione, street from UO summary
+  serializer and add sede in thery place in the
   UO summary serializer
   [lucabel]
 - Re-add FileFieldViewModeSerializer accidentally deleted.
