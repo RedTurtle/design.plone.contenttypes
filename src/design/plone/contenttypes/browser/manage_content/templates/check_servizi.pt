@@ -13,7 +13,7 @@
 
     </metal:block>
     <metal:block fill-slot="style_slot">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
       <style>
        li.categoria{margin-bottom:2em}
        #content-header,
@@ -87,6 +87,15 @@
                Ogni redattore pu&ograve; vedere in questa lista tutti i servizi e,
                cliccando su ognuno, andare alla vista di dettaglio del servizio,
             editarlo e compilare tutti i campi obbligatori.</p>
+            <p class="lead"
+             tal:condition="servizi">Per quanto riguarda la colonna <strong>canale di accesso</strong>,
+            nei servizi, abbiamo canale fisico e canale digitale. Il canale digitale,
+            è calcolato su due campi: uno testuale descrittivo e uno contenente il link per
+            l'accesso. È obbligatorio compilare o il canale fisico oppure i due campi relativi al canale
+            digitale per seguire le direttive indicate da AGID.
+            Nella tabella sotto si troverà scritto "D" nel caso nel servizio siano compilati
+            i due campi del canale digitale, "F" nel caso sia compilato il canale fisico e
+            "D e F" nel caso siano compilati tutti i campi relativi al canale di accesso.</p>
 
         <div class="forms">
           <div tal:condition="view/cds">
@@ -132,7 +141,7 @@
                       <th><span>A chi &egrave; rivolto</span></th>
                       <th><span>Come fare per</span></th>
                       <th><span>Cosa si ottiene</span></th>
-                      <th><span>Canale fisico</span></th>
+                      <th><span>Canale di accesso</span></th>
                       <th><span>Cosa serve</span></th>
                       <th><span>Tempi e scadenze</span></th>
                       <th><span>Unit&agrave; org. responsabile</span></th>
@@ -149,7 +158,7 @@
                       <td><span tal:content="structure servizio/data/a_chi_si_rivolge"></span></td>
                       <td><span tal:content="structure servizio/data/come_si_fa"></span></td>
                       <td><span tal:content="structure servizio/data/cosa_si_ottiene"></span></td>
-                      <td><span tal:content="structure servizio/data/canale_fisico"></span></td>
+                      <td><span tal:content="servizio/data/canale_accesso"></span></td>
                       <td><span tal:content="structure servizio/data/cosa_serve"></span></td>
                       <td><span tal:content="structure servizio/data/tempi_e_scadenze"></span></td>
                       <td><span tal:content="structure servizio/data/ufficio_responsabile"></span></td>
