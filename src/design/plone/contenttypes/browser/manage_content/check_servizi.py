@@ -75,7 +75,9 @@ class CheckServizi(BrowserView):
 
     def plone2volto(self, url):
         navroot_url = self.portal_state().navigation_root_url(self.context)
-        frontend_domain = api.portal.get_registry_record('frontend_domain', interface=IVoltoSettings, default=u'bar')
+        frontend_domain = api.portal.get_registry_record(
+            "frontend_domain", interface=IVoltoSettings, default=""
+        )
         # frontend_domain = api.portal.get_registry_record('volto.frontend_domain', interface=IVoltoSettings, default=u'bar')
         if frontend_domain and url.startswith(navroot_url):
             return url.replace(navroot_url, frontend_domain, 1)
