@@ -3,6 +3,7 @@ from plone.restapi.behaviors import IBlocks
 from plone.restapi.indexers import SearchableText_blocks
 from Products.Five import BrowserView
 from zope.interface import implementer
+from plone.volto.interfaces import IVoltoSettings
 
 
 FLAG = '<i class="fa-solid fa-check"></i>'
@@ -72,6 +73,14 @@ class CheckServizi(BrowserView):
             "ufficio_responsabile": getattr(servizio, "ufficio_responsabile", None),
         }
 
+    def plone2volto(self, url):
+        navroot_url = self.portal_state().navigation_root_url(self.context)
+        frontend_domain = api.portal.get_registry_record('frontend_domain', interface=IVoltoSettings, default=u'bar')
+        # frontend_domain = api.portal.get_registry_record('volto.frontend_domain', interface=IVoltoSettings, default=u'bar')
+        if frontend_domain and url.startswith(navroot_url):
+            return url.replace(navroot_url, frontend_domain, 1)
+        return url
+
     def get_servizi(self):
         if self.is_anonymous():
             return []
@@ -97,14 +106,14 @@ class CheckServizi(BrowserView):
             parent = servizio.aq_inner.aq_parent
             if parent.title not in results:
                 results[parent.title] = {
-                    "url": parent.absolute_url().replace("/api/", "/"),
+                    "url": self.plone2volto(parent.absolute_url()),
                     "children": [],
                 }
 
             results[parent.title]["children"].append(
                 {
                     "title": servizio.title,
-                    "url": servizio.absolute_url().replace("/api/", "/"),
+                    "url": self.plone2volto(servizio.absolute_url()),
                     "data": {
                         "title": information_dict.get("title") and FLAG or "",
                         "description": information_dict.get("description")
