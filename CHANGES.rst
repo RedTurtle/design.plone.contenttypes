@@ -4,7 +4,8 @@ Changelog
 6.0.8 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix problem with Persona summary and deleted incarico object.
+  [lucabel]
 
 
 6.0.7 (2023-05-04)

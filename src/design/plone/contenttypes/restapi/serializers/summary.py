@@ -221,7 +221,12 @@ class DefaultJSONSummarySerializer(BaseSerializer):
         except AttributeError:
             obj = self.context
 
-        return ", ".join([x.to_object.title for x in obj.incarichi_persona])
+        incarichi = []
+        for incarico in obj.incarichi_persona:
+            if not incarico.to_object:
+                continue
+            incarichi.append(incarico.to_object.title)
+        return ", ".join(incarichi)
 
 
 @implementer(ISerializeToJsonSummary)
