@@ -1,12 +1,11 @@
 Changelog
 =========
 
-
 6.0.7 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Fix check_servizi view and made optional canale_fisico in Servizio
+  [lucabel]
 
 6.0.6 (2023-04-28)
 ------------------
@@ -28,9 +27,6 @@ Changelog
   [cekk]
 - Fix broken tests.
   [cekk]
-- Fix check_servizi view and made optional canale_fisico in Servizio
-  [lucabel]
-
 
 6.0.4 (2023-04-19)
 ------------------
