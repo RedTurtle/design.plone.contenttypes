@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.0.8 (unreleased)
+6.0.8 (2023-05-04)
 ------------------
 
 - Fix problem with Persona summary and deleted incarico object.
