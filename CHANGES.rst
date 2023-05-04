@@ -1,15 +1,46 @@
 Changelog
 =========
 
-
-6.0.5 (unreleased)
+6.0.9 (unreleased)
 ------------------
 
+- Nothing changed yet.
+
+
+6.0.8 (2023-05-04)
+------------------
+
+- Fix problem with Persona summary and deleted incarico object.
+  [lucabel]
+
+
+6.0.7 (2023-05-04)
+------------------
+
+- Fix check_servizi view and made optional canale_fisico in Servizio
+  [lucabel]
+
+
+6.0.6 (2023-04-28)
+------------------
+
+- Added images serialization to the summary serializer of the UO content type;
+  If both the image and preview image are present, the 'image_field' attribute
+  is forced to contain 'preview_image'.
+  [lucabel]
+
+6.0.5 (2023-04-28)
+------------------
+
+- Remove address, city, zip_code, nome_sede, title,
+  quartiere, circoscrizione, street from UO summary
+  serializer and add sede in thery place in the
+  UO summary serializer
+  [lucabel]
 - Re-add FileFieldViewModeSerializer accidentally deleted.
   [cekk]
 - Fix broken tests.
   [cekk]
-
 
 6.0.4 (2023-04-19)
 ------------------
