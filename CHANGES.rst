@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.0.7 (unreleased)
+6.0.7 (2023-05-04)
 ------------------
 
 - Fix check_servizi view and made optional canale_fisico in Servizio
