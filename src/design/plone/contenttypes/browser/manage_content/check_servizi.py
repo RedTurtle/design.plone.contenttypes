@@ -74,7 +74,9 @@ class CheckServizi(BrowserView):
 
     def plone2volto(self, url):
         portal_url = api.portal.get().absolute_url()
-        frontend_domain = api.portal.get_registry_record("volto.frontend_domain", default="")
+        frontend_domain = api.portal.get_registry_record(
+            "volto.frontend_domain", default=""
+        )
         if frontend_domain and url.startswith(portal_url):
             return url.replace(portal_url, frontend_domain, 1)
         return url
