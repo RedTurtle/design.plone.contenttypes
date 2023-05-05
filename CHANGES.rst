@@ -4,8 +4,8 @@ Changelog
 6.0.9 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Fix url in check_servizi
+  [mamico]
 
 6.0.8 (2023-05-04)
 ------------------
