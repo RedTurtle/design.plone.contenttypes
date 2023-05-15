@@ -5,7 +5,8 @@ Changelog
 6.0.7 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Added time field in calendar block.
+[sabrina-bongiovanni]
 
 
 6.0.6 (2023-04-28)
