@@ -4,8 +4,8 @@ Changelog
 6.0.9 (unreleased)
 ------------------
 
-- Added time field in calendar block.
-[sabrina-bongiovanni]
+- Added time to start date in service of ScadenziarioDay.
+  [sabrina-bongiovanni]
 - Fix url in check_servizi
   [mamico]
 
