@@ -1,13 +1,26 @@
 Changelog
 =========
 
-
-6.0.7 (unreleased)
+6.0.9 (unreleased)
 ------------------
 
 - Added time field in calendar block.
 [sabrina-bongiovanni]
+- Fix url in check_servizi
+  [mamico]
 
+6.0.8 (2023-05-04)
+------------------
+
+- Fix problem with Persona summary and deleted incarico object.
+  [lucabel]
+
+
+6.0.7 (2023-05-04)
+------------------
+
+- Fix check_servizi view and made optional canale_fisico in Servizio
+  [lucabel]
 
 6.0.6 (2023-04-28)
 ------------------
@@ -29,7 +42,6 @@ Changelog
   [cekk]
 - Fix broken tests.
   [cekk]
-
 
 6.0.4 (2023-04-19)
 ------------------

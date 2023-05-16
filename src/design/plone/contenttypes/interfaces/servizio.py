@@ -6,8 +6,8 @@ from design.plone.contenttypes import _
 from design.plone.contenttypes.interfaces import IDesignPloneContentType
 from plone.app.dexterity import textindexer
 from plone.app.z3cform.widget import DateFieldWidget
-from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.app.z3cform.widget import LinkFieldWidget
+from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
 from plone.namedfile import field
 from plone.supermodel import model
@@ -177,7 +177,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
             "canale_fisico_help",
             default="Unità organizzative per la fruizione del servizio",
         ),
-        required=True,
+        required=False,
         default=[],
         value_type=RelationChoice(
             title=_("Canale fisico"),

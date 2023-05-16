@@ -37,6 +37,20 @@ class CheckServizi(BrowserView):
     def is_anonymous(self):
         return api.user.is_anonymous()
 
+    def get_canale_accesso_info(self, servizio):
+        canale_fisico = getattr(servizio, "canale_fisico", None)
+        canale_digitale = text_in_block(getattr(servizio, "canale_digitale", None))
+        canale_digitale_link = getattr(servizio, "canale_digitale_link", None)
+        if canale_digitale and canale_digitale_link and canale_fisico:
+            return "D e F"
+        elif canale_digitale and canale_digitale_link:
+            return "D"
+        elif canale_fisico:
+            return "F"
+        # elif canale_digitale or canale_digitale_link:
+        #     return "&frac12;D"
+        return None
+
     def information_dict(self, servizio):
         return {
             "title": getattr(servizio, "title"),
@@ -50,13 +64,22 @@ class CheckServizi(BrowserView):
             "cosa_si_ottiene": text_in_block(
                 getattr(servizio, "cosa_si_ottiene", None)
             ),
-            "canale_fisico": getattr(servizio, "canale_fisico", None),
+            "canale_accesso": self.get_canale_accesso_info(servizio),
             "cosa_serve": text_in_block(getattr(servizio, "cosa_serve", None)),
             "tempi_e_scadenze": text_in_block(
                 getattr(servizio, "tempi_e_scadenze", None)
             ),
             "ufficio_responsabile": getattr(servizio, "ufficio_responsabile", None),
         }
+
+    def plone2volto(self, url):
+        portal_url = api.portal.get().absolute_url()
+        frontend_domain = api.portal.get_registry_record(
+            "volto.frontend_domain", default=""
+        )
+        if frontend_domain and url.startswith(portal_url):
+            return url.replace(portal_url, frontend_domain, 1)
+        return url
 
     def get_servizi(self):
         if self.is_anonymous():
@@ -83,14 +106,14 @@ class CheckServizi(BrowserView):
             parent = servizio.aq_inner.aq_parent
             if parent.title not in results:
                 results[parent.title] = {
-                    "url": parent.absolute_url().replace("/api/", "/"),
+                    "url": self.plone2volto(parent.absolute_url()),
                     "children": [],
                 }
 
             results[parent.title]["children"].append(
                 {
                     "title": servizio.title,
-                    "url": servizio.absolute_url().replace("/api/", "/"),
+                    "url": self.plone2volto(servizio.absolute_url()),
                     "data": {
                         "title": information_dict.get("title") and FLAG or "",
                         "description": information_dict.get("description")
@@ -113,9 +136,7 @@ class CheckServizi(BrowserView):
                         "cosa_si_ottiene": information_dict.get("cosa_si_ottiene")
                         and FLAG
                         or "",
-                        "canale_fisico": information_dict.get("canale_fisico")
-                        and FLAG
-                        or "",
+                        "canale_accesso": information_dict.get("canale_accesso") or "",
                         "cosa_serve": information_dict.get("cosa_serve") and FLAG or "",
                         "tempi_e_scadenze": information_dict.get("tempi_e_scadenze")
                         and FLAG
@@ -128,8 +149,8 @@ class CheckServizi(BrowserView):
                     },
                 }
             )
+
         results = dict(sorted(results.items()))
         for key in results:
             results[key]["children"].sort(key=lambda x: x["title"])
-
         return results

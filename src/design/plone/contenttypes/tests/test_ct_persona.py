@@ -11,9 +11,11 @@ from plone.app.testing import setRoles
 from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import SITE_OWNER_PASSWORD
 from plone.app.testing import TEST_USER_ID
+from plone.restapi.interfaces import ISerializeToJsonSummary
 from plone.restapi.testing import RelativeSession
 from transaction import commit
 from z3c.relationfield import RelationValue
+from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.intid.interfaces import IIntIds
 
@@ -64,6 +66,7 @@ class TestPersonaEndpoint(unittest.TestCase):
     def setUp(self):
         self.app = self.layer["app"]
         self.portal = self.layer["portal"]
+        self.request = self.layer["request"]
         self.portal_url = self.portal.absolute_url()
         setRoles(self.portal, TEST_USER_ID, ["Manager"])
 
@@ -145,3 +148,30 @@ class TestPersonaEndpoint(unittest.TestCase):
         self.assertEqual(len(res["incarichi_persona"]), 1)
         self.assertEqual(res["incarichi_persona"][0]["title"], incarico.title)
         self.assertIn("atto_di_nomina", list(res["incarichi_persona"][0].keys()))
+
+    def test_delete_incarico_and_call_persona(self):
+        """
+        This test is to check that if an incarico is deleted,
+        the persona endpoint respond correctly. Right now it breaks because of
+        the relation to the deleted incarico in persona ct.
+        """
+        incarico = api.content.create(
+            container=self.persona.incarichi, type="Incarico", title="Sindaco"
+        )
+        commit()
+        intids = getUtility(IIntIds)
+        self.persona.incarichi_persona = [RelationValue(intids.getId(incarico))]
+        commit()
+
+        summary = getMultiAdapter(
+            (self.persona, self.request), ISerializeToJsonSummary
+        )()
+        self.assertTrue(len(summary["incarichi"]) > 0)
+
+        self.persona.incarichi._delObject(incarico.getId())
+        commit()
+        summary = getMultiAdapter(
+            (self.persona, self.request), ISerializeToJsonSummary
+        )()
+        # non ho incarichi, ma soprattutto non ho errori
+        self.assertTrue(len(summary["incarichi"]) == 0)
