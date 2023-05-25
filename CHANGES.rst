@@ -28,6 +28,7 @@ Changelog
 - Fix check_servizi view and made optional canale_fisico in Servizio
   [lucabel]
 
+
 6.0.6 (2023-04-28)
 ------------------
 
