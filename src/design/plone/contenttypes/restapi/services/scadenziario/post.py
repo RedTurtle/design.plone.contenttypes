@@ -249,7 +249,7 @@ class ScadenziarioDayPost(BaseService):
                             "id": brain.id,
                             "title": brain.title,
                             "text": brain.description,
-                            "start": brain.start.strftime("%Y/%m/%d %H:%M:%S"),
+                            "start": brain.start.isoformat(),
                             "type": self.context.translate("Event"),
                             "category": brain.subjects,
                         }
@@ -261,7 +261,7 @@ class ScadenziarioDayPost(BaseService):
                             "id": brain.getId,
                             "title": brain.Title,
                             "text": brain.Description,
-                            "start": brain.start.strftime("%Y/%m/%d %H:%M:%S"),
+                            "start": brain.start.isoformat(),
                             "type": self.context.translate(brain.portal_type),
                             "category": brain.subject,
                         }
