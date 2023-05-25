@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.0.9 (unreleased)
+6.0.9 (2023-05-25)
 ------------------
 
 - Added time to start date in service of ScadenziarioDay.
