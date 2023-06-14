@@ -2,7 +2,6 @@
 from DateTime import DateTime
 from pkg_resources import get_distribution
 from pkg_resources import parse_version
-from plone import api
 from plone.app.event.base import _get_compare_attr
 from plone.app.event.base import _obj_or_acc
 from plone.app.event.base import RET_MODE_BRAINS
