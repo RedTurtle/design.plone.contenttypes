@@ -4,7 +4,8 @@ Changelog
 6.0.10 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Added image_scales field in service of ScadenziarioDay
+  [eikichi18]
 
 
 6.0.9 (2023-05-25)

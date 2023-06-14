@@ -2,12 +2,14 @@
 from DateTime import DateTime
 from pkg_resources import get_distribution
 from pkg_resources import parse_version
+from plone import api
 from plone.app.event.base import _get_compare_attr
 from plone.app.event.base import _obj_or_acc
 from plone.app.event.base import RET_MODE_BRAINS
 from plone.app.event.dx.behaviors import EventAccessor
 from plone.app.event.recurrence import EventOccurrenceAccessor
 from plone.app.querystring import queryparser
+from plone.base.interfaces import IImageScalesAdapter
 from plone.event.interfaces import IEvent
 from plone.event.interfaces import IEventRecurrence
 from plone.event.interfaces import IRecurrenceSupport
@@ -16,6 +18,7 @@ from plone.restapi.services import Service
 from Products.CMFPlone.interfaces import IPloneSiteRoot
 from Products.CMFPlone.utils import safe_hasattr
 from zope.component import getMultiAdapter
+from zope.component import queryMultiAdapter
 
 
 zcatalog_version = get_distribution("Products.ZCatalog").version
@@ -241,8 +244,17 @@ class ScadenziarioDayPost(BaseService):
                 if isinstance(brain, (EventAccessor, EventOccurrenceAccessor)):
                     if brain.context.portal_type == "Occurrence":
                         url = brain.url[:-10]
+                        scales = queryMultiAdapter(
+                            (brain.context.aq_parent, self.request), IImageScalesAdapter
+                        )
+                        image_scales = scales()
                     else:
                         url = brain.url
+                        scales = queryMultiAdapter(
+                            (brain.context, self.request), IImageScalesAdapter
+                        )
+                        image_scales = scales()
+
                     results_to_be_returned[key].append(
                         {
                             "@id": url,
@@ -252,8 +264,10 @@ class ScadenziarioDayPost(BaseService):
                             "start": brain.start.isoformat(),
                             "type": self.context.translate("Event"),
                             "category": brain.subjects,
+                            "image_scales": image_scales,
                         }
                     )
+
                 else:
                     results_to_be_returned[key].append(
                         {
@@ -266,6 +280,7 @@ class ScadenziarioDayPost(BaseService):
                             "category": brain.subject,
                         }
                     )
+
                 results_to_be_returned[key].sort(key=lambda x: x["title"])
         return {
             "@id": self.request.get("URL"),
