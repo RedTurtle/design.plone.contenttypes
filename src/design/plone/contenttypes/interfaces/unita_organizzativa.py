@@ -88,7 +88,7 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
             "persone_struttura_help",
             default="Seleziona la lista delle persone che compongono" " la struttura.",
         ),
-        required=True,
+        required=False,
     )
 
     sede = RelationList(
