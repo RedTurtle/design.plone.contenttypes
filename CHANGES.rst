@@ -6,6 +6,9 @@ Changelog
 
 - remove preview_caption
   [mamico]
+- removed required from persone_struttura field in uo
+  interface.
+  [eikichi18]
 
 
 6.0.9 (2023-05-25)
