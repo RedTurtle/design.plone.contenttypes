@@ -4,7 +4,7 @@ Changelog
 6.0.10 (unreleased)
 -------------------
 
-- remove image_caption
+- remove preview_caption
   [mamico]
 
 
