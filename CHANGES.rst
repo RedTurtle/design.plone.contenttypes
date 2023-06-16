@@ -4,7 +4,8 @@ Changelog
 6.0.10 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- remove image_caption
+  [mamico]
 
 
 6.0.9 (2023-05-25)
