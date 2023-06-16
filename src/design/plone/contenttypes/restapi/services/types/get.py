@@ -153,7 +153,9 @@ class TypesGet(BaseGet):
             if fieldset.get("id", "") == "testata":
                 fieldset["fields"] = moved + fieldset["fields"]
             if fieldset.get("id", "") == "default":
-                fieldset["fields"] = [x for x in fieldset["fields"] if x not in moved and x not in removed]
+                fieldset["fields"] = [
+                    x for x in fieldset["fields"] if x not in moved and x not in removed
+                ]
         return result
 
     def customize_persona_schema(self, result):
