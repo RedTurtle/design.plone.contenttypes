@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.0.10 (unreleased)
+6.0.10 (2023-06-19)
 -------------------
 
 - remove preview_caption
