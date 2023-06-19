@@ -4,7 +4,8 @@ Changelog
 6.0.11 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- summary serializer to make it more roboust
+  [mamico]
 
 
 6.0.10 (2023-06-19)
