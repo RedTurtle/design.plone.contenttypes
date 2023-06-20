@@ -1,10 +1,21 @@
 Changelog
 =========
 
-6.0.10 (unreleased)
+6.0.11 (unreleased)
 -------------------
 
 - Added image_scales field in service of ScadenziarioDay
+- summary serializer to make it more roboust
+  [mamico]
+
+
+6.0.10 (2023-06-19)
+-------------------
+
+- remove preview_caption
+  [mamico]
+- removed required from persone_struttura field in uo
+  interface.
   [eikichi18]
 
 

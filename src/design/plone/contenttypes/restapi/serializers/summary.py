@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import logging
 from collective.taxonomy import PATH_SEPARATOR
 from collective.taxonomy.interfaces import ITaxonomy
 from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
@@ -32,6 +33,7 @@ import re
 
 
 RESOLVEUID_RE = re.compile(".*?/resolve[Uu]id/([^/]*)/?(.*)$")
+logger = logging.getLogger(__name__)
 
 
 def get_taxonomy_information(field_name, context, res):
@@ -185,7 +187,17 @@ class DefaultJSONSummarySerializer(BaseSerializer):
                     if title.startswith(PATH_SEPARATOR):
                         title = title.replace(PATH_SEPARATOR, "", 1)
                     return title
-        return translate(ttool[self.context.portal_type].Title(), context=self.request)
+        if self.context.portal_type in ttool:
+            return translate(
+                ttool[self.context.portal_type].Title(), context=self.request
+            )
+        else:
+            logger.error(
+                "missing portal_type %s for %s",
+                self.context.portal_type,
+                self.context.absolute_url(),
+            )
+            return self.context.portal_type
 
     def expand_tassonomia_argomenti(self):
         try:
