@@ -4,6 +4,7 @@ Changelog
 6.0.11 (unreleased)
 -------------------
 
+- Added image_scales field in service of ScadenziarioDay
 - summary serializer to make it more roboust
   [mamico]
 
