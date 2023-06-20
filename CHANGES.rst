@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.0.11 (unreleased)
+6.0.11 (2023-06-20)
 -------------------
 
 - Added image_scales field in service of ScadenziarioDay
