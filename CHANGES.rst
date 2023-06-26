@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-5.1.8 (unreleased)
+5.1.8 (2023-06-26)
 ------------------
 
 - remove preview_caption backport #190
