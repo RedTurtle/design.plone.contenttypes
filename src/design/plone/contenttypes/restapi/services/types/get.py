@@ -139,12 +139,15 @@ FIELDSETS_ORDER = {
 @implementer(IPublishTraverse)
 class TypesGet(BaseGet):
     def customize_document_schema(self, result):
-        fields = ["image", "image_caption", "preview_image", "preview_caption"]
+        moved = ["image", "image_caption", "preview_image"]
+        removed = ["preview_caption"]
         for fieldset in result.get("fieldsets", []):
             if fieldset.get("id", "") == "testata":
-                fieldset["fields"] = fields + fieldset["fields"]
+                fieldset["fields"] = moved + fieldset["fields"]
             if fieldset.get("id", "") == "default":
-                fieldset["fields"] = [x for x in fieldset["fields"] if x not in fields]
+                fieldset["fields"] = [
+                    x for x in fieldset["fields"] if x not in moved and x not in removed
+                ]
         return result
 
     def customize_persona_schema(self, result):

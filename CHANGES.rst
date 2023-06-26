@@ -5,7 +5,8 @@ Changelog
 5.1.8 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- remove preview_caption backport #190
+  [mamico]
 
 
 5.1.7 (2023-04-04)
