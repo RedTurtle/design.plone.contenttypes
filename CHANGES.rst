@@ -6,6 +6,7 @@ Changelog
 
 - Add IDesignPloneContentType interface to News and Event to allow a correct
   SearchableText indexing
+  [lucabel]
 
 
 6.0.11 (2023-06-20)
