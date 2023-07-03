@@ -81,4 +81,12 @@
     <implements interface="design.plone.contenttypes.interfaces.IDesignPloneContentType" />
   </class>
 
+  <!-- provide interface to News-->
+  <class class="plone.volto.content.FolderishNewsItem">
+    <implements interface="design.plone.contenttypes.interfaces.IDesignPloneContentType" />
+  </class>
+  <class class="plone.volto.content.FolderishEvent">
+    <implements interface="design.plone.contenttypes.interfaces.IDesignPloneContentType" />
+  </class>
+
 </configure>
