@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from design.plone.contenttypes.controlpanels.settings import IDesignPloneSettings
+from design.plone.contenttypes.interfaces import IDesignPloneContentType
 from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
 )
@@ -63,6 +64,11 @@ class TestNews(unittest.TestCase):
             sorted(("Image", "File", "Link", "Document")),
             sorted(portal_types["News Item"].allowed_content_types),
         )
+
+    def test_news_provide_design_pct_marker_interface(self):
+        setRoles(self.portal, TEST_USER_ID, ["Manager"])
+        news = api.content.create(container=self.portal, type="News Item", title="News")
+        self.assertTrue(IDesignPloneContentType.providedBy(news))
 
 
 class TestNewsApi(unittest.TestCase):
