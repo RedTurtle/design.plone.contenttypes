@@ -1,7 +1,13 @@
 Changelog
 =========
 
-6.0.12 (unreleased)
+6.0.13 (unreleased)
+-------------------
+
+- Nothing changed yet.
+
+
+6.0.12 (2023-07-03)
 -------------------
 
 - Add IDesignPloneContentType interface to News and Event to allow a correct

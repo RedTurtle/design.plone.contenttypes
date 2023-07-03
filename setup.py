@@ -16,7 +16,7 @@ long_description = "\n\n".join(
 
 setup(
     name="design.plone.contenttypes",
-    version="6.0.12.dev0",
+    version="6.0.13.dev0",
     description="DesignItalia contenty types",
     long_description=long_description,
     long_description_content_type="text/markdown",
