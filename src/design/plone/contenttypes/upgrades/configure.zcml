@@ -754,5 +754,15 @@
         handler=".upgrades.to_7010"
         />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="7010"
+      destination="7011"
+      >
+    <genericsetup:upgradeStep
+        title="Reindex SearchableText for Event and NewsItem"
+        handler=".upgrades.to_7011"
+        />
+  </genericsetup:upgradeSteps>
 
 </configure>

@@ -1485,3 +1485,19 @@ def to_7010(context):
     logger.info(
         f"{colors.GREEN}ISiteSyndicationSettings interface fixed! {colors.ENDC}"
     )
+
+
+def to_7011(context):
+    logger.info("Reindex Event and News to fix SearchableText indexing issue")
+
+    brains = api.content.find(portal_type=["Event", "News Item"])
+    tot = len(brains)
+    logger.info("Found {} documents.".format(tot))
+    i = 0
+    for brain in brains:
+        i += 1
+        if i % 100 == 0:
+            logger.info("Progress: {}/{}".format(i, tot))
+        doc = brain.getObject()
+        doc.reindexObject(idxs=["SearchableText"])
+    logger.info("Ends of reindex")
