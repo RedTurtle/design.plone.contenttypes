@@ -1,3 +1,4 @@
+from DateTime import DateTime
 from plone import api
 from plone.restapi.behaviors import IBlocks
 from plone.restapi.indexers import SearchableText_blocks
@@ -85,7 +86,16 @@ class CheckServizi(BrowserView):
         if self.is_anonymous():
             return []
         pc = api.portal.get_tool("portal_catalog")
-        brains = pc(portal_type="Servizio")
+
+        # show_inactive ha sempre avuto una gestione... particolare! aggiungo ai
+        # kw effectiveRange = DateTime() che è quello che fa Products.CMFPlone
+        # nel CatalogTool.py
+        query = {
+            "portal_type": "Servizio",
+            "review_state": "published",
+            # "show_inactive": False,
+        }
+        brains = pc(query, **{"effectiveRange": DateTime()})
         results = {}
         for brain in brains:
             servizio = brain.getObject()

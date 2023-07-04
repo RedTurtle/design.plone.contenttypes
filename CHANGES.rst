@@ -1,6 +1,12 @@
 Changelog
 =========
 
+6.0.13 (2023-07-04)
+-------------------
+
+- Update check_servizi to skip private and expired services
+  [lucabel]
+
 6.0.12 (2023-07-03)
 -------------------
 

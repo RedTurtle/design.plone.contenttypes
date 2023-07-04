@@ -96,6 +96,10 @@
             Nella tabella sotto si troverà scritto "D" nel caso nel servizio siano compilati
             i due campi del canale digitale, "F" nel caso sia compilato il canale fisico e
             "D e F" nel caso siano compilati tutti i campi relativi al canale di accesso.</p>
+            <p class="lead"
+             tal:condition="servizi">Si fa notare, infine, che la seguente lista di servizi
+             presenta tutti quei servizi in stato pubblicato e <strong>non scaduti</strong> secondo
+             le logiche di pubblicazione del CMS Plone, ovvero con una data di scadenza ancora da raggiugnere.</p>
 
         <div class="forms">
           <div tal:condition="view/cds">
