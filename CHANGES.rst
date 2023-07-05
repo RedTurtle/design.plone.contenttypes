@@ -4,7 +4,8 @@ Changelog
 6.0.14 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix bug with "tempi e scadenze" error message
+  [lucabel]
 
 
 6.0.13 (2023-07-04)
