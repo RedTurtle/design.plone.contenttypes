@@ -14,7 +14,6 @@ from plone.restapi.deserializer.dxfields import (
 )
 from plone.restapi.interfaces import IBlockFieldDeserializationTransformer
 from plone.restapi.interfaces import IFieldDeserializer
-from zExceptions import BadRequest
 from zope.component import adapter
 from zope.component import getMultiAdapter
 from zope.component import subscribers
@@ -106,14 +105,7 @@ class TimelineTempiEScadenzeFieldDeserializer(CollectionFieldDeserializer):
         timeline = []
         for item in value:
             if not item.get("milestone", None):
-                raise BadRequest(
-                    {
-                        "error": "ValidationError",
-                        "message": "Il campo {} è obbligatorio".format(
-                            "Titolo della fase"
-                        ),
-                    }
-                )
+                raise ValueError("Il campo 'Titolo della fase' è obbligatorio")
 
             entry = {
                 "milestone": item.get("milestone", ""),
