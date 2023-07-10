@@ -3,15 +3,17 @@ from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING,
     DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
 )
+from design.plone.contenttypes.interfaces import IDesignPloneContentType
+from design.plone.contenttypes.schema_overrides import SchemaTweaks
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import SITE_OWNER_PASSWORD
 from plone.app.testing import TEST_USER_ID
-from plone.restapi.testing import RelativeSession
-from design.plone.contenttypes.schema_overrides import SchemaTweaks
-from zope.component import provideAdapter
 from plone.autoform.interfaces import IFormFieldProvider
+from plone.restapi.testing import RelativeSession
+from zope.component import provideAdapter
+
 import transaction
 import unittest
 
@@ -60,6 +62,11 @@ class TestEvent(unittest.TestCase):
             sorted(("Image", "File", "Link", "Event", "Document")),
             sorted(portal_types["Event"].allowed_content_types),
         )
+
+    def test_event_provide_design_pct_marker_interface(self):
+        setRoles(self.portal, TEST_USER_ID, ["Manager"])
+        event = api.content.create(container=self.portal, type="Event", title="Evento")
+        self.assertTrue(IDesignPloneContentType.providedBy(event))
 
 
 class TestEventApi(unittest.TestCase):
