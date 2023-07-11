@@ -5,7 +5,8 @@ Changelog
 5.1.9 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add IDesignPloneContentType interface to News and Event to allow a correct SearchableText indexing.
+  [cekk]
 
 
 5.1.8 (2023-06-26)
