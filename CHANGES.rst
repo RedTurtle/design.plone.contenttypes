@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-5.1.9 (unreleased)
+5.1.9 (2023-07-11)
 ------------------
 
 - Add IDesignPloneContentType interface to News and Event to allow a correct SearchableText indexing.
