@@ -34,6 +34,5 @@
       class=".check_servizi.DownloadCheckServizi"
       permission="zope2.Public"
       />
-    
 
 </configure>
