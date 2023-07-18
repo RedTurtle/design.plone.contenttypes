@@ -5,6 +5,7 @@ Changelog
 -------------------
 
 - Update check_servizi view to add service download
+- Add contact information to check_servizi view
 - Fix bug with "tempi e scadenze" error message
   [lucabel]
 
