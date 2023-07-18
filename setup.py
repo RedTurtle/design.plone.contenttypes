@@ -65,6 +65,7 @@ setup(
         "redturtle.bandi",
         "z3c.unconfigure",
         "eea.api.taxonomy",
+        "openpyxl",
     ],
     extras_require={
         "test": [

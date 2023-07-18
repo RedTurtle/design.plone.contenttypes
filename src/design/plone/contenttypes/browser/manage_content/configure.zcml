@@ -28,4 +28,12 @@
       permission="zope2.Public"
       />
 
+  <browser:page
+      name="download_check_servizi"
+      for="*"
+      class=".check_servizi.DownloadCheckServizi"
+      permission="zope2.Public"
+      />
+    
+
 </configure>

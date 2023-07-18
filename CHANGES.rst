@@ -4,6 +4,7 @@ Changelog
 6.0.14 (unreleased)
 -------------------
 
+- Update check_servizi view to add service download
 - Fix bug with "tempi e scadenze" error message
   [lucabel]
 

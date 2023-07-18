@@ -1,9 +1,16 @@
 from DateTime import DateTime
+from openpyxl import Workbook
+from openpyxl.styles import Alignment
+from openpyxl.styles import Font
+from openpyxl.styles import PatternFill
+from openpyxl.utils import get_column_letter
 from plone import api
 from plone.restapi.behaviors import IBlocks
 from plone.restapi.indexers import SearchableText_blocks
 from Products.Five import BrowserView
 from zope.interface import implementer
+
+import io
 
 
 FLAG = '<i class="fa-solid fa-check"></i>'
@@ -71,6 +78,7 @@ class CheckServizi(BrowserView):
                 getattr(servizio, "tempi_e_scadenze", None)
             ),
             "ufficio_responsabile": getattr(servizio, "ufficio_responsabile", None),
+            "contact_info": getattr(servizio, "contact_info", None),
         }
 
     def plone2volto(self, url):
@@ -156,6 +164,9 @@ class CheckServizi(BrowserView):
                         )
                         and FLAG
                         or "",
+                        "contact_info": information_dict.get("contact_info")
+                        and FLAG
+                        or "",
                     },
                 }
             )
@@ -164,3 +175,92 @@ class CheckServizi(BrowserView):
         for key in results:
             results[key]["children"].sort(key=lambda x: x["title"])
         return results
+
+
+class DownloadCheckServizi(CheckServizi):
+    CT = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+
+    HEADER = [
+        "Titolo",
+        "Descrizione",
+        "Argomenti",
+        "A chi è rivolto",
+        "Come fare per",
+        "Cosa si ottiene",
+        "Canale di accesso",
+        "Cosa serve",
+        "Tempi e scadenze",
+        "Unità org. responsabile",
+        "Contatti",
+    ]
+    EMPTY_ROW = [""] * 11
+
+    def __call__(self):
+        servizi = self.get_servizi()
+        data = []
+        for category in servizi:
+            data.append([category] + [""] * 10 + [servizi[category]["url"]])
+            data.append(self.HEADER)
+            for servizio in servizi[category]["children"]:
+                data.append(
+                    [
+                        servizio["title"],
+                        servizio["data"]["description"] and "V" or "",
+                        servizio["data"]["tassonomia_argomenti"] and "V" or "",
+                        servizio["data"]["a_chi_si_rivolge"] and "V" or "",
+                        servizio["data"]["come_si_fa"] and "V" or "",
+                        servizio["data"]["cosa_si_ottiene"] and "V" or "",
+                        servizio["data"]["canale_accesso"] and "V" or "",
+                        servizio["data"]["cosa_serve"] and "V" or "",
+                        servizio["data"]["tempi_e_scadenze"] and "V" or "",
+                        servizio["data"]["ufficio_responsabile"] and "V" or "",
+                        servizio["data"]["contact_info"] and "V" or "",
+                        servizio["url"],
+                    ]
+                )
+            data.append(self.EMPTY_ROW)
+            data.append(self.EMPTY_ROW)
+
+        workbook = Workbook()
+        sheet = workbook.active
+        sheet.title = "Servizi"
+        link_font = Font(underline="single", color="0563C1")
+        link_fill = PatternFill(fill_type="solid", fgColor="DDDDDD")
+        alignment = Alignment(horizontal="center", vertical="top")
+
+        for i, row in enumerate(data, start=1):
+            have_url = row[0] != "Titolo" and bool(row[0])
+            if have_url:
+                url = row.pop()
+
+            sheet.append(row)
+
+            if row[0] == "Titolo":
+                for index, cell in enumerate(sheet[i]):
+                    cell.fill = link_fill
+                    if index != 0:
+                        column_letter = get_column_letter(cell.column)
+                        sheet.column_dimensions[column_letter].width = 20
+
+            if have_url:
+                for index, cell in enumerate(sheet[i]):
+                    if index == 0:
+                        cell = sheet.cell(row=i, column=1)
+                        cell.font = link_font
+                        cell.alignment = cell.alignment.copy(wrapText=True)
+                        cell.hyperlink = url
+                        column_letter = get_column_letter(cell.column)
+                        sheet.column_dimensions[column_letter].width = 40
+                    else:
+                        cell.alignment = alignment
+
+        bytes_io = io.BytesIO()
+        workbook.save(bytes_io)
+        data = bytes_io.getvalue()
+        self.request.response.setHeader("Content-Length", len(data))
+        self.request.RESPONSE.setHeader("Content-Type", self.CT)
+        self.request.response.setHeader(
+            "Content-Disposition",
+            "attachment; filename=check_servizi.xlsx",
+        )
+        return data

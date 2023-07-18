@@ -50,16 +50,22 @@
           margin-bottom: 1em;
           text-align:center;
         }
+        .forms button,
         .forms input{
             border: none; /* Remove borders */
             color: white; /* Add a text color */
             padding: 14px 28px; /* Add some padding */
             cursor: pointer; /* Add a pointer cursor on mouse-over */
             background-color: #2196F3;
-            border-radius: 12px;
+            border-radius: 4px;
         }
         .forms input:hover{
             background: #0b7dda;
+        }
+        .download_button{
+          margin-top: 1em;
+          margin-bottom: 1em;
+          text-align:right;
         }
       </style>
     </metal:block>
@@ -113,7 +119,16 @@
               <input type="Submit" value="Cerca con condizioni di servizio" />
             </form>
           </div>
+          <div class="download_button">
+              <form action="${context/absolute_url}/@@download_check_servizi">
+                <!-- <input type="Submit" value="Download" /> -->
+                <button type="submit" class="download-button">
+                  <i class="fas fa-download"></i> Download servizi
+                </button>
+              </form>
+          </div>
         </div>
+
 
 
           <ul>
@@ -149,8 +164,9 @@
                       <th><span>Cosa serve</span></th>
                       <th><span>Tempi e scadenze</span></th>
                       <th><span>Unit&agrave; org. responsabile</span></th>
-                      <tr>
-                      </tr></tr></thead>
+                      <th><span>Contatti</span></th>
+                      </tr>
+                  </thead>
                   <tbody>
                     <tr tal:repeat="servizio python:servizi[categoria]['children']">
                       <td><a href="${servizio/url}"
@@ -166,6 +182,7 @@
                       <td><span tal:content="structure servizio/data/cosa_serve"></span></td>
                       <td><span tal:content="structure servizio/data/tempi_e_scadenze"></span></td>
                       <td><span tal:content="structure servizio/data/ufficio_responsabile"></span></td>
+                      <td><span tal:content="structure servizio/data/contact_info"></span></td>
                     </tr>
                   </tbody>
                 </table>
