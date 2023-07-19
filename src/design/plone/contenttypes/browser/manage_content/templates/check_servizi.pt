@@ -122,6 +122,7 @@
           <div class="download_button">
               <form action="${context/absolute_url}/@@download_check_servizi">
                 <!-- <input type="Submit" value="Download" /> -->
+                <input tal:condition="view/cds" type="hidden" name="condizioni_di_servizio" value="True" />
                 <button type="submit" class="download-button">
                   <i class="fas fa-download"></i> Download servizi
                 </button>

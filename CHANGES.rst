@@ -4,7 +4,8 @@ Changelog
 6.0.15 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- fix check_servizi handling "condizioni di servizio".
+  [lucabel]
 
 
 6.0.14 (2023-07-19)

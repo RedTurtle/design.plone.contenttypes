@@ -180,46 +180,56 @@ class CheckServizi(BrowserView):
 class DownloadCheckServizi(CheckServizi):
     CT = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
 
-    HEADER = [
-        "Titolo",
-        "Descrizione",
-        "Argomenti",
-        "A chi è rivolto",
-        "Come fare per",
-        "Cosa si ottiene",
-        "Canale di accesso",
-        "Cosa serve",
-        "Tempi e scadenze",
-        "Unità org. responsabile",
-        "Contatti",
-    ]
-    EMPTY_ROW = [""] * 11
-
     def __call__(self):
+        HEADER = [
+            "Titolo",
+            "Descrizione",
+            "Argomenti",
+            "A chi è rivolto",
+            "Come fare per",
+            "Cosa si ottiene",
+            "Canale di accesso",
+            "Cosa serve",
+            "Tempi e scadenze",
+            "Unità org. responsabile",
+            "Contatti",
+        ]
+
+        cds = self.request.form.get("condizioni_di_servizio", None)
+        if cds:
+            EMPTY_ROW = [""] * 12
+            HEADER.insert(2, "Condizioni di servizio")
+        else:
+            EMPTY_ROW = [""] * 11
+
         servizi = self.get_servizi()
         data = []
         for category in servizi:
             data.append([category] + [""] * 10 + [servizi[category]["url"]])
-            data.append(self.HEADER)
+            data.append(HEADER)
             for servizio in servizi[category]["children"]:
-                data.append(
-                    [
-                        servizio["title"],
-                        servizio["data"]["description"] and "V" or "",
-                        servizio["data"]["tassonomia_argomenti"] and "V" or "",
-                        servizio["data"]["a_chi_si_rivolge"] and "V" or "",
-                        servizio["data"]["come_si_fa"] and "V" or "",
-                        servizio["data"]["cosa_si_ottiene"] and "V" or "",
-                        servizio["data"]["canale_accesso"] and "V" or "",
-                        servizio["data"]["cosa_serve"] and "V" or "",
-                        servizio["data"]["tempi_e_scadenze"] and "V" or "",
-                        servizio["data"]["ufficio_responsabile"] and "V" or "",
-                        servizio["data"]["contact_info"] and "V" or "",
-                        servizio["url"],
-                    ]
-                )
-            data.append(self.EMPTY_ROW)
-            data.append(self.EMPTY_ROW)
+                dati_servizio = [
+                    servizio["title"],
+                    servizio["data"]["description"] and "V" or "",
+                    servizio["data"]["tassonomia_argomenti"] and "V" or "",
+                    servizio["data"]["a_chi_si_rivolge"] and "V" or "",
+                    servizio["data"]["come_si_fa"] and "V" or "",
+                    servizio["data"]["cosa_si_ottiene"] and "V" or "",
+                    servizio["data"]["canale_accesso"] and "V" or "",
+                    servizio["data"]["cosa_serve"] and "V" or "",
+                    servizio["data"]["tempi_e_scadenze"] and "V" or "",
+                    servizio["data"]["ufficio_responsabile"] and "V" or "",
+                    servizio["data"]["contact_info"] and "V" or "",
+                    servizio["url"],
+                ]
+                if cds:
+                    condizioni_di_servizio = (
+                        servizio["data"]["condizioni_di_servizio"] and "V" or ""
+                    )
+                    dati_servizio.insert(2, condizioni_di_servizio)
+                data.append(dati_servizio)
+            data.append(EMPTY_ROW)
+            data.append(EMPTY_ROW)
 
         workbook = Workbook()
         sheet = workbook.active
