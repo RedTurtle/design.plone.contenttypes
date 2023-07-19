@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.0.14 (unreleased)
+6.0.14 (2023-07-19)
 -------------------
 
 - Update check_servizi view to add service download
