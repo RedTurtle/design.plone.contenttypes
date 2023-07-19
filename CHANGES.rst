@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.0.15 (unreleased)
+6.0.15 (2023-07-19)
 -------------------
 
 - fix check_servizi handling "condizioni di servizio".
