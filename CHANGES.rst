@@ -5,7 +5,8 @@ Changelog
 5.1.10 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Use newer template for newsitem_view.
+  [folix-01]
 
 
 5.1.9 (2023-07-11)
