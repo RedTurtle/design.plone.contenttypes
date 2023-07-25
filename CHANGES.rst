@@ -2,8 +2,8 @@ Changelog
 =========
 
 
-5.1.10 (unreleased)
--------------------
+5.1.10.dev0 (unreleased)
+------------------------
 
 - Use newer template for newsitem_view.
   [folix-01]
