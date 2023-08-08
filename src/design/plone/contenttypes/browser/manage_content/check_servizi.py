@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from DateTime import DateTime
 from openpyxl import Workbook
 from openpyxl.styles import Alignment
@@ -35,7 +36,9 @@ def text_in_block(blocks):
 
     if not blocks:
         return None
-    fakeObj = FakeObject(blocks.get("blocks", ""), blocks.get("blocks_layout", ""))
+    fakeObj = FakeObject(
+        blocks.get("blocks", ""), blocks.get("blocks_layout", "")
+    )
     return SearchableText_blocks(fakeObj)()
 
 
@@ -47,7 +50,9 @@ class CheckServizi(BrowserView):
 
     def get_canale_accesso_info(self, servizio):
         canale_fisico = getattr(servizio, "canale_fisico", None)
-        canale_digitale = text_in_block(getattr(servizio, "canale_digitale", None))
+        canale_digitale = text_in_block(
+            getattr(servizio, "canale_digitale", None)
+        )
         canale_digitale_link = getattr(servizio, "canale_digitale_link", None)
         if canale_digitale and canale_digitale_link and canale_fisico:
             return "D e F"
@@ -63,8 +68,12 @@ class CheckServizi(BrowserView):
         return {
             "title": getattr(servizio, "title"),
             "description": getattr(servizio, "description", None),
-            "condizioni_di_servizio": getattr(servizio, "condizioni_di_servizio", None),
-            "tassonomia_argomenti": getattr(servizio, "tassonomia_argomenti", None),
+            "condizioni_di_servizio": getattr(
+                servizio, "condizioni_di_servizio", None
+            ),
+            "tassonomia_argomenti": getattr(
+                servizio, "tassonomia_argomenti", None
+            ),
             "a_chi_si_rivolge": text_in_block(
                 getattr(servizio, "a_chi_si_rivolge", None)
             ),
@@ -77,7 +86,9 @@ class CheckServizi(BrowserView):
             "tempi_e_scadenze": text_in_block(
                 getattr(servizio, "tempi_e_scadenze", None)
             ),
-            "ufficio_responsabile": getattr(servizio, "ufficio_responsabile", None),
+            "ufficio_responsabile": getattr(
+                servizio, "ufficio_responsabile", None
+            ),
             "contact_info": getattr(servizio, "contact_info", None),
         }
 
@@ -147,16 +158,29 @@ class CheckServizi(BrowserView):
                         )
                         and FLAG
                         or "",
-                        "a_chi_si_rivolge": information_dict.get("a_chi_si_rivolge")
+                        "a_chi_si_rivolge": information_dict.get(
+                            "a_chi_si_rivolge"
+                        )
                         and FLAG
                         or "",
-                        "come_si_fa": information_dict.get("come_si_fa") and FLAG or "",
-                        "cosa_si_ottiene": information_dict.get("cosa_si_ottiene")
+                        "come_si_fa": information_dict.get("come_si_fa")
                         and FLAG
                         or "",
-                        "canale_accesso": information_dict.get("canale_accesso") or "",
-                        "cosa_serve": information_dict.get("cosa_serve") and FLAG or "",
-                        "tempi_e_scadenze": information_dict.get("tempi_e_scadenze")
+                        "cosa_si_ottiene": information_dict.get(
+                            "cosa_si_ottiene"
+                        )
+                        and FLAG
+                        or "",
+                        "canale_accesso": information_dict.get(
+                            "canale_accesso"
+                        )
+                        or "",
+                        "cosa_serve": information_dict.get("cosa_serve")
+                        and FLAG
+                        or "",
+                        "tempi_e_scadenze": information_dict.get(
+                            "tempi_e_scadenze"
+                        )
                         and FLAG
                         or "",
                         "ufficio_responsabile": information_dict.get(
@@ -224,7 +248,9 @@ class DownloadCheckServizi(CheckServizi):
                 ]
                 if cds:
                     condizioni_di_servizio = (
-                        servizio["data"]["condizioni_di_servizio"] and "V" or ""
+                        servizio["data"]["condizioni_di_servizio"]
+                        and "V"
+                        or ""
                     )
                     dati_servizio.insert(2, condizioni_di_servizio)
                 data.append(dati_servizio)

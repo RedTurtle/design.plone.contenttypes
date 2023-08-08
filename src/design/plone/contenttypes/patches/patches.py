@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from collective.taxonomy.vocabulary import Vocabulary
 
 
