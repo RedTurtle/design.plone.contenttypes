@@ -47,9 +47,7 @@ TYPE_TO_TAXONOMIES_MAPPING = {
 TAXONOMIES_MAPPING = {}
 for portal_type in TYPE_TO_TAXONOMIES_MAPPING:
     for TAXONOMY in TYPE_TO_TAXONOMIES_MAPPING[portal_type]:
-        TAXONOMIES_MAPPING[TAXONOMY] = TYPE_TO_TAXONOMIES_MAPPING[portal_type][
-            TAXONOMY
-        ]
+        TAXONOMIES_MAPPING[TAXONOMY] = TYPE_TO_TAXONOMIES_MAPPING[portal_type][TAXONOMY]
 
 
 def update_taxonomies(context):
@@ -72,7 +70,7 @@ def update_taxonomies(context):
                     obj_language
                 ]
                 old_value = getattr(aq_base(obj), taxonomy, None)
-                if type(old_value) == list:
+                if type(old_value) == list:  # noqa
                     # this is a sort of race condition.
                     # we already have created ct Documento for attonomina
                     # in case we are using atto di nomina, skip
@@ -117,9 +115,7 @@ def update_taxonomies_on_blocks(context):
             if blocks:
                 for block in blocks.values():
                     if block.get("@type", "") == "listing":
-                        for query in block.get("querystring", {}).get(
-                            "query", []
-                        ):
+                        for query in block.get("querystring", {}).get("query", []):
                             if query["i"] in [
                                 "tipologia_notizia",
                                 "tipologia_documento",
@@ -130,9 +126,7 @@ def update_taxonomies_on_blocks(context):
                                     old_value = query["v"]
                                     if (
                                         v
-                                        in TAXONOMIES_MAPPING[query["i"]][
-                                            item_language
-                                        ]
+                                        in TAXONOMIES_MAPPING[query["i"]][item_language]
                                     ):
                                         v = TAXONOMIES_MAPPING[query["i"]][
                                             item_language
