@@ -9,6 +9,14 @@ from plone.restapi.behaviors import IBlocks
 from plone.restapi.indexers import SearchableText_blocks
 from Products.Five import BrowserView
 from zope.interface import implementer
+from zope.intid.interfaces import IIntIds
+from zope.globalrequest import getRequest
+from zope.component import getUtility, getMultiAdapter
+from zope.intid.interfaces import IIntIds
+from zc.relation.interfaces import ICatalog
+from Acquisition import aq_inner
+from zope.security import checkPermission
+from plone.restapi.interfaces import ISerializeToJsonSummary
 
 import io
 
@@ -45,14 +53,37 @@ class CheckPersone(BrowserView):
     def is_anonymous(self):
         return api.user.is_anonymous()
 
+    def get_relations(self, obj, field):
+        catalog = getUtility(ICatalog)
+        intids = getUtility(IIntIds)
+        relations = catalog.findRelations(
+            dict(
+                to_id=intids.getId(obj),
+                from_attribute=field,
+            )
+        )
+        return relations, intids
 
+    def get_related_objects(self, obj, field):
+        """ """
+        items = []
+        relations, intids = self.get_relations(obj, field)
 
-    def information_dict(self, servizio):
+        for rel in relations:
+            obj = intids.queryObject(rel.from_id)
+            if obj is not None and checkPermission("zope2.View", obj):
+                summary = getMultiAdapter(
+                    (obj, getRequest()), ISerializeToJsonSummary
+                )()
+                items.append(summary)
+        return sorted(items, key=lambda k: k["title"])
+
+    def information_dict(self, persona):
         import pdb; pdb.set_trace()
         return {
-            "title": getattr(servizio, "title"),
-            "has_related_uo": getattr(servizio, "organizzazione_riferimento", None),
-            "organizzazione_riferimento": getattr(servizio, "organizzazione_riferimento", None),
+            "title": getattr(persona, "title"),
+            "has_related_uo": bool(self.get_relations(persona, "organizzazione_riferimento")[0]),
+            "organizzazione_riferimento": self.get_related_objects(persona, "organizzazione_riferimento"),
         }
 
     def plone2volto(self, url):
