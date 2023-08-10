@@ -33,23 +33,23 @@ class IPersona(model.Schema, IDesignPloneContentType):
             "La dimensione suggerita è 180x100 px.",
         ),
     )
-    # organizzazione_riferimento = RelationList(
-    #     title=_(
-    #         "organizzazione_riferimento_label",
-    #         default="Organizzazione di riferimento",
-    #     ),
-    #     description=_(
-    #         "organizzazione_riferimento_help",
-    #         default="Seleziona una lista di organizzazioni a cui la persona"
-    #         " appartiene.",
-    #     ),
-    #     value_type=RelationChoice(
-    #         title=_("Organizzazione di riferimento"),
-    #         vocabulary="plone.app.vocabularies.Catalog",
-    #     ),
-    #     default=[],
-    #     required=False,
-    # )
+    organizzazione_riferimento = RelationList(
+        title=_(
+            "organizzazione_riferimento_label",
+            default="Organizzazione di riferimento",
+        ),
+        description=_(
+            "organizzazione_riferimento_help",
+            default="Seleziona una lista di organizzazioni a cui la persona"
+            " appartiene.",
+        ),
+        value_type=RelationChoice(
+            title=_("Organizzazione di riferimento"),
+            vocabulary="plone.app.vocabularies.Catalog",
+        ),
+        default=[],
+        required=False,
+    )
     incarichi_persona = RelationList(
         title=_(
             "incarichi_label",
@@ -107,6 +107,17 @@ class IPersona(model.Schema, IDesignPloneContentType):
 
     # custom widgets
     form.widget(
+        "organizzazione_riferimento",
+        RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
+        pattern_options={
+            "maximumSelectionSize": 10,
+            "selectableTypes": ["UnitaOrganizzativa"],
+        },
+
+    )
+
+    form.widget(
         "incarichi_persona",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
@@ -122,6 +133,7 @@ class IPersona(model.Schema, IDesignPloneContentType):
         label=_("ruolo_label", default="Ruolo"),
         fields=[
             "incarichi_persona",
+            "organizzazione_riferimento",
             "competenze",
             "deleghe",
             "biografia",
@@ -140,3 +152,4 @@ class IPersona(model.Schema, IDesignPloneContentType):
     # textindexer.searchable("telefono")
     # textindexer.searchable("fax")
     # textindexer.searchable("email")
+    form.omitted("organizzazione_riferimento")

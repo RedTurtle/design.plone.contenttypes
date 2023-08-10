@@ -14,7 +14,6 @@ from zope.globalrequest import getRequest
 from zope.component import getUtility, getMultiAdapter
 from zope.intid.interfaces import IIntIds
 from zc.relation.interfaces import ICatalog
-from Acquisition import aq_inner
 from zope.security import checkPermission
 from plone.restapi.interfaces import ISerializeToJsonSummary
 
@@ -79,11 +78,11 @@ class CheckPersone(BrowserView):
         return sorted(items, key=lambda k: k["title"])
 
     def information_dict(self, persona):
-        import pdb; pdb.set_trace()
+        relations = self.get_related_objects(persona, "organizzazione_riferimento")
         return {
             "title": getattr(persona, "title"),
-            "has_related_uo": bool(self.get_relations(persona, "organizzazione_riferimento")[0]),
-            "organizzazione_riferimento": self.get_related_objects(persona, "organizzazione_riferimento"),
+            "has_related_uo": bool(relations),
+            "organizzazione_riferimento": relations,
         }
 
     def plone2volto(self, url):
@@ -96,7 +95,6 @@ class CheckPersone(BrowserView):
         return url
 
     def get_persone(self):
-        import pdb; pdb.set_trace()
         if self.is_anonymous():
             return []
         pc = api.portal.get_tool("portal_catalog")
@@ -115,10 +113,10 @@ class CheckPersone(BrowserView):
 
             information_dict = self.information_dict(persona)
 
+            import pdb; pdb.set_trace()
             if not information_dict.get('has_related_uo'):
                 continue
 
-            import pdb; pdb.set_trace()
             parent = persona.aq_inner.aq_parent
             if parent.title not in results:
                 results[parent.title] = {
