@@ -34,5 +34,11 @@
       class=".check_servizi.DownloadCheckServizi"
       permission="zope2.Public"
       />
+  <browser:page
+      name="download_check_persone"
+      for="*"
+      class=".check_persone.DownloadCheckPersone"
+      permission="zope2.Public"
+      />
 
 </configure>
