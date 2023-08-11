@@ -156,7 +156,7 @@ class DownloadCheckPersone(CheckPersone):
                 sheet.column_dimensions[column_letter].width = 35
 
             for persona in category_data["children"]:
-                organizzazioni = "\n".join([f"{x.get('title')} - {x.get('@id')}" for x in persona["data"]["organizzazione_riferimento"]]) # noqa
+                organizzazioni = "\n".join([f"{x.get('title')} - {self.plone2volto(x.get('@id'))}" for x in persona["data"]["organizzazione_riferimento"]]) # noqa
                 title_url = persona["url"]
                 dati_persona = [
                     persona["title"],
@@ -167,27 +167,23 @@ class DownloadCheckPersone(CheckPersone):
                 sheet.append(row)
 
                 title_cell = sheet.cell(row=sheet.max_row, column=1)
+                check_cell = sheet.cell(row=sheet.max_row, column=2)
+                check_cell.alignment = check_cell.alignment.copy(horizontal="center")
                 title_cell.hyperlink = title_url
                 title_cell.font = link_font
                 column_letter_unit = get_column_letter(title_cell.column)
                 sheet.column_dimensions[column_letter_unit].width = 60
-
-                unita_cell = sheet.cell(row=sheet.max_row, column=3)
-                unita_cell.font = link_font
-                unita_cell.alignment = unita_cell.alignment.copy(
-                    horizontal="left"
-                )
-                column_letter_unit = get_column_letter(unita_cell.column)
-                sheet.column_dimensions[column_letter_unit].width = 80
-                unita_lines = organizzazioni.split("\n")
-                for idx, line in enumerate(unita_lines):
-
-                    title, link = line.split(" - ")
-                    title_link = f'=HYPERLINK("{link}", "{title}")'
-                    if idx > 0:
-                        unita_cell.value += "\n" + title_link
-                    else:
-                        unita_cell.value = title_link
+                max_index = sheet.max_row
+                for org in organizzazioni.split('\n'):
+                    org_title, org_url = org.split(' - ')
+                    org_link = f'=HYPERLINK("{org_url}", "{org_title}")'
+                    org_cell = sheet.cell(row=max_index, column=3)
+                    org_cell.value = org_link
+                    org_cell.font = link_font
+                    org_cell.alignment = org_cell.alignment.copy(horizontal="left")
+                    column_letter_unit = get_column_letter(org_cell.column)
+                    sheet.column_dimensions[column_letter_unit].width = 80
+                    max_index+=1
 
             sheet.append(EMPTY_ROW)
             sheet.append(EMPTY_ROW)
