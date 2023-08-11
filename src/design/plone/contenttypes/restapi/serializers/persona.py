@@ -56,5 +56,5 @@ class PersonaSerializer(SerializeFolderToJson):
             organizzazioni = organizzazioni + responsabile_di
         if strutture_correlate:
             organizzazioni = organizzazioni + strutture_correlate
-        result['organizzazione_riferimento'] = organizzazioni
+        result["organizzazione_riferimento"] = organizzazioni
         return result

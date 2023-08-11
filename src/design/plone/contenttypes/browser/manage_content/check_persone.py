@@ -72,7 +72,7 @@ class CheckPersone(BrowserView):
 
             information_dict = self.information_dict(persona)
 
-            if not information_dict.get('has_related_uo'):
+            if not information_dict.get("has_related_uo"):
                 continue
 
             parent = persona.aq_inner.aq_parent
@@ -91,7 +91,7 @@ class CheckPersone(BrowserView):
                         "has_related_uo": information_dict.get("has_related_uo", "V"),
                         "organizzazione_riferimento": information_dict.get(
                             "organizzazione_riferimento"
-                        )
+                        ),
                     },
                 }
             )
@@ -137,13 +137,19 @@ class DownloadCheckPersone(CheckPersone):
 
             section_cell.alignment = alignment
             section_cell.hyperlink = section_url
-            sheet.merge_cells(start_row=sheet.max_row, start_column=1, end_row=sheet.max_row, end_column=3) # noqa
-            for row in sheet.iter_rows(min_row=sheet.max_row, max_row=sheet.max_row, min_col=1, max_col=3): # noqa
+            sheet.merge_cells(
+                start_row=sheet.max_row,
+                start_column=1,
+                end_row=sheet.max_row,
+                end_column=3,
+            )  # noqa
+            for row in sheet.iter_rows(
+                min_row=sheet.max_row, max_row=sheet.max_row, min_col=1, max_col=3
+            ):  # noqa
                 sheet.row_dimensions[row[0].row].height = section_row_height
                 for cell in row:
                     cell.fill = section_fill
                     cell.font = section_link_font
-
 
             sheet.append(HEADER)
             for col in range(1, len(HEADER) + 1):
@@ -156,7 +162,12 @@ class DownloadCheckPersone(CheckPersone):
                 sheet.column_dimensions[column_letter].width = 35
 
             for persona in category_data["children"]:
-                organizzazioni = "\n".join([f"{x.get('title')} - {self.plone2volto(x.get('@id'))}" for x in persona["data"]["organizzazione_riferimento"]]) # noqa
+                organizzazioni = "\n".join(
+                    [
+                        f"{x.get('title')} - {self.plone2volto(x.get('@id'))}"
+                        for x in persona["data"]["organizzazione_riferimento"]
+                    ]
+                )  # noqa
                 title_url = persona["url"]
                 dati_persona = [
                     persona["title"],
@@ -174,8 +185,8 @@ class DownloadCheckPersone(CheckPersone):
                 column_letter_unit = get_column_letter(title_cell.column)
                 sheet.column_dimensions[column_letter_unit].width = 60
                 max_index = sheet.max_row
-                for org in organizzazioni.split('\n'):
-                    org_title, org_url = org.split(' - ')
+                for org in organizzazioni.split("\n"):
+                    org_title, org_url = org.split(" - ")
                     org_link = f'=HYPERLINK("{org_url}", "{org_title}")'
                     org_cell = sheet.cell(row=max_index, column=3)
                     org_cell.value = org_link
@@ -183,7 +194,7 @@ class DownloadCheckPersone(CheckPersone):
                     org_cell.alignment = org_cell.alignment.copy(horizontal="left")
                     column_letter_unit = get_column_letter(org_cell.column)
                     sheet.column_dimensions[column_letter_unit].width = 80
-                    max_index+=1
+                    max_index += 1
 
             sheet.append(EMPTY_ROW)
             sheet.append(EMPTY_ROW)

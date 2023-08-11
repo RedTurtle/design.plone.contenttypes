@@ -119,7 +119,6 @@ class IPersona(model.Schema, IDesignPloneContentType):
             "maximumSelectionSize": 10,
             "selectableTypes": ["UnitaOrganizzativa"],
         },
-
     )
 
     form.widget(
@@ -157,4 +156,3 @@ class IPersona(model.Schema, IDesignPloneContentType):
     # textindexer.searchable("telefono")
     # textindexer.searchable("fax")
     # textindexer.searchable("email")
-
