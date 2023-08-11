@@ -1218,7 +1218,7 @@ def update_uo_contact_info(context):
     )
     for brain in brains:
         obj = brain.getObject()
-        if type(obj.contact_info) == dict:
+        if type(obj.contact_info) == dict:  # noqa
             del obj.contact_info
             logger.info(
                 f"{colors.GREEN} Modifica della UO senza punto di contatto {colors.ENDC}"  # noqa

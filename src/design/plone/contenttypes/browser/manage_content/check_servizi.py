@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from DateTime import DateTime
 from openpyxl import Workbook
 from openpyxl.styles import Alignment

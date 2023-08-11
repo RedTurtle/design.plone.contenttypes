@@ -232,7 +232,7 @@ def create_pdc(context):
         # finally we check if we have at least a value.
         if (
             safe_hasattr(source, "contact_info")
-            and type(obj.contact_info) == list
+            and type(obj.contact_info) == list  # noqa
             and len(obj.contact_info) > 0
         ):
             return True
@@ -271,7 +271,7 @@ def create_pdc(context):
                 field_value = getattr(obj, field, None)
                 if not field_value:
                     continue
-                if type(field_value) != list:
+                if type(field_value) != list:  # noqa
                     # in some case we have a f*****g list
                     field_value = [
                         field_value,
