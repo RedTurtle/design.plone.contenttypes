@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from .upgrades import colors
 from .upgrades import logger
 from Acquisition import aq_base
@@ -69,7 +70,7 @@ def update_taxonomies(context):
                     obj_language
                 ]
                 old_value = getattr(aq_base(obj), taxonomy, None)
-                if type(old_value) == list:
+                if type(old_value) == list:  # noqa
                     # this is a sort of race condition.
                     # we already have created ct Documento for attonomina
                     # in case we are using atto di nomina, skip

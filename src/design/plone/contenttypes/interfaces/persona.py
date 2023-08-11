@@ -30,7 +30,7 @@ class IPersona(model.Schema, IDesignPloneContentType):
         description=_(
             "foto_persona_help",
             default="Foto da mostrare della persona. "
-            "La dimensione suggerita è 180x100 px.",
+            "La dimensione suggerita è 100x180px.",
         ),
     )
     # Questo campo per direttive e richieste viene nascosto nella form
