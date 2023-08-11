@@ -126,6 +126,7 @@ def create_incarico_for_persona(context):
         )
         # incarico.persona = [RelationValue(intids.getId(persona))]
         api.relation.create(source=incarico, target=persona, relationship="persona")
+
         if safe_hasattr(persona, "organizzazione_riferimento"):
             incarico.unita_organizzativa = persona.organizzazione_riferimento
 

@@ -85,51 +85,6 @@ class TestPersonaEndpoint(unittest.TestCase):
     def tearDown(self):
         self.api_session.close()
 
-    def test_persona_strutture_correlate(self):
-        uo = api.content.create(
-            container=self.portal,
-            type="UnitaOrganizzativa",
-            title="UO 1",
-            persone_struttura=[self.persona_ref],
-        )
-        commit()
-        response = self.api_session.get(self.persona.absolute_url())
-        res = response.json()
-
-        self.assertIn("strutture_correlate", list(res.keys()))
-        self.assertEqual(len(res["strutture_correlate"]), 1)
-        self.assertEqual(res["strutture_correlate"][0]["title"], uo.title)
-
-    def test_persona_responsabile_di(self):
-        uo = api.content.create(
-            container=self.portal,
-            type="UnitaOrganizzativa",
-            title="UO 1",
-            responsabile=[self.persona_ref],
-        )
-        commit()
-        response = self.api_session.get(self.persona.absolute_url())
-        res = response.json()
-
-        self.assertIn("responsabile_di", list(res.keys()))
-        self.assertEqual(len(res["responsabile_di"]), 1)
-        self.assertEqual(res["responsabile_di"][0]["title"], uo.title)
-
-    def test_persona_assessore_di(self):
-        uo = api.content.create(
-            container=self.portal,
-            type="UnitaOrganizzativa",
-            title="UO 1",
-            assessore_riferimento=[self.persona_ref],
-        )
-        commit()
-        response = self.api_session.get(self.persona.absolute_url())
-        res = response.json()
-
-        self.assertIn("assessore_di", list(res.keys()))
-        self.assertEqual(len(res["assessore_di"]), 1)
-        self.assertEqual(res["assessore_di"][0]["title"], uo.title)
-
     def test_atto_di_nomina_incarico(self):
         incarico = api.content.create(
             container=self.persona.incarichi, type="Incarico", title="Sindaco"

@@ -49,10 +49,12 @@ class PersonaSerializer(SerializeFolderToJson):
         responsabile_di = self.related_contents(field="responsabile")
         assessore_di = self.related_contents(field="assessore_riferimento")
 
-        if strutture_correlate:
-            result["strutture_correlate"] = strutture_correlate
-        if responsabile_di:
-            result["responsabile_di"] = responsabile_di
+        organizzazioni = []
         if assessore_di:
-            result["assessore_di"] = assessore_di
+            organizzazioni = organizzazioni + assessore_di
+        if responsabile_di:
+            organizzazioni = organizzazioni + responsabile_di
+        if strutture_correlate:
+            organizzazioni = organizzazioni + strutture_correlate
+        result["organizzazione_riferimento"] = organizzazioni
         return result
