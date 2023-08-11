@@ -33,6 +33,10 @@ class IPersona(model.Schema, IDesignPloneContentType):
             "La dimensione suggerita è 180x100 px.",
         ),
     )
+    # Questo campo per direttive e richieste viene nascosto nella form
+    # Lo si tiene perche si vuole evitare di perder dati tra le migrazioni
+    # e magari non poter piu' usare la feature collegata, ossia
+    # la check persone, in quanto relazioni potrebbero rompersi o perdersi
     organizzazione_riferimento = RelationList(
         title=_(
             "organizzazione_riferimento_label",
@@ -50,6 +54,7 @@ class IPersona(model.Schema, IDesignPloneContentType):
         default=[],
         required=False,
     )
+    form.omitted("organizzazione_riferimento")
     incarichi_persona = RelationList(
         title=_(
             "incarichi_label",
@@ -152,4 +157,4 @@ class IPersona(model.Schema, IDesignPloneContentType):
     # textindexer.searchable("telefono")
     # textindexer.searchable("fax")
     # textindexer.searchable("email")
-    form.omitted("organizzazione_riferimento")
+

@@ -41,27 +41,6 @@ class PersonaSerializer(SerializeFolderToJson):
                 items.append(summary)
         return sorted(items, key=lambda k: k["title"])
 
-    def related_contents(self, field):
-        """ """
-        catalog = getUtility(ICatalog)
-        intids = getUtility(IIntIds)
-        items = []
-        relations = catalog.findRelations(
-            dict(
-                to_id=intids.getId(aq_inner(self.context)),
-                from_attribute=field,
-            )
-        )
-
-        for rel in relations:
-            obj = intids.queryObject(rel.from_id)
-            if obj is not None and checkPermission("zope2.View", obj):
-                summary = getMultiAdapter(
-                    (obj, getRequest()), ISerializeToJsonSummary
-                )()
-                items.append(summary)
-        return sorted(items, key=lambda k: k["title"])
-
     def __call__(self, version=None, include_items=True):
         result = super(PersonaSerializer, self).__call__(
             version=version, include_items=include_items
