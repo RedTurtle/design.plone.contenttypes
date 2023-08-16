@@ -6,8 +6,12 @@
 >
 
   <!-- Basic properties -->
-  <property name="title" i18n:translate="">Servizio</property>
-  <property name="description" i18n:translate=""/>
+  <property name="title"
+            i18n:translate=""
+  >Servizio</property>
+  <property name="description"
+            i18n:translate=""
+  />
 
   <property name="allow_discussion">False</property>
   <property name="factory">Servizio</property>
@@ -17,7 +21,9 @@
   <!-- Hierarchy control -->
   <property name="global_allow">True</property>
   <property name="filter_content_types">True</property>
-  <property name="allowed_content_types" purge="False">
+  <property name="allowed_content_types"
+            purge="False"
+  >
     <element value="CartellaModulistica" />
     <element value="Document" />
     <element value="Image" />

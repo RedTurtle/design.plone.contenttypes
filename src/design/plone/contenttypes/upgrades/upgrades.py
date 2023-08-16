@@ -1417,7 +1417,7 @@ def to_7010(context):
     ]
     if not old_attributes:
         logger.info(
-            f"{colors.GREEN} We already have the correct interface. Nothing to do here! {colors.ENDC}"
+            f"{colors.GREEN} We already have the correct interface. Nothing to do here! {colors.ENDC}"  # noqa
         )
         return
     old_values = {
@@ -1437,7 +1437,7 @@ def to_7010(context):
         "profile-design.plone.contenttypes:fix_syndication", "plone.app.registry", False
     )
     logger.info(
-        f"{colors.DARKCYAN} Set the old values into the new registry records{colors.ENDC}"
+        f"{colors.DARKCYAN} Set the old values into the new registry records{colors.ENDC}"  # noqa
     )
     # set the old values into the new records
     default_values = {
@@ -1464,7 +1464,7 @@ def to_7010(context):
         if old_values[attribute] == None:  # noqa
             old_values[attribute] = default_values[attribute]
             logger.info(
-                f"{colors.RED } Fix {attribute} to default: {old_values[attribute]} {colors.ENDC}"
+                f"{colors.RED } Fix {attribute} to default: {old_values[attribute]} {colors.ENDC}"  # noqa
             )
 
         if attribute == "site_rss_items" and old_values[attribute]:
@@ -1475,7 +1475,7 @@ def to_7010(context):
             continue
 
         logger.info(
-            f"{colors.DARKCYAN} Set {attribute} to  {old_values[attribute]} {colors.ENDC}"
+            f"{colors.DARKCYAN} Set {attribute} to  {old_values[attribute]} {colors.ENDC}"  # noqa
         )
         api.portal.set_registry_record(
             name=attribute,
