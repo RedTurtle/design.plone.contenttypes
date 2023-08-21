@@ -3,13 +3,13 @@ from collective.z3cform.datagridfield.interfaces import IRow
 from design.plone.contenttypes import _
 from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
 from plone.restapi.types.adapters import ObjectJsonSchemaProvider
-from redturtle.volto.types.adapters import (
-    TextLineJsonSchemaProvider as BaseTextLineJsonSchemaProvider,
-)
 from plone.restapi.types.interfaces import IJsonSchemaProvider
 from plone.restapi.types.utils import get_fieldsets
 from plone.restapi.types.utils import get_jsonschema_properties
 from plone.restapi.types.utils import iter_fields
+from redturtle.volto.types.adapters import (
+    TextLineJsonSchemaProvider as BaseTextLineJsonSchemaProvider,
+)
 from zope.component import adapter
 from zope.component import getUtility
 from zope.i18n import translate
@@ -18,6 +18,7 @@ from zope.interface import Interface
 from zope.schema.interfaces import IField
 from zope.schema.interfaces import ITextLine
 from zope.schema.interfaces import IVocabularyFactory
+
 
 DATAGRID_FIELDS = ["value_punto_contatto", "timeline_tempi_scadenze"]
 

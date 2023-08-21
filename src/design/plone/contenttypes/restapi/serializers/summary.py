@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import logging
 from collective.taxonomy import PATH_SEPARATOR
 from collective.taxonomy.interfaces import ITaxonomy
 from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
@@ -30,6 +29,7 @@ from zope.interface import implementer
 from zope.interface import Interface
 from zope.schema import getFieldsInOrder
 
+import logging
 import re
 
 
