@@ -263,12 +263,18 @@ class IncaricoDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
         if safe_hasattr(self.context, "compensi-file"):
             res["compensi_file"] = []
             for brain in getattr(self.context, "compensi-file").getFolderContents():
-                res["compensi_file"].append(getMultiAdapter((brain, self.request), ISerializeToJsonSummary)())
+                res["compensi_file"].append(
+                    getMultiAdapter((brain, self.request), ISerializeToJsonSummary)()
+                )
 
         if safe_hasattr(self.context, "importi-di-viaggio-e-o-servizi"):
             res["importi_di_viaggio_e_o_servizi"] = []
-            for brain in getattr(self.context, "importi-di-viaggio-e-o-servizi").getFolderContents():
-                res["importi_di_viaggio_e_o_servizi"].append(getMultiAdapter((brain, self.request), ISerializeToJsonSummary)())
+            for brain in getattr(
+                self.context, "importi-di-viaggio-e-o-servizi"
+            ).getFolderContents():
+                res["importi_di_viaggio_e_o_servizi"].append(
+                    getMultiAdapter((brain, self.request), ISerializeToJsonSummary)()
+                )
 
         if "atto_di_nomina" not in res:
             res["atto_di_nomina"] = None
