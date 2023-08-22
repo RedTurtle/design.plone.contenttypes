@@ -13,7 +13,12 @@
 
     </metal:block>
     <metal:block fill-slot="style_slot">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link crossorigin="anonymous"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+            integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+            referrerpolicy="no-referrer"
+            rel="stylesheet"
+      />
       <style>
        li.categoria{margin-bottom:2em}
        #content-header,
@@ -93,42 +98,61 @@
                Ogni redattore pu&ograve; vedere in questa lista tutti i servizi e,
                cliccando su ognuno, andare alla vista di dettaglio del servizio,
             editarlo e compilare tutti i campi obbligatori.</p>
-            <p class="lead"
-             tal:condition="servizi">Per quanto riguarda la colonna <strong>canale di accesso</strong>,
+          <p class="lead"
+             tal:condition="servizi"
+          >Per quanto riguarda la colonna
+            <strong>canale di accesso</strong>,
             nei servizi, abbiamo canale fisico e canale digitale. Il canale digitale,
-            è calcolato su due campi: uno testuale descrittivo e uno contenente il link per
-            l'accesso. È obbligatorio compilare o il canale fisico oppure i due campi relativi al canale
+            &egrave; calcolato su due campi: uno testuale descrittivo e uno contenente il link per
+            l'accesso. &Egrave; obbligatorio compilare o il canale fisico oppure i due campi relativi al canale
             digitale per seguire le direttive indicate da AGID.
-            Nella tabella sotto si troverà scritto "D" nel caso nel servizio siano compilati
+            Nella tabella sotto si trover&agrave; scritto "D" nel caso nel servizio siano compilati
             i due campi del canale digitale, "F" nel caso sia compilato il canale fisico e
             "D e F" nel caso siano compilati tutti i campi relativi al canale di accesso.</p>
-            <p class="lead"
-             tal:condition="servizi">Si fa notare, infine, che la seguente lista di servizi
-             presenta tutti quei servizi in stato pubblicato e <strong>non scaduti</strong> secondo
-             le logiche di pubblicazione del CMS Plone, ovvero con una data di scadenza ancora da raggiugnere.</p>
+          <p class="lead"
+             tal:condition="servizi"
+          >Si fa notare, infine, che la seguente lista di servizi
+             presenta tutti quei servizi in stato pubblicato e
+            <strong>non scaduti</strong>
+             secondo
+            le logiche di pubblicazione del CMS Plone, ovvero con una data di scadenza ancora da raggiugnere.</p>
 
-        <div class="forms">
-          <div tal:condition="view/cds">
-            <form action="${context/absolute_url}/@@check_servizi">
-              <input type="Submit" value="Cerca senza condizioni di servizio" />
-            </form>
-          </div>
-          <div tal:condition="not:view/cds">
-            <form action="${context/absolute_url}/@@check_servizi">
-              <input type="hidden" name="condizioni_di_servizio" value="True" />
-              <input type="Submit" value="Cerca con condizioni di servizio" />
-            </form>
-          </div>
-          <div class="download_button">
+          <div class="forms">
+            <div tal:condition="view/cds">
+              <form action="${context/absolute_url}/@@check_servizi">
+                <input type="Submit"
+                       value="Cerca senza condizioni di servizio"
+                />
+              </form>
+            </div>
+            <div tal:condition="not:view/cds">
+              <form action="${context/absolute_url}/@@check_servizi">
+                <input name="condizioni_di_servizio"
+                       type="hidden"
+                       value="True"
+                />
+                <input type="Submit"
+                       value="Cerca con condizioni di servizio"
+                />
+              </form>
+            </div>
+            <div class="download_button">
               <form action="${context/absolute_url}/@@download_check_servizi">
                 <!-- <input type="Submit" value="Download" /> -->
-                <input tal:condition="view/cds" type="hidden" name="condizioni_di_servizio" value="True" />
-                <button type="submit" class="download-button">
-                  <i class="fas fa-download"></i> Download servizi
+                <input name="condizioni_di_servizio"
+                       type="hidden"
+                       value="True"
+                       tal:condition="view/cds"
+                />
+                <button class="download-button"
+                        type="submit"
+                >
+                  <i class="fas fa-download"></i>
+                   Download servizi
                 </button>
               </form>
+            </div>
           </div>
-        </div>
 
 
 
@@ -166,7 +190,7 @@
                       <th><span>Tempi e scadenze</span></th>
                       <th><span>Unit&agrave; org. responsabile</span></th>
                       <th><span>Contatti</span></th>
-                      </tr>
+                    </tr>
                   </thead>
                   <tbody>
                     <tr tal:repeat="servizio python:servizi[categoria]['children']">
