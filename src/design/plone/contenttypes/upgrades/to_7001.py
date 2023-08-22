@@ -189,6 +189,22 @@ def create_incarico_for_persona(context):
             if atto_nomina:
                 wftool.doActionFor(atto_nomina, "publish")
 
+        if safe_hasattr(persona, "compensi-file") and safe_hasattr(
+            incarico, "compensi-file"
+        ):
+            compensi = getattr(persona, "compensi-file")
+            for obj in compensi.contentItems():
+                api.content.move(source=obj, target=incarico["compensi-file"])
+
+        if safe_hasattr(persona, "importi-di-viaggio-e-o-servizi") and safe_hasattr(
+            incarico, "importi-di-viaggio-e-o-servizi"
+        ):
+            importi = getattr(persona, "importi-di-viaggio-e-o-servizi")
+            for obj in importi.contentItems():
+                api.content.move(
+                    source=obj, target=incarico["importi-di-viaggio-e-o-servizi"]
+                )
+
         logger.info(f"{colors.GREEN} Creato incarico per {persona.title}{colors.ENDC}")
 
     logger.info(

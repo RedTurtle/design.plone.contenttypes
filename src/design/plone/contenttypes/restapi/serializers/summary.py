@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import logging
 from collective.taxonomy import PATH_SEPARATOR
 from collective.taxonomy.interfaces import ITaxonomy
 from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
@@ -15,6 +14,7 @@ from plone.app.contenttypes.interfaces import INewsItem
 from plone.base.interfaces import IImageScalesAdapter
 from plone.restapi.interfaces import ISerializeToJsonSummary
 from plone.restapi.serializer.converters import json_compatible
+from Products.CMFPlone.utils import safe_hasattr
 from Products.ZCatalog.interfaces import ICatalogBrain
 from redturtle.volto.restapi.serializer.summary import (
     DefaultJSONSummarySerializer as BaseSerializer,
@@ -29,6 +29,7 @@ from zope.interface import implementer
 from zope.interface import Interface
 from zope.schema import getFieldsInOrder
 
+import logging
 import re
 
 
@@ -253,10 +254,28 @@ class IncaricoDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
             )
         else:
             res["data_inizio_incarico"] = json_compatible(None)
+
         if "compensi" not in res:
             res["compensi"] = json_compatible(self.context.compensi)
         else:
             res["compensi"] = json_compatible([])
+
+        if safe_hasattr(self.context, "compensi-file"):
+            res["compensi_file"] = []
+            for brain in getattr(self.context, "compensi-file").getFolderContents():
+                res["compensi_file"].append(
+                    getMultiAdapter((brain, self.request), ISerializeToJsonSummary)()
+                )
+
+        if safe_hasattr(self.context, "importi-di-viaggio-e-o-servizi"):
+            res["importi_di_viaggio_e_o_servizi"] = []
+            for brain in getattr(
+                self.context, "importi-di-viaggio-e-o-servizi"
+            ).getFolderContents():
+                res["importi_di_viaggio_e_o_servizi"].append(
+                    getMultiAdapter((brain, self.request), ISerializeToJsonSummary)()
+                )
+
         if "atto_di_nomina" not in res:
             res["atto_di_nomina"] = None
             atto = getattr(self.context, "atto_nomina", None)

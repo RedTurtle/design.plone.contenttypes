@@ -25,6 +25,7 @@ from zope.schema.interfaces import ITextLine
 import json
 import re
 
+
 RESOLVEUID_RE = re.compile(".*?/resolve[Uu]id/([^/]*)/?(.*)$")
 KEYS_WITH_URL = ["linkUrl", "navigationRoot", "showMoreLink"]
 

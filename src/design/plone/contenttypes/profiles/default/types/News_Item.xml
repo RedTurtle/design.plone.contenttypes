@@ -5,15 +5,21 @@
         i18n:domain="plone"
 >
 
-  <property name="title" i18n:translate="">Notizie e comunicati stampa</property>
+  <property name="title"
+            i18n:translate=""
+  >Notizie e comunicati stampa</property>
 
-  <property name="allowed_content_types" purge="False">
+  <property name="allowed_content_types"
+            purge="False"
+  >
     <element value="Document" />
     <element value="Image" />
     <element value="File" />
   </property>
 
-  <property name="behaviors" purge="False">
+  <property name="behaviors"
+            purge="False"
+  >
     <element value="volto.preview_image" />
     <element value="design.plone.contenttypes.behavior.news" />
     <element value="design.plone.contenttypes.behavior.argomenti_news" />
@@ -22,7 +28,9 @@
     <element value="plone.translatable" />
     <element value="kitconcept.seo" />
     <element value="collective.taxonomy.generated.tipologia_notizia" />
-    <element remove="True" value="design.plone.contenttypes.behavior.argomenti" />
+    <element remove="True"
+             value="design.plone.contenttypes.behavior.argomenti"
+    />
   </property>
 
 </object>
