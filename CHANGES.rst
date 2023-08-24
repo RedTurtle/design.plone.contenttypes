@@ -4,7 +4,11 @@ Changelog
 6.0.16 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- chaged migration of compensi and importi_di_viaggio field on Incaricto ct
+  creation.
+  [eikichi18]
+- Fixed relation between person and uo.
+  [deodorhunter]
 
 
 6.0.15 (2023-07-19)
