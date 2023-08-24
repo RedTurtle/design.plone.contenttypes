@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.0.16 (unreleased)
+6.0.16 (2023-08-24)
 -------------------
 
 - chaged migration of compensi and importi_di_viaggio field on Incaricto ct
