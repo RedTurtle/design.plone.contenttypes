@@ -7,9 +7,7 @@ from design.plone.contenttypes.interfaces.documento import IDocumento
 from design.plone.contenttypes.interfaces.incarico import IIncarico
 from design.plone.contenttypes.interfaces.persona import IPersona
 from design.plone.contenttypes.interfaces.pratica import IPratica
-from design.plone.contenttypes.interfaces.punto_di_contatto import (
-    IPuntoDiContatto,
-)
+from design.plone.contenttypes.interfaces.punto_di_contatto import IPuntoDiContatto
 from plone import api
 from plone.app.contenttypes.interfaces import IEvent
 from plone.app.contenttypes.interfaces import INewsItem
@@ -126,10 +124,7 @@ class DefaultJSONSummarySerializer(BaseSerializer):
         if self.context.portal_type == "Persona":
             res["incarichi"] = self.get_incarichi()
         if self.context.portal_type == "Bando":
-            if (
-                "bando_state" in metadata_fields
-                or self.show_all_metadata_fields
-            ):
+            if "bando_state" in metadata_fields or self.show_all_metadata_fields:
                 res["bando_state"] = self.get_bando_state()
 
         if "geolocation" in metadata_fields or self.show_all_metadata_fields:
@@ -152,9 +147,7 @@ class DefaultJSONSummarySerializer(BaseSerializer):
         # tassonomia argomenti
         if "tassonomia_argomenti" in res:
             if res["tassonomia_argomenti"]:
-                res[
-                    "tassonomia_argomenti"
-                ] = self.expand_tassonomia_argomenti()
+                res["tassonomia_argomenti"] = self.expand_tassonomia_argomenti()
 
         get_taxonomy_information_by_type(res, self.context)
 
@@ -188,9 +181,7 @@ class DefaultJSONSummarySerializer(BaseSerializer):
                 taxonomy = getUtility(
                     ITaxonomy, name="collective.taxonomy.tipologia_notizia"
                 )
-                taxonomy_voc = taxonomy.makeVocabulary(
-                    self.request.get("LANGUAGE")
-                )
+                taxonomy_voc = taxonomy.makeVocabulary(self.request.get("LANGUAGE"))
                 if isinstance(self.context.tipologia_notizia, list):
                     token = self.context.tipologia_notizia[0]
                 else:
@@ -225,9 +216,7 @@ class DefaultJSONSummarySerializer(BaseSerializer):
             if not api.user.has_permission("View", obj=ref_obj):
                 continue
             arguments.append(
-                getMultiAdapter(
-                    (ref_obj, self.request), ISerializeToJsonSummary
-                )()
+                getMultiAdapter((ref_obj, self.request), ISerializeToJsonSummary)()
             )
         return arguments
 
@@ -237,9 +226,7 @@ class DefaultJSONSummarySerializer(BaseSerializer):
         anche se non il più veloce
         """
         bando = self.context.getObject()
-        view = api.content.get_view(
-            "bando_view", context=bando, request=self.request
-        )
+        view = api.content.get_view("bando_view", context=bando, request=self.request)
         return view.getBandoState()
 
     # TODO: use tipo incarico from taxonomy when taxonomies are ready
@@ -279,9 +266,7 @@ class IncaricoDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
             res["data_conclusione_incarico"] = json_compatible(None)
 
         if "data_insediamento" not in res:
-            res["data_insediamento"] = json_compatible(
-                self.context.data_insediamento
-            )
+            res["data_insediamento"] = json_compatible(self.context.data_insediamento)
         else:
             res["data_insediamento"] = json_compatible(None)
 
@@ -292,13 +277,9 @@ class IncaricoDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
 
         if safe_hasattr(self.context, "compensi-file"):
             res["compensi_file"] = []
-            for brain in getattr(
-                self.context, "compensi-file"
-            ).getFolderContents():
+            for brain in getattr(self.context, "compensi-file").getFolderContents():
                 res["compensi_file"].append(
-                    getMultiAdapter(
-                        (brain, self.request), ISerializeToJsonSummary
-                    )()
+                    getMultiAdapter((brain, self.request), ISerializeToJsonSummary)()
                 )
 
         if safe_hasattr(self.context, "importi-di-viaggio-e-o-servizi"):
@@ -307,9 +288,7 @@ class IncaricoDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
                 self.context, "importi-di-viaggio-e-o-servizi"
             ).getFolderContents():
                 res["importi_di_viaggio_e_o_servizi"].append(
-                    getMultiAdapter(
-                        (brain, self.request), ISerializeToJsonSummary
-                    )()
+                    getMultiAdapter((brain, self.request), ISerializeToJsonSummary)()
                 )
 
         if "atto_di_nomina" not in res:
@@ -323,9 +302,7 @@ class IncaricoDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
 
 @implementer(ISerializeToJsonSummary)
 @adapter(IPuntoDiContatto, IDesignPloneContenttypesLayer)
-class PuntoDiContattoDefaultJSONSummarySerializer(
-    DefaultJSONSummarySerializer
-):
+class PuntoDiContattoDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
     def __call__(self, force_all_metadata=False):
         res = super().__call__(force_all_metadata=force_all_metadata)
         res["value_punto_contatto"] = self.context.value_punto_contatto
@@ -391,23 +368,17 @@ class DatasetDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
     def __call__(self, force_all_metadata=False):
         res = super().__call__(force_all_metadata=force_all_metadata)
         get_taxonomy_information("temi_dataset", self.context, res)
-        get_taxonomy_information(
-            "tipologia_frequenza_aggiornamento", self.context, res
-        )
+        get_taxonomy_information("tipologia_frequenza_aggiornamento", self.context, res)
         get_taxonomy_information("tipologia_licenze", self.context, res)
         return res
 
 
 @implementer(ISerializeToJsonSummary)
 @adapter(IDocumento, IDesignPloneContenttypesLayer)
-class DocumentoPubblicoDefaultJSONSummarySerializer(
-    DefaultJSONSummarySerializer
-):
+class DocumentoPubblicoDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
     def __call__(self, force_all_metadata=False):
         res = super().__call__(force_all_metadata=force_all_metadata)
-        get_taxonomy_information(
-            "tipologia_documenti_albopretorio", self.context, res
-        )
+        get_taxonomy_information("tipologia_documenti_albopretorio", self.context, res)
         get_taxonomy_information("tipologia_documento", self.context, res)
         get_taxonomy_information("tipologia_licenze", self.context, res)
         get_taxonomy_information("person_life_events", self.context, res)
