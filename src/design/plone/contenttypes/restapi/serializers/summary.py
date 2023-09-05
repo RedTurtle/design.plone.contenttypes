@@ -134,7 +134,10 @@ class DefaultJSONSummarySerializer(BaseSerializer):
                 latitude = res.get("latitude", 0)
                 longitude = res.get("longitude", 0)
                 if latitude and longitude:
-                    res["geolocation"] = {"latitude": latitude, "longitude": longitude}
+                    res["geolocation"] = {
+                        "latitude": latitude,
+                        "longitude": longitude,
+                    }
 
         res["id"] = self.context.id
 
@@ -254,6 +257,18 @@ class IncaricoDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
             )
         else:
             res["data_inizio_incarico"] = json_compatible(None)
+
+        if "data_conclusione_incarico" not in res:
+            res["data_conclusione_incarico"] = json_compatible(
+                self.context.data_conclusione_incarico
+            )
+        else:
+            res["data_conclusione_incarico"] = json_compatible(None)
+
+        if "data_insediamento" not in res:
+            res["data_insediamento"] = json_compatible(self.context.data_insediamento)
+        else:
+            res["data_insediamento"] = json_compatible(None)
 
         if "compensi" not in res:
             res["compensi"] = json_compatible(self.context.compensi)
