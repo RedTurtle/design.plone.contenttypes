@@ -4,7 +4,8 @@ Changelog
 6.0.17 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Added dates for incarico persona.
+  [deodorhuter]
 
 
 6.0.16 (2023-08-24)
