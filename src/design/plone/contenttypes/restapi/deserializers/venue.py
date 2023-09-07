@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from collective.venue.interfaces import IVenue
+from design.plone.contenttypes import AGID_VERSION
 from plone.restapi.behaviors import IBlocks
 from plone.restapi.deserializer import json_body
 from plone.restapi.deserializer.dxcontent import DeserializeFromJson
@@ -48,9 +49,9 @@ def text_in_block(blocks):
 @implementer(IDeserializeFromJson)
 @adapter(IVenue, Interface)
 class DeserializeLuogoFromJson(DeserializeFromJson):
-    def __call__(
-        self, validate_all=False, data=None, create=False
-    ):  # noqa: ignore=C901
+    def __call__(self, validate_all=False, data=None, create=False):
+        if AGID_VERSION == "V2":
+            return super().__call__(validate_all=validate_all, data=data, create=create)
         if data is None:
             data = json_body(self.request)
 
@@ -156,6 +157,4 @@ class DeserializeLuogoFromJson(DeserializeFromJson):
 
         if errors:
             raise BadRequest(errors)
-        return super(DeserializeLuogoFromJson, self).__call__(
-            validate_all=False, data=data, create=False
-        )
+        return super().__call__(validate_all=validate_all, data=data, create=create)

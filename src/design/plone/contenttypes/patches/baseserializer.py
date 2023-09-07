@@ -9,9 +9,10 @@ We need a solution like that because for some different reasons:
  * Using a monkey patch is the easiest way to include future changes on base
    SerializeToJson and SerializeFolderToJson classes
 """
-
 from collective.taxonomy import PATH_SEPARATOR
 from collective.taxonomy.interfaces import ITaxonomy
+from design.plone.contenttypes import _
+from design.plone.contenttypes import AGID_VERSION
 from plone import api
 from plone.restapi.batching import HypermediaBatch
 from plone.restapi.deserializer import boolean_value
@@ -24,7 +25,6 @@ from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.i18n import translate
 
-
 original_serialize_to_json__call__ = SerializeToJson.__call__
 
 
@@ -36,8 +36,14 @@ def design_italia_serialize_to_json_call(self, version=None, include_items=True)
     result["design_italia_meta_type"] = translate(
         ttool[self.context.portal_type].Title(), context=self.request
     )
-    if self.context.portal_type == "News Item":
-        if self.context.tipologia_notizia:
+    if self.context.portal_type == "News Item" and self.context.tipologia_notizia:
+        if AGID_VERSION == "V2":
+            result["design_italia_meta_type"] = translate(
+                self.context.tipologia_notizia,
+                domain=_._domain,
+                context=self.request,
+            )
+        if AGID_VERSION == "V3":
             taxonomy = getUtility(
                 ITaxonomy, name="collective.taxonomy.tipologia_notizia"
             )

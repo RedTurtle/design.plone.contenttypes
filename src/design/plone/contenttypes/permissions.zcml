@@ -70,21 +70,10 @@
 
 
     <permission
-        id="design.plone.contenttypes.AddDataset"
-        title="design.plone.contenttypes: Add Dataset"
-        />
-
-
-    <permission
         id="design.plone.contenttypes.AddRicevutaPagamento"
         title="design.plone.contenttypes: Add RicevutaPagamento"
         />
 
-
-    <permission
-        id="design.plone.contenttypes.AddPratica"
-        title="design.plone.contenttypes: Add Pratica"
-        />
 
     <permission
         id="design.plone.contenttypes.AddCartellaModulistica"

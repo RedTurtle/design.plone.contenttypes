@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from collective.taxonomy import PATH_SEPARATOR
 from collective.taxonomy.interfaces import ITaxonomy
+from design.plone.contenttypes import _
+from design.plone.contenttypes import AGID_VERSION
 from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
 from plone import api
 from plone.dexterity.interfaces import IDexterityContainer
@@ -16,19 +18,17 @@ from zope.i18n import translate
 from zope.interface import implementer
 
 
-@implementer(ISerializeToJson)
-@adapter(IDexterityContent, IDesignPloneContenttypesLayer)
-class SerializeToJson(BaseSerializer):
-    def __call__(self, version=None, include_items=True):
-        result = super(SerializeToJson, self).__call__(
-            version=version, include_items=include_items
-        )
+class MetaTypeSerializer(object):
+    def get_design_meta_type(self):
         ttool = api.portal.get_tool("portal_types")
-        result["design_italia_meta_type"] = translate(
-            ttool[self.context.portal_type].Title(), context=self.request
-        )
-        if self.context.portal_type == "News Item":
-            if self.context.tipologia_notizia:
+        if self.context.portal_type == "News Item" and self.context.tipologia_notizia:
+            if AGID_VERSION == "V2":
+                return translate(
+                    self.context.tipologia_notizia,
+                    domain=_._domain,
+                    context=self.request,
+                )
+            if AGID_VERSION == "V3":
                 taxonomy = getUtility(
                     ITaxonomy, name="collective.taxonomy.tipologia_notizia"
                 )
@@ -37,38 +37,31 @@ class SerializeToJson(BaseSerializer):
                 title = taxonomy_voc.inv_data.get(self.context.tipologia_notizia, None)
 
                 if title and title.startswith(PATH_SEPARATOR):
-                    result["design_italia_meta_type"] = title.replace(
-                        PATH_SEPARATOR, "", 1
-                    )
+                    return title.replace(PATH_SEPARATOR, "", 1)
+        return translate(ttool[self.context.portal_type].Title(), context=self.request)
+
+
+@implementer(ISerializeToJson)
+@adapter(IDexterityContent, IDesignPloneContenttypesLayer)
+class SerializeToJson(BaseSerializer, MetaTypeSerializer):
+    def __call__(self, version=None, include_items=True):
+        result = super(SerializeToJson, self).__call__(
+            version=version, include_items=include_items
+        )
+        result["design_italia_meta_type"] = self.get_design_meta_type()
         return result
 
 
 @implementer(ISerializeToJson)
 @adapter(IDexterityContainer, IDesignPloneContenttypesLayer)
-class SerializeFolderToJson(BaseFolderSerializer):
+class SerializeFolderToJson(BaseFolderSerializer, MetaTypeSerializer):
     def __call__(self, version=None, include_items=True):
         result = super(SerializeFolderToJson, self).__call__(
             version=version, include_items=include_items
         )
         result["@id"] = self.context.absolute_url()
-        ttool = api.portal.get_tool("portal_types")
+        result["design_italia_meta_type"] = self.get_design_meta_type()
 
-        result["design_italia_meta_type"] = translate(
-            ttool[self.context.portal_type].Title(), context=self.request
-        )
-        if self.context.portal_type == "News Item":
-            if self.context.tipologia_notizia:
-                taxonomy = getUtility(
-                    ITaxonomy, name="collective.taxonomy.tipologia_notizia"
-                )
-                taxonomy_voc = taxonomy.makeVocabulary(self.request.get("LANGUAGE"))
-
-                title = taxonomy_voc.inv_data.get(self.context.tipologia_notizia, None)
-
-                if title and title.startswith(PATH_SEPARATOR):
-                    result["design_italia_meta_type"] = title.replace(
-                        PATH_SEPARATOR, "", 1
-                    )
         if "items_total" not in result:
             # siamo in un sotto-elemento di quello richiesto dalla query.
             #  ritorniamo il numero di elementi totale, senza doverli ritornare

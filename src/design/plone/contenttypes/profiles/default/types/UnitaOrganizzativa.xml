@@ -50,12 +50,7 @@
     <element value="plone.leadimage" />
     <element value="volto.preview_image" />
     <element value="plone.relateditems" />
-    <element remove="True"
-             value="design.plone.contenttypes.behavior.address_uo"
-    />
-    <element remove="True"
-             value="design.plone.contenttypes.behavior.geolocation_uo"
-    />
+    <element value="design.plone.contenttypes.behavior.unita_organizzativa_additional_fields" />
     <element value="design.plone.contenttypes.behavior.contatti_uo" />
     <element value="design.plone.contenttypes.behavior.argomenti" />
     <element value="plone.textindexer" />
@@ -64,6 +59,10 @@
     <element value="kitconcept.seo" />
     <element value="plone.versioning" />
     <element value="collective.taxonomy.generated.tipologia_organizzazione" />
+
+    <!-- remove from v2 -->
+    <element remove="true" value="design.plone.contenttypes.behavior.address_uo"/>
+    <element remove="true" value="design.plone.contenttypes.behavior.geolocation_uo"/>
   </property>
 
   <!-- View information -->

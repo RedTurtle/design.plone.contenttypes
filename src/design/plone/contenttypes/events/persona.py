@@ -2,6 +2,7 @@
 from design.plone.contenttypes.utils import create_default_blocks
 from plone import api
 from Products.CMFPlone.interfaces import ISelectableConstrainTypes
+from design.plone.contenttypes import AGID_VERSION
 
 
 def personaCreateHandler(persona, event):
@@ -38,8 +39,24 @@ def personaCreateHandler(persona, event):
             "contains": ("File",),
         },
         {"id": "altre-cariche", "title": "Altre cariche", "contains": ("File",)},
-        {"id": "incarichi", "title": "Incarichi", "contains": ("Incarico",)},
     ]
+
+    if AGID_VERSION == "V2":
+        FOLDERS.extend(
+            [
+                {"id": "compensi", "title": "Compensi", "contains": ("File",)},
+                {
+                    "id": "importi-di-viaggio-e-o-servizi",
+                    "title": "Importi di viaggio e/o servizi",
+                    "contains": ("File",),
+                },
+            ]
+        )
+    if AGID_VERSION == "V3":
+        FOLDERS.extend(
+            [{"id": "incarichi", "title": "Incarichi", "contains": ("Incarico",)}]
+        )
+
     for folder in FOLDERS:
         if folder["id"] in persona:
             continue

@@ -61,9 +61,7 @@ class IPaginaArgomento(model.Schema, IDesignPloneContentType):
         },
     )
 
-    form.order_after(
-        unita_amministrative_responsabili="ILeadImageBehavior.image_caption"
-    )
+    form.order_before(unita_amministrative_responsabili="ILeadImageBehavior.image")
 
     model.fieldset(
         "informazioni",

@@ -23,7 +23,6 @@ TYPE_TO_TAXONOMIES_MAPPING = {
             "it": {
                 "Accordi tra enti": "accordo_tra_enti",
                 "Atti normativi": "atto_normativo",
-                "Dataset": "Dataset",
                 "Documenti (tecnici) di supporto": "documento_tecnico_di_supporto",
                 "Documenti albo pretorio": "documenti_albo_pretorio",
                 "Documenti attivit\u00e0 politica": "documento_attivita_politica",

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from design.plone.contenttypes import AGID_VERSION
 from design.plone.contenttypes.interfaces.unita_organizzativa import IUnitaOrganizzativa
 from plone.restapi.behaviors import IBlocks
 from plone.restapi.deserializer import json_body
@@ -48,9 +49,9 @@ def text_in_block(blocks):
 @implementer(IDeserializeFromJson)
 @adapter(IUnitaOrganizzativa, Interface)
 class DeserializeUnitaOrganizzativaFromJson(DeserializeFromJson):
-    def __call__(
-        self, validate_all=False, data=None, create=False
-    ):  # noqa: ignore=C901
+    def __call__(self, validate_all=False, data=None, create=False):
+        if AGID_VERSION == "V2":
+            return super().__call__(validate_all=validate_all, data=data, create=create)
         if data is None:
             data = json_body(self.request)
 
@@ -151,6 +152,4 @@ class DeserializeUnitaOrganizzativaFromJson(DeserializeFromJson):
 
         if errors:
             raise BadRequest(errors)
-        return super(DeserializeUnitaOrganizzativaFromJson, self).__call__(
-            validate_all=False, data=data, create=False
-        )
+        return super().__call__(validate_all=validate_all, data=data, create=create)

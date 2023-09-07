@@ -44,14 +44,16 @@ class SourceTextSerializer(DefaultFieldSerializer):
 @adapter(IList, IServizio, IDesignPloneContenttypesLayer)
 class TempiEScadenzeValueSerializer(DefaultFieldSerializer):
     def __call__(self):
-        value = super(TempiEScadenzeValueSerializer, self).__call__()
-
+        """
+        Only for V3
+        """
+        value = super().__call__() or []
+        if self.field.getName() != "timeline_tempi_scadenze":
+            return value
         patched_timeline = []
-        if self.field.getName() == "timeline_tempi_scadenze" and value:
-            for entry in value:
-                patched_timeline.append(entry)
-            return json_compatible(patched_timeline)
-        return value
+        for entry in value:
+            patched_timeline.append(entry)
+        return json_compatible(patched_timeline)
 
 
 @adapter(INamedFileField, IDexterityContent, IDesignPloneContenttypesLayer)
@@ -157,6 +159,9 @@ def get_item_children(item):
 @adapter(ITextLine, IServizio, IDesignPloneContenttypesLayer)
 class ServizioTextLineFieldSerializer(DefaultFieldSerializer):
     def __call__(self):
+        """
+        TODO check if works well in v2
+        """
         value = self.get_value()
         if self.field.getName() != "canale_digitale_link" or not value:
             return super().__call__()

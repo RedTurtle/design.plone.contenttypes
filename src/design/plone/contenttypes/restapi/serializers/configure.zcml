@@ -10,9 +10,7 @@
   <adapter factory=".summary.PuntoDiContattoDefaultJSONSummarySerializer" />
   <adapter factory=".summary.EventDefaultJSONSummarySerializer" />
   <adapter factory=".summary.NewsDefaultJSONSummarySerializer" />
-  <adapter factory=".summary.DatasetDefaultJSONSummarySerializer" />
   <adapter factory=".summary.DocumentoPubblicoDefaultJSONSummarySerializer" />
-  <adapter factory=".summary.PraticaDefaultJSONSummarySerializer" />
   <adapter factory=".modulo.SerializeModuloToJsonSummary" />
   <adapter factory=".servizio.SerializeServizioToJsonSummary" />
   <adapter factory=".unita_organizzativa.UOJSONSummarySerializer" />

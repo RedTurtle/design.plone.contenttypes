@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from collective.volto.blocksfield.field import BlocksField
 from design.plone.contenttypes import _
 from design.plone.contenttypes.interfaces import IDesignPloneContentType
 from plone.app.dexterity import textindexer
@@ -17,15 +16,6 @@ from z3c.relationfield.schema import RelationList
 # ad un tipo a caso + tutto il testo e poi si arrangiano comunque
 class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
     """Marker interface for content type UnitaOrganizzativa"""
-
-    competenze = BlocksField(
-        title=_("uo_competenze_label", default="Competenze"),
-        description=_(
-            "uo_competenze_help",
-            default="Descrizione dei compiti assegnati alla struttura.",
-        ),
-        required=True,
-    )
 
     legami_con_altre_strutture = RelationList(
         title=_(
@@ -91,23 +81,7 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
         required=False,
     )
 
-    sede = RelationList(
-        title=_("sede_label", default="Sede principale"),
-        default=[],
-        description=_(
-            "sede_help",
-            default="Seleziona il Luogo in cui questa struttura ha sede. "
-            "Se non è presente un contenuto di tipo Luogo a cui far "
-            "riferimento, puoi compilare i campi seguenti. Se selezioni un "
-            "Luogo, puoi usare comunque i campi seguenti per sovrascrivere "
-            "alcune informazioni.",
-        ),
-        value_type=RelationChoice(
-            title=_("Sede"), vocabulary="plone.app.vocabularies.Catalog"
-        ),
-        required=True,
-    )
-
+    # TODO cambia solo la label
     sedi_secondarie = RelationList(
         title=_("sedi_secondarie_label", default="Altre sedi"),
         default=[],
@@ -125,29 +99,8 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
         required=False,
     )
 
-    documenti_pubblici = RelationList(
-        title=_("documenti_pubblici_label", default="Documenti pubblici"),
-        default=[],
-        description=_(
-            "documenti_pubblici_help",
-            default="Documenti pubblici importanti, collegati a questa Unità Organizzativa",  # noqa
-        ),
-        value_type=RelationChoice(
-            title=_("Documenti pubblici"), vocabulary="plone.app.vocabularies.Catalog"
-        ),
-        required=False,
-    )
-
     #  custom widgets
-    form.widget(
-        "documenti_pubblici",
-        RelatedItemsFieldWidget,
-        vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={
-            "maximumSelectionSize": 10,
-            "selectableTypes": ["Documento"],
-        },
-    )
+    # TODO da verificare in base a v2/v3
     form.widget(
         "persone_struttura",
         RelatedItemsFieldWidget,
@@ -183,12 +136,7 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
             # "basePath": "/amministrazione",
         },
     )
-    form.widget(
-        "sede",
-        RelatedItemsFieldWidget,
-        vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={"maximumSelectionSize": 1, "selectableTypes": ["Venue"]},
-    )
+
     form.widget(
         "sedi_secondarie",
         RelatedItemsFieldWidget,
@@ -201,11 +149,8 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
     )
 
     # custom fieldsets and order
-    model.fieldset(
-        "cosa_fa",
-        label=_("cosa_fa_label", default="Competenze"),
-        fields=["competenze"],
-    )
+    # TODO da verificare in base a v2/v3
+
     model.fieldset(
         "struttura",
         label=_("struttura_label", default="Struttura"),
@@ -223,20 +168,13 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
     model.fieldset(
         "contatti",
         label=_("contatti_label", default="Contatti"),
-        fields=["sede", "sedi_secondarie"],
-    )
-
-    model.fieldset(
-        "correlati",
-        label=_("correlati_label", default="Contenuti collegati"),
-        fields=["documenti_pubblici"],
+        fields=["sedi_secondarie"],
     )
 
     form.order_after(sedi_secondarie="IContattiUnitaOrganizzativa.orario_pubblico")
-    form.order_after(documenti_pubblici="relatedItems")
     # form.order_after(contact_info="sedi_secondarie")
 
     # SearchableText indexers
-    textindexer.searchable("competenze")
+    # TODO da verificare in base a v2/v3
     textindexer.searchable("assessore_riferimento")
     textindexer.searchable("responsabile")

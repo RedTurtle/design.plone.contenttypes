@@ -137,7 +137,6 @@ class TestControlpanelVocabularies(unittest.TestCase):
                 "Documento attività politica",
                 "Documento (tecnico) di supporto",
                 "Istanza",
-                "Dataset",
             ],
             [self.portal.translate(x.title) for x in vocab],
         )

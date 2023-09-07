@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from design.plone.contenttypes import AGID_VERSION
 from design.plone.contenttypes.interfaces.servizio import IServizio
 from design.plone.contenttypes.restapi.serializers.summary import (
     DefaultJSONSummarySerializer,
@@ -37,6 +38,8 @@ class SerializeServizioToJsonSummary(DefaultJSONSummarySerializer):
         parent = self.context.aq_inner.aq_parent
         summary["parent_title"] = parent.title
         summary["parent_url"] = parent.absolute_url()
-        get_taxonomy_information("person_life_events", self.context, summary)
-        get_taxonomy_information("business_events", self.context, summary)
+
+        if AGID_VERSION == "V3":
+            get_taxonomy_information("person_life_events", self.context, summary)
+            get_taxonomy_information("business_events", self.context, summary)
         return summary

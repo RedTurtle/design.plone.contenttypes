@@ -49,13 +49,11 @@
     <element value="plone.categorization" />
     <element value="plone.basic" />
     <element value="design.plone.contenttypes.behavior.descrizione_estesa_servizio" />
-    <element value="plone.locking" />
+    <element value="design.plone.contenttypes.behavior.servizio_additional_fields" />
     <element value="plone.leadimage" />
     <element value="volto.preview_image" />
     <element value="plone.relateditems" />
-    <element remove="True"
-             value="design.plone.contenttypes.behavior.argomenti"
-    />
+    <element remove="True" value="design.plone.contenttypes.behavior.argomenti"/>
     <element value="design.plone.contenttypes.behavior.argomenti_servizio" />
     <element value="design.plone.contenttypes.behavior.additional_help_infos" />
     <element value="design.plone.contenttypes.behavior.contatti_servizio" />
@@ -63,6 +61,7 @@
     <element value="plone.translatable" />
     <element value="kitconcept.seo" />
     <element value="plone.versioning" />
+    <element value="plone.locking" />
     <element value="collective.taxonomy.generated.person_life_events" />
     <element value="collective.taxonomy.generated.business_events" />
   </property>

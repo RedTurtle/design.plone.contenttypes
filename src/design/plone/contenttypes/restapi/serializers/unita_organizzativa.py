@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from .dxcontent import SerializeFolderToJson as BaseSerializer
 from Acquisition import aq_inner
+from design.plone.contenttypes import AGID_VERSION
 from design.plone.contenttypes.interfaces.unita_organizzativa import IUnitaOrganizzativa
 from design.plone.contenttypes.restapi.serializers.summary import (
     DefaultJSONSummarySerializer,
@@ -126,6 +127,21 @@ class UOJSONSummarySerializer(DefaultJSONSummarySerializer):
             "contact_info",
             "sede",
         ]
+        if AGID_VERSION == "V2":
+            fields.extend(
+                [
+                    "address",
+                    "city",
+                    "zip_code",
+                    "email",
+                    "telefono",
+                    "nome_sede",
+                    "title",
+                    "quartiere",
+                    "circoscrizione",
+                    "street",
+                ]
+            )
 
         for field in fields:
             if field in ("contact_info", "sede"):
@@ -147,7 +163,8 @@ class UOJSONSummarySerializer(DefaultJSONSummarySerializer):
 
         data["geolocation"] = self.getGeolocation()
 
-        get_taxonomy_information("tipologia_organizzazione", self.context, data)
+        if AGID_VERSION == "V3":
+            get_taxonomy_information("tipologia_organizzazione", self.context, data)
 
         return data
 

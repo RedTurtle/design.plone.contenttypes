@@ -8,6 +8,11 @@
       package="plone.behavior"
       file="meta.zcml"
       />
+
+  <!-- <include package=".v2" /> -->
+  <include package=".v3" />
+
+
   <plone:behavior
       name="design.plone.contenttypes.behavior.luogo"
       title="Metadati luogo"
@@ -118,16 +123,6 @@
       provides=".luoghi_correlati.ILuoghiCorrelatiEvento"
       for="plone.app.contenttypes.interfaces.IEvent"
       marker=".luoghi_correlati.ILuoghiCorrelatiEvento"
-      />
-
-  <plone:behavior
-      name="design.plone.contenttypes.behavior.dataset_correlati"
-      title="Dataset correlati"
-      description=""
-      factory=".dataset_correlati.DatasetCorrelati"
-      provides=".dataset_correlati.IDatasetCorrelati"
-      for="plone.dexterity.interfaces.IDexterityContent"
-      marker=".dataset_correlati.IDatasetCorrelati"
       />
 
   <plone:behavior

@@ -60,6 +60,7 @@
   <column value="event_location" />
   <column value="Subject_bando" />
   <column value="ufficio_responsabile_bando" />
+  <column value="ruolo"/>
   <column value="data_conclusione_incarico" />
   <column value="parent" />
   <column value="ente_bando" />
@@ -67,6 +68,7 @@
   <column value="update_note" />
 
   <!-- cleanup -->
+  <!-- TODO Magari li togliamo? -->
   <index name="argomenti_correlati"
          remove="True"
   />

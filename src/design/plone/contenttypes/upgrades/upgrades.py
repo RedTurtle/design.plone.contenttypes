@@ -1252,7 +1252,6 @@ def fix_ctaxonomy_indexes_and_metadata(context):
     bad_names = [
         "taxonomy_person_life_events",
         "taxonomy_business_events",
-        "taxonomy_temi_dataset",
         "taxonomy_tipologia_documenti_albopretorio",
         "taxonomy_tipologia_documento",
         "taxonomy_tipologia_evento",
@@ -1263,7 +1262,6 @@ def fix_ctaxonomy_indexes_and_metadata(context):
         "taxonomy_tipologia_notizia",
         "taxonomy_tipologia_organizzazione",
         "taxonomy_tipologia_pdc",
-        "taxonomy_tipologia_stati_pratica",
     ]
 
     good_names = [name.replace("taxonomy_", "") for name in bad_names]
@@ -1292,10 +1290,8 @@ def fix_ctaxonomy_indexes_and_metadata(context):
             "Venue",
             "Servizio",
             "Documento",
-            "Dataset",
             "UnitaOrganizzativa",
             "Incarico",
-            "Pratica",
         ]
     )
     logger.info(f"{colors.GREEN} Reindex contents with taxonomies {colors.ENDC}")

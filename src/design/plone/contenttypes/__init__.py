@@ -18,3 +18,5 @@ utils.searchable(IAddress, "country")
 # factory above
 #  TEMPORANEAMENTE DISABILITATO PER FARE L'OVERRIDE STANDARD
 # from design.plone.contenttypes import patches  # noqa
+
+AGID_VERSION = "V3"

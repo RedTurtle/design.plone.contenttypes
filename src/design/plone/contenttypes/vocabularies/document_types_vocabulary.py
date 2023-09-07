@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+
+# from plone import api
 from design.plone.contenttypes import _
 from plone.dexterity.interfaces import IDexterityContent
 from zope.globalrequest import getRequest
@@ -15,22 +17,30 @@ class VocabItem(object):
 
 
 @implementer(IVocabularyFactory)
-class ListaAzioniPratica(object):
+class DocumentTypesVocabulary(object):
     """ """
 
     def __call__(self, context):
         # Just an example list of content for our vocabulary,
         # this can be any static or dynamic data, a catalog result for example.
         items = [
-            VocabItem("pagare", _("Pagare")),
-            VocabItem("iscriversi", _("Iscriversi")),
-            VocabItem("richiedere", _("Richiedere")),
-            VocabItem("leggere", _("Leggere")),
-            VocabItem("attivare", _("Attivare")),
-            VocabItem("autorizzare", _("Autorizzare")),
-            VocabItem("delegare", _("Delegare")),
-            VocabItem("informare", _("Informare")),
-            VocabItem("accettare", _("Accettare")),
+            VocabItem("documenti_albo_pretorio", _("Documenti albo pretorio")),
+            VocabItem("modulistica", _("Modulistica")),
+            VocabItem(
+                "documento_funzionamento_interno",
+                _("Documento funzionamento interno"),
+            ),
+            VocabItem("atto_normativo", _("Atto normativo")),
+            VocabItem("accordo_tra_enti", _("Accordo tra enti")),
+            VocabItem(
+                "documento_attivita_politica",
+                _("Documento attivita politica"),
+            ),
+            VocabItem(
+                "documento_tecnico_di_supporto",
+                _("Documento (tecnico) di supporto"),
+            ),
+            VocabItem("istanza", _("Istanza")),
         ]
 
         # Fix context if you are using the vocabulary in DataGridField.
@@ -43,10 +53,14 @@ class ListaAzioniPratica(object):
         terms = []
         for item in items:
             terms.append(
-                SimpleTerm(value=item.token, token=str(item.token), title=item.value)
+                SimpleTerm(
+                    value=item.token,
+                    token=str(item.token),
+                    title=item.value,
+                )
             )
         # Create a SimpleVocabulary from the terms list and return it:
         return SimpleVocabulary(terms)
 
 
-ListaAzioniPraticaFactory = ListaAzioniPratica()
+DocumentTypesVocabularyFactory = DocumentTypesVocabulary()

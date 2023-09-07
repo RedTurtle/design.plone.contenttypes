@@ -6,11 +6,6 @@
     >
 
   <subscriber
-      for="design.plone.contenttypes.interfaces.pratica.IPratica
-           zope.lifecycleevent.interfaces.IObjectAddedEvent"
-      handler=".pratica.praticaCreateHandler"
-      />
-  <subscriber
       for="collective.venue.interfaces.IVenue
            zope.lifecycleevent.interfaces.IObjectAddedEvent"
       handler=".luogo.luogoCreateHandler"

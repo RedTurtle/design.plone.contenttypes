@@ -33,19 +33,8 @@ class IDescrizioneEstesa(IDescrizioneEstesaSchema):
 
 
 @provider(IFormFieldProvider)
-class IDescrizioneEstesaServizio(model.Schema):
+class IDescrizioneEstesaServizio(IDescrizioneEstesaSchema):
     """ """
-
-    descrizione_estesa = BlocksField(
-        title=_("descrizione_estesa", default="Descrizione estesa"),
-        required=False,
-        description=_(
-            "descrizione_estesa_help",
-            default="Descrizione dettagliata e completa.",
-        ),
-    )
-
-    textindexer.searchable("descrizione_estesa")
 
     model.fieldset(
         "cose",

@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 from collective.taxonomy import PATH_SEPARATOR
 from collective.taxonomy.interfaces import ITaxonomy
+from design.plone.contenttypes import AGID_VERSION
 from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
-from design.plone.contenttypes.interfaces.dataset import IDataset
+
 from design.plone.contenttypes.interfaces.documento import IDocumento
 from design.plone.contenttypes.interfaces.incarico import IIncarico
 from design.plone.contenttypes.interfaces.persona import IPersona
-from design.plone.contenttypes.interfaces.pratica import IPratica
+
 from design.plone.contenttypes.interfaces.punto_di_contatto import IPuntoDiContatto
+from design.plone.contenttypes.restapi.serializers.dxcontent import MetaTypeSerializer
 from plone import api
 from plone.app.contenttypes.interfaces import IEvent
 from plone.app.contenttypes.interfaces import INewsItem
@@ -24,7 +26,6 @@ from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.component import queryMultiAdapter
 from zope.globalrequest import getRequest
-from zope.i18n import translate
 from zope.interface import implementer
 from zope.interface import Interface
 from zope.schema import getFieldsInOrder
@@ -92,11 +93,6 @@ def get_taxonomy_information_by_type(res, context):
         "News Item": ("tipologia_notizia",),
         "Event": ("tipologia_evento",),
         "Venue": ("tipologia_luogo",),
-        "Dataset": (
-            "temi_dataset",
-            "tipologia_frequenza_aggiornamento",
-            "tipologia_licenze",
-        ),
         "Documento": (
             "tipologia_documenti_albopretorio",
             "tipologia_documento",
@@ -104,7 +100,6 @@ def get_taxonomy_information_by_type(res, context):
             "person_life_events",
             "business_events",
         ),
-        "Pratica": ("tipologia_stati_pratica",),
         "UnitaOrganizzativa": ("tipologia_organizzazione",),
         "Incarico": ("tipologia_incarico",),
         "Servizio": ("person_life_events", "business_events"),
@@ -117,11 +112,13 @@ def get_taxonomy_information_by_type(res, context):
 
 @implementer(ISerializeToJsonSummary)
 @adapter(Interface, IDesignPloneContenttypesLayer)
-class DefaultJSONSummarySerializer(BaseSerializer):
+class DefaultJSONSummarySerializer(BaseSerializer, MetaTypeSerializer):
     def __call__(self, force_all_metadata=False):
         res = super().__call__(force_all_metadata=force_all_metadata)
         metadata_fields = self.metadata_fields()
         if self.context.portal_type == "Persona":
+            if AGID_VERSION == "V2":
+                res["ruolo"] = self.context.ruolo
             res["incarichi"] = self.get_incarichi()
         if self.context.portal_type == "Bando":
             if "bando_state" in metadata_fields or self.show_all_metadata_fields:
@@ -146,7 +143,8 @@ class DefaultJSONSummarySerializer(BaseSerializer):
             if res["tassonomia_argomenti"]:
                 res["tassonomia_argomenti"] = self.expand_tassonomia_argomenti()
 
-        get_taxonomy_information_by_type(res, self.context)
+        if AGID_VERSION == "V3":
+            get_taxonomy_information_by_type(res, self.context)
 
         if self.is_get_call():
             res["has_children"] = self.has_children()
@@ -170,35 +168,6 @@ class DefaultJSONSummarySerializer(BaseSerializer):
         if not steps:
             return False
         return steps[-1] == "GET_application_json_"
-
-    def get_design_meta_type(self):
-        ttool = api.portal.get_tool("portal_types")
-        if self.context.portal_type == "News Item":
-            if self.context.tipologia_notizia:
-                taxonomy = getUtility(
-                    ITaxonomy, name="collective.taxonomy.tipologia_notizia"
-                )
-                taxonomy_voc = taxonomy.makeVocabulary(self.request.get("LANGUAGE"))
-                if isinstance(self.context.tipologia_notizia, list):
-                    token = self.context.tipologia_notizia[0]
-                else:
-                    token = self.context.tipologia_notizia
-                title = taxonomy_voc.inv_data.get(token, None)
-                if title:
-                    if title.startswith(PATH_SEPARATOR):
-                        title = title.replace(PATH_SEPARATOR, "", 1)
-                    return title
-        if self.context.portal_type in ttool:
-            return translate(
-                ttool[self.context.portal_type].Title(), context=self.request
-            )
-        else:
-            logger.error(
-                "missing portal_type %s for %s",
-                self.context.portal_type,
-                self.context.absolute_url(),
-            )
-            return self.context.portal_type
 
     def expand_tassonomia_argomenti(self):
         try:
@@ -229,13 +198,16 @@ class DefaultJSONSummarySerializer(BaseSerializer):
     # TODO: use tipo incarico from taxonomy when taxonomies are ready
     # instead of CT title
     def get_incarichi(self):
+        """
+        TODO sul v2 magari facciamo tornare altri dati?
+        """
         try:
             obj = self.context.getObject()
         except AttributeError:
             obj = self.context
 
         incarichi = []
-        for incarico in obj.incarichi_persona:
+        for incarico in getattr(obj, "incarichi_persona", []):
             if not incarico.to_object:
                 continue
             incarichi.append(incarico.to_object.title)
@@ -318,7 +290,8 @@ class PersonaDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
 class EventDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
     def __call__(self, force_all_metadata=False):
         res = super().__call__(force_all_metadata=force_all_metadata)
-        get_taxonomy_information("tipologia_evento", self.context, res)
+        if AGID_VERSION == "V3":
+            get_taxonomy_information("tipologia_evento", self.context, res)
         # Il summary dell'evento riceve in ingresso un obj generico che può
         # essere un brain (gli items figli dell'evento) oppure un oggtto (il
         # parent). Gli attributi per le immagini vengono presi solo nel caso
@@ -343,18 +316,8 @@ class EventDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
 class NewsDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
     def __call__(self, force_all_metadata=False):
         res = super().__call__(force_all_metadata=force_all_metadata)
-        get_taxonomy_information("tipologia_notizia", self.context, res)
-        return res
-
-
-@implementer(ISerializeToJsonSummary)
-@adapter(IDataset, IDesignPloneContenttypesLayer)
-class DatasetDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
-    def __call__(self, force_all_metadata=False):
-        res = super().__call__(force_all_metadata=force_all_metadata)
-        get_taxonomy_information("temi_dataset", self.context, res)
-        get_taxonomy_information("tipologia_frequenza_aggiornamento", self.context, res)
-        get_taxonomy_information("tipologia_licenze", self.context, res)
+        if AGID_VERSION == "V3":
+            get_taxonomy_information("tipologia_notizia", self.context, res)
         return res
 
 
@@ -363,18 +326,12 @@ class DatasetDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
 class DocumentoPubblicoDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
     def __call__(self, force_all_metadata=False):
         res = super().__call__(force_all_metadata=force_all_metadata)
-        get_taxonomy_information("tipologia_documenti_albopretorio", self.context, res)
-        get_taxonomy_information("tipologia_documento", self.context, res)
-        get_taxonomy_information("tipologia_licenze", self.context, res)
-        get_taxonomy_information("person_life_events", self.context, res)
-        get_taxonomy_information("business_events", self.context, res)
-        return res
-
-
-@implementer(ISerializeToJsonSummary)
-@adapter(IPratica, IDesignPloneContenttypesLayer)
-class PraticaDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
-    def __call__(self, force_all_metadata=False):
-        res = super().__call__(force_all_metadata=force_all_metadata)
-        get_taxonomy_information("tipologia_stati_pratica", self.context, res)
+        if AGID_VERSION == "V3":
+            get_taxonomy_information(
+                "tipologia_documenti_albopretorio", self.context, res
+            )
+            get_taxonomy_information("tipologia_documento", self.context, res)
+            get_taxonomy_information("tipologia_licenze", self.context, res)
+            get_taxonomy_information("person_life_events", self.context, res)
+            get_taxonomy_information("business_events", self.context, res)
         return res

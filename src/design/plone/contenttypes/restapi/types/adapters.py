@@ -20,9 +20,6 @@ from zope.schema.interfaces import ITextLine
 from zope.schema.interfaces import IVocabularyFactory
 
 
-DATAGRID_FIELDS = ["value_punto_contatto", "timeline_tempi_scadenze"]
-
-
 @adapter(IField, Interface, Interface)
 @implementer(IJsonSchemaProvider)
 class LeadImageJsonSchemaProvider(ObjectJsonSchemaProvider):

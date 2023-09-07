@@ -56,7 +56,7 @@ class IEvento(model.Schema):
     )
 
     prezzo = BlocksField(
-        title=_("prezzo", default="Costo"),
+        title=_("prezzo", default="Costo"),  # TODO cambia solo la label e descrizione
         required=False,
         description=_(
             "prezzo_help",

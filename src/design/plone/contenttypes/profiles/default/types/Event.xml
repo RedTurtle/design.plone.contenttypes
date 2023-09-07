@@ -20,9 +20,6 @@
     <element value="plone.eventbasic" />
     <element value="plone.leadimage" />
     <element value="volto.preview_image" />
-    <element remove="True"
-             value="design.plone.contenttypes.behavior.argomenti"
-    />
     <element value="design.plone.contenttypes.behavior.argomenti_evento" />
     <element value="plone.eventrecurrence" />
     <element value="design.plone.contenttypes.behavior.additional_help_infos" />
@@ -45,6 +42,10 @@
     <element value="plone.translatable" />
     <element value="kitconcept.seo" />
     <element value="collective.taxonomy.generated.tipologia_evento" />
+
+    <!-- remove from V2 -->
+    <element remove="True" value="design.plone.contenttypes.behavior.argomenti" />
+
     <!-- remove unused behaviors -->
     <element remove="True"
              value="plone.eventlocation"

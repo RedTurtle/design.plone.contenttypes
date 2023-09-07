@@ -10,11 +10,6 @@
 
 
   <utility
-      name="design.plone.contenttypes.PeopleVocabulary"
-      component=".people_vocabulary.PeopleVocabularyFactory"
-      />
-
-  <utility
       name="design.plone.contenttypes.AvailableServicesVocabulary"
       component=".available_services_vocabulary.AvailableServicesVocabularyFactory"
       />
@@ -22,16 +17,6 @@
   <utility
       name="design.plone.vocabularies.leadimage_dimension"
       component=".controlapanel_vocabularies.LeadImageDimensionFactory"
-      />
-
-  <utility
-      name="design.plone.contenttypes.Mockup"
-      component=".mockup.MockupFactory"
-      />
-
-  <utility
-      name="design.plone.contenttypes.ListaAzioniPratica"
-      component=".lista_azioni_pratica.ListaAzioniPraticaFactory"
       />
 
   <utility
@@ -60,9 +45,30 @@
       component=".reference_vocabularies.UOLocationVocabularyFactory"
       />
 
-  <utility
-      name="design.plone.contenttypes.RuoliPersona"
-      component=".people_vocabulary.RuoliPersonaFactory"
+    <!-- V2 vocabularies -->
+    <utility
+      name="design.plone.contenttypes.DocumentTypesVocabulary"
+      component=".document_types_vocabulary.DocumentTypesVocabularyFactory"
       />
+
+
+  <utility
+      name="design.plone.contenttypes.TipologiaPersona"
+      component=".controlapanel_vocabularies.TipologiePersonaFactory"
+      />
+
+
+  <utility
+      name="design.plone.vocabularies.tipologie_notizia"
+      component=".controlapanel_vocabularies.TipologieNotiziaFactory"
+      />
+
+  <utility
+      name="design.plone.vocabularies.tipologie_documento"
+      component=".controlapanel_vocabularies.TipologieDocumentoFactory"
+      />
+<utility name="design.plone.vocabularies.tipologie_unita_organizzativa"
+    component=".controlapanel_vocabularies.TipologieUnitaOrganizzativaVocabularyFactory" />
+
 
 </configure>

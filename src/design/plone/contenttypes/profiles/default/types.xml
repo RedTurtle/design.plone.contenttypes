@@ -7,16 +7,7 @@
           name="CartellaModulistica"
   />
   <object meta_type="Dexterity FTI"
-          name="Dataset"
-  />
-  <object meta_type="Dexterity FTI"
-          name="Documento Personale"
-  />
-  <object meta_type="Dexterity FTI"
           name="Documento"
-  />
-  <object meta_type="Dexterity FTI"
-          name="Messaggio"
   />
   <object meta_type="Dexterity FTI"
           name="Modulo"
@@ -26,12 +17,6 @@
   />
   <object meta_type="Dexterity FTI"
           name="Persona"
-  />
-  <object meta_type="Dexterity FTI"
-          name="Pratica"
-  />
-  <object meta_type="Dexterity FTI"
-          name="RicevutaPagamento"
   />
   <object meta_type="Dexterity FTI"
           name="Servizio"

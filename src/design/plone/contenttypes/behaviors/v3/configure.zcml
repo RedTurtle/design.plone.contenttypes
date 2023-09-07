@@ -1,0 +1,50 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="design.plone.contenttypes"
+    >
+
+  <!--
+    these are specific behaviors for v3 version. There are some differences between v2 and v3,
+    so we had to split fields in different behaviors to allow to enable/disable them
+  -->
+  <plone:behavior
+      name="design.plone.contenttypes.behavior.documento_additional_fields"
+      title="Campi aggiuntivi Documento"
+      description=""
+      factory=".documento.DocumentoBehavior"
+      provides=".documento.IDocumentoBehavior"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      marker=".documento.IDocumentoBehavior"
+      />
+
+    <plone:behavior
+      name="design.plone.contenttypes.behavior.persona_additional_fields"
+      title="Campi aggiuntivi Persona"
+      description=""
+      factory=".persona.PersonaBehavior"
+      provides=".persona.IPersonaBehavior"
+      for="design.plone.contenttypes.interfaces.persona.IPersona"
+      marker=".persona.IPersonaBehavior"
+      />
+
+    <plone:behavior
+      name="design.plone.contenttypes.behavior.servizio_additional_fields"
+      title="Campi aggiuntivi Servizio"
+      description=""
+      factory=".servizio.ServizioBehavior"
+      provides=".servizio.IServizioBehavior"
+      for="design.plone.contenttypes.interfaces.servizio.IServizio"
+      marker=".servizio.IServizioBehavior"
+      />
+    
+    <plone:behavior
+      name="design.plone.contenttypes.behavior.unita_organizzativa_additional_fields"
+      title="Campi aggiuntivi UnitaOrganizzativa"
+      description=""
+      factory=".unita_organizzativa.UnitaOrganizzativaBehavior"
+      provides=".unita_organizzativa.IUnitaOrganizzativaBehavior"
+      for="design.plone.contenttypes.interfaces.unita_organizzativa.IUnitaOrganizzativa"
+      marker=".unita_organizzativa.IUnitaOrganizzativaBehavior"
+      />
+</configure>

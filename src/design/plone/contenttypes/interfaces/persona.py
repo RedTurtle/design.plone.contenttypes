@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from collective.volto.blocksfield.field import BlocksField
 from design.plone.contenttypes import _
+from design.plone.contenttypes import AGID_VERSION
 from design.plone.contenttypes.interfaces import IDesignPloneContentType
 from plone.app.dexterity import textindexer
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
@@ -24,15 +25,6 @@ from z3c.relationfield.schema import RelationList
 class IPersona(model.Schema, IDesignPloneContentType):
     """Marker interface for contenttype Persona"""
 
-    foto_persona = field.NamedImage(
-        title=_("foto_persona_label", default="Foto della persona"),
-        required=False,
-        description=_(
-            "foto_persona_help",
-            default="Foto da mostrare della persona. "
-            "La dimensione suggerita è 100x180px.",
-        ),
-    )
     # Questo campo per direttive e richieste viene nascosto nella form
     # Lo si tiene perche si vuole evitare di perder dati tra le migrazioni
     # e magari non poter piu' usare la feature collegata, ossia
@@ -54,22 +46,18 @@ class IPersona(model.Schema, IDesignPloneContentType):
         default=[],
         required=False,
     )
-    form.omitted("organizzazione_riferimento")
-    incarichi_persona = RelationList(
-        title=_(
-            "incarichi_label",
-            default="Incarichi",
-        ),
-        description=_(
-            "incarichi_help",
-            default="Seleziona l'incarico corrente della persona.",
-        ),
-        value_type=RelationChoice(
-            title=_("Incarichi"),
-            vocabulary="plone.app.vocabularies.Catalog",
-        ),
-        default=[],
+
+    if AGID_VERSION == "V3":
+        form.omitted("organizzazione_riferimento")
+
+    foto_persona = field.NamedImage(
+        title=_("foto_persona_label", default="Foto della persona"),
         required=False,
+        description=_(
+            "foto_persona_help",
+            default="Foto da mostrare della persona. "
+            "La dimensione suggerita è 100x180px.",
+        ),
     )
 
     competenze = BlocksField(
@@ -99,17 +87,6 @@ class IPersona(model.Schema, IDesignPloneContentType):
         required=False,
     )
 
-    curriculum_vitae = field.NamedBlobFile(
-        title=_("curriculum_vitae_label", default="Curriculum vitae"),
-        required=False,
-        description=_(
-            "curriculum_vitae_help",
-            default="Allega un file contenente il curriculum vitae della persona. "
-            "Se ha più file da allegare, utilizza questo campo per quello principale "
-            'e gli altri mettili dentro alla cartella "Curriculum vitae" che troverai dentro alla Persona.',  # noqa
-        ),
-    )
-
     # custom widgets
     form.widget(
         "organizzazione_riferimento",
@@ -121,35 +98,21 @@ class IPersona(model.Schema, IDesignPloneContentType):
         },
     )
 
-    form.widget(
-        "incarichi_persona",
-        RelatedItemsFieldWidget,
-        vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={
-            "maximumSelectionSize": 10,
-            "selectableTypes": ["Incarico"],
-        },
-    )
-
     # custom fieldsets
+    # TODO da verificare in base a v2/v3
     model.fieldset(
         "ruolo",
         label=_("ruolo_label", default="Ruolo"),
         fields=[
-            "incarichi_persona",
             "organizzazione_riferimento",
             "competenze",
             "deleghe",
             "biografia",
         ],
     )
-    model.fieldset(
-        "documenti",
-        label=_("documenti_label", default="Documenti"),
-        fields=["curriculum_vitae"],
-    )
 
     # SearchableText fields
+    # TODO da verificare in base a v2/v3
     textindexer.searchable("competenze")
     textindexer.searchable("deleghe")
     # TODO: migration script for these commented fields towards PDC
