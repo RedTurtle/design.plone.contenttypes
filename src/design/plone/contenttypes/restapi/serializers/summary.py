@@ -14,9 +14,9 @@ from plone import api
 from plone.app.contenttypes.interfaces import IEvent
 from plone.app.contenttypes.interfaces import INewsItem
 from plone.base.interfaces import IImageScalesAdapter
+from plone.base.utils import safe_hasattr
 from plone.restapi.interfaces import ISerializeToJsonSummary
 from plone.restapi.serializer.converters import json_compatible
-from Products.CMFPlone.utils import safe_hasattr
 from Products.ZCatalog.interfaces import ICatalogBrain
 from redturtle.volto.restapi.serializer.summary import (
     DefaultJSONSummarySerializer as BaseSerializer,

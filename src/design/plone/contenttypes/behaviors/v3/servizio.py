@@ -4,7 +4,7 @@ from collective.z3cform.datagridfield.row import DictRow
 from collective.z3cform.datagridfield.datagridfield import DataGridFieldFactory
 from design.plone.contenttypes import _
 from plone.app.z3cform.widget import DateFieldWidget
-from plone.app.z3cform.widget import LinkFieldWidget
+from plone.app.z3cform.widgets.link import LinkFieldWidget
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.autoform import directives as form
