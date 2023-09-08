@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*-
 """Setup tests for this package."""
-from design.plone.contenttypes.testing import (  # noqa
+from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
-)
-from design.plone.contenttypes.testing import (  # noqa
-    DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING,
 )
 from plone import api
 from plone.app.testing import setRoles
@@ -44,14 +41,23 @@ WIDGET_PROPERTY_CHECKS = {
 }
 
 
-class TestServizio(unittest.TestCase):
-    layer = DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING
+class TestServizioSchema(unittest.TestCase):
+    layer = DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING
     maxDiff = None
 
     def setUp(self):
-        """Custom shared utility setup for tests."""
+        self.app = self.layer["app"]
         self.portal = self.layer["portal"]
+        self.request = self.layer["request"]
+        self.portal_url = self.portal.absolute_url()
         setRoles(self.portal, TEST_USER_ID, ["Manager"])
+
+        self.api_session = RelativeSession(self.portal_url)
+        self.api_session.headers.update({"Accept": "application/json"})
+        self.api_session.auth = (SITE_OWNER_NAME, SITE_OWNER_PASSWORD)
+
+    def tearDown(self):
+        self.api_session.close()
 
     def test_behaviors_enabled_for_servizio(self):
         portal_types = api.portal.get_tool(name="portal_types")
@@ -82,6 +88,259 @@ class TestServizio(unittest.TestCase):
                 "collective.taxonomy.generated.person_life_events",
                 "collective.taxonomy.generated.business_events",
             ),
+        )
+
+    def test_servizio_fieldsets(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/Servizio").json()
+        self.assertEqual(len(resp["fieldsets"]), 18)
+        self.assertEqual(
+            [x.get("id") for x in resp["fieldsets"]],
+            [
+                "default",
+                "cose",
+                "a_chi_si_rivolge",
+                "accedi_al_servizio",
+                "cosa_serve",
+                "costi_e_vincoli",
+                "tempi_e_scadenze",
+                "casi_particolari",
+                "contatti",
+                "documenti",
+                "link_utili",
+                "informazioni",
+                "correlati",
+                "categorization",
+                "settings",
+                "ownership",
+                "dates",
+                "seo",
+            ],
+        )
+
+    def test_servizio_required_fields(self):
+        resp = self.api_session.get("@types/Servizio").json()
+        self.assertEqual(
+            sorted(resp["required"]),
+            sorted(
+                [
+                    "title",
+                    "tassonomia_argomenti",
+                    "a_chi_si_rivolge",
+                    "come_si_fa",
+                    "cosa_si_ottiene",
+                    "cosa_serve",
+                    "tempi_e_scadenze",
+                    "ufficio_responsabile",
+                    "contact_info",
+                    "description",
+                ]
+            ),
+        )
+
+    def test_servizio_fields_default_fieldset(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/Servizio").json()
+        self.assertEqual(
+            resp["fieldsets"][0]["fields"],
+            [
+                "title",
+                "description",
+                "sottotitolo",
+                "stato_servizio",
+                "motivo_stato_servizio",
+                "condizioni_di_servizio",
+                "image",
+                "image_caption",
+                "preview_image",
+                "preview_caption",
+                "correlato_in_evidenza",
+                "tassonomia_argomenti",
+                "person_life_events",
+                "business_events",
+            ],
+        )
+
+    def test_servizio_fields_cose_fieldset(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/Servizio").json()
+        self.assertEqual(
+            resp["fieldsets"][1]["fields"],
+            ["descrizione_estesa"],
+        )
+
+    def test_servizio_fields_a_chi_si_rivolge_fieldset(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/Servizio").json()
+        self.assertEqual(
+            resp["fieldsets"][2]["fields"],
+            ["a_chi_si_rivolge", "chi_puo_presentare", "copertura_geografica"],
+        )
+
+    def test_servizio_fields_accedi_al_servizio_fieldset(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/Servizio").json()
+        self.assertEqual(
+            resp["fieldsets"][3]["fields"],
+            [
+                "come_si_fa",
+                "cosa_si_ottiene",
+                "procedure_collegate",
+                "canale_digitale",
+                "canale_digitale_link",
+                "canale_fisico",
+                "dove_rivolgersi",
+                "dove_rivolgersi_extra",
+                "prenota_appuntamento",
+            ],
+        )
+
+    def test_servizio_fields_cosa_serve_fieldset(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/Servizio").json()
+        self.assertEqual(
+            resp["fieldsets"][4]["fields"],
+            ["cosa_serve"],
+        )
+
+    def test_servizio_fields_costi_e_vincoli_fieldset(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/Servizio").json()
+        self.assertEqual(resp["fieldsets"][5]["fields"], ["costi", "vincoli"])
+
+    def test_servizio_fields_tempi_e_scadenze_fieldset(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/Servizio").json()
+        self.assertEqual(
+            resp["fieldsets"][6]["fields"],
+            ["tempi_e_scadenze", "timeline_tempi_scadenze"],
+        )
+
+    def test_servizio_fields_casi_particolari_fieldset(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/Servizio").json()
+        self.assertEqual(resp["fieldsets"][7]["fields"], ["casi_particolari"])
+
+    def test_servizio_fields_contatti_fieldset(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/Servizio").json()
+        self.assertEqual(
+            resp["fieldsets"][8]["fields"],
+            ["ufficio_responsabile", "area", "contact_info"],
+        )
+
+    def test_servizio_fields_documenti_fieldset(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/Servizio").json()
+        self.assertEqual(resp["fieldsets"][9]["fields"], ["altri_documenti"])
+
+    def test_servizio_fields_link_utili_fieldset(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/Servizio").json()
+        self.assertEqual(resp["fieldsets"][10]["fields"], ["link_siti_esterni"])
+
+    def test_servizio_fields_informazioni_fieldset(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/Servizio").json()
+        self.assertEqual(
+            resp["fieldsets"][11]["fields"],
+            ["codice_ipa", "settore_merceologico", "ulteriori_informazioni"],
+        )
+
+    def test_servizio_fields_correlati_fieldset(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/Servizio").json()
+        self.assertEqual(
+            resp["fieldsets"][12]["fields"],
+            ["servizi_collegati"],
+        )
+
+    def test_servizio_fields_categorization_fieldset(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/Servizio").json()
+        self.assertEqual(
+            resp["fieldsets"][13]["fields"],
+            ["identificativo", "subjects", "language", "relatedItems"],
+        )
+
+    def test_servizio_fields_settings_fieldset(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/Servizio").json()
+        self.assertEqual(
+            resp["fieldsets"][14]["fields"],
+            [
+                "allow_discussion",
+                "exclude_from_nav",
+                "id",
+                "versioning_enabled",
+                "changeNote",
+            ],
+        )
+
+    def test_servizio_fields_ownership_fieldset(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/Servizio").json()
+        self.assertEqual(
+            resp["fieldsets"][15]["fields"], ["creators", "contributors", "rights"]
+        )
+
+    def test_servizio_fields_dates_fieldset(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/Servizio").json()
+        self.assertEqual(resp["fieldsets"][16]["fields"], ["effective", "expires"])
+
+    def test_servizio_fields_seo_fieldset(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/Servizio").json()
+        self.assertEqual(
+            resp["fieldsets"][17]["fields"],
+            [
+                "seo_title",
+                "seo_description",
+                "seo_noindex",
+                "seo_canonical_url",
+                "opengraph_title",
+                "opengraph_description",
+                "opengraph_image",
+            ],
         )
 
 

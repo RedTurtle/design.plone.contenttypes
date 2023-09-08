@@ -71,6 +71,9 @@ class IUnitaOrganizzativaBehavior(model.Schema):
         },
     )
 
+    form.order_after(documenti_pubblici="relatedItems")
+    form.order_before(sede="sedi_secondarie")
+
     model.fieldset(
         "cosa_fa",
         label=_("cosa_fa_label", default="Competenze"),
@@ -87,9 +90,6 @@ class IUnitaOrganizzativaBehavior(model.Schema):
         label=_("correlati_label", default="Contenuti collegati"),
         fields=["documenti_pubblici"],
     )
-
-    form.order_after(documenti_pubblici="relatedItems")
-    form.order_before(sede="sedi_secondarie")
 
     textindexer.searchable("competenze")
 
