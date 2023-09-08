@@ -45,8 +45,8 @@
       component=".reference_vocabularies.UOLocationVocabularyFactory"
       />
 
-    <!-- V2 vocabularies -->
-    <utility
+  <!-- V2 vocabularies -->
+  <utility
       name="design.plone.contenttypes.DocumentTypesVocabulary"
       component=".document_types_vocabulary.DocumentTypesVocabularyFactory"
       />
@@ -67,8 +67,10 @@
       name="design.plone.vocabularies.tipologie_documento"
       component=".controlapanel_vocabularies.TipologieDocumentoFactory"
       />
-<utility name="design.plone.vocabularies.tipologie_unita_organizzativa"
-    component=".controlapanel_vocabularies.TipologieUnitaOrganizzativaVocabularyFactory" />
+  <utility
+      name="design.plone.vocabularies.tipologie_unita_organizzativa"
+      component=".controlapanel_vocabularies.TipologieUnitaOrganizzativaVocabularyFactory"
+      />
 
 
 </configure>

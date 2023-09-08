@@ -18,7 +18,7 @@
       marker=".documento.IDocumentoBehavior"
       />
 
-    <plone:behavior
+  <plone:behavior
       name="design.plone.contenttypes.behavior.persona_additional_fields"
       title="Campi aggiuntivi Persona"
       description=""
@@ -28,7 +28,7 @@
       marker=".persona.IPersonaBehavior"
       />
 
-    <plone:behavior
+  <plone:behavior
       name="design.plone.contenttypes.behavior.servizio_additional_fields"
       title="Campi aggiuntivi Servizio"
       description=""
@@ -37,8 +37,8 @@
       for="design.plone.contenttypes.interfaces.servizio.IServizio"
       marker=".servizio.IServizioBehavior"
       />
-    
-    <plone:behavior
+
+  <plone:behavior
       name="design.plone.contenttypes.behavior.unita_organizzativa_additional_fields"
       title="Campi aggiuntivi UnitaOrganizzativa"
       description=""
