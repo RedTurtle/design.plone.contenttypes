@@ -16,30 +16,13 @@ class IDocumento(model.Schema, IDesignPloneContentType):
     identificativo = schema.TextLine(
         title=_(
             "identificativo_documento_label",
-            default="Identificativo del documento.",
+            default="Identificativo del documento",
         ),
         description=_(
             "identificativo_documento_help",
             default="Un numero identificativo del documento.",
         ),
         required=False,
-    )
-
-    ufficio_responsabile = RelationList(
-        title=_(
-            "ufficio_responsabile_documento_label",
-            default="Ufficio responsabile del documento",
-        ),
-        description=_(
-            "ufficio_responsabile_documento_help",
-            default="Seleziona l'ufficio responsabile di questo documento.",
-        ),
-        required=True,
-        default=[],
-        value_type=RelationChoice(
-            title=_("Ufficio responsabile"),
-            vocabulary="plone.app.vocabularies.Catalog",
-        ),
     )
 
     area_responsabile = RelationList(
@@ -111,15 +94,6 @@ class IDocumento(model.Schema, IDesignPloneContentType):
     )
 
     # custom widgets
-    form.widget(
-        "ufficio_responsabile",
-        RelatedItemsFieldWidget,
-        vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={
-            "maximumSelectionSize": 1,
-            "selectableTypes": ["UnitaOrganizzativa"],
-        },
-    )
 
     form.widget(
         "autori",
@@ -151,7 +125,6 @@ class IDocumento(model.Schema, IDesignPloneContentType):
         "descrizione",
         label=_("descrizione_label", default="Descrizione"),
         fields=[
-            "ufficio_responsabile",
             "area_responsabile",
             "autori",
             "licenza_distribuzione",
@@ -165,9 +138,7 @@ class IDocumento(model.Schema, IDesignPloneContentType):
     )
 
     # custom order
-    form.order_after(
-        ufficio_responsabile="IDescrizioneEstesaDocumento.descrizione_estesa"
-    )
+
     form.order_after(area_responsabile="ufficio_responsabile")
     form.order_after(autori="area_responsabile")
     form.order_after(

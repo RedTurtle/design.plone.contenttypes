@@ -44,6 +44,7 @@ class TestPersona(unittest.TestCase):
                 "plone.categorization",
                 "plone.basic",
                 "plone.locking",
+                "design.plone.contenttypes.behavior.persona_additional_fields",
                 "design.plone.contenttypes.behavior.additional_help_infos",
                 "design.plone.contenttypes.behavior.contatti_persona",
                 "plone.textindexer",

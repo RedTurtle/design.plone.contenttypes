@@ -15,7 +15,7 @@ class TestCartellaModulistica(unittest.TestCase):
         """Custom shared utility setup for tests."""
         self.portal = self.layer["portal"]
 
-    def test_behaviors_enabled_for_documento(self):
+    def test_behaviors_enabled_for_cartella_modulistica(self):
         portal_types = api.portal.get_tool(name="portal_types")
         self.assertEqual(
             portal_types["CartellaModulistica"].behaviors,

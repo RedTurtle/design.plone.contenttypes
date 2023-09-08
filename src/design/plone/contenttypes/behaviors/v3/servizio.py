@@ -3,8 +3,9 @@ from collective.volto.blocksfield.field import BlocksField
 from collective.z3cform.datagridfield.row import DictRow
 from collective.z3cform.datagridfield.datagridfield import DataGridFieldFactory
 from design.plone.contenttypes import _
+from plone.app.dexterity import textindexer
 from plone.app.z3cform.widget import DateFieldWidget
-from plone.app.z3cform.widgets.link import LinkFieldWidget
+from plone.app.z3cform.widget import LinkFieldWidget
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.autoform import directives as form
@@ -195,6 +196,11 @@ class IServizioBehavior(model.Schema):
         label=_("a_chi_si_rivolge_label", default="A chi si rivolge"),
         fields=["a_chi_si_rivolge"],
     )
+
+    textindexer.searchable("ulteriori_informazioni")
+    textindexer.searchable("a_chi_si_rivolge")
+    textindexer.searchable("come_si_fa")
+    textindexer.searchable("cosa_si_ottiene")
 
 
 @implementer(IServizioBehavior)

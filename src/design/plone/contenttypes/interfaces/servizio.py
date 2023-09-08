@@ -382,12 +382,8 @@ class IServizio(model.Schema, IDesignPloneContentType):
     model.fieldset("informazioni", fields=["codice_ipa", "settore_merceologico"])
 
     # SearchableText fields
-    # TODO da verificare in base a v2/v3
     textindexer.searchable("sottotitolo")
-    textindexer.searchable("a_chi_si_rivolge")
     textindexer.searchable("chi_puo_presentare")
-    textindexer.searchable("come_si_fa")
-    textindexer.searchable("cosa_si_ottiene")
     textindexer.searchable("cosa_serve")
     textindexer.searchable("area")
     textindexer.searchable("ufficio_responsabile")
