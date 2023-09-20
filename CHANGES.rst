@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.0.18 (unreleased)
+6.0.18 (2023-09-20)
 -------------------
 
 - Add permission check to solve problem accessing private resources with
