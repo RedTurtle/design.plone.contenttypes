@@ -4,7 +4,9 @@ Changelog
 6.0.18 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add permission check to solve problem accessing private resources with
+  anonymous user
+  [lucabel]
 
 
 6.0.17 (2023-09-06)

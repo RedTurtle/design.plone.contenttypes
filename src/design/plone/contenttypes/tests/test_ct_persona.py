@@ -7,6 +7,7 @@ from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING,
 )
 from plone import api
+from plone.app.testing import helpers
 from plone.app.testing import setRoles
 from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import SITE_OWNER_PASSWORD
@@ -130,3 +131,27 @@ class TestPersonaEndpoint(unittest.TestCase):
         )()
         # non ho incarichi, ma soprattutto non ho errori
         self.assertTrue(len(summary["incarichi"]) == 0)
+
+    def test_unauthorized_on_subfolder(self):
+        incarico = api.content.create(
+            container=self.persona.incarichi, type="Incarico", title="Sindaco"
+        )
+        commit()
+        intids = getUtility(IIntIds)
+        self.persona.incarichi_persona = [RelationValue(intids.getId(incarico))]
+        api.content.transition(obj=self.persona, transition="publish")
+        commit()
+
+        helpers.logout()
+        # with previous bug this as anonymous user return
+        # AccessControl.unauthorized.Unauthorized: You are not allowed to
+        # access '_Access_inactive_portal_content_Permission' in this context
+        persona_summary = getMultiAdapter(
+            (self.persona, self.request), ISerializeToJsonSummary
+        )()
+        self.assertFalse(persona_summary["incarichi"])
+        incarico_summary = getMultiAdapter(
+            (self.persona.incarichi.sindaco, self.request), ISerializeToJsonSummary
+        )()
+        self.assertEqual(incarico_summary["compensi_file"], [])
+        self.assertEqual(incarico_summary["importi_di_viaggio_e_o_servizi"], [])
