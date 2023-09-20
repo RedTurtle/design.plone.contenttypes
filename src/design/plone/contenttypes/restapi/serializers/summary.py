@@ -241,6 +241,9 @@ class DefaultJSONSummarySerializer(BaseSerializer):
         for incarico in obj.incarichi_persona:
             if not incarico.to_object:
                 continue
+
+            if not api.user.has_permission("View", obj=incarico.to_object):
+                continue
             incarichi.append(incarico.to_object.title)
         return ", ".join(incarichi)
 
@@ -276,20 +279,26 @@ class IncaricoDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
             res["compensi"] = json_compatible([])
 
         if safe_hasattr(self.context, "compensi-file"):
+            compensi_folder = getattr(self.context, "compensi-file")
             res["compensi_file"] = []
-            for brain in getattr(self.context, "compensi-file").getFolderContents():
-                res["compensi_file"].append(
-                    getMultiAdapter((brain, self.request), ISerializeToJsonSummary)()
-                )
+            if api.user.has_permission("View", obj=compensi_folder):
+                for brain in getattr(self.context, "compensi-file").getFolderContents():
+                    res["compensi_file"].append(
+                        getMultiAdapter(
+                            (brain, self.request), ISerializeToJsonSummary
+                        )()
+                    )
 
         if safe_hasattr(self.context, "importi-di-viaggio-e-o-servizi"):
+            importi_folder = getattr(self.context, "importi-di-viaggio-e-o-servizi")
             res["importi_di_viaggio_e_o_servizi"] = []
-            for brain in getattr(
-                self.context, "importi-di-viaggio-e-o-servizi"
-            ).getFolderContents():
-                res["importi_di_viaggio_e_o_servizi"].append(
-                    getMultiAdapter((brain, self.request), ISerializeToJsonSummary)()
-                )
+            if api.user.has_permission("View", obj=importi_folder):
+                for brain in importi_folder.getFolderContents():
+                    res["importi_di_viaggio_e_o_servizi"].append(
+                        getMultiAdapter(
+                            (brain, self.request), ISerializeToJsonSummary
+                        )()
+                    )
 
         if "atto_di_nomina" not in res:
             res["atto_di_nomina"] = None
