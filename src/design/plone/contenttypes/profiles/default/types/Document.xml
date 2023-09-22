@@ -8,7 +8,6 @@
             purge="False"
   >
     <element value="plone.versioning" />
-    <element value="plone.tableofcontents" />
     <element value="design.plone.contenttypes.behavior.info_testata" />
     <element value="design.plone.contenttypes.behavior.argomenti_document" />
     <element value="plone.translatable" />
@@ -16,6 +15,8 @@
     <element value="kitconcept.seo" />
     <element value="plone.constraintypes" />
     <element value="plone.leadimage" />
+    <element value="volto.preview_image" />
+    <element value="plone.tableofcontents" remove="True"/>
   </property>
   <property name="view_methods">
     <element value="document_view" />

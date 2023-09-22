@@ -22,31 +22,6 @@ def post_install(context):
 
     remove_blocks_behavior(context)
 
-    # update behaviors
-    portal_types = api.portal.get_tool(name="portal_types")
-    BEHAVIORS = {
-        "Document": {
-            "in": [
-                "plone.leadimage",
-                "volto.preview_image",
-            ],
-            "out": [
-                "plone.leadimage",
-                "volto.preview_image",
-                "plone.tableofcontents",
-            ],
-        },
-    }
-    for ct in BEHAVIORS.keys():
-        ct_behaviors = [
-            x
-            for x in portal_types[ct].behaviors
-            if x not in BEHAVIORS[ct]["out"]  # noqa
-        ]
-        ct_behaviors.extend([x for x in BEHAVIORS[ct]["in"] if x not in ct_behaviors])
-        portal_types[ct].behaviors = tuple(ct_behaviors)
-
-    # remove default ente
     api.portal.set_registry_record("default_ente", (), interface=IBandoSettings)
 
 

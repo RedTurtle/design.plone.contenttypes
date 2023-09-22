@@ -171,13 +171,12 @@ class TypesGet(BaseGet):
         """
         Unico modo per spostare il campo "notes"
         """
-        if AGID_VERSION == "V3":
-            result.get("required").append("description")
-            result.get("required").append("image")
-            result.get("required").append("street")
-            result.get("required").append("city")
-            result.get("required").append("zip_code")
-            result.get("required").append("geolocation")
+        result.get("required").append("description")
+        result.get("required").append("image")
+        result.get("required").append("street")
+        result.get("required").append("city")
+        result.get("required").append("zip_code")
+        result.get("required").append("geolocation")
 
         if "properties" in result:
             if "country" in result["properties"]:
