@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from design.plone.contenttypes.controlpanels.settings import IDesignPloneSettings
 from design.plone.contenttypes.interfaces import IDesignPloneContentType
 from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
@@ -224,12 +223,6 @@ class TestNewsApi(unittest.TestCase):
             container=self.portal, type="Document", title="Document"
         )
 
-        # we need it because of vocabularies
-        api.portal.set_registry_record(
-            "tipologie_notizia",
-            json.dumps({"en": ["foo", "bar"]}),
-            interface=IDesignPloneSettings,
-        )
         transaction.commit()
 
     def tearDown(self):

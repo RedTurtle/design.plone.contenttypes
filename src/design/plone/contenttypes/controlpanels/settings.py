@@ -9,41 +9,12 @@ from zope.schema import List
 from zope.schema import SourceText
 from zope.schema import TextLine
 
-import json
-
 
 class IDesignPloneSettingsControlpanel(IControlpanel):
     """ """
 
 
 class IDesignPloneSettings(Interface):
-    tipologie_notizia = SourceText(
-        title=_("tipologie_notizia_label", default="Tipologie Notizia"),
-        description=_(
-            "tipologie_notizia_help",
-            default="Inserisci i valori utilizzabili per le tipologie di una"
-            " Notizia. Se il sito è multilingua, puoi inserire valori diversi"
-            " a seconda delle lingue del sito.",
-        ),
-        required=True,
-        default=json.dumps({"it": ["Avviso", "Comunicato (stampa)", "Notizia"]}),
-    )
-
-    tipologie_unita_organizzativa = SourceText(
-        title=_(
-            "tipologie_unita_organizzativa_label",
-            default="Tipologie Unità Organizzativa",
-        ),
-        description=_(
-            "tipologie_unita_organizzativa_help",
-            default="Inserisci i valori utilizzabili per le tipologie di un' "
-            "Unità Organizzativa. Se il sito è multilingua, puoi inserire "
-            "valori diversi a seconda delle lingue del sito.",
-        ),
-        required=True,
-        default=json.dumps({"it": ["Politica", "Amministrativa", "Altro"]}),
-    )
-
     lead_image_dimension = List(
         title=_(
             "lead_image_dimension_label",

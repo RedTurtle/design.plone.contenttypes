@@ -162,7 +162,6 @@ class IServizio(model.Schema, IDesignPloneContentType):
     )
 
     # vocabolario dalle unita' organizzative presenti a catalogo?
-    # TODO cambiano solo le label..teniamo come buone le v3?
     ufficio_responsabile = RelationList(
         title=_(
             "ufficio_responsabile_erogazione",
@@ -263,8 +262,6 @@ class IServizio(model.Schema, IDesignPloneContentType):
     )
 
     # custom widgets
-    # TODO da verificare in base a v2/v3
-
     form.widget(
         "dove_rivolgersi",
         RelatedItemsFieldWidget,
@@ -316,7 +313,6 @@ class IServizio(model.Schema, IDesignPloneContentType):
     )
 
     # custom fieldset and order
-    # TODO da verificare in base a v2/v3
     model.fieldset(
         "a_chi_si_rivolge",
         label=_("a_chi_si_rivolge_label", default="A chi si rivolge"),

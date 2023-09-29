@@ -9,7 +9,6 @@ from zExceptions import BadRequest
 from zope.component import adapter
 from zope.interface import implementer
 from zope.interface import Interface
-from design.plone.contenttypes import AGID_VERSION
 
 TITLE_MAX_LEN = 255
 DESCRIPTION_MAX_LEN = 255
@@ -52,13 +51,6 @@ def text_in_block(blocks):
 @adapter(IDocumento, Interface)
 class DeserializeDocumentoFromJson(DeserializeFromJson):
     def __call__(self, validate_all=False, data=None, create=False):
-        if AGID_VERSION == "V2":
-            # skip in v2
-            return super().__call__(
-                validate_all=validate_all,
-                data=data,
-                create=create,
-            )
         if data is None:
             data = json_body(self.request)
 

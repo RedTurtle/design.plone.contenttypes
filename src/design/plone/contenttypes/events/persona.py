@@ -2,7 +2,33 @@
 from design.plone.contenttypes.utils import create_default_blocks
 from plone import api
 from Products.CMFPlone.interfaces import ISelectableConstrainTypes
-from design.plone.contenttypes import AGID_VERSION
+
+FOLDERS = [
+    {
+        "id": "foto-e-attivita-politica",
+        "title": "Foto e attività politica",
+        "contains": ("Image",),
+    },
+    {"id": "curriculum-vitae", "title": "Curriculum vitae", "contains": ("File",)},
+    {
+        "id": "situazione-patrimoniale",
+        "title": "Situazione patrimoniale",
+        "contains": ("File",),
+    },
+    {
+        "id": "dichiarazione-dei-redditi",
+        "title": "Dichiarazione dei redditi",
+        "contains": ("File",),
+    },
+    {"id": "spese-elettorali", "title": "Spese elettorali", "contains": ("File",)},
+    {
+        "id": "variazione-situazione-patrimoniale",
+        "title": "Variazione situazione patrimoniale",
+        "contains": ("File",),
+    },
+    {"id": "altre-cariche", "title": "Altre cariche", "contains": ("File",)},
+    {"id": "incarichi", "title": "Incarichi", "contains": ("Incarico",)},
+]
 
 
 def personaCreateHandler(persona, event):
@@ -14,48 +40,6 @@ def personaCreateHandler(persona, event):
 
     @param event: Event that triggers the method (onAdded event)
     """
-
-    FOLDERS = [
-        {
-            "id": "foto-e-attivita-politica",
-            "title": "Foto e attività politica",
-            "contains": ("Image",),
-        },
-        {"id": "curriculum-vitae", "title": "Curriculum vitae", "contains": ("File",)},
-        {
-            "id": "situazione-patrimoniale",
-            "title": "Situazione patrimoniale",
-            "contains": ("File",),
-        },
-        {
-            "id": "dichiarazione-dei-redditi",
-            "title": "Dichiarazione dei redditi",
-            "contains": ("File",),
-        },
-        {"id": "spese-elettorali", "title": "Spese elettorali", "contains": ("File",)},
-        {
-            "id": "variazione-situazione-patrimoniale",
-            "title": "Variazione situazione patrimoniale",
-            "contains": ("File",),
-        },
-        {"id": "altre-cariche", "title": "Altre cariche", "contains": ("File",)},
-    ]
-
-    if AGID_VERSION == "V2":
-        FOLDERS.extend(
-            [
-                {"id": "compensi", "title": "Compensi", "contains": ("File",)},
-                {
-                    "id": "importi-di-viaggio-e-o-servizi",
-                    "title": "Importi di viaggio e/o servizi",
-                    "contains": ("File",),
-                },
-            ]
-        )
-    if AGID_VERSION == "V3":
-        FOLDERS.extend(
-            [{"id": "incarichi", "title": "Incarichi", "contains": ("Incarico",)}]
-        )
 
     for folder in FOLDERS:
         if folder["id"] in persona:

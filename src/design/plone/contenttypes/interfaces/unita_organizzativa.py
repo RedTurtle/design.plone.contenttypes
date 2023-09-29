@@ -100,7 +100,6 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
     )
 
     #  custom widgets
-    # TODO da verificare in base a v2/v3
     form.widget(
         "persone_struttura",
         RelatedItemsFieldWidget,
@@ -149,7 +148,6 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
     )
 
     # custom fieldsets and order
-    # TODO da verificare in base a v2/v3
 
     model.fieldset(
         "struttura",
@@ -172,9 +170,7 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
     )
 
     form.order_after(sedi_secondarie="IContattiUnitaOrganizzativa.orario_pubblico")
-    # form.order_after(contact_info="sedi_secondarie")
 
     # SearchableText indexers
-    # TODO da verificare in base a v2/v3
     textindexer.searchable("assessore_riferimento")
     textindexer.searchable("responsabile")

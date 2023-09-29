@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from design.plone.contenttypes import AGID_VERSION
 from plone.app.contenttypes.interfaces import INewsItem
 from plone.restapi.behaviors import IBlocks
 from plone.restapi.deserializer import json_body
@@ -52,8 +51,6 @@ def text_in_block(blocks):
 @adapter(INewsItem, Interface)
 class DeserializeNewsFromJson(DeserializeFromJson):
     def __call__(self, validate_all=False, data=None, create=False):
-        if AGID_VERSION == "V2":
-            return super().__call__(validate_all=validate_all, data=data, create=create)
         if data is None:
             data = json_body(self.request)
 

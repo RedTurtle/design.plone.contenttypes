@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<registry xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n:domain="plone">
+
+    <records
+        interface="plone.app.querystring.interfaces.IQueryField"
+        prefix="plone.app.querystring.field.ruolo"
+        remove="True">
+    </records>
+
+</registry>

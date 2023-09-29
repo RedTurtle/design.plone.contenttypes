@@ -1497,3 +1497,9 @@ def to_7011(context):
         doc = brain.getObject()
         doc.reindexObject(idxs=["SearchableText"])
     logger.info("Ends of reindex")
+
+
+def to_XXX(context):
+    """
+    TODO: per V2 V3 rimuovere tipologie_unita_organizzativa dal registry
+    """
