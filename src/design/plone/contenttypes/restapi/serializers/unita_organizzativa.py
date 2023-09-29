@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from .dxcontent import SerializeFolderToJson as BaseSerializer
 from Acquisition import aq_inner
-from design.plone.contenttypes import AGID_VERSION
 from design.plone.contenttypes.interfaces.unita_organizzativa import IUnitaOrganizzativa
 from design.plone.contenttypes.restapi.serializers.summary import (
     DefaultJSONSummarySerializer,
@@ -121,29 +120,15 @@ class UOSerializer(BaseSerializer):
 @implementer(ISerializeToJsonSummary)
 @adapter(IUnitaOrganizzativa, Interface)
 class UOJSONSummarySerializer(DefaultJSONSummarySerializer):
+    fields = [
+        "contact_info",
+        "sede",
+    ]
+
     def __call__(self, force_all_metadata=False):
         data = super().__call__(force_all_metadata=force_all_metadata)
-        fields = [
-            "contact_info",
-            "sede",
-        ]
-        if AGID_VERSION == "V2":
-            fields.extend(
-                [
-                    "address",
-                    "city",
-                    "zip_code",
-                    "email",
-                    "telefono",
-                    "nome_sede",
-                    "title",
-                    "quartiere",
-                    "circoscrizione",
-                    "street",
-                ]
-            )
 
-        for field in fields:
+        for field in self.fields:
             if field in ("contact_info", "sede"):
                 data[field] = json_compatible(getattr(self.context, field, ""))
             else:
@@ -163,8 +148,7 @@ class UOJSONSummarySerializer(DefaultJSONSummarySerializer):
 
         data["geolocation"] = self.getGeolocation()
 
-        if AGID_VERSION == "V3":
-            get_taxonomy_information("tipologia_organizzazione", self.context, data)
+        get_taxonomy_information("tipologia_organizzazione", self.context, data)
 
         return data
 

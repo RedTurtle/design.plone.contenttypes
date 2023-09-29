@@ -2,7 +2,6 @@
 from .related_news_serializer import SerializeFolderToJson as RelatedNewsSerializer
 from Acquisition import aq_inner
 from collective.venue.interfaces import IVenue
-from design.plone.contenttypes import AGID_VERSION
 from design.plone.contenttypes.restapi.serializers.summary import (
     DefaultJSONSummarySerializer,
 )
@@ -107,6 +106,5 @@ class SerializeVenueToJsonSummary(DefaultJSONSummarySerializer):
                 value = value()
             summary[field] = json_compatible(value)
 
-        if AGID_VERSION == "V3":
-            get_taxonomy_information("tipologia_luogo", self.context, summary)
+        get_taxonomy_information("tipologia_luogo", self.context, summary)
         return summary

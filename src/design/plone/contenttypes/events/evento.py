@@ -1,20 +1,13 @@
 # -*- coding: utf-8 -*-
-from design.plone.contenttypes import AGID_VERSION
 from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
 from design.plone.contenttypes.utils import create_default_blocks
 from plone import api
 from Products.CMFPlone.interfaces import ISelectableConstrainTypes
 
 
-GALLERIA_MAPPING = {
-    "V2": {"id": "multimedia", "title": "Multimedia"},
-    "V3": {"id": "immagini", "title": "Immagini"},
-}
+GALLERIA_MAPPING = {"id": "immagini", "title": "Immagini"}
 
-DOCUMENTI_MAPPING = {
-    "V2": "Documenti",
-    "V3": "Allegati",
-}
+DOCUMENTI_TITLE = "Allegati"
 
 
 def eventoCreateHandler(evento, event):
@@ -28,13 +21,12 @@ def eventoCreateHandler(evento, event):
     """
     if not IDesignPloneContenttypesLayer.providedBy(evento.REQUEST):
         return
-    gallery_data = GALLERIA_MAPPING.get(AGID_VERSION, "V3")
-    if gallery_data["id"] not in evento.keys():
+    if GALLERIA_MAPPING["id"] not in evento.keys():
         galleria = api.content.create(
             container=evento,
             type="Document",
-            title=gallery_data["title"],
-            id=gallery_data["id"],
+            title=GALLERIA_MAPPING["title"],
+            id=GALLERIA_MAPPING["id"],
         )
         create_default_blocks(context=galleria)
 
@@ -46,7 +38,7 @@ def eventoCreateHandler(evento, event):
         with api.env.adopt_roles(["Reviewer"]):
             api.content.transition(obj=galleria, transition="publish")
 
-    if "video" not in evento.keys() and AGID_VERSION == "V3":
+    if "video" not in evento.keys():
         galleria_video = api.content.create(
             container=evento,
             type="Document",
@@ -83,7 +75,7 @@ def eventoCreateHandler(evento, event):
         documenti = api.content.create(
             container=evento,
             type="Document",
-            title=DOCUMENTI_MAPPING.get(AGID_VERSION, DOCUMENTI_MAPPING["V3"]),
+            title=DOCUMENTI_TITLE,
             id="documenti",
         )
         create_default_blocks(context=documenti)

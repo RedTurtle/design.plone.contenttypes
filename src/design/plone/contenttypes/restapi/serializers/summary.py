@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from collective.taxonomy import PATH_SEPARATOR
 from collective.taxonomy.interfaces import ITaxonomy
-from design.plone.contenttypes import AGID_VERSION
 from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
 
 from design.plone.contenttypes.interfaces.documento import IDocumento
@@ -117,8 +116,6 @@ class DefaultJSONSummarySerializer(BaseSerializer, MetaTypeSerializer):
         res = super().__call__(force_all_metadata=force_all_metadata)
         metadata_fields = self.metadata_fields()
         if self.context.portal_type == "Persona":
-            if AGID_VERSION == "V2":
-                res["ruolo"] = self.context.ruolo
             res["incarichi"] = self.get_incarichi()
         if self.context.portal_type == "Bando":
             if "bando_state" in metadata_fields or self.show_all_metadata_fields:
@@ -143,8 +140,7 @@ class DefaultJSONSummarySerializer(BaseSerializer, MetaTypeSerializer):
             if res["tassonomia_argomenti"]:
                 res["tassonomia_argomenti"] = self.expand_tassonomia_argomenti()
 
-        if AGID_VERSION == "V3":
-            get_taxonomy_information_by_type(res, self.context)
+        get_taxonomy_information_by_type(res, self.context)
 
         if self.is_get_call():
             res["has_children"] = self.has_children()
@@ -290,8 +286,7 @@ class PersonaDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
 class EventDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
     def __call__(self, force_all_metadata=False):
         res = super().__call__(force_all_metadata=force_all_metadata)
-        if AGID_VERSION == "V3":
-            get_taxonomy_information("tipologia_evento", self.context, res)
+        get_taxonomy_information("tipologia_evento", self.context, res)
         # Il summary dell'evento riceve in ingresso un obj generico che può
         # essere un brain (gli items figli dell'evento) oppure un oggtto (il
         # parent). Gli attributi per le immagini vengono presi solo nel caso
@@ -316,8 +311,7 @@ class EventDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
 class NewsDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
     def __call__(self, force_all_metadata=False):
         res = super().__call__(force_all_metadata=force_all_metadata)
-        if AGID_VERSION == "V3":
-            get_taxonomy_information("tipologia_notizia", self.context, res)
+        get_taxonomy_information("tipologia_notizia", self.context, res)
         return res
 
 
@@ -326,12 +320,9 @@ class NewsDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
 class DocumentoPubblicoDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
     def __call__(self, force_all_metadata=False):
         res = super().__call__(force_all_metadata=force_all_metadata)
-        if AGID_VERSION == "V3":
-            get_taxonomy_information(
-                "tipologia_documenti_albopretorio", self.context, res
-            )
-            get_taxonomy_information("tipologia_documento", self.context, res)
-            get_taxonomy_information("tipologia_licenze", self.context, res)
-            get_taxonomy_information("person_life_events", self.context, res)
-            get_taxonomy_information("business_events", self.context, res)
+        get_taxonomy_information("tipologia_documenti_albopretorio", self.context, res)
+        get_taxonomy_information("tipologia_documento", self.context, res)
+        get_taxonomy_information("tipologia_licenze", self.context, res)
+        get_taxonomy_information("person_life_events", self.context, res)
+        get_taxonomy_information("business_events", self.context, res)
         return res

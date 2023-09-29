@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from design.plone.contenttypes import _
-from design.plone.contenttypes import AGID_VERSION
 from design.plone.contenttypes.controlpanels.geolocation_defaults import (
     IGeolocationDefaults,
 )
@@ -293,18 +292,16 @@ class TypesGet(BaseGet):
                 result = self.customize_venue_schema(result)
             if pt == "Document":
                 result = self.customize_document_schema(result)
-
-            if AGID_VERSION == "V3":
-                if pt == "Servizio":
-                    result = self.customize_servizio_schema(result)
-                if pt == "UnitaOrganizzativa":
-                    result = self.customize_uo_schema(result)
-                if pt == "News Item":
-                    result = self.customize_news_schema(result)
-                if pt == "Documento":
-                    result = self.customize_documento_schema(result)
-                if pt == "Event":
-                    result = self.customize_evento_schema(result)
+            if pt == "Servizio":
+                result = self.customize_servizio_schema(result)
+            if pt == "UnitaOrganizzativa":
+                result = self.customize_uo_schema(result)
+            if pt == "News Item":
+                result = self.customize_news_schema(result)
+            if pt == "Documento":
+                result = self.customize_documento_schema(result)
+            if pt == "Event":
+                result = self.customize_evento_schema(result)
             result = self.customize_versioning_fields_fieldset(result)
         return result
 
