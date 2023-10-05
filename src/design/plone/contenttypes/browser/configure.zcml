@@ -47,4 +47,10 @@
         />
   </configure>
 
+    <browser:page
+        name="migrate-to-v3"
+        class=".to_v3.View"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        permission="cmf.ManagePortal"
+        />
 </configure>

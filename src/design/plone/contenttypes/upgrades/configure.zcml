@@ -582,7 +582,7 @@
         handler=".upgrades.to_5500"
         />
   </genericsetup:upgradeSteps>
-  <genericsetup:upgradeSteps
+  <!-- <genericsetup:upgradeSteps
       profile="design.plone.contenttypes:default"
       source="6000"
       destination="6000"
@@ -732,7 +732,7 @@
         description=""
         handler=".upgrades.update_folder_for_gallery"
         />
-  </genericsetup:upgradeSteps>
+  </genericsetup:upgradeSteps> -->
 
   <genericsetup:upgradeSteps
       profile="design.plone.contenttypes:default"

@@ -27,6 +27,14 @@ import logging
 import six
 
 
+class colors(object):
+    GREEN = "\033[92m"
+    ENDC = "\033[0m"
+    RED = "\033[91m"
+    DARKCYAN = "\033[36m"
+    YELLOW = "\033[93m"
+
+
 logger = logging.getLogger(__name__)
 
 DEFAULT_PROFILE = "profile-design.plone.contenttypes:default"
@@ -1023,362 +1031,354 @@ def to_5500(context):
                         setattr(item, name, value)
 
 
-def to_6000(context):
-    """ """
-    logger.info(
-        "Convert behavior: collective.dexteritytextindexer => plone.textindexer"  # noqa
-    )
-    portal_types = api.portal.get_tool(name="portal_types")
-    for fti in portal_types.values():
-        behaviors = []
-        for behavior in getattr(fti, "behaviors", ()):
-            if behavior == "collective.dexteritytextindexer":
-                behavior = "plone.textindexer"
-            behaviors.append(behavior)
+# def to_6000(context):
+#     """ """
+#     logger.info(
+#         "Convert behavior: collective.dexteritytextindexer => plone.textindexer"  # noqa
+#     )
+#     portal_types = api.portal.get_tool(name="portal_types")
+#     for fti in portal_types.values():
+#         behaviors = []
+#         for behavior in getattr(fti, "behaviors", ()):
+#             if behavior == "collective.dexteritytextindexer":
+#                 behavior = "plone.textindexer"
+#             behaviors.append(behavior)
 
-        fti.behaviors = tuple(behaviors)
-
-
-def to_6010(context):
-    """ """
-    update_types(context)
-    update_registry(context)
-    update_catalog(context)
-    update_rolemap(context)
+#         fti.behaviors = tuple(behaviors)
 
 
-def to_6011(context):
-    """ """
-    update_types(context)
+# def to_6010(context):
+#     """ """
+#     update_types(context)
+#     update_registry(context)
+#     update_catalog(context)
+#     update_rolemap(context)
 
 
-def migrate_pdc_and_incarico(context):
-    # Cannot test rn, blind coding
-    update_types(context)
-    update_registry(context)
-    update_catalog(context)
-    update_rolemap(context)
-    # "field name in original ct": "field name in new ct"
-    type_mapping = {
-        "Persona": {
-            "PDC": {
-                "telefono": "telefono",
-                "fax": "fax",
-                "email": "email",
-                "pec": "pec",
-            },  # noqa
-            "Incarico": {
-                # HOW? Need taxonomies also
-                # We could do:
-                # persona.ruolo.title = incarico.title
-                # persona.items.compensi = incarico.items.compensi?
-                "ruolo?": "incarico?",
-                # BlobFile to relation with Documento
-                "atto_nomina": "atto_nomina",
-                "data_conclusione_incarico": "data_conclusione_incarico",
-                "data_insediamento": "data_insediamento",
-            },
-        },
-        "UnitaOrganizzativa": {
-            "PDC": {
-                "telefono": "telefono",
-                "fax": "fax",
-                "email": "email",
-                "pec": "pec",
-                "web": "web",
-            },
-        },
-        # TODO: tbc
-        "Event": {
-            "PDC": {
-                "telefono": "telefono",
-                "fax": "fax",
-                "email": "email",
-                "pec": "pec",
-            },  # noqa
-        },
-        # TODO: tbc
-        "Venue": {
-            "PDC": {
-                "riferimento_telefonico_struttura": "telefono",
-                "riferimento_fax_struttura": "fax",
-                "riferimento_mail_struttura": "email",
-                "riferimento_pec_struttura": "pec",
-            },
-        },
-        # TODO: tbc
-        "Servizio": {
-            # questi non sono presenti sul ct originale
-            "PDC": {
-                "telefono": "telefono",
-                "fax": "fax",
-                "email": "email",
-                "pec": "pec",
-            },  # noqa
-        },
-    }
-
-    def createIncaricoAndMigratePersona(portal_type):
-        # Taxonomies work needs to be completed before, blind coding ahead
-        if portal_type == "Persona":
-            fixed_total = 0
-            for brain in api.content.find(portal_type=portal_type):
-                item = brain.getObject()
-                atto_nomina = item.atto_nomina
-                logger.info(f"Fixing Punto di Contatto for '{item.title}'...")  # noqa
-                file_bog = api.content.find(context=item, depth=1, id="atti-nomina")
-                if not file_bog:
-                    try:
-                        file_bog = api.content.create(
-                            type="Document",
-                            id="atti-nomina",
-                            title="Atti Nomina",
-                            container=item,
-                        )
-                    except Exception:
-                        logger.error("Error", Exception)
-
-                try:
-                    new_atto_nomina = api.content.create(
-                        type="File",
-                        id=atto_nomina.id,
-                        title=atto_nomina.title,
-                        container=item,
-                        **{"file": atto_nomina},
-                    )
-                    intids = getUtility(IIntIds)
-                    relation = [RelationValue(intids.getId(new_atto_nomina))]
-                    incarico = api.content.create(
-                        type="Incarico", title=item.ruolo.title, container=item
-                    )
-                    incarico.atto_nomina = relation
-                    item.atto_nomina = None
-                    fixed_total += 1
-                    logger.info(
-                        f"Fixing Punto di Contatto for '{item.title}'...:DONE"
-                    )  # noqa
-                except Exception:
-                    logger.error("Error", Exception)
-            logger.info("Updated {} objects".format(fixed_total))
-
-        pass
-
-    def createPDCandMigrateOldCTs(portal_type):
-        logger.info(f"Fixing Punto di Contatto for '{portal_type}'...")  # noqa
-        fixed_total = 0
-        mapping = None
-        # mapping = type_mapping[portal_type]["PDC"]
-        # Reenable mapping to use
-        if not mapping:
-            logger.info(f"No need to fix Punto di Contatto for '{portal_type}: DONE")
-            return
-        for brain in api.content.find(portal_type=portal_type):
-            item = brain.getObject()
-            kwargs = {"value_punto_contatto": [], "persona": []}
-            for key, value in mapping.items():
-                if hasattr(item, key):
-                    kwargs["value_punto_contatto"].append(
-                        {"pdc_type": value, "pdc_value": item[key]}
-                    )
-
-            new_pdc = api.content.create(
-                type="PuntoDiContatto",
-                title=f"Punto di Contatto {item.id}",
-                container=item,
-                **kwargs,
-            )
-            intids = getUtility(IIntIds)
-            item.contact_info = [RelationValue(intids.getId(new_pdc))]
-            fixed_total += 1
-            commit()
-
-        logger.info(f"Fixing Punto di Contatto for '{portal_type}: DONE")
-        logger.info("Updated {} objects".format(fixed_total))
-
-    for pt in type_mapping:
-        logger.info(
-            "Migrating existing CTs for use with new Incarico and PDC Content Types"
-        )
-        createPDCandMigrateOldCTs(pt)
-        createIncaricoAndMigratePersona(pt)
+# def to_6011(context):
+#     """ """
+#     update_types(context)
 
 
-class colors(object):
-    GREEN = "\033[92m"
-    ENDC = "\033[0m"
-    RED = "\033[91m"
-    DARKCYAN = "\033[36m"
-    YELLOW = "\033[93m"
+# def migrate_pdc_and_incarico(context):
+#     # Cannot test rn, blind coding
+#     update_types(context)
+#     update_registry(context)
+#     update_catalog(context)
+#     update_rolemap(context)
+#     # "field name in original ct": "field name in new ct"
+#     type_mapping = {
+#         "Persona": {
+#             "PDC": {
+#                 "telefono": "telefono",
+#                 "fax": "fax",
+#                 "email": "email",
+#                 "pec": "pec",
+#             },  # noqa
+#             "Incarico": {
+#                 # HOW? Need taxonomies also
+#                 # We could do:
+#                 # persona.ruolo.title = incarico.title
+#                 # persona.items.compensi = incarico.items.compensi?
+#                 "ruolo?": "incarico?",
+#                 # BlobFile to relation with Documento
+#                 "atto_nomina": "atto_nomina",
+#                 "data_conclusione_incarico": "data_conclusione_incarico",
+#                 "data_insediamento": "data_insediamento",
+#             },
+#         },
+#         "UnitaOrganizzativa": {
+#             "PDC": {
+#                 "telefono": "telefono",
+#                 "fax": "fax",
+#                 "email": "email",
+#                 "pec": "pec",
+#                 "web": "web",
+#             },
+#         },
+#         # TODO: tbc
+#         "Event": {
+#             "PDC": {
+#                 "telefono": "telefono",
+#                 "fax": "fax",
+#                 "email": "email",
+#                 "pec": "pec",
+#             },  # noqa
+#         },
+#         # TODO: tbc
+#         "Venue": {
+#             "PDC": {
+#                 "riferimento_telefonico_struttura": "telefono",
+#                 "riferimento_fax_struttura": "fax",
+#                 "riferimento_mail_struttura": "email",
+#                 "riferimento_pec_struttura": "pec",
+#             },
+#         },
+#         # TODO: tbc
+#         "Servizio": {
+#             # questi non sono presenti sul ct originale
+#             "PDC": {
+#                 "telefono": "telefono",
+#                 "fax": "fax",
+#                 "email": "email",
+#                 "pec": "pec",
+#             },  # noqa
+#         },
+#     }
+
+#     def createIncaricoAndMigratePersona(portal_type):
+#         # Taxonomies work needs to be completed before, blind coding ahead
+#         if portal_type == "Persona":
+#             fixed_total = 0
+#             for brain in api.content.find(portal_type=portal_type):
+#                 item = brain.getObject()
+#                 atto_nomina = item.atto_nomina
+#                 logger.info(f"Fixing Punto di Contatto for '{item.title}'...")  # noqa
+#                 file_bog = api.content.find(context=item, depth=1, id="atti-nomina")
+#                 if not file_bog:
+#                     try:
+#                         file_bog = api.content.create(
+#                             type="Document",
+#                             id="atti-nomina",
+#                             title="Atti Nomina",
+#                             container=item,
+#                         )
+#                     except Exception:
+#                         logger.error("Error", Exception)
+
+#                 try:
+#                     new_atto_nomina = api.content.create(
+#                         type="File",
+#                         id=atto_nomina.id,
+#                         title=atto_nomina.title,
+#                         container=item,
+#                         **{"file": atto_nomina},
+#                     )
+#                     intids = getUtility(IIntIds)
+#                     relation = [RelationValue(intids.getId(new_atto_nomina))]
+#                     incarico = api.content.create(
+#                         type="Incarico", title=item.ruolo.title, container=item
+#                     )
+#                     incarico.atto_nomina = relation
+#                     item.atto_nomina = None
+#                     fixed_total += 1
+#                     logger.info(
+#                         f"Fixing Punto di Contatto for '{item.title}'...:DONE"
+#                     )  # noqa
+#                 except Exception:
+#                     logger.error("Error", Exception)
+#             logger.info("Updated {} objects".format(fixed_total))
+
+#         pass
+
+#     def createPDCandMigrateOldCTs(portal_type):
+#         logger.info(f"Fixing Punto di Contatto for '{portal_type}'...")  # noqa
+#         fixed_total = 0
+#         mapping = None
+#         # mapping = type_mapping[portal_type]["PDC"]
+#         # Reenable mapping to use
+#         if not mapping:
+#             logger.info(f"No need to fix Punto di Contatto for '{portal_type}: DONE")
+#             return
+#         for brain in api.content.find(portal_type=portal_type):
+#             item = brain.getObject()
+#             kwargs = {"value_punto_contatto": [], "persona": []}
+#             for key, value in mapping.items():
+#                 if hasattr(item, key):
+#                     kwargs["value_punto_contatto"].append(
+#                         {"pdc_type": value, "pdc_value": item[key]}
+#                     )
+
+#             new_pdc = api.content.create(
+#                 type="PuntoDiContatto",
+#                 title=f"Punto di Contatto {item.id}",
+#                 container=item,
+#                 **kwargs,
+#             )
+#             intids = getUtility(IIntIds)
+#             item.contact_info = [RelationValue(intids.getId(new_pdc))]
+#             fixed_total += 1
+#             commit()
+
+#         logger.info(f"Fixing Punto di Contatto for '{portal_type}: DONE")
+#         logger.info("Updated {} objects".format(fixed_total))
+
+#     for pt in type_mapping:
+#         logger.info(
+#             "Migrating existing CTs for use with new Incarico and PDC Content Types"
+#         )
+#         createPDCandMigrateOldCTs(pt)
+#         createIncaricoAndMigratePersona(pt)
 
 
-def update_uo_contact_info(context):
-    brains = api.portal.get_tool("portal_catalog")(portal_type="UnitaOrganizzativa")
-    logger.info(
-        f"{colors.DARKCYAN} Inizio la pulzia delle {len(brains)} UO campo contact_info {colors.ENDC}"  # noqa
-    )
-    for brain in brains:
-        obj = brain.getObject()
-        if type(obj.contact_info) == dict:  # noqa
-            del obj.contact_info
-            logger.info(
-                f"{colors.GREEN} Modifica della UO senza punto di contatto {colors.ENDC}"  # noqa
-            )
+# def update_uo_contact_info(context):
+#     brains = api.portal.get_tool("portal_catalog")(portal_type="UnitaOrganizzativa")
+#     logger.info(
+#         f"{colors.DARKCYAN} Inizio la pulzia delle {len(brains)} UO campo contact_info {colors.ENDC}"  # noqa
+#     )
+#     for brain in brains:
+#         obj = brain.getObject()
+#         if type(obj.contact_info) == dict:  # noqa
+#             del obj.contact_info
+#             logger.info(
+#                 f"{colors.GREEN} Modifica della UO senza punto di contatto {colors.ENDC}"  # noqa
+#             )
 
 
-def readd_tassonomia_argomenti_uid(context):
-    logger.info(
-        f"{colors.DARKCYAN} Aggiungo la tassonomia_argomenti_uid e reindicizzo{colors.ENDC}"  # noqa
-    )
-    update_catalog(context)
-    update_registry(context)
-    idxs = ["tassonomia_argomenti_uid", "tassonomia_argomenti"]
-    reindex_catalog(context, idxs)
+# def readd_tassonomia_argomenti_uid(context):
+#     logger.info(
+#         f"{colors.DARKCYAN} Aggiungo la tassonomia_argomenti_uid e reindicizzo{colors.ENDC}"  # noqa
+#     )
+#     update_catalog(context)
+#     update_registry(context)
+#     idxs = ["tassonomia_argomenti_uid", "tassonomia_argomenti"]
+#     reindex_catalog(context, idxs)
 
 
-def update_ruolo_indexing(context):
-    logger.info(
-        f"{colors.DARKCYAN} Reindex del ruolo nelle persone {colors.ENDC}"  # noqa
-    )
-    idxs = ["ruolo"]
-    pc = api.portal.get_tool("portal_catalog")
-    brains = pc(portal_type="Persona")
-    for brain in brains:
-        persona = brain.getObject()
-        persona.reindexObject(idxs=idxs)
+# def update_ruolo_indexing(context):
+#     logger.info(
+#         f"{colors.DARKCYAN} Reindex del ruolo nelle persone {colors.ENDC}"  # noqa
+#     )
+#     idxs = ["ruolo"]
+#     pc = api.portal.get_tool("portal_catalog")
+#     brains = pc(portal_type="Persona")
+#     for brain in brains:
+#         persona = brain.getObject()
+#         persona.reindexObject(idxs=idxs)
 
 
-def fix_ctaxonomy_indexes_and_metadata(context):
-    logger.info(f"{colors.DARKCYAN} Fix taxonomy indexes {colors.ENDC}")  # noqa
-    bad_names = [
-        "taxonomy_person_life_events",
-        "taxonomy_business_events",
-        "taxonomy_tipologia_documenti_albopretorio",
-        "taxonomy_tipologia_documento",
-        "taxonomy_tipologia_evento",
-        "taxonomy_tipologia_frequenza_aggiornamento",
-        "taxonomy_tipologia_incarico",
-        "taxonomy_tipologia_licenze",
-        "taxonomy_tipologia_luogo",
-        "taxonomy_tipologia_notizia",
-        "taxonomy_tipologia_organizzazione",
-        "taxonomy_tipologia_pdc",
-    ]
+# def fix_ctaxonomy_indexes_and_metadata(context):
+#     logger.info(f"{colors.DARKCYAN} Fix taxonomy indexes {colors.ENDC}")  # noqa
+#     bad_names = [
+#         "taxonomy_person_life_events",
+#         "taxonomy_business_events",
+#         "taxonomy_tipologia_documenti_albopretorio",
+#         "taxonomy_tipologia_documento",
+#         "taxonomy_tipologia_evento",
+#         "taxonomy_tipologia_frequenza_aggiornamento",
+#         "taxonomy_tipologia_incarico",
+#         "taxonomy_tipologia_licenze",
+#         "taxonomy_tipologia_luogo",
+#         "taxonomy_tipologia_notizia",
+#         "taxonomy_tipologia_organizzazione",
+#         "taxonomy_tipologia_pdc",
+#     ]
 
-    good_names = [name.replace("taxonomy_", "") for name in bad_names]
-    catalog = api.portal.get_tool(name="portal_catalog")
-    catalog_metadata = catalog.schema()
-    catalog_indexes = catalog.indexes()
+#     good_names = [name.replace("taxonomy_", "") for name in bad_names]
+#     catalog = api.portal.get_tool(name="portal_catalog")
+#     catalog_metadata = catalog.schema()
+#     catalog_indexes = catalog.indexes()
 
-    for name in bad_names:
-        # metadata
-        if name in catalog_metadata:
-            catalog.delColumn(name)
-            logger.info(f"{colors.GREEN} Remove {name} from metadata {colors.ENDC}")
+#     for name in bad_names:
+#         # metadata
+#         if name in catalog_metadata:
+#             catalog.delColumn(name)
+#             logger.info(f"{colors.GREEN} Remove {name} from metadata {colors.ENDC}")
 
-        # indexes
-        if name in catalog_indexes:
-            catalog.delIndex(name)
-            logger.info(f"{colors.GREEN} Remove {name} from indexes {colors.ENDC}")
+#         # indexes
+#         if name in catalog_indexes:
+#             catalog.delIndex(name)
+#             logger.info(f"{colors.GREEN} Remove {name} from indexes {colors.ENDC}")
 
-    context.runImportStepFromProfile(
-        "design.plone.contenttypes:taxonomy", "collective.taxonomy"
-    )
-    brains = catalog(
-        portal_type=[
-            "News Item",
-            "Event",
-            "Venue",
-            "Servizio",
-            "Documento",
-            "UnitaOrganizzativa",
-            "Incarico",
-        ]
-    )
-    logger.info(f"{colors.GREEN} Reindex contents with taxonomies {colors.ENDC}")
-    for brain in brains:
-        obj = brain.getObject()
-        obj.reindexObject(idxs=good_names)
-    logger.info(f"{colors.GREEN} End of update {colors.ENDC}")
-
-
-def update_patrocinato_da(self):
-    EMPTY_BLOCKS_FIELD = {"blocks": {}, "blocks_layout": {"items": []}}
-    logger.info(
-        f"{colors.DARKCYAN} Change patrocinato_da field in events {colors.ENDC}"
-    )
-    pc = api.portal.get_tool(name="portal_catalog")
-    for brain in pc(portal_type="Event"):
-        obj = brain.getObject()
-        patrocinato_da = getattr(obj, "patrocinato_da")
-        if patrocinato_da == EMPTY_BLOCKS_FIELD:
-            logger.info(
-                f"{colors.YELLOW} Nessuna informazione da modificare{colors.ENDC}"
-            )
-            continue
-        url = obj.absolute_url()
-        logger.info(f"{colors.GREEN} patrocinato_da ({url}){colors.ENDC}")
-
-        setattr(
-            obj,
-            "patrocinato_da",
-            {
-                "blocks": {
-                    "d252fe92-ce88-4866-b77d-501e7275cfc0": {
-                        "@type": "text",
-                        "text": {
-                            "blocks": [
-                                {
-                                    "data": {},
-                                    "depth": 0,
-                                    "entityRanges": [],
-                                    "inlineStyleRanges": [],
-                                    "key": "e23it",
-                                    "text": patrocinato_da,
-                                    "type": "unstyled",
-                                }
-                            ],
-                            "entityMap": {},
-                        },
-                    }
-                },
-                "blocks_layout": {"items": ["d252fe92-ce88-4866-b77d-501e7275cfc0"]},
-            },
-        )
-        obj.reindexObject()
-    logger.info(f"{colors.DARKCYAN} End of update {colors.ENDC}")
+#     context.runImportStepFromProfile(
+#         "design.plone.contenttypes:taxonomy", "collective.taxonomy"
+#     )
+#     brains = catalog(
+#         portal_type=[
+#             "News Item",
+#             "Event",
+#             "Venue",
+#             "Servizio",
+#             "Documento",
+#             "UnitaOrganizzativa",
+#             "Incarico",
+#         ]
+#     )
+#     logger.info(f"{colors.GREEN} Reindex contents with taxonomies {colors.ENDC}")
+#     for brain in brains:
+#         obj = brain.getObject()
+#         obj.reindexObject(idxs=good_names)
+#     logger.info(f"{colors.GREEN} End of update {colors.ENDC}")
 
 
-def update_folder_for_gallery(self):
-    logger.info(f"{colors.DARKCYAN} Update events {colors.ENDC}")
-    pc = api.portal.get_tool(name="portal_catalog")
-    for brain in pc(portal_type="Event"):
-        evento = brain.getObject()
+# def update_patrocinato_da(self):
+#     EMPTY_BLOCKS_FIELD = {"blocks": {}, "blocks_layout": {"items": []}}
+#     logger.info(
+#         f"{colors.DARKCYAN} Change patrocinato_da field in events {colors.ENDC}"
+#     )
+#     pc = api.portal.get_tool(name="portal_catalog")
+#     for brain in pc(portal_type="Event"):
+#         obj = brain.getObject()
+#         patrocinato_da = getattr(obj, "patrocinato_da")
+#         if patrocinato_da == EMPTY_BLOCKS_FIELD:
+#             logger.info(
+#                 f"{colors.YELLOW} Nessuna informazione da modificare{colors.ENDC}"
+#             )
+#             continue
+#         url = obj.absolute_url()
+#         logger.info(f"{colors.GREEN} patrocinato_da ({url}){colors.ENDC}")
 
-        logger.info(f"{colors.DARKCYAN} Event: {evento.absolute_url()} {colors.ENDC}")
-        if "multimedia" in evento.keys():
-            renamed_event = api.content.rename(evento["multimedia"], new_id="immagini")
-            renamed_event.title = "Immagini"
-            renamed_event.reindexObject(idxs=["id", "title"])
-            logger.info(f"{colors.GREEN} Rename multimedia {colors.ENDC}")
+#         setattr(
+#             obj,
+#             "patrocinato_da",
+#             {
+#                 "blocks": {
+#                     "d252fe92-ce88-4866-b77d-501e7275cfc0": {
+#                         "@type": "text",
+#                         "text": {
+#                             "blocks": [
+#                                 {
+#                                     "data": {},
+#                                     "depth": 0,
+#                                     "entityRanges": [],
+#                                     "inlineStyleRanges": [],
+#                                     "key": "e23it",
+#                                     "text": patrocinato_da,
+#                                     "type": "unstyled",
+#                                 }
+#                             ],
+#                             "entityMap": {},
+#                         },
+#                     }
+#                 },
+#                 "blocks_layout": {"items": ["d252fe92-ce88-4866-b77d-501e7275cfc0"]},
+#             },
+#         )
+#         obj.reindexObject()
+#     logger.info(f"{colors.DARKCYAN} End of update {colors.ENDC}")
 
-        if "video" not in evento.keys():
-            galleria_video = api.content.create(
-                container=evento,
-                type="Document",
-                title="Video",
-                id="video",
-            )
-            create_default_blocks(context=galleria_video)
 
-            # select  constraints
-            constraintsGalleriaVideo = ISelectableConstrainTypes(galleria_video)
-            constraintsGalleriaVideo.setConstrainTypesMode(1)
-            constraintsGalleriaVideo.setLocallyAllowedTypes(("Link",))
+# def update_folder_for_gallery(self):
+#     logger.info(f"{colors.DARKCYAN} Update events {colors.ENDC}")
+#     pc = api.portal.get_tool(name="portal_catalog")
+#     for brain in pc(portal_type="Event"):
+#         evento = brain.getObject()
 
-            with api.env.adopt_roles(["Reviewer"]):
-                api.content.transition(obj=galleria_video, transition="publish")
+#         logger.info(f"{colors.DARKCYAN} Event: {evento.absolute_url()} {colors.ENDC}")
+#         if "multimedia" in evento.keys():
+#             renamed_event = api.content.rename(evento["multimedia"], new_id="immagini")
+#             renamed_event.title = "Immagini"
+#             renamed_event.reindexObject(idxs=["id", "title"])
+#             logger.info(f"{colors.GREEN} Rename multimedia {colors.ENDC}")
 
-            logger.info(f"{colors.GREEN} Create video {colors.ENDC}")
+#         if "video" not in evento.keys():
+#             galleria_video = api.content.create(
+#                 container=evento,
+#                 type="Document",
+#                 title="Video",
+#                 id="video",
+#             )
+#             create_default_blocks(context=galleria_video)
+
+#             # select  constraints
+#             constraintsGalleriaVideo = ISelectableConstrainTypes(galleria_video)
+#             constraintsGalleriaVideo.setConstrainTypesMode(1)
+#             constraintsGalleriaVideo.setLocallyAllowedTypes(("Link",))
+
+#             with api.env.adopt_roles(["Reviewer"]):
+#                 api.content.transition(obj=galleria_video, transition="publish")
+
+#             logger.info(f"{colors.GREEN} Create video {colors.ENDC}")
 
 
 def to_7009(context):
@@ -1497,9 +1497,3 @@ def to_7011(context):
         doc = brain.getObject()
         doc.reindexObject(idxs=["SearchableText"])
     logger.info("Ends of reindex")
-
-
-def to_XXX(context):
-    """
-    TODO: per V2 V3 rimuovere tipologie_unita_organizzativa dal registry
-    """

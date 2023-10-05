@@ -10,6 +10,10 @@
         file="permissions.zcml"
         />
     <permission
+        id="design.plone.contenttypes.AddDataset"
+        title="design.plone.contenttypes: Add Dataset"
+        />
+    <permission
         id="design.plone.contenttypes.AddDocumento"
         title="design.plone.contenttypes: Add Documento"
         />

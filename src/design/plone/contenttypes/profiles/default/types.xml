@@ -7,6 +7,9 @@
           name="CartellaModulistica"
   />
   <object meta_type="Dexterity FTI"
+          name="Dataset"
+  />
+  <object meta_type="Dexterity FTI"
           name="Documento"
   />
   <object meta_type="Dexterity FTI"
