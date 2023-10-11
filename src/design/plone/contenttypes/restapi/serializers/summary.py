@@ -128,7 +128,10 @@ class DefaultJSONSummarySerializer(BaseSerializer, MetaTypeSerializer):
                 latitude = res.get("latitude", 0)
                 longitude = res.get("longitude", 0)
                 if latitude and longitude:
-                    res["geolocation"] = {"latitude": latitude, "longitude": longitude}
+                    res["geolocation"] = {
+                        "latitude": latitude,
+                        "longitude": longitude,
+                    }
 
         res["id"] = self.context.id
 
@@ -206,6 +209,9 @@ class DefaultJSONSummarySerializer(BaseSerializer, MetaTypeSerializer):
         for incarico in getattr(obj, "incarichi_persona", []):
             if not incarico.to_object:
                 continue
+
+            if not api.user.has_permission("View", obj=incarico.to_object):
+                continue
             incarichi.append(incarico.to_object.title)
         return ", ".join(incarichi)
 
@@ -223,26 +229,44 @@ class IncaricoDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
         else:
             res["data_inizio_incarico"] = json_compatible(None)
 
+        if "data_conclusione_incarico" not in res:
+            res["data_conclusione_incarico"] = json_compatible(
+                self.context.data_conclusione_incarico
+            )
+        else:
+            res["data_conclusione_incarico"] = json_compatible(None)
+
+        if "data_insediamento" not in res:
+            res["data_insediamento"] = json_compatible(self.context.data_insediamento)
+        else:
+            res["data_insediamento"] = json_compatible(None)
+
         if "compensi" not in res:
             res["compensi"] = json_compatible(self.context.compensi)
         else:
             res["compensi"] = json_compatible([])
 
         if safe_hasattr(self.context, "compensi-file"):
+            compensi_folder = getattr(self.context, "compensi-file")
             res["compensi_file"] = []
-            for brain in getattr(self.context, "compensi-file").getFolderContents():
-                res["compensi_file"].append(
-                    getMultiAdapter((brain, self.request), ISerializeToJsonSummary)()
-                )
+            if api.user.has_permission("View", obj=compensi_folder):
+                for brain in getattr(self.context, "compensi-file").getFolderContents():
+                    res["compensi_file"].append(
+                        getMultiAdapter(
+                            (brain, self.request), ISerializeToJsonSummary
+                        )()
+                    )
 
         if safe_hasattr(self.context, "importi-di-viaggio-e-o-servizi"):
+            importi_folder = getattr(self.context, "importi-di-viaggio-e-o-servizi")
             res["importi_di_viaggio_e_o_servizi"] = []
-            for brain in getattr(
-                self.context, "importi-di-viaggio-e-o-servizi"
-            ).getFolderContents():
-                res["importi_di_viaggio_e_o_servizi"].append(
-                    getMultiAdapter((brain, self.request), ISerializeToJsonSummary)()
-                )
+            if api.user.has_permission("View", obj=importi_folder):
+                for brain in importi_folder.getFolderContents():
+                    res["importi_di_viaggio_e_o_servizi"].append(
+                        getMultiAdapter(
+                            (brain, self.request), ISerializeToJsonSummary
+                        )()
+                    )
 
         if "atto_di_nomina" not in res:
             res["atto_di_nomina"] = None

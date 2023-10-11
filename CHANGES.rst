@@ -1,10 +1,25 @@
 Changelog
 =========
 
-6.0.17 (unreleased)
+6.0.19 (unreleased)
 -------------------
 
 - Nothing changed yet.
+
+
+6.0.18 (2023-09-20)
+-------------------
+
+- Add permission check to solve problem accessing private resources with
+  anonymous user
+  [lucabel]
+
+
+6.0.17 (2023-09-06)
+-------------------
+
+- Added dates for incarico persona.
+  [deodorhuter]
 
 
 6.0.16 (2023-08-24)
