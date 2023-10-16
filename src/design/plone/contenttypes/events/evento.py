@@ -5,6 +5,11 @@ from plone import api
 from Products.CMFPlone.interfaces import ISelectableConstrainTypes
 
 
+GALLERIA_MAPPING = {"id": "immagini", "title": "Immagini"}
+
+DOCUMENTI_TITLE = "Allegati"
+
+
 def eventoCreateHandler(evento, event):
     """
     Complete content type evento setup on added event, generating
@@ -16,12 +21,12 @@ def eventoCreateHandler(evento, event):
     """
     if not IDesignPloneContenttypesLayer.providedBy(evento.REQUEST):
         return
-    if "immagini" not in evento.keys():
+    if GALLERIA_MAPPING["id"] not in evento.keys():
         galleria = api.content.create(
             container=evento,
             type="Document",
-            title="Immagini",
-            id="immagini",
+            title=GALLERIA_MAPPING["title"],
+            id=GALLERIA_MAPPING["id"],
         )
         create_default_blocks(context=galleria)
 
@@ -33,8 +38,6 @@ def eventoCreateHandler(evento, event):
         with api.env.adopt_roles(["Reviewer"]):
             api.content.transition(obj=galleria, transition="publish")
 
-    if not IDesignPloneContenttypesLayer.providedBy(evento.REQUEST):
-        return
     if "video" not in evento.keys():
         galleria_video = api.content.create(
             container=evento,
@@ -72,7 +75,7 @@ def eventoCreateHandler(evento, event):
         documenti = api.content.create(
             container=evento,
             type="Document",
-            title="Allegati",
+            title=DOCUMENTI_TITLE,
             id="documenti",
         )
         create_default_blocks(context=documenti)

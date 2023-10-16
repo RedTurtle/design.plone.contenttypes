@@ -60,9 +60,4 @@
       component=".reference_vocabularies.UOLocationVocabularyFactory"
       />
 
-  <utility
-      name="design.plone.contenttypes.RuoliPersona"
-      component=".people_vocabulary.RuoliPersonaFactory"
-      />
-
 </configure>
