@@ -4,7 +4,8 @@ Changelog
 6.0.17 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Do not show fieldsets with no visible fields in @types endpoint.
+  [cekk]
 
 
 6.0.16 (2023-08-24)
