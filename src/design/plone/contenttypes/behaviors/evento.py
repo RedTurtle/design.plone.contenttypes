@@ -57,11 +57,11 @@ class IEvento(model.Schema):
 
     prezzo = BlocksField(
         title=_("prezzo", default="Costo"),
-        required=False,
+        required=True,
         description=_(
             "prezzo_help",
             default="Eventuale costo dell'evento (se ci sono uno o più biglietti), "
-            "con link all'alcquisto se disponibile",
+            "con link all'acquisto se disponibile",
         ),
     )
 

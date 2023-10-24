@@ -4,7 +4,8 @@ Changelog
 6.0.19 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Set event tickets cost as required field
+  [pnicolli]
 
 
 6.0.18 (2023-09-20)
