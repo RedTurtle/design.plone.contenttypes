@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.0.19 (unreleased)
+6.0.19 (2023-10-25)
 -------------------
 
 - Set event tickets cost as required field
