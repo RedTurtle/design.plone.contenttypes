@@ -193,7 +193,7 @@ class DefaultJSONSummarySerializer(BaseSerializer):
                 ttool[self.context.portal_type].Title(), context=self.request
             )
         else:
-            logger.error(
+            logger.warning(
                 "missing portal_type %s for %s",
                 self.context.portal_type,
                 self.context.absolute_url(),
