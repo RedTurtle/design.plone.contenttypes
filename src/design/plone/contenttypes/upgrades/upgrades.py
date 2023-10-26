@@ -15,6 +15,7 @@ from plone.registry.interfaces import IRegistry
 from Products.CMFPlone.interfaces import ISelectableConstrainTypes
 from redturtle.bandi.interfaces.settings import IBandoSettings
 from transaction import commit
+from uuid import uuid4
 from z3c.relationfield import RelationValue
 from zope.component import getUtility
 from zope.event import notify
@@ -1501,3 +1502,45 @@ def to_7011(context):
         doc = brain.getObject()
         doc.reindexObject(idxs=["SearchableText"])
     logger.info("Ends of reindex")
+
+
+def to_7012(context):
+    logger.info("Set default value in prezzo field because now is required.")
+
+    brains = api.content.find(portal_type=["Event"])
+    tot = len(brains)
+    logger.info(f"Found {tot} Events.")
+    i = 0
+    fixed = []
+    for brain in brains:
+        i += 1
+        if i % 100 == 0:
+            logger.info("Progress: {}/{}".format(i, tot))
+        event = brain.getObject()
+        prezzo = getattr(event, "prezzo", None)
+        if not prezzo or prezzo == {"blocks": {}, "blocks_layout": {"items": []}}:
+            fixed.append(brain.getPath())
+            uid = str(uuid4())
+            event.prezzo = {
+                "blocks": {
+                    uid: {
+                        "@type": "text",
+                        "text": {
+                            "blocks": [
+                                {
+                                    "key": "fvsj1",
+                                    "text": "Eventuali costi sono indicati nella descrizione dell’evento.",
+                                    "type": "unstyled",
+                                    "depth": 0,
+                                    "inlineStyleRanges": [],
+                                    "entityRanges": [],
+                                    "data": {},
+                                }
+                            ],
+                            "entityMap": {},
+                        },
+                    }
+                },
+                "blocks_layout": {"items": [uid]},
+            }
+    logger.info(f"Fixed {len(fixed)} Events.")

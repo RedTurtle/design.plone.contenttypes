@@ -4,7 +4,8 @@ Changelog
 6.0.20 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add upgrade-step to set a default cost text for events.
+  [cekk]
 
 
 6.0.19 (2023-10-25)
