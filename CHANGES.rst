@@ -4,7 +4,8 @@ Changelog
 6.0.21 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Handle cost with empty text block in previous upgrade-step.
+  [cekk]
 
 
 6.0.20 (2023-10-30)

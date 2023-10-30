@@ -1505,6 +1505,17 @@ def to_7011(context):
 
 
 def to_7012(context):
+    def has_empty_prezzo(value):
+        if not value:
+            return True
+        if value == {"blocks": {}, "blocks_layout": {"items": []}}:
+            return True
+        blocks_layout = value.get("blocks_layout", {}).get("items", [])
+        blocks = list(value.get("blocks", {}).values())
+        if len(blocks_layout) == 1 and blocks[0] == {"@type": "text"}:
+            return True
+        return False
+
     logger.info("Set default value in prezzo field because now is required.")
 
     brains = api.content.find(portal_type=["Event"])
@@ -1518,7 +1529,7 @@ def to_7012(context):
             logger.info("Progress: {}/{}".format(i, tot))
         event = brain.getObject()
         prezzo = getattr(event, "prezzo", None)
-        if not prezzo or prezzo == {"blocks": {}, "blocks_layout": {"items": []}}:
+        if has_empty_prezzo(value=prezzo):
             fixed.append(brain.getPath())
             uid = str(uuid4())
             event.prezzo = {
