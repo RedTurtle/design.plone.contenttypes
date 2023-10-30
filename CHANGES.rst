@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.0.20 (unreleased)
+6.0.20 (2023-10-30)
 -------------------
 
 - Add upgrade-step to set a default cost text for events.
