@@ -118,7 +118,7 @@ def get_taxonomy_information_by_type(res, context):
 @implementer(ISerializeToJsonSummary)
 @adapter(Interface, IDesignPloneContenttypesLayer)
 class DefaultJSONSummarySerializer(BaseSerializer):
-    def __call__(self, force_all_metadata=False):
+    def __call__(self, force_all_metadata=False, force_images=False):
         res = super().__call__(force_all_metadata=force_all_metadata)
         metadata_fields = self.metadata_fields()
         if self.context.portal_type == "Persona":
@@ -153,6 +153,21 @@ class DefaultJSONSummarySerializer(BaseSerializer):
 
         if self.is_get_call():
             res["has_children"] = self.has_children()
+
+        if force_images:
+            # TODO: verificare se non c'è il campo o se il campo è null/vuoto ?
+            if not res.get("image_scales") and not res.get("image_field"):
+                adapter = queryMultiAdapter(
+                    (self.context, self.request), IImageScalesAdapter
+                )
+                if adapter:
+                    scales = adapter()
+                    if scales:
+                        res["image_scales"] = scales
+                    if "preview_image" in scales:
+                        res["image_field"] = "preview_image"
+                    elif "image" in scales:
+                        res["image_field"] = "image"
 
         return res
 
@@ -251,8 +266,8 @@ class DefaultJSONSummarySerializer(BaseSerializer):
 @implementer(ISerializeToJsonSummary)
 @adapter(IIncarico, IDesignPloneContenttypesLayer)
 class IncaricoDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
-    def __call__(self, force_all_metadata=False):
-        res = super().__call__(force_all_metadata=force_all_metadata)
+    def __call__(self, **kwargs):
+        res = super().__call__(**kwargs)
         get_taxonomy_information("tipologia_incarico", self.context, res)
         if "data_inizio_incarico" not in res:
             res["data_inizio_incarico"] = json_compatible(
@@ -312,17 +327,19 @@ class IncaricoDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
 @implementer(ISerializeToJsonSummary)
 @adapter(IPuntoDiContatto, IDesignPloneContenttypesLayer)
 class PuntoDiContattoDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
-    def __call__(self, force_all_metadata=False):
-        res = super().__call__(force_all_metadata=force_all_metadata)
+    def __call__(self, **kwargs):
+        res = super().__call__(**kwargs)
         res["value_punto_contatto"] = self.context.value_punto_contatto
         return res
 
 
+# TODO: questo potrebbe non essere più necessario, vista l'implementazione
+# di DefaultJSONSummarySerializer con image_scales e image_field
 @implementer(ISerializeToJsonSummary)
 @adapter(IPersona, IDesignPloneContenttypesLayer)
 class PersonaDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
-    def __call__(self, force_all_metadata=False):
-        res = super().__call__(force_all_metadata=force_all_metadata)
+    def __call__(self, **kwargs):
+        res = super().__call__(**kwargs)
         fields = dict(getFieldsInOrder(IPersona))
         field = fields.get("foto_persona", None)
         if field:
@@ -340,8 +357,8 @@ class PersonaDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
 @implementer(ISerializeToJsonSummary)
 @adapter(IEvent, IDesignPloneContenttypesLayer)
 class EventDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
-    def __call__(self, force_all_metadata=False):
-        res = super().__call__(force_all_metadata=force_all_metadata)
+    def __call__(self, **kwargs):
+        res = super().__call__(**kwargs)
         get_taxonomy_information("tipologia_evento", self.context, res)
         # Il summary dell'evento riceve in ingresso un obj generico che può
         # essere un brain (gli items figli dell'evento) oppure un oggtto (il
@@ -365,8 +382,8 @@ class EventDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
 @implementer(ISerializeToJsonSummary)
 @adapter(INewsItem, IDesignPloneContenttypesLayer)
 class NewsDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
-    def __call__(self, force_all_metadata=False):
-        res = super().__call__(force_all_metadata=force_all_metadata)
+    def __call__(self, **kwargs):
+        res = super().__call__(**kwargs)
         get_taxonomy_information("tipologia_notizia", self.context, res)
         return res
 
@@ -374,8 +391,8 @@ class NewsDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
 @implementer(ISerializeToJsonSummary)
 @adapter(IDataset, IDesignPloneContenttypesLayer)
 class DatasetDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
-    def __call__(self, force_all_metadata=False):
-        res = super().__call__(force_all_metadata=force_all_metadata)
+    def __call__(self, **kwargs):
+        res = super().__call__(**kwargs)
         get_taxonomy_information("temi_dataset", self.context, res)
         get_taxonomy_information("tipologia_frequenza_aggiornamento", self.context, res)
         get_taxonomy_information("tipologia_licenze", self.context, res)
@@ -385,8 +402,8 @@ class DatasetDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
 @implementer(ISerializeToJsonSummary)
 @adapter(IDocumento, IDesignPloneContenttypesLayer)
 class DocumentoPubblicoDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
-    def __call__(self, force_all_metadata=False):
-        res = super().__call__(force_all_metadata=force_all_metadata)
+    def __call__(self, **kwargs):
+        res = super().__call__(**kwargs)
         get_taxonomy_information("tipologia_documenti_albopretorio", self.context, res)
         get_taxonomy_information("tipologia_documento", self.context, res)
         get_taxonomy_information("tipologia_licenze", self.context, res)
@@ -398,7 +415,7 @@ class DocumentoPubblicoDefaultJSONSummarySerializer(DefaultJSONSummarySerializer
 @implementer(ISerializeToJsonSummary)
 @adapter(IPratica, IDesignPloneContenttypesLayer)
 class PraticaDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
-    def __call__(self, force_all_metadata=False):
-        res = super().__call__(force_all_metadata=force_all_metadata)
+    def __call__(self, **kwargs):
+        res = super().__call__(**kwargs)
         get_taxonomy_information("tipologia_stati_pratica", self.context, res)
         return res

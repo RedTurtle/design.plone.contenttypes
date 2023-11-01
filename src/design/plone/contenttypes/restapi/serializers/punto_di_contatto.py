@@ -25,8 +25,8 @@ from zope.security import checkPermission
 @implementer(ISerializeToJsonSummary)
 @adapter(IPuntoDiContatto, Interface)
 class SerializePuntoDiContattoToJsonSummary(DefaultJSONSummarySerializer):
-    def __call__(self, force_all_metadata=False):
-        summary = super().__call__(force_all_metadata=force_all_metadata)
+    def __call__(self, **kwargs):
+        summary = super().__call__(**kwargs)
         fields = ["value_punto_contatto"]
         for schema in iterSchemata(self.context):
             for name, field in getFields(schema).items():
