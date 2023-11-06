@@ -19,7 +19,7 @@
     </metal:content-description>
     <metal:content-core fill-slot="content-core">
       <div class="form">
-        <form action="${context/portal_url}/move_news_items"
+        <form action="${context/portal_url}/move-news-items"
               method="POST"
         >
           <div class="field">
@@ -77,7 +77,7 @@
            "
            tal:condition="results"
       >
-        <form action="${context/portal_url}/move_news_items"
+        <form action="${context/portal_url}/move-news-items"
               method="POST"
         >
           <div>
