@@ -357,25 +357,9 @@ class PersonaDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
 @implementer(ISerializeToJsonSummary)
 @adapter(IEvent, IDesignPloneContenttypesLayer)
 class EventDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
-    def __call__(self, **kwargs):
-        res = super().__call__(**kwargs)
+    def __call__(self, force_images=True, **kwargs):
+        res = super().__call__(force_images=force_images, **kwargs)
         get_taxonomy_information("tipologia_evento", self.context, res)
-        # Il summary dell'evento riceve in ingresso un obj generico che può
-        # essere un brain (gli items figli dell'evento) oppure un oggtto (il
-        # parent). Gli attributi per le immagini vengono presi solo nel caso
-        # del brain perché sono informazioni a catalogo. Per cui se non abbiamo
-        # le informazioni, le calcoliamo come fanno gli indexer
-        if not res.get("image_scales") and not res.get("image_field"):
-            adapter = queryMultiAdapter(
-                (self.context, self.request), IImageScalesAdapter
-            )
-            scales = adapter()
-            if scales:
-                res["image_scales"] = scales
-            if "preview_image" in scales:
-                res["image_field"] = "preview_image"
-            elif "image" in scales:
-                res["image_field"] = "image"
         return res
 
 
