@@ -6,7 +6,7 @@
     >
 
   <browser:page
-      name="agid-utils"
+      name="design-utils"
       for="*"
       template="templates/utils.pt"
       permission="cmf.ManagePortal"
