@@ -37,7 +37,7 @@ class View(BrowserView):
                     "incarico": ruolo,
                     "data inizio": data_inizio,
                     "tipo": tipo_incarico,
-                    "url": brain.getPath().replace("/Plone", ""),
+                    "url": brain.getURL(),
                 }
             )
 
