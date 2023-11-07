@@ -1,8 +1,8 @@
 Changelog
 =========
 
-6.1.0 (unreleased)
--------------------
+6.1.0 (2023-11-07)
+------------------
 
 - Optionally add image_scales and image_field in Summary serializer.
   [mamico]
