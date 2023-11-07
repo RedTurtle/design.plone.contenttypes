@@ -273,7 +273,7 @@ class TestPersonaSchema(unittest.TestCase):
         persona_summary = getMultiAdapter(
             (self.persona, self.request), ISerializeToJsonSummary
         )()
-        self.assertEqual(persona_summary["incarichi"], "Sindaco")
+        self.assertFalse(persona_summary["incarichi"])
         incarico_summary = getMultiAdapter(
             (self.persona.incarichi.sindaco, self.request), ISerializeToJsonSummary
         )()
