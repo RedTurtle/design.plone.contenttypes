@@ -9,7 +9,6 @@ from design.plone.contenttypes.restapi.serializers.summary import (
     get_taxonomy_information,
 )
 from plone import api
-from plone.base.interfaces import IImageScalesAdapter
 from plone.restapi.interfaces import ISerializeToJson
 from plone.restapi.interfaces import ISerializeToJsonSummary
 from plone.restapi.serializer.converters import json_compatible
@@ -17,7 +16,6 @@ from zc.relation.interfaces import ICatalog
 from zope.component import adapter
 from zope.component import getMultiAdapter
 from zope.component import getUtility
-from zope.component import queryMultiAdapter
 from zope.globalrequest import getRequest
 from zope.interface import implementer
 from zope.interface import Interface
@@ -120,8 +118,8 @@ class UOSerializer(BaseSerializer):
 @implementer(ISerializeToJsonSummary)
 @adapter(IUnitaOrganizzativa, Interface)
 class UOJSONSummarySerializer(DefaultJSONSummarySerializer):
-    def __call__(self, force_all_metadata=False):
-        data = super().__call__(force_all_metadata=force_all_metadata)
+    def __call__(self, force_images=True, **kwargs):
+        data = super().__call__(force_images=force_images, **kwargs)
         fields = [
             "contact_info",
             "sede",
@@ -132,18 +130,6 @@ class UOJSONSummarySerializer(DefaultJSONSummarySerializer):
                 data[field] = json_compatible(getattr(self.context, field, ""))
             else:
                 data[field] = getattr(self.context, field, "")
-
-        if not data.get("image_scales") and not data.get("image_field"):
-            adapter = queryMultiAdapter(
-                (self.context, self.request), IImageScalesAdapter
-            )
-            scales = adapter()
-            if scales:
-                data["image_scales"] = scales
-            if "preview_image" in scales:
-                data["image_field"] = "preview_image"
-            elif "image" in scales:
-                data["image_field"] = "image"
 
         data["geolocation"] = self.getGeolocation()
 

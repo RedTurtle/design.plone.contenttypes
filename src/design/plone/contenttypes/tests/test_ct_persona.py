@@ -256,7 +256,6 @@ class TestPersonaSchema(unittest.TestCase):
         # non ho incarichi, ma soprattutto non ho errori
         self.assertTrue(len(summary["incarichi"]) == 0)
 
-    @unittest.skip
     def test_unauthorized_on_subfolder(self):
         incarico = api.content.create(
             container=self.persona.incarichi, type="Incarico", title="Sindaco"

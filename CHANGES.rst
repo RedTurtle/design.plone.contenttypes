@@ -1,11 +1,65 @@
 Changelog
 =========
 
-6.0.17 (unreleased)
--------------------
+6.1.1 (unreleased)
+------------------
 
 - Do not show fieldsets with no visible fields in @types endpoint.
   [cekk]
+
+
+6.1.0 (2023-11-07)
+------------------
+
+- Optionally add image_scales and image_field in Summary serializer.
+  [mamico]
+
+- Add @@design-utils view that shows all available utility views.
+  [cekk]
+
+- Add user action that points to @@design-utils view.
+  [cekk]
+
+- Add @@export-incarichi view that allows to download a csv file with all Persona and their roles.
+  [cekk]
+
+- Add tipologia_bando to summary serializer.
+  [cekk]
+
+6.0.21 (2023-10-30)
+-------------------
+
+- Handle cost with empty text block in previous upgrade-step.
+  [cekk]
+
+
+6.0.20 (2023-10-30)
+-------------------
+
+- Add upgrade-step to set a default cost text for events.
+  [cekk]
+
+
+6.0.19 (2023-10-25)
+-------------------
+
+- Set event tickets cost as required field
+  [pnicolli]
+
+
+6.0.18 (2023-09-20)
+-------------------
+
+- Add permission check to solve problem accessing private resources with
+  anonymous user
+  [lucabel]
+
+
+6.0.17 (2023-09-06)
+-------------------
+
+- Added dates for incarico persona.
+  [deodorhuter]
 
 
 6.0.16 (2023-08-24)

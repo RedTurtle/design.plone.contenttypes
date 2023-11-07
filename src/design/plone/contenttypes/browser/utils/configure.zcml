@@ -6,6 +6,20 @@
     >
 
   <browser:page
+      name="design-utils"
+      for="*"
+      template="templates/utils.pt"
+      permission="cmf.ManagePortal"
+      />
+
+  <browser:page
+      name="export-incarichi"
+      for="*"
+      class=".export_incarichi.View"
+      permission="cmf.ManagePortal"
+      />
+
+  <browser:page
       name="change_news_type"
       for="*"
       class=".change_news_type.View"
@@ -14,14 +28,14 @@
       />
 
   <browser:page
-      name="move_news_items"
+      name="move-news-items"
       for="*"
       class=".move_news_items.View"
       template="templates/move_news_items.pt"
       permission="cmf.ManagePortal"
       />
   <browser:page
-      name="check_servizi"
+      name="check-servizi"
       for="*"
       class=".check_servizi.CheckServizi"
       template="templates/check_servizi.pt"
@@ -29,13 +43,13 @@
       />
 
   <browser:page
-      name="download_check_servizi"
+      name="download-check-servizi"
       for="*"
       class=".check_servizi.DownloadCheckServizi"
       permission="zope2.Public"
       />
   <browser:page
-      name="download_check_persone"
+      name="download-check-persone"
       for="*"
       class=".check_persone.DownloadCheckPersone"
       permission="zope2.Public"

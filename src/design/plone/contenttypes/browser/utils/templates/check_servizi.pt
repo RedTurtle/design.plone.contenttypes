@@ -119,14 +119,14 @@
 
           <div class="forms">
             <div tal:condition="view/cds">
-              <form action="${context/absolute_url}/@@check_servizi">
+              <form action="${context/absolute_url}/@@check-servizi">
                 <input type="Submit"
                        value="Cerca senza condizioni di servizio"
                 />
               </form>
             </div>
             <div tal:condition="not:view/cds">
-              <form action="${context/absolute_url}/@@check_servizi">
+              <form action="${context/absolute_url}/@@check-servizi">
                 <input name="condizioni_di_servizio"
                        type="hidden"
                        value="True"
@@ -137,7 +137,7 @@
               </form>
             </div>
             <div class="download_button">
-              <form action="${context/absolute_url}/@@download_check_servizi">
+              <form action="${context/absolute_url}/@@download-check-servizi">
                 <!-- <input type="Submit" value="Download" /> -->
                 <input name="condizioni_di_servizio"
                        type="hidden"

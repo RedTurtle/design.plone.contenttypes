@@ -15,6 +15,7 @@ from plone.registry.interfaces import IRegistry
 from Products.CMFPlone.interfaces import ISelectableConstrainTypes
 from redturtle.bandi.interfaces.settings import IBandoSettings
 from transaction import commit
+from uuid import uuid4
 from z3c.relationfield import RelationValue
 from zope.component import getUtility
 from zope.event import notify
@@ -36,6 +37,10 @@ DEFAULT_PROFILE = "profile-design.plone.contenttypes:default"
 
 def update_profile(context, profile, run_dependencies=True):
     context.runImportStepFromProfile(DEFAULT_PROFILE, profile, run_dependencies)
+
+
+def update_actions(context):
+    update_profile(context, "actions")
 
 
 def update_types(context):
@@ -1501,3 +1506,56 @@ def to_7011(context):
         doc = brain.getObject()
         doc.reindexObject(idxs=["SearchableText"])
     logger.info("Ends of reindex")
+
+
+def to_7012(context):
+    def has_empty_prezzo(value):
+        if not value:
+            return True
+        if value == {"blocks": {}, "blocks_layout": {"items": []}}:
+            return True
+        blocks_layout = value.get("blocks_layout", {}).get("items", [])
+        blocks = list(value.get("blocks", {}).values())
+        if len(blocks_layout) == 1 and blocks[0] == {"@type": "text"}:
+            return True
+        return False
+
+    logger.info("Set default value in prezzo field because now is required.")
+
+    brains = api.content.find(portal_type=["Event"])
+    tot = len(brains)
+    logger.info(f"Found {tot} Events.")
+    i = 0
+    fixed = []
+    for brain in brains:
+        i += 1
+        if i % 100 == 0:
+            logger.info("Progress: {}/{}".format(i, tot))
+        event = brain.getObject()
+        prezzo = getattr(event, "prezzo", None)
+        if has_empty_prezzo(value=prezzo):
+            fixed.append(brain.getPath())
+            uid = str(uuid4())
+            event.prezzo = {
+                "blocks": {
+                    uid: {
+                        "@type": "text",
+                        "text": {
+                            "blocks": [
+                                {
+                                    "key": "fvsj1",
+                                    "text": "Eventuali costi sono indicati nella descrizione dell’evento.",
+                                    "type": "unstyled",
+                                    "depth": 0,
+                                    "inlineStyleRanges": [],
+                                    "entityRanges": [],
+                                    "data": {},
+                                }
+                            ],
+                            "entityMap": {},
+                        },
+                    }
+                },
+                "blocks_layout": {"items": [uid]},
+            }
+    logger.info(f"Fixed {len(fixed)} Events.")

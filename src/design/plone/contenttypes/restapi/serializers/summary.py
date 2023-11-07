@@ -118,12 +118,14 @@ def get_taxonomy_information_by_type(res, context):
 @implementer(ISerializeToJsonSummary)
 @adapter(Interface, IDesignPloneContenttypesLayer)
 class DefaultJSONSummarySerializer(BaseSerializer):
-    def __call__(self, force_all_metadata=False):
+    def __call__(self, force_all_metadata=False, force_images=False):
         res = super().__call__(force_all_metadata=force_all_metadata)
         metadata_fields = self.metadata_fields()
         if self.context.portal_type == "Persona":
             res["incarichi"] = self.get_incarichi()
         if self.context.portal_type == "Bando":
+            if "tipologia_bando" not in res:
+                res["tipologia_bando"] = getattr(self.context, "tipologia_bando", "")
             if "bando_state" in metadata_fields or self.show_all_metadata_fields:
                 res["bando_state"] = self.get_bando_state()
 
@@ -134,7 +136,10 @@ class DefaultJSONSummarySerializer(BaseSerializer):
                 latitude = res.get("latitude", 0)
                 longitude = res.get("longitude", 0)
                 if latitude and longitude:
-                    res["geolocation"] = {"latitude": latitude, "longitude": longitude}
+                    res["geolocation"] = {
+                        "latitude": latitude,
+                        "longitude": longitude,
+                    }
 
         res["id"] = self.context.id
 
@@ -150,6 +155,21 @@ class DefaultJSONSummarySerializer(BaseSerializer):
 
         if self.is_get_call():
             res["has_children"] = self.has_children()
+
+        if force_images:
+            # TODO: verificare se non c'è il campo o se il campo è null/vuoto ?
+            if not res.get("image_scales") and not res.get("image_field"):
+                adapter = queryMultiAdapter(
+                    (self.context, self.request), IImageScalesAdapter
+                )
+                if adapter:
+                    scales = adapter()
+                    if scales:
+                        res["image_scales"] = scales
+                    if "preview_image" in scales:
+                        res["image_field"] = "preview_image"
+                    elif "image" in scales:
+                        res["image_field"] = "image"
 
         return res
 
@@ -238,6 +258,9 @@ class DefaultJSONSummarySerializer(BaseSerializer):
         for incarico in obj.incarichi_persona:
             if not incarico.to_object:
                 continue
+
+            if not api.user.has_permission("View", obj=incarico.to_object):
+                continue
             incarichi.append(incarico.to_object.title)
         return ", ".join(incarichi)
 
@@ -245,8 +268,8 @@ class DefaultJSONSummarySerializer(BaseSerializer):
 @implementer(ISerializeToJsonSummary)
 @adapter(IIncarico, IDesignPloneContenttypesLayer)
 class IncaricoDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
-    def __call__(self, force_all_metadata=False):
-        res = super().__call__(force_all_metadata=force_all_metadata)
+    def __call__(self, **kwargs):
+        res = super().__call__(**kwargs)
         get_taxonomy_information("tipologia_incarico", self.context, res)
         if "data_inizio_incarico" not in res:
             res["data_inizio_incarico"] = json_compatible(
@@ -255,26 +278,44 @@ class IncaricoDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
         else:
             res["data_inizio_incarico"] = json_compatible(None)
 
+        if "data_conclusione_incarico" not in res:
+            res["data_conclusione_incarico"] = json_compatible(
+                self.context.data_conclusione_incarico
+            )
+        else:
+            res["data_conclusione_incarico"] = json_compatible(None)
+
+        if "data_insediamento" not in res:
+            res["data_insediamento"] = json_compatible(self.context.data_insediamento)
+        else:
+            res["data_insediamento"] = json_compatible(None)
+
         if "compensi" not in res:
             res["compensi"] = json_compatible(self.context.compensi)
         else:
             res["compensi"] = json_compatible([])
 
         if safe_hasattr(self.context, "compensi-file"):
+            compensi_folder = getattr(self.context, "compensi-file")
             res["compensi_file"] = []
-            for brain in getattr(self.context, "compensi-file").getFolderContents():
-                res["compensi_file"].append(
-                    getMultiAdapter((brain, self.request), ISerializeToJsonSummary)()
-                )
+            if api.user.has_permission("View", obj=compensi_folder):
+                for brain in getattr(self.context, "compensi-file").getFolderContents():
+                    res["compensi_file"].append(
+                        getMultiAdapter(
+                            (brain, self.request), ISerializeToJsonSummary
+                        )()
+                    )
 
         if safe_hasattr(self.context, "importi-di-viaggio-e-o-servizi"):
+            importi_folder = getattr(self.context, "importi-di-viaggio-e-o-servizi")
             res["importi_di_viaggio_e_o_servizi"] = []
-            for brain in getattr(
-                self.context, "importi-di-viaggio-e-o-servizi"
-            ).getFolderContents():
-                res["importi_di_viaggio_e_o_servizi"].append(
-                    getMultiAdapter((brain, self.request), ISerializeToJsonSummary)()
-                )
+            if api.user.has_permission("View", obj=importi_folder):
+                for brain in importi_folder.getFolderContents():
+                    res["importi_di_viaggio_e_o_servizi"].append(
+                        getMultiAdapter(
+                            (brain, self.request), ISerializeToJsonSummary
+                        )()
+                    )
 
         if "atto_di_nomina" not in res:
             res["atto_di_nomina"] = None
@@ -288,17 +329,19 @@ class IncaricoDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
 @implementer(ISerializeToJsonSummary)
 @adapter(IPuntoDiContatto, IDesignPloneContenttypesLayer)
 class PuntoDiContattoDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
-    def __call__(self, force_all_metadata=False):
-        res = super().__call__(force_all_metadata=force_all_metadata)
+    def __call__(self, **kwargs):
+        res = super().__call__(**kwargs)
         res["value_punto_contatto"] = self.context.value_punto_contatto
         return res
 
 
+# TODO: questo potrebbe non essere più necessario, vista l'implementazione
+# di DefaultJSONSummarySerializer con image_scales e image_field
 @implementer(ISerializeToJsonSummary)
 @adapter(IPersona, IDesignPloneContenttypesLayer)
 class PersonaDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
-    def __call__(self, force_all_metadata=False):
-        res = super().__call__(force_all_metadata=force_all_metadata)
+    def __call__(self, **kwargs):
+        res = super().__call__(**kwargs)
         fields = dict(getFieldsInOrder(IPersona))
         field = fields.get("foto_persona", None)
         if field:
@@ -316,33 +359,17 @@ class PersonaDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
 @implementer(ISerializeToJsonSummary)
 @adapter(IEvent, IDesignPloneContenttypesLayer)
 class EventDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
-    def __call__(self, force_all_metadata=False):
-        res = super().__call__(force_all_metadata=force_all_metadata)
+    def __call__(self, force_images=True, **kwargs):
+        res = super().__call__(force_images=force_images, **kwargs)
         get_taxonomy_information("tipologia_evento", self.context, res)
-        # Il summary dell'evento riceve in ingresso un obj generico che può
-        # essere un brain (gli items figli dell'evento) oppure un oggtto (il
-        # parent). Gli attributi per le immagini vengono presi solo nel caso
-        # del brain perché sono informazioni a catalogo. Per cui se non abbiamo
-        # le informazioni, le calcoliamo come fanno gli indexer
-        if not res.get("image_scales") and not res.get("image_field"):
-            adapter = queryMultiAdapter(
-                (self.context, self.request), IImageScalesAdapter
-            )
-            scales = adapter()
-            if scales:
-                res["image_scales"] = scales
-            if "preview_image" in scales:
-                res["image_field"] = "preview_image"
-            elif "image" in scales:
-                res["image_field"] = "image"
         return res
 
 
 @implementer(ISerializeToJsonSummary)
 @adapter(INewsItem, IDesignPloneContenttypesLayer)
 class NewsDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
-    def __call__(self, force_all_metadata=False):
-        res = super().__call__(force_all_metadata=force_all_metadata)
+    def __call__(self, **kwargs):
+        res = super().__call__(**kwargs)
         get_taxonomy_information("tipologia_notizia", self.context, res)
         return res
 
@@ -350,8 +377,8 @@ class NewsDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
 @implementer(ISerializeToJsonSummary)
 @adapter(IDataset, IDesignPloneContenttypesLayer)
 class DatasetDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
-    def __call__(self, force_all_metadata=False):
-        res = super().__call__(force_all_metadata=force_all_metadata)
+    def __call__(self, **kwargs):
+        res = super().__call__(**kwargs)
         get_taxonomy_information("temi_dataset", self.context, res)
         get_taxonomy_information("tipologia_frequenza_aggiornamento", self.context, res)
         get_taxonomy_information("tipologia_licenze", self.context, res)
@@ -361,8 +388,8 @@ class DatasetDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
 @implementer(ISerializeToJsonSummary)
 @adapter(IDocumento, IDesignPloneContenttypesLayer)
 class DocumentoPubblicoDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
-    def __call__(self, force_all_metadata=False):
-        res = super().__call__(force_all_metadata=force_all_metadata)
+    def __call__(self, **kwargs):
+        res = super().__call__(**kwargs)
         get_taxonomy_information("tipologia_documenti_albopretorio", self.context, res)
         get_taxonomy_information("tipologia_documento", self.context, res)
         get_taxonomy_information("tipologia_licenze", self.context, res)
@@ -374,7 +401,7 @@ class DocumentoPubblicoDefaultJSONSummarySerializer(DefaultJSONSummarySerializer
 @implementer(ISerializeToJsonSummary)
 @adapter(IPratica, IDesignPloneContenttypesLayer)
 class PraticaDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
-    def __call__(self, force_all_metadata=False):
-        res = super().__call__(force_all_metadata=force_all_metadata)
+    def __call__(self, **kwargs):
+        res = super().__call__(**kwargs)
         get_taxonomy_information("tipologia_stati_pratica", self.context, res)
         return res
