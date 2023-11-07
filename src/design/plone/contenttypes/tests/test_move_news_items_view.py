@@ -18,7 +18,7 @@ class MoveNewsItemView(unittest.TestCase):
         # default values are set in italian
         self.request["LANGUAGE"] = "it"
         self.view = api.content.get_view(
-            "move_news_items", context=self.portal, request=self.request
+            "move-news-items", context=self.portal, request=self.request
         )
 
         setRoles(self.portal, TEST_USER_ID, ["Manager"])
