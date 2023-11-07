@@ -1,13 +1,18 @@
 Changelog
 =========
 
-6.0.22 (unreleased)
+6.1.0 (unreleased)
 -------------------
+
+- Optionally add image_scales and image_field in Summary serializer.
+  [mamico]
 
 - Add @@design-utils view that shows all available utility views.
   [cekk]
+
 - Add user action that points to @@design-utils view.
   [cekk]
+
 - Add @@export-incarichi view that allows to download a csv file with all Persona and their roles.
   [cekk]
 

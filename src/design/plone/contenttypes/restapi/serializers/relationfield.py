@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+# TODO: documentare le motiviazioni di questo override
+#
 from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
 from plone import api
 from plone.dexterity.interfaces import IDexterityContent
@@ -18,7 +20,7 @@ from zope.interface import implementer
 @adapter(IRelationList, IDexterityContent, IDesignPloneContenttypesLayer)
 @implementer(IFieldSerializer)
 class RelationListFieldSerializer(DefaultRelationListFieldSerializer):
-    def __call__(self):
+    def __call__(self, force_images=True):
         data = []
         for value in self.get_value() or ():
             if not value:
@@ -39,9 +41,9 @@ class RelationListFieldSerializer(DefaultRelationListFieldSerializer):
                 # Users that can edit current context, should see it because otherwise
                 # they will not see it in edit form.
                 continue
-            summary = getMultiAdapter(
-                (content, getRequest()), ISerializeToJsonSummary
-            )()
+            summary = getMultiAdapter((content, getRequest()), ISerializeToJsonSummary)(
+                force_images=force_images
+            )
             if content.effective().Date() != "1969/12/31":
                 summary["effective"] = json_compatible(content.effective())
             else:
