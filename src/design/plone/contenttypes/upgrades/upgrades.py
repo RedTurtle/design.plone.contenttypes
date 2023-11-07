@@ -39,6 +39,10 @@ def update_profile(context, profile, run_dependencies=True):
     context.runImportStepFromProfile(DEFAULT_PROFILE, profile, run_dependencies)
 
 
+def update_actions(context):
+    update_profile(context, "actions")
+
+
 def update_types(context):
     update_profile(context, "typeinfo")
 

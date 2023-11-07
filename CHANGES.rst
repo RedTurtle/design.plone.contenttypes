@@ -4,8 +4,12 @@ Changelog
 6.0.22 (unreleased)
 -------------------
 
-- Nothing changed yet.
-
+- Add @@design-utils view that shows all available utility views.
+  [cekk]
+- Add user action that points to @@design-utils view.
+  [cekk]
+- Add @@export-incarichi view that allows to download a csv file with all Persona and their roles.
+  [cekk]
 
 6.0.21 (2023-10-30)
 -------------------
