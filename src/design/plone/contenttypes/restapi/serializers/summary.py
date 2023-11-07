@@ -124,6 +124,8 @@ class DefaultJSONSummarySerializer(BaseSerializer):
         if self.context.portal_type == "Persona":
             res["incarichi"] = self.get_incarichi()
         if self.context.portal_type == "Bando":
+            if "tipologia_bando" not in res:
+                res["tipologia_bando"] = getattr(self.context, "tipologia_bando", "")
             if "bando_state" in metadata_fields or self.show_all_metadata_fields:
                 res["bando_state"] = self.get_bando_state()
 

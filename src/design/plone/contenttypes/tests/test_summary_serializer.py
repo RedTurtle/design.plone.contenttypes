@@ -312,3 +312,20 @@ class SummarySerializerTest(unittest.TestCase):
         self.request.form["metadata_fields"] = "_all"
         serializer = getMultiAdapter((news, self.request), ISerializeToJsonSummary)()
         self.assertIn("tassonomia_argomenti", serializer)
+
+    def test_bando_summary_return_tipologia_bando(self):
+        bando = api.content.create(
+            container=self.portal,
+            type="Bando",
+            title="Bando",
+            tipologia_bando="foo",
+        )
+
+        commit()
+
+        response = self.api_session.get("@search?portal_type=Bando")
+        result = response.json()
+        items = result.get("items", [])
+
+        self.assertEqual(len(items), 1)
+        self.assertNotIn("tipologia_bando", bando.tipologia_bando)
