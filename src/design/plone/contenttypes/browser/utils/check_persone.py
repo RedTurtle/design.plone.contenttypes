@@ -12,6 +12,15 @@ from plone.restapi.interfaces import ISerializeToJsonSummary
 
 import io
 
+from Acquisition import aq_inner
+from zope.component import getUtility
+from zope.intid.interfaces import IIntIds
+from zope.security import checkPermission
+from zc.relation.interfaces import ICatalog
+
+
+FLAG = '<i class="fa-solid fa-check"></i>'
+
 
 class CheckPersone(BrowserView):
     cds = None
@@ -36,12 +45,46 @@ class CheckPersone(BrowserView):
                 items.append(summary)
         return sorted(items, key=lambda k: k["title"])
 
+    def back_references(self, source_object, attribute_name):
+
+        catalog = getUtility(ICatalog)
+        intids = getUtility(IIntIds)
+        result = []
+        # import pdb
+
+        # pdb.set_trace()
+        for rel in catalog.findRelations(
+            dict(
+                to_id=intids.getId(aq_inner(source_object)),
+                from_attribute=attribute_name,
+            )
+        ):
+            obj = intids.queryObject(rel.from_id)
+            if obj is not None and checkPermission("zope2.View", obj):
+                result.append(obj)
+        return result
+
     def information_dict(self, persona):
-        relations = self.get_related_objects(persona, "organizzazione_riferimento")
+        uo_refs = self.back_references(persona, "responsabile")
+        uo_refs.extend(self.back_references(persona, "persone_struttura"))
+
+        incarichi_persona = ""
+        if persona.incarichi_persona:
+
+            relations = self.get_related_objects(persona, "incarichi_persona")
+            rel_data = relations[0]
+
+            if (
+                rel_data["data_inizio_incarico"]
+                and rel_data["title"].strip()
+                and rel_data["tipologia_incarico"]
+            ):
+                incarichi_persona = FLAG
+
         return {
-            "title": getattr(persona, "title"),
-            "has_related_uo": bool(relations),
-            "organizzazione_riferimento": relations,
+            "incarichi_persona": incarichi_persona,
+            "contact_info": getattr(persona, "contact_info", None),
+            "organizzazione_riferimento": uo_refs,
         }
 
     def plone2volto(self, url):
@@ -54,6 +97,7 @@ class CheckPersone(BrowserView):
         return url
 
     def get_persone(self):
+
         if self.is_anonymous():
             return []
         pc = api.portal.get_tool("portal_catalog")
@@ -63,7 +107,7 @@ class CheckPersone(BrowserView):
         # nel CatalogTool.py
         query = {
             "portal_type": "Persona",
-            # "review_state": "published",
+            "review_state": "published",
         }
         brains = pc(query, **{"effectiveRange": DateTime()})
         results = {}
@@ -72,7 +116,7 @@ class CheckPersone(BrowserView):
 
             information_dict = self.information_dict(persona)
 
-            if not information_dict.get("has_related_uo"):
+            if all(information_dict.values()):
                 continue
 
             parent = persona.aq_inner.aq_parent
@@ -87,11 +131,15 @@ class CheckPersone(BrowserView):
                     "title": persona.title,
                     "url": self.plone2volto(persona.absolute_url()),
                     "data": {
-                        "title": information_dict.get("title"),
-                        "has_related_uo": information_dict.get("has_related_uo", "V"),
                         "organizzazione_riferimento": information_dict.get(
                             "organizzazione_riferimento"
-                        ),
+                        )
+                        and FLAG
+                        or "",
+                        "incarichi_persona": information_dict.get("incarichi_persona"),
+                        "contact_info": information_dict.get("contact_info")
+                        and FLAG
+                        or "",
                     },
                 }
             )
@@ -99,6 +147,7 @@ class CheckPersone(BrowserView):
         results = dict(sorted(results.items()))
         for key in results:
             results[key]["children"].sort(key=lambda x: x["title"])
+
         return results
 
 
@@ -106,11 +155,7 @@ class DownloadCheckPersone(CheckPersone):
     CT = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
 
     def __call__(self):
-        HEADER = [
-            "Titolo",
-            "Ha organizzazioni di riferimento",
-            "Unità org. di riferimento",
-        ]
+        HEADER = ["Titolo", "Incarichi", "Unità org. di riferimento", "Contatti"]
 
         EMPTY_ROW = [""] * 3
 
@@ -162,17 +207,19 @@ class DownloadCheckPersone(CheckPersone):
                 sheet.column_dimensions[column_letter].width = 35
 
             for persona in category_data["children"]:
-                organizzazioni = "\n".join(
-                    [
-                        f"{x.get('title')} - {self.plone2volto(x.get('@id'))}"
-                        for x in persona["data"]["organizzazione_riferimento"]
-                    ]
-                )  # noqa
+                # organizzazioni = "\n".join(
+                #     [
+                #         f"{x.get('title')} - {self.plone2volto(x.get('@id'))}"
+                #         for x in persona["data"]["organizzazione_riferimento"]
+                #     ]
+                # )  # noqa
                 title_url = persona["url"]
                 dati_persona = [
                     persona["title"],
-                    "X" if persona["data"]["has_related_uo"] else "",
-                    organizzazioni,
+                    "X" if persona["data"]["incarichi_persona"] else "",
+                    "X" if persona["data"]["organizzazione_riferimento"] else "",
+                    "X" if persona["data"]["contact_info"] else "",
+                    # organizzazioni,
                 ]
                 row = dati_persona
                 sheet.append(row)
@@ -184,17 +231,19 @@ class DownloadCheckPersone(CheckPersone):
                 title_cell.font = link_font
                 column_letter_unit = get_column_letter(title_cell.column)
                 sheet.column_dimensions[column_letter_unit].width = 60
-                max_index = sheet.max_row
-                for org in organizzazioni.split("\n"):
-                    org_title, org_url = org.split(" - ")
-                    org_link = f'=HYPERLINK("{org_url}", "{org_title}")'
-                    org_cell = sheet.cell(row=max_index, column=3)
-                    org_cell.value = org_link
-                    org_cell.font = link_font
-                    org_cell.alignment = org_cell.alignment.copy(horizontal="left")
-                    column_letter_unit = get_column_letter(org_cell.column)
-                    sheet.column_dimensions[column_letter_unit].width = 80
-                    max_index += 1
+                # max_index = sheet.max_row
+
+                # if organizzazioni:
+                #     for org in organizzazioni.split("\n"):
+                #         org_title, org_url = org.split(" - ")
+                #         org_link = f'=HYPERLINK("{org_url}", "{org_title}")'
+                #         org_cell = sheet.cell(row=max_index, column=3)
+                #         org_cell.value = org_link
+                #         org_cell.font = link_font
+                #         org_cell.alignment = org_cell.alignment.copy(horizontal="left")
+                #         column_letter_unit = get_column_letter(org_cell.column)
+                #         sheet.column_dimensions[column_letter_unit].width = 80
+                #         max_index += 1
 
             sheet.append(EMPTY_ROW)
             sheet.append(EMPTY_ROW)

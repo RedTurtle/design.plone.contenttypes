@@ -48,6 +48,15 @@
       class=".check_servizi.DownloadCheckServizi"
       permission="zope2.Public"
       />
+
+  <browser:page
+      name="check-persone"
+      for="*"
+      class=".check_persone.CheckPersone"
+      template="templates/check_persone.pt"
+      permission="zope2.Public"
+      />
+
   <browser:page
       name="download-check-persone"
       for="*"
