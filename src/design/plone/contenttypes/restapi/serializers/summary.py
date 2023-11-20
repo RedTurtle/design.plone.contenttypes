@@ -133,14 +133,14 @@ def extract_geolocation(context, res):
         longitude = context.longitude
         if latitude and longitude:
             return {"latitude": latitude, "longitude": longitude}
-
-    # Check if context has a geolocation attribute with latitude and longitude
-    geolocation = getattr(context, "geolocation", None)
-    if isinstance(geolocation, Geolocation):
-        latitude = geolocation.latitude
-        longitude = geolocation.longitude
-        if latitude and longitude:
-            return {"latitude": latitude, "longitude": longitude}
+    else:
+        # Check if context has a geolocation attribute with latitude and longitude
+        geolocation = getattr(context, "geolocation", None)
+        if isinstance(geolocation, Geolocation):
+            latitude = geolocation.latitude
+            longitude = geolocation.longitude
+            if latitude and longitude:
+                return {"latitude": latitude, "longitude": longitude}
 
     return None
 
