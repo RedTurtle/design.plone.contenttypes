@@ -39,14 +39,14 @@
       for="*"
       class=".check_servizi.CheckServizi"
       template="templates/check_servizi.pt"
-      permission="zope2.Public"
+      permission="cmf.ManagePortal"
       />
 
   <browser:page
       name="download-check-servizi"
       for="*"
       class=".check_servizi.DownloadCheckServizi"
-      permission="zope2.Public"
+      permission="cmf.ManagePortal"
       />
   <browser:page
       name="download-check-persone"
@@ -54,7 +54,6 @@
       class=".check_persone.DownloadCheckPersone"
       permission="zope2.Public"
       />
-  
   <browser:page
       name="check-uo"
       for="*"
@@ -62,7 +61,6 @@
       template="templates/check_uo.pt"
       permission="cmf.ManagePortal"
       />
-
   <browser:page
       name="download-check-uo"
       for="*"
