@@ -54,5 +54,20 @@
       class=".check_persone.DownloadCheckPersone"
       permission="zope2.Public"
       />
+  
+  <browser:page
+      name="check-uo"
+      for="*"
+      class=".check_uo.CheckUnitaOrganizzative"
+      template="templates/check_uo.pt"
+      permission="cmf.ManagePortal"
+      />
+
+  <browser:page
+      name="download-check-uo"
+      for="*"
+      class=".check_uo.DownloadCheckUnitaOrganizzative"
+      permission="cmf.ManagePortal"
+      />
 
 </configure>

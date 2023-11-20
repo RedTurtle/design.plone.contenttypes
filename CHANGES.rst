@@ -4,7 +4,8 @@ Changelog
 6.1.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Added utils view for UO.
+  [daniele]
 
 
 6.1.0 (2023-11-07)
