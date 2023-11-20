@@ -11,6 +11,7 @@ from plone.app.testing import setRoles
 from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import SITE_OWNER_PASSWORD
 from plone.app.testing import TEST_USER_ID
+from plone.formwidget.geolocation import Geolocation
 from plone.restapi.testing import RelativeSession
 from Products.CMFPlone.utils import getToolByName
 from transaction import commit
@@ -205,3 +206,39 @@ class TestLuogoApi(unittest.TestCase):
             res["related_news"][1]["@id"],
             self.news.absolute_url(),
         )
+
+    def test_venue_serializers(self):
+        venue1 = api.content.create(
+            container=self.portal,
+            type="Venue",
+            title="venue1"
+        )
+        venue1.geolocation = Geolocation(44.35, 11.70)
+        venue2 = api.content.create(
+            container=self.portal,
+            type="Venue",
+            title="venue2"
+        )
+        venue2.geolocation = Geolocation(44.35, 11.70)
+        intids = getUtility(IIntIds)
+        venue_rel = RelationValue(intids.getId(venue2))
+        venue1.luoghi_correlati = [venue_rel]
+        commit()
+        response = self.api_session.post(
+            "/@querystring-search",
+            json={
+                "metadata_fields": "_all",
+                "query": [
+                    {
+                        "i": "portal_type",
+                        "o": "plone.app.querystring.operation.selection.is",
+                        "v": ["Venue"],
+                    }
+                ]
+            },
+        )
+        items = response.json()['items']
+        for item in items:
+            if item['id'] in ['venue1', 'venue2']:
+                self.assertEqual(item['geolocation']['latitude'], 44.35)
+                self.assertEqual(item['geolocation']['longitude'], 11.7)
