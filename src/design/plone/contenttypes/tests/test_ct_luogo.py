@@ -208,17 +208,9 @@ class TestLuogoApi(unittest.TestCase):
         )
 
     def test_venue_serializers(self):
-        venue1 = api.content.create(
-            container=self.portal,
-            type="Venue",
-            title="venue1"
-        )
+        venue1 = api.content.create(container=self.portal, type="Venue", title="venue1")
         venue1.geolocation = Geolocation(44.35, 11.70)
-        venue2 = api.content.create(
-            container=self.portal,
-            type="Venue",
-            title="venue2"
-        )
+        venue2 = api.content.create(container=self.portal, type="Venue", title="venue2")
         venue2.geolocation = Geolocation(44.35, 11.70)
         intids = getUtility(IIntIds)
         venue_rel = RelationValue(intids.getId(venue2))
@@ -234,11 +226,11 @@ class TestLuogoApi(unittest.TestCase):
                         "o": "plone.app.querystring.operation.selection.is",
                         "v": ["Venue"],
                     }
-                ]
+                ],
             },
         )
-        items = response.json()['items']
+        items = response.json()["items"]
         for item in items:
-            if item['id'] in ['venue1', 'venue2']:
-                self.assertEqual(item['geolocation']['latitude'], 44.35)
-                self.assertEqual(item['geolocation']['longitude'], 11.7)
+            if item["id"] in ["venue1", "venue2"]:
+                self.assertEqual(item["geolocation"]["latitude"], 44.35)
+                self.assertEqual(item["geolocation"]["longitude"], 11.7)

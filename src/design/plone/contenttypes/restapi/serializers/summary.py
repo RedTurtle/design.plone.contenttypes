@@ -135,7 +135,7 @@ def extract_geolocation(context, res):
             return {"latitude": latitude, "longitude": longitude}
 
     # Check if context has a geolocation attribute with latitude and longitude
-    geolocation = getattr(context, 'geolocation', None)
+    geolocation = getattr(context, "geolocation", None)
     if isinstance(geolocation, Geolocation):
         latitude = geolocation.latitude
         longitude = geolocation.longitude
@@ -162,7 +162,7 @@ class DefaultJSONSummarySerializer(BaseSerializer):
         if "geolocation" in metadata_fields or self.show_all_metadata_fields:
             # backward compatibility for some block templates
             if "geolocation" not in res:
-                res['geolocation'] = extract_geolocation(self.context, res)
+                res["geolocation"] = extract_geolocation(self.context, res)
 
         res["id"] = self.context.id
 
