@@ -54,5 +54,18 @@
       class=".check_persone.DownloadCheckPersone"
       permission="zope2.Public"
       />
+   <browser:page
+      name="check-documenti"
+      for="*"
+      class=".check_documenti.CheckDocumenti"
+      template="templates/check_documenti.pt"
+      permission="zope2.Public"
+      />
+  <browser:page
+      name="download-check-documenti"
+      for="*"
+      class=".check_documenti.DownloadCheckDocumenti"
+      permission="zope2.Public"
+      />
 
 </configure>
