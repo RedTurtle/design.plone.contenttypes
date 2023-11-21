@@ -41,7 +41,6 @@
       template="templates/check_servizi.pt"
       permission="zope2.Public"
       />
-
   <browser:page
       name="download-check-servizi"
       for="*"
@@ -53,6 +52,19 @@
       for="*"
       class=".check_persone.DownloadCheckPersone"
       permission="zope2.Public"
+      />
+  <browser:page
+      name="download-check-eventi"
+      for="*"
+      class=".check_eventi.DownloadCheckEventi"
+      permission="cmf.ManagePortal"
+      />
+  <browser:page
+      name="check-eventi"
+      for="*"
+      class=".check_eventi.CheckEventi"
+      template="templates/check_eventi.pt"
+      permission="cmf.ManagePortal"
       />
 
 </configure>
