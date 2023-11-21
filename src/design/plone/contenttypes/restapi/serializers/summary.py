@@ -12,6 +12,7 @@ from plone import api
 from plone.app.contenttypes.interfaces import IEvent
 from plone.app.contenttypes.interfaces import INewsItem
 from plone.base.interfaces import IImageScalesAdapter
+from plone.formwidget.geolocation.geolocation import Geolocation
 from plone.restapi.interfaces import ISerializeToJsonSummary
 from plone.restapi.serializer.converters import json_compatible
 from Products.CMFPlone.utils import safe_hasattr
@@ -115,6 +116,35 @@ def get_taxonomy_information_by_type(res, context):
     return res
 
 
+def extract_geolocation(context, res):
+    """
+    Extracts geolocation information from the provided context or res.
+    """
+    # Check if latitude and longitude are already present in res
+    latitude = res.get("latitude", 0)
+    longitude = res.get("longitude", 0)
+
+    if latitude and longitude:
+        return {"latitude": latitude, "longitude": longitude}
+
+    # Check if context is an ICatalogBrain and has latitude and longitude
+    if ICatalogBrain.providedBy(context):
+        latitude = context.latitude
+        longitude = context.longitude
+        if latitude and longitude:
+            return {"latitude": latitude, "longitude": longitude}
+    else:
+        # Check if context has a geolocation attribute with latitude and longitude
+        geolocation = getattr(context, "geolocation", None)
+        if isinstance(geolocation, Geolocation):
+            latitude = geolocation.latitude
+            longitude = geolocation.longitude
+            if latitude and longitude:
+                return {"latitude": latitude, "longitude": longitude}
+
+    return None
+
+
 @implementer(ISerializeToJsonSummary)
 @adapter(Interface, IDesignPloneContenttypesLayer)
 class DefaultJSONSummarySerializer(BaseSerializer):
@@ -132,14 +162,7 @@ class DefaultJSONSummarySerializer(BaseSerializer):
         if "geolocation" in metadata_fields or self.show_all_metadata_fields:
             # backward compatibility for some block templates
             if "geolocation" not in res:
-                res["geolocation"] = None
-                latitude = res.get("latitude", 0)
-                longitude = res.get("longitude", 0)
-                if latitude and longitude:
-                    res["geolocation"] = {
-                        "latitude": latitude,
-                        "longitude": longitude,
-                    }
+                res["geolocation"] = extract_geolocation(self.context, res)
 
         res["id"] = self.context.id
 

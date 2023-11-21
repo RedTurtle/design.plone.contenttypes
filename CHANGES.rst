@@ -4,7 +4,8 @@ Changelog
 6.1.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Update default summary serializer to better handle geolocation information.
+  [lucabel]
 
 
 6.1.0 (2023-11-07)
