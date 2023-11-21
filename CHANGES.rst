@@ -4,7 +4,8 @@ Changelog
 6.1.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Added utility views: @@check-notizie and @@download-check-notizie.
+  [daniele]
 
 
 6.1.1 (2023-11-21)
