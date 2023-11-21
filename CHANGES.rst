@@ -4,7 +4,7 @@ Changelog
 6.1.1 (unreleased)
 ------------------
 
-- Added utility view for Persona.
+- Added utility views for Persona: @@check-persone and @@download-check-persone.
   [daniele]
 
 
