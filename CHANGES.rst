@@ -4,7 +4,7 @@ Changelog
 6.1.1 (unreleased)
 ------------------
 
-- Added utils view for UO.
+- Added utils view for UO:  @@check-uo and @@download-check-uo.
   [daniele]
 
 
