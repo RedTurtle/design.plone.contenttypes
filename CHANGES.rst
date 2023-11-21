@@ -4,7 +4,7 @@ Changelog
 6.1.1 (unreleased)
 ------------------
 
-- Added utility view for Documenti.
+- Added utility view for Documento:  @@check-documenti and @@download-check-documenti.
   [daniele]
 
 
