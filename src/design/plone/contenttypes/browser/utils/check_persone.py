@@ -50,9 +50,7 @@ class CheckPersone(BrowserView):
         catalog = getUtility(ICatalog)
         intids = getUtility(IIntIds)
         result = []
-        # import pdb
 
-        # pdb.set_trace()
         for rel in catalog.findRelations(
             dict(
                 to_id=intids.getId(aq_inner(source_object)),
@@ -207,19 +205,12 @@ class DownloadCheckPersone(CheckPersone):
                 sheet.column_dimensions[column_letter].width = 35
 
             for persona in category_data["children"]:
-                # organizzazioni = "\n".join(
-                #     [
-                #         f"{x.get('title')} - {self.plone2volto(x.get('@id'))}"
-                #         for x in persona["data"]["organizzazione_riferimento"]
-                #     ]
-                # )  # noqa
                 title_url = persona["url"]
                 dati_persona = [
                     persona["title"],
                     "X" if persona["data"]["incarichi_persona"] else "",
                     "X" if persona["data"]["organizzazione_riferimento"] else "",
                     "X" if persona["data"]["contact_info"] else "",
-                    # organizzazioni,
                 ]
                 row = dati_persona
                 sheet.append(row)
@@ -231,19 +222,6 @@ class DownloadCheckPersone(CheckPersone):
                 title_cell.font = link_font
                 column_letter_unit = get_column_letter(title_cell.column)
                 sheet.column_dimensions[column_letter_unit].width = 60
-                # max_index = sheet.max_row
-
-                # if organizzazioni:
-                #     for org in organizzazioni.split("\n"):
-                #         org_title, org_url = org.split(" - ")
-                #         org_link = f'=HYPERLINK("{org_url}", "{org_title}")'
-                #         org_cell = sheet.cell(row=max_index, column=3)
-                #         org_cell.value = org_link
-                #         org_cell.font = link_font
-                #         org_cell.alignment = org_cell.alignment.copy(horizontal="left")
-                #         column_letter_unit = get_column_letter(org_cell.column)
-                #         sheet.column_dimensions[column_letter_unit].width = 80
-                #         max_index += 1
 
             sheet.append(EMPTY_ROW)
             sheet.append(EMPTY_ROW)
