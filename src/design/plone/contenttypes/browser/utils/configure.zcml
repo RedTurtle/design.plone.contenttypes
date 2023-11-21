@@ -54,7 +54,7 @@
       class=".check_persone.DownloadCheckPersone"
       permission="zope2.Public"
       />
-   <browser:page
+  <browser:page
       name="check-documenti"
       for="*"
       class=".check_documenti.CheckDocumenti"
