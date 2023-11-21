@@ -4,8 +4,8 @@ Changelog
 6.1.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Added utility views for Venue: @@check-luoghi and @@download-check-luoghi.
+  [daniele]
 
 6.1.1 (2023-11-21)
 ------------------
