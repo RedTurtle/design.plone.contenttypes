@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.1.1 (unreleased)
+6.1.1 (2023-11-21)
 ------------------
 
 - Update default summary serializer to better handle geolocation information.
