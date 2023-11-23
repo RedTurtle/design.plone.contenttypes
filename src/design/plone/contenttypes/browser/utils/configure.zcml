@@ -57,6 +57,7 @@
       name="check-eventi"
       for="*"
       class=".check_eventi.CheckEventi"
+      permission="cmf.ManagePortal"
       template="templates/check_eventi.pt"
       />
   <browser:page
