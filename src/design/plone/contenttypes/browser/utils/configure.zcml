@@ -92,4 +92,17 @@
       class=".check_luoghi.DownloadCheckLuoghi"
       permission="cmf.ManagePortal"
       />
+    <browser:page
+        name="check-documenti"
+        for="*"
+        class=".check_documenti.CheckDocumenti"
+        template="templates/check_documenti.pt"
+        permission="cmf.ManagePortal"
+        />
+    <browser:page
+        name="download-check-documenti"
+        for="*"
+        class=".check_documenti.DownloadCheckDocumenti"
+        permission="cmf.ManagePortal"
+        />
 </configure>

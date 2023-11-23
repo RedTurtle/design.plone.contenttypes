@@ -18,6 +18,8 @@ Changelog
 
 - Update default summary serializer to better handle geolocation information.
   [lucabel]
+- Added utility view for Documento:  @@check-documenti and @@download-check-documenti.
+  [daniele]
 
 
 6.1.0 (2023-11-07)

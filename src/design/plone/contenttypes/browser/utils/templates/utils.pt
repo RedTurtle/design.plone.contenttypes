@@ -57,6 +57,12 @@
               Verifica dello stato dei luoghi.
             </p>
           </li>
+          <li>
+            <a href="${context/portal_url}/check-documenti">Check documenti</a>
+            <p class="discreet">
+              Verifica dello stato dei documenti.
+            </p>
+          </li>
         </ul>
       </div>
       <br />
