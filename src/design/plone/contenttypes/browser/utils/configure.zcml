@@ -54,18 +54,19 @@
       permission="zope2.Public"
       />
   <browser:page
+      name="check-eventi"
+      for="*"
+      class=".check_eventi.CheckEventi"
+      template="templates/check_eventi.pt"
+      />
+  <browser:page
       name="download-check-eventi"
       for="*"
       class=".check_eventi.DownloadCheckEventi"
       permission="cmf.ManagePortal"
       />
   <browser:page
-      name="check-eventi"
-      for="*"
-      class=".check_eventi.CheckEventi"
-      template="templates/check_eventi.pt"
       name="check-notizie"
-  <browser:page
       for="*"
       class=".check_notizie.CheckNotizie"
       template="templates/check_notizie.pt"
