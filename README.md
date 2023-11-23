@@ -373,11 +373,19 @@ Nel pannello di controllo "_Impostazioni Design Plone_" sono presenti diversi ca
 - Mostra la data di modifica
 
 A parte gli ultimi tre, gli altri campi sono tutti multilingua. I vocabolari che usano quei valori, ritornano solo i possibili valori a seconda della lingua selezionata dall'utente.
+
 # Gestione modulistica
 
 Agid prevede un tipo di contenuto **Documento** per gestire i moduli scaricabili.
 
 Abbiamo però sviluppato anche un contenuto chiamato **Cartella Modulistica** che ha il compito di raggruppare in modo logico più Documenti e mostrarli all'utente come faceva il vecchio prodotto **cciaa.modulistica**.
+
+# Viste verifica contentuti
+
+Viste di supporto per la verifica sulla compilazione dei contenuti secondo le regole Designers Italia.
+
+I link alle viste sono elencati alla pagina `https://nomesito.it/Plone/@@design-utils`.
+
 
 # Data di modifica
 
