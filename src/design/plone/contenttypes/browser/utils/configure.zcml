@@ -39,13 +39,13 @@
       for="*"
       class=".check_servizi.CheckServizi"
       template="templates/check_servizi.pt"
-      permission="zope2.Public"
+      permission="cmf.ManagePortal"
       />
   <browser:page
       name="download-check-servizi"
       for="*"
       class=".check_servizi.DownloadCheckServizi"
-      permission="zope2.Public"
+      permission="cmf.ManagePortal"
       />
   <browser:page
       name="download-check-persone"
@@ -103,6 +103,19 @@
         name="download-check-documenti"
         for="*"
         class=".check_documenti.DownloadCheckDocumenti"
+        permission="cmf.ManagePortal"
+        />
+    <browser:page
+        name="check-uo"
+        for="*"
+        class=".check_uo.CheckUnitaOrganizzative"
+        template="templates/check_uo.pt"
+        permission="cmf.ManagePortal"
+        />
+    <browser:page
+        name="download-check-uo"
+        for="*"
+        class=".check_uo.DownloadCheckUnitaOrganizzative"
         permission="cmf.ManagePortal"
         />
 </configure>

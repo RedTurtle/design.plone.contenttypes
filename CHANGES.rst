@@ -19,6 +19,7 @@ Changelog
 - Update default summary serializer to better handle geolocation information.
   [lucabel]
 - Added utility view for Documento:  @@check-documenti and @@download-check-documenti.
+- Added utils view for UO:  @@check-uo and @@download-check-uo.
   [daniele]
 
 

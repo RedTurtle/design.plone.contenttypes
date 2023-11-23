@@ -63,6 +63,12 @@
               Verifica dello stato dei documenti.
             </p>
           </li>
+          <li>
+            <a href="${context/portal_url}/check-uo">Check unità organizzative</a>
+            <p class="discreet">
+              Verifica dello stato delle UO.
+            </p>
+          </li>
         </ul>
       </div>
       <br />
