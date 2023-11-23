@@ -21,8 +21,10 @@ class CheckLuoghi(BrowserView):
 
     def information_dict(self, luogo):
         indirizzo = False
-        if luogo.city.strip() and luogo.street.strip() and luogo.zip_code.strip():
-            indirizzo = True
+        if getattr(luogo, "city", "") and luogo.city.strip():
+            if getattr(luogo, "street", "") and luogo.street.strip():
+                if getattr(luogo, "zip_code", "") and luogo.zip_code.strip():
+                    indirizzo = True
 
         modalita_accesso = getattr(luogo, "modalita_accesso", "")
         res = [x.get("text", "") for x in modalita_accesso["blocks"].values()]
