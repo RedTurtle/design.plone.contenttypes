@@ -79,5 +79,17 @@
       template="templates/check_eventi.pt"
       permission="cmf.ManagePortal"
       />
-
+  <browser:page
+      name="check-luoghi"
+      for="*"
+      class=".check_luoghi.CheckLuoghi"
+      template="templates/check_luoghi.pt"
+      permission="cmf.ManagePortal"
+      />
+  <browser:page
+      name="download-check-luoghi"
+      for="*"
+      class=".check_luoghi.DownloadCheckLuoghi"
+      permission="cmf.ManagePortal"
+      />
 </configure>

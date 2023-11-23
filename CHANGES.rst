@@ -10,6 +10,8 @@ Changelog
 - Added utility views: @@check-eventi and @@download-check-eventi.
   [daniele]
 
+- Added utility views for Venue: @@check-luoghi and @@download-check-luoghi.
+  [daniele]
 
 6.1.1 (2023-11-21)
 ------------------

@@ -51,6 +51,12 @@
               Verifica dello stato degli eventi.
             </p>
           </li>
+          <li>
+            <a href="${context/portal_url}/check-luoghi">Check luoghi</a>
+            <p class="discreet">
+              Verifica dello stato dei luoghi.
+            </p>
+          </li>
         </ul>
       </div>
       <br />
