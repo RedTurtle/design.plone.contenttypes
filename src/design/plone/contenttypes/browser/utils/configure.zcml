@@ -47,11 +47,20 @@
       class=".check_servizi.DownloadCheckServizi"
       permission="cmf.ManagePortal"
       />
+
+  <browser:page
+      name="check-persone"
+      for="*"
+      class=".check_persone.CheckPersone"
+      template="templates/check_persone.pt"
+      permission="cmf.ManagePortal"
+      />
+
   <browser:page
       name="download-check-persone"
       for="*"
       class=".check_persone.DownloadCheckPersone"
-      permission="zope2.Public"
+      permission="cmf.ManagePortal"
       />
   <browser:page
       name="check-notizie"

@@ -69,6 +69,12 @@
               Verifica dello stato delle UO.
             </p>
           </li>
+          <li>
+            <a href="${context/portal_url}/check-persone">Check persone</a>
+            <p class="discreet">
+              Verifica dello stato delle persone.
+            </p>
+          </li>
         </ul>
       </div>
       <br />
