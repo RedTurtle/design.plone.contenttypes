@@ -6,6 +6,8 @@ Changelog
 
 - Added utility views: @@check-notizie and @@download-check-notizie.
   [daniele]
+- Fix event for obj parent update.
+  [eikichi18]
 
 
 6.1.1 (2023-11-21)
