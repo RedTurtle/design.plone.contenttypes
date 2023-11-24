@@ -66,9 +66,7 @@ class CheckNotizie(BrowserView):
                     "url": self.plone2volto(parent.absolute_url()),
                     "children": [],
                 }
-            # import pdb
 
-            # pdb.set_trace()
             results[parent.title]["children"].append(
                 {
                     "title": notizia.title,
