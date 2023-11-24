@@ -28,7 +28,7 @@
             </p>
           </li>
           <li class="list-group-item">
-            <a href="${context/portal_url}/export_incarichi">Export incarichi</a>
+            <a href="${context/portal_url}/export-incarichi">Export incarichi</a>
             <p class="discreet">
               Scarica un csv con la lista delle persone del sito e relativi incarichi.
             </p>
