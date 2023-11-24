@@ -69,7 +69,7 @@
       template="templates/check_notizie.pt"
       permission="cmf.ManagePortal"
       />
-    <browser:page
+  <browser:page
       name="download-check-notizie"
       for="*"
       class=".check_notizie.DownloadCheckNotizie"
@@ -101,30 +101,30 @@
       class=".check_luoghi.DownloadCheckLuoghi"
       permission="cmf.ManagePortal"
       />
-    <browser:page
-        name="check-documenti"
-        for="*"
-        class=".check_documenti.CheckDocumenti"
-        template="templates/check_documenti.pt"
-        permission="cmf.ManagePortal"
-        />
-    <browser:page
-        name="download-check-documenti"
-        for="*"
-        class=".check_documenti.DownloadCheckDocumenti"
-        permission="cmf.ManagePortal"
-        />
-    <browser:page
-        name="check-uo"
-        for="*"
-        class=".check_uo.CheckUnitaOrganizzative"
-        template="templates/check_uo.pt"
-        permission="cmf.ManagePortal"
-        />
-    <browser:page
-        name="download-check-uo"
-        for="*"
-        class=".check_uo.DownloadCheckUnitaOrganizzative"
-        permission="cmf.ManagePortal"
-        />
+  <browser:page
+      name="check-documenti"
+      for="*"
+      class=".check_documenti.CheckDocumenti"
+      template="templates/check_documenti.pt"
+      permission="cmf.ManagePortal"
+      />
+  <browser:page
+      name="download-check-documenti"
+      for="*"
+      class=".check_documenti.DownloadCheckDocumenti"
+      permission="cmf.ManagePortal"
+      />
+  <browser:page
+      name="check-uo"
+      for="*"
+      class=".check_uo.CheckUnitaOrganizzative"
+      template="templates/check_uo.pt"
+      permission="cmf.ManagePortal"
+      />
+  <browser:page
+      name="download-check-uo"
+      for="*"
+      class=".check_uo.DownloadCheckUnitaOrganizzative"
+      permission="cmf.ManagePortal"
+      />
 </configure>
