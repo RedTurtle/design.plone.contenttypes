@@ -28,7 +28,7 @@
             </p>
           </li>
           <li class="list-group-item">
-            <a href="${context/portal_url}/export_incarichi">Export incarichi</a>
+            <a href="${context/portal_url}/export-incarichi">Export incarichi</a>
             <p class="discreet">
               Scarica un csv con la lista delle persone del sito e relativi incarichi.
             </p>
@@ -43,6 +43,36 @@
             <a href="${context/portal_url}/check-notizie">Check notizie</a>
             <p class="discreet">
               Verifica dello stato delle notizie.
+            </p>
+          </li>
+          <li class="list-group-item">
+            <a href="${context/portal_url}/check-eventi">Check eventi</a>
+            <p class="discreet">
+              Verifica dello stato degli eventi.
+            </p>
+          </li>
+          <li class="list-group-item">
+            <a href="${context/portal_url}/check-luoghi">Check luoghi</a>
+            <p class="discreet">
+              Verifica dello stato dei luoghi.
+            </p>
+          </li >
+          <li class="list-group-item">
+            <a href="${context/portal_url}/check-documenti">Check documenti</a>
+            <p class="discreet">
+              Verifica dello stato dei documenti.
+            </p>
+          </li>
+          <li class="list-group-item">
+            <a href="${context/portal_url}/check-uo">Check unità organizzative</a>
+            <p class="discreet">
+              Verifica dello stato delle UO.
+            </p>
+          </li>
+          <li class="list-group-item">
+            <a href="${context/portal_url}/check-persone">Check persone</a>
+            <p class="discreet">
+              Verifica dello stato delle persone.
             </p>
           </li>
         </ul>

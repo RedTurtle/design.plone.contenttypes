@@ -12,23 +12,24 @@ import io
 FLAG = '<i class="fa-solid fa-check"></i>'
 
 
-class CheckNotizie(BrowserView):
+class CheckEventi(BrowserView):
     cds = None
 
     def is_anonymous(self):
         return api.user.is_anonymous()
 
-    def information_dict(self, notizia):
-
-        descrizione_estesa = getattr(notizia, "descrizione_estesa", "")
-        res = [x.get("text", "") for x in descrizione_estesa["blocks"].values()]
+    def information_dict(self, evento):
+        prezzo = getattr(evento, "prezzo", "")
+        res = [x.get("text", "") for x in prezzo["blocks"].values()]
         if not [x for x in res if x]:
-            descrizione_estesa = ""
+            prezzo = ""
 
         return {
-            "descrizione_estesa": descrizione_estesa,
-            "effective_date": getattr(notizia, "effective_date", None),
-            "a_cura_di": getattr(notizia, "a_cura_di", None),
+            "description": getattr(evento, "description", "").strip(),
+            "effective_date": getattr(evento, "effective_date", None),
+            "luoghi_correlati": getattr(evento, "luoghi_correlati", None),
+            "prezzo": prezzo,
+            "contact_info": getattr(evento, "contact_info", None),
         }
 
     def plone2volto(self, url):
@@ -40,45 +41,46 @@ class CheckNotizie(BrowserView):
             return url.replace(portal_url, frontend_domain, 1)
         return url
 
-    def get_notizie(self):
+    def get_eventi(self):
         if self.is_anonymous():
             return []
         pc = api.portal.get_tool("portal_catalog")
 
         query = {
-            "portal_type": "News Item",
+            "portal_type": "Event",
             "review_state": "published",
         }
-
         brains = pc(query)
         results = {}
         for brain in brains:
-            notizia = brain.getObject()
+            evento = brain.getObject()
 
-            information_dict = self.information_dict(notizia)
-
+            information_dict = self.information_dict(evento)
             if all(information_dict.values()):
                 continue
 
-            parent = notizia.aq_inner.aq_parent
+            parent = evento.aq_inner.aq_parent
             if parent.title not in results:
                 results[parent.title] = {
                     "url": self.plone2volto(parent.absolute_url()),
                     "children": [],
                 }
-
             results[parent.title]["children"].append(
                 {
-                    "title": notizia.title,
-                    "descrizione_estesa": information_dict.get("descrizione_estesa")
-                    and FLAG
-                    or "",
-                    "url": self.plone2volto(notizia.absolute_url()),
+                    "title": evento.title,
+                    "description": information_dict.get("description") and FLAG or "",
+                    "url": self.plone2volto(evento.absolute_url()),
                     "data": {
                         "effective_date": information_dict.get("effective_date")
                         and FLAG
                         or "",
-                        "a_cura_di": information_dict.get("a_cura_di") and FLAG or "",
+                        "luoghi_correlati": information_dict.get("luoghi_correlati")
+                        and FLAG
+                        or "",
+                        "prezzo": information_dict.get("prezzo") and FLAG or "",
+                        "contact_info": information_dict.get("contact_info")
+                        and FLAG
+                        or "",
                     },
                 }
             )
@@ -90,20 +92,22 @@ class CheckNotizie(BrowserView):
         return results
 
 
-class DownloadCheckNotizie(CheckNotizie):
+class DownloadCheckEventi(CheckEventi):
     CT = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
 
     def __call__(self):
         HEADER = [
             "Titolo",
-            "Descrizione estesa",
-            "Data di pubblicazione",
-            "A cura di",
+            "Descrizione",
+            "Data",
+            "Luogo",
+            "Costo",
+            "Contatti",
         ]
 
         EMPTY_ROW = [""] * 3
 
-        notizie = self.get_notizie()
+        eventi = self.get_eventi()
 
         workbook = Workbook()
         sheet = workbook.active
@@ -117,7 +121,7 @@ class DownloadCheckNotizie(CheckNotizie):
 
         section_row_height = int(14 * 1.5)
 
-        for category, category_data in notizie.items():
+        for category, category_data in eventi.items():
             section_url = category_data["url"]
             section_title = category
             section_row = [section_title, "", ""]
@@ -150,15 +154,17 @@ class DownloadCheckNotizie(CheckNotizie):
                 column_letter = get_column_letter(col[0].column)
                 sheet.column_dimensions[column_letter].width = 35
 
-            for notizia in category_data["children"]:
-                title_url = notizia["url"]
-                dati_notizia = [
-                    notizia["title"],
-                    "X" if notizia["descrizione_estesa"] else "",
-                    "X" if notizia["data"]["effective_date"] else "",
-                    "X" if notizia["data"]["a_cura_di"] else "",
+            for evento in category_data["children"]:
+                title_url = evento["url"]
+                dati_evento = [
+                    evento["title"],
+                    "X" if evento["description"] else "",
+                    "X" if evento["data"]["effective_date"] else "",
+                    "X" if evento["data"]["luoghi_correlati"] else "",
+                    "X" if evento["data"]["prezzo"] else "",
+                    "X" if evento["data"]["contact_info"] else "",
                 ]
-                row = dati_notizia
+                row = dati_evento
                 sheet.append(row)
 
                 title_cell = sheet.cell(row=sheet.max_row, column=1)
@@ -179,6 +185,6 @@ class DownloadCheckNotizie(CheckNotizie):
         self.request.RESPONSE.setHeader("Content-Type", self.CT)
         self.request.response.setHeader(
             "Content-Disposition",
-            "attachment; filename=check_notizie.xlsx",
+            "attachment; filename=check_eventi.xlsx",
         )
         return data

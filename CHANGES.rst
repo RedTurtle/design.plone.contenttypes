@@ -9,6 +9,20 @@ Changelog
 - Fix event for obj parent update.
   [eikichi18]
 
+- Added utility views: @@check-eventi and @@download-check-eventi.
+  [daniele]
+
+- Added utility views for Venue: @@check-luoghi and @@download-check-luoghi.
+  [daniele]
+
+- Added utility view for Documento:  @@check-documenti and @@download-check-documenti.
+  [daniele]
+
+- Added utils view for UO:  @@check-uo and @@download-check-uo.
+  [daniele]
+
+- Added utility views for Persona: @@check-persone and @@download-check-persone.
+  [daniele]
 
 6.1.1 (2023-11-21)
 ------------------

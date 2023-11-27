@@ -1,0 +1,173 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      lang="en"
+      metal:use-macro="context/prefs_main_template/macros/master"
+      xml:lang="en"
+      i18n:domain="plone"
+>
+
+  <body>
+    <metal:block fill-slot="javascript_head_slot">
+
+    </metal:block>
+    <metal:block fill-slot="style_slot">
+      <link crossorigin="anonymous"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+            integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+            referrerpolicy="no-referrer"
+            rel="stylesheet"
+      />
+      <style>
+       li.categoria{margin-bottom:2em}
+       #content-header,
+       #mainnavigation-wrapper,
+       #above-content-wrapper{display:none}
+       .container{margin-top:2em}
+
+        table.eventi{
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        table.eventi tr:nth-child(even){background-color: #f2f2f2;}
+        table.eventi tr:hover {background-color: #ddd;}
+          table.eventi th {
+          text-align: left;
+          background-color: #ccc;
+          color: #000;
+          padding: 10px;
+        }
+        table.eventi td{
+          padding: 10px;
+        }
+        table.eventi th{
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+        table.eventi thead tr th.event_title{
+            width: 250px;
+        }
+        .forms{
+          margin-top: 1em;
+          margin-bottom: 1em;
+          text-align:center;
+        }
+        .forms button,
+        .forms input{
+            border: none; /* Remove borders */
+            color: white; /* Add a text color */
+            padding: 14px 28px; /* Add some padding */
+            cursor: pointer; /* Add a pointer cursor on mouse-over */
+            background-color: #2196F3;
+            border-radius: 4px;
+        }
+        .forms input:hover{
+            background: #0b7dda;
+        }
+        .download_button{
+          margin-top: 1em;
+          margin-bottom: 1em;
+          text-align:right;
+        }
+      </style>
+    </metal:block>
+    <tal:main metal:fill-slot="prefs_configlet_wrapper">
+
+      <tal:main metal:fill-slot="prefs_configlet_main">
+        <h1>Verifica dello stato degli Eventi</h1>
+        <div tal:condition="view/is_anonymous">
+          Non hai i permessi per vedere questo elenco di informazioni. Se pensi
+          che questo non sia corretto verifica di essere autenticato oppure rivolgiti
+          agli amministratori del sito.
+        </div>
+
+        <div class="lista_eventi"
+             tal:define="
+               eventi view/get_eventi;
+             "
+             tal:condition="not:view/is_anonymous"
+        >
+          <p class="lead"
+             tal:condition="eventi"
+          >
+               La lista seguente elenca tutti quegli Eventi per i quali non sono
+               ancora stati aggiunti i campi che AGID indica come obbligatori.
+               Ogni redattore pu&ograve; vedere in questa lista tutti gli Eventi e,
+               cliccando su ognuno, andare alla vista di dettaglio dell'Evento,
+            editarlo e compilare tutti i campi obbligatori.</p>
+          <p class="lead"
+             tal:condition="eventi"
+          >Si fa notare, infine, che la seguente lista degli Eventi
+             presenta tutti quelli in stato pubblicato e
+            <strong>non scaduti</strong>
+             secondo
+            le logiche di pubblicazione del CMS Plone, ovvero con una data di scadenza ancora da raggiugnere.</p>
+
+          <div class="forms">
+            <div class="download_button">
+              <form action="${context/absolute_url}/@@download-check-eventi">
+                <!-- <input type="Submit" value="Download" /> -->
+                <button class="download-button"
+                        type="submit"
+                >
+                  <i class="fas fa-download"></i>
+                   Download Eventi
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <ul>
+            <li class="categoria"
+                tal:repeat="categoria eventi"
+            >
+              <tal:block tal:define="
+                           categoria_url python:eventi[categoria]['url'];
+                         ">
+                <h2><a href="${categoria_url}"
+                     target="_blank"
+                  >${categoria}</a></h2>
+                <ul tal:condition="nothing">
+                  <li class="evento"
+                      tal:repeat="evento python:eventi[categoria]['children']"
+                  >
+                    <h5><a href="${evento/url}"
+                         target="_blank"
+                      >${evento/title}</a></h5>
+                  </li>
+                </ul>
+                <table class="eventi">
+                  <thead>
+                    <tr>
+                      <th class="event_title"><span>Titolo</span></th>
+                      <th><span>Descrizione</span></th>
+                      <th><span>Data</span></th>
+                      <th><span>Luogo</span></th>
+                      <th><span>Costo</span></th>
+                      <th><span>Contatti</span></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr tal:repeat="evento python:eventi[categoria]['children']">
+                      <td><a href="${evento/url}"
+                           target="_blank"
+                        >${evento/title}</a></td>
+                      <td><span tal:content="structure evento/description"></span></td>
+                      <td><span tal:content="structure evento/data/effective_date"></span></td>
+                      <td><span tal:content="structure evento/data/luoghi_correlati"></span></td>
+                      <td><span tal:content="structure evento/data/prezzo"></span></td>
+                      <td><span tal:content="structure evento/data/contact_info"></span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </tal:block>
+            </li>
+          </ul>
+        </div>
+      </tal:main>
+    </tal:main>
+  </body>
+</html>

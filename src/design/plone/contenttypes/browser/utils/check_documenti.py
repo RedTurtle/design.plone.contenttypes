@@ -1,3 +1,4 @@
+from DateTime import DateTime
 from openpyxl import Workbook
 from openpyxl.styles import Alignment
 from openpyxl.styles import Font
@@ -5,6 +6,9 @@ from openpyxl.styles import PatternFill
 from openpyxl.utils import get_column_letter
 from plone import api
 from Products.Five import BrowserView
+from zope.globalrequest import getRequest
+from zope.component import getMultiAdapter
+from plone.restapi.interfaces import ISerializeToJsonSummary
 
 import io
 
@@ -12,23 +16,52 @@ import io
 FLAG = '<i class="fa-solid fa-check"></i>'
 
 
-class CheckNotizie(BrowserView):
+class CheckDocumenti(BrowserView):
     cds = None
 
     def is_anonymous(self):
         return api.user.is_anonymous()
 
-    def information_dict(self, notizia):
+    def get_relations(self, obj, field):
+        return api.relation.get(source=obj, relationship=field, unrestricted=False)
 
-        descrizione_estesa = getattr(notizia, "descrizione_estesa", "")
-        res = [x.get("text", "") for x in descrizione_estesa["blocks"].values()]
-        if not [x for x in res if x]:
-            descrizione_estesa = ""
+    def get_related_objects(self, obj, field):
+        """ """
+        items = []
+        relations = self.get_relations(obj, field)
+
+        for rel in relations:
+            rel_obj = rel.to_object
+            if rel_obj is not None:
+                summary = getMultiAdapter(
+                    (rel_obj, getRequest()), ISerializeToJsonSummary
+                )()
+                items.append(summary)
+        return sorted(items, key=lambda k: k["title"])
+
+    def has_module(self, documento):
+
+        if [
+            x
+            for x in documento.listFolderContents()
+            if x.portal_type == "Modulo" or x.portal_type == "Link"
+        ]:
+            return True
+        return False
+
+    def information_dict(self, documento):
+        ufficio_responsabile_ref = None
+        ufficio_responsabile_ref = self.get_related_objects(
+            documento, "ufficio_responsabile"
+        )
+        if ufficio_responsabile_ref:
+            ufficio_responsabile_ref = ufficio_responsabile_ref[0]
 
         return {
-            "descrizione_estesa": descrizione_estesa,
-            "effective_date": getattr(notizia, "effective_date", None),
-            "a_cura_di": getattr(notizia, "a_cura_di", None),
+            "description": getattr(documento, "description", "").strip(),
+            "contiene_modulo": self.has_module(documento),
+            "ufficio_responsabile": ufficio_responsabile_ref,
+            "tipologia_documento": getattr(documento, "tipologia_documento", ""),
         }
 
     def plone2volto(self, url):
@@ -40,45 +73,53 @@ class CheckNotizie(BrowserView):
             return url.replace(portal_url, frontend_domain, 1)
         return url
 
-    def get_notizie(self):
+    def get_documenti(self):
+
         if self.is_anonymous():
             return []
         pc = api.portal.get_tool("portal_catalog")
 
+        # show_inactive ha sempre avuto una gestione... particolare! aggiungo ai
+        # kw effectiveRange = DateTime() che è quello che fa Products.CMFPlone
+        # nel CatalogTool.py
         query = {
-            "portal_type": "News Item",
+            "portal_type": "Documento",
             "review_state": "published",
         }
-
-        brains = pc(query)
+        brains = pc(query, **{"effectiveRange": DateTime()})
         results = {}
         for brain in brains:
-            notizia = brain.getObject()
+            documento = brain.getObject()
 
-            information_dict = self.information_dict(notizia)
-
+            information_dict = self.information_dict(documento)
             if all(information_dict.values()):
                 continue
 
-            parent = notizia.aq_inner.aq_parent
+            parent = documento.aq_inner.aq_parent
             if parent.title not in results:
                 results[parent.title] = {
                     "url": self.plone2volto(parent.absolute_url()),
                     "children": [],
                 }
-
             results[parent.title]["children"].append(
                 {
-                    "title": notizia.title,
-                    "descrizione_estesa": information_dict.get("descrizione_estesa")
-                    and FLAG
-                    or "",
-                    "url": self.plone2volto(notizia.absolute_url()),
+                    "title": documento.title,
+                    "description": information_dict.get("description") and FLAG or "",
+                    "url": self.plone2volto(documento.absolute_url()),
                     "data": {
-                        "effective_date": information_dict.get("effective_date")
+                        "contiene_modulo": information_dict.get("contiene_modulo")
                         and FLAG
                         or "",
-                        "a_cura_di": information_dict.get("a_cura_di") and FLAG or "",
+                        "ufficio_responsabile": information_dict.get(
+                            "ufficio_responsabile"
+                        )
+                        and FLAG
+                        or "",
+                        "tipologia_documento": information_dict.get(
+                            "tipologia_documento"
+                        )
+                        and FLAG
+                        or "",
                     },
                 }
             )
@@ -90,20 +131,21 @@ class CheckNotizie(BrowserView):
         return results
 
 
-class DownloadCheckNotizie(CheckNotizie):
+class DownloadCheckDocumenti(CheckDocumenti):
     CT = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
 
     def __call__(self):
         HEADER = [
             "Titolo",
-            "Descrizione estesa",
-            "Data di pubblicazione",
-            "A cura di",
+            "Descrizione",
+            "Ufficio responsabile",
+            "Contiene Modulo o Collegamento",
+            "Tipologia documento",
         ]
 
         EMPTY_ROW = [""] * 3
 
-        notizie = self.get_notizie()
+        documenti = self.get_documenti()
 
         workbook = Workbook()
         sheet = workbook.active
@@ -117,7 +159,7 @@ class DownloadCheckNotizie(CheckNotizie):
 
         section_row_height = int(14 * 1.5)
 
-        for category, category_data in notizie.items():
+        for category, category_data in documenti.items():
             section_url = category_data["url"]
             section_title = category
             section_row = [section_title, "", ""]
@@ -150,15 +192,16 @@ class DownloadCheckNotizie(CheckNotizie):
                 column_letter = get_column_letter(col[0].column)
                 sheet.column_dimensions[column_letter].width = 35
 
-            for notizia in category_data["children"]:
-                title_url = notizia["url"]
-                dati_notizia = [
-                    notizia["title"],
-                    "X" if notizia["descrizione_estesa"] else "",
-                    "X" if notizia["data"]["effective_date"] else "",
-                    "X" if notizia["data"]["a_cura_di"] else "",
+            for documento in category_data["children"]:
+                title_url = documento["url"]
+                dati_documento = [
+                    documento["title"],
+                    "X" if documento["description"] else "",
+                    "X" if documento["data"]["ufficio_responsabile"] else "",
+                    "X" if documento["data"]["contiene_modulo"] else "",
+                    "X" if documento["data"]["tipologia_documento"] else "",
                 ]
-                row = dati_notizia
+                row = dati_documento
                 sheet.append(row)
 
                 title_cell = sheet.cell(row=sheet.max_row, column=1)
@@ -179,6 +222,6 @@ class DownloadCheckNotizie(CheckNotizie):
         self.request.RESPONSE.setHeader("Content-Type", self.CT)
         self.request.response.setHeader(
             "Content-Disposition",
-            "attachment; filename=check_notizie.xlsx",
+            "attachment; filename=check_documenti.xlsx",
         )
         return data
