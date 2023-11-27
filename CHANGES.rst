@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.1.2 (unreleased)
+6.1.2 (2023-11-27)
 ------------------
 
 - Added utility views: @@check-notizie and @@download-check-notizie.
