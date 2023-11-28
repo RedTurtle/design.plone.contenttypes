@@ -4,7 +4,7 @@ Changelog
 6.1.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fixed check on Competenze field. Excluding expired events and news.
 
 
 6.1.2 (2023-11-27)
