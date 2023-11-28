@@ -1,3 +1,4 @@
+from DateTime import DateTime
 from openpyxl import Workbook
 from openpyxl.styles import Alignment
 from openpyxl.styles import Font
@@ -48,6 +49,7 @@ class CheckNotizie(BrowserView):
         query = {
             "portal_type": "News Item",
             "review_state": "published",
+            "effectiveRange": DateTime(),
         }
 
         brains = pc(query)

@@ -4,8 +4,8 @@ Changelog
 6.1.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- "Buone pratiche" views: fixed check on Competenze field. Excluding expired events and news.
+  [daniele]
 
 6.1.2 (2023-11-27)
 ------------------

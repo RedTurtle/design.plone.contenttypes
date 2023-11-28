@@ -1,3 +1,4 @@
+from DateTime import DateTime
 from openpyxl import Workbook
 from openpyxl.styles import Alignment
 from openpyxl.styles import Font
@@ -49,6 +50,7 @@ class CheckEventi(BrowserView):
         query = {
             "portal_type": "Event",
             "review_state": "published",
+            "effectiveRange": DateTime(),
         }
         brains = pc(query)
         results = {}
