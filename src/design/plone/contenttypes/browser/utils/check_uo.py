@@ -46,9 +46,10 @@ class CheckUnitaOrganizzative(BrowserView):
             sede_ref = sede_ref[0]
 
         competenze = getattr(uo, "competenze", "")
-        res = [x.get("text", "") for x in competenze["blocks"].values()]
-        if not [x for x in res if x]:
-            competenze = ""
+        if competenze:
+            res = [x.get("text", "") for x in competenze["blocks"].values()]
+            if not [x for x in res if x]:
+                competenze = ""
         return {
             "description": getattr(uo, "description", "").strip(),
             "competenze": competenze,

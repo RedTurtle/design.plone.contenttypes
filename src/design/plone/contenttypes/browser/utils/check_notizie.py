@@ -1,3 +1,4 @@
+from DateTime import DateTime
 from openpyxl import Workbook
 from openpyxl.styles import Alignment
 from openpyxl.styles import Font
@@ -50,7 +51,7 @@ class CheckNotizie(BrowserView):
             "review_state": "published",
         }
 
-        brains = pc(query)
+        brains = pc(query, **{"effectiveRange": DateTime()})
         results = {}
         for brain in brains:
             notizia = brain.getObject()
