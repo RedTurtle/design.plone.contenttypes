@@ -49,9 +49,10 @@ class CheckNotizie(BrowserView):
         query = {
             "portal_type": "News Item",
             "review_state": "published",
+            "effectiveRange": DateTime(),
         }
 
-        brains = pc(query, **{"effectiveRange": DateTime()})
+        brains = pc(query)
         results = {}
         for brain in brains:
             notizia = brain.getObject()

@@ -50,8 +50,9 @@ class CheckEventi(BrowserView):
         query = {
             "portal_type": "Event",
             "review_state": "published",
+            "effectiveRange": DateTime(),
         }
-        brains = pc(query, **{"effectiveRange": DateTime()})
+        brains = pc(query)
         results = {}
         for brain in brains:
             evento = brain.getObject()
