@@ -4,7 +4,8 @@ Changelog
 6.1.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix check_persone. When there are no relation.
+  [mamico]
 
 
 6.1.3 (2023-11-28)

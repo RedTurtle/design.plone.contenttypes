@@ -70,14 +70,15 @@ class CheckPersone(BrowserView):
         if persona.incarichi_persona:
 
             relations = self.get_related_objects(persona, "incarichi_persona")
-            rel_data = relations[0]
+            if relations:
+                rel_data = relations[0]
 
-            if (
-                rel_data["data_inizio_incarico"]
-                and rel_data["title"].strip()
-                and rel_data["tipologia_incarico"]
-            ):
-                incarichi_persona = FLAG
+                if (
+                    rel_data["data_inizio_incarico"]
+                    and rel_data["title"].strip()
+                    and rel_data["tipologia_incarico"]
+                ):
+                    incarichi_persona = FLAG
 
         return {
             "incarichi_persona": incarichi_persona,
