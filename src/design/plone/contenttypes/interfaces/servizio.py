@@ -466,7 +466,9 @@ class IServizio(model.Schema, IDesignPloneContentType):
         DataGridFieldFactory,
         frontendOptions={
             "widget": "data_grid",
-            "allow_reorder": True,
+            "widgetProps": {
+                "allow_reorder": True,
+            },
         },
     )
     form.widget("canale_digitale_link", LinkFieldWidget)

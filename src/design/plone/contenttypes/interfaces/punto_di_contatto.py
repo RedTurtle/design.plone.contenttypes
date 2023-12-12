@@ -67,7 +67,9 @@ class IPuntoDiContatto(model.Schema, IDesignPloneContentType):
         DataGridFieldFactory,
         frontendOptions={
             "widget": "data_grid",
-            "allow_reorder": True,
+            "widgetProps": {
+                "allow_reorder": True,
+            },
         },
     )
 
