@@ -4,7 +4,8 @@ Changelog
 6.1.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Allow reorder of data grid fields.
+  [pnicolli]
 
 
 6.1.4 (2023-12-04)

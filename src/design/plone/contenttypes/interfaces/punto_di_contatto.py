@@ -65,7 +65,10 @@ class IPuntoDiContatto(model.Schema, IDesignPloneContentType):
     form.widget(
         "value_punto_contatto",
         DataGridFieldFactory,
-        frontendOptions={"widget": "data_grid"},
+        frontendOptions={
+            "widget": "data_grid",
+            "allow_reorder": True,
+        },
     )
 
     form.widget(
