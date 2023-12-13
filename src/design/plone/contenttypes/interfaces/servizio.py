@@ -464,7 +464,12 @@ class IServizio(model.Schema, IDesignPloneContentType):
     form.widget(
         "timeline_tempi_scadenze",
         DataGridFieldFactory,
-        frontendOptions={"widget": "data_grid"},
+        frontendOptions={
+            "widget": "data_grid",
+            "widgetProps": {
+                "allow_reorder": True,
+            },
+        },
     )
     form.widget("canale_digitale_link", LinkFieldWidget)
 
