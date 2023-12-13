@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.1.5 (unreleased)
+6.1.5 (2023-12-13)
 ------------------
 
 - Allow reorder of data grid fields.
