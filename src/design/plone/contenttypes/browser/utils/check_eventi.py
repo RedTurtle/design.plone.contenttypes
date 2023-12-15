@@ -25,10 +25,19 @@ class CheckEventi(BrowserView):
         if not [x for x in res if x]:
             prezzo = ""
 
+        luoghi_correlati = False
+        if getattr(evento, "luoghi_correlati", None):
+            luoghi_correlati = True
+        elif getattr(evento, "geolocation", None):
+            if getattr(evento.geolocation, "latitude", "") and getattr(
+                evento.geolocation, "longitude", ""
+            ):
+                luoghi_correlati = True
+
         return {
             "description": getattr(evento, "description", "").strip(),
             "effective_date": getattr(evento, "effective_date", None),
-            "luoghi_correlati": getattr(evento, "luoghi_correlati", None),
+            "luoghi_correlati": luoghi_correlati,
             "prezzo": prezzo,
             "contact_info": getattr(evento, "contact_info", None),
         }
