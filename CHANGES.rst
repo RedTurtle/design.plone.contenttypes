@@ -4,7 +4,7 @@ Changelog
 6.1.6 (unreleased)
 ------------------
 
-- Improved "Buone pratiche" view for Event: checking both for relation with Evenue and coordinates.
+- Improved "Buone pratiche" view for Event: checking both for relation with Venue and coordinates.
   [daniele]
 
 
