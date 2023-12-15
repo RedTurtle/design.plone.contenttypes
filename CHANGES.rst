@@ -4,7 +4,8 @@ Changelog
 6.1.6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Improved "Buone pratiche" view for Event: checking both for relation with Evenue and coordinates.
+  [daniele]
 
 
 6.1.5 (2023-12-13)
