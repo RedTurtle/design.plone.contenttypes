@@ -29,7 +29,9 @@ class CheckEventi(BrowserView):
         if getattr(evento, "luoghi_correlati", None):
             luoghi_correlati = True
         elif getattr(evento, "geolocation", None):
-            if getattr(evento.geolocation, "latitude", "") and getattr(evento.geolocation, "longitude", ""):
+            if getattr(evento.geolocation, "latitude", "") and getattr(
+                evento.geolocation, "longitude", ""
+            ):
                 luoghi_correlati = True
 
         return {
