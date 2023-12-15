@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.1.6 (unreleased)
+6.1.6 (2023-12-15)
 ------------------
 
 - Improved "Buone pratiche" view for Event: checking both for relation with Venue and coordinates.
