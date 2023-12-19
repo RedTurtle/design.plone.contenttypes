@@ -4,7 +4,8 @@ Changelog
 6.1.7 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fixed label for tassonomia_evento taxonomies.
+  [eikichi18]
 
 
 6.1.6 (2023-12-15)
