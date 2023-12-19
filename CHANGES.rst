@@ -4,6 +4,8 @@ Changelog
 6.1.7 (unreleased)
 ------------------
 
+- Improved "Check notizie" view adding a way to set "a cura di" field
+  [lucabel]
 - Fixed label for tassonomia_evento taxonomies.
   [eikichi18]
 

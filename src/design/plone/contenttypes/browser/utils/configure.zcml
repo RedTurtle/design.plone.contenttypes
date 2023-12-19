@@ -70,6 +70,12 @@
       permission="cmf.ManagePortal"
       />
   <browser:page
+      name="set-a-cura-di"
+      for="*"
+      class=".check_notizie.SetACuraDi"
+      permission="cmf.ManagePortal"
+      />
+  <browser:page
       name="download-check-notizie"
       for="*"
       class=".check_notizie.DownloadCheckNotizie"
