@@ -4,7 +4,8 @@ Changelog
 6.1.7 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Improved "Check notizie" view adding a way to set "a cura di" field
+  [lucabel]
 
 
 6.1.6 (2023-12-15)

@@ -53,24 +53,55 @@
         .forms{
           margin-top: 1em;
           margin-bottom: 1em;
-          text-align:center;
         }
         .forms button,
-        .forms input{
+        .forms input[type="submit"]{
             border: none; /* Remove borders */
             color: white; /* Add a text color */
-            padding: 14px 28px; /* Add some padding */
+            padding: 10px 28px; /* Add some padding */
             cursor: pointer; /* Add a pointer cursor on mouse-over */
             background-color: #2196F3;
             border-radius: 4px;
         }
-        .forms input:hover{
+        .forms input[type="text"]{
+            border: 1px solid #ddd;
+            padding: 8px;
+            border-radius: 4px;
+            width: 70%;
+        }
+        .forms input[type="submit"]:hover{
             background: #0b7dda;
         }
         .download_button{
           margin-top: 1em;
           margin-bottom: 1em;
           text-align:right;
+        }
+        .set-a-cura-di{
+          margin-bottom: 10px;
+        }
+
+        details {
+          border: 1px solid #aaa;
+          border-radius: 4px;
+          padding: 0.5em 0.5em 0;
+          width: 53%;
+          margin-bottom: 0.5em;
+        }
+
+        summary {
+          font-weight: bold;
+          margin: -0.5em -0.5em 0;
+          padding: 0.5em;
+        }
+
+        details[open] {
+          padding: 0.5em;
+        }
+
+        details[open] summary {
+          border-bottom: 1px solid #aaa;
+          margin-bottom: 0.5em;
         }
       </style>
     </metal:block>
@@ -130,6 +161,7 @@
                 <h2><a href="${categoria_url}"
                      target="_blank"
                   >${categoria}</a></h2>
+                <!-- SERVE O SI PUÒ TOGLIERE ??-->
                 <ul tal:condition="nothing">
                   <li class="evento"
                       tal:repeat="evento python:notizie[categoria]['children']"
@@ -139,6 +171,40 @@
                       >${evento/title}</a></h5>
                   </li>
                 </ul>
+                <!-- SERVE O SI PUÒ TOGLIERE -->
+                <details>
+                  <summary>Imposta 'A cura di' per le notizie di questa cartella</summary>
+                  <div class="forms">
+                    <p>Imposta il path dell'ufficio che vuoi assegnare alle news e premi "Imposta 'A cura di'" per assegnare l'ufficio alle news con dato mancante in questa cartella.</p>
+                    <p>L'ufficio deve essere impostato con path relativo alla radice del sito, esempio: /amministrazione/uffici/comunicazione</p>
+                    <form action="${context/absolute_url}/@@set-a-cura-di"
+                          method="post"
+                          class="set-a-cura-di">
+                      <input name="path"
+                            type="hidden"
+                            value="${python:notizie[categoria]['path']}"
+                      />
+                      <tal:news tal:repeat="news python:notizie[categoria]['children']">
+                        <input name="uids:list"
+                              type="hidden"
+                              value="${news/UID}"
+                        />
+                      </tal:news>
+                      <input name="came_from"
+                            type="hidden"
+                            value="${request/ACTUAL_URL}"
+                      />
+                      <input name="path_ufficio"
+                            type="text"
+                            value=""
+                      />
+                      <input type="Submit"
+                            value="Imposta 'A cura di'"
+                      />
+                    </form>
+                  </div>
+                </details>
+
                 <table class="notizie">
                   <thead>
                     <tr>

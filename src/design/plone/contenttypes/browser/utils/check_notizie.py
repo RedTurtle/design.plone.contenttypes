@@ -6,8 +6,12 @@ from openpyxl.styles import PatternFill
 from openpyxl.utils import get_column_letter
 from plone import api
 from Products.Five import BrowserView
+from z3c.relationfield import RelationValue
+from zope.component import getUtility
+from zope.intid.interfaces import IIntIds
 
 import io
+import transaction
 
 
 FLAG = '<i class="fa-solid fa-check"></i>'
@@ -20,7 +24,6 @@ class CheckNotizie(BrowserView):
         return api.user.is_anonymous()
 
     def information_dict(self, notizia):
-
         descrizione_estesa = getattr(notizia, "descrizione_estesa", "")
         res = [x.get("text", "") for x in descrizione_estesa["blocks"].values()]
         if not [x for x in res if x]:
@@ -66,6 +69,7 @@ class CheckNotizie(BrowserView):
             if parent.title not in results:
                 results[parent.title] = {
                     "url": self.plone2volto(parent.absolute_url()),
+                    "path": "/".join(parent.getPhysicalPath()),
                     "children": [],
                 }
 
@@ -76,6 +80,7 @@ class CheckNotizie(BrowserView):
                     and FLAG
                     or "",
                     "url": self.plone2volto(notizia.absolute_url()),
+                    "UID": notizia.UID(),
                     "data": {
                         "effective_date": information_dict.get("effective_date")
                         and FLAG
@@ -90,6 +95,61 @@ class CheckNotizie(BrowserView):
             results[key]["children"].sort(key=lambda x: x["title"])
 
         return results
+
+
+class SetACuraDi(CheckNotizie):
+    def __call__(self):
+        # news_folder = self.request.get("path")
+        came_from = self.request.get("came_from")
+        uids = self.request.get("uids")
+        news_folder = self.request.get("path")
+        portal_id = api.portal.get().id
+        path_ufficio = f"/{portal_id}" + self.request.get("path_ufficio")
+        ufficio = api.content.get(path=path_ufficio)
+
+        if not ufficio:
+            self.context.plone_utils.addPortalMessage(
+                f"Impossibile trovare l'ufficio {self.request.get('path_ufficio')}",
+                "error",
+            )
+
+            self.request.RESPONSE.redirect(came_from)
+            return
+
+        # same query above, plus news UIDS; use UIDS 'cause trying to get brains
+        # by path give me strange results
+        query = {
+            "portal_type": "News Item",
+            "review_state": "published",
+            "effectiveRange": DateTime(),
+            "UID": uids,
+        }
+        pc = api.portal.get_tool("portal_catalog")
+        brains = pc(query)
+        intids = getUtility(IIntIds)
+        ufficio = api.content.get(path=path_ufficio)
+
+        for idx, brain in enumerate(brains):
+            notizia = brain.getObject()
+
+            information_dict = self.information_dict(notizia)
+            if all(information_dict.values()):
+                continue
+
+            if not getattr(notizia, "a_cura_di", None):
+                notizia.a_cura_di = [RelationValue(intids.getId(ufficio))]
+                notizia.reindexObject()
+
+            if idx % 10 == 0:
+                transaction.commit()
+
+        office_path = "/".join(ufficio.getPhysicalPath())
+        self.context.plone_utils.addPortalMessage(
+            f'Impostato l\'ufficio "{ufficio.title}" ({office_path}) nelle news della cartella {news_folder}',  # noqa
+            "info",
+        )
+        self.request.RESPONSE.redirect(came_from)
+        return
 
 
 class DownloadCheckNotizie(CheckNotizie):
