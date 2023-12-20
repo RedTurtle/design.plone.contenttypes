@@ -784,4 +784,15 @@
         handler=".upgrades.update_actions"
         />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="7020"
+      destination="7021"
+      >
+    <genericsetup:upgradeStep
+        title="Add utils views in user actions"
+        handler=".upgrades.update_types"
+        />
+  </genericsetup:upgradeSteps>
+
 </configure>
