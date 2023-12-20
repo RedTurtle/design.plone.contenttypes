@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.1.7 (unreleased)
+6.1.7 (2023-12-20)
 ------------------
 
 - Improved "Check notizie" view adding a way to set "a cura di" field
