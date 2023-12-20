@@ -4,7 +4,8 @@ Changelog
 6.1.8 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add behavior aromento to Link CT
+  [lucabel]
 
 
 6.1.7 (2023-12-20)
