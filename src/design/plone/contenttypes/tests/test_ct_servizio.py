@@ -19,7 +19,6 @@ import unittest
 
 WIDGET_PROPERTY_CHECKS = {
     "tassonomia_argomenti": {
-        "maximumSelectionSize": 20,
         "selectableTypes": ["Pagina Argomento"],
     },
     "ufficio_responsabile": {
@@ -30,15 +29,12 @@ WIDGET_PROPERTY_CHECKS = {
         "selectableTypes": ["UnitaOrganizzativa"],
     },
     "altri_documenti": {
-        "maximumSelectionSize": 10,
         "selectableTypes": ["Documento", "CartellaModulistica"],
     },
     "servizi_collegati": {
-        "maximumSelectionSize": 10,
         "selectableTypes": ["Servizio"],
     },
     "dove_rivolgersi": {
-        "maximumSelectionSize": 10,
         "selectableTypes": ["Venue", "UnitaOrganizzativa"],
     },
 }

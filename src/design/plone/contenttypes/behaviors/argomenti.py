@@ -55,7 +55,6 @@ class IArgomentiSchema(model.Schema):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "maximumSelectionSize": 20,
             "selectableTypes": ["Pagina Argomento"],
         },
     )
@@ -93,7 +92,6 @@ class IArgomentiLink(model.Schema):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "maximumSelectionSize": 20,
             "selectableTypes": ["Pagina Argomento"],
         },
     )

@@ -144,7 +144,6 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "maximumSelectionSize": 10,
             "selectableTypes": ["Documento"],
         },
     )
@@ -152,14 +151,13 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
         "persone_struttura",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={"selectableTypes": ["Persona"], "maximumSelectionSize": 50},
+        pattern_options={"selectableTypes": ["Persona"]},
     )
     form.widget(
         "legami_con_altre_strutture",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "maximumSelectionSize": 10,
             "selectableTypes": ["UnitaOrganizzativa"],
         },
     )
@@ -194,7 +192,6 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "maximumSelectionSize": 10,
             "selectableTypes": ["Venue"],
             # "basePath": "/servizi",
         },

@@ -4,8 +4,10 @@ Changelog
 6.1.8 (unreleased)
 ------------------
 
-- Add behavior aromento to Link CT
+- Add behavior argomento to Link CT
   [lucabel]
+- Removed maximumSelectionSize from all fields that had it greater than 0
+  [pnicolli]
 
 
 6.1.7 (2023-12-20)
