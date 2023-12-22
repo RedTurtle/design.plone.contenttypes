@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.1.8 (unreleased)
+6.1.8 (2023-12-22)
 ------------------
 
 - Add behavior argomento to Link CT
