@@ -97,7 +97,6 @@ class INewsAdditionalFields(model.Schema):
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "selectableTypes": ["Persona"],
-            "maximumSelectionSize": 50,
         },
     )
     form.widget(
@@ -105,7 +104,6 @@ class INewsAdditionalFields(model.Schema):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "maximumSelectionSize": 10,
             "selectableTypes": ["News Item"],
         },
     )
@@ -115,7 +113,6 @@ class INewsAdditionalFields(model.Schema):
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "selectableTypes": ["Venue"],
-            "maximumSelectionSize": 50,
         },
     )
     model.fieldset(

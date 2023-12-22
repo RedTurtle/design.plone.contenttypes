@@ -161,7 +161,7 @@ class IDocumento(model.Schema, IDesignPloneContentType):
         "dataset",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={"maximumSelectionSize": 10, "selectableTypes": ["Dataset"]},
+        pattern_options={"selectableTypes": ["Dataset"]},
     )
 
     # servizi = RelationList(
@@ -183,7 +183,7 @@ class IDocumento(model.Schema, IDesignPloneContentType):
     #     "servizi",
     #     RelatedItemsFieldWidget,
     #     vocabulary="plone.app.vocabularies.Catalog",
-    #     pattern_options={"maximumSelectionSize": 20, "selectableTypes": ["Servizio"]},
+    #     pattern_options={"selectableTypes": ["Servizio"]},
     # )
 
     documenti_allegati = RelationList(
@@ -217,7 +217,6 @@ class IDocumento(model.Schema, IDesignPloneContentType):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "maximumSelectionSize": 10,
             "selectableTypes": ["Persona", "UnitaOrganizzativa"],
         },
     )
@@ -234,7 +233,7 @@ class IDocumento(model.Schema, IDesignPloneContentType):
         "documenti_allegati",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={"maximumSelectionSize": 10, "selectableTypes": ["Documento"]},
+        pattern_options={"selectableTypes": ["Documento"]},
     )
 
     #  custom fieldsets
