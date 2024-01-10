@@ -4,7 +4,8 @@ Changelog
 6.1.9 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add UID to UOJSONSummarySerializer
+  [eikichi18]
 
 
 6.1.8 (2023-12-22)
