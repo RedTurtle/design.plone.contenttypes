@@ -105,6 +105,7 @@ class UOSerializer(BaseSerializer):
         result = super(UOSerializer, self).__call__(
             version=version, include_items=include_items
         )
+
         result["servizi_offerti"] = json_compatible(self.get_services())
         result["uo_parent"] = json_compatible(self.getParentUo())
         result["uo_children"] = json_compatible(self.getChildrenUo())
@@ -132,6 +133,7 @@ class UOJSONSummarySerializer(DefaultJSONSummarySerializer):
                 data[field] = getattr(self.context, field, "")
 
         data["geolocation"] = self.getGeolocation()
+        data["UID"] = self.context.UID()
 
         get_taxonomy_information("tipologia_organizzazione", self.context, data)
 
