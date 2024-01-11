@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.1.9 (unreleased)
+6.1.9 (2024-01-11)
 ------------------
 
 - Add UID to UOJSONSummarySerializer
