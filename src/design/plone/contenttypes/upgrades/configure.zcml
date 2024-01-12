@@ -794,5 +794,14 @@
         handler=".upgrades.update_types"
         />
   </genericsetup:upgradeSteps>
-
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="7021"
+      destination="7022"
+      >
+    <genericsetup:upgradeStep
+        title="Update PDC with new pdc_description field"
+        handler=".upgrades.update_pdc_with_pdc_desc"
+        />
+  </genericsetup:upgradeSteps>
 </configure>

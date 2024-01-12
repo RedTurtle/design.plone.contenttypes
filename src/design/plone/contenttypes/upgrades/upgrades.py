@@ -1559,3 +1559,17 @@ def to_7012(context):
                 "blocks_layout": {"items": [uid]},
             }
     logger.info(f"Fixed {len(fixed)} Events.")
+
+
+def update_pdc_with_pdc_desc(context):
+    brains = api.content.find(portal_type="PuntoDiContatto")
+    logger.info(f"Found {len(brains)} PuntoDiContatto content type")
+    for brain in brains:
+        pdc = brain.getObject()
+        value_punto_contatto = getattr(pdc, "value_punto_contatto", [])
+        if value_punto_contatto:
+            for v in value_punto_contatto:
+                if not v.get("pdc_desc", None):
+                    v["pdc_desc"] = None
+                    logger.info(f"Set pdc_desc for {pdc.absolute_url()}")
+    logger.info("Ends of update")
