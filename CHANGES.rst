@@ -10,6 +10,8 @@ Changelog
   [lucabel]
 - Added new widget for event luoghi_correlati
   [pnicolli]
+- Added UID for all summary obj
+  [eikichi18]
 
 
 6.1.9 (2024-01-11)

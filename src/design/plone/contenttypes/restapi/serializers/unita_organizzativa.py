@@ -133,7 +133,6 @@ class UOJSONSummarySerializer(DefaultJSONSummarySerializer):
                 data[field] = getattr(self.context, field, "")
 
         data["geolocation"] = self.getGeolocation()
-        data["UID"] = self.context.UID()
 
         get_taxonomy_information("tipologia_organizzazione", self.context, data)
 
