@@ -4,7 +4,10 @@ Changelog
 6.1.10 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Added description to PDC fields
+  [pnicolli]
+  Added upgrade step to update PDC fields description
+  [lucabel]
 
 
 6.1.9 (2024-01-11)

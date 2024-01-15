@@ -22,6 +22,16 @@ class IPDCValueSchema(model.Schema):
         required=True,
         default="",
     )
+    pdc_desc = schema.TextLine(
+        title=_("pdc_desc_label", default="Descrizione"),
+        description=_(
+            "pdc_desc_help",
+            default="Descrizione",
+        ),
+        required=False,
+        default="",
+        max_length=255,
+    )
     pdc_value = schema.TextLine(
         title=_("pdc_value_label", default="Contatto"),
         description=_(
