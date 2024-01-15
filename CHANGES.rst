@@ -6,9 +6,10 @@ Changelog
 
 - Added description to PDC fields
   [pnicolli]
-  Added upgrade step to update PDC fields description
+- Added upgrade step to update PDC fields description
   [lucabel]
-
+- Added new widget for event luoghi_correlati
+  [pnicolli]
 
 6.1.9 (2024-01-11)
 ------------------
