@@ -6,8 +6,10 @@ Changelog
 
 - Added description to PDC fields
   [pnicolli]
-  Added upgrade step to update PDC fields description
+- Added upgrade step to update PDC fields description
   [lucabel]
+- Added UID for all summary obj
+  [eikichi18]
 
 
 6.1.9 (2024-01-11)
