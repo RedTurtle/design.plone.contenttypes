@@ -165,7 +165,9 @@ class DefaultJSONSummarySerializer(BaseSerializer):
                 res["geolocation"] = extract_geolocation(self.context, res)
 
         res["id"] = self.context.id
-        res["UID"] = self.context.UID() if callable(self.context.UID) else self.context.UID
+        res["UID"] = (
+            self.context.UID() if callable(self.context.UID) else self.context.UID
+        )
 
         # meta_type
         res["design_italia_meta_type"] = self.get_design_meta_type()
