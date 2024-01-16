@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.1.10 (unreleased)
+6.1.10 (2024-01-16)
 -------------------
 
 - Added description to PDC fields
