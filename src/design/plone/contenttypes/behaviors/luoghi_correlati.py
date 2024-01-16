@@ -66,6 +66,9 @@ class ILuoghiCorrelatiEvento(model.Schema):
         pattern_options={
             "selectableTypes": ["Venue"],
         },
+        frontendOptions={
+            "widget": "luoghi_correlati_evento",
+        },
     )
 
     model.fieldset(

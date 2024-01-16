@@ -8,6 +8,8 @@ Changelog
   [pnicolli]
 - Added upgrade step to update PDC fields description
   [lucabel]
+- Added new widget for event luoghi_correlati
+  [pnicolli]
 - Added UID for all summary obj
   [eikichi18]
 
