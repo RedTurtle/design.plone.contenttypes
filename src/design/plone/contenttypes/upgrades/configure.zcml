@@ -796,12 +796,13 @@
   </genericsetup:upgradeSteps>
   <genericsetup:upgradeSteps
       profile="design.plone.contenttypes:default"
-      source="7021"
-      destination="7022"
+      source="7022"
+      destination="7023"
       >
     <genericsetup:upgradeStep
-        title="Update PDC with new pdc_description field"
+        title="Update PDC with new pdc_description field (fix)"
         handler=".upgrades.update_pdc_with_pdc_desc"
         />
   </genericsetup:upgradeSteps>
+
 </configure>
