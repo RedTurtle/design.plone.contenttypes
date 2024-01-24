@@ -4,7 +4,9 @@ Changelog
 6.1.11 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Added new indexer, catalog index and query operation for canale_digitale_link field of Servizio CT
+[deodorhunter]
+
 
 
 6.1.10 (2024-01-16)
