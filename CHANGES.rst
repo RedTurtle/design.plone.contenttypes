@@ -4,7 +4,8 @@ Changelog
 6.1.11 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add getObjSize info in File field serializer.
+  [cekk]
 
 
 6.1.10 (2024-01-16)
