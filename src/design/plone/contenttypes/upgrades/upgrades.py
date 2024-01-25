@@ -2,9 +2,7 @@
 from Acquisition import aq_base
 from collective.volto.blocksfield.field import BlocksField
 from copy import deepcopy
-from design.plone.contenttypes.controlpanels.settings import (
-    IDesignPloneSettings,
-)
+from design.plone.contenttypes.controlpanels.settings import IDesignPloneSettings
 from design.plone.contenttypes.setuphandlers import remove_blocks_behavior
 from design.plone.contenttypes.upgrades.draftjs_converter import to_draftjs
 from design.plone.contenttypes.utils import create_default_blocks
@@ -38,9 +36,7 @@ DEFAULT_PROFILE = "profile-design.plone.contenttypes:default"
 
 
 def update_profile(context, profile, run_dependencies=True):
-    context.runImportStepFromProfile(
-        DEFAULT_PROFILE, profile, run_dependencies
-    )
+    context.runImportStepFromProfile(DEFAULT_PROFILE, profile, run_dependencies)
 
 
 def update_actions(context):
@@ -160,9 +156,7 @@ def to_1005(context):
     portal.blocks = json.dumps(portal_blocks)
 
     logger.info("Fixing listing blocks.")
-    for brain in api.content.find(
-        object_provides="plone.restapi.behaviors.IBlocks"
-    ):
+    for brain in api.content.find(object_provides="plone.restapi.behaviors.IBlocks"):
         item = brain.getObject()
         blocks = deepcopy(getattr(item, "blocks", {}))
         if blocks:
@@ -187,9 +181,7 @@ def to_1006(context):
                         or query["i"] == "argomenti"
                     ):  # noqa
                         query["i"] = "argomenti"
-                        query["v"] = [
-                            x.Title for x in api.content.find(UID=query["v"])
-                        ]
+                        query["v"] = [x.Title for x in api.content.find(UID=query["v"])]
                         logger.info(" - {}".format(brain.getURL()))
 
     # fix root
@@ -199,9 +191,7 @@ def to_1006(context):
     portal.blocks = json.dumps(portal_blocks)
 
     logger.info("Fixing listing blocks.")
-    for brain in api.content.find(
-        object_provides="plone.restapi.behaviors.IBlocks"
-    ):
+    for brain in api.content.find(object_provides="plone.restapi.behaviors.IBlocks"):
         item = brain.getObject()
         blocks = deepcopy(getattr(item, "blocks", {}))
         if blocks:
@@ -241,9 +231,7 @@ def to_1009(context):
     portal.blocks = json.dumps(portal_blocks)
 
     logger.info("Fixing listing blocks.")
-    for brain in api.content.find(
-        object_provides="plone.restapi.behaviors.IBlocks"
-    ):
+    for brain in api.content.find(object_provides="plone.restapi.behaviors.IBlocks"):
         item = brain.getObject()
         blocks = deepcopy(getattr(item, "blocks", {}))
         if blocks:
@@ -278,9 +266,7 @@ def to_1013(context):
         return found
 
     # fix root
-    logger.info(
-        'Changing listing block template from "imageGallery" to "photogallery'
-    )
+    logger.info('Changing listing block template from "imageGallery" to "photogallery')
     portal = api.portal.get()
     portal_blocks = json.loads(portal.blocks)
     to_update = fix_template_name(portal_blocks)
@@ -289,9 +275,7 @@ def to_1013(context):
         portal.blocks = json.dumps(portal_blocks)
         fixed_items.append("Root")
     i = 0
-    brains = api.content.find(
-        object_provides="plone.restapi.behaviors.IBlocks"
-    )
+    brains = api.content.find(object_provides="plone.restapi.behaviors.IBlocks")
     tot = len(brains)
     for brain in brains:
         i += 1
@@ -388,9 +372,7 @@ def to_2000(context):  # noqa: C901
         item = brain.getObject()
         if brain.portal_type in ["Event", "News Item"]:
             blocks = getattr(item, "blocks", {})
-            blocks_layout = getattr(item, "blocks_layout", {"items": []})[
-                "items"
-            ]
+            blocks_layout = getattr(item, "blocks_layout", {"items": []})["items"]
             if not blocks:
                 continue
             title_uid = ""
@@ -471,9 +453,7 @@ def to_3000(context):
     old_entry = "design.plone.contenttypes.controlpanels.vocabularies.IVocabulariesControlPanel.{}"  # noqa
     for field in simple:
         value = api.portal.get_registry_record(old_entry.format(field))
-        api.portal.set_registry_record(
-            field, value, interface=IDesignPloneSettings
-        )
+        api.portal.set_registry_record(field, value, interface=IDesignPloneSettings)
 
     for field in multilanguage:
         try:
@@ -486,9 +466,7 @@ def to_3000(context):
         except Exception:
             continue
 
-    context.runAllImportStepsFromProfile(
-        "profile-design.plone.contenttypes:to_3000"
-    )
+    context.runAllImportStepsFromProfile("profile-design.plone.contenttypes:to_3000")
 
 
 def to_3101(context):
@@ -500,21 +478,15 @@ def to_3101(context):
         for rel in getattr(item, "servizi_collegati", []):
             service = rel.to_object
             if service:
-                service.altri_documenti.append(
-                    RelationValue(intids.getId(item))
-                )
+                service.altri_documenti.append(RelationValue(intids.getId(item)))
                 notify(ObjectModifiedEvent(service))
-                logger.info(
-                    "Fixed item {}".format("/".join(service.getPhysicalPath()))
-                )
+                logger.info("Fixed item {}".format("/".join(service.getPhysicalPath())))
 
         if getattr(item, "servizi_collegati", []):
             delattr(item, "servizi_collegati")
             notify(ObjectModifiedEvent(item))
             fixed_total += 1
-            logger.info(
-                "Fixed item {}".format("/".join(item.getPhysicalPath()))
-            )
+            logger.info("Fixed item {}".format("/".join(item.getPhysicalPath())))
 
     logger.info("Fixing 'Documento': DONE")
     logger.info("Updated {} objects Documento".format(fixed_total))
@@ -544,13 +516,9 @@ def to_volto13(context):  # noqa: C901
     def fix_listing(blocks, url):
         for block in blocks.values():
             if block.get("@type", "") == "listing":
-                if block.get("template", False) and not block.get(
-                    "variation", False
-                ):
+                if block.get("template", False) and not block.get("variation", False):
                     logger.error("- {}".format(url))
-                if block.get("template", False) and block.get(
-                    "variation", False
-                ):
+                if block.get("template", False) and block.get("variation", False):
                     logger.error("- {}".format(url))
                 if block.get("variation", "") == "default":
                     block["variation"] = "simpleCard"
@@ -601,9 +569,7 @@ def to_volto13(context):  # noqa: C901
                         blocks = value.get("blocks", {})
                     except AttributeError:
                         logger.warning(
-                            "[RICHTEXT] - {} (not converted)".format(
-                                brain.getURL()
-                            )
+                            "[RICHTEXT] - {} (not converted)".format(brain.getURL())
                         )
                     if blocks:
                         fix_listing(blocks, brain.getURL())
@@ -611,9 +577,7 @@ def to_volto13(context):  # noqa: C901
 
 
 def to_3400(context):  # noqa: C901
-    logger.info(
-        "### START CONVERSION BLOCKS: newsHome -> highlitedContent ###"
-    )
+    logger.info("### START CONVERSION BLOCKS: newsHome -> highlitedContent ###")
 
     def fix_block(blocks, url):
         for block in blocks.values():
@@ -665,9 +629,7 @@ def to_3400(context):  # noqa: C901
                         blocks = value.get("blocks", {})
                     except AttributeError:
                         logger.warning(
-                            "[RICHTEXT] - {} (not converted)".format(
-                                brain.getURL()
-                            )
+                            "[RICHTEXT] - {} (not converted)".format(brain.getURL())
                         )
                     if blocks:
                         fix_block(blocks, brain.getURL())
@@ -740,9 +702,7 @@ def to_3600(context):
 
     logger.info("Bandi customizations")
     update_catalog(context)
-    api.portal.set_registry_record(
-        "default_ente", (), interface=IBandoSettings
-    )
+    api.portal.set_registry_record("default_ente", (), interface=IBandoSettings)
 
     portal_types = api.portal.get_tool(name="portal_types")
     portal_types["Bando Folder Deepening"].allowed_content_types = (
@@ -766,9 +726,7 @@ def to_3600(context):
         if i % 1000 == 0:
             logger.info("Progress: {}/{}".format(i, tot))
         bando = brain.getObject()
-        bando.reindexObject(
-            idxs=["ufficio_responsabile_bando", "Subject_bando"]
-        )
+        bando.reindexObject(idxs=["ufficio_responsabile_bando", "Subject_bando"])
 
 
 def to_3700(context):
@@ -858,14 +816,9 @@ def to_5000(context):
             ]
             behaviors.extend(["plone.leadimage", "volto.preview_image"])
         else:
-            if (
-                "plone.leadimage" not in behaviors
-                or "volto.preview_image" in behaviors
-            ):
+            if "plone.leadimage" not in behaviors or "volto.preview_image" in behaviors:
                 continue
-        behaviors.insert(
-            behaviors.index("plone.leadimage") + 1, "volto.preview_image"
-        )
+        behaviors.insert(behaviors.index("plone.leadimage") + 1, "volto.preview_image")
         fti.behaviors = tuple(behaviors)
 
     logger.info("Move immagine_testata to image")
@@ -1018,8 +971,7 @@ def to_5500(context):
     update_catalog(context)
 
     argomenti_mapping = {
-        x.Title: x.UID
-        for x in api.content.find(portal_type="Pagina Argomento")
+        x.Title: x.UID for x in api.content.find(portal_type="Pagina Argomento")
     }
 
     def fix_block(blocks, argomenti_mapping):
@@ -1178,12 +1130,8 @@ def migrate_pdc_and_incarico(context):
             for brain in api.content.find(portal_type=portal_type):
                 item = brain.getObject()
                 atto_nomina = item.atto_nomina
-                logger.info(
-                    f"Fixing Punto di Contatto for '{item.title}'..."
-                )  # noqa
-                file_bog = api.content.find(
-                    context=item, depth=1, id="atti-nomina"
-                )
+                logger.info(f"Fixing Punto di Contatto for '{item.title}'...")  # noqa
+                file_bog = api.content.find(context=item, depth=1, id="atti-nomina")
                 if not file_bog:
                     try:
                         file_bog = api.content.create(
@@ -1227,9 +1175,7 @@ def migrate_pdc_and_incarico(context):
         # mapping = type_mapping[portal_type]["PDC"]
         # Reenable mapping to use
         if not mapping:
-            logger.info(
-                f"No need to fix Punto di Contatto for '{portal_type}: DONE"
-            )
+            logger.info(f"No need to fix Punto di Contatto for '{portal_type}: DONE")
             return
         for brain in api.content.find(portal_type=portal_type):
             item = brain.getObject()
@@ -1271,9 +1217,7 @@ class colors(object):
 
 
 def update_uo_contact_info(context):
-    brains = api.portal.get_tool("portal_catalog")(
-        portal_type="UnitaOrganizzativa"
-    )
+    brains = api.portal.get_tool("portal_catalog")(portal_type="UnitaOrganizzativa")
     logger.info(
         f"{colors.DARKCYAN} Inizio la pulzia delle {len(brains)} UO campo contact_info {colors.ENDC}"  # noqa
     )
@@ -1309,9 +1253,7 @@ def update_ruolo_indexing(context):
 
 
 def fix_ctaxonomy_indexes_and_metadata(context):
-    logger.info(
-        f"{colors.DARKCYAN} Fix taxonomy indexes {colors.ENDC}"
-    )  # noqa
+    logger.info(f"{colors.DARKCYAN} Fix taxonomy indexes {colors.ENDC}")  # noqa
     bad_names = [
         "taxonomy_person_life_events",
         "taxonomy_business_events",
@@ -1338,16 +1280,12 @@ def fix_ctaxonomy_indexes_and_metadata(context):
         # metadata
         if name in catalog_metadata:
             catalog.delColumn(name)
-            logger.info(
-                f"{colors.GREEN} Remove {name} from metadata {colors.ENDC}"
-            )
+            logger.info(f"{colors.GREEN} Remove {name} from metadata {colors.ENDC}")
 
         # indexes
         if name in catalog_indexes:
             catalog.delIndex(name)
-            logger.info(
-                f"{colors.GREEN} Remove {name} from indexes {colors.ENDC}"
-            )
+            logger.info(f"{colors.GREEN} Remove {name} from indexes {colors.ENDC}")
 
     context.runImportStepFromProfile(
         "design.plone.contenttypes:taxonomy", "collective.taxonomy"
@@ -1365,9 +1303,7 @@ def fix_ctaxonomy_indexes_and_metadata(context):
             "Pratica",
         ]
     )
-    logger.info(
-        f"{colors.GREEN} Reindex contents with taxonomies {colors.ENDC}"
-    )
+    logger.info(f"{colors.GREEN} Reindex contents with taxonomies {colors.ENDC}")
     for brain in brains:
         obj = brain.getObject()
         obj.reindexObject(idxs=good_names)
@@ -1414,9 +1350,7 @@ def update_patrocinato_da(self):
                         },
                     }
                 },
-                "blocks_layout": {
-                    "items": ["d252fe92-ce88-4866-b77d-501e7275cfc0"]
-                },
+                "blocks_layout": {"items": ["d252fe92-ce88-4866-b77d-501e7275cfc0"]},
             },
         )
         obj.reindexObject()
@@ -1429,13 +1363,9 @@ def update_folder_for_gallery(self):
     for brain in pc(portal_type="Event"):
         evento = brain.getObject()
 
-        logger.info(
-            f"{colors.DARKCYAN} Event: {evento.absolute_url()} {colors.ENDC}"
-        )
+        logger.info(f"{colors.DARKCYAN} Event: {evento.absolute_url()} {colors.ENDC}")
         if "multimedia" in evento.keys():
-            renamed_event = api.content.rename(
-                evento["multimedia"], new_id="immagini"
-            )
+            renamed_event = api.content.rename(evento["multimedia"], new_id="immagini")
             renamed_event.title = "Immagini"
             renamed_event.reindexObject(idxs=["id", "title"])
             logger.info(f"{colors.GREEN} Rename multimedia {colors.ENDC}")
@@ -1450,16 +1380,12 @@ def update_folder_for_gallery(self):
             create_default_blocks(context=galleria_video)
 
             # select  constraints
-            constraintsGalleriaVideo = ISelectableConstrainTypes(
-                galleria_video
-            )
+            constraintsGalleriaVideo = ISelectableConstrainTypes(galleria_video)
             constraintsGalleriaVideo.setConstrainTypesMode(1)
             constraintsGalleriaVideo.setLocallyAllowedTypes(("Link",))
 
             with api.env.adopt_roles(["Reviewer"]):
-                api.content.transition(
-                    obj=galleria_video, transition="publish"
-                )
+                api.content.transition(obj=galleria_video, transition="publish")
 
             logger.info(f"{colors.GREEN} Create video {colors.ENDC}")
 
@@ -1488,15 +1414,11 @@ def to_7009(context):
 
 def to_7010(context):
     registry = getUtility(IRegistry)
-    prefix = (
-        "Products.CMFPlone.interfaces.syndication.ISiteSyndicationSettings"
-    )
+    prefix = "Products.CMFPlone.interfaces.syndication.ISiteSyndicationSettings"
 
     # get the old values
     old_attributes = [
-        attribute
-        for attribute in registry.records
-        if attribute.startswith(prefix)
+        attribute for attribute in registry.records if attribute.startswith(prefix)
     ]
     if not old_attributes:
         logger.info(
@@ -1515,9 +1437,7 @@ def to_7010(context):
         del registry.records[attribute]
 
     # import the new interface
-    logger.info(
-        f"{colors.DARKCYAN} Setup new interface in the registry {colors.ENDC}"
-    )
+    logger.info(f"{colors.DARKCYAN} Setup new interface in the registry {colors.ENDC}")
     context.runImportStepFromProfile(
         "profile-design.plone.contenttypes:fix_syndication",
         "plone.app.registry",
