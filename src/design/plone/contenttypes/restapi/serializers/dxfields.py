@@ -5,6 +5,7 @@ from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
 from design.plone.contenttypes.interfaces.servizio import IServizio
 from plone import api
 from plone.app.contenttypes.utils import replace_link_variables_by_paths
+from plone.base.utils import human_readable_size
 from plone.dexterity.interfaces import IDexterityContent
 from plone.namedfile.interfaces import INamedFileField
 from plone.outputfilters.browser.resolveuid import uuidToURL
@@ -56,7 +57,11 @@ class TempiEScadenzeValueSerializer(DefaultFieldSerializer):
 
 @adapter(INamedFileField, IDexterityContent, IDesignPloneContenttypesLayer)
 class FileFieldViewModeSerializer(DefaultFieldSerializer):
-    """Ovveride the basic DX serializer to handle the visualize file functionality"""
+    """
+    Ovveride the basic DX serializer to:
+        - handle the visualize file functionality
+        - add getObjSize info
+    """
 
     def __call__(self):
         namedfile = self.field.get(self.context)
@@ -70,10 +75,12 @@ class FileFieldViewModeSerializer(DefaultFieldSerializer):
                 self.field.__name__,
             )
         )
+        size = namedfile.getSize()
         result = {
             "filename": namedfile.filename,
             "content-type": namedfile.contentType,
-            "size": namedfile.getSize(),
+            "size": size,
+            "getObjSize": human_readable_size(size),
             "download": url,
         }
 
