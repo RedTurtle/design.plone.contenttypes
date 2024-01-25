@@ -4,7 +4,8 @@ Changelog
 6.1.11 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fixed script to update pdc with description
+  [eikichi18]
 
 
 6.1.10 (2024-01-16)
