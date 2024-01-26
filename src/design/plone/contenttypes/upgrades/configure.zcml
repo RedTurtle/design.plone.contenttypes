@@ -804,4 +804,14 @@
         handler=".upgrades.update_pdc_with_pdc_desc"
         />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="7022"
+      destination="7030"
+      >
+    <genericsetup:upgradeStep
+        title="Add collective.volto.enhancedlinks"
+        handler=".upgrades.to_7030"
+        />
+  </genericsetup:upgradeSteps>
 </configure>

@@ -23,6 +23,13 @@ from zope.schema.interfaces import IList
 from zope.schema.interfaces import ISourceText
 from zope.schema.interfaces import ITextLine
 
+try:
+    from collective.volto.enhancedlinks.interfaces import IEnhancedLinksEnabled
+
+    HAS_ENHANCEDLINKS = True
+except ImportError:
+    HAS_ENHANCEDLINKS = False
+
 import json
 import re
 
@@ -80,9 +87,16 @@ class FileFieldViewModeSerializer(DefaultFieldSerializer):
             "filename": namedfile.filename,
             "content-type": namedfile.contentType,
             "size": size,
-            "getObjSize": human_readable_size(size),
             "download": url,
         }
+        if HAS_ENHANCEDLINKS:
+            if IEnhancedLinksEnabled.providedBy(self.context):
+                result.update(
+                    {
+                        "getObjSize": human_readable_size(size),
+                        "enhanced_links_enabled": True,
+                    }
+                )
 
         return json_compatible(result)
 

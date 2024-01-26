@@ -4,7 +4,9 @@ Changelog
 6.1.11 (unreleased)
 -------------------
 
-- Add getObjSize info in File field serializer.
+- Add collective.volto.enhancedlinks dependency (needed for slate integration).
+  [cekk]
+- Add enhancedlinks infos in File field serializer.
   [cekk]
 
 

@@ -43,6 +43,7 @@
     <element value="plone.locking" />
     <element value="design.plone.contenttypes.behavior.multi_file" />
     <element value="plone.translatable" />
+    <element value="volto.enhanced_links_enabled" />
   </property>
 
   <!-- View information -->
