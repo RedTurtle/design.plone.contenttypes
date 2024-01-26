@@ -88,6 +88,16 @@ class IDesignPloneSettings(Interface):
         default=True,
         required=False,
     )
+    show_dynamic_folders_in_footer = Bool(
+        title=_("show_dynamic_folders_in_footer_label", default="Footer dinamico"),
+        description=_(
+            "show_dynamic_folders_in_footer_help",
+            default="Se selezionato, il footer verrà popolato automaticamente "
+            "con i contenuti di primo livello non esclusi dalla navigazione.",
+        ),
+        default=True,
+        required=False,
+    )
 
 
 class DesignPloneControlPanelForm(RegistryEditForm):
