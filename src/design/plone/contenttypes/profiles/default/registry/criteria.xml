@@ -450,6 +450,20 @@
            i18n:translate=""
     >Metadata</value>
   </records>
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+         prefix="plone.app.querystring.field.canale_digitale_link"
+>
+    <value key="title" i18n:translate="">Link al Canale Digitale</value>
+    <value key="description" i18n:translate="">Link al Canale Digitale è compilato o meno</value>
+    <value key="enabled">True</value>
+    <value key="sortable">False</value>
+    <value key="operations">
+      <element>plone.app.querystring.operation.boolean.isTrue</element>
+      <element>plone.app.querystring.operation.boolean.isFalse</element>
+    </value>
+    <value key="group" i18n:translate="">Metadata</value>
+</records>
+
 
   <!-- cleanup -->
   <records interface="plone.app.querystring.interfaces.IQueryField"
