@@ -1572,6 +1572,10 @@ def update_pdc_with_pdc_desc(context):
                 if not v.get("pdc_desc", None):
                     v["pdc_desc"] = None
                     logger.info(f"Set pdc_desc for {pdc.absolute_url()}")
+
+            pdc.value_punto_contatto = value_punto_contatto
+
+    commit()
     logger.info("Ends of update")
 
 
