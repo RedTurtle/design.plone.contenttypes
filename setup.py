@@ -66,6 +66,7 @@ setup(
         "z3c.unconfigure",
         "eea.api.taxonomy",
         "openpyxl",
+        "collective.volto.enhancedlinks",
     ],
     extras_require={
         "test": [
@@ -79,7 +80,6 @@ setup(
             "plone.app.robotframework[debug]",
             "collective.MockMailHost",
         ],
-        "enhancedlinks": ["collective.volto.enhancedlinks"],
     },
     entry_points="""
     [z3c.autoinclude.plugin]
