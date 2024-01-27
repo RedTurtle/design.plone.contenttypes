@@ -15,8 +15,8 @@
       factory=".get.NavigationGet"
       for="zope.interface.Interface"
       permission="zope2.View"
-      name="@navigation"
       layer="design.plone.contenttypes.interfaces.IDesignPloneContenttypesLayer"
+      name="@navigation"
       />
 
 </configure>
