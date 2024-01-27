@@ -804,5 +804,14 @@
         handler=".upgrades.update_pdc_with_pdc_desc"
         />
   </genericsetup:upgradeSteps>
-
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="7023"
+      destination="7030"
+      >
+    <genericsetup:upgradeStep
+        title="Add new field in settings"
+        handler=".upgrades.update_registry"
+        />
+  </genericsetup:upgradeSteps>
 </configure>
