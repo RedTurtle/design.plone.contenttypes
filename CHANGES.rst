@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.1.11 (unreleased)
+6.1.11 (2024-01-29)
 -------------------
 
 - Added new indexer, catalog index and query operation for canale_digitale_link field of Servizio CT
