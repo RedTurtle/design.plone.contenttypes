@@ -127,7 +127,6 @@ class IEvento(model.Schema):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "maximumSelectionSize": 10,
             "selectableTypes": ["UnitaOrganizzativa"],
         },
     )
@@ -136,7 +135,6 @@ class IEvento(model.Schema):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "maximumSelectionSize": 10,
             "selectableTypes": ["Persona", "UnitaOrganizzativa", "Servizio"],
         },
     )
@@ -145,7 +143,6 @@ class IEvento(model.Schema):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "maximumSelectionSize": 10,
             "selectableTypes": ["Persona"],
         },
     )

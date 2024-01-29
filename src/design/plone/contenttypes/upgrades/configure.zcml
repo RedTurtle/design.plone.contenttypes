@@ -784,4 +784,29 @@
         handler=".upgrades.update_actions"
         />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="7020"
+      destination="7021"
+      >
+    <genericsetup:upgradeStep
+        title="Add utils views in user actions"
+        handler=".upgrades.update_types"
+        />
+  </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="7022"
+      destination="7023"
+      >
+    <genericsetup:upgradeStep
+        title="Update PDC with new pdc_description field (fix)"
+        handler=".upgrades.update_pdc_with_pdc_desc"
+        />
+    <genericsetup:upgradeStep
+        title="Update Servizio indexes with new canale_digitale_link index"
+        handler=".upgrades.add_canale_digitale_link_index"
+        />
+  </genericsetup:upgradeSteps>
+
 </configure>

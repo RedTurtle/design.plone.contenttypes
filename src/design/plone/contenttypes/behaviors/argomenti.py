@@ -4,6 +4,7 @@ from design.plone.contenttypes.interfaces.bando import IBandoAgidSchema
 from design.plone.contenttypes.interfaces.documento import IDocumento
 from design.plone.contenttypes.interfaces.servizio import IServizio
 from plone.app.contenttypes.interfaces import IDocument
+from plone.app.contenttypes.interfaces import ILink
 from plone.app.dexterity import textindexer
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
@@ -54,7 +55,6 @@ class IArgomentiSchema(model.Schema):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "maximumSelectionSize": 20,
             "selectableTypes": ["Pagina Argomento"],
         },
     )
@@ -63,6 +63,37 @@ class IArgomentiSchema(model.Schema):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={"maximumSelectionSize": 1},
+    )
+
+    textindexer.searchable("tassonomia_argomenti")
+
+
+@provider(IFormFieldProvider)
+class IArgomentiLink(model.Schema):
+    """Marker interface for Argomenti"""
+
+    tassonomia_argomenti = RelationList(
+        title=_("tassonomia_argomenti_label", default="Argomenti"),
+        description=_(
+            "tassonomia_argomenti_help",
+            default="Seleziona una lista di argomenti d'interesse per questo"
+            " contenuto.",
+        ),
+        value_type=RelationChoice(
+            title=_("Argomenti correlati"),
+            vocabulary="plone.app.vocabularies.Catalog",
+        ),
+        required=False,
+        default=[],
+    )
+
+    form.widget(
+        "tassonomia_argomenti",
+        RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
+        pattern_options={
+            "selectableTypes": ["Pagina Argomento"],
+        },
     )
 
     textindexer.searchable("tassonomia_argomenti")
@@ -269,6 +300,15 @@ class ArgomentiNews(object):
 @implementer(IArgomentiEvento)
 @adapter(IServizio)
 class ArgomentiEvento(object):
+    """"""
+
+    def __init__(self, context):
+        self.context = context
+
+
+@implementer(IArgomentiLink)
+@adapter(ILink)
+class ArgomentiLink(object):
     """"""
 
     def __init__(self, context):

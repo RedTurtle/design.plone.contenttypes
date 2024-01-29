@@ -1,11 +1,113 @@
 Changelog
 =========
 
-6.1.1 (unreleased)
+6.1.11 (unreleased)
+-------------------
+
+- Added new indexer, catalog index and query operation for canale_digitale_link field of Servizio CT
+[deodorhunter]
+
+- Fixed script to update pdc with description
+  [eikichi18]
+- Add getObjSize info in File field serializer.
+  [cekk]
+
+
+6.1.10 (2024-01-16)
+-------------------
+
+- Added description to PDC fields
+  [pnicolli]
+- Added upgrade step to update PDC fields description
+  [lucabel]
+- Added new widget for event luoghi_correlati
+  [pnicolli]
+- Added UID for all summary obj
+  [eikichi18]
+
+
+6.1.9 (2024-01-11)
 ------------------
 
 - Do not show fieldsets with no visible fields in @types endpoint.
   [cekk]
+- Add UID to UOJSONSummarySerializer
+  [eikichi18]
+
+
+6.1.8 (2023-12-22)
+------------------
+
+- Add behavior argomento to Link CT
+  [lucabel]
+- Removed maximumSelectionSize from all fields that had it greater than 0
+  [pnicolli]
+
+
+6.1.7 (2023-12-20)
+------------------
+
+- Improved "Check notizie" view adding a way to set "a cura di" field
+  [lucabel]
+- Fixed label for tassonomia_evento taxonomies.
+  [eikichi18]
+
+
+6.1.6 (2023-12-15)
+------------------
+
+- Improved "Buone pratiche" view for Event: checking both for relation with Venue and coordinates.
+  [daniele]
+
+
+6.1.5 (2023-12-13)
+------------------
+
+- Allow reorder of data grid fields.
+  [pnicolli]
+
+
+6.1.4 (2023-12-04)
+------------------
+
+- Fix check_persone. When there are no relation.
+  [mamico]
+
+
+6.1.3 (2023-11-28)
+------------------
+
+- "Buone pratiche" views: fixed check on Competenze field. Excluding expired events and news.
+  [daniele]
+
+6.1.2 (2023-11-27)
+------------------
+
+- Added utility views: @@check-notizie and @@download-check-notizie.
+  [daniele]
+- Fix event for obj parent update.
+  [eikichi18]
+
+- Added utility views: @@check-eventi and @@download-check-eventi.
+  [daniele]
+
+- Added utility views for Venue: @@check-luoghi and @@download-check-luoghi.
+  [daniele]
+
+- Added utility view for Documento:  @@check-documenti and @@download-check-documenti.
+  [daniele]
+
+- Added utils view for UO:  @@check-uo and @@download-check-uo.
+  [daniele]
+
+- Added utility views for Persona: @@check-persone and @@download-check-persone.
+  [daniele]
+
+6.1.1 (2023-11-21)
+------------------
+
+- Update default summary serializer to better handle geolocation information.
+  [lucabel]
 
 
 6.1.0 (2023-11-07)

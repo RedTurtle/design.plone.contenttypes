@@ -29,6 +29,10 @@
       name="service_venue"
       />
   <adapter
+      factory=".servizio.canale_digitale_link"
+      name="canale_digitale_link"
+      />
+  <adapter
       factory=".common.tassonomia_argomenti"
       name="tassonomia_argomenti"
       />

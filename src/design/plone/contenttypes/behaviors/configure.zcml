@@ -102,6 +102,16 @@
       marker=".argomenti.IArgomentiServizio"
       />
   <plone:behavior
+      name="design.plone.contenttypes.behavior.argomenti_link"
+      title="Argomenti Link"
+      description="Tassonomia argomenti"
+      factory=".argomenti.ArgomentiLink"
+      provides=".argomenti.IArgomentiLink"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      marker=".argomenti.IArgomentiLink"
+      />
+
+  <plone:behavior
       name="design.plone.contenttypes.behavior.luoghi_correlati"
       title="Luoghi correlati"
       description=""

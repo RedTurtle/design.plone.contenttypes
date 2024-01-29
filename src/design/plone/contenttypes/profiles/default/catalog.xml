@@ -19,6 +19,9 @@
 <index name="service_venue" meta_type="KeywordIndex">
   <indexed_attr value="service_venue"/>
  </index>
+<index name="canale_digitale_link" meta_type="BooleanIndex">
+  <indexed_attr value="canale_digitale_link"/>
+ </index>
  <index name="tipologia_notizia" meta_type="FieldIndex">
   <indexed_attr value="tipologia_notizia"/>
  </index>

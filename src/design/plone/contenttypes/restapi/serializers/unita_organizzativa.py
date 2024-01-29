@@ -105,6 +105,7 @@ class UOSerializer(BaseSerializer):
         result = super(UOSerializer, self).__call__(
             version=version, include_items=include_items
         )
+
         result["servizi_offerti"] = json_compatible(self.get_services())
         result["uo_parent"] = json_compatible(self.getParentUo())
         result["uo_children"] = json_compatible(self.getChildrenUo())

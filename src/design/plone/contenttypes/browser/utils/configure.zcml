@@ -39,20 +39,98 @@
       for="*"
       class=".check_servizi.CheckServizi"
       template="templates/check_servizi.pt"
-      permission="zope2.Public"
+      permission="cmf.ManagePortal"
       />
-
   <browser:page
       name="download-check-servizi"
       for="*"
       class=".check_servizi.DownloadCheckServizi"
-      permission="zope2.Public"
+      permission="cmf.ManagePortal"
       />
+
+  <browser:page
+      name="check-persone"
+      for="*"
+      class=".check_persone.CheckPersone"
+      template="templates/check_persone.pt"
+      permission="cmf.ManagePortal"
+      />
+
   <browser:page
       name="download-check-persone"
       for="*"
       class=".check_persone.DownloadCheckPersone"
-      permission="zope2.Public"
+      permission="cmf.ManagePortal"
       />
-
+  <browser:page
+      name="check-notizie"
+      for="*"
+      class=".check_notizie.CheckNotizie"
+      template="templates/check_notizie.pt"
+      permission="cmf.ManagePortal"
+      />
+  <browser:page
+      name="set-a-cura-di"
+      for="*"
+      class=".check_notizie.SetACuraDi"
+      permission="cmf.ManagePortal"
+      />
+  <browser:page
+      name="download-check-notizie"
+      for="*"
+      class=".check_notizie.DownloadCheckNotizie"
+      permission="cmf.ManagePortal"
+      />
+  <browser:page
+      name="download-check-eventi"
+      for="*"
+      class=".check_eventi.DownloadCheckEventi"
+      permission="cmf.ManagePortal"
+      />
+  <browser:page
+      name="check-eventi"
+      for="*"
+      class=".check_eventi.CheckEventi"
+      template="templates/check_eventi.pt"
+      permission="cmf.ManagePortal"
+      />
+  <browser:page
+      name="check-luoghi"
+      for="*"
+      class=".check_luoghi.CheckLuoghi"
+      template="templates/check_luoghi.pt"
+      permission="cmf.ManagePortal"
+      />
+  <browser:page
+      name="download-check-luoghi"
+      for="*"
+      class=".check_luoghi.DownloadCheckLuoghi"
+      permission="cmf.ManagePortal"
+      />
+  <browser:page
+      name="check-documenti"
+      for="*"
+      class=".check_documenti.CheckDocumenti"
+      template="templates/check_documenti.pt"
+      permission="cmf.ManagePortal"
+      />
+  <browser:page
+      name="download-check-documenti"
+      for="*"
+      class=".check_documenti.DownloadCheckDocumenti"
+      permission="cmf.ManagePortal"
+      />
+  <browser:page
+      name="check-uo"
+      for="*"
+      class=".check_uo.CheckUnitaOrganizzative"
+      template="templates/check_uo.pt"
+      permission="cmf.ManagePortal"
+      />
+  <browser:page
+      name="download-check-uo"
+      for="*"
+      class=".check_uo.DownloadCheckUnitaOrganizzative"
+      permission="cmf.ManagePortal"
+      />
 </configure>

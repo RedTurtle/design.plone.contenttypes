@@ -22,6 +22,16 @@ class IPDCValueSchema(model.Schema):
         required=True,
         default="",
     )
+    pdc_desc = schema.TextLine(
+        title=_("pdc_desc_label", default="Descrizione"),
+        description=_(
+            "pdc_desc_help",
+            default="Descrizione",
+        ),
+        required=False,
+        default="",
+        max_length=255,
+    )
     pdc_value = schema.TextLine(
         title=_("pdc_value_label", default="Contatto"),
         description=_(
@@ -65,7 +75,12 @@ class IPuntoDiContatto(model.Schema, IDesignPloneContentType):
     form.widget(
         "value_punto_contatto",
         DataGridFieldFactory,
-        frontendOptions={"widget": "data_grid"},
+        frontendOptions={
+            "widget": "data_grid",
+            "widgetProps": {
+                "allow_reorder": True,
+            },
+        },
     )
 
     form.widget(
@@ -73,7 +88,6 @@ class IPuntoDiContatto(model.Schema, IDesignPloneContentType):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "maximumSelectionSize": 10,
             "selectableTypes": ["Persona"],
         },
     )

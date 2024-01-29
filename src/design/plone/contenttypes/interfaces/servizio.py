@@ -408,7 +408,6 @@ class IServizio(model.Schema, IDesignPloneContentType):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "maximumSelectionSize": 10,
             "selectableTypes": ["UnitaOrganizzativa"],
         },
     )
@@ -417,7 +416,6 @@ class IServizio(model.Schema, IDesignPloneContentType):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "maximumSelectionSize": 10,
             "selectableTypes": ["Venue", "UnitaOrganizzativa"],
         },
     )
@@ -446,7 +444,6 @@ class IServizio(model.Schema, IDesignPloneContentType):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "maximumSelectionSize": 10,
             "selectableTypes": ["Documento", "CartellaModulistica"],
             # "basePath": "/",
         },
@@ -456,7 +453,6 @@ class IServizio(model.Schema, IDesignPloneContentType):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "maximumSelectionSize": 10,
             "selectableTypes": ["Servizio"],
             # "basePath": "/",
         },
@@ -464,7 +460,12 @@ class IServizio(model.Schema, IDesignPloneContentType):
     form.widget(
         "timeline_tempi_scadenze",
         DataGridFieldFactory,
-        frontendOptions={"widget": "data_grid"},
+        frontendOptions={
+            "widget": "data_grid",
+            "widgetProps": {
+                "allow_reorder": True,
+            },
+        },
     )
     form.widget("canale_digitale_link", LinkFieldWidget)
 

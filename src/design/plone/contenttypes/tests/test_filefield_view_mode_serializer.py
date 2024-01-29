@@ -59,5 +59,8 @@ class SummarySerializerTest(unittest.TestCase):
         commit()
 
         response = self.api_session.get(self.modulo.absolute_url()).json()
-
         self.assertIn("@@display-file", response["file_principale"]["download"])
+
+    def test_human_readable_obj_size_in_data(self):
+        response = self.api_session.get(self.modulo.absolute_url()).json()
+        self.assertEqual("1 KB", response["file_principale"]["getObjSize"])
