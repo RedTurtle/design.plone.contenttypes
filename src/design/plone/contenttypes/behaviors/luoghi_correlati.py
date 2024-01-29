@@ -30,7 +30,6 @@ class ILuoghiCorrelatiSchema(model.Schema):
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "selectableTypes": ["Venue"],
-            "maximumSelectionSize": 50,
         },
     )
 
@@ -66,7 +65,9 @@ class ILuoghiCorrelatiEvento(model.Schema):
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "selectableTypes": ["Venue"],
-            "maximumSelectionSize": 50,
+        },
+        frontendOptions={
+            "widget": "luoghi_correlati_evento",
         },
     )
 

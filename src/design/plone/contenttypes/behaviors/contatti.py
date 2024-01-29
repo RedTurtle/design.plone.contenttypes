@@ -49,7 +49,6 @@ class IContattiUnitaOrganizzativa(model.Schema):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "maximumSelectionSize": 10,
             "selectableTypes": ["PuntoDiContatto"],
         },
     )
@@ -86,7 +85,6 @@ class IContattiPersona(model.Schema):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "maximumSelectionSize": 10,
             "selectableTypes": ["PuntoDiContatto"],
         },
     )
@@ -120,7 +118,6 @@ class IContattiServizio(model.Schema):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "maximumSelectionSize": 10,
             "selectableTypes": ["PuntoDiContatto"],
         },
     )
@@ -154,7 +151,6 @@ class IContattiVenue(model.Schema):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "maximumSelectionSize": 10,
             "selectableTypes": ["PuntoDiContatto"],
         },
     )
@@ -188,7 +184,6 @@ class IContattiEvent(model.Schema):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "maximumSelectionSize": 10,
             "selectableTypes": ["PuntoDiContatto"],
         },
     )

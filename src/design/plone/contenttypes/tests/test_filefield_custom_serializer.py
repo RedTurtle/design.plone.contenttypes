@@ -14,7 +14,7 @@ from transaction import commit
 import unittest
 
 
-class SummarySerializerTest(unittest.TestCase):
+class FileFieldSerializerTest(unittest.TestCase):
     layer = DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING
 
     def setUp(self):
@@ -59,5 +59,13 @@ class SummarySerializerTest(unittest.TestCase):
         commit()
 
         response = self.api_session.get(self.modulo.absolute_url()).json()
-
         self.assertIn("@@display-file", response["file_principale"]["download"])
+
+    def test_if_enhancedlinks_behavior_active_has_human_readable_obj_size_in_data(self):
+        response = self.api_session.get(self.modulo.absolute_url()).json()
+        self.assertEqual("1 KB", response["file_principale"]["getObjSize"])
+
+    def test_if_enhancedlinks_behavior_active_has_flag_in_data(self):
+        response = self.api_session.get(self.modulo.absolute_url()).json()
+        self.assertIn("enhanced_links_enabled", response["file_principale"])
+        self.assertTrue(response["file_principale"]["enhanced_links_enabled"])

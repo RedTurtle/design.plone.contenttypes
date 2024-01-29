@@ -1439,7 +1439,9 @@ def to_7010(context):
     # import the new interface
     logger.info(f"{colors.DARKCYAN} Setup new interface in the registry {colors.ENDC}")
     context.runImportStepFromProfile(
-        "profile-design.plone.contenttypes:fix_syndication", "plone.app.registry", False
+        "profile-design.plone.contenttypes:fix_syndication",
+        "plone.app.registry",
+        False,
     )
     logger.info(
         f"{colors.DARKCYAN} Set the old values into the new registry records{colors.ENDC}"  # noqa
@@ -1559,3 +1561,53 @@ def to_7012(context):
                 "blocks_layout": {"items": [uid]},
             }
     logger.info(f"Fixed {len(fixed)} Events.")
+
+
+def update_pdc_with_pdc_desc(context):
+    brains = api.content.find(portal_type="PuntoDiContatto")
+    logger.info(f"Found {len(brains)} PuntoDiContatto content type")
+    for brain in brains:
+        pdc = brain.getObject()
+        value_punto_contatto = getattr(pdc, "value_punto_contatto", [])
+        if value_punto_contatto:
+            for v in value_punto_contatto:
+                if not v.get("pdc_desc", None):
+                    v["pdc_desc"] = None
+                    logger.info(f"Set pdc_desc for {pdc.absolute_url()}")
+
+            pdc.value_punto_contatto = value_punto_contatto
+
+    commit()
+    logger.info("Ends of update")
+
+
+def to_7030(context):
+    installOrReinstallProduct(api.portal.get(), "collective.volto.enhancedlinks")
+    # add behavior to modulo
+    portal_types = api.portal.get_tool(name="portal_types")
+    modulo_behaviors = [x for x in portal_types["Modulo"].behaviors]
+    if "volto.enhanced_links_enabled" not in modulo_behaviors:
+        modulo_behaviors.append("volto.enhanced_links_enabled")
+    portal_types["Modulo"].behaviors = tuple(modulo_behaviors)
+
+    # update index/metadata
+    brains = api.content.find(portal_type=["File", "Image", "Modulo"])
+    tot = len(brains)
+    i = 0
+    for brain in brains:
+        i += 1
+        if i % 100 == 0:
+            logger.info("Progress: {}/{}".format(i, tot))
+        brain.getObject().reindexObject(idxs=["enhanced_links_enabled"])
+
+
+def add_canale_digitale_link_index(context):
+    update_catalog(context)
+    update_registry(context)
+    brains = api.content.find(portal_type="Servizio")
+    logger.info(f"Found {len(brains)} Servizio content type to reindex")
+    for brain in brains:
+        service = brain.getObject()
+        service.reindexObject(idxs=["canale_digitale_link"])
+        logger.info(f"Reindexed {service.absolute_url()}")
+    logger.info("End of update, added index canale_digitale_link")

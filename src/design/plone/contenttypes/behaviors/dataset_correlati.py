@@ -32,7 +32,6 @@ class IDatasetCorrelati(model.Schema):
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "selectableTypes": ["Dataset"],
-            "maximumSelectionSize": 50,
         },
     )
 

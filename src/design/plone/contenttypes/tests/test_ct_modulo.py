@@ -44,6 +44,7 @@ class TestModuloSchema(unittest.TestCase):
                 "plone.locking",
                 "design.plone.contenttypes.behavior.multi_file",
                 "plone.translatable",
+                "volto.enhanced_links_enabled",
             ),
         )
 

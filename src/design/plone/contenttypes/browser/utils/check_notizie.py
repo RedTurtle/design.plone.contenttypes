@@ -6,84 +6,33 @@ from openpyxl.styles import PatternFill
 from openpyxl.utils import get_column_letter
 from plone import api
 from Products.Five import BrowserView
-from zope.globalrequest import getRequest
-from zope.component import getMultiAdapter
-from plone.restapi.interfaces import ISerializeToJsonSummary
-
-import io
-
-from Acquisition import aq_inner
+from z3c.relationfield import RelationValue
 from zope.component import getUtility
 from zope.intid.interfaces import IIntIds
-from zope.security import checkPermission
-from zc.relation.interfaces import ICatalog
+
+import io
+import transaction
 
 
 FLAG = '<i class="fa-solid fa-check"></i>'
 
 
-class CheckPersone(BrowserView):
+class CheckNotizie(BrowserView):
     cds = None
 
     def is_anonymous(self):
         return api.user.is_anonymous()
 
-    def get_relations(self, obj, field):
-        return api.relation.get(source=obj, relationship=field, unrestricted=False)
-
-    def get_related_objects(self, obj, field):
-        """ """
-        items = []
-        relations = self.get_relations(obj, field)
-
-        for rel in relations:
-            rel_obj = rel.to_object
-            if rel_obj is not None:
-                summary = getMultiAdapter(
-                    (rel_obj, getRequest()), ISerializeToJsonSummary
-                )()
-                items.append(summary)
-        return sorted(items, key=lambda k: k["title"])
-
-    def back_references(self, source_object, attribute_name):
-
-        catalog = getUtility(ICatalog)
-        intids = getUtility(IIntIds)
-        result = []
-
-        for rel in catalog.findRelations(
-            dict(
-                to_id=intids.getId(aq_inner(source_object)),
-                from_attribute=attribute_name,
-            )
-        ):
-            obj = intids.queryObject(rel.from_id)
-            if obj is not None and checkPermission("zope2.View", obj):
-                result.append(obj)
-        return result
-
-    def information_dict(self, persona):
-        uo_refs = self.back_references(persona, "responsabile")
-        uo_refs.extend(self.back_references(persona, "persone_struttura"))
-
-        incarichi_persona = ""
-        if persona.incarichi_persona:
-
-            relations = self.get_related_objects(persona, "incarichi_persona")
-            if relations:
-                rel_data = relations[0]
-
-                if (
-                    rel_data["data_inizio_incarico"]
-                    and rel_data["title"].strip()
-                    and rel_data["tipologia_incarico"]
-                ):
-                    incarichi_persona = FLAG
+    def information_dict(self, notizia):
+        descrizione_estesa = getattr(notizia, "descrizione_estesa", "")
+        res = [x.get("text", "") for x in descrizione_estesa["blocks"].values()]
+        if not [x for x in res if x]:
+            descrizione_estesa = ""
 
         return {
-            "incarichi_persona": incarichi_persona,
-            "contact_info": getattr(persona, "contact_info", None),
-            "organizzazione_riferimento": uo_refs,
+            "descrizione_estesa": descrizione_estesa,
+            "effective_date": getattr(notizia, "effective_date", None),
+            "a_cura_di": getattr(notizia, "a_cura_di", None),
         }
 
     def plone2volto(self, url):
@@ -95,50 +44,48 @@ class CheckPersone(BrowserView):
             return url.replace(portal_url, frontend_domain, 1)
         return url
 
-    def get_persone(self):
-
+    def get_notizie(self):
         if self.is_anonymous():
             return []
         pc = api.portal.get_tool("portal_catalog")
 
-        # show_inactive ha sempre avuto una gestione... particolare! aggiungo ai
-        # kw effectiveRange = DateTime() che è quello che fa Products.CMFPlone
-        # nel CatalogTool.py
         query = {
-            "portal_type": "Persona",
+            "portal_type": "News Item",
             "review_state": "published",
+            "effectiveRange": DateTime(),
         }
-        brains = pc(query, **{"effectiveRange": DateTime()})
+
+        brains = pc(query)
         results = {}
         for brain in brains:
-            persona = brain.getObject()
+            notizia = brain.getObject()
 
-            information_dict = self.information_dict(persona)
+            information_dict = self.information_dict(notizia)
 
             if all(information_dict.values()):
                 continue
 
-            parent = persona.aq_inner.aq_parent
+            parent = notizia.aq_inner.aq_parent
             if parent.title not in results:
                 results[parent.title] = {
                     "url": self.plone2volto(parent.absolute_url()),
+                    "path": "/".join(parent.getPhysicalPath()),
                     "children": [],
                 }
 
             results[parent.title]["children"].append(
                 {
-                    "title": persona.title,
-                    "url": self.plone2volto(persona.absolute_url()),
+                    "title": notizia.title,
+                    "descrizione_estesa": information_dict.get("descrizione_estesa")
+                    and FLAG
+                    or "",
+                    "url": self.plone2volto(notizia.absolute_url()),
+                    "UID": notizia.UID(),
                     "data": {
-                        "organizzazione_riferimento": information_dict.get(
-                            "organizzazione_riferimento"
-                        )
+                        "effective_date": information_dict.get("effective_date")
                         and FLAG
                         or "",
-                        "incarichi_persona": information_dict.get("incarichi_persona"),
-                        "contact_info": information_dict.get("contact_info")
-                        and FLAG
-                        or "",
+                        "a_cura_di": information_dict.get("a_cura_di") and FLAG or "",
                     },
                 }
             )
@@ -150,15 +97,75 @@ class CheckPersone(BrowserView):
         return results
 
 
-class DownloadCheckPersone(CheckPersone):
+class SetACuraDi(CheckNotizie):
+    def __call__(self):
+        # news_folder = self.request.get("path")
+        came_from = self.request.get("came_from")
+        uids = self.request.get("uids")
+        news_folder = self.request.get("path")
+        portal_id = api.portal.get().id
+        path_ufficio = f"/{portal_id}" + self.request.get("path_ufficio")
+        ufficio = api.content.get(path=path_ufficio)
+
+        if not ufficio:
+            self.context.plone_utils.addPortalMessage(
+                f"Impossibile trovare l'ufficio {self.request.get('path_ufficio')}",
+                "error",
+            )
+
+            self.request.RESPONSE.redirect(came_from)
+            return
+
+        # same query above, plus news UIDS; use UIDS 'cause trying to get brains
+        # by path give me strange results
+        query = {
+            "portal_type": "News Item",
+            "review_state": "published",
+            "effectiveRange": DateTime(),
+            "UID": uids,
+        }
+        pc = api.portal.get_tool("portal_catalog")
+        brains = pc(query)
+        intids = getUtility(IIntIds)
+        ufficio = api.content.get(path=path_ufficio)
+
+        for idx, brain in enumerate(brains):
+            notizia = brain.getObject()
+
+            information_dict = self.information_dict(notizia)
+            if all(information_dict.values()):
+                continue
+
+            if not getattr(notizia, "a_cura_di", None):
+                notizia.a_cura_di = [RelationValue(intids.getId(ufficio))]
+                notizia.reindexObject()
+
+            if idx % 10 == 0:
+                transaction.commit()
+
+        office_path = "/".join(ufficio.getPhysicalPath())
+        self.context.plone_utils.addPortalMessage(
+            f'Impostato l\'ufficio "{ufficio.title}" ({office_path}) nelle news della cartella {news_folder}',  # noqa
+            "info",
+        )
+        self.request.RESPONSE.redirect(came_from)
+        return
+
+
+class DownloadCheckNotizie(CheckNotizie):
     CT = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
 
     def __call__(self):
-        HEADER = ["Titolo", "Incarichi", "Unità org. di riferimento", "Contatti"]
+        HEADER = [
+            "Titolo",
+            "Descrizione estesa",
+            "Data di pubblicazione",
+            "A cura di",
+        ]
 
         EMPTY_ROW = [""] * 3
 
-        persone = self.get_persone()
+        notizie = self.get_notizie()
 
         workbook = Workbook()
         sheet = workbook.active
@@ -172,7 +179,7 @@ class DownloadCheckPersone(CheckPersone):
 
         section_row_height = int(14 * 1.5)
 
-        for category, category_data in persone.items():
+        for category, category_data in notizie.items():
             section_url = category_data["url"]
             section_title = category
             section_row = [section_title, "", ""]
@@ -205,15 +212,15 @@ class DownloadCheckPersone(CheckPersone):
                 column_letter = get_column_letter(col[0].column)
                 sheet.column_dimensions[column_letter].width = 35
 
-            for persona in category_data["children"]:
-                title_url = persona["url"]
-                dati_persona = [
-                    persona["title"],
-                    "X" if persona["data"]["incarichi_persona"] else "",
-                    "X" if persona["data"]["organizzazione_riferimento"] else "",
-                    "X" if persona["data"]["contact_info"] else "",
+            for notizia in category_data["children"]:
+                title_url = notizia["url"]
+                dati_notizia = [
+                    notizia["title"],
+                    "X" if notizia["descrizione_estesa"] else "",
+                    "X" if notizia["data"]["effective_date"] else "",
+                    "X" if notizia["data"]["a_cura_di"] else "",
                 ]
-                row = dati_persona
+                row = dati_notizia
                 sheet.append(row)
 
                 title_cell = sheet.cell(row=sheet.max_row, column=1)
@@ -234,6 +241,6 @@ class DownloadCheckPersone(CheckPersone):
         self.request.RESPONSE.setHeader("Content-Type", self.CT)
         self.request.response.setHeader(
             "Content-Disposition",
-            "attachment; filename=check_persone.xlsx",
+            "attachment; filename=check_notizie.xlsx",
         )
         return data

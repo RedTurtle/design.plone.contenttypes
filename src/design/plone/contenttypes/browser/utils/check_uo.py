@@ -12,17 +12,11 @@ from plone.restapi.interfaces import ISerializeToJsonSummary
 
 import io
 
-from Acquisition import aq_inner
-from zope.component import getUtility
-from zope.intid.interfaces import IIntIds
-from zope.security import checkPermission
-from zc.relation.interfaces import ICatalog
-
 
 FLAG = '<i class="fa-solid fa-check"></i>'
 
 
-class CheckPersone(BrowserView):
+class CheckUnitaOrganizzative(BrowserView):
     cds = None
 
     def is_anonymous(self):
@@ -45,45 +39,22 @@ class CheckPersone(BrowserView):
                 items.append(summary)
         return sorted(items, key=lambda k: k["title"])
 
-    def back_references(self, source_object, attribute_name):
+    def information_dict(self, uo):
+        sede_ref = None
+        sede_ref = self.get_related_objects(uo, "sede")
+        if sede_ref:
+            sede_ref = sede_ref[0]
 
-        catalog = getUtility(ICatalog)
-        intids = getUtility(IIntIds)
-        result = []
-
-        for rel in catalog.findRelations(
-            dict(
-                to_id=intids.getId(aq_inner(source_object)),
-                from_attribute=attribute_name,
-            )
-        ):
-            obj = intids.queryObject(rel.from_id)
-            if obj is not None and checkPermission("zope2.View", obj):
-                result.append(obj)
-        return result
-
-    def information_dict(self, persona):
-        uo_refs = self.back_references(persona, "responsabile")
-        uo_refs.extend(self.back_references(persona, "persone_struttura"))
-
-        incarichi_persona = ""
-        if persona.incarichi_persona:
-
-            relations = self.get_related_objects(persona, "incarichi_persona")
-            if relations:
-                rel_data = relations[0]
-
-                if (
-                    rel_data["data_inizio_incarico"]
-                    and rel_data["title"].strip()
-                    and rel_data["tipologia_incarico"]
-                ):
-                    incarichi_persona = FLAG
-
+        competenze = getattr(uo, "competenze", "")
+        if competenze:
+            res = [x.get("text", "") for x in competenze["blocks"].values()]
+            if not [x for x in res if x]:
+                competenze = ""
         return {
-            "incarichi_persona": incarichi_persona,
-            "contact_info": getattr(persona, "contact_info", None),
-            "organizzazione_riferimento": uo_refs,
+            "description": getattr(uo, "description", "").strip(),
+            "competenze": competenze,
+            "sede": sede_ref,
+            "contact_info": getattr(uo, "contact_info", None),
         }
 
     def plone2volto(self, url):
@@ -95,7 +66,7 @@ class CheckPersone(BrowserView):
             return url.replace(portal_url, frontend_domain, 1)
         return url
 
-    def get_persone(self):
+    def get_uos(self):
 
         if self.is_anonymous():
             return []
@@ -105,37 +76,33 @@ class CheckPersone(BrowserView):
         # kw effectiveRange = DateTime() che è quello che fa Products.CMFPlone
         # nel CatalogTool.py
         query = {
-            "portal_type": "Persona",
+            "portal_type": "UnitaOrganizzativa",
             "review_state": "published",
         }
         brains = pc(query, **{"effectiveRange": DateTime()})
         results = {}
         for brain in brains:
-            persona = brain.getObject()
+            uo = brain.getObject()
 
-            information_dict = self.information_dict(persona)
+            information_dict = self.information_dict(uo)
 
             if all(information_dict.values()):
                 continue
 
-            parent = persona.aq_inner.aq_parent
+            parent = uo.aq_inner.aq_parent
             if parent.title not in results:
                 results[parent.title] = {
                     "url": self.plone2volto(parent.absolute_url()),
                     "children": [],
                 }
-
             results[parent.title]["children"].append(
                 {
-                    "title": persona.title,
-                    "url": self.plone2volto(persona.absolute_url()),
+                    "title": uo.title,
+                    "description": information_dict.get("description") and FLAG or "",
+                    "url": self.plone2volto(uo.absolute_url()),
                     "data": {
-                        "organizzazione_riferimento": information_dict.get(
-                            "organizzazione_riferimento"
-                        )
-                        and FLAG
-                        or "",
-                        "incarichi_persona": information_dict.get("incarichi_persona"),
+                        "competenze": information_dict.get("competenze") and FLAG or "",
+                        "sede": information_dict.get("sede") and FLAG or "",
                         "contact_info": information_dict.get("contact_info")
                         and FLAG
                         or "",
@@ -150,15 +117,15 @@ class CheckPersone(BrowserView):
         return results
 
 
-class DownloadCheckPersone(CheckPersone):
+class DownloadCheckUnitaOrganizzative(CheckUnitaOrganizzative):
     CT = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
 
     def __call__(self):
-        HEADER = ["Titolo", "Incarichi", "Unità org. di riferimento", "Contatti"]
+        HEADER = ["Titolo", "Descrizione", "Competenze", "Sede", "Contatti"]
 
         EMPTY_ROW = [""] * 3
 
-        persone = self.get_persone()
+        unita_organizzative = self.get_uos()
 
         workbook = Workbook()
         sheet = workbook.active
@@ -172,7 +139,7 @@ class DownloadCheckPersone(CheckPersone):
 
         section_row_height = int(14 * 1.5)
 
-        for category, category_data in persone.items():
+        for category, category_data in unita_organizzative.items():
             section_url = category_data["url"]
             section_title = category
             section_row = [section_title, "", ""]
@@ -205,15 +172,16 @@ class DownloadCheckPersone(CheckPersone):
                 column_letter = get_column_letter(col[0].column)
                 sheet.column_dimensions[column_letter].width = 35
 
-            for persona in category_data["children"]:
-                title_url = persona["url"]
-                dati_persona = [
-                    persona["title"],
-                    "X" if persona["data"]["incarichi_persona"] else "",
-                    "X" if persona["data"]["organizzazione_riferimento"] else "",
-                    "X" if persona["data"]["contact_info"] else "",
+            for uo in category_data["children"]:
+                title_url = uo["url"]
+                dati_uo = [
+                    uo["title"],
+                    "X" if uo["description"] else "",
+                    "X" if uo["data"]["competenze"] else "",
+                    "X" if uo["data"]["sede"] else "",
+                    "X" if uo["data"]["contact_info"] else "",
                 ]
-                row = dati_persona
+                row = dati_uo
                 sheet.append(row)
 
                 title_cell = sheet.cell(row=sheet.max_row, column=1)
@@ -234,6 +202,6 @@ class DownloadCheckPersone(CheckPersone):
         self.request.RESPONSE.setHeader("Content-Type", self.CT)
         self.request.response.setHeader(
             "Content-Disposition",
-            "attachment; filename=check_persone.xlsx",
+            "attachment; filename=check_unita_organizzative.xlsx",
         )
         return data

@@ -5,14 +5,19 @@ from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
 from design.plone.contenttypes.interfaces.servizio import IServizio
 from plone import api
 from plone.app.contenttypes.utils import replace_link_variables_by_paths
+from plone.base.utils import human_readable_size
 from plone.dexterity.interfaces import IDexterityContent
 from plone.namedfile.interfaces import INamedFileField
+from plone.namedfile.interfaces import INamedImageField
 from plone.outputfilters.browser.resolveuid import uuidToURL
 from plone.restapi.interfaces import IBlockFieldSerializationTransformer
 from plone.restapi.interfaces import IFieldSerializer
 from plone.restapi.interfaces import ISerializeToJsonSummary
 from plone.restapi.serializer.converters import json_compatible
 from plone.restapi.serializer.dxfields import DefaultFieldSerializer
+from plone.restapi.serializer.dxfields import (
+    ImageFieldSerializer as BaseImageFieldSerializer,
+)
 from zope.component import adapter
 from zope.component import getMultiAdapter
 from zope.component import subscribers
@@ -21,6 +26,13 @@ from zope.interface import implementer
 from zope.schema.interfaces import IList
 from zope.schema.interfaces import ISourceText
 from zope.schema.interfaces import ITextLine
+
+try:
+    from collective.volto.enhancedlinks.interfaces import IEnhancedLinksEnabled
+
+    HAS_ENHANCEDLINKS = True
+except ImportError:
+    HAS_ENHANCEDLINKS = False
 
 import json
 import re
@@ -56,7 +68,11 @@ class TempiEScadenzeValueSerializer(DefaultFieldSerializer):
 
 @adapter(INamedFileField, IDexterityContent, IDesignPloneContenttypesLayer)
 class FileFieldViewModeSerializer(DefaultFieldSerializer):
-    """Ovveride the basic DX serializer to handle the visualize file functionality"""
+    """
+    Ovveride the basic DX serializer to:
+        - handle the visualize file functionality
+        - add getObjSize info
+    """
 
     def __call__(self):
         namedfile = self.field.get(self.context)
@@ -70,12 +86,21 @@ class FileFieldViewModeSerializer(DefaultFieldSerializer):
                 self.field.__name__,
             )
         )
+        size = namedfile.getSize()
         result = {
             "filename": namedfile.filename,
             "content-type": namedfile.contentType,
-            "size": namedfile.getSize(),
+            "size": size,
             "download": url,
         }
+        if HAS_ENHANCEDLINKS:
+            if IEnhancedLinksEnabled.providedBy(self.context):
+                result.update(
+                    {
+                        "getObjSize": human_readable_size(size),
+                        "enhanced_links_enabled": True,
+                    }
+                )
 
         return json_compatible(result)
 
@@ -86,6 +111,21 @@ class FileFieldViewModeSerializer(DefaultFieldSerializer):
                 return "@@display-file"
 
         return "@@download"
+
+
+@adapter(INamedImageField, IDexterityContent, IDesignPloneContenttypesLayer)
+class ImageFieldSerializer(BaseImageFieldSerializer):
+    def __call__(self):
+        result = super().__call__()
+        if HAS_ENHANCEDLINKS:
+            if IEnhancedLinksEnabled.providedBy(self.context):
+                result.update(
+                    {
+                        "getObjSize": human_readable_size(result["size"]),
+                        "enhanced_links_enabled": True,
+                    }
+                )
+        return result
 
 
 def serialize_data(context, json_data, show_children=False):
