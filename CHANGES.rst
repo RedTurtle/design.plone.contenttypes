@@ -4,6 +4,9 @@ Changelog
 6.1.11 (unreleased)
 -------------------
 
+- Added new indexer, catalog index and query operation for canale_digitale_link field of Servizio CT
+[deodorhunter]
+
 - Fixed script to update pdc with description
   [eikichi18]
 - Add collective.volto.enhancedlinks dependency (needed for slate integration).

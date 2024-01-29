@@ -803,6 +803,10 @@
         title="Update PDC with new pdc_description field (fix)"
         handler=".upgrades.update_pdc_with_pdc_desc"
         />
+    <genericsetup:upgradeStep
+        title="Update Servizio indexes with new canale_digitale_link index"
+        handler=".upgrades.add_canale_digitale_link_index"
+        />
   </genericsetup:upgradeSteps>
   <genericsetup:upgradeSteps
       profile="design.plone.contenttypes:default"
