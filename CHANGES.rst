@@ -9,9 +9,10 @@ Changelog
 
 - Fixed script to update pdc with description
   [eikichi18]
-- Add getObjSize info in File field serializer.
+- Add collective.volto.enhancedlinks dependency (needed for slate integration).
   [cekk]
-
+- Add enhancedlinks infos in File field serializer.
+  [cekk]
 
 6.1.10 (2024-01-16)
 -------------------
