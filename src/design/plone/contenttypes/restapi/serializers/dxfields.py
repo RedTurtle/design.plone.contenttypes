@@ -8,12 +8,16 @@ from plone.app.contenttypes.utils import replace_link_variables_by_paths
 from plone.base.utils import human_readable_size
 from plone.dexterity.interfaces import IDexterityContent
 from plone.namedfile.interfaces import INamedFileField
+from plone.namedfile.interfaces import INamedImageField
 from plone.outputfilters.browser.resolveuid import uuidToURL
 from plone.restapi.interfaces import IBlockFieldSerializationTransformer
 from plone.restapi.interfaces import IFieldSerializer
 from plone.restapi.interfaces import ISerializeToJsonSummary
 from plone.restapi.serializer.converters import json_compatible
 from plone.restapi.serializer.dxfields import DefaultFieldSerializer
+from plone.restapi.serializer.dxfields import (
+    ImageFieldSerializer as BaseImageFieldSerializer,
+)
 from zope.component import adapter
 from zope.component import getMultiAdapter
 from zope.component import subscribers
@@ -107,6 +111,21 @@ class FileFieldViewModeSerializer(DefaultFieldSerializer):
                 return "@@display-file"
 
         return "@@download"
+
+
+@adapter(INamedImageField, IDexterityContent, IDesignPloneContenttypesLayer)
+class ImageFieldSerializer(BaseImageFieldSerializer):
+    def __call__(self):
+        result = super().__call__()
+        if HAS_ENHANCEDLINKS:
+            if IEnhancedLinksEnabled.providedBy(self.context):
+                result.update(
+                    {
+                        "getObjSize": human_readable_size(result["size"]),
+                        "enhanced_links_enabled": True,
+                    }
+                )
+        return result
 
 
 def serialize_data(context, json_data, show_children=False):
