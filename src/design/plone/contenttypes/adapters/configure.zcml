@@ -20,4 +20,5 @@
       factory=".searchabletext_indexers.TextBlockSearchableText"
       name="text"
       />
+
 </configure>

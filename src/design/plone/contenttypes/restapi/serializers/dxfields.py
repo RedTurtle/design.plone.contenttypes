@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from AccessControl.unauthorized import Unauthorized
 from Acquisition import aq_inner
+from collective.volto.enhancedlinks.interfaces import IEnhancedLinksEnabled
 from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
 from design.plone.contenttypes.interfaces.servizio import IServizio
 from plone import api
@@ -27,12 +28,6 @@ from zope.schema.interfaces import IList
 from zope.schema.interfaces import ISourceText
 from zope.schema.interfaces import ITextLine
 
-try:
-    from collective.volto.enhancedlinks.interfaces import IEnhancedLinksEnabled
-
-    HAS_ENHANCEDLINKS = True
-except ImportError:
-    HAS_ENHANCEDLINKS = False
 
 import json
 import re
@@ -93,14 +88,13 @@ class FileFieldViewModeSerializer(DefaultFieldSerializer):
             "size": size,
             "download": url,
         }
-        if HAS_ENHANCEDLINKS:
-            if IEnhancedLinksEnabled.providedBy(self.context):
-                result.update(
-                    {
-                        "getObjSize": human_readable_size(size),
-                        "enhanced_links_enabled": True,
-                    }
-                )
+        if IEnhancedLinksEnabled.providedBy(self.context):
+            result.update(
+                {
+                    "getObjSize": human_readable_size(size),
+                    "enhanced_links_enabled": True,
+                }
+            )
 
         return json_compatible(result)
 
@@ -117,14 +111,13 @@ class FileFieldViewModeSerializer(DefaultFieldSerializer):
 class ImageFieldSerializer(BaseImageFieldSerializer):
     def __call__(self):
         result = super().__call__()
-        if HAS_ENHANCEDLINKS:
-            if IEnhancedLinksEnabled.providedBy(self.context):
-                result.update(
-                    {
-                        "getObjSize": human_readable_size(result["size"]),
-                        "enhanced_links_enabled": True,
-                    }
-                )
+        if IEnhancedLinksEnabled.providedBy(self.context):
+            result.update(
+                {
+                    "getObjSize": human_readable_size(result["size"]),
+                    "enhanced_links_enabled": True,
+                }
+            )
         return result
 
 
