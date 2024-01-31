@@ -1,7 +1,13 @@
 Changelog
 =========
 
-6.1.11 (unreleased)
+6.1.12 (unreleased)
+-------------------
+
+- Nothing changed yet.
+
+
+6.1.11 (2024-01-29)
 -------------------
 
 - Added new indexer, catalog index and query operation for canale_digitale_link field of Servizio CT
@@ -12,6 +18,10 @@ Changelog
 - Add collective.volto.enhancedlinks dependency (needed for slate integration).
   [cekk]
 - Add enhancedlinks infos in File field serializer.
+  [cekk]
+- Add new flag in settings needed to choose to show or not auto-generated footer columns.
+  [cekk]
+- Customize @navigation endpoint to expose also the new flag for frontend.
   [cekk]
 
 6.1.10 (2024-01-16)
