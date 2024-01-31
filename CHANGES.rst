@@ -1,8 +1,17 @@
 Changelog
 =========
 
-6.1.11 (unreleased)
+6.1.12 (unreleased)
 -------------------
+
+- Nothing changed yet.
+
+
+6.1.11 (2024-01-29)
+-------------------
+
+- Added new indexer, catalog index and query operation for canale_digitale_link field of Servizio CT
+[deodorhunter]
 
 - Fixed script to update pdc with description
   [eikichi18]

@@ -1439,7 +1439,9 @@ def to_7010(context):
     # import the new interface
     logger.info(f"{colors.DARKCYAN} Setup new interface in the registry {colors.ENDC}")
     context.runImportStepFromProfile(
-        "profile-design.plone.contenttypes:fix_syndication", "plone.app.registry", False
+        "profile-design.plone.contenttypes:fix_syndication",
+        "plone.app.registry",
+        False,
     )
     logger.info(
         f"{colors.DARKCYAN} Set the old values into the new registry records{colors.ENDC}"  # noqa
@@ -1577,3 +1579,15 @@ def update_pdc_with_pdc_desc(context):
 
     commit()
     logger.info("Ends of update")
+
+
+def add_canale_digitale_link_index(context):
+    update_catalog(context)
+    update_registry(context)
+    brains = api.content.find(portal_type="Servizio")
+    logger.info(f"Found {len(brains)} Servizio content type to reindex")
+    for brain in brains:
+        service = brain.getObject()
+        service.reindexObject(idxs=["canale_digitale_link"])
+        logger.info(f"Reindexed {service.absolute_url()}")
+    logger.info("End of update, added index canale_digitale_link")
