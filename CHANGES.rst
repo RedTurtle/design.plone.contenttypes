@@ -4,7 +4,8 @@ Changelog
 6.1.12 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Remove un-needed commit in upgrade-step.
+  [cekk]
 
 
 6.1.11 (2024-01-29)

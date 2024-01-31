@@ -1576,8 +1576,6 @@ def update_pdc_with_pdc_desc(context):
                     logger.info(f"Set pdc_desc for {pdc.absolute_url()}")
 
             pdc.value_punto_contatto = value_punto_contatto
-
-    commit()
     logger.info("Ends of update")
 
 
