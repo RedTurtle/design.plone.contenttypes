@@ -18,7 +18,10 @@ Changelog
   [eikichi18]
 - Add getObjSize info in File field serializer.
   [cekk]
-
+- Add new flag in settings needed to choose to show or not auto-generated footer columns.
+  [cekk]
+- Customize @navigation endpoint to expose also the new flag for frontend.
+  [cekk]
 
 6.1.10 (2024-01-16)
 -------------------

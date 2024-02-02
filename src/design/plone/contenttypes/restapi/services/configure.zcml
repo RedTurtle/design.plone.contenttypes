@@ -6,9 +6,11 @@
 
   <include package=".content" />
   <include package=".modulistica_items" />
+  <include package=".navigation" />
   <include package=".types" />
-  <include package=".scadenziario" />
   <include package=".trasparenza" />
+  <include package=".scadenziario" />
+
 
   <adapter
       factory=".controlpanel.DesignPloneSettings"
