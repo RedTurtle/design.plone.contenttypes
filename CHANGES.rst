@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.1.12 (unreleased)
+6.1.12 (2024-02-06)
 -------------------
 
 - Remove un-needed commit in upgrade-step.
