@@ -111,7 +111,7 @@ class FileFieldViewModeSerializer(DefaultFieldSerializer):
 class ImageFieldSerializer(BaseImageFieldSerializer):
     def __call__(self):
         result = super().__call__()
-        if IEnhancedLinksEnabled.providedBy(self.context):
+        if result and IEnhancedLinksEnabled.providedBy(self.context):
             result.update(
                 {
                     "getObjSize": human_readable_size(result["size"]),
