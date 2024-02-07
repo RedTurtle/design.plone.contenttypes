@@ -14,11 +14,14 @@ from zope.interface import Interface
 class Navigation(BaseNavigation):
     def __call__(self, expand=False):
         result = super().__call__(expand=expand)
-        show_dynamic_folders_in_footer = api.portal.get_registry_record(
-            "show_dynamic_folders_in_footer",
-            interface=IDesignPloneSettings,
-            default=False,
-        )
+        try:
+            show_dynamic_folders_in_footer = api.portal.get_registry_record(
+                "show_dynamic_folders_in_footer",
+                interface=IDesignPloneSettings,
+                default=True,
+            )
+        except KeyError:
+            show_dynamic_folders_in_footer = True
         result["navigation"]["show_in_footer"] = show_dynamic_folders_in_footer
         return result
 
