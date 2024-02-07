@@ -1,10 +1,17 @@
 Changelog
 =========
 
-6.1.12 (unreleased)
+6.1.13 (unreleased)
 -------------------
 
 - Nothing changed yet.
+
+
+6.1.12 (2024-02-06)
+-------------------
+
+- Remove un-needed commit in upgrade-step.
+  [cekk]
 
 
 6.1.11 (2024-01-29)
@@ -18,6 +25,10 @@ Changelog
 - Add collective.volto.enhancedlinks dependency (needed for slate integration).
   [cekk]
 - Add enhancedlinks infos in File field serializer.
+  [cekk]
+- Add new flag in settings needed to choose to show or not auto-generated footer columns.
+  [cekk]
+- Customize @navigation endpoint to expose also the new flag for frontend.
   [cekk]
 - Add new flag in settings needed to choose to show or not auto-generated footer columns.
   [cekk]
