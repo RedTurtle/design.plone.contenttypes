@@ -4,7 +4,8 @@ Changelog
 6.1.13 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Handle missing `show_dynamic_folders_in_footer` in registry entry.
+  [cekk]
 
 
 6.1.12 (2024-02-06)
