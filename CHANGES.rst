@@ -4,7 +4,8 @@ Changelog
 6.1.14 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Change description for field sede in UnitaOrganizzativa CT.
+  [eikichi18]
 
 
 6.1.13 (2024-02-08)

@@ -96,11 +96,10 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
         default=[],
         description=_(
             "sede_help",
-            default="Seleziona il Luogo in cui questa struttura ha sede. "
-            "Se non è presente un contenuto di tipo Luogo a cui far "
-            "riferimento, puoi compilare i campi seguenti. Se selezioni un "
-            "Luogo, puoi usare comunque i campi seguenti per sovrascrivere "
-            "alcune informazioni.",
+            default="Seleziona il Luogo in cui questa struttura ha sede. Se non è "
+            "presente un contenuto di tipo Luogo a cui far riferimento, puoi "
+            "compilare i campi seguenti. Se selezioni un Luogo, puoi usare "
+            "comunque i campi seguenti per sovrascrivere alcune informazioni.",
         ),
         value_type=RelationChoice(
             title=_("Sede"), vocabulary="plone.app.vocabularies.Catalog"
