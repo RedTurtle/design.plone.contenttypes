@@ -158,7 +158,13 @@ class ScadenziarioSearchPost(BaseService):
         if "start" in query_for_catalog:
             start = query_for_catalog["start"]["query"]
         if "end" in query_for_catalog:
-            end = query_for_catalog["end"]["query"]
+            if query_for_catalog["end"].get("range", "") != "min":
+                # per esempio, è impostato il filtro "con fine evento da domani".
+                # se impostiamo un'end (la data  di domani), poi nella generazione delle ricorrenze,
+                # vengono scartati tutti gli eventi che hanno una data di inizio nel futuro
+                # (https://github.com/plone/plone.event/blob/master/plone/event/recurrence.py#L141)
+                # perché la data della ricorrenza è maggiore di "until", che è quello che qui inviamo come end.
+                end = query_for_catalog["end"]["query"]
         expanded_events = self.expand_events(events, 3, start, end)
 
         all_results = not_events + expanded_events
