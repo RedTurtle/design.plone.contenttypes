@@ -53,4 +53,6 @@ class IRicevutaPagamento(model.Schema):
         required=True,
     )
 
-    allegato = field.NamedBlobFile(title=_("allegato", default="Allegato"), required=False)
+    allegato = field.NamedBlobFile(
+        title=_("allegato", default="Allegato"), required=False
+    )

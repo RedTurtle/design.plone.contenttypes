@@ -20,7 +20,9 @@ class IDocumentoPersonale(model.Schema):
         required=True,
     )
 
-    immagine = field.NamedBlobImage(title=_("immagine", default="Immagine"), required=False)
+    immagine = field.NamedBlobImage(
+        title=_("immagine", default="Immagine"), required=False
+    )
 
     pratica_associata = field.NamedBlobFile(
         title=_("pratica_associata", default="Pratica associata"),
