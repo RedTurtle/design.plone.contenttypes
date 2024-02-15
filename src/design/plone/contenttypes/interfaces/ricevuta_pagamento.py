@@ -13,7 +13,7 @@ class IRicevutaPagamento(model.Schema):
         required=True,
     )
 
-    stampa_ricevuta = field.NamedFile(
+    stampa_ricevuta = field.NamedBlobFile(
         title=_("stampa_ricevuta", default="Stampa ricevuta"), required=True
     )
 
@@ -39,7 +39,7 @@ class IRicevutaPagamento(model.Schema):
         required=False,
     )
 
-    pratica_associata = field.NamedFile(
+    pratica_associata = field.NamedBlobFile(
         title=_("pratica_associata_ricevuta", default="Pratica associata al pagamento"),
         required=True,
     )
@@ -53,4 +53,4 @@ class IRicevutaPagamento(model.Schema):
         required=True,
     )
 
-    allegato = field.NamedFile(title=_("allegato", default="Allegato"), required=False)
+    allegato = field.NamedBlobFile(title=_("allegato", default="Allegato"), required=False)
