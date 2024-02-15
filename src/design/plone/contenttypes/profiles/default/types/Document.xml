@@ -4,6 +4,12 @@
         name="Document"
         i18n:domain="plone"
 >
+
+  <property name="default_view">view</property>
+  <property name="view_methods">
+    <element value="view" />
+  </property>
+  
   <property name="behaviors"
             purge="False"
   >
