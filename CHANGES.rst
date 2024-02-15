@@ -4,7 +4,8 @@ Changelog
 6.1.14 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Set base view to News Item, to do not break on Classic Plone.
+  [cekk]
 
 
 6.1.13 (2024-02-08)
