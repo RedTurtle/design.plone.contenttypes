@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.1.14 (unreleased)
+6.1.14 (2024-02-20)
 -------------------
 
 - Fix in @scadenziario endpoint: return future events if afterToday criteria is set.
