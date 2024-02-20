@@ -4,6 +4,7 @@
         name="Document"
         i18n:domain="plone"
 >
+
   <property name="behaviors"
             purge="False"
   >
