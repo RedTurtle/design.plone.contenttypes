@@ -6,6 +6,9 @@ Changelog
 
 - Set base view to News Item, to do not break on Classic Plone.
   [cekk]
+- Change description for field sede in UnitaOrganizzativa CT.
+- Fixed typo in update_note field description.
+  [eikichi18]
 
 
 6.1.13 (2024-02-08)
