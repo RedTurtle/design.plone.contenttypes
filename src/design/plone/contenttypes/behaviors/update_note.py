@@ -18,7 +18,7 @@ class IUpdateNote(model.Schema):
         description=_(
             "help_update_note",
             default="Inserisci una nota per indicare che il contenuto corrente è stato aggiornato."  # noqa
-            "Questo testo può essere visualizzato nei blocchi elenco con determinati layout per informare "  # noqa
+            " Questo testo può essere visualizzato nei blocchi elenco con determinati layout per informare "  # noqa
             "gli utenti che un determinato contenuto è stato aggiornato. "
             "Ad esempio se in un bando sono stati aggiunti dei documenti.",
         ),
