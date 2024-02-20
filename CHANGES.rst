@@ -4,7 +4,8 @@ Changelog
 6.1.14 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fixed typo in update_note field description.
+  [eikichi18]
 
 
 6.1.13 (2024-02-08)
