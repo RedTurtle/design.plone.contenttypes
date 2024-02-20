@@ -97,10 +97,8 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
         description=_(
             "sede_help",
             default="Seleziona il Luogo in cui questa struttura ha sede. "
-            "Se non è presente un contenuto di tipo Luogo a cui far "
-            "riferimento, puoi compilare i campi seguenti. Se selezioni un "
-            "Luogo, puoi usare comunque i campi seguenti per sovrascrivere "
-            "alcune informazioni.",
+            "Se non è presente creare il Luogo nella sezione dedicata "
+            "nell'alberatura del sito.",
         ),
         value_type=RelationChoice(
             title=_("Sede"), vocabulary="plone.app.vocabularies.Catalog"

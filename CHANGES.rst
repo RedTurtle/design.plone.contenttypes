@@ -4,6 +4,7 @@ Changelog
 6.1.14 (unreleased)
 -------------------
 
+- Change description for field sede in UnitaOrganizzativa CT.
 - Fixed typo in update_note field description.
   [eikichi18]
 
