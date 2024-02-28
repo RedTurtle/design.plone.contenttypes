@@ -17,6 +17,11 @@
     <element value="File" />
   </property>
 
+  <property name="default_view">view</property>
+  <property name="view_methods">
+    <element value="view" />
+  </property>
+
   <property name="behaviors"
             purge="False"
   >

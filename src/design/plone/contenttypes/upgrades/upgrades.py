@@ -1609,3 +1609,10 @@ def add_canale_digitale_link_index(context):
         service.reindexObject(idxs=["canale_digitale_link"])
         logger.info(f"Reindexed {service.absolute_url()}")
     logger.info("End of update, added index canale_digitale_link")
+
+
+def to_7031(context):
+    portal_types = api.portal.get_tool(name="portal_types")
+    for ptype in ["News Item"]:
+        portal_types[ptype].default_view = "view"
+        portal_types[ptype].view_methods = ["view"]
