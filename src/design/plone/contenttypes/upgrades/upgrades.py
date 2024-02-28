@@ -1579,26 +1579,6 @@ def update_pdc_with_pdc_desc(context):
     logger.info("Ends of update")
 
 
-def to_7030(context):
-    installOrReinstallProduct(api.portal.get(), "collective.volto.enhancedlinks")
-    # add behavior to modulo
-    portal_types = api.portal.get_tool(name="portal_types")
-    modulo_behaviors = [x for x in portal_types["Modulo"].behaviors]
-    if "volto.enhanced_links_enabled" not in modulo_behaviors:
-        modulo_behaviors.append("volto.enhanced_links_enabled")
-    portal_types["Modulo"].behaviors = tuple(modulo_behaviors)
-
-    # update index/metadata
-    brains = api.content.find(portal_type=["File", "Image", "Modulo"])
-    tot = len(brains)
-    i = 0
-    for brain in brains:
-        i += 1
-        if i % 100 == 0:
-            logger.info("Progress: {}/{}".format(i, tot))
-        brain.getObject().reindexObject(idxs=["enhanced_links_enabled"])
-
-
 def add_canale_digitale_link_index(context):
     update_catalog(context)
     update_registry(context)
@@ -1616,3 +1596,23 @@ def to_7031(context):
     for ptype in ["News Item"]:
         portal_types[ptype].default_view = "view"
         portal_types[ptype].view_methods = ["view"]
+
+
+def to_7100(context):
+    installOrReinstallProduct(api.portal.get(), "collective.volto.enhancedlinks")
+    # add behavior to modulo
+    portal_types = api.portal.get_tool(name="portal_types")
+    modulo_behaviors = [x for x in portal_types["Modulo"].behaviors]
+    if "volto.enhanced_links_enabled" not in modulo_behaviors:
+        modulo_behaviors.append("volto.enhanced_links_enabled")
+    portal_types["Modulo"].behaviors = tuple(modulo_behaviors)
+
+    # update index/metadata
+    brains = api.content.find(portal_type=["File", "Image", "Modulo"])
+    tot = len(brains)
+    i = 0
+    for brain in brains:
+        i += 1
+        if i % 100 == 0:
+            logger.info("Progress: {}/{}".format(i, tot))
+        brain.getObject().reindexObject(idxs=["enhanced_links_enabled"])

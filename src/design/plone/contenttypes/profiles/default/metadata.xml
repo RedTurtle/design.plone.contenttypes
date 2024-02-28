@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
-  <version>7031</version>
+  <version>7100</version>
   <dependencies>
     <dependency>profile-redturtle.bandi:default</dependency>
     <dependency>profile-collective.venue:default</dependency>
