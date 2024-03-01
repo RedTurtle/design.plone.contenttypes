@@ -4,7 +4,8 @@ Changelog
 6.1.15 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add dependency with collective.volto.enhancedlinks.
+  [cekk]
 
 
 6.1.14 (2024-02-20)
@@ -17,7 +18,6 @@ Changelog
 - Change description for field sede in UnitaOrganizzativa CT.
 - Fixed typo in update_note field description.
   [eikichi18]
-
 
 
 6.1.13 (2024-02-08)
