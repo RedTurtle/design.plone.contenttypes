@@ -1,7 +1,40 @@
 Changelog
 =========
 
-6.1.11 (unreleased)
+6.1.15 (unreleased)
+-------------------
+
+- Nothing changed yet.
+
+
+6.1.14 (2024-02-20)
+-------------------
+
+- Fix in @scadenziario endpoint: return future events if afterToday criteria is set.
+  [cekk]
+- Set base view to News Item, to do not break on Classic Plone.
+  [cekk]
+- Change description for field sede in UnitaOrganizzativa CT.
+- Fixed typo in update_note field description.
+  [eikichi18]
+
+
+
+6.1.13 (2024-02-08)
+-------------------
+
+- Handle missing `show_dynamic_folders_in_footer` in registry entry.
+  [cekk]
+
+
+6.1.12 (2024-02-06)
+-------------------
+
+- Remove un-needed commit in upgrade-step.
+  [cekk]
+
+
+6.1.11 (2024-01-29)
 -------------------
 
 - Added new indexer, catalog index and query operation for canale_digitale_link field of Servizio CT
@@ -13,6 +46,11 @@ Changelog
   [cekk]
 - Add enhancedlinks infos in File field serializer.
   [cekk]
+- Add new flag in settings needed to choose to show or not auto-generated footer columns.
+  [cekk]
+- Customize @navigation endpoint to expose also the new flag for frontend.
+  [cekk]
+
 
 6.1.10 (2024-01-16)
 -------------------

@@ -810,12 +810,22 @@
   </genericsetup:upgradeSteps>
   <genericsetup:upgradeSteps
       profile="design.plone.contenttypes:default"
-      source="7022"
+      source="7023"
       destination="7030"
       >
     <genericsetup:upgradeStep
-        title="Add collective.volto.enhancedlinks"
-        handler=".upgrades.to_7030"
+        title="Add new field in settings"
+        handler=".upgrades.update_registry"
+        />
+  </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="7030"
+      destination="7031"
+      >
+    <genericsetup:upgradeStep
+        title="Set base views to content-types"
+        handler=".upgrades.to_7031"
         />
   </genericsetup:upgradeSteps>
 </configure>

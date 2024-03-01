@@ -10,7 +10,7 @@
 
 - [Design Plone Content-types](#design-plone-content-types)
 - [Features](#features)
-- [Compatibilità](#compatibilit%C3%A0)
+- [Compatibilità](#compatibilità)
 - [Tipi di contenuto](#tipi-di-contenuto)
   - [Elenco tipi implementati](#elenco-tipi-implementati)
   - [Bando](#bando)
@@ -30,10 +30,11 @@
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-2)
   - [Servizio](#servizio)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-3)
-  - [Unità Organizzativa](#unit%C3%A0-organizzativa)
+  - [Unità Organizzativa](#unità-organizzativa)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-4)
 - [Pannello di controllo](#pannello-di-controllo)
 - [Gestione modulistica](#gestione-modulistica)
+- [Viste verifica contentuti](#viste-verifica-contentuti)
 - [Data di modifica](#data-di-modifica)
 - [Endpoint restapi](#endpoint-restapi)
   - [Customizzazione dati relation field](#customizzazione-dati-relation-field)
@@ -420,6 +421,10 @@ Endpoint ed expansion per la modulistica.
 
 Nei content-type CartellaModulistica, tra i vari expansion c'è anche `@modulistica_items`.
 Questo è utile per la vista di frontend, in quanto se richiamato, ritorna la struttura di dati da mostrare in visualizzazione.
+
+## @navigation
+
+Endpoint customizzato da plone.restapi per esporre anche il valore show_in_footer per decidere se disegnare o meno le colonne dinamiche nel footer.
 
 # Installazione
 
