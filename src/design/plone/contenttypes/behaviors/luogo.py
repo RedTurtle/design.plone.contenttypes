@@ -57,7 +57,7 @@ class ILuogo(model.Schema):
             default="Indicare tutte le informazioni relative alla modalità di"
             " accesso al luogo",
         ),
-        required=True,
+        required=False,
     )
 
     struttura_responsabile_correlati = RelationList(

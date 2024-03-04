@@ -56,7 +56,6 @@ class TestNewsSchema(unittest.TestCase):
                 "plone.textindexer",
                 "plone.translatable",
                 "kitconcept.seo",
-                "collective.taxonomy.generated.tipologia_notizia",
             ),
         )
 
@@ -105,7 +104,6 @@ class TestNewsSchema(unittest.TestCase):
                     "descrizione_estesa",
                     "a_cura_di",
                     "tassonomia_argomenti",
-                    "tipologia_notizia",
                     "description",
                 ]
             ),
@@ -131,7 +129,6 @@ class TestNewsSchema(unittest.TestCase):
                 "a_cura_di_persone",
                 "luoghi_correlati",
                 "tassonomia_argomenti",
-                "tipologia_notizia",
             ],
         )
 
@@ -235,8 +232,6 @@ class TestNewsApi(unittest.TestCase):
 
         self.assertEqual(response.status_code, 400)
         message = response.json()["message"]
-        # TODO: anche `tipologia_notizia` è obbligatorio ?
-        # self.assertIn("tipologia_notizia", message)
         self.assertIn("descrizione_estesa", message)
 
         text_uuid = str(uuid4())
@@ -245,10 +240,6 @@ class TestNewsApi(unittest.TestCase):
             json={
                 "@type": "News Item",
                 "title": "Foo",
-                # TODO: se la tipologia non è nel vocabolario della
-                # tassonomia, il server restituisce un errore 500
-                # "tipologia_notizia": "foo",
-                "tipologia_notizia": "avviso",
                 "a_cura_di": self.document.UID(),
                 # campo obbligatorio
                 "description": "Test",
@@ -273,10 +264,6 @@ class TestNewsApi(unittest.TestCase):
             json={
                 "@type": "News Item",
                 "title": "Foo",
-                # TODO: se la tipologia non è nel vocabolario della
-                # tassonomia, il server restituisce un errore 500
-                # "tipologia_notizia": "foo",
-                "tipologia_notizia": "avviso",
                 "a_cura_di": self.document.UID(),
                 # campo obbligatorio
                 "description": "Test",

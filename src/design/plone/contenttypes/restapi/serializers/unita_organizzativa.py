@@ -5,9 +5,6 @@ from design.plone.contenttypes.interfaces.unita_organizzativa import IUnitaOrgan
 from design.plone.contenttypes.restapi.serializers.summary import (
     DefaultJSONSummarySerializer,
 )
-from design.plone.contenttypes.restapi.serializers.summary import (
-    get_taxonomy_information,
-)
 from plone import api
 from plone.restapi.interfaces import ISerializeToJson
 from plone.restapi.interfaces import ISerializeToJsonSummary
@@ -133,8 +130,6 @@ class UOJSONSummarySerializer(DefaultJSONSummarySerializer):
                 data[field] = getattr(self.context, field, "")
 
         data["geolocation"] = self.getGeolocation()
-
-        get_taxonomy_information("tipologia_organizzazione", self.context, data)
 
         return data
 

@@ -64,7 +64,6 @@ setup(
         "redturtle.volto>=5.0.0",
         "redturtle.bandi",
         "z3c.unconfigure",
-        "eea.api.taxonomy",
         "openpyxl",
         "collective.volto.enhancedlinks",
     ],

@@ -32,7 +32,6 @@
     <element value="design.plone.contenttypes.behavior.address_event" />
     <element value="design.plone.contenttypes.behavior.geolocation_event" />
     <element value="design.plone.contenttypes.behavior.strutture_correlate" />
-    <element value="design.plone.contenttypes.behavior.contatti_event" />
     <element value="plone.dublincore" />
     <element value="plone.namefromtitle" />
     <element value="plone.allowdiscussion" />
@@ -45,7 +44,6 @@
     <element value="plone.textindexer" />
     <element value="plone.translatable" />
     <element value="kitconcept.seo" />
-    <element value="collective.taxonomy.generated.tipologia_evento" />
     <!-- remove unused behaviors -->
     <element remove="True"
              value="plone.eventlocation"

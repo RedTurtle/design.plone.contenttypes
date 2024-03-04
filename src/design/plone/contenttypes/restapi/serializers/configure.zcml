@@ -5,14 +5,7 @@
 
   <!-- summary -->
   <adapter factory=".summary.DefaultJSONSummarySerializer" />
-  <adapter factory=".summary.IncaricoDefaultJSONSummarySerializer" />
   <adapter factory=".summary.PersonaDefaultJSONSummarySerializer" />
-  <adapter factory=".summary.PuntoDiContattoDefaultJSONSummarySerializer" />
-  <adapter factory=".summary.EventDefaultJSONSummarySerializer" />
-  <adapter factory=".summary.NewsDefaultJSONSummarySerializer" />
-  <adapter factory=".summary.DatasetDefaultJSONSummarySerializer" />
-  <adapter factory=".summary.DocumentoPubblicoDefaultJSONSummarySerializer" />
-  <adapter factory=".summary.PraticaDefaultJSONSummarySerializer" />
   <adapter factory=".modulo.SerializeModuloToJsonSummary" />
   <adapter factory=".servizio.SerializeServizioToJsonSummary" />
   <adapter factory=".unita_organizzativa.UOJSONSummarySerializer" />
@@ -24,7 +17,6 @@
   <adapter factory=".dxfields.FileFieldViewModeSerializer" />
   <adapter factory=".dxfields.ImageFieldSerializer" />
   <adapter factory=".dxfields.SourceTextSerializer" />
-  <adapter factory=".dxfields.TempiEScadenzeValueSerializer" />
   <adapter factory=".dxfields.ServizioTextLineFieldSerializer" />
   <adapter factory=".persona.PersonaSerializer" />
   <adapter factory=".related_news_serializer.ServizioSerializer" />
@@ -34,6 +26,5 @@
   <adapter factory=".bando.BandoSerializer" />
   <adapter factory=".documento.DocumentoSerializer" />
   <adapter factory=".cartella_modulistica.CartellaModulisticaSerializer" />
-  <adapter factory=".punto_di_contatto.PuntoDiContattoSerializer" />
 
 </configure>

@@ -32,7 +32,6 @@
     <element value="plone.textindexer" />
     <element value="plone.translatable" />
     <element value="kitconcept.seo" />
-    <element value="collective.taxonomy.generated.tipologia_notizia" />
     <element remove="True"
              value="design.plone.contenttypes.behavior.argomenti"
     />

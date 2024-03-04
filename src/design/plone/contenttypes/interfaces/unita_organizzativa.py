@@ -24,7 +24,7 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
             "uo_competenze_help",
             default="Descrizione dei compiti assegnati alla struttura.",
         ),
-        required=True,
+        required=False,
     )
 
     legami_con_altre_strutture = RelationList(
@@ -103,7 +103,7 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
         value_type=RelationChoice(
             title=_("Sede"), vocabulary="plone.app.vocabularies.Catalog"
         ),
-        required=True,
+        required=False,
     )
 
     sedi_secondarie = RelationList(
@@ -123,28 +123,6 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
         required=False,
     )
 
-    documenti_pubblici = RelationList(
-        title=_("documenti_pubblici_label", default="Documenti pubblici"),
-        default=[],
-        description=_(
-            "documenti_pubblici_help",
-            default="Documenti pubblici importanti, collegati a questa Unità Organizzativa",  # noqa
-        ),
-        value_type=RelationChoice(
-            title=_("Documenti pubblici"), vocabulary="plone.app.vocabularies.Catalog"
-        ),
-        required=False,
-    )
-
-    #  custom widgets
-    form.widget(
-        "documenti_pubblici",
-        RelatedItemsFieldWidget,
-        vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={
-            "selectableTypes": ["Documento"],
-        },
-    )
     form.widget(
         "persone_struttura",
         RelatedItemsFieldWidget,
@@ -221,14 +199,7 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
         fields=["sede", "sedi_secondarie"],
     )
 
-    model.fieldset(
-        "correlati",
-        label=_("correlati_label", default="Contenuti collegati"),
-        fields=["documenti_pubblici"],
-    )
-
     form.order_after(sedi_secondarie="IContattiUnitaOrganizzativa.orario_pubblico")
-    form.order_after(documenti_pubblici="relatedItems")
     # form.order_after(contact_info="sedi_secondarie")
 
     # SearchableText indexers

@@ -114,7 +114,6 @@ class SummarySerializerTest(unittest.TestCase):
 
         result = response.json()
         items = result.get("items", [])
-
         self.assertEqual(len(items), 2)
         self.assertEqual(items[0]["id"], "multimedia")
         self.assertEqual(items[1]["id"], "documenti-allegati")
@@ -196,7 +195,6 @@ class SummarySerializerTest(unittest.TestCase):
             container=self.portal,
             type="News Item",
             title="News",
-            tipologia_notizia="foo",
         )
         commit()
 
@@ -239,7 +237,6 @@ class SummarySerializerTest(unittest.TestCase):
             container=self.portal,
             type="News Item",
             title="News",
-            tipologia_notizia="foo",
         )
 
         news.tassonomia_argomenti = [RelationValue(intids.getId(argomento))]
@@ -250,8 +247,8 @@ class SummarySerializerTest(unittest.TestCase):
             "@search?portal_type=News Item&metadata_fields=tassonomia_argomenti"
         )
         result = response.json()
-        items = result.get("items", [])
 
+        items = result.get("items", [])
         self.assertEqual(len(items), 1)
         self.assertEqual(len(items[0]["tassonomia_argomenti"]), 1)
         self.assertEqual(items[0]["tassonomia_argomenti"][0]["title"], argomento.title)
@@ -269,7 +266,6 @@ class SummarySerializerTest(unittest.TestCase):
             container=self.portal,
             type="News Item",
             title="News",
-            tipologia_notizia="foo",
         )
 
         news.tassonomia_argomenti = [RelationValue(intids.getId(argomento))]

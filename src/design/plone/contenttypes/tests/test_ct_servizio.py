@@ -122,14 +122,8 @@ class TestServizioSchema(unittest.TestCase):
             sorted(
                 [
                     "title",
-                    "tassonomia_argomenti",
-                    "a_chi_si_rivolge",
-                    "come_si_fa",
-                    "cosa_si_ottiene",
                     "cosa_serve",
-                    "tempi_e_scadenze",
                     "ufficio_responsabile",
-                    "contact_info",
                     "description",
                 ]
             ),
@@ -148,15 +142,12 @@ class TestServizioSchema(unittest.TestCase):
                 "sottotitolo",
                 "stato_servizio",
                 "motivo_stato_servizio",
-                "condizioni_di_servizio",
                 "image",
                 "image_caption",
                 "preview_image",
                 "preview_caption",
                 "correlato_in_evidenza",
                 "tassonomia_argomenti",
-                "person_life_events",
-                "business_events",
             ],
         )
 
@@ -192,8 +183,6 @@ class TestServizioSchema(unittest.TestCase):
                 "cosa_si_ottiene",
                 "procedure_collegate",
                 "canale_digitale",
-                "canale_digitale_link",
-                "canale_fisico",
                 "dove_rivolgersi",
                 "dove_rivolgersi_extra",
                 "prenota_appuntamento",
@@ -224,7 +213,7 @@ class TestServizioSchema(unittest.TestCase):
         resp = self.api_session.get("@types/Servizio").json()
         self.assertEqual(
             resp["fieldsets"][6]["fields"],
-            ["tempi_e_scadenze", "timeline_tempi_scadenze"],
+            ["tempi_e_scadenze"],
         )
 
     def test_servizio_fields_casi_particolari_fieldset(self):
@@ -241,7 +230,7 @@ class TestServizioSchema(unittest.TestCase):
         resp = self.api_session.get("@types/Servizio").json()
         self.assertEqual(
             resp["fieldsets"][8]["fields"],
-            ["ufficio_responsabile", "area", "contact_info"],
+            ["ufficio_responsabile", "area"],
         )
 
     def test_servizio_fields_documenti_fieldset(self):
@@ -369,11 +358,6 @@ class TestServizioApi(unittest.TestCase):
             )
             self.assertTrue(properties[field]["type"] == "array")
 
-    def test_canale_digitale_link_widget_set_in_schema(self):
-        response = self.api_session.get("/@types/Servizio")
-        res = response.json()
-        self.assertEqual(res["properties"]["canale_digitale_link"]["widget"], "url")
-
     def test_sottotitolo_indexed_in_searchabletext(self):
         #  Servizio is the only ct with this field
         servizio = api.content.create(
@@ -486,88 +470,3 @@ class TestServizioApi(unittest.TestCase):
         commit()
         res = self.api_session.get(servizio.absolute_url()).json()
         self.assertEqual(res["canale_digitale_link"], page.absolute_url())
-
-    def test_canale_digitale_link_deserialized_as_plone_internal_url(self):
-        page = api.content.create(
-            container=self.portal, type="Document", title="Document"
-        )
-
-        servizio = api.content.create(
-            container=self.portal,
-            type="Servizio",
-            title="Test servizio",
-            description="xxx",
-            a_chi_si_rivolge={
-                "blocks": {"xxx": {"@type": "foo", "searchableText": "aiuto"}},
-                "blocks_layout": {"items": ["xxx"]},
-            },
-            canale_digitale={
-                "blocks": {"xxx": {"@type": "foo", "searchableText": "aiuto"}},
-                "blocks_layout": {"items": ["xxx"]},
-            },
-            come_si_fa={
-                "blocks": {"xxx": {"@type": "foo", "searchableText": "aiuto"}},
-                "blocks_layout": {"items": ["xxx"]},
-            },
-            cosa_serve={
-                "blocks": {"xxx": {"@type": "foo", "searchableText": "aiuto"}},
-                "blocks_layout": {"items": ["xxx"]},
-            },
-            cosa_si_ottiene={
-                "blocks": {"xxx": {"@type": "foo", "searchableText": "aiuto"}},
-                "blocks_layout": {"items": ["xxx"]},
-            },
-            tempi_e_scadenze={
-                "blocks": {"xxx": {"@type": "foo", "searchableText": "aiuto"}},
-                "blocks_layout": {"items": ["xxx"]},
-            },
-        )
-
-        commit()
-
-        self.api_session.patch(
-            servizio.absolute_url(),
-            json={"canale_digitale_link": page.absolute_url()},
-        )
-
-        commit()
-        self.assertEqual(
-            servizio.canale_digitale_link,
-            "${{portal_url}}/resolveuid/{}".format(page.UID()),
-        )
-
-    def test_cant_patch_servizio_that_has_no_required_fields(self):
-        service = api.content.create(
-            container=self.portal, type="Servizio", title="Foo"
-        )
-        commit()
-        resp = self.api_session.patch(
-            service.absolute_url(),
-            json={
-                "title": "Foo modified",
-            },
-        )
-        self.assertEqual(resp.status_code, 400)
-        self.assertIn("La descrizione è obbligatoria", resp.json()["message"])
-
-    def test_can_sort_service_that_has_no_required_fields(self):
-        document = api.content.create(
-            container=self.portal, type="Document", title="Document"
-        )
-        service = api.content.create(
-            container=self.portal, type="Servizio", title="Foo"
-        )
-        commit()
-
-        self.assertEqual(document, self.portal.listFolderContents()[0])
-        self.assertEqual(service, self.portal.listFolderContents()[1])
-
-        resp = self.api_session.patch(
-            self.portal_url,
-            json={"ordering": {"delta": -1, "obj_id": service.getId()}},
-        )
-        commit()
-
-        self.assertEqual(resp.status_code, 204)
-        self.assertEqual(document, self.portal.listFolderContents()[1])
-        self.assertEqual(service, self.portal.listFolderContents()[0])

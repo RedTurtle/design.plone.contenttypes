@@ -3,9 +3,6 @@ from design.plone.contenttypes.interfaces.servizio import IServizio
 from design.plone.contenttypes.restapi.serializers.summary import (
     DefaultJSONSummarySerializer,
 )
-from design.plone.contenttypes.restapi.serializers.summary import (
-    get_taxonomy_information,
-)
 from plone.dexterity.utils import iterSchemata
 from plone.restapi.interfaces import IFieldSerializer
 from plone.restapi.interfaces import ISerializeToJsonSummary
@@ -37,6 +34,4 @@ class SerializeServizioToJsonSummary(DefaultJSONSummarySerializer):
         parent = self.context.aq_inner.aq_parent
         summary["parent_title"] = parent.title
         summary["parent_url"] = parent.absolute_url()
-        get_taxonomy_information("person_life_events", self.context, summary)
-        get_taxonomy_information("business_events", self.context, summary)
         return summary

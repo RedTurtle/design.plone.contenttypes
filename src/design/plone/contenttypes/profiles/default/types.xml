@@ -2,21 +2,11 @@
 <object meta_type="Plone Types Tool"
         name="portal_types"
 >
-  <property name="title">Controls the available contenttypes in your portal</property>
   <object meta_type="Dexterity FTI"
           name="CartellaModulistica"
   />
   <object meta_type="Dexterity FTI"
-          name="Dataset"
-  />
-  <object meta_type="Dexterity FTI"
-          name="Documento Personale"
-  />
-  <object meta_type="Dexterity FTI"
           name="Documento"
-  />
-  <object meta_type="Dexterity FTI"
-          name="Messaggio"
   />
   <object meta_type="Dexterity FTI"
           name="Modulo"
@@ -28,21 +18,9 @@
           name="Persona"
   />
   <object meta_type="Dexterity FTI"
-          name="Pratica"
-  />
-  <object meta_type="Dexterity FTI"
-          name="RicevutaPagamento"
-  />
-  <object meta_type="Dexterity FTI"
           name="Servizio"
   />
   <object meta_type="Dexterity FTI"
           name="UnitaOrganizzativa"
-  />
-  <object meta_type="Dexterity FTI"
-          name="Incarico"
-  />
-  <object meta_type="Dexterity FTI"
-          name="PuntoDiContatto"
   />
 </object>

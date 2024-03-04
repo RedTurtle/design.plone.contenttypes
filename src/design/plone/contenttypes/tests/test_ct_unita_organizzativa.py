@@ -102,12 +102,8 @@ class TestUOSchema(unittest.TestCase):
             sorted(resp["required"]),
             sorted(
                 [
-                    "title",
-                    "competenze",
-                    "tipologia_organizzazione",
-                    "sede",
-                    "contact_info",
                     "description",
+                    "title",
                 ]
             ),
         )
@@ -148,7 +144,6 @@ class TestUOSchema(unittest.TestCase):
                 "legami_con_altre_strutture",
                 "responsabile",
                 "assessore_riferimento",
-                "tipologia_organizzazione",
             ],
         )
 
@@ -169,7 +164,7 @@ class TestUOSchema(unittest.TestCase):
         resp = self.api_session.get("@types/UnitaOrganizzativa").json()
         self.assertEqual(
             resp["fieldsets"][4]["fields"],
-            ["contact_info", "sede", "sedi_secondarie", "orario_pubblico"],
+            ["sede", "sedi_secondarie"],
         )
 
     def test_uo_fields_correlati_fieldset(self):
@@ -193,7 +188,7 @@ class TestUOSchema(unittest.TestCase):
             resp["fieldsets"][6]["fields"],
             # ["subjects", "language"] BBB dovrebbe essere così
             # ma nei test esce così perché non viene vista la patch di SchemaTweaks
-            ["subjects", "language", "relatedItems", "documenti_pubblici"],
+            ["subjects", "language", "relatedItems"],
         )
 
     def test_uo_fields_informazioni_fieldset(self):
@@ -343,7 +338,6 @@ class TestUO(unittest.TestCase):
             "zip_code",
             "city",
             "country",
-            "orario_pubblico",
             "telefono",
             "email",
             "pec",
@@ -457,35 +451,3 @@ class TestUO(unittest.TestCase):
             self.service.absolute_url(),
             [i["@id"] for i in response.json()["prestazioni"]],
         )
-
-    def test_cant_patch_uo_that_has_no_required_fields(self):
-        uo = api.content.create(
-            container=self.portal, type="UnitaOrganizzativa", title="Foo"
-        )
-        commit()
-        resp = self.api_session.patch(
-            uo.absolute_url(),
-            json={
-                "title": "Foo modified",
-            },
-        )
-        self.assertEqual(resp.status_code, 400)
-        self.assertIn("La descrizione è obbligatoria", resp.json()["message"])
-
-    def test_can_sort_uo_that_has_no_required_fields(self):
-        uo = api.content.create(
-            container=self.portal, type="UnitaOrganizzativa", title="Foo"
-        )
-        commit()
-        self.assertEqual(self.bando, self.portal.listFolderContents()[-2])
-        self.assertEqual(uo, self.portal.listFolderContents()[-1])
-
-        resp = self.api_session.patch(
-            self.portal_url,
-            json={"ordering": {"delta": -1, "obj_id": uo.getId()}},
-        )
-        commit()
-
-        self.assertEqual(resp.status_code, 204)
-        self.assertEqual(self.bando, self.portal.listFolderContents()[-1])
-        self.assertEqual(uo, self.portal.listFolderContents()[-2])

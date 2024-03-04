@@ -33,7 +33,6 @@ class TestBaseSerializer(unittest.TestCase):
         self.news = api.content.create(
             container=self.portal, type="News Item", title="TestNews"
         )
-        self.news.tipologia_notizia = "Comunicati stampa"
         self.service = api.content.create(
             container=self.portal, type="Servizio", title="TestService"
         )
@@ -42,22 +41,8 @@ class TestBaseSerializer(unittest.TestCase):
     def tearDown(self):
         self.api_session.close()
 
-    def test_design_italia_meta_type_with_news(self):
-        """
-        News should return the news type (tipologia_notizia field)
-        Other types shoule return their own portal_type.
-        """
-        response_news = self.api_session.get(self.news.absolute_url() + "?fullobjects")
-        self.assertEqual(
-            response_news.json()["design_italia_meta_type"],
-            "Notizie e comunicati stampa",
-        )
-
-    def test_design_italia_meta_type_with_type_different_from_news(self):
-        """
-        News should return the news type (tipologia_notizia field)
-        Other types shoule return their own portal_type.
-        """
+    def test_design_italia_meta_type(self):
+        """ """
         response_service = self.api_session.get(
             self.service.absolute_url() + "?fullobjects"
         )

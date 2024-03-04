@@ -167,7 +167,7 @@ class IArgomentiEvento(IArgomentiSchema):
             title=_("Argomenti correlati"),
             vocabulary="plone.app.vocabularies.Catalog",
         ),
-        required=True,
+        required=False,
         default=[],
     )
 
@@ -185,7 +185,7 @@ class IArgomentiServizio(IArgomentiSchema):
             title=_("Argomenti correlati"),
             vocabulary="plone.app.vocabularies.Catalog",
         ),
-        required=True,
+        required=False,
         default=[],
     )
 
@@ -205,7 +205,7 @@ class IArgomentiDocumento(IArgomentiSchema):
             title=_("Argomenti correlati"),
             vocabulary="plone.app.vocabularies.Catalog",
         ),
-        required=True,
+        required=False,
         default=[],
     )
 

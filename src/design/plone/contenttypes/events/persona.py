@@ -27,7 +27,6 @@ FOLDERS = [
         "contains": ("File",),
     },
     {"id": "altre-cariche", "title": "Altre cariche", "contains": ("File",)},
-    {"id": "incarichi", "title": "Incarichi", "contains": ("Incarico",)},
 ]
 
 

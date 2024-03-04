@@ -30,7 +30,7 @@ class IEvento(model.Schema):
 
     descrizione_estesa = BlocksField(
         title=_("descrizione_estesa", default="Descrizione estesa"),
-        required=True,
+        required=False,
         description=_(
             "descrizione_estesa_help",
             default="Descrizione dettagliata e completa.",
@@ -39,7 +39,7 @@ class IEvento(model.Schema):
 
     descrizione_destinatari = BlocksField(
         title=_("a_chi_si_rivolge_label", default="A chi è rivolto"),
-        required=True,
+        required=False,
         description=_(
             "a_chi_si_rivolge_help",
             default="Descrizione testuale dei principali destinatari dell'Evento",

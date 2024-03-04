@@ -32,15 +32,6 @@
       />
 
   <genericsetup:registerProfile
-      name="taxonomy"
-      title="Design Plone: Content-types (behaviors)"
-      description="Registers taxonomies."
-      provides="Products.GenericSetup.interfaces.EXTENSION"
-      directory="profiles/behaviors"
-      post_handler=".setuphandlers.post_install_taxonomy"
-      />
-
-  <genericsetup:registerProfile
       name="uninstall"
       title="Design Plone: Content-types (uninstall)"
       description="Uninstalls the design.plone.contenttypes add-on."

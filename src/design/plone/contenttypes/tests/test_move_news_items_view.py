@@ -31,13 +31,11 @@ class MoveNewsItemView(unittest.TestCase):
         self.news_item = api.content.create(
             type="News Item",
             title="news item",
-            tipologia_notizia="notizia",
             container=self.portal,
         )
         self.news_item1 = api.content.create(
             type="News Item",
             title="news item1",
-            tipologia_notizia="notizia",
             container=self.news_container,
         )
 

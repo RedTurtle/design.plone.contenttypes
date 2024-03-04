@@ -19,7 +19,7 @@ from zope.interface import provider
 class INewsAdditionalFields(model.Schema):
     descrizione_estesa = BlocksField(
         title=_("descrizione_estesa", default="Descrizione estesa"),
-        required=True,
+        required=False,
         description=_(
             "descrizione_estesa_help",
             default="Descrizione dettagliata e completa.",
@@ -41,7 +41,7 @@ class INewsAdditionalFields(model.Schema):
             default="Seleziona l'ufficio di comunicazione responsabile di "
             "questa notizia/comunicato stampa.",
         ),
-        required=True,
+        required=False,
         default=[],
         value_type=RelationChoice(vocabulary="plone.app.vocabularies.Catalog"),
     )

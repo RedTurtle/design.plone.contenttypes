@@ -60,16 +60,6 @@
            zope.lifecycleevent.interfaces.IObjectAddedEvent"
       handler=".bando.bandoCreateHandler"
       />
-  <subscriber
-      for="design.plone.contenttypes.interfaces.incarico.IIncarico
-           zope.lifecycleevent.interfaces.IObjectAddedEvent"
-      handler=".incarico.incaricoCreateHandler"
-      />
-  <subscriber
-      for="design.plone.contenttypes.interfaces.incarico.IIncarico
-           zope.lifecycleevent.interfaces.IObjectModifiedEvent"
-      handler=".incarico.modify_incarico"
-      />
   <!-- common -->
   <subscriber
       for="plone.dexterity.interfaces.IDexterityContent
