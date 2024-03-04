@@ -835,6 +835,7 @@
       >
     <genericsetup:upgradeStep
         title="Add collective.volto.enhancedlinks"
-        handler=".upgrades.to_7100" />
+        handler=".upgrades.to_7100"
+        />
   </genericsetup:upgradeSteps>
 </configure>
