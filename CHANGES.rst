@@ -4,7 +4,10 @@ Changelog
 6.1.15 (unreleased)
 -------------------
 
-- Fix in @scadenziario endpoint: return future events if afterToday criteria is set.
+- Remove unused behavior (design.plone.contenttypes.behavior.geolocation_uo).
+  [cekk]
+- Move id/title mapping for automatic created children (with events) in separate variables,
+  so they can be easily overrided.
   [cekk]
 
 
@@ -18,7 +21,6 @@ Changelog
 - Change description for field sede in UnitaOrganizzativa CT.
 - Fixed typo in update_note field description.
   [eikichi18]
-
 
 
 6.1.13 (2024-02-08)
@@ -43,13 +45,7 @@ Changelog
 
 - Fixed script to update pdc with description
   [eikichi18]
-- Add collective.volto.enhancedlinks dependency (needed for slate integration).
-  [cekk]
-- Add enhancedlinks infos in File field serializer.
-  [cekk]
-- Add new flag in settings needed to choose to show or not auto-generated footer columns.
-  [cekk]
-- Customize @navigation endpoint to expose also the new flag for frontend.
+- Add getObjSize info in File field serializer.
   [cekk]
 - Add new flag in settings needed to choose to show or not auto-generated footer columns.
   [cekk]
@@ -72,8 +68,6 @@ Changelog
 6.1.9 (2024-01-11)
 ------------------
 
-- Do not show fieldsets with no visible fields in @types endpoint.
-  [cekk]
 - Add UID to UOJSONSummarySerializer
   [eikichi18]
 
