@@ -117,6 +117,7 @@ class TestEventSchema(unittest.TestCase):
                     "tassonomia_argomenti",
                     "tipologia_evento",
                     "start",
+                    "prezzo",
                     "end",
                     "descrizione_estesa",
                     "descrizione_destinatari",
@@ -150,7 +151,7 @@ class TestEventSchema(unittest.TestCase):
                 "recurrence",
                 "sottotitolo",
                 "tipologia_evento",
-            ]
+            ],
             # should be like this with SchemaTweaks
             # [
             #     "title",
@@ -281,7 +282,7 @@ class TestEventSchema(unittest.TestCase):
         resp = self.api_session.get("@types/Event").json()
         self.assertEqual(
             resp["fieldsets"][7]["fields"],
-            ["subjects", "language", "relatedItems"]
+            ["subjects", "language", "relatedItems"],
             # should be like this with SchemaTweaks
             # ["subjects", "language"],
         )
