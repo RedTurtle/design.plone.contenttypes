@@ -14,6 +14,7 @@ import collective.taxonomy
 import collective.venue
 import collective.volto.blocksfield
 import collective.volto.cookieconsent
+import collective.volto.enhancedlinks
 import collective.z3cform.datagridfield
 import design.plone.contenttypes
 import eea.api.taxonomy
@@ -32,6 +33,7 @@ class DesignPloneContenttypesLayer(RedturtleVoltoLayer):
         super().setUpZope(app, configurationContext)
         self.loadZCML(package=collective.venue)
         self.loadZCML(package=collective.volto.blocksfield)
+        self.loadZCML(package=collective.volto.enhancedlinks)
         self.loadZCML(package=design.plone.contenttypes, context=configurationContext)
         self.loadZCML(package=plone.formwidget.geolocation)
         self.loadZCML(name="overrides.zcml", package=design.plone.contenttypes)
@@ -71,6 +73,7 @@ class DesignPloneContenttypesRestApiLayer(RedturtleVoltoRestApiLayer):
         super().setUpZope(app, configurationContext)
         self.loadZCML(package=collective.venue)
         self.loadZCML(package=collective.volto.blocksfield)
+        self.loadZCML(package=collective.volto.enhancedlinks)
         self.loadZCML(package=design.plone.contenttypes, context=configurationContext)
         self.loadZCML(package=plone.formwidget.geolocation)
         self.loadZCML(package=eea.api.taxonomy)

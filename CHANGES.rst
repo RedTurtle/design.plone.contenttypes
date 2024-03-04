@@ -4,7 +4,8 @@ Changelog
 6.1.15 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add dependency with collective.volto.enhancedlinks.
+  [cekk]
 
 
 6.1.14 (2024-02-20)
@@ -17,7 +18,6 @@ Changelog
 - Change description for field sede in UnitaOrganizzativa CT.
 - Fixed typo in update_note field description.
   [eikichi18]
-
 
 
 6.1.13 (2024-02-08)
@@ -42,12 +42,15 @@ Changelog
 
 - Fixed script to update pdc with description
   [eikichi18]
-- Add getObjSize info in File field serializer.
+- Add collective.volto.enhancedlinks dependency (needed for slate integration).
+  [cekk]
+- Add enhancedlinks infos in File field serializer.
   [cekk]
 - Add new flag in settings needed to choose to show or not auto-generated footer columns.
   [cekk]
 - Customize @navigation endpoint to expose also the new flag for frontend.
   [cekk]
+
 
 6.1.10 (2024-01-16)
 -------------------

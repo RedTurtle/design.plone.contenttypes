@@ -8,14 +8,14 @@ from plone import api
 import unittest
 
 
-class TestDocument(unittest.TestCase):
+class TestModulo(unittest.TestCase):
     layer = DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING
 
     def setUp(self):
         """Custom shared utility setup for tests."""
         self.portal = self.layer["portal"]
 
-    def test_behaviors_enabled_for_documento(self):
+    def test_behaviors_enabled_for_modulo(self):
         portal_types = api.portal.get_tool(name="portal_types")
         self.assertEqual(
             portal_types["Modulo"].behaviors,
@@ -29,5 +29,6 @@ class TestDocument(unittest.TestCase):
                 "plone.locking",
                 "design.plone.contenttypes.behavior.multi_file",
                 "plone.translatable",
+                "volto.enhanced_links_enabled",
             ),
         )

@@ -66,6 +66,7 @@ setup(
         "z3c.unconfigure",
         "eea.api.taxonomy",
         "openpyxl",
+        "collective.volto.enhancedlinks",
     ],
     extras_require={
         "test": [
