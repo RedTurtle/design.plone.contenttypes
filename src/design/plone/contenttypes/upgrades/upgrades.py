@@ -1598,7 +1598,7 @@ def to_7031(context):
         portal_types[ptype].view_methods = ["view"]
 
 
-def to_7030(context):
+def to_7040(context):
     installOrReinstallProduct(api.portal.get(), "collective.volto.enhancedlinks")
     # add behavior to modulo
     portal_types = api.portal.get_tool(name="portal_types")
