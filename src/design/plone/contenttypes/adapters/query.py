@@ -20,6 +20,7 @@ class ZCatalogCompatibleQueryAdapter(BaseAdapter):
         query = super().__call__(query=query)
 
         if api.user.is_anonymous():
+            # For the anonymous user, only content that is not "excluded from the search" is found
             query["exclude_from_search"] = False
 
         return query
