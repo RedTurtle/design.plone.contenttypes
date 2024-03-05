@@ -73,6 +73,10 @@
       factory=".punto_di_contatto.PuntoDiContattoMoreTextToIndex"
       name="IPuntoDiContatto"
       />
+  <adapter
+      factory=".common.exclude_from_search"
+      name="exclude_from_search"
+      />
   <!-- only metadata -->
 
 </configure>

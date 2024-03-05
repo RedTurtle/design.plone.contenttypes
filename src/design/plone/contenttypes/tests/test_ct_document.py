@@ -50,6 +50,7 @@ class TestDocumentSchema(unittest.TestCase):
                 "design.plone.contenttypes.behavior.show_modified",
                 "kitconcept.seo",
                 "plone.constraintypes",
+                "design.plone.contenttypes.behavior.exclude_from_search",
                 "plone.leadimage",
                 "volto.preview_image",
             ),
@@ -128,6 +129,7 @@ class TestDocumentSchema(unittest.TestCase):
                 "id",
                 "versioning_enabled",
                 "show_modified",
+                "exclude_from_search",
                 "changeNote",
             ],
         )

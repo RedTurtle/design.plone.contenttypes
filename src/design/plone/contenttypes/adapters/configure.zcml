@@ -21,4 +21,6 @@
       name="text"
       />
 
+  <adapter factory=".query.ZCatalogCompatibleQueryAdapter" />
+
 </configure>

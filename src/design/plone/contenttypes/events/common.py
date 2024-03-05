@@ -130,11 +130,15 @@ SUBFOLDERS_MAPPING = {
         }
     ],
     "Servizio": [
-        {"id": "modulistica", "title": "Modulistica", "contains": ("File", "Link")},
-        {"id": "allegati", "title": "Allegati", "contains": ("File", "Link")},
+        {
+            "id": "modulistica",
+            "title": "Modulistica",
+            "allowed_types": ("File", "Link"),
+        },
+        {"id": "allegati", "title": "Allegati", "allowed_types": ("File", "Link")},
     ],
     "UnitaOrganizzativa": [
-        {"id": "allegati", "title": "Allegati", "contains": ("File",)},
+        {"id": "allegati", "title": "Allegati", "allowed_types": ("File",)},
     ],
 }
 
@@ -160,14 +164,19 @@ def createSubfolders(context, event):
         return
     for mapping in subfolders_mapping:
         if mapping["id"] not in context.keys():
+            portal_type = mapping.get("type", "Document")
             child = api.content.create(
                 container=context,
-                type=mapping.get("type", "Document"),
+                type=portal_type,
                 title=mapping["title"],
                 id=mapping["id"],
             )
-            create_default_blocks(context=child)
+            if portal_type == "Document":
+                create_default_blocks(context=child)
 
+            if portal_type in ["Folder", "Document"]:
+                child.exclude_from_search = True
+                child.reindexObject(idxs=["exclude_from_search"])
             # select constraints
             if mapping.get("allowed_types", ()):
                 constraintsChild = ISelectableConstrainTypes(child)
