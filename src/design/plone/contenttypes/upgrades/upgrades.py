@@ -1640,7 +1640,37 @@ def to_7200(context):
         if i % 100 == 0:
             logger.info("Progress: {}/{}".format(i, tot))
         container = brain.getObject()
-        for mapping in SUBFOLDERS_MAPPING.get(container.portal_type, []):
+        mappings = SUBFOLDERS_MAPPING.get(container.portal_type, [])
+        persona_old_mapping = [
+            {
+                "id": "foto-e-attivita-politica",
+            },
+            {"id": "curriculum-vitae"},
+            {"id": "compensi"},
+            {
+                "id": "importi-di-viaggio-e-o-servizi",
+            },
+            {
+                "id": "situazione-patrimoniale",
+            },
+            {
+                "id": "dichiarazione-dei-redditi",
+            },
+            {
+                "id": "spese-elettorali",
+            },
+            {
+                "id": "variazione-situazione-patrimoniale",
+            },
+            {
+                "id": "altre-cariche",
+            },
+        ]
+        if container.portal_type == "Persona":
+            # cleanup also some old-style (v2) folders
+            mappings.extend(persona_old_mapping)
+
+        for mapping in mappings:
             child = container.get(mapping["id"], None)
             if not child:
                 continue
