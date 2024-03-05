@@ -4,8 +4,14 @@ Changelog
 6.1.15 (unreleased)
 -------------------
 
-- Nothing changed yet.
-
+- Remove unused behavior (design.plone.contenttypes.behavior.geolocation_uo).
+  [cekk]
+- Standardize subfolders creations in events.
+  [cekk]
+- Do not return a fieldset if it has all fields hidden (maybe after a schema tweak).
+  [cekk]
+- Improve types test for their schema, required fields, fieldsets.
+  [cekk]
 
 6.1.14 (2024-02-20)
 -------------------
@@ -17,7 +23,6 @@ Changelog
 - Change description for field sede in UnitaOrganizzativa CT.
 - Fixed typo in update_note field description.
   [eikichi18]
-
 
 
 6.1.13 (2024-02-08)

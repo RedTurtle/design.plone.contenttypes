@@ -19,6 +19,11 @@ class BandoSerializer(BaseSerializer):
             contents = bando_view.retrieveContentsOfFolderDeepening(folder["path"])
             if not contents:
                 continue
+            # fix results for enhancedlinks
+            for content in contents:
+                content["getObjSize"] = content.get("filesize", "")
+                content["mime_type"] = content.get("content-type", "")
+                content["enhanced_links_enabled"] = "filesize" in content
             folder.update({"children": contents})
             results.append(folder)
         return results

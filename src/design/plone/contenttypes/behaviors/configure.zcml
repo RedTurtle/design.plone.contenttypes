@@ -262,14 +262,6 @@
       marker=".contatti.IContattiEvent"
       />
   <plone:behavior
-      name="design.plone.contenttypes.behavior.geolocation_uo"
-      title="Geolocatable"
-      description="Behavior geolocatable per UO."
-      factory=".geolocation.GeolocatableUnitaOrganizzativa"
-      provides=".geolocation.IGeolocatableUnitaOrganizzativa"
-      marker=".geolocation.IGeolocatableUnitaOrganizzativa"
-      />
-  <plone:behavior
       name="design.plone.contenttypes.behavior.geolocation_venue"
       title="Geolocatable"
       description="Behavior geolocatable per Venue."

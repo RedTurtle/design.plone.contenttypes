@@ -239,11 +239,6 @@ class DefaultJSONSummarySerializer(BaseSerializer):
                 ttool[self.context.portal_type].Title(), context=self.request
             )
         else:
-            logger.error(
-                "missing portal_type %s for %s",
-                self.context.portal_type,
-                self.context.absolute_url(),
-            )
             return self.context.portal_type
 
     def expand_tassonomia_argomenti(self):

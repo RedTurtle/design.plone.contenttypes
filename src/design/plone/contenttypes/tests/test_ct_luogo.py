@@ -3,9 +3,6 @@ from DateTime import DateTime
 from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
 )
-from design.plone.contenttypes.testing import (
-    DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING,
-)
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import SITE_OWNER_NAME
@@ -23,13 +20,22 @@ from zope.intid.interfaces import IIntIds
 import unittest
 
 
-class TestLuogo(unittest.TestCase):
-    layer = DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING
-    maxDiff = None
+class TestLuogoSchema(unittest.TestCase):
+    layer = DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING
 
     def setUp(self):
-        """Custom shared utility setup for tests."""
+        self.app = self.layer["app"]
         self.portal = self.layer["portal"]
+        self.request = self.layer["request"]
+        self.portal_url = self.portal.absolute_url()
+        setRoles(self.portal, TEST_USER_ID, ["Manager"])
+
+        self.api_session = RelativeSession(self.portal_url)
+        self.api_session.headers.update({"Accept": "application/json"})
+        self.api_session.auth = (SITE_OWNER_NAME, SITE_OWNER_PASSWORD)
+
+    def tearDown(self):
+        self.api_session.close()
 
     def test_behaviors_enabled_for_luogo(self):
         portal_types = api.portal.get_tool(name="portal_types")
@@ -62,6 +68,199 @@ class TestLuogo(unittest.TestCase):
     def test_luogo_ct_title(self):
         portal_types = api.portal.get_tool(name="portal_types")
         self.assertEqual("Luogo", portal_types["Venue"].title)
+
+    def test_luogo_fieldsets(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/Venue").json()
+        self.assertEqual(len(resp["fieldsets"]), 11)
+        self.assertEqual(
+            [x.get("id") for x in resp["fieldsets"]],
+            [
+                "default",
+                "descrizione",
+                "accesso",
+                "dove",
+                "orari",
+                "contatti",
+                "informazioni",
+                "settings",
+                "correlati",
+                "categorization",
+                "seo",
+            ],
+        )
+
+    def test_luogo_required_fields(self):
+        resp = self.api_session.get("@types/Venue").json()
+        self.assertEqual(
+            sorted(resp["required"]),
+            sorted(
+                [
+                    "title",
+                    "contact_info",
+                    "modalita_accesso",
+                    "description",
+                    "image",
+                    "street",
+                    "city",
+                    "zip_code",
+                    "geolocation",
+                ]
+            ),
+        )
+
+    def test_luogo_fields_default_fieldset(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/Venue").json()
+        self.assertEqual(
+            resp["fieldsets"][0]["fields"],
+            [
+                "title",
+                "description",
+                "image",
+                "image_caption",
+                "preview_image",
+                "preview_caption",
+                "nome_alternativo",
+                "tassonomia_argomenti",
+                "luoghi_correlati",
+                "tipologia_luogo",
+            ],
+        )
+
+    def test_luogo_fields_descrizione_fieldset(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/Venue").json()
+        self.assertEqual(
+            resp["fieldsets"][1]["fields"],
+            ["descrizione_completa", "elementi_di_interesse"],
+        )
+
+    def test_luogo_fields_accesso_fieldset(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/Venue").json()
+        self.assertEqual(
+            resp["fieldsets"][2]["fields"],
+            ["modalita_accesso"],
+        )
+
+    def test_luogo_fields_dove_fieldset(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/Venue").json()
+        self.assertEqual(
+            resp["fieldsets"][3]["fields"],
+            [
+                "street",
+                "zip_code",
+                "city",
+                "quartiere",
+                "circoscrizione",
+                "country",
+                "geolocation",
+                "notes",
+            ],
+        )
+
+    def test_luogo_fields_orari_fieldset(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/Venue").json()
+        self.assertEqual(
+            resp["fieldsets"][4]["fields"],
+            ["orario_pubblico"],
+        )
+
+    def test_luogo_fields_contatti_fieldset(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/Venue").json()
+        self.assertEqual(
+            resp["fieldsets"][5]["fields"],
+            [
+                "contact_info",
+                "struttura_responsabile_correlati",
+                "struttura_responsabile",
+            ],
+        )
+
+    def test_luogo_fields_informazioni_fieldset(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/Venue").json()
+        self.assertEqual(
+            resp["fieldsets"][6]["fields"],
+            [
+                "ulteriori_informazioni",
+            ],
+        )
+
+    def test_luogo_fields_settings_fieldset(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/Venue").json()
+        self.assertEqual(
+            resp["fieldsets"][7]["fields"],
+            [
+                "id",
+                "exclude_from_nav",
+                "versioning_enabled",
+                "changeNote",
+            ],
+        )
+
+    def test_luogo_fields_correlati_fieldset(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/Venue").json()
+        self.assertEqual(
+            resp["fieldsets"][8]["fields"],
+            ["correlato_in_evidenza"],
+        )
+
+    def test_luogo_fields_categorization_fieldset(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/Venue").json()
+        self.assertEqual(
+            resp["fieldsets"][9]["fields"],
+            # ["subjects", "language", "identificativo_mibac"] BBB dovrebbe essere così
+            # ma nei test esce così perché non viene vista la patch di SchemaTweaks
+            ["subjects", "language", "relatedItems", "identificativo_mibac"],
+        )
+
+    def test_luogo_fields_seo_fieldset(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/Venue").json()
+        self.assertEqual(
+            resp["fieldsets"][10]["fields"],
+            [
+                "seo_title",
+                "seo_description",
+                "seo_noindex",
+                "seo_canonical_url",
+                "opengraph_title",
+                "opengraph_description",
+                "opengraph_image",
+            ],
+        )
 
 
 class TestLuogoApi(unittest.TestCase):
