@@ -17,9 +17,9 @@ class ZCatalogCompatibleQueryAdapter(BaseAdapter):
         Do not show excluded from search items when anonymous are performing
         some catalog searches
         """
-        result = super().__call__(query=query)
+        query = super().__call__(query=query)
 
         if api.user.is_anonymous():
-            result["exclude_from_search"] = False
+            query["exclude_from_search"] = False
 
-        return result
+        return query
