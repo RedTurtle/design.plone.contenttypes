@@ -69,6 +69,10 @@
       factory=".persona.image_field_indexer"
       name="image_field"
       />
+  <adapter
+      factory=".common.exclude_from_search"
+      name="exclude_from_search"
+      />
   <!-- only metadata -->
 
 </configure>

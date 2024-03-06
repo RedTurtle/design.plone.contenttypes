@@ -6,6 +6,21 @@ Changelog
 -------------------
 
 - Nothing changed yet.
+- Remove unused behavior (design.plone.contenttypes.behavior.geolocation_uo).
+  [cekk]
+- Standardize subfolders creations in events.
+  [cekk]
+- Do not return a fieldset if it has all fields hidden (maybe after a schema tweak).
+  [cekk]
+- Improve types test for their schema, required fields, fieldsets.
+  [cekk]
+- Add *exclude_from_search* indexer and behavior, and enable for Document and Folder.
+  [cekk]
+- Add custom adapter for IZCatalogCompatibleQuery to force all anonymous @search calls to skip items excluded from search.
+  [cekk]
+- Set *exclude_from_search* to True in all Documents/Folders automatically created in createSubfolders event handler,
+  and add an upgrade-step that fix already created ones.
+  [cekk]
 
 
 5.1.11 (2024-04-08)

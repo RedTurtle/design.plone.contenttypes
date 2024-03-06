@@ -602,4 +602,15 @@
         handler=".upgrades.to_5700"
         />
   </genericsetup:upgradeSteps>
+
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="5700"
+      destination="5800"
+      >
+    <genericsetup:upgradeStep
+        title="Add exclude_from_search behavior"
+        handler=".upgrades.to_5800"
+        />
+  </genericsetup:upgradeSteps>
 </configure>

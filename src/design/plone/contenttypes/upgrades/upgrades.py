@@ -18,6 +18,8 @@ from zope.intid.interfaces import IIntIds
 from zope.lifecycleevent import ObjectModifiedEvent
 from zope.schema import getFields
 
+# from design.plone.contenttypes.events.common import SUBFOLDERS_MAPPING
+
 import logging
 import json
 import six
@@ -1041,3 +1043,38 @@ def to_5700(context):
         doc = brain.getObject()
         doc.reindexObject(idxs=["SearchableText"])
     logger.info("Ends of reindex")
+
+
+def to_5800(context):
+    update_catalog(context)
+    # add behavior to Document and Folder
+    bhv = "design.plone.contenttypes.behavior.exclude_from_search"
+    portal_types = api.portal.get_tool(name="portal_types")
+    for ptype in ["Document", "Folder"]:
+        behaviors = [x for x in portal_types[ptype].behaviors]
+        if bhv not in behaviors:
+            behaviors.append(bhv)
+        portal_types[ptype].behaviors = tuple(behaviors)
+
+    #     # set True to all of already created children
+    #     # update index/metadata
+    #     brains = api.content.find(portal_type=[x for x in SUBFOLDERS_MAPPING.keys()])
+    #     tot = len(brains)
+    #     i = 0
+    #     for brain in brains:
+    #         i += 1
+    #         if i % 100 == 0:
+    #             logger.info("Progress: {}/{}".format(i, tot))
+    #         container = brain.getObject()
+    #         mappings = SUBFOLDERS_MAPPING.get(container.portal_type, [])
+
+    #         for mapping in mappings:
+    #             child = container.get(mapping["id"], None)
+    #             if not child:
+    #                 continue
+    #             if child.portal_type not in ["Folder", "Document"]:
+    #                 continue
+    #             child.exclude_from_search = True
+
+    catalog = api.portal.get_tool(name="portal_catalog")
+    catalog.manage_reindexIndex(ids=["exclude_from_search"])
