@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.2.0 (unreleased)
+6.2.0 (2024-03-06)
 ------------------
 
 - Remove unused behavior (design.plone.contenttypes.behavior.geolocation_uo).
