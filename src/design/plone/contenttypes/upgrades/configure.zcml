@@ -838,4 +838,14 @@
         handler=".upgrades.to_7100"
         />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="7100"
+      destination="7200"
+      >
+    <genericsetup:upgradeStep
+        title="Add exclude_from_search behavior"
+        handler=".upgrades.to_7200"
+        />
+  </genericsetup:upgradeSteps>
 </configure>
