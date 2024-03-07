@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.2.1 (unreleased)
+6.2.1 (2024-03-07)
 ------------------
 
 - Added check for blocks field in check_luoghi view.
