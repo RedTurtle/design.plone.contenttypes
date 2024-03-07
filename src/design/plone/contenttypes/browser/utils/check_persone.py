@@ -46,7 +46,6 @@ class CheckPersone(BrowserView):
         return sorted(items, key=lambda k: k["title"])
 
     def back_references(self, source_object, attribute_name):
-
         catalog = getUtility(ICatalog)
         intids = getUtility(IIntIds)
         result = []
@@ -68,7 +67,6 @@ class CheckPersone(BrowserView):
 
         incarichi_persona = ""
         if persona.incarichi_persona:
-
             relations = self.get_related_objects(persona, "incarichi_persona")
             if relations:
                 rel_data = relations[0]
@@ -96,7 +94,6 @@ class CheckPersone(BrowserView):
         return url
 
     def get_persone(self):
-
         if self.is_anonymous():
             return []
         pc = api.portal.get_tool("portal_catalog")

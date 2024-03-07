@@ -4,7 +4,8 @@ Changelog
 6.2.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Added check for blocks field in check_luoghi view.
+  [eikichi18]
 
 
 6.2.0 (2024-03-06)
