@@ -67,7 +67,6 @@ class CheckUnitaOrganizzative(BrowserView):
         return url
 
     def get_uos(self):
-
         if self.is_anonymous():
             return []
         pc = api.portal.get_tool("portal_catalog")

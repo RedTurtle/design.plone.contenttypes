@@ -26,10 +26,14 @@ class CheckLuoghi(BrowserView):
                 if getattr(luogo, "zip_code", "") and luogo.zip_code.strip():
                     indirizzo = True
 
-        modalita_accesso = getattr(luogo, "modalita_accesso", "")
-        res = [x.get("text", "") for x in modalita_accesso["blocks"].values()]
-        if not [x for x in res if x]:
+        modalita_accesso = getattr(luogo, "modalita_accesso", {})
+        if not isinstance(modalita_accesso, dict):
             modalita_accesso = ""
+        else:
+            modalita_accesso_blocks = modalita_accesso.get("blocks", {})
+            res = [x.get("text", "") for x in modalita_accesso_blocks.values()]
+            if not [x for x in res if x]:
+                modalita_accesso = ""
 
         return {
             "description": getattr(luogo, "description", "").strip(),
@@ -49,7 +53,6 @@ class CheckLuoghi(BrowserView):
         return url
 
     def get_luoghi(self):
-
         if self.is_anonymous():
             return []
         pc = api.portal.get_tool("portal_catalog")
