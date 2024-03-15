@@ -4,8 +4,8 @@ Changelog
 6.2.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- @@check-servizi: provides also the full list of servizi.
+  [daniele]
 
 6.2.1 (2024-03-07)
 ------------------
