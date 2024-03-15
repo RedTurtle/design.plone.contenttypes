@@ -91,6 +91,14 @@ class CheckServizi(BrowserView):
             return url.replace(portal_url, frontend_domain, 1)
         return url
 
+    def get_relation_title(self, information_dict, label):
+        result = ""
+        for item in information_dict[label]:
+            if not item:
+                continue
+            result = result + " " + item.to_object.title
+        return result
+
     def get_servizi(self):
         if self.is_anonymous():
             return []
@@ -129,45 +137,38 @@ class CheckServizi(BrowserView):
                     "children": [],
                 }
 
+            tassonomia_argomenti = self.get_relation_title(
+                information_dict, "tassonomia_argomenti"
+            )
+            ufficio_responsabile = self.get_relation_title(
+                information_dict, "ufficio_responsabile"
+            )
+
+            contatti = self.get_relation_title(information_dict, "contact_info")
+
             results[parent.title]["children"].append(
                 {
                     "title": servizio.title,
                     "url": self.plone2volto(servizio.absolute_url()),
                     "data": {
-                        "title": information_dict.get("title") and FLAG or "",
-                        "description": information_dict.get("description")
-                        and FLAG
-                        or "",
+                        "title": information_dict.get("title") or "",
+                        "description": information_dict.get("description") or "",
                         "condizioni_di_servizio": information_dict.get(
                             "condizioni_di_servizio"
                         )
-                        and FLAG
                         or "",
-                        "tassonomia_argomenti": information_dict.get(
-                            "tassonomia_argomenti"
-                        )
-                        and FLAG
-                        or "",
+                        "tassonomia_argomenti": tassonomia_argomenti or "",
                         "a_chi_si_rivolge": information_dict.get("a_chi_si_rivolge")
-                        and FLAG
                         or "",
-                        "come_si_fa": information_dict.get("come_si_fa") and FLAG or "",
+                        "come_si_fa": information_dict.get("come_si_fa") or "",
                         "cosa_si_ottiene": information_dict.get("cosa_si_ottiene")
-                        and FLAG
                         or "",
                         "canale_accesso": information_dict.get("canale_accesso") or "",
-                        "cosa_serve": information_dict.get("cosa_serve") and FLAG or "",
+                        "cosa_serve": information_dict.get("cosa_serve") or "",
                         "tempi_e_scadenze": information_dict.get("tempi_e_scadenze")
-                        and FLAG
                         or "",
-                        "ufficio_responsabile": information_dict.get(
-                            "ufficio_responsabile"
-                        )
-                        and FLAG
-                        or "",
-                        "contact_info": information_dict.get("contact_info")
-                        and FLAG
-                        or "",
+                        "ufficio_responsabile": ufficio_responsabile or "",
+                        "contact_info": contatti or "",
                     },
                 }
             )
@@ -211,21 +212,21 @@ class DownloadCheckServizi(CheckServizi):
             for servizio in servizi[category]["children"]:
                 dati_servizio = [
                     servizio["title"],
-                    servizio["data"]["description"] and "V" or "",
-                    servizio["data"]["tassonomia_argomenti"] and "V" or "",
-                    servizio["data"]["a_chi_si_rivolge"] and "V" or "",
-                    servizio["data"]["come_si_fa"] and "V" or "",
-                    servizio["data"]["cosa_si_ottiene"] and "V" or "",
-                    servizio["data"]["canale_accesso"] and "V" or "",
-                    servizio["data"]["cosa_serve"] and "V" or "",
-                    servizio["data"]["tempi_e_scadenze"] and "V" or "",
-                    servizio["data"]["ufficio_responsabile"] and "V" or "",
-                    servizio["data"]["contact_info"] and "V" or "",
+                    servizio["data"]["description"] or "",
+                    servizio["data"]["tassonomia_argomenti"] or "",
+                    servizio["data"]["a_chi_si_rivolge"] or "",
+                    servizio["data"]["come_si_fa"] or "",
+                    servizio["data"]["cosa_si_ottiene"] or "",
+                    servizio["data"]["canale_accesso"] or "",
+                    servizio["data"]["cosa_serve"] or "",
+                    servizio["data"]["tempi_e_scadenze"] or "",
+                    servizio["data"]["ufficio_responsabile"] or "",
+                    servizio["data"]["contact_info"] or "",
                     servizio["url"],
                 ]
                 if cds:
                     condizioni_di_servizio = (
-                        servizio["data"]["condizioni_di_servizio"] and "V" or ""
+                        servizio["data"]["condizioni_di_servizio"] or ""
                     )
                     dati_servizio.insert(2, condizioni_di_servizio)
                 data.append(dati_servizio)
