@@ -4,7 +4,8 @@ Changelog
 6.2.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- UnitaOrganizzativa.assessore_riferimento title internationalize.
+  [folix-01]
 
 
 6.2.1 (2024-03-07)
