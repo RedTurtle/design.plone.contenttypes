@@ -58,7 +58,7 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
     )
 
     assessore_riferimento = RelationList(
-        title="Assessore di riferimento",
+        title=_("asessore_riferimento_title", default="Assessore di riferimento"),
         # vocabolario di riferimento sara' dinamico con i content type
         # persona presenti all'interno della macro Amministrazione"
         value_type=RelationChoice(
