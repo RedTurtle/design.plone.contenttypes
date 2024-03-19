@@ -6,6 +6,8 @@ Changelog
 
 - @@check-servizi: provides also the full list of servizi.
   [daniele]
+- UnitaOrganizzativa.assessore_riferimento title internationalize.
+  [folix-01]
 
 6.2.1 (2024-03-07)
 ------------------
