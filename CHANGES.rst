@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.2.2 (unreleased)
+6.2.2 (2024-03-19)
 ------------------
 
 - @@check-servizi: provides also the full list of servizi.
