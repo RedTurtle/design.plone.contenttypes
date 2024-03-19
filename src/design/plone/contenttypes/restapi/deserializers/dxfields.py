@@ -112,11 +112,11 @@ class TimelineTempiEScadenzeFieldDeserializer(CollectionFieldDeserializer):
                 "milestone_description": item.get("milestone_description", ""),
                 "interval_qt": item.get("interval_qt", ""),
                 "interval_type": item.get("interval_type", ""),
-                "data_scadenza": datetime.strptime(
-                    item["data_scadenza"], "%Y-%m-%d"
-                ).date()
-                if item.get("data_scadenza", None)
-                else None,  # noqa
+                "data_scadenza": (
+                    datetime.strptime(item["data_scadenza"], "%Y-%m-%d").date()
+                    if item.get("data_scadenza", None)
+                    else None
+                ),  # noqa
             }
 
             timeline.append(entry)

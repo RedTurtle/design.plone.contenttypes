@@ -44,7 +44,7 @@ class IMessaggio(model.Schema):
         required=False,
     )
 
-    documenti_allegati = field.NamedFile(
+    documenti_allegati = field.NamedBlobFile(
         title=_("documenti_allegati", default="Documenti allegati"),
         required=False,
     )

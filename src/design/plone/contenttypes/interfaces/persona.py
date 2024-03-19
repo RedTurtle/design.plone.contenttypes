@@ -24,7 +24,7 @@ from z3c.relationfield.schema import RelationList
 class IPersona(model.Schema, IDesignPloneContentType):
     """Marker interface for contenttype Persona"""
 
-    foto_persona = field.NamedImage(
+    foto_persona = field.NamedBlobImage(
         title=_("foto_persona_label", default="Foto della persona"),
         required=False,
         description=_(
