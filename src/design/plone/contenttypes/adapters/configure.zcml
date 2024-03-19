@@ -20,4 +20,7 @@
       factory=".searchabletext_indexers.TextBlockSearchableText"
       name="text"
       />
+
+  <adapter factory=".query.ZCatalogCompatibleQueryAdapter" />
+
 </configure>

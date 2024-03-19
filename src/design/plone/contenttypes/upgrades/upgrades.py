@@ -22,6 +22,7 @@ from zope.event import notify
 from zope.intid.interfaces import IIntIds
 from zope.lifecycleevent import ObjectModifiedEvent
 from zope.schema import getFields
+from design.plone.contenttypes.events.common import SUBFOLDERS_MAPPING
 
 import json
 import logging
@@ -1589,3 +1590,93 @@ def add_canale_digitale_link_index(context):
         service.reindexObject(idxs=["canale_digitale_link"])
         logger.info(f"Reindexed {service.absolute_url()}")
     logger.info("End of update, added index canale_digitale_link")
+
+
+def to_7031(context):
+    portal_types = api.portal.get_tool(name="portal_types")
+    for ptype in ["News Item"]:
+        portal_types[ptype].default_view = "view"
+        portal_types[ptype].view_methods = ["view"]
+
+
+def to_7100(context):
+    installOrReinstallProduct(api.portal.get(), "collective.volto.enhancedlinks")
+    # add behavior to modulo
+    portal_types = api.portal.get_tool(name="portal_types")
+    modulo_behaviors = [x for x in portal_types["Modulo"].behaviors]
+    if "volto.enhanced_links_enabled" not in modulo_behaviors:
+        modulo_behaviors.append("volto.enhanced_links_enabled")
+    portal_types["Modulo"].behaviors = tuple(modulo_behaviors)
+
+    # update index/metadata
+    brains = api.content.find(portal_type=["File", "Image", "Modulo"])
+    tot = len(brains)
+    i = 0
+    for brain in brains:
+        i += 1
+        if i % 100 == 0:
+            logger.info("Progress: {}/{}".format(i, tot))
+        brain.getObject().reindexObject(idxs=["enhanced_links_enabled"])
+
+
+def to_7200(context):
+    update_catalog(context)
+    # add behavior to Document and Folder
+    bhv = "design.plone.contenttypes.behavior.exclude_from_search"
+    portal_types = api.portal.get_tool(name="portal_types")
+    for ptype in ["Document", "Folder"]:
+        behaviors = [x for x in portal_types[ptype].behaviors]
+        if bhv not in behaviors:
+            behaviors.append(bhv)
+        portal_types[ptype].behaviors = tuple(behaviors)
+
+    # set True to all of already created children
+    # update index/metadata
+    brains = api.content.find(portal_type=[x for x in SUBFOLDERS_MAPPING.keys()])
+    tot = len(brains)
+    i = 0
+    for brain in brains:
+        i += 1
+        if i % 100 == 0:
+            logger.info("Progress: {}/{}".format(i, tot))
+        container = brain.getObject()
+        mappings = SUBFOLDERS_MAPPING.get(container.portal_type, [])
+        persona_old_mapping = [
+            {
+                "id": "foto-e-attivita-politica",
+            },
+            {"id": "curriculum-vitae"},
+            {"id": "compensi"},
+            {
+                "id": "importi-di-viaggio-e-o-servizi",
+            },
+            {
+                "id": "situazione-patrimoniale",
+            },
+            {
+                "id": "dichiarazione-dei-redditi",
+            },
+            {
+                "id": "spese-elettorali",
+            },
+            {
+                "id": "variazione-situazione-patrimoniale",
+            },
+            {
+                "id": "altre-cariche",
+            },
+        ]
+        if container.portal_type == "Persona":
+            # cleanup also some old-style (v2) folders
+            mappings.extend(persona_old_mapping)
+
+        for mapping in mappings:
+            child = container.get(mapping["id"], None)
+            if not child:
+                continue
+            if child.portal_type not in ["Folder", "Document"]:
+                continue
+            child.exclude_from_search = True
+
+    catalog = api.portal.get_tool(name="portal_catalog")
+    catalog.manage_reindexIndex(ids=["exclude_from_search"])

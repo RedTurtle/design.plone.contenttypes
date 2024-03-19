@@ -22,6 +22,7 @@
   <adapter factory=".dxcontent.SerializeFolderToJson" />
   <adapter factory=".dxcontent.SerializeToJson" />
   <adapter factory=".dxfields.FileFieldViewModeSerializer" />
+  <adapter factory=".dxfields.ImageFieldSerializer" />
   <adapter factory=".dxfields.SourceTextSerializer" />
   <adapter factory=".dxfields.TempiEScadenzeValueSerializer" />
   <adapter factory=".dxfields.ServizioTextLineFieldSerializer" />

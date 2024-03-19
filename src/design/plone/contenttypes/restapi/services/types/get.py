@@ -276,9 +276,8 @@ class TypesGet(BaseGet):
 
     def reply(self):
         result = super(TypesGet, self).reply()
-
         if "fieldsets" in result:
-            result["fieldsets"] = self.reorder_fieldsets(original=result["fieldsets"])
+            result["fieldsets"] = self.reorder_fieldsets(schema=result)
         pt = self.request.PATH_INFO.split("/")[-1]
 
         # be careful: result could be dict or list. If list it will not
@@ -308,7 +307,8 @@ class TypesGet(BaseGet):
     def get_order_by_type(self, portal_type):
         return [x for x in FIELDSETS_ORDER.get(portal_type, [])]
 
-    def reorder_fieldsets(self, original):
+    def reorder_fieldsets(self, schema):
+        original = schema["fieldsets"]
         pt = self.request.PATH_INFO.split("/")[-1]
         order = self.get_order_by_type(portal_type=pt)
         if not order:
@@ -326,9 +326,21 @@ class TypesGet(BaseGet):
         new = []
         for id in order:
             for fieldset in original:
-                if fieldset["id"] == id:
+                if fieldset["id"] == id and self.fieldset_has_fields(fieldset, schema):
                     new.append(fieldset)
         if not new:
             # no match
             return original
         return new
+
+    def fieldset_has_fields(self, fieldset, schema):
+        """
+        If a fieldset has all hidden fields (maybe after a schema tweak),
+        these are not in the schema data, but are still in fieldset data.
+        This happens only in add, because the schema is generate with the parent's context.
+        """
+        fieldset_fields = fieldset["fields"]
+
+        schema_fields = [x for x in fieldset_fields if x in schema["properties"].keys()]
+
+        return len(schema_fields) > 0

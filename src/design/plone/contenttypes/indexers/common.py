@@ -35,3 +35,8 @@ def parent(context):
         "UID": obj_parent.UID(),
         "@id": obj_parent.absolute_url(),
     }
+
+
+@indexer(IDexterityContent)
+def exclude_from_search(context):
+    return getattr(context.aq_base, "exclude_from_search", False)

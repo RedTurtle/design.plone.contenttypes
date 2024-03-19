@@ -1,10 +1,56 @@
 Changelog
 =========
 
-6.1.14 (unreleased)
--------------------
+6.2.3 (unreleased)
+------------------
 
 - Nothing changed yet.
+
+
+6.2.2 (2024-03-19)
+------------------
+
+- @@check-servizi: provides also the full list of servizi.
+  [daniele]
+- UnitaOrganizzativa.assessore_riferimento title internationalize.
+  [folix-01]
+
+6.2.1 (2024-03-07)
+------------------
+
+- Added check for blocks field in check_luoghi view.
+  [eikichi18]
+
+
+6.2.0 (2024-03-06)
+------------------
+
+- Remove unused behavior (design.plone.contenttypes.behavior.geolocation_uo).
+  [cekk]
+- Standardize subfolders creations in events.
+  [cekk]
+- Do not return a fieldset if it has all fields hidden (maybe after a schema tweak).
+  [cekk]
+- Improve types test for their schema, required fields, fieldsets.
+  [cekk]
+- Add *exclude_from_search* indexer and behavior, and enable for Document and Folder.
+  [cekk]
+- Add custom adapter for IZCatalogCompatibleQuery to force all anonymous @search calls to skip items excluded from search.
+  [cekk]
+- Set *exclude_from_search* to True in all Documents/Folders automatically created in createSubfolders event handler,
+  and add an upgrade-step that fix already created ones.
+  [cekk]
+
+6.1.14 (2024-02-20)
+-------------------
+
+- Fix in @scadenziario endpoint: return future events if afterToday criteria is set.
+  [cekk]
+- Set base view to News Item, to do not break on Classic Plone.
+  [cekk]
+- Change description for field sede in UnitaOrganizzativa CT.
+- Fixed typo in update_note field description.
+  [eikichi18]
 
 
 6.1.13 (2024-02-08)

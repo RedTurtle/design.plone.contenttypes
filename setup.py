@@ -16,7 +16,7 @@ long_description = "\n\n".join(
 
 setup(
     name="design.plone.contenttypes",
-    version="6.1.14.dev0",
+    version="6.2.3.dev0",
     description="DesignItalia contenty types",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -66,6 +66,7 @@ setup(
         "z3c.unconfigure",
         "eea.api.taxonomy",
         "openpyxl",
+        "collective.volto.enhancedlinks",
     ],
     extras_require={
         "test": [

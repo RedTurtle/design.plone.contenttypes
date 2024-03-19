@@ -152,6 +152,25 @@
                 </button>
               </form>
             </div>
+            <div class="download_button">
+              <form action="${context/absolute_url}/@@download-check-servizi">
+                <!-- <input type="Submit" value="Download" /> -->
+                <input name="condizioni_di_servizio"
+                       type="hidden"
+                       value="True"
+                />
+                <input name="full"
+                       type="hidden"
+                       value="True"
+                />
+                <button class="download-button"
+                        type="submit"
+                >
+                  <i class="fas fa-download"></i>
+                   Download tutti i servizi
+                </button>
+              </form>
+            </div>
           </div>
 
 

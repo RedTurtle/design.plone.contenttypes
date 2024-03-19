@@ -40,7 +40,6 @@ class CheckDocumenti(BrowserView):
         return sorted(items, key=lambda k: k["title"])
 
     def has_module(self, documento):
-
         if [
             x
             for x in documento.listFolderContents()
@@ -74,7 +73,6 @@ class CheckDocumenti(BrowserView):
         return url
 
     def get_documenti(self):
-
         if self.is_anonymous():
             return []
         pc = api.portal.get_tool("portal_catalog")

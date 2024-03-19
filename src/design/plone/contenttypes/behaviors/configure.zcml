@@ -262,14 +262,6 @@
       marker=".contatti.IContattiEvent"
       />
   <plone:behavior
-      name="design.plone.contenttypes.behavior.geolocation_uo"
-      title="Geolocatable"
-      description="Behavior geolocatable per UO."
-      factory=".geolocation.GeolocatableUnitaOrganizzativa"
-      provides=".geolocation.IGeolocatableUnitaOrganizzativa"
-      marker=".geolocation.IGeolocatableUnitaOrganizzativa"
-      />
-  <plone:behavior
       name="design.plone.contenttypes.behavior.geolocation_venue"
       title="Geolocatable"
       description="Behavior geolocatable per Venue."
@@ -322,4 +314,12 @@
       marker=".update_note.IUpdateNote"
       />
 
+  <plone:behavior
+      name="design.plone.contenttypes.behavior.exclude_from_search"
+      title="Exclude from search"
+      description="Campo per escludere un contenuto dalle ricerche del sito."
+      factory=".exclude_from_search.ExcludeFromSearch"
+      provides=".exclude_from_search.IExcludeFromSearch"
+      marker=".exclude_from_search.IExcludeFromSearch"
+      />
 </configure>
