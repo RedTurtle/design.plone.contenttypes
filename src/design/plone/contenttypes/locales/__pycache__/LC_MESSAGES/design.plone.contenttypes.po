@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-01-13 13:15+0000\n"
+"POT-Creation-Date: 2024-02-16 09:53+0000\n"
 "PO-Revision-Date: 2023-01-03 18:01+0100\n"
 "Last-Translator: Roman Kysil <roman@folix.local>\n"
 "Language-Team: Language\n"
@@ -114,10 +114,6 @@ msgstr ""
 
 #: design/plone/contenttypes/profiles/default/types/Pagina_Argomento.xml
 msgid "Argomento"
-msgstr ""
-
-#: design/plone/contenttypes/interfaces/unita_organizzativa.py:73
-msgid "Assessore di riferimento"
 msgstr ""
 
 #: design/plone/contenttypes/vocabularies/tags_vocabulary.py:30
@@ -427,7 +423,7 @@ msgstr ""
 msgid "Impostazioni Design Plone"
 msgstr ""
 
-#: design/plone/contenttypes/browser/manage_content/move_news_items.py:33
+#: design/plone/contenttypes/browser/manage_content/move_news_items.py:34
 msgid "Indicated path is not valid"
 msgstr ""
 
@@ -479,7 +475,7 @@ msgstr ""
 msgid "Istruzione, cultura e sport"
 msgstr ""
 
-#: design/plone/contenttypes/browser/manage_content/move_news_items.py:47
+#: design/plone/contenttypes/browser/manage_content/move_news_items.py:48
 msgid "Items moved with success"
 msgstr ""
 
@@ -565,7 +561,7 @@ msgid "News Type to substitute"
 msgstr ""
 
 #. Default: "Nome e cognome"
-#: design/plone/contenttypes/restapi/services/types/get.py:152
+#: design/plone/contenttypes/restapi/services/types/get.py:155
 msgid "Nome e Cognome"
 msgstr ""
 
@@ -605,7 +601,7 @@ msgstr ""
 msgid "Persona dell'amministrazione"
 msgstr ""
 
-#: design/plone/contenttypes/interfaces/unita_organizzativa.py:92
+#: design/plone/contenttypes/interfaces/unita_organizzativa.py:95
 msgid "Persone della struttura"
 msgstr ""
 
@@ -706,7 +702,7 @@ msgstr ""
 msgid "Search Path"
 msgstr ""
 
-#: design/plone/contenttypes/interfaces/unita_organizzativa.py:114
+#: design/plone/contenttypes/interfaces/unita_organizzativa.py:117
 msgid "Sede"
 msgstr ""
 
@@ -750,7 +746,7 @@ msgstr ""
 msgid "Struttura"
 msgstr ""
 
-#: design/plone/contenttypes/behaviors/strutture_correlate.py:20
+#: design/plone/contenttypes/behaviors/strutture_correlate.py:19
 msgid "Struttura politica coinvolta"
 msgstr ""
 
@@ -810,7 +806,7 @@ msgstr ""
 msgid "The old type field was not populated"
 msgstr ""
 
-#: design/plone/contenttypes/browser/manage_content/move_news_items.py:51
+#: design/plone/contenttypes/browser/manage_content/move_news_items.py:52
 msgid "The path was not indicated"
 msgstr ""
 
@@ -989,8 +985,18 @@ msgid "argomenti_utenti"
 msgstr ""
 
 #. Default: "Inserire l'assessore di riferimento della struttura, se esiste."
-#: design/plone/contenttypes/interfaces/unita_organizzativa.py:76
+#: design/plone/contenttypes/interfaces/unita_organizzativa.py:79
 msgid "assessore_riferimento_help"
+msgstr ""
+
+#. Default: "Assessore di riferimento"
+#: design/plone/contenttypes/interfaces/unita_organizzativa.py:69
+msgid "assessore_riferimento_label"
+msgstr ""
+
+#. Default: "Assessore di riferimento"
+#: design/plone/contenttypes/interfaces/unita_organizzativa.py:73
+msgid "assessore_riferimento_value_type_label"
 msgstr ""
 
 #. Default: "Indicare, se la esistono, atti e documenti a corredo dell'istanza."
@@ -1134,7 +1140,7 @@ msgid "competenze_label"
 msgstr ""
 
 #. Default: "Informazioni di contatto generiche"
-#: design/plone/contenttypes/interfaces/unita_organizzativa.py:137
+#: design/plone/contenttypes/interfaces/unita_organizzativa.py:140
 msgid "contact_info_label"
 msgstr ""
 
@@ -1144,7 +1150,7 @@ msgid "contatti"
 msgstr ""
 
 #. Default: "Contatti"
-#: design/plone/contenttypes/behaviors/address.py:52
+#: design/plone/contenttypes/behaviors/address.py:51
 #: design/plone/contenttypes/behaviors/contatti.py:76
 #: design/plone/contenttypes/behaviors/evento.py:215
 msgid "contatti_label"
@@ -1167,8 +1173,8 @@ msgstr ""
 
 #. Default: "Contenuti collegati"
 #: design/plone/contenttypes/behaviors/argomenti.py:74
-#: design/plone/contenttypes/behaviors/dataset_correlati.py:40
-#: design/plone/contenttypes/behaviors/servizi_correlati.py:43
+#: design/plone/contenttypes/behaviors/dataset_correlati.py:39
+#: design/plone/contenttypes/behaviors/servizi_correlati.py:42
 msgid "correlati_label"
 msgstr ""
 
@@ -1183,7 +1189,7 @@ msgid "correlato_in_evidenza_label"
 msgstr ""
 
 #. Default: "Cosa fa"
-#: design/plone/contenttypes/interfaces/unita_organizzativa.py:206
+#: design/plone/contenttypes/interfaces/unita_organizzativa.py:209
 msgid "cosa_fa_label"
 msgstr ""
 
@@ -1314,18 +1320,18 @@ msgid "dataset"
 msgstr ""
 
 #. Default: "Seleziona una lista di schede dataset collegate a questo contenuto."
-#: design/plone/contenttypes/behaviors/dataset_correlati.py:19
+#: design/plone/contenttypes/behaviors/dataset_correlati.py:18
 msgid "dataset_correlati_help"
 msgstr ""
 
 #. Default: "Dataset correlati"
-#: design/plone/contenttypes/behaviors/dataset_correlati.py:18
+#: design/plone/contenttypes/behaviors/dataset_correlati.py:17
 msgid "dataset_correlati_label"
 msgstr ""
 
 #. Default: "Date e orari"
 #: design/plone/contenttypes/behaviors/evento.py:209
-#: design/plone/contenttypes/schema_overrides.py:34
+#: design/plone/contenttypes/schema_overrides.py:33
 msgid "date_e_orari_label"
 msgstr ""
 
@@ -1432,8 +1438,8 @@ msgid "documenti_label"
 msgstr ""
 
 #. Default: "Dove"
-#: design/plone/contenttypes/behaviors/address.py:71
-#: design/plone/contenttypes/behaviors/geolocation.py:29
+#: design/plone/contenttypes/behaviors/address.py:70
+#: design/plone/contenttypes/behaviors/geolocation.py:27
 msgid "dove_label"
 msgstr ""
 
@@ -1681,7 +1687,7 @@ msgid "identificativo_help"
 msgstr ""
 
 #. Default: "La dimensione dell'immagine dovrebbe essere di ${size} px"
-#: design/plone/contenttypes/restapi/types/adapters.py:31
+#: design/plone/contenttypes/restapi/types/adapters.py:30
 msgid "image_size_help"
 msgstr ""
 
@@ -1711,9 +1717,9 @@ msgid "informazioni"
 msgstr ""
 
 #. Default: "Ulteriori informazioni"
-#: design/plone/contenttypes/behaviors/additional_help_infos.py:28
+#: design/plone/contenttypes/behaviors/additional_help_infos.py:27
 #: design/plone/contenttypes/behaviors/evento.py:229
-#: design/plone/contenttypes/behaviors/strutture_correlate.py:42
+#: design/plone/contenttypes/behaviors/strutture_correlate.py:41
 msgid "informazioni_label"
 msgstr ""
 
@@ -1773,26 +1779,26 @@ msgid "link_utili_label"
 msgstr ""
 
 #. Default: "Seleziona una lista di luoghi citati. Se il luogo dell'evento non è presente sul sito, inserisci le sue informazioni nei campi seguenti."
-#: design/plone/contenttypes/behaviors/luoghi_correlati.py:52
+#: design/plone/contenttypes/behaviors/luoghi_correlati.py:51
 msgid "luoghi_correlati_event_help"
 msgstr ""
 
 #. Default: "Seleziona una lista di luoghi citati."
-#: design/plone/contenttypes/behaviors/luoghi_correlati.py:18
+#: design/plone/contenttypes/behaviors/luoghi_correlati.py:17
 #: design/plone/contenttypes/behaviors/news_additional_fields.py:72
 msgid "luoghi_correlati_help"
 msgstr ""
 
 #. Default: "Luoghi correlati"
-#: design/plone/contenttypes/behaviors/luoghi_correlati.py:17
+#: design/plone/contenttypes/behaviors/luoghi_correlati.py:16
 #: design/plone/contenttypes/behaviors/news_additional_fields.py:71
 msgid "luoghi_correlati_label"
 msgstr ""
 
 #. Default: "Luogo"
-#: design/plone/contenttypes/behaviors/address.py:89
-#: design/plone/contenttypes/behaviors/geolocation.py:38
-#: design/plone/contenttypes/behaviors/luoghi_correlati.py:74
+#: design/plone/contenttypes/behaviors/address.py:88
+#: design/plone/contenttypes/behaviors/geolocation.py:35
+#: design/plone/contenttypes/behaviors/luoghi_correlati.py:73
 msgid "luogo_label"
 msgstr ""
 
@@ -1903,7 +1909,7 @@ msgid "orari_help"
 msgstr ""
 
 #. Default: "Orari di apertura"
-#: design/plone/contenttypes/behaviors/contatti.py:86
+#: design/plone/contenttypes/behaviors/contatti.py:85
 msgid "orari_label"
 msgstr ""
 
@@ -1993,17 +1999,17 @@ msgid "persone_amministrazione_help"
 msgstr ""
 
 #. Default: "Persone"
-#: design/plone/contenttypes/interfaces/unita_organizzativa.py:221
+#: design/plone/contenttypes/interfaces/unita_organizzativa.py:224
 msgid "persone_label"
 msgstr ""
 
 #. Default: "Seleziona la lista delle persone che compongono la struttura."
-#: design/plone/contenttypes/interfaces/unita_organizzativa.py:95
+#: design/plone/contenttypes/interfaces/unita_organizzativa.py:98
 msgid "persone_struttura_help"
 msgstr ""
 
 #. Default: "Persone che compongono la struttura"
-#: design/plone/contenttypes/interfaces/unita_organizzativa.py:87
+#: design/plone/contenttypes/interfaces/unita_organizzativa.py:90
 msgid "persone_struttura_label"
 msgstr ""
 
@@ -2224,22 +2230,22 @@ msgid "search_sections_label"
 msgstr ""
 
 #. Default: "Seleziona il Luogo in cui questa struttura ha sede. Se non è presente un contenuto di tipo Luogo a cui far riferimento, puoi compilare i campi seguenti. Se selezioni un Luogo, puoi usare comunque i campi seguenti per sovrascrivere alcune informazioni."
-#: design/plone/contenttypes/interfaces/unita_organizzativa.py:105
+#: design/plone/contenttypes/interfaces/unita_organizzativa.py:108
 msgid "sede_help"
 msgstr ""
 
 #. Default: "Sede principale"
-#: design/plone/contenttypes/interfaces/unita_organizzativa.py:103
+#: design/plone/contenttypes/interfaces/unita_organizzativa.py:106
 msgid "sede_label"
 msgstr ""
 
 #. Default: "Seleziona una lista di eventuali contenuti di tipo Luogo che sono sedi secondarie di questa struttura. Per queste sedi non sarà possibile sovrascrivere i dati. Nel caso servano informazioni diverse, è possibile usare il campo sottostante."
-#: design/plone/contenttypes/interfaces/unita_organizzativa.py:122
+#: design/plone/contenttypes/interfaces/unita_organizzativa.py:125
 msgid "sedi_secondarie_help"
 msgstr ""
 
 #. Default: "Sedi secondarie"
-#: design/plone/contenttypes/interfaces/unita_organizzativa.py:120
+#: design/plone/contenttypes/interfaces/unita_organizzativa.py:123
 msgid "sedi_secondarie_label"
 msgstr ""
 
@@ -2254,12 +2260,12 @@ msgid "servizi_collegati_label"
 msgstr ""
 
 #. Default: "Questi servizi non verranno mostrati nel contenuto, ma permetteranno di vedere questo contenuto associato quando si visita il servizio"
-#: design/plone/contenttypes/behaviors/servizi_correlati.py:19
+#: design/plone/contenttypes/behaviors/servizi_correlati.py:18
 msgid "servizi_correlati_description"
 msgstr ""
 
 #. Default: "Servizi correlati"
-#: design/plone/contenttypes/behaviors/servizi_correlati.py:18
+#: design/plone/contenttypes/behaviors/servizi_correlati.py:17
 msgid "servizi_correlati_label"
 msgstr ""
 
@@ -2299,12 +2305,12 @@ msgid "show_modified_default_label"
 msgstr ""
 
 #. Default: "Se attivo, verrà mostrata la data di ultima modifica in visualizzazione del contenuto."
-#: design/plone/contenttypes/behaviors/show_modified.py:24
+#: design/plone/contenttypes/behaviors/show_modified.py:23
 msgid "show_modified_help"
 msgstr ""
 
 #. Default: "Mostra la data di ultima modifica"
-#: design/plone/contenttypes/behaviors/show_modified.py:23
+#: design/plone/contenttypes/behaviors/show_modified.py:22
 msgid "show_modified_label"
 msgstr ""
 
@@ -2371,7 +2377,7 @@ msgid "strumenti_tutela_label"
 msgstr ""
 
 #. Default: "Struttura"
-#: design/plone/contenttypes/interfaces/unita_organizzativa.py:211
+#: design/plone/contenttypes/interfaces/unita_organizzativa.py:214
 msgid "struttura_label"
 msgstr ""
 
@@ -2396,7 +2402,7 @@ msgid "struttura_responsabile_help"
 msgstr ""
 
 #. Default: "Seleziona la lista delle strutture politiche coinvolte."
-#: design/plone/contenttypes/behaviors/strutture_correlate.py:25
+#: design/plone/contenttypes/behaviors/strutture_correlate.py:24
 msgid "strutture_politiche_help"
 msgstr ""
 
@@ -2641,13 +2647,13 @@ msgid "ufficio_riferimento"
 msgstr ""
 
 #. Default: "Ulteriori informazioni"
-#: design/plone/contenttypes/behaviors/additional_help_infos.py:18
+#: design/plone/contenttypes/behaviors/additional_help_infos.py:17
 #: design/plone/contenttypes/interfaces/pagina_argomento.py:18
 msgid "ulteriori_informazioni"
 msgstr ""
 
 #. Default: "Ulteriori informazioni non contemplate dai campi precedenti."
-#: design/plone/contenttypes/behaviors/additional_help_infos.py:19
+#: design/plone/contenttypes/behaviors/additional_help_infos.py:18
 #: design/plone/contenttypes/interfaces/pagina_argomento.py:19
 msgid "ulteriori_informazioni_help"
 msgstr ""
@@ -2673,7 +2679,7 @@ msgid "uo_competenze_label"
 msgstr ""
 
 #. Default: "Inserisci eventuali informazioni di contatto aggiuntive non contemplate nei campi precedenti. Utilizza questo campo se ci sono dei contatti aggiuntivi rispetto ai contatti della sede principale. Se inserisci un collegamento con un indirizzo email, aggiungi \"mailto:\" prima dell'indirizzo, per farlo aprire direttamente nel client di posta."
-#: design/plone/contenttypes/interfaces/unita_organizzativa.py:139
+#: design/plone/contenttypes/interfaces/unita_organizzativa.py:142
 msgid "uo_contact_info_description"
 msgstr ""
 
@@ -2690,6 +2696,16 @@ msgstr ""
 #. Default: "Descrizione degli eventuali vincoli presenti."
 #: design/plone/contenttypes/interfaces/servizio.py:198
 msgid "vincoli_help"
+msgstr ""
+
+#. Default: "Mostra i PDF in anteprima"
+#: design/plone/contenttypes/interfaces/cartella_modulistica.py:13
+msgid "visualize_files_title"
+msgstr ""
+
+#. Default: "Permette di aprire l'anteprima di tutti i PDF di questa cartella in una tab separata, altrimenti i PDF vengono scaricati"
+#: design/plone/contenttypes/interfaces/cartella_modulistica.py:14
+msgid "visulize_files_description"
 msgstr ""
 
 #. Default: "Indicare un indirizzo web di riferimento a questo evento."

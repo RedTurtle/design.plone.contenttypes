@@ -66,11 +66,14 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
     )
 
     assessore_riferimento = RelationList(
-        title="Assessore di riferimento",
+        title=_("assessore_riferimento_label", default="Assessore di riferimento"),
         # vocabolario di riferimento sara' dinamico con i content type
         # persona presenti all'interno della macro Amministrazione"
         value_type=RelationChoice(
-            title=_("Assessore di riferimento"),
+            title=_(
+                "assessore_riferimento_value_type_label",
+                default="Assessore di riferimento",
+            ),
             vocabulary="plone.app.vocabularies.Catalog",
         ),
         description=_(
