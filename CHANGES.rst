@@ -5,7 +5,8 @@ Changelog
 5.1.11 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- locales
+  [folix-01]
 
 
 5.1.10 (2023-07-25)
