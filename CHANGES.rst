@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-5.1.12 (unreleased)
+5.1.12 (2024-04-09)
 -------------------
 
 - Add *exclude_from_search* indexer and behavior, and enable for Document and Folder.
