@@ -22,6 +22,7 @@ def eventoCreateHandler(evento, event):
             type="Document",
             title="Multimedia",
             id="multimedia",
+            exclude_from_search=True,
         )
         create_default_blocks(context=galleria)
 
@@ -39,6 +40,7 @@ def eventoCreateHandler(evento, event):
             type="Document",
             title="Sponsor Evento",
             id="sponsor_evento",
+            exclude_from_search=True,
         )
         create_default_blocks(context=sponsor)
 
@@ -55,6 +57,7 @@ def eventoCreateHandler(evento, event):
             type="Document",
             title="Documenti",
             id="documenti",
+            exclude_from_search=True,
         )
         create_default_blocks(context=documenti)
 

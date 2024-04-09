@@ -57,7 +57,11 @@ def personaCreateHandler(persona, event):
         if folder["id"] in persona:
             continue
         suboject = api.content.create(
-            type="Document", id=folder["id"], title=folder["title"], container=persona
+            type="Document",
+            id=folder["id"],
+            title=folder["title"],
+            container=persona,
+            exclude_from_search=True,
         )
         create_default_blocks(context=suboject)
         subobjectConstraints = ISelectableConstrainTypes(suboject)

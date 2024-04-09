@@ -13,7 +13,12 @@ def praticaCreateHandler(pratica, event):
     @param event: Event that triggers the method (onAdded event)
     """
 
-    allegati = api.content.create(type="Folder", title="Allegati", container=pratica)
+    allegati = api.content.create(
+        type="Folder",
+        title="Allegati",
+        container=pratica,
+        exclude_from_search=True,
+    )
 
     allegatiConstraints = ISelectableConstrainTypes(allegati)
     allegatiConstraints.setConstrainTypesMode(1)

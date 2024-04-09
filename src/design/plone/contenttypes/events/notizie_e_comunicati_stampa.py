@@ -16,7 +16,10 @@ def notiziaCreateHandler(notizia, event):
 
     if "multimedia" not in notizia.keys():
         multimedia = api.content.create(
-            type="Document", title="Multimedia", container=notizia
+            type="Document",
+            title="Multimedia",
+            container=notizia,
+            exclude_from_search=True,
         )
         create_default_blocks(context=multimedia)
         constraintsMultimedia = ISelectableConstrainTypes(multimedia)
@@ -25,7 +28,10 @@ def notiziaCreateHandler(notizia, event):
 
     if "documenti-allegati" not in notizia.keys():
         documenti = api.content.create(
-            type="Document", title="Documenti allegati", container=notizia
+            type="Document",
+            title="Documenti allegati",
+            container=notizia,
+            exclude_from_search=True,
         )
         create_default_blocks(context=documenti)
         constraintsDocumenti = ISelectableConstrainTypes(documenti)
