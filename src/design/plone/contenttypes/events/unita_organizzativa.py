@@ -21,7 +21,10 @@ def unitaOrganizzativaCreateHandler(unitaOrganizzativa, event):
         return
     try:
         allegati = api.content.create(
-            type="Document", title="Allegati", container=unitaOrganizzativa
+            type="Document",
+            title="Allegati",
+            container=unitaOrganizzativa,
+            exclude_from_search=True,
         )
     except AttributeError as e:
         # problems with tests in design.plone.policy

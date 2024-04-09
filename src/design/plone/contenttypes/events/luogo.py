@@ -17,7 +17,8 @@ def luogoCreateHandler(luogo, event):
         return
     folder = _createObjectByType("Folder", luogo, "multimedia")
     folder.title = "Multimedia"
-    folder.reindexObject(idxs=["Title"])
+    folder.exclude_from_search = True
+    folder.reindexObject(idxs=["Title", "exclude_from_search"])
     constraints = ISelectableConstrainTypes(folder)
     constraints.setConstrainTypesMode(1)
     constraints.setLocallyAllowedTypes(

@@ -51,6 +51,9 @@
  <index name="data_conclusione_incarico" meta_type="DateIndex">
   <indexed_attr value="data_conclusione_incarico"/>
  </index>
+ <index name="exclude_from_search" meta_type="BooleanIndex">
+    <indexed_attr value="exclude_from_search"/>
+  </index>
 
  <!-- metadata -->
  <column value="tipologia_notizia"/>

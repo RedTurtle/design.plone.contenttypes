@@ -20,7 +20,10 @@ def servizioCreateHandler(servizio, event):
     ]:
         if folder["id"] not in servizio.keys():
             child = api.content.create(
-                type="Document", title=folder["title"], container=servizio
+                type="Document",
+                title=folder["title"],
+                container=servizio,
+                exclude_from_search=True,
             )
             create_default_blocks(context=child)
 

@@ -5,7 +5,13 @@ Changelog
 5.1.12 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add *exclude_from_search* indexer and behavior, and enable for Document and Folder.
+  [cekk]
+- Add custom adapter for IZCatalogCompatibleQuery to force all anonymous @search calls to skip items excluded from search.
+  [cekk]
+- Set *exclude_from_search* to True in all Documents/Folders automatically created in createSubfolders event handler,
+  and add an upgrade-step that fix already created ones.
+  [cekk]
 
 
 5.1.11 (2024-04-08)

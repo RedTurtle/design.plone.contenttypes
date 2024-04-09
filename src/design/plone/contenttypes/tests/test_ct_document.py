@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING,
 )
@@ -34,6 +33,7 @@ class TestDocument(unittest.TestCase):
                 "design.plone.contenttypes.behavior.show_modified",
                 "kitconcept.seo",
                 "plone.constraintypes",
+                "design.plone.contenttypes.behavior.exclude_from_search",
                 "plone.leadimage",
                 "volto.preview_image",
             ),

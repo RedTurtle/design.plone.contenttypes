@@ -23,7 +23,10 @@ def documentoCreateHandler(documento, event):
 
     # create support folder
     multimedia = api.content.create(
-        type="Document", title="Multimedia", container=documento
+        type="Document",
+        title="Multimedia",
+        container=documento,
+        exclude_from_search=True,
     )
     create_default_blocks(context=multimedia)
 
