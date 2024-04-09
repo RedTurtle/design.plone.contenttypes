@@ -1056,25 +1056,12 @@ def to_5800(context):
             behaviors.append(bhv)
         portal_types[ptype].behaviors = tuple(behaviors)
 
-    #     # set True to all of already created children
-    #     # update index/metadata
-    #     brains = api.content.find(portal_type=[x for x in SUBFOLDERS_MAPPING.keys()])
-    #     tot = len(brains)
-    #     i = 0
-    #     for brain in brains:
-    #         i += 1
-    #         if i % 100 == 0:
-    #             logger.info("Progress: {}/{}".format(i, tot))
-    #         container = brain.getObject()
-    #         mappings = SUBFOLDERS_MAPPING.get(container.portal_type, [])
-
-    #         for mapping in mappings:
-    #             child = container.get(mapping["id"], None)
-    #             if not child:
-    #                 continue
-    #             if child.portal_type not in ["Folder", "Document"]:
-    #                 continue
-    #             child.exclude_from_search = True
+    # set True to all of already created children
+    for (id, pt) in [("multimedia", "Document"), ("allegati", "Document"), ("luoghi", "Document")]:  # ...
+        brains = api.content.find(getId=id, portal_type=pt)
+        tot = len(brains)
+        for i, brain in enumerate(brains):
+            brain.getObject().exclude_from_search = True
 
     catalog = api.portal.get_tool(name="portal_catalog")
     catalog.manage_reindexIndex(ids=["exclude_from_search"])
