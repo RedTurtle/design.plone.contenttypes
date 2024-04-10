@@ -171,7 +171,6 @@ class TypesGet(BaseGet):
         Unico modo per spostare il campo "notes"
         """
         result.get("required").append("description")
-        result.get("required").append("image")
         result.get("required").append("street")
         result.get("required").append("city")
         result.get("required").append("zip_code")
