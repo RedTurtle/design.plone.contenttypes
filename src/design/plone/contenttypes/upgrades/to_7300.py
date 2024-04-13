@@ -15,7 +15,7 @@ def to_7300(context):
             "pratica_associata": "file",
         },
         "Messaggio": {
-            "documenti _allegati": "file",
+            "documenti_allegati": "file",
         },
         "Persona": {
             "foto_persona": "image",
