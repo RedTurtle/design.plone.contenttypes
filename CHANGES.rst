@@ -4,6 +4,9 @@ Changelog
 6.2.3 (unreleased)
 ------------------
 
+- converted some file and image fields as blob fields
+  [mamico]
+
 - Image are no longer required in venue
   [lucabel]
 
