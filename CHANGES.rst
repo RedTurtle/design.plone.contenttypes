@@ -4,7 +4,8 @@ Changelog
 6.2.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Image are no longer required in venue
+  [lucabel]
 
 
 6.2.2 (2024-03-19)
