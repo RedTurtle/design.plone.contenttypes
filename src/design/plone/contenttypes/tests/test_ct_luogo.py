@@ -102,7 +102,6 @@ class TestLuogoSchema(unittest.TestCase):
                     "contact_info",
                     "modalita_accesso",
                     "description",
-                    "image",
                     "street",
                     "city",
                     "zip_code",
