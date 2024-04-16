@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.2.3 (unreleased)
+6.2.3 (2024-04-16)
 ------------------
 
 - Image are no longer required in venue
