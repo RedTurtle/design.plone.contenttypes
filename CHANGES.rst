@@ -4,7 +4,8 @@ Changelog
 6.2.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- check-servizi: fixed check on relation title.
+  [daniele] 
 
 
 6.2.4 (2024-04-16)
