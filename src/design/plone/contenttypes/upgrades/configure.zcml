@@ -848,4 +848,13 @@
         handler=".upgrades.to_7200"
         />
   </genericsetup:upgradeSteps>
+
+  <genericsetup:upgradeStep
+      title="Migrate from File/Image Field to BlobField"
+      profile="design.plone.contenttypes:default"
+      source="7200"
+      destination="7300"
+      handler=".to_7300.to_7300"
+      />
+
 </configure>
