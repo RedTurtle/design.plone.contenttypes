@@ -96,6 +96,8 @@ class CheckServizi(BrowserView):
         for item in information_dict[label]:
             if not item:
                 continue
+            if not item.to_object:
+                continue
             result = result + " " + item.to_object.title
         return result
 
