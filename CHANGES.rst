@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.2.4 (unreleased)
+6.2.4 (2024-04-16)
 ------------------
 
 - converted some file and image fields as blob fields
