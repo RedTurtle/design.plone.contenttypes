@@ -4,7 +4,8 @@ Changelog
 6.2.6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- improved check on relation.
+  [daniele]
 
 
 6.2.5 (2024-04-17)
