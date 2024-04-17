@@ -36,11 +36,17 @@ class View(BrowserView):
         return taxonomy.makeVocabulary(self.request.get("LANGUAGE"))
 
     def news_types_in_catalog(self):
-        return api.portal.get_tool("portal_catalog").uniqueValuesFor(
-            "tipologia_notizia"
-        )
+        types = [news.tipologia_notizia for news in self.news]
+        types = list(set(types))
+        return types
 
     def substitute_news_type(self):
+        # the only way to get all the tipologia_notizia value is to query news
+        # objects not the brains. Taxonomy doesn't index values not present in
+        # the taxonomy vocabulary so we have a lot of brain withou tipologia_notizia
+        self.brains = api.content.find(portal_type="News Item")
+        self.news = [brain.getObject() for brain in self.brains]
+
         if not self.request.form.get("substitute", ""):
             return
 
@@ -65,18 +71,10 @@ class View(BrowserView):
             )
             return
 
-        if old_news_type not in self.news_types_in_catalog():
-            self.context.plone_utils.addPortalMessage(
-                _("The old News Type was not found between available values"), "error"
-            )
-            return
-
-        for news in api.portal.get_tool("portal_catalog")(
-            tipologia_notizia=old_news_type
-        ):
-            news = news.getObject()
-            news.tipologia_notizia = news_new_type
-            news.reindexObject(idxs=["tipologia_notizia"])
+        for news in self.news:
+            if news.tipologia_notizia == old_news_type:
+                news.tipologia_notizia = news_new_type
+                news.reindexObject(idxs=["tipologia_notizia"])
 
         # update listings
         for brain in api.portal.get_tool("portal_catalog")():
