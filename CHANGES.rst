@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.2.5 (unreleased)
+6.2.5 (2024-04-17)
 ------------------
 
 - check-servizi: fixed check on relation title.
