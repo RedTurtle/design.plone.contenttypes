@@ -4,7 +4,8 @@ Changelog
 6.2.7 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Do not break News serialzier if `tipologia_notizia` attribute is missing.
+  [cekk]
 
 
 6.2.6 (2024-04-18)
