@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.2.6 (unreleased)
+6.2.6 (2024-04-18)
 ------------------
 
 - improved check on relation.
