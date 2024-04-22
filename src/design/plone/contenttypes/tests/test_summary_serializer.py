@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from datetime import datetime
 from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
 )
@@ -329,3 +330,23 @@ class SummarySerializerTest(unittest.TestCase):
 
         self.assertEqual(len(items), 1)
         self.assertNotIn("tipologia_bando", bando.tipologia_bando)
+
+    def test_event_summary(self):
+        event1 = api.content.create(
+            container=self.portal,
+            type="Event",
+            title="Evento1",
+            start=datetime(2024, 4, 22, 12, 0),
+            end=datetime(2024, 5, 22, 13, 0),
+        )
+        api.content.create(
+            container=event1,
+            type="Event",
+            title="Evento2",
+            start=datetime(2024, 4, 23, 12, 0),
+            end=datetime(2024, 4, 23, 13, 0),
+        )
+        commit()
+        resp = self.api_session.get(event1.absolute_url()).json()
+        subevent = [x for x in resp["items"] if x["@type"] == "Event"][0]
+        self.assertIn("start", subevent)

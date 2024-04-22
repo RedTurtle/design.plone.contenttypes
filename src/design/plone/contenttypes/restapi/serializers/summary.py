@@ -158,6 +158,8 @@ class DefaultJSONSummarySerializer(BaseSerializer):
                 res["tipologia_bando"] = getattr(self.context, "tipologia_bando", "")
             if "bando_state" in metadata_fields or self.show_all_metadata_fields:
                 res["bando_state"] = self.get_bando_state()
+        if self.context.portal_type == "Event":
+            res["start"] = json_compatible(self.context.start)
 
         if "geolocation" in metadata_fields or self.show_all_metadata_fields:
             # backward compatibility for some block templates
