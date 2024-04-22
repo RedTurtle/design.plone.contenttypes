@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.2.7 (unreleased)
+6.2.7 (2024-04-22)
 ------------------
 
 - Fix change_news_type view; Taxonomy doesn't index values not present in
