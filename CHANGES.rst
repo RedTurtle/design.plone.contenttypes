@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.2.8 (unreleased)
+6.2.8 (2024-04-22)
 ------------------
 
 - Add start metadata to event summary serialization;
