@@ -22,7 +22,7 @@
         <h3>Content-types</h3>
         <ul class="list-group">
           <li class="list-group-item">
-            <a href="${context/portal_url}/change-news-type">Cambia la Tipologia Notizia</a>
+            <a href="${context/portal_url}/change_news_type">Cambia la Tipologia Notizia</a>
             <p class="discreet">
               Questo tool viene usato per cambiare il valore del campo 'Tipologia Notizia' in tutte le notizie che hanno il valore del campo selezionato. Fa anche il giro su tutti i blocchi elenco.
             </p>
