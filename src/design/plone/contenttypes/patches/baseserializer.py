@@ -37,7 +37,7 @@ def design_italia_serialize_to_json_call(self, version=None, include_items=True)
         ttool[self.context.portal_type].Title(), context=self.request
     )
     if self.context.portal_type == "News Item":
-        if self.context.tipologia_notizia:
+        if getattr(self.context, "tipologia_notizia", ""):
             taxonomy = getUtility(
                 ITaxonomy, name="collective.taxonomy.tipologia_notizia"
             )

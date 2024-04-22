@@ -1,13 +1,22 @@
 Changelog
 =========
 
-6.2.6 (unreleased)
+6.2.7 (unreleased)
 ------------------
 
 - Fix change_news_type view; Taxonomy doesn't index values not present in
   the taxonomy vocabulary, so we had lot of old values not indexed and not listed
   as available type to change.
   [lucabel]
+- Do not break News serialzier if `tipologia_notizia` attribute is missing.
+  [cekk]
+
+
+6.2.6 (2024-04-18)
+------------------
+
+- improved check on relation.
+  [daniele]
 
 
 6.2.5 (2024-04-17)

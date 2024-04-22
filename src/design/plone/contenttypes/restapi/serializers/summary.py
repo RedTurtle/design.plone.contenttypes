@@ -220,15 +220,16 @@ class DefaultJSONSummarySerializer(BaseSerializer):
     def get_design_meta_type(self):
         ttool = api.portal.get_tool("portal_types")
         if self.context.portal_type == "News Item":
-            if self.context.tipologia_notizia:
+            tipologia_notizia = getattr(self.context, "tipologia_notizia", "")
+            if tipologia_notizia:
                 taxonomy = getUtility(
                     ITaxonomy, name="collective.taxonomy.tipologia_notizia"
                 )
                 taxonomy_voc = taxonomy.makeVocabulary(self.request.get("LANGUAGE"))
-                if isinstance(self.context.tipologia_notizia, list):
-                    token = self.context.tipologia_notizia[0]
+                if isinstance(tipologia_notizia, list):
+                    token = tipologia_notizia[0]
                 else:
-                    token = self.context.tipologia_notizia
+                    token = tipologia_notizia
                 title = taxonomy_voc.inv_data.get(token, None)
                 if title:
                     if title.startswith(PATH_SEPARATOR):
