@@ -4,7 +4,10 @@ Changelog
 6.2.8 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add start metadata to event summary serialization;
+  useful when create event with children event: in items list we
+  have subevents with missing start date
+  [lucabel]
 
 
 6.2.7 (2024-04-22)
