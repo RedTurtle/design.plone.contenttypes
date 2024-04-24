@@ -4,7 +4,8 @@ Changelog
 6.2.9 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Aggiunto la cartlla "altri allegati" sulla persona
+  [lucabel]
 
 
 6.2.8 (2024-04-22)

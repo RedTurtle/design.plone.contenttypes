@@ -120,6 +120,7 @@ SUBFOLDERS_MAPPING = {
         },
         {"id": "altre-cariche", "title": "Altre cariche", "allowed_types": ("File",)},
         {"id": "incarichi", "title": "Incarichi", "allowed_types": ("Incarico",)},
+        {"id": "altri-allegati", "title": "Altri Allegati", "allowed_types": ("File", "Image", "Link")},
     ],
     "Pratica": [
         {
