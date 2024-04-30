@@ -221,6 +221,7 @@ class TestEventCreation(unittest.TestCase):
         - spese-elettorali
         - variazione-situazione-patrimoniale" "altre-cariche
         - incarichi
+        - altri-documenti
         """
         item = api.content.create(
             container=self.portal,
@@ -239,6 +240,7 @@ class TestEventCreation(unittest.TestCase):
                 "variazione-situazione-patrimoniale",
                 "altre-cariche",
                 "incarichi",
+                "altri-documenti",
             ],
         )
 
@@ -316,6 +318,14 @@ class TestEventCreation(unittest.TestCase):
         self.assertEqual(item["incarichi"].constrain_types_mode, 1)
         self.assertEqual(item["incarichi"].locally_allowed_types, ("Incarico",))
         self.assertTrue(item["incarichi"].exclude_from_search)
+
+        self.assertEqual(item["altri-documenti"].portal_type, "Document")
+        self.assertEqual(api.content.get_state(item["altri-documenti"]), "private")
+        self.assertEqual(item["altri-documenti"].constrain_types_mode, 1)
+        self.assertEqual(
+            item["altri-documenti"].locally_allowed_types, ("File", "Link", "Image")
+        )
+        self.assertTrue(item["altri-documenti"].exclude_from_search)
 
     def test_servizio_substructure_created(self):
         """
