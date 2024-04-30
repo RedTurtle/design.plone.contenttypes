@@ -15,13 +15,18 @@ def to_7301(context):
     brains = api.content.find(portal_type="Persona")
     for brain in brains:
         persona = brain.getObject()
-        child = api.content.create(
-            container=persona,
-            type="Document",
-            title="Altri documenti",
-            id="altri-documenti",
-        )
-        create_default_blocks(context=child)
+        FOLDER_ID = "altri-documenti"
+        if FOLDER_ID not in persona.keys():
+            child = api.content.create(
+                container=persona,
+                type="Document",
+                title="Altri documenti",
+                id=FOLDER_ID,
+            )
+            create_default_blocks(context=child)
+        else:
+            child = persona[FOLDER_ID]
+
         child.exclude_from_search = True
         child.reindexObject(idxs=["exclude_from_search"])
         # select constraints
@@ -35,5 +40,6 @@ def to_7301(context):
             )
         )
         if api.content.get_state(persona) == "published":
-            with api.env.adopt_roles(["Reviewer"]):
-                api.content.transition(obj=child, transition="publish")
+            if api.content.get_state(child) != "published":
+                with api.env.adopt_roles(["Reviewer"]):
+                    api.content.transition(obj=child, transition="publish")
