@@ -18,8 +18,8 @@ def to_7301(context):
         child = api.content.create(
             container=persona,
             type="Document",
-            title="Altri allegati",
-            id="altri-allegati",
+            title="Altri documenti",
+            id="altri-documenti",
         )
         create_default_blocks(context=child)
         child.exclude_from_search = True
