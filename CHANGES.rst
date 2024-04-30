@@ -4,7 +4,7 @@ Changelog
 6.2.9 (unreleased)
 ------------------
 
-- Aggiunto la cartlla "altri allegati" sulla persona
+- Aggiunto la cartella "Altri Documenti" sulla persona
   [lucabel]
 
 
