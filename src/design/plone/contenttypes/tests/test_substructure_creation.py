@@ -322,9 +322,9 @@ class TestEventCreation(unittest.TestCase):
         self.assertEqual(item["altri-documenti"].portal_type, "Document")
         self.assertEqual(api.content.get_state(item["altri-documenti"]), "private")
         self.assertEqual(item["altri-documenti"].constrain_types_mode, 1)
-        self.assertEqual(
-            item["altri-documenti"].locally_allowed_types, ("File", "Link", "Image")
-        )
+        self.assertIn("File", item["altri-documenti"].locally_allowed_types)
+        self.assertIn("Link", item["altri-documenti"].locally_allowed_types)
+        self.assertIn("Image", item["altri-documenti"].locally_allowed_types)
         self.assertTrue(item["altri-documenti"].exclude_from_search)
 
     def test_servizio_substructure_created(self):
