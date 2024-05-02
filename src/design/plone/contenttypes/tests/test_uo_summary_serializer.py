@@ -105,7 +105,11 @@ class UOSummarySerializerTest(unittest.TestCase):
         res = response.json()
         uo_children = res["uo_children"][0]
         self.assertEqual(uo_children["image_field"], None)
-        self.assertEqual(uo_children["image_scales"], None)
+        # Plone 6.0.10.1 due to a bug in plone.app.contentlisting (#64
+        # from github issue) return None
+        # Plone 6.0.11 upgrade plone.app.contentlisting to a version
+        # fixing the problem
+        self.assertIn(uo_children["image_scales"], (None, {}))
 
         # now, add a preview image
         filename = os.path.join(os.path.dirname(__file__), "example.png")
