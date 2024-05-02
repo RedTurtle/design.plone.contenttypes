@@ -856,5 +856,12 @@
       destination="7300"
       handler=".to_7300.to_7300"
       />
+  <genericsetup:upgradeStep
+      title="Add new folder to persona ct"
+      profile="design.plone.contenttypes:default"
+      source="7300"
+      destination="7301"
+      handler=".to_730x.to_7301"
+      />
 
 </configure>
