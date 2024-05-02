@@ -183,7 +183,6 @@ class DefaultJSONSummarySerializer(BaseSerializer):
 
         if self.is_get_call():
             res["has_children"] = self.has_children()
-
         if force_images:
             # TODO: verificare se non c'è il campo o se il campo è null/vuoto ?
             if not res.get("image_scales") and not res.get("image_field"):
@@ -198,7 +197,14 @@ class DefaultJSONSummarySerializer(BaseSerializer):
                         res["image_field"] = "preview_image"
                     elif "image" in scales:
                         res["image_field"] = "image"
-
+            # plone.app.contentlisting 3.0.5 sembra fissare un accessor che ci
+            # fa arrivare uno scale senza image_field.
+            # avremmo questo problema una volta passati a plone 6.0.11
+            elif res.get("image_scales") and not res.get("image_field"):
+                if "preview_image" in res["image_scales"]:
+                    res["image_field"] = "preview_image"
+                elif "image" in res["image_scales"]:
+                    res["image_field"] = "image"
         return res
 
     def has_children(self):
