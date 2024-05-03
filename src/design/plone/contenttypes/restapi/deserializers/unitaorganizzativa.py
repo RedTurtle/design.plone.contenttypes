@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 from design.plone.contenttypes.interfaces.unita_organizzativa import IUnitaOrganizzativa
-from plone.restapi.behaviors import IBlocks
+from design.plone.contenttypes.utils import text_in_block
 from plone.restapi.deserializer import json_body
 from plone.restapi.deserializer.dxcontent import DeserializeFromJson
-from plone.restapi.indexers import SearchableText_blocks
 from plone.restapi.interfaces import IDeserializeFromJson
 from zExceptions import BadRequest
 from zope.component import adapter
@@ -21,30 +20,6 @@ def new_error(message):
     return {"error": "ValidationError", "message": message}
 
 
-def text_in_block(blocks):
-    @implementer(IBlocks)
-    class FakeObject(object):
-        """
-        We use a fake object to use SearchableText Indexer
-        """
-
-        def Subject(self):
-            return ""
-
-        def __init__(self, blocks, blocks_layout):
-            self.blocks = blocks
-            self.blocks_layout = blocks_layout
-            self.id = ""
-            self.title = ""
-            self.description = ""
-
-    if not blocks:
-        return None
-
-    fakeObj = FakeObject(blocks.get("blocks", ""), blocks.get("blocks_layout", ""))
-    return SearchableText_blocks(fakeObj)()
-
-
 @implementer(IDeserializeFromJson)
 @adapter(IUnitaOrganizzativa, Interface)
 class DeserializeUnitaOrganizzativaFromJson(DeserializeFromJson):
@@ -58,7 +33,6 @@ class DeserializeUnitaOrganizzativaFromJson(DeserializeFromJson):
         is_post = method == "POST"
         is_patch = method == "PATCH"
         errors = []
-
         if list(data.keys()) != ["ordering"]:
             title = data.get("title")
             description = data.get("description")

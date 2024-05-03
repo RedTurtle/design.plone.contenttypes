@@ -4,7 +4,11 @@ Changelog
 6.2.9 (unreleased)
 ------------------
 
-- Aggiunto la cartella "Altri Documenti" sulla persona
+- Add this folder "Altri Documenti" under "Persona pubblica"
+  [lucabel]
+- Code porting to work with both plone 6.0.10.x and 6.0.11
+  due to some core egg update
+  Code porting to work with the new plone.restapi 9.6.1 version
   [lucabel]
 
 
