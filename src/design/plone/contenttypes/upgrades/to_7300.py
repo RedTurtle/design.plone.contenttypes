@@ -6,7 +6,6 @@ from plone.namedfile import file
 
 
 def to_7300(context):
-
     mapping = {
         # portal_type
         "Documento Personale": {

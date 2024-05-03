@@ -1,43 +1,18 @@
 # -*- coding: utf-8 -*-
 from DateTime import DateTime
+from design.plone.contenttypes.utils import text_in_block
 from openpyxl import Workbook
 from openpyxl.styles import Alignment
 from openpyxl.styles import Font
 from openpyxl.styles import PatternFill
 from openpyxl.utils import get_column_letter
 from plone import api
-from plone.restapi.behaviors import IBlocks
-from plone.restapi.indexers import SearchableText_blocks
 from Products.Five import BrowserView
-from zope.interface import implementer
 
 import io
 
 
 FLAG = '<i class="fa-solid fa-check"></i>'
-
-
-def text_in_block(blocks):
-    @implementer(IBlocks)
-    class FakeObject(object):
-        """
-        We use a fake object to use SearchableText Indexer
-        """
-
-        def Subject(self):
-            return ""
-
-        def __init__(self, blocks, blocks_layout):
-            self.blocks = blocks
-            self.blocks_layout = blocks_layout
-            self.id = ""
-            self.title = ""
-            self.description = ""
-
-    if not blocks:
-        return None
-    fakeObj = FakeObject(blocks.get("blocks", ""), blocks.get("blocks_layout", ""))
-    return SearchableText_blocks(fakeObj)()
 
 
 class CheckServizi(BrowserView):
