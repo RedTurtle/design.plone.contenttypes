@@ -35,7 +35,7 @@ def to_7301(context):
         constraintsChild.setLocallyAllowedTypes(
             (
                 "File",
-                "Image",
+                "Documento",
                 "Link",
             )
         )
