@@ -57,7 +57,10 @@
  </index>
  <index name="exclude_from_search" meta_type="BooleanIndex">
     <indexed_attr value="exclude_from_search"/>
-  </index>
+ </index>
+ <index name="rassegna" meta_type="BooleanIndex">
+    <indexed_attr value="rassegna"/>
+ </index>
 
   <!-- metadata -->
   <column value="tipologia_notizia" />
@@ -71,6 +74,7 @@
   <column value="ente_bando" />
   <column value="icona" />
   <column value="update_note" />
+  <column value="rassegna" />
 
   <!-- cleanup -->
   <index name="argomenti_correlati"

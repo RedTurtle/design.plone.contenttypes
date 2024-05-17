@@ -10,6 +10,8 @@ Changelog
   due to some core egg update
   Code porting to work with the new plone.restapi 9.6.1 version
   [lucabel]
+- Add rassegna index to events
+  [lucabel]
 
 
 6.2.8 (2024-04-22)
