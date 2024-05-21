@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.2.9 (unreleased)
+6.2.9 (2024-05-21)
 ------------------
 
 - Add this folder "Altri Documenti" under "Persona pubblica"
