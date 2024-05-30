@@ -877,5 +877,12 @@
       destination="7303"
       handler=".to_730x.to_7303"
       />
+  <genericsetup:upgradeStep
+      title="Reindex an index to update catalog values"
+      profile="design.plone.contenttypes:default"
+      source="7303"
+      destination="7304"
+      handler=".to_730x.to_7304"
+      />
 
 </configure>

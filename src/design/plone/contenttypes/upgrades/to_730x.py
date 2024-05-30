@@ -2,7 +2,7 @@
 from design.plone.contenttypes.utils import create_default_blocks
 from plone import api
 from Products.CMFPlone.interfaces import ISelectableConstrainTypes
-
+import transaction
 import logging
 
 
@@ -73,3 +73,16 @@ def to_7302(context):
 def to_7303(context):
     update_registry(context)
     logger.info("Update registry")
+
+
+def to_7304(context):
+    brains = context.portal_catalog()
+    tot = len(brains)
+    i = 0
+    for brain in brains:
+        i += 1
+        if i % 100 == 0:
+            logger.info("Progress: {}/{}".format(i, tot))
+            transaction.commit()
+        doc = brain.getObject()
+        doc.reindexObject(idxs=["parent"])

@@ -51,6 +51,7 @@ class SerializeToJson(BaseSerializer, MetaTypeSerializer):
 @adapter(IDexterityContainer, IDesignPloneContenttypesLayer)
 class SerializeFolderToJson(BaseFolderSerializer, MetaTypeSerializer):
     def __call__(self, version=None, include_items=True):
+
         result = super(SerializeFolderToJson, self).__call__(
             version=version, include_items=include_items
         )
