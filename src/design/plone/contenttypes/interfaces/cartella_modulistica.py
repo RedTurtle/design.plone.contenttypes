@@ -20,7 +20,7 @@ class ICartellaModulistica(model.Schema, IDesignPloneContentType):
     )
 
     ricerca_in_testata = schema.Bool(
-        title=_("ricerca_in_testata_title", default="Cerca i campi in testata"),
+        title=_("ricerca_in_testata_title", default="Mostra ricerca in testata"),
         description=_(
             "ricerca_in_testata_description",
             default="Permette di cercare campi in testata",
