@@ -31,11 +31,11 @@ class ICartellaModulistica(model.Schema, IDesignPloneContentType):
 
     non_collassare_gli_elementi = schema.Bool(
         title=_(
-            "non_collassare_gli_elementi_title", default="Non collassare gli elmenti"
+            "non_collassare_gli_elementi_title", default="Non collassare gli elementi"
         ),
         description=_(
             "non_collassare_gli_elementi_description",
-            default="Permette di non collassare gli elmenti",
+            default="Permette di non collassare gli elementi",
         ),
         required=False,
         default=False,
