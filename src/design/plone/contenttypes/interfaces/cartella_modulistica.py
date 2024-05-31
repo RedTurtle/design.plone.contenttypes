@@ -18,3 +18,25 @@ class ICartellaModulistica(model.Schema, IDesignPloneContentType):
         required=False,
         default=False,
     )
+
+    ricerca_in_testata = schema.Bool(
+        title=_("ricerca_in_testata_title", default="Cerca i campi in testata"),
+        description=_(
+            "ricerca_in_testata_description",
+            default="Permette di cercare campi in testata",
+        ),
+        required=False,
+        default=True,
+    )
+
+    non_collassare_gli_elementi = schema.Bool(
+        title=_(
+            "non_collassare_gli_elementi_title", default="Non collassare gli elmenti"
+        ),
+        description=_(
+            "non_collassare_gli_elementi_description",
+            default="Permette di non collassare gli elmenti",
+        ),
+        required=False,
+        default=False,
+    )

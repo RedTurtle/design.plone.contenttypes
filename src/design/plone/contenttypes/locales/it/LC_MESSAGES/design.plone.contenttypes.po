@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2024-02-16 09:53+0000\n"
+"POT-Creation-Date: 2024-05-31 08:52+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -192,6 +192,10 @@ msgstr ""
 msgid "Campi aggiuntivi per la sezione amministrazione trasparente."
 msgstr ""
 
+#: design/plone/contenttypes/behaviors/configure.zcml:279
+msgid "Campo per escludere un contenuto dalle ricerche del sito."
+msgstr ""
+
 #: design/plone/contenttypes/behaviors/configure.zcml:270
 msgid "Campo per le note di aggiornamento."
 msgstr ""
@@ -347,6 +351,10 @@ msgstr ""
 #: design/plone/contenttypes/vocabularies/dataset.py:35
 #: design/plone/contenttypes/vocabularies/tags_vocabulary.py:61
 msgid "Energia"
+msgstr ""
+
+#: design/plone/contenttypes/behaviors/configure.zcml:279
+msgid "Exclude from search"
 msgstr ""
 
 #: design/plone/contenttypes/vocabularies/tags_vocabulary.py:28
@@ -1494,6 +1502,11 @@ msgstr ""
 msgid "esito"
 msgstr ""
 
+#. Default: "Escludi dalla ricerca"
+#: design/plone/contenttypes/behaviors/exclude_from_search.py:17
+msgid "exclude_from_search_label"
+msgstr ""
+
 #. Default: "Fax"
 #: design/plone/contenttypes/behaviors/evento.py:113
 msgid "fax_event_help"
@@ -1607,6 +1620,11 @@ msgstr ""
 #. Default: "Indicare eventuali elementi di interesse per il cittadino."
 #: design/plone/contenttypes/behaviors/luogo.py:45
 msgid "help_elementi_di_interesse"
+msgstr ""
+
+#. Default: "Se selezionato, questo contenuto non verrà mostrato nelle ricerche del sito per gli utenti anonimi."
+#: design/plone/contenttypes/behaviors/exclude_from_search.py:18
+msgid "help_exclude_from_search"
 msgstr ""
 
 #. Default: "Indicare tutte le informazioni relative alla modalità di accesso al luogo"
@@ -1870,6 +1888,16 @@ msgstr ""
 msgid "nome_sede"
 msgstr ""
 
+#. Default: "Permette di non collassare gli elmenti"
+#: design/plone/contenttypes/interfaces/cartella_modulistica.py:36
+msgid "non_collassare_gli_elementi_description"
+msgstr ""
+
+#. Default: "Non collassare gli elmenti"
+#: design/plone/contenttypes/interfaces/cartella_modulistica.py:33
+msgid "non_collassare_gli_elementi_title"
+msgstr ""
+
 #. Default: "Seleziona una lista di notizie correlate a questa."
 #: design/plone/contenttypes/behaviors/news_additional_fields.py:83
 msgid "notizie_correlate_help"
@@ -2122,6 +2150,11 @@ msgstr ""
 msgid "responsabile_procedimento_help"
 msgstr ""
 
+#. Default: "Permette di cercare campi in testata"
+#: design/plone/contenttypes/interfaces/cartella_modulistica.py:24
+msgid "ricerca_in_testata_description"
+msgstr ""
+
 #. Default: "Seleziona se mostrare o meno il campo di ricerca in testata."
 #: design/plone/contenttypes/behaviors/info_testata.py:32
 msgid "ricerca_in_testata_help"
@@ -2130,6 +2163,11 @@ msgstr ""
 #. Default: "Ricerca in testata"
 #: design/plone/contenttypes/behaviors/info_testata.py:29
 msgid "ricerca_in_testata_label"
+msgstr ""
+
+#. Default: "Cerca i campi in testata"
+#: design/plone/contenttypes/interfaces/cartella_modulistica.py:23
+msgid "ricerca_in_testata_title"
 msgstr ""
 
 #. Default: "Ulteriori informazioni non previste negli altri campi; si può trattare di contatti o note informative la cui conoscenza è indispensabile per la partecipazione al bando"
