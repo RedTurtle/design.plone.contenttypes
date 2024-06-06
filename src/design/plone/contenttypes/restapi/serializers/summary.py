@@ -325,6 +325,13 @@ class IncaricoDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
         else:
             res["compensi"] = json_compatible([])
 
+        if "importi_viaggio_servizio" not in res:
+            res["importi_viaggio_servizio"] = json_compatible(
+                self.context.importi_viaggio_servizio
+            )
+        else:
+            res["importi_viaggio_servizio"] = json_compatible([])
+
         if safe_hasattr(self.context, "compensi-file"):
             compensi_folder = getattr(self.context, "compensi-file")
             res["compensi_file"] = []
