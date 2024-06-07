@@ -863,5 +863,26 @@
       destination="7301"
       handler=".to_730x.to_7301"
       />
+  <genericsetup:upgradeStep
+      title="Add new index for event"
+      profile="design.plone.contenttypes:default"
+      source="7301"
+      destination="7302"
+      handler=".to_730x.to_7302"
+      />
+  <genericsetup:upgradeStep
+      title="Add new key to filter listing by rassegna"
+      profile="design.plone.contenttypes:default"
+      source="7302"
+      destination="7303"
+      handler=".to_730x.to_7303"
+      />
+  <genericsetup:upgradeStep
+      title="Reindex an index to update catalog values"
+      profile="design.plone.contenttypes:default"
+      source="7303"
+      destination="7304"
+      handler=".to_730x.to_7304"
+      />
 
 </configure>

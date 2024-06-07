@@ -77,6 +77,11 @@
       factory=".common.exclude_from_search"
       name="exclude_from_search"
       />
+  <adapter
+      factory=".events.rassegna"
+      name="rassegna"
+      />
+
   <!-- only metadata -->
 
 </configure>

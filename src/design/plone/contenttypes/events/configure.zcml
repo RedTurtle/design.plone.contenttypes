@@ -31,4 +31,10 @@
            zope.lifecycleevent.interfaces.IObjectAddedEvent"
       handler=".common.createSubfolders"
       />
+  <subscriber
+      for="plone.app.contenttypes.interfaces.IEvent
+           zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+      handler=".events.EventModified"
+      />
+
 </configure>

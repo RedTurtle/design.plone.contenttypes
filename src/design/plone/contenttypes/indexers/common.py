@@ -34,6 +34,7 @@ def parent(context):
         "title": obj_parent.Title(),
         "UID": obj_parent.UID(),
         "@id": obj_parent.absolute_url(),
+        "@type": obj_parent.portal_type,
     }
 
 

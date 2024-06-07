@@ -464,6 +464,21 @@
     <value key="group" i18n:translate="">Metadata</value>
 </records>
 
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+         prefix="plone.app.querystring.field.rassegna"
+>
+    <value key="title" i18n:translate="">Evento Rassegna</value>
+    <value key="description" i18n:translate="">Esclude le rassegne dai listing</value>
+    <value key="enabled">True</value>
+    <value key="sortable">False</value>
+    <value key="operations">
+      <element>plone.app.querystring.operation.boolean.isTrue</element>
+      <element>plone.app.querystring.operation.boolean.isFalse</element>
+    </value>
+    <value key="group" i18n:translate="">Metadata</value>
+</records>
+
+
 
   <!-- cleanup -->
   <records interface="plone.app.querystring.interfaces.IQueryField"
