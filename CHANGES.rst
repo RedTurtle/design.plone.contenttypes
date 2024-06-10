@@ -4,7 +4,8 @@ Changelog
 6.2.10 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add importi_viaggio_servizio field as block field in Incarico response
+  [eikichi18]
 
 
 6.2.9 (2024-05-21)
