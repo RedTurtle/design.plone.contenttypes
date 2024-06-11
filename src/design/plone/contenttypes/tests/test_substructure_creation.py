@@ -347,7 +347,7 @@ class TestEventCreation(unittest.TestCase):
         self.assertEqual(item["modulistica"].portal_type, "Document")
         self.assertEqual(api.content.get_state(item["modulistica"]), "private")
         self.assertEqual(item["modulistica"].constrain_types_mode, 1)
-        self.assertEqual(item["modulistica"].locally_allowed_types, ("File", "Link"))
+        self.assertEqual(item["modulistica"].locally_allowed_types, ("Link",))
         self.assertTrue(item["modulistica"].exclude_from_search)
 
         self.assertEqual(item["allegati"].portal_type, "Document")

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from design.plone.contenttypes.utils import create_default_blocks
+from design.plone.contenttypes.events.common import SUBFOLDERS_MAPPING
 from plone import api
 from Products.CMFPlone.interfaces import ISelectableConstrainTypes
 import transaction
@@ -86,3 +87,24 @@ def to_7304(context):
             transaction.commit()
         doc = brain.getObject()
         doc.reindexObject(idxs=["parent"])
+
+
+def to_7305(context):
+    mapping = SUBFOLDERS_MAPPING["Servizio"]
+    mapping = [folder for folder in mapping if folder["id"] == "modulistica"][0]
+    brains = api.content.find(portal_type="Servizio")
+    tot = len(brains)
+    i = 0
+    for brain in brains:
+        i += 1
+        if i % 100 == 0:
+            logger.info("Progress: {}/{}".format(i, tot))
+            transaction.commit()
+        servizio = brain.getObject()
+        FOLDER_ID = "modulistica"
+        if FOLDER_ID not in servizio.keys():
+            continue
+        child = servizio[FOLDER_ID]
+        constraintsChild = ISelectableConstrainTypes(child)
+        constraintsChild.setConstrainTypesMode(1)
+        constraintsChild.setLocallyAllowedTypes(mapping["allowed_types"])
