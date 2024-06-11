@@ -6,7 +6,12 @@ Changelog
 
 - Add importi_viaggio_servizio field as block field in Incarico response
   [eikichi18]
-
+- Add rassegna index to events
+  [lucabel]
+- Remove File from addable type in Servizio / modulistica folder. As stated
+  by AGID team we can't add File in this folder but link to modules in
+  "Documenti e Dati" section
+  [lucabel]
 
 6.2.9 (2024-05-21)
 ------------------
@@ -17,9 +22,6 @@ Changelog
   due to some core egg update
   Code porting to work with the new plone.restapi 9.6.1 version
   [lucabel]
-- Add rassegna index to events
-  [lucabel]
-
 
 6.2.8 (2024-04-22)
 ------------------
