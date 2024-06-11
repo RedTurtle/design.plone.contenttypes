@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.2.10 (unreleased)
+6.2.10 (2024-06-11)
 -------------------
 
 - Add importi_viaggio_servizio field as block field in Incarico response
