@@ -888,7 +888,7 @@
       title="Reindex an index to update catalog values"
       profile="design.plone.contenttypes:default"
       source="7304"
-      destination="7354"
+      destination="7305"
       handler=".to_730x.to_7305"
       />
 
