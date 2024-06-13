@@ -4,7 +4,8 @@ Changelog
 6.2.11 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix limit in query for service in ScadenziarioDayPost service
+  [eikichi18]
 
 
 6.2.10 (2024-06-11)
