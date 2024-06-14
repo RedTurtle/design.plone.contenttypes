@@ -65,6 +65,7 @@ class TestPersonaSchema(unittest.TestCase):
                 "plone.translatable",
                 "kitconcept.seo",
                 "plone.versioning",
+                "plone.constraintypes",
             ),
         )
 

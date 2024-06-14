@@ -4,7 +4,8 @@ Changelog
 6.2.11 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Disallower other objs creation in Persona and Incarico ct.
+  [eikichi18]
 
 
 6.2.10 (2024-06-11)
