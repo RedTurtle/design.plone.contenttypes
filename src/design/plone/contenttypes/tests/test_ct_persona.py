@@ -217,7 +217,7 @@ class TestPersonaSchema(unittest.TestCase):
         )
         commit()
         atto_nomina = api.content.create(
-            container=incarico, type="Documento", title="Atto di nomina"
+            container=self.portal, type="Documento", title="Atto di nomina"
         )
         commit()
         intids = getUtility(IIntIds)
