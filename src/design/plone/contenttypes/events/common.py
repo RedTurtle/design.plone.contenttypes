@@ -228,7 +228,7 @@ def createSubfolders(context, event):
                     api.content.transition(obj=child, transition="publish")
 
     allowed_types = subfolders_mapping.get("allowed_types", "__all__")
-    if allowed_types is not "__all__" and not isinstance(allowed_types, list):
+    if allowed_types != "__all__" and not isinstance(allowed_types, list):
         raise ValueError("Subfolder map is not well formed")
 
     if isinstance(allowed_types, list):

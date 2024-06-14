@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-from design.plone.contenttypes.utils import create_default_blocks
 from design.plone.contenttypes.events.common import SUBFOLDERS_MAPPING
+from design.plone.contenttypes.utils import create_default_blocks
 from plone import api
 from Products.CMFPlone.interfaces import ISelectableConstrainTypes
-import transaction
+
 import logging
+import transaction
 
 
 logger = logging.getLogger(__name__)
@@ -22,6 +23,10 @@ def update_catalog(context):
 
 def update_registry(context):
     update_profile(context, "plone.app.registry", run_dependencies=False)
+
+
+def update_types(context):
+    update_profile(context, "typeinfo")
 
 
 def to_7301(context):
@@ -108,3 +113,8 @@ def to_7305(context):
         constraintsChild = ISelectableConstrainTypes(child)
         constraintsChild.setConstrainTypesMode(1)
         constraintsChild.setLocallyAllowedTypes(mapping["allowed_types"])
+
+
+def to_7306(context):
+    logger.info("Disallow add other objs in Persona and Incarico ct")
+    update_types(context)
