@@ -16,7 +16,6 @@ SUBFOLDERS_MAPPING = {
             },
             {"id": "esiti", "title": "Esiti", "type": "Bando Folder Deepening"},
         ],
-        "allowed_types": "__all__",
     },
     "Documento": {
         "content": [
@@ -27,7 +26,6 @@ SUBFOLDERS_MAPPING = {
                 "allowed_types": ("Image",),
             },
         ],
-        "allowed_types": "__all__",
     },
     "Event": {
         "content": [
@@ -56,7 +54,6 @@ SUBFOLDERS_MAPPING = {
                 "publish": True,
             },
         ],
-        "allowed_types": "__all__",
     },
     "Incarico": {
         "content": [
@@ -82,7 +79,6 @@ SUBFOLDERS_MAPPING = {
                 "publish": True,
             }
         ],
-        "allowed_types": "__all__",
     },
     "News Item": {
         "content": [
@@ -103,7 +99,6 @@ SUBFOLDERS_MAPPING = {
                 ),
             },
         ],
-        "allowed_types": "__all__",
     },
     "Persona": {
         "content": [
@@ -160,7 +155,6 @@ SUBFOLDERS_MAPPING = {
                 "allowed_types": ("File",),
             }
         ],
-        "allowed_types": "__all__",
     },
     "Servizio": {
         "content": [
@@ -171,13 +165,11 @@ SUBFOLDERS_MAPPING = {
             },
             {"id": "allegati", "title": "Allegati", "allowed_types": ("File", "Link")},
         ],
-        "allowed_types": "__all__",
     },
     "UnitaOrganizzativa": {
         "content": [
             {"id": "allegati", "title": "Allegati", "allowed_types": ("File",)},
         ],
-        "allowed_types": "__all__",
     },
 }
 
@@ -227,8 +219,8 @@ def createSubfolders(context, event):
                 with api.env.adopt_roles(["Reviewer"]):
                     api.content.transition(obj=child, transition="publish")
 
-    allowed_types = subfolders_mapping.get("allowed_types", "__all__")
-    if allowed_types != "__all__" and not isinstance(allowed_types, list):
+    allowed_types = subfolders_mapping.get("allowed_types", None)
+    if allowed_types is not None and not isinstance(allowed_types, list):
         raise ValueError("Subfolder map is not well formed")
 
     if isinstance(allowed_types, list):
