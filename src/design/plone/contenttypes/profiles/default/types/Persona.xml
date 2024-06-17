@@ -20,12 +20,9 @@
 
   <!-- Hierarchy control -->
   <property name="global_allow">True</property>
-  <property name="filter_content_types">False</property>
+  <property name="filter_content_types">True</property>
   <property name="allowed_content_types">
-    <!--
     <element value="Document" />
-    <element value="File" />
-  -->
   </property>
   <!-- Schema, class and security -->
   <property name="add_permission">design.plone.contenttypes.AddPersona</property>
@@ -57,6 +54,7 @@
     <element value="plone.translatable" />
     <element value="kitconcept.seo" />
     <element value="plone.versioning" />
+    <element value="plone.constraintypes" />
   </property>
 
   <!-- View information -->

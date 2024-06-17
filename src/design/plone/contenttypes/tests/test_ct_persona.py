@@ -65,6 +65,7 @@ class TestPersonaSchema(unittest.TestCase):
                 "plone.translatable",
                 "kitconcept.seo",
                 "plone.versioning",
+                "plone.constraintypes",
             ),
         )
 
@@ -216,7 +217,7 @@ class TestPersonaSchema(unittest.TestCase):
         )
         commit()
         atto_nomina = api.content.create(
-            container=incarico, type="Documento", title="Atto di nomina"
+            container=self.portal, type="Documento", title="Atto di nomina"
         )
         commit()
         intids = getUtility(IIntIds)

@@ -4,6 +4,7 @@ Changelog
 6.2.11 (unreleased)
 -------------------
 
+- Disallower other objs creation in Persona and Incarico ct.
 - Fix limit in query for service in ScadenziarioDayPost service
   [eikichi18]
 

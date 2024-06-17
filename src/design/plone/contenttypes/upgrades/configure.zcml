@@ -891,5 +891,12 @@
       destination="7305"
       handler=".to_730x.to_7305"
       />
+  <genericsetup:upgradeStep
+      title="Reload types definition"
+      profile="design.plone.contenttypes:default"
+      source="7305"
+      destination="7306"
+      handler=".to_730x.to_7306"
+      />
 
 </configure>
