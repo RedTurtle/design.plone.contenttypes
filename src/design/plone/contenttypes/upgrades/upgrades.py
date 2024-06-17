@@ -1057,9 +1057,12 @@ def to_5800(context):
         portal_types[ptype].behaviors = tuple(behaviors)
 
     # set True to all of already created children
-    for (id, pt) in [("multimedia", "Document"), ("allegati", "Document"), ("luoghi", "Document")]:  # ...
+    for id, pt in [
+        ("multimedia", "Document"),
+        ("allegati", "Document"),
+        ("luoghi", "Document"),
+    ]:  # ...
         brains = api.content.find(getId=id, portal_type=pt)
-        tot = len(brains)
         for i, brain in enumerate(brains):
             brain.getObject().exclude_from_search = True
 
