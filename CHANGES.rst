@@ -5,7 +5,8 @@ Changelog
 5.1.13 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Search field for CartellaModulistica c.t.
+  [folix-01]
 
 
 5.1.12 (2024-04-09)
