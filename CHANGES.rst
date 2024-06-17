@@ -5,6 +5,7 @@ Changelog
 -------------------
 
 - Disallower other objs creation in Persona and Incarico ct.
+- Fix limit in query for service in ScadenziarioDayPost service
   [eikichi18]
 
 
