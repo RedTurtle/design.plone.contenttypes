@@ -218,12 +218,12 @@ class ScadenziarioDayPost(BaseService):
         end = None
         # qui ce l'abbiamo per forza start
         if "start" in query_for_catalog:
-            start = query_for_catalog["start"]["query"]
+            start = query_for_catalog["start"]["query"][0]
         if "end" in query_for_catalog:
-            end = query_for_catalog["end"]["query"]
+            end = query_for_catalog["start"]["query"][1]
 
         expanded_events = self.expand_events(events, 3, start, end)
-        start_date = start[0].strftime("%Y/%m/%d")
+        start_date = start.strftime("%Y/%m/%d")
         correct_events = []
         for x in expanded_events:
             if start_date == x.start.strftime("%Y/%m/%d"):
