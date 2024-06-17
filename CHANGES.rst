@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-5.1.13 (unreleased)
+5.1.13 (2024-06-17)
 -------------------
 
 - Search field for CartellaModulistica c.t.
