@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.2.12 (unreleased)
+6.2.12 (2024-06-24)
 -------------------
 
 - Fix problem with upgrade step to 7305
