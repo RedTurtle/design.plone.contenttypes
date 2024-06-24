@@ -4,7 +4,8 @@ Changelog
 6.2.12 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix problem with upgrade step to 7305
+  [lucabel]
 
 
 6.2.11 (2024-06-24)
