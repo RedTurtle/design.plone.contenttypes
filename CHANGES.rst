@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.2.11 (unreleased)
+6.2.11 (2024-06-24)
 -------------------
 
 - Disallower other objs creation in Persona and Incarico ct.
