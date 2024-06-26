@@ -96,7 +96,11 @@ def to_7304(context):
 
 def to_7305(context):
     mapping = SUBFOLDERS_MAPPING["Servizio"]
-    mapping = [folder for folder in mapping.get('content') if folder["id"] == "modulistica"][0]  # noqa
+    mapping = [
+        folder for folder in mapping.get("content") if folder["id"] == "modulistica"
+    ][
+        0
+    ]  # noqa
     brains = api.content.find(portal_type="Servizio")
     tot = len(brains)
     i = 0
