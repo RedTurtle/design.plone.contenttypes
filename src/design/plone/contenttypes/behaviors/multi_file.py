@@ -41,6 +41,8 @@ class IMultiFileSchema(model.Schema):
         required=False,
     )
 
+    model.primary("file_principale")
+
 
 @provider(IFormFieldProvider)
 class IMultiFile(IMultiFileSchema):

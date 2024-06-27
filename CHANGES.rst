@@ -4,7 +4,8 @@ Changelog
 6.2.13 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Set `file_principale` field as primary, so we call @@download on the content, that file will be downloaded automatically.
+  [cekk]
 
 
 6.2.12 (2024-06-24)
