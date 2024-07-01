@@ -125,8 +125,10 @@ def to_7306(context):
     portal_types = api.portal.get_tool(name="portal_types")
     behavior = "plone.constraintypes"
     for ct in ["Persona", "Incarico"]:
-        portal_types[ct].filter_content_types = True
-        behaviors = list(portal_types[ct].behaviors)
-        if behavior not in behaviors:
-            behaviors.append(behavior)
-            portal_types[ct].behaviors = tuple(behaviors)
+        portal_type = portal_types.get(ct, None)
+        if portal_type:
+            portal_type.filter_content_types = True
+            behaviors = list(portal_type.behaviors)
+            if behavior not in behaviors:
+                behaviors.append(behavior)
+                portal_type.behaviors = tuple(behaviors)
