@@ -120,5 +120,13 @@ def to_7305(context):
 
 
 def to_7306(context):
-    logger.info("Disallow add other objs in Persona and Incarico ct")
-    update_types(context)
+    logger.info("Enable plone.constraintypes behavior and filter types")
+
+    portal_types = api.portal.get_tool(name="portal_types")
+    behavior = "plone.constraintypes"
+    for ct in ["Persona", "Incarico"]:
+        portal_types[ct].filter_content_types = True
+        behaviors = list(portal_types[ct].behaviors)
+        if behavior not in behaviors:
+            behaviors.append(behavior)
+            portal_types[ct].behaviors = tuple(behaviors)
