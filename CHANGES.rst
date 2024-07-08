@@ -8,6 +8,9 @@ Changelog
   [cekk]
 - Fix `to_7306`` upgrade-step to be more specific on types configuration.
   [cekk]
+- Override listing.pt from plone.app.contenttypes due to error rendering event
+  [lucabel]
+
 
 6.2.12 (2024-06-24)
 -------------------
