@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.2.13 (unreleased)
+6.2.13 (2024-07-08)
 -------------------
 
 - Set `file_principale` field as primary, so we call @@download on the content, that file will be downloaded automatically.
