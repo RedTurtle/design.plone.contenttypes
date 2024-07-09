@@ -1,0 +1,3 @@
+[bandit]
+exclude = locales,tests
+skips = B410
