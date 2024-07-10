@@ -22,7 +22,7 @@ class BaseVocabulary(object):
         terms = [SimpleTerm(value=x, token=x, title=x) for x in values]
         terms.insert(
             0,
-            SimpleTerm(value="", token="", title="-- seleziona un valore --"),
+            SimpleTerm(value="", token="", title="-- seleziona un valore --"),  # nosec
         )
 
         return SimpleVocabulary(terms)

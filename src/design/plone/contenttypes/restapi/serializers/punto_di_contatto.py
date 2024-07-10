@@ -63,8 +63,8 @@ class PuntoDiContattoSerializer(SerializeFolderToJson):
         for rel in relations:
             try:
                 obj = intids.queryObject(rel.from_id)
-            except:  # noqa
-                continue
+            except Exception:
+                obj = None
             if (
                 obj is not None
                 and checkPermission("zope2.View", obj)

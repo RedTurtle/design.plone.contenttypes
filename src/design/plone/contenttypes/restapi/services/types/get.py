@@ -9,6 +9,8 @@ from zope.i18n import translate
 from zope.interface import implementer
 from zope.publisher.interfaces import IPublishTraverse
 
+import ast
+
 
 class FieldsetsMismatchError(Exception):
     """Exception thrown when we try to reorder fieldsets, but the order list is
@@ -208,7 +210,7 @@ class TypesGet(BaseGet):
 
             if "geolocation" in result["properties"]:
                 if not result["properties"]["geolocation"].get("default", {}):
-                    result["properties"]["geolocation"]["default"] = eval(
+                    result["properties"]["geolocation"]["default"] = ast.literal_eval(
                         api.portal.get_registry_record(
                             "geolocation", interface=IGeolocationDefaults
                         )
