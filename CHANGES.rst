@@ -4,7 +4,8 @@ Changelog
 6.2.14 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix security problems for bandit.
+  [cekk]
 
 
 6.2.13 (2024-07-08)

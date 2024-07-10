@@ -464,7 +464,8 @@ def to_3000(context):
                 json.dumps({"it": value}),
                 interface=IDesignPloneSettings,
             )
-        except Exception:
+        except Exception:  # nosec
+            # do not do anything
             continue
 
     context.runAllImportStepsFromProfile("profile-design.plone.contenttypes:to_3000")

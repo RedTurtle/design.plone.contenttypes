@@ -64,7 +64,7 @@ class BaseService(Service):
 
         """
 
-        assert ret_mode is not RET_MODE_BRAINS
+        assert ret_mode is not RET_MODE_BRAINS  # nosec
 
         exp_result = []
         for it in events:
