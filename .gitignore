@@ -41,5 +41,6 @@ reports/
 !.gitkeep
 !.travis.yml
 !src/design
+!src/.bandit
 pyvenv.cfg
 .Python

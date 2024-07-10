@@ -1,0 +1,4 @@
+[bandit]
+exclude = tests,locales
+# token in vocabularies
+skips = B106
