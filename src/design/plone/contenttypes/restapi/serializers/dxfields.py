@@ -1,25 +1,39 @@
 # -*- coding: utf-8 -*-
 from AccessControl.unauthorized import Unauthorized
 from Acquisition import aq_inner
+from collective.volto.enhancedlinks.interfaces import IEnhancedLinksEnabled
+from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
+from design.plone.contenttypes.interfaces.servizio import IServizio
 from plone import api
+from plone.app.contenttypes.utils import replace_link_variables_by_paths
+from plone.base.utils import human_readable_size
 from plone.dexterity.interfaces import IDexterityContent
+from plone.namedfile.interfaces import INamedFileField
+from plone.namedfile.interfaces import INamedImageField
+from plone.outputfilters.browser.resolveuid import uuidToURL
 from plone.restapi.interfaces import IBlockFieldSerializationTransformer
 from plone.restapi.interfaces import IFieldSerializer
 from plone.restapi.interfaces import ISerializeToJsonSummary
 from plone.restapi.serializer.converters import json_compatible
 from plone.restapi.serializer.dxfields import DefaultFieldSerializer
-from plone.namedfile.interfaces import INamedFileField
+from plone.restapi.serializer.dxfields import (
+    ImageFieldSerializer as BaseImageFieldSerializer,
+)
 from zope.component import adapter
 from zope.component import getMultiAdapter
 from zope.component import subscribers
 from zope.globalrequest import getRequest
 from zope.interface import implementer
+from zope.schema.interfaces import IList
 from zope.schema.interfaces import ISourceText
+from zope.schema.interfaces import ITextLine
 
-from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
 
 import json
+import re
 
+
+RESOLVEUID_RE = re.compile(".*?/resolve[Uu]id/([^/]*)/?(.*)$")
 KEYS_WITH_URL = ["linkUrl", "navigationRoot", "showMoreLink"]
 
 
@@ -33,9 +47,27 @@ class SourceTextSerializer(DefaultFieldSerializer):
         return value
 
 
+@implementer(IFieldSerializer)
+@adapter(IList, IServizio, IDesignPloneContenttypesLayer)
+class TempiEScadenzeValueSerializer(DefaultFieldSerializer):
+    def __call__(self):
+        value = super(TempiEScadenzeValueSerializer, self).__call__()
+
+        patched_timeline = []
+        if self.field.getName() == "timeline_tempi_scadenze" and value:
+            for entry in value:
+                patched_timeline.append(entry)
+            return json_compatible(patched_timeline)
+        return value
+
+
 @adapter(INamedFileField, IDexterityContent, IDesignPloneContenttypesLayer)
 class FileFieldViewModeSerializer(DefaultFieldSerializer):
-    """Ovveride the basic DX serializer to handle the visualize file functionality"""
+    """
+    Ovveride the basic DX serializer to:
+        - handle the visualize file functionality
+        - add getObjSize info
+    """
 
     def __call__(self):
         namedfile = self.field.get(self.context)
@@ -49,12 +81,20 @@ class FileFieldViewModeSerializer(DefaultFieldSerializer):
                 self.field.__name__,
             )
         )
+        size = namedfile.getSize()
         result = {
             "filename": namedfile.filename,
             "content-type": namedfile.contentType,
-            "size": namedfile.getSize(),
+            "size": size,
             "download": url,
         }
+        if IEnhancedLinksEnabled.providedBy(self.context):
+            result.update(
+                {
+                    "getObjSize": human_readable_size(size),
+                    "enhanced_links_enabled": True,
+                }
+            )
 
         return json_compatible(result)
 
@@ -65,6 +105,20 @@ class FileFieldViewModeSerializer(DefaultFieldSerializer):
                 return "@@display-file"
 
         return "@@download"
+
+
+@adapter(INamedImageField, IDexterityContent, IDesignPloneContenttypesLayer)
+class ImageFieldSerializer(BaseImageFieldSerializer):
+    def __call__(self):
+        result = super().__call__()
+        if result and IEnhancedLinksEnabled.providedBy(self.context):
+            result.update(
+                {
+                    "getObjSize": human_readable_size(result["size"]),
+                    "enhanced_links_enabled": True,
+                }
+            )
+        return result
 
 
 def serialize_data(context, json_data, show_children=False):
@@ -131,3 +185,26 @@ def get_item_children(item):
         getMultiAdapter((brain, getRequest()), ISerializeToJsonSummary)()
         for brain in brains
     ]
+
+
+@adapter(ITextLine, IServizio, IDesignPloneContenttypesLayer)
+class ServizioTextLineFieldSerializer(DefaultFieldSerializer):
+    def __call__(self):
+        value = self.get_value()
+        if self.field.getName() != "canale_digitale_link" or not value:
+            return super().__call__()
+
+        path = replace_link_variables_by_paths(context=self.context, url=value)
+        match = RESOLVEUID_RE.match(path)
+        if match:
+            uid, suffix = match.groups()
+            value = uuidToURL(uid)
+        else:
+            portal = getMultiAdapter(
+                (self.context, self.context.REQUEST), name="plone_portal_state"
+            ).portal()
+            ref_obj = portal.restrictedTraverse(path, None)
+            if ref_obj:
+                value = ref_obj.absolute_url()
+
+        return json_compatible(value)

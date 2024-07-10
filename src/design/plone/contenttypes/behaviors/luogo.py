@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from collective import dexteritytextindexer
-from design.plone.contenttypes import _
 from collective.volto.blocksfield.field import BlocksField
+from design.plone.contenttypes import _
+from plone.app.dexterity import textindexer
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
 from plone.autoform.interfaces import IFormFieldProvider
@@ -11,7 +11,8 @@ from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
 from zope import schema
 from zope.component import adapter
-from zope.interface import provider, implementer
+from zope.interface import implementer
+from zope.interface import provider
 
 
 @provider(IFormFieldProvider)
@@ -56,7 +57,7 @@ class ILuogo(model.Schema):
             default="Indicare tutte le informazioni relative alla modalità di"
             " accesso al luogo",
         ),
-        required=False,
+        required=True,
     )
 
     struttura_responsabile_correlati = RelationList(
@@ -88,57 +89,18 @@ class ILuogo(model.Schema):
         ),
     )
 
-    riferimento_telefonico_struttura = schema.TextLine(
-        title=_(
-            "riferimento_telefonico_struttura",
-            default="Telefono della struttura responsabile",
-        ),
-        description=_(
-            "help_riferimento_telefonico_struttura",
-            default="Indicare il riferimento telefonico per poter contattare"
-            " i referenti della struttura responsabile.",
-        ),
+    orario_pubblico = BlocksField(
+        title=_("orario_pubblico", default="Orario per il pubblico"),
         required=False,
-    )
-    riferimento_fax_struttura = schema.TextLine(
-        title=_(
-            "riferimento_fax_struttura",
-            default="Fax della struttura responsabile",
-        ),
         description=_(
-            "help_riferimento_fax_struttura",
-            default="Indicare un numero di fax della struttura responsabile.",
+            "orario_pubblico_help",
+            default="Orario di apertura al pubblico del luogo ed eventuali "
+            "regole di accesso (es prenotazione).",
         ),
-        required=False,
-    )
-    riferimento_mail_struttura = schema.TextLine(
-        title=_(
-            "riferimento_mail_struttura",
-            default="E-mail struttura responsabile",
-        ),
-        description=_(
-            "help_riferimento_mail_struttura",
-            default="Indicare un indirizzo mail per poter contattare"
-            " i referenti della struttura responsabile.",
-        ),
-        required=False,
-    )
-
-    riferimento_pec_struttura = schema.TextLine(
-        title=_(
-            "riferimento_pec_struttura",
-            default="Pec della struttura responsabile",
-        ),
-        description=_(
-            "help_riferimento_pec_struttura",
-            default="Indicare un indirizzo pec per poter contattare"
-            " i referenti della struttura responsabile.",
-        ),
-        required=False,
     )
 
     # Decisono con Baio di toglierlo: visto il vocabolario, che in realtà sta
-    # qui: https://github.com/italia/daf-ontologie-vocabolari-controllati/tree/master/VocabolariControllati/classifications-for-culture/subject-disciplines
+    # qui: https://github.com/italia/daf-ontologie-vocabolari-controllati/tree/master/VocabolariControllati/classifications-for-culture/subject-disciplines # noqa
     # riteniamo che possa non fregare nulla a nessuno di questa categorizzazione.
     #  # TODO: aggiungere il vocabolario da https://dataportal.daf.teamdigitale.it/#/vocabularies/subject-disciplines  # noqa
     # # quando ritornano i dati dopo la migrazione, bisognera' vedere dove sono
@@ -153,10 +115,17 @@ class ILuogo(model.Schema):
 
     # TODO: importare il db del MIBAC, codice DBUnico / ISIL.
     # Non compare nel frontend
-    # identificativo_mibac = schema.TextLine(
-    #     title=_("identificativo_mibac", default="Identificativo"),
-    #     required=False,
-    # )
+    identificativo_mibac = schema.TextLine(
+        title=_("identificativo_mibac", default="Identificativo"),
+        required=False,
+        description=_(
+            "identificativo_mibac_help",
+            default="Codice identificativo del luogo. Nel MIBAC c'è"
+            " il codice del DBUnico per i luoghi della cultura e il codice"
+            " ISIL per le biblioteche. Non deve comparire nel"
+            " frontend del sito.",
+        ),
+    )
 
     # custom fieldsets and order
     form.order_after(nome_alternativo="IBasic.title")
@@ -173,15 +142,26 @@ class ILuogo(model.Schema):
     )
 
     model.fieldset(
+        "categorization",
+        fields=["identificativo_mibac"],
+    )
+
+    model.fieldset(
+        "orari",
+        label=_("orari_label", default="Orari di apertura"),
+        fields=["orario_pubblico"],
+    )
+    # TODO: migration script for these commented fields towards PDC
+    model.fieldset(
         "contatti",
         label=_("contatti_label", default="Contatti"),
         fields=[
             "struttura_responsabile_correlati",
             "struttura_responsabile",
-            "riferimento_telefonico_struttura",
-            "riferimento_fax_struttura",
-            "riferimento_mail_struttura",
-            "riferimento_pec_struttura",
+            # "riferimento_telefonico_struttura",
+            # "riferimento_fax_struttura",
+            # "riferimento_mail_struttura",
+            # "riferimento_pec_struttura",
         ],
     )
 
@@ -191,13 +171,12 @@ class ILuogo(model.Schema):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "maximumSelectionSize": 10,
             "selectableTypes": ["UnitaOrganizzativa"],
         },
     )
 
     # searchabletext indexer
-    dexteritytextindexer.searchable("descrizione_completa")
+    textindexer.searchable("descrizione_completa")
 
 
 @implementer(ILuogo)

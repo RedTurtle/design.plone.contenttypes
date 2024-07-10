@@ -1,9 +1,13 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <metadata>
-  <version>5500</version>
+  <version>7306</version>
   <dependencies>
     <dependency>profile-redturtle.bandi:default</dependency>
     <dependency>profile-collective.venue:default</dependency>
     <dependency>profile-redturtle.volto:default</dependency>
+    <dependency>profile-eea.api.taxonomy:default</dependency>
+    <dependency>profile-collective.z3cform.datagridfield:default</dependency>
+    <dependency>profile-design.plone.contenttypes:taxonomy</dependency>
+    <dependency>profile-collective.volto.enhancedlinks:default</dependency>
   </dependencies>
 </metadata>

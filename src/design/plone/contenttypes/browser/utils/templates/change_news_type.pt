@@ -1,0 +1,87 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      xml:lang="en"
+      i18n:domain="design.plone.contenttypes"
+>
+
+  <body>
+    <metal:content-title fill-slot="content-title">
+      <h1 i18n:translate="">Change News Type</h1>
+    </metal:content-title>
+    <metal:content-description fill-slot="content-description"
+                               i18n:translate=""
+    >
+      Questo tool viene usato per cambiare il valore del campo 'Tipologia Notizia' in tutte le notizie che hanno il valore del campo selezionato.
+      Fa anche il giro su tutti i blocchi elenco
+    </metal:content-description>
+    <metal:content-core fill-slot="content-core">
+      <div class="form">
+        <form action="${context/portal_url}/change_news_type"
+              method="POST"
+        >
+          <div class="field">
+            <label for="news_type_in_catalog"
+                   i18n:translate=""
+            >News Type</label>
+            <div class="formHelp"
+                 i18n:translate=""
+            >
+                        All the already existing News Types
+            </div>
+            <select name="news_type_in_catalog"
+                    tal:define="
+                      news_types python: view.news_types_in_catalog();
+                    "
+            >
+              <option tal:repeat="news_type_in_catalog news_types"
+                      tal:content="news_type_in_catalog"
+                      tal:attributes="
+                        selected python: request.form.get('news_type_in_catalog', '') == news_type_in_catalog;
+                        value news_type_in_catalog;
+                      "
+              ></option>
+            </select><br />
+            <label for="news_type_portal"
+                   style="margin-top: 1em;"
+                   i18n:translate=""
+            >News Type to substitute</label>
+            <div class="formHelp"
+                 i18n:translate=""
+            >
+                       The News Type selected above will be substituted by the selected value
+            </div>
+            <select name="news_type_portal"
+                    tal:define="
+                      news_types python: view.news_types();
+                    "
+            >
+              <tal tal:repeat="news_type_portal news_types">
+                <option tal:condition="python: news_type_portal.value"
+                        tal:content="news_type_portal/title"
+                        tal:attributes="
+                          selected python: request.form.get('news_type_portal', '') == news_type_portal.value;
+                          value news_type_portal/value;
+                        "
+                ></option>
+              </tal>
+            </select>
+          </div>
+          <div class="formControls">
+            <button class="submit-widget button-field context"
+                    id="substitute"
+                    name="substitute"
+                    type="submit"
+                    value="true"
+                    i18n:translate=""
+            >Substitute</button>
+          </div>
+        </form>
+      </div>
+    </metal:content-core>
+  </body>
+
+</html>

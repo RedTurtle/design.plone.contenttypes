@@ -1,12 +1,18 @@
 # -*- coding: utf-8 -*-
 
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.utils import safe_unicode
+
+
+try:
+    from plone.base.utils import safe_text
+except ImportError:
+    from Products.CMFPlone.utils import safe_unicode as safe_text
+
 from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
-from zope.site.hooks import getSite
+from zope.component.hooks import getSite
 
 
 class ReferencesVocabulary(object):
@@ -25,7 +31,7 @@ class ReferencesVocabulary(object):
         brains = self.catalog(UID=values)
         terms = []
         for brain in brains:
-            terms.append(SimpleTerm(brain.UID, brain.UID, safe_unicode(brain.Title)))
+            terms.append(SimpleTerm(brain.UID, brain.UID, safe_text(brain.Title)))
         return SimpleVocabulary(terms)
 
 

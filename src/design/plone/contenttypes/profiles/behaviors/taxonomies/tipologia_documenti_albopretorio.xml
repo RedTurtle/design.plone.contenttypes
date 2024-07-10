@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vdex xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      language="it"
+      orderSignificant="false"
+      profileType="hierarchicalTokenTerms"
+      xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd"
+>
+  <vocabName>
+    <langstring language="it">Tipologia di Documento albo pretorio</langstring>
+  </vocabName>
+  <vocabIdentifier>tipologia_documenti_albopretorio</vocabIdentifier>
+  <term>
+    <termIdentifier>atto_amministrativo</termIdentifier>
+    <caption>
+      <langstring language="it">Atto amministrativo</langstring>
+    </caption>
+    <term>
+      <termIdentifier>decreto</termIdentifier>
+      <caption>
+        <langstring language="it">Decreto</langstring>
+      </caption>
+      <term>
+        <termIdentifier>decreto_del_dirigente</termIdentifier>
+        <caption>
+          <langstring language="it">Decreto del Dirigente</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>decreto_del_sindaco</termIdentifier>
+        <caption>
+          <langstring language="it">Decreto del Sindaco</langstring>
+        </caption>
+      </term>
+    </term>
+    <term>
+      <termIdentifier>deliberazione</termIdentifier>
+      <caption>
+        <langstring language="it">Deliberazione</langstring>
+      </caption>
+      <term>
+        <termIdentifier>deliberazione_consiglio_comunale</termIdentifier>
+        <caption>
+          <langstring language="it">Deliberazione del Consiglio comunale</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>deliberazione_giunta_comunale</termIdentifier>
+        <caption>
+          <langstring language="it">Deliberazione della Giunta comunale</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>deliberazione_commissario_ad_acta</termIdentifier>
+        <caption>
+          <langstring language="it">Deliberazione del Commissario ad acta</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>deliberazione_consiglio_circoscrizionale</termIdentifier>
+        <caption>
+          <langstring language="it">Deliberazione del Consiglio circoscrizionale</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>deliberazione_esecutivo_circoscrizionale</termIdentifier>
+        <caption>
+          <langstring language="it">Deliberazione dell'Esecutivo circoscrizionale</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>deliberazione_altri_organi</termIdentifier>
+        <caption>
+          <langstring language="it">Deliberazione di altri Organi</langstring>
+        </caption>
+      </term>
+    </term>
+    <term>
+      <termIdentifier>determinazione</termIdentifier>
+      <caption>
+        <langstring language="it">Determinazione</langstring>
+      </caption>
+      <term>
+        <termIdentifier>determinazione_sindaco</termIdentifier>
+        <caption>
+          <langstring language="it">Determinazione del Sindaco</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>determinazione_dirigente</termIdentifier>
+        <caption>
+          <langstring language="it">Determinazione del Dirigente</langstring>
+        </caption>
+      </term>
+    </term>
+    <term>
+      <termIdentifier>ordinanza</termIdentifier>
+      <caption>
+        <langstring language="it">Ordinanza</langstring>
+      </caption>
+      <term>
+        <termIdentifier>ordinanza_dirigente</termIdentifier>
+        <caption>
+          <langstring language="it">Ordinanza del Dirigente</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>ordinanza_sindaco</termIdentifier>
+        <caption>
+          <langstring language="it">Ordinanza del Sindaco</langstring>
+        </caption>
+      </term>
+    </term>
+  </term>
+  <term>
+    <termIdentifier>atto_autorizzativo</termIdentifier>
+    <caption>
+      <langstring language="it">Atto autorizzativo</langstring>
+    </caption>
+    <term>
+      <termIdentifier>permesso_costruire</termIdentifier>
+      <caption>
+        <langstring language="it">Permesso a costruire</langstring>
+      </caption>
+      <term>
+        <termIdentifier>permesso_costruire_2</termIdentifier>
+        <caption>
+          <langstring language="it">Permesso a costruire</langstring>
+        </caption>
+      </term>
+    </term>
+  </term>
+  <term>
+    <termIdentifier>atto_stato_civile</termIdentifier>
+    <caption>
+      <langstring language="it">Atto dello stato civile</langstring>
+    </caption>
+    <term>
+      <termIdentifier>provvidemento_cancellazione_irreperibilita</termIdentifier>
+      <caption>
+        <langstring language="it">Provvedimento di cancellazione per irreperibilità</langstring>
+      </caption>
+      <term>
+        <termIdentifier>provvidemento_cancellazione_irreperibilita_2</termIdentifier>
+        <caption>
+          <langstring language="it">Provvedimento di cancellazione per irreperibilità</langstring>
+        </caption>
+      </term>
+    </term>
+    <term>
+      <termIdentifier>pubblicazione_cambio_nome</termIdentifier>
+      <caption>
+        <langstring language="it">Pubblicazione cambio nome</langstring>
+      </caption>
+      <term>
+        <termIdentifier>pubblicazione_cambio_nome_2</termIdentifier>
+        <caption>
+          <langstring language="it">Pubblicazione cambio nome</langstring>
+        </caption>
+      </term>
+    </term>
+    <term>
+      <termIdentifier>pubblicazione_matrimonio</termIdentifier>
+      <caption>
+        <langstring language="it">Pubblicazione di matrimonio</langstring>
+      </caption>
+      <term>
+        <termIdentifier>pubblicazione_matrimonio_2</termIdentifier>
+        <caption>
+          <langstring language="it">Pubblicazione di matrimonio</langstring>
+        </caption>
+      </term>
+    </term>
+  </term>
+  <term>
+    <termIdentifier>atto_generico</termIdentifier>
+    <caption>
+      <langstring language="it">Atto generico</langstring>
+    </caption>
+    <term>
+      <termIdentifier>avviso</termIdentifier>
+      <caption>
+        <langstring language="it">Avviso</langstring>
+      </caption>
+      <term>
+        <termIdentifier>avviso_deposito_casa_comunale</termIdentifier>
+        <caption>
+          <langstring language="it">Avviso di deposito in casa comunale</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>avviso_manifesto</termIdentifier>
+        <caption>
+          <langstring language="it">Avviso/Manifesto</langstring>
+        </caption>
+      </term>
+    </term>
+    <term>
+      <termIdentifier>bando</termIdentifier>
+      <caption>
+        <langstring language="it">Bando</langstring>
+      </caption>
+      <term>
+        <termIdentifier>bando_concorso</termIdentifier>
+        <caption>
+          <langstring language="it">Bando di concorso</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>bando_gara</termIdentifier>
+        <caption>
+          <langstring language="it">Bando di gara</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>bando_contributi</termIdentifier>
+        <caption>
+          <langstring language="it">Bando di contributi e vantaggi economici</langstring>
+        </caption>
+      </term>
+    </term>
+  </term>
+  <term>
+    <termIdentifier>pubblicazione_esterna</termIdentifier>
+    <caption>
+      <langstring language="en" />
+      <langstring language="it">Pubblicazione esterna</langstring>
+    </caption>
+    <term>
+      <termIdentifier>atto_terzi</termIdentifier>
+      <caption>
+        <langstring language="en" />
+        <langstring language="it">Atto di terzi</langstring>
+      </caption>
+      <term>
+        <termIdentifier>atto_terzi_2</termIdentifier>
+        <caption>
+          <langstring language="en" />
+          <langstring language="it">Atto di terzi</langstring>
+        </caption>
+      </term>
+    </term>
+  </term>
+</vdex>

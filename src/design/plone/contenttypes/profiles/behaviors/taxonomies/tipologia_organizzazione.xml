@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vdex xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      language="it"
+      orderSignificant="false"
+      profileType="hierarchicalTokenTerms"
+      xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd"
+>
+  <vocabName>
+    <langstring language="it">Tipologia organizzazione</langstring>
+  </vocabName>
+  <vocabIdentifier>tipologia_organizzazione</vocabIdentifier>
+  <term>
+    <termIdentifier>struttura_amministrativa</termIdentifier>
+    <caption>
+      <langstring language="it">Struttura amministrativa</langstring>
+    </caption>
+    <term>
+      <termIdentifier>zona</termIdentifier>
+      <caption>
+        <langstring language="it">Zona</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>ufficio</termIdentifier>
+      <caption>
+        <langstring language="it">Ufficio</langstring>
+      </caption>
+    </term>
+  </term>
+  <term>
+    <termIdentifier>struttura_politica</termIdentifier>
+    <caption>
+      <langstring language="it">Struttura politica</langstring>
+    </caption>
+    <term>
+      <termIdentifier>giunta_comunale</termIdentifier>
+      <caption>
+        <langstring language="it">Giunta comunale</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>consiglio_comunale</termIdentifier>
+      <caption>
+        <langstring language="it">Consiglio comunale</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>commisione</termIdentifier>
+      <caption>
+        <langstring language="it">Commissione</langstring>
+      </caption>
+    </term>
+  </term>
+  <term>
+    <termIdentifier>altra_struttura</termIdentifier>
+    <caption>
+      <langstring language="en" />
+      <langstring language="it">Altra struttura</langstring>
+    </caption>
+    <term>
+      <termIdentifier>biblioteca</termIdentifier>
+      <caption>
+        <langstring language="it">Biblioteca</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>Museo</termIdentifier>
+      <caption>
+        <langstring language="it">museo</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>azienda_municipalizzata</termIdentifier>
+      <caption>
+        <langstring language="it">Azienda municipalizzata</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>ente</termIdentifier>
+      <caption>
+        <langstring language="it">Ente</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>fondazione</termIdentifier>
+      <caption>
+        <langstring language="it">Fondazione</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>centro_culturale</termIdentifier>
+      <caption>
+        <langstring language="it">Centro culturale</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>scuola</termIdentifier>
+      <caption>
+        <langstring language="en" />
+        <langstring language="it">Scuola</langstring>
+      </caption>
+    </term>
+  </term>
+</vdex>

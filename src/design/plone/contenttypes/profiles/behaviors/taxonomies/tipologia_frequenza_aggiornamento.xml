@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vdex xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      language="it"
+      orderSignificant="false"
+      profileType="hierarchicalTokenTerms"
+      xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd"
+>
+  <vocabName>
+    <langstring language="it">Tipologia di Frequenza di aggiornamento</langstring>
+  </vocabName>
+  <vocabIdentifier>tipologia_frequenza_aggiornamento</vocabIdentifier>
+  <term>
+    <termIdentifier>altro</termIdentifier>
+    <caption>
+      <langstring language="it">Altro</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>annuale</termIdentifier>
+    <caption>
+      <langstring language="it">Annuale</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>bidecennale</termIdentifier>
+    <caption>
+      <langstring language="it">Bidecennale</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>biennale</termIdentifier>
+    <caption>
+      <langstring language="it">Biennale</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>bimestrale</termIdentifier>
+    <caption>
+      <langstring language="it">Bimestrale</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>bisettimanale</termIdentifier>
+    <caption>
+      <langstring language="it">Bisettimanale</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>continuo</termIdentifier>
+    <caption>
+      <langstring language="it">Continuo</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>decennale</termIdentifier>
+    <caption>
+      <langstring language="it">Decennale</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>due_volto_giorno</termIdentifier>
+    <caption>
+      <langstring language="it">Due volto al giorno</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>in_continuo_aggiornamento</termIdentifier>
+    <caption>
+      <langstring language="it">In continuo aggiornamento</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>irregolare</termIdentifier>
+    <caption>
+      <langstring language="it">Irregolare</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>mai</termIdentifier>
+    <caption>
+      <langstring language="it">Mai</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>mensile</termIdentifier>
+    <caption>
+      <langstring language="it">Mensile</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>ogni_cinque_anni</termIdentifier>
+    <caption>
+      <langstring language="it">Ogni cinque anni</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>ogni_due_ore</termIdentifier>
+    <caption>
+      <langstring language="it">Ogni due ore</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>ogni_ora</termIdentifier>
+    <caption>
+      <langstring language="it">Ogni ora</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>ogni_quattro_anni</termIdentifier>
+    <caption>
+      <langstring language="it">Ogni quattro anni</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>ogni_tre_ore</termIdentifier>
+    <caption>
+      <langstring language="it">Ogni tre ore</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>quindicinale</termIdentifier>
+    <caption>
+      <langstring language="it">Quindicinale</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>quotidiano</termIdentifier>
+    <caption>
+      <langstring language="it">Quotidiano</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>sconosciuto</termIdentifier>
+    <caption>
+      <langstring language="it">Sconosciuto</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>semestrale</termIdentifier>
+    <caption>
+      <langstring language="it">Semestrale</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>settimanale</termIdentifier>
+    <caption>
+      <langstring language="it">Settimanale</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>tre_volte_a_settimana</termIdentifier>
+    <caption>
+      <langstring language="it">Tre volte a settimana</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>tre_volte_al_mese</termIdentifier>
+    <caption>
+      <langstring language="it">Tre volte al mese</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>tre_volte_anno</termIdentifier>
+    <caption>
+      <langstring language="it">Tre volte l'anno</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>tridecennale</termIdentifier>
+    <caption>
+      <langstring language="it">Tridecennale</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>triennale</termIdentifier>
+    <caption>
+      <langstring language="it">Triennale</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>trimestrale</termIdentifier>
+    <caption>
+      <langstring language="en" />
+      <langstring language="it">Trimestrale</langstring>
+    </caption>
+  </term>
+</vdex>

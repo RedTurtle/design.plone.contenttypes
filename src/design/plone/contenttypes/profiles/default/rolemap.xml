@@ -1,121 +1,167 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <rolemap>
   <permissions>
-  <!-- -*- extra stuff goes here -*- -->
+    <!-- -*- extra stuff goes here -*- -->
 
-    <permission name="design.plone.contenttypes: Add Documento" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="Owner"/>
-      <role name="Contributor"/>
+    <permission acquire="True"
+                name="design.plone.contenttypes: Add Documento"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="Owner" />
+      <role name="Contributor" />
     </permission>
 
 
-    <permission name="design.plone.contenttypes: Add Servizio" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="Owner"/>
-      <role name="Contributor"/>
+    <permission acquire="True"
+                name="design.plone.contenttypes: Add Servizio"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="Owner" />
+      <role name="Contributor" />
     </permission>
 
 
-    <permission name="design.plone.contenttypes: Add Evento" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="Owner"/>
-      <role name="Contributor"/>
+    <permission acquire="True"
+                name="design.plone.contenttypes: Add Evento"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="Owner" />
+      <role name="Contributor" />
     </permission>
 
 
-    <permission name="design.plone.contenttypes: Add Persona" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="Owner"/>
-      <role name="Contributor"/>
+    <permission acquire="True"
+                name="design.plone.contenttypes: Add Persona"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="Owner" />
+      <role name="Contributor" />
     </permission>
 
 
-    <permission name="design.plone.contenttypes: Add UnitaOrganizzativa" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="Owner"/>
-      <role name="Contributor"/>
+    <permission acquire="True"
+                name="design.plone.contenttypes: Add UnitaOrganizzativa"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="Owner" />
+      <role name="Contributor" />
     </permission>
 
 
-    <permission name="design.plone.contenttypes: Add NotizieEComunicatiStampa" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="Owner"/>
-      <role name="Contributor"/>
+    <permission acquire="True"
+                name="design.plone.contenttypes: Add NotizieEComunicatiStampa"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="Owner" />
+      <role name="Contributor" />
     </permission>
 
 
-    <permission name="design.plone.contenttypes: Add Messaggio" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="Owner"/>
-      <role name="Contributor"/>
+    <permission acquire="True"
+                name="design.plone.contenttypes: Add Messaggio"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="Owner" />
+      <role name="Contributor" />
     </permission>
 
 
-    <permission name="design.plone.contenttypes: Add Luogo" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="Owner"/>
-      <role name="Contributor"/>
+    <permission acquire="True"
+                name="design.plone.contenttypes: Add Luogo"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="Owner" />
+      <role name="Contributor" />
     </permission>
 
 
-    <permission name="design.plone.contenttypes: Add DocumentoPersonale" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="Owner"/>
-      <role name="Contributor"/>
+    <permission acquire="True"
+                name="design.plone.contenttypes: Add DocumentoPersonale"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="Owner" />
+      <role name="Contributor" />
     </permission>
 
 
-    <permission name="design.plone.contenttypes: Add PaginaArgomento" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="Owner"/>
-      <role name="Contributor"/>
+    <permission acquire="True"
+                name="design.plone.contenttypes: Add PaginaArgomento"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="Owner" />
+      <role name="Contributor" />
     </permission>
 
 
-    <permission name="design.plone.contenttypes: Add Dataset" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="Owner"/>
-      <role name="Contributor"/>
+    <permission acquire="True"
+                name="design.plone.contenttypes: Add Dataset"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="Owner" />
+      <role name="Contributor" />
     </permission>
 
 
-    <permission name="design.plone.contenttypes: Add RicevutaPagamento" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="Owner"/>
-      <role name="Contributor"/>
+    <permission acquire="True"
+                name="design.plone.contenttypes: Add RicevutaPagamento"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="Owner" />
+      <role name="Contributor" />
     </permission>
 
 
-    <permission name="design.plone.contenttypes: Add Pratica" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="Owner"/>
-      <role name="Contributor"/>
+    <permission acquire="True"
+                name="design.plone.contenttypes: Add Pratica"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="Owner" />
+      <role name="Contributor" />
     </permission>
-    <permission name="design.plone.contenttypes: Add CartellaModulistica" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="Owner"/>
-      <role name="Contributor"/>
+    <permission acquire="True"
+                name="design.plone.contenttypes: Add CartellaModulistica"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="Owner" />
+      <role name="Contributor" />
     </permission>
-    <permission name="design.plone.contenttypes: Add Modulo" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="Owner"/>
-      <role name="Contributor"/>
+    <permission acquire="True"
+                name="design.plone.contenttypes: Add Modulo"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="Owner" />
+      <role name="Contributor" />
+    </permission>
+    <permission acquire="True"
+                name="design.plone.contenttypes: Add Incarico"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="Owner" />
+      <role name="Contributor" />
+    </permission>
+    <permission acquire="True"
+                name="design.plone.contenttypes: Add PuntoDiContatto"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="Owner" />
+      <role name="Contributor" />
     </permission>
 
   </permissions>

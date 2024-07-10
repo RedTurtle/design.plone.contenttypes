@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from collective import dexteritytextindexer
 from design.plone.contenttypes import _
 from design.plone.contenttypes.interfaces import IDesignPloneContentType
+from plone.app.dexterity import textindexer
 from plone.app.textfield import RichText
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
@@ -56,7 +56,6 @@ class IPaginaArgomento(model.Schema, IDesignPloneContentType):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "maximumSelectionSize": 10,
             "selectableTypes": ["UnitaOrganizzativa"],
         },
     )
@@ -72,5 +71,5 @@ class IPaginaArgomento(model.Schema, IDesignPloneContentType):
     )
 
     # SearchableText fields
-    dexteritytextindexer.searchable("ulteriori_informazioni")
-    dexteritytextindexer.searchable("unita_amministrative_responsabili")
+    textindexer.searchable("ulteriori_informazioni")
+    textindexer.searchable("unita_amministrative_responsabili")

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from collective import dexteritytextindexer
-from design.plone.contenttypes import _
 from collective.volto.blocksfield.field import BlocksField
+from design.plone.contenttypes import _
+from plone.app.dexterity import textindexer
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
 from plone.autoform.interfaces import IFormFieldProvider
@@ -11,7 +11,8 @@ from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
 from zope import schema
 from zope.component import adapter
-from zope.interface import provider, implementer
+from zope.interface import implementer
+from zope.interface import provider
 
 
 @provider(IFormFieldProvider)
@@ -26,36 +27,23 @@ class IEvento(model.Schema):
         ),
         required=False,
     )
+
     descrizione_estesa = BlocksField(
         title=_("descrizione_estesa", default="Descrizione estesa"),
-        required=False,
+        required=True,
         description=_(
             "descrizione_estesa_help",
             default="Descrizione dettagliata e completa.",
         ),
     )
-    descrizione_destinatari = BlocksField(
-        title=_("descrizione_destinatari", default="Descrizione destinatari"),
-        required=False,
-        description=_(
-            "descrizione_destinatari_help",
-            default="Descrizione dei principali interlocutori dell'evento.",
-        ),
-    )
 
-    persone_amministrazione = RelationList(
-        title="Persone dell'amministrazione che partecipano all'evento",
-        default=[],
-        value_type=RelationChoice(
-            title=_("Persona dell'amministrazione"),
-            vocabulary="plone.app.vocabularies.Catalog",
-        ),
+    descrizione_destinatari = BlocksField(
+        title=_("a_chi_si_rivolge_label", default="A chi è rivolto"),
+        required=True,
         description=_(
-            "persone_amministrazione_help",
-            default="Elenco delle persone dell'amministrazione che"
-            " parteciperanno all'evento.",
+            "a_chi_si_rivolge_help",
+            default="Descrizione testuale dei principali destinatari dell'Evento",
         ),
-        required=False,
     )
 
     orari = BlocksField(
@@ -68,14 +56,16 @@ class IEvento(model.Schema):
     )
 
     prezzo = BlocksField(
-        title=_("prezzo", default="Prezzo"),
-        required=False,
+        title=_("prezzo", default="Costo"),
+        required=True,
         description=_(
             "prezzo_help",
-            default="Indicare il prezzo dell'evento, se presente, specificando"
-            " se esistono formati diversi.",
+            default="Eventuale costo dell'evento (se ci sono uno o più biglietti), "
+            "con link all'acquisto se disponibile",
         ),
     )
+
+    # campi presenti nelle vecchie grafiche che abbiamo deciso di continuare a mostrare
     organizzato_da_interno = RelationList(
         title=_("organizzato_da_interno_label", default="Organizzato da"),
         default=[],
@@ -90,56 +80,14 @@ class IEvento(model.Schema):
             "sovrascrivere alcuni dati di contatto, utilizzare i seguenti campi.",  # noqa
         ),
     )
-
     organizzato_da_esterno = BlocksField(
         title=_("organizzato_da_esterno_label", default="Organizzatore"),
         required=False,
         description=_(
             "organizzato_da_esterno_help",
-            default="Se l'evento non è organizzato direttamente dal comune oppure ha anche un organizzatore esterno,"
+            default="Se l'evento non è organizzato direttamente dal comune oppure ha anche un organizzatore esterno,"  # noqa
             " indicare il nome del contatto.",
         ),
-    )
-    telefono = schema.TextLine(
-        title=_("telefono_event_help", default="Telefono"),
-        description=_(
-            "telefono_event_label",
-            default="Indicare un riferimento telefonico per poter contattare"
-            " gli organizzatori.",
-        ),
-        required=False,
-    )
-    fax = schema.TextLine(
-        title=_("fax_event_help", default="Fax"),
-        description=_("fax_event_label", default="Indicare un numero di fax."),
-        required=False,
-    )
-    reperibilita = schema.TextLine(
-        title=_("reperibilita", default="Reperibilità organizzatore"),
-        required=False,
-        description=_(
-            "reperibilita_help",
-            default="Indicare gli orari in cui l'organizzatore è"
-            " telefonicamente reperibile.",
-        ),
-    )
-    email = schema.TextLine(
-        title=_("email_event_label", default="E-mail"),
-        description=_(
-            "email_event_help",
-            default="Indicare un indirizzo mail per poter contattare"
-            " gli organizzatori.",
-        ),
-        required=False,
-    )
-
-    web = schema.TextLine(
-        title=_("web_event_label", default="Sito web"),
-        description=_(
-            "web_event_help",
-            default="Indicare un indirizzo web di riferimento a " "questo evento.",
-        ),
-        required=False,
     )
     supportato_da = RelationList(
         title=_("supportato_da_label", default="Evento supportato da"),
@@ -152,14 +100,24 @@ class IEvento(model.Schema):
         ),
     )
 
-    # TODO: come fare il rating/recensione dell'evento
-
-    patrocinato_da = schema.TextLine(
+    #  campi aggiunti con il pnrr
+    patrocinato_da = BlocksField(
         title=_("patrocinato_da_label", default="Patrocinato da"),
         required=False,
         description=_(
             "patrocinato_da_help",
             default="Indicare l'ente che supporta l'evento, se presente.",
+        ),
+    )
+
+    persone_amministrazione = RelationList(
+        title=_("parteciperanno_label", default="Parteciperanno (Persone)"),
+        required=False,
+        default=[],
+        value_type=RelationChoice(vocabulary="plone.app.vocabularies.Catalog"),
+        description=_(
+            "parteciperanno_help",
+            default="Link a persone dell'amministrazione che interverranno all'evento",
         ),
     )
 
@@ -169,7 +127,6 @@ class IEvento(model.Schema):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "maximumSelectionSize": 1,
             "selectableTypes": ["UnitaOrganizzativa"],
         },
     )
@@ -178,7 +135,6 @@ class IEvento(model.Schema):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "maximumSelectionSize": 10,
             "selectableTypes": ["Persona", "UnitaOrganizzativa", "Servizio"],
         },
     )
@@ -187,7 +143,6 @@ class IEvento(model.Schema):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "maximumSelectionSize": 10,
             "selectableTypes": ["Persona"],
         },
     )
@@ -216,21 +171,12 @@ class IEvento(model.Schema):
         fields=[
             "organizzato_da_interno",
             "organizzato_da_esterno",
-            "telefono",
-            "fax",
-            "reperibilita",
-            "email",
-            "web",
             "supportato_da",
+            "patrocinato_da",
         ],
     )
-    model.fieldset(
-        "informazioni",
-        label=_("informazioni_label", default="Ulteriori informazioni"),
-        fields=["patrocinato_da"],
-    )
 
-    dexteritytextindexer.searchable("descrizione_estesa")
+    textindexer.searchable("descrizione_estesa")
 
 
 @implementer(IEvento)

@@ -4,7 +4,10 @@ from plone.app.registry.browser.controlpanel import ControlPanelFormWrapper
 from plone.app.registry.browser.controlpanel import RegistryEditForm
 from plone.restapi.controlpanels.interfaces import IControlpanel
 from zope.interface import Interface
-from zope.schema import List, TextLine, SourceText, Bool
+from zope.schema import Bool
+from zope.schema import List
+from zope.schema import SourceText
+from zope.schema import TextLine
 
 import json
 
@@ -23,7 +26,7 @@ class IDesignPloneSettings(Interface):
             " a seconda delle lingue del sito.",
         ),
         required=True,
-        default=json.dumps({"it": ["Avviso", "Comunicato stampa", "Novità"]}),
+        default=json.dumps({"it": ["Avviso", "Comunicato (stampa)", "Notizia"]}),
     )
 
     tipologie_unita_organizzativa = SourceText(
@@ -39,67 +42,6 @@ class IDesignPloneSettings(Interface):
         ),
         required=True,
         default=json.dumps({"it": ["Politica", "Amministrativa", "Altro"]}),
-    )
-
-    tipologie_documento = SourceText(
-        title=_("tipologie_documento_label", default="Tipologie Documento"),
-        description=_(
-            "tipologie_documento_help",
-            default="Inserisci i valori utilizzabili per le tipologie di un "
-            "Documento. Se il sito è multilingua, puoi inserire "
-            "valori diversi a seconda delle lingue del sito.",
-        ),
-        required=True,
-        default=json.dumps(
-            {
-                "it": [
-                    "Accordi tra enti",
-                    "Atti normativi",
-                    "Dataset",
-                    "Documenti (tecnici) di supporto",
-                    "Documenti albo pretorio",
-                    "Documenti attività politica",
-                    "Documenti funzionamento interno",
-                    "Istanze",
-                    "Modulistica",
-                ]
-            }
-        ),
-    )
-
-    tipologie_persona = SourceText(
-        title=_("tipologie_persona_label", default="Tipologie Persona"),
-        description=_(
-            "tipologie_persona_help",
-            default="Inserisci i valori utilizzabili per le tipologie di "
-            "una Persona. Se il sito è multilingua, puoi inserire "
-            "valori diversi a seconda delle lingue del sito.",
-        ),
-        required=True,
-        default=json.dumps({"it": ["Amministrativa", "Politica", "Altro tipo"]}),
-    )
-
-    ruoli_persona = SourceText(
-        title=_("ruoli_persona_label", default="Ruoli Persona"),
-        description=_(
-            "ruoli_persona_help",
-            default="Inserisci i valori utilizzabili per il ruolo di "
-            "una Persona. Se il sito è multilingua, puoi inserire "
-            "valori diversi a seconda delle lingue del sito.",
-        ),
-        required=True,
-        default=json.dumps(
-            {
-                "it": [
-                    "Assessore",
-                    "Sindaco",
-                    "Consigliere",
-                    "Referente ufficio",
-                    "Responsabile",
-                    "Presidente",
-                ]
-            }
-        ),
     )
 
     lead_image_dimension = List(
@@ -142,6 +84,16 @@ class IDesignPloneSettings(Interface):
             "o meno la data di modifica nei contenuti che hanno la behavior "
             "abilitata. E' poi possibile sovrascrivere il default nei singoli "
             'contenuti (nel tab "Impostazioni").',
+        ),
+        default=True,
+        required=False,
+    )
+    show_dynamic_folders_in_footer = Bool(
+        title=_("show_dynamic_folders_in_footer_label", default="Footer dinamico"),
+        description=_(
+            "show_dynamic_folders_in_footer_help",
+            default="Se selezionato, il footer verrà popolato automaticamente "
+            "con i contenuti di primo livello non esclusi dalla navigazione.",
         ),
         default=True,
         required=False,

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vdex xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      language="it"
+      orderSignificant="false"
+      profileType="hierarchicalTokenTerms"
+      xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd"
+>
+  <vocabName>
+    <langstring language="it">Temi di un dataset</langstring>
+  </vocabName>
+  <vocabIdentifier>temi_dataset</vocabIdentifier>
+  <term>
+    <termIdentifier>agricoltura_pesca_silvicoltura_e_prodotti_alimentari</termIdentifier>
+    <caption>
+      <langstring language="it">Agricoltura, pesca, silvicoltura e prodotti alimentari</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>economia_e_finanze</termIdentifier>
+    <caption>
+      <langstring language="it">Economia e Finanze</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>istruzione_cultura_e_sport</termIdentifier>
+    <caption>
+      <langstring language="it">Istruzione, cultura e sport</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>energia</termIdentifier>
+    <caption>
+      <langstring language="it">Energia</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>ambiente</termIdentifier>
+    <caption>
+      <langstring language="it">Ambiente</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>governo_e_settore_pubblico</termIdentifier>
+    <caption>
+      <langstring language="it">Governo e settore pubblico</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>salute</termIdentifier>
+    <caption>
+      <langstring language="it">Salute</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>tematiche_internazionali</termIdentifier>
+    <caption>
+      <langstring language="it">Tematiche internazionali</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>giustizia_sistema_giuridico_e_sicurezza_pubblica</termIdentifier>
+    <caption>
+      <langstring language="it">Giustizia, sistema giuridico e sicurezza pubblica</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>popolazione_e_societa</termIdentifier>
+    <caption>
+      <langstring language="it">Popolazione e società</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>regioni_e_citta</termIdentifier>
+    <caption>
+      <langstring language="it">Regioni e città</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>scienza_e_tecnologia</termIdentifier>
+    <caption>
+      <langstring language="it">Scienza e tecnologia</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>trasporti</termIdentifier>
+    <caption>
+      <langstring language="en" />
+      <langstring language="it">Trasporti</langstring>
+    </caption>
+  </term>
+</vdex>

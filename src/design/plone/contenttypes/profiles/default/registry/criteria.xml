@@ -1,149 +1,571 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-          i18n:domain="plone">
+          i18n:domain="plone"
+>
+
   <records interface="plone.app.querystring.interfaces.IQueryField"
-             prefix="plone.app.querystring.field.tipologia_notizia">
-        <value key="title" i18n:translate="">Tipologia notizia</value>
-        <value key="description" i18n:translate="">Tipologia della notizia</value>
-        <value key="enabled">True</value>
-        <value key="sortable">False</value>
-        <value key="operations">
-            <element>plone.app.querystring.operation.selection.any</element>
-            <element>plone.app.querystring.operation.selection.all</element>
-        </value>
-       <value key="vocabulary">design.plone.vocabularies.tipologie_notizia</value>
-       <value key="group" i18n:translate="">Metadata</value>
-    </records>
-  <records interface="plone.app.querystring.interfaces.IQueryField"
-             prefix="plone.app.querystring.field.tassonomia_argomenti_uid">
-        <value key="title" i18n:translate="">Argomenti correlati</value>
-        <value key="description" i18n:translate="">Argomenti correlati (con uid)</value>
-        <value key="enabled">True</value>
-        <value key="sortable">False</value>
-        <value key="operations">
-            <element>plone.app.querystring.operation.selection.any</element>
-            <element>plone.app.querystring.operation.selection.all</element>
-        </value>
-       <value key="vocabulary">design.plone.vocabularies.argomenti_uid</value>
-       <value key="group" i18n:translate="">Metadata</value>
+           prefix="plone.app.querystring.field.tipologia_notizia"
+  >
+    <value key="title"
+           i18n:translate=""
+    >Tipologia notizia</value>
+    <value key="description"
+           i18n:translate=""
+    >Tipologia della notizia</value>
+    <value key="enabled">True</value>
+    <value key="sortable">False</value>
+    <value key="operations">
+      <element>plone.app.querystring.operation.selection.any</element>
+      <element>plone.app.querystring.operation.selection.all</element>
+    </value>
+    <value key="vocabulary">collective.taxonomy.tipologia_notizia</value>
+    <value key="group"
+           i18n:translate=""
+    >Metadata</value>
   </records>
   <records interface="plone.app.querystring.interfaces.IQueryField"
-           prefix="plone.app.querystring.field.tipologia_documento">
-        <value key="title" i18n:translate="">Tipologia documento</value>
-        <value key="description" i18n:translate=""></value>
-        <value key="enabled">True</value>
-        <value key="sortable">False</value>
-        <value key="operations">
-            <element>plone.app.querystring.operation.selection.any</element>
-            <element>plone.app.querystring.operation.selection.all</element>
-        </value>
-       <value key="vocabulary">design.plone.vocabularies.tipologie_documento</value>
-       <value key="group" i18n:translate="">Metadata</value>
+           prefix="plone.app.querystring.field.tassonomia_argomenti"
+  >
+    <value key="title"
+           i18n:translate=""
+    >Argomenti correlati</value>
+    <value key="description"
+           i18n:translate=""
+    >Argomenti correlati</value>
+    <value key="enabled">True</value>
+    <value key="sortable">False</value>
+    <value key="operations">
+      <element>plone.app.querystring.operation.selection.any</element>
+      <element>plone.app.querystring.operation.selection.all</element>
+    </value>
+    <value key="vocabulary">design.plone.vocabularies.argomenti</value>
+    <value key="group"
+           i18n:translate=""
+    >Metadata</value>
   </records>
 
   <records interface="plone.app.querystring.interfaces.IQueryField"
-             prefix="plone.app.querystring.field.event_location">
-        <value key="title" i18n:translate="">Luogo evento</value>
-        <value key="description" i18n:translate="">Luogo correlato legato all'evento</value>
-        <value key="enabled">True</value>
-        <value key="sortable">False</value>
-        <value key="operations">
-            <element>plone.app.querystring.operation.selection.any</element>
-            <element>plone.app.querystring.operation.selection.all</element>
-        </value>
-       <value key="vocabulary">design.plone.vocabularies.event_location</value>
-       <value key="group" i18n:translate="">Metadata</value>
-   </records>
-
-   <records interface="plone.app.querystring.interfaces.IQueryField"
-             prefix="plone.app.querystring.field.ufficio_responsabile">
-        <value key="title" i18n:translate="">Ufficio responsabile</value>
-        <value key="description" i18n:translate="">Ufficio responsabile documento personale</value>
-        <value key="enabled">True</value>
-        <value key="sortable">False</value>
-        <value key="operations">
-            <element>plone.app.querystring.operation.selection.any</element>
-            <element>plone.app.querystring.operation.selection.all</element>
-        </value>
-       <value key="vocabulary">design.plone.vocabularies.ufficio_responsabile</value>
-       <value key="group" i18n:translate="">Metadata</value>
-   </records>
-
-   <records interface="plone.app.querystring.interfaces.IQueryField"
-             prefix="plone.app.querystring.field.ente_bando">
-        <value key="title" i18n:translate="">Ente bando</value>
-        <value key="description" i18n:translate="">Ente bando</value>
-        <value key="enabled">True</value>
-        <value key="sortable">False</value>
-        <value key="operations">
-            <element>plone.app.querystring.operation.selection.any</element>
-            <element>plone.app.querystring.operation.selection.all</element>
-        </value>
-       <value key="vocabulary">redturtle.bandi.enti.vocabulary</value>
-       <value key="group" i18n:translate="">Bando</value>
-   </records>
-
-   <records interface="plone.app.querystring.interfaces.IQueryField"
-             prefix="plone.app.querystring.field.ruolo">
-        <value key="title" i18n:translate="">Ruolo</value>
-        <value key="description" i18n:translate="">Ruolo</value>
-        <value key="enabled">True</value>
-        <value key="sortable">False</value>
-        <value key="operations">
-            <element>plone.app.querystring.operation.selection.any</element>
-            <element>plone.app.querystring.operation.selection.all</element>
-        </value>
-       <value key="vocabulary">design.plone.contenttypes.RuoliPersona</value>
-       <value key="group" i18n:translate="">Metadata</value>
-   </records>
-
-   <records interface="plone.app.querystring.interfaces.IQueryField"
-             prefix="plone.app.querystring.field.data_conclusione_incarico">
-        <value key="title" i18n:translate="">Data conclusione incarico</value>
-        <value key="description" i18n:translate="">Data conclusione incarico</value>
-        <value key="enabled">True</value>
-        <value key="sortable">False</value>
-        <value key="operations">
-            <element>plone.app.querystring.operation.date.lessThan</element>
-            <element>plone.app.querystring.operation.date.largerThan</element>
-            <element>plone.app.querystring.operation.date.between</element>
-            <element>plone.app.querystring.operation.date.lessThanRelativeDate</element>
-            <element>plone.app.querystring.operation.date.largerThanRelativeDate</element>
-            <element>plone.app.querystring.operation.date.today</element>
-            <element>plone.app.querystring.operation.date.beforeToday</element>
-            <element>plone.app.querystring.operation.date.afterToday</element>
-            <element>plone.app.querystring.operation.date.beforeRelativeDate</element>
-            <element>plone.app.querystring.operation.date.afterRelativeDate</element>
-        </value>
-       <value key="group" i18n:translate="">Dates</value>
-   </records>
-    <records interface="plone.app.querystring.interfaces.IQueryField"
-           prefix="plone.app.querystring.field.tipologia_organizzazione">
-        <value key="title" i18n:translate="">Tipologia organizzazione</value>
-        <value key="description" i18n:translate=""></value>
-        <value key="enabled">True</value>
-        <value key="sortable">False</value>
-        <value key="operations">
-            <element>plone.app.querystring.operation.selection.any</element>
-            <element>plone.app.querystring.operation.selection.all</element>
-        </value>
-       <value key="vocabulary">design.plone.vocabularies.tipologie_unita_organizzativa</value>
-       <value key="group" i18n:translate="">Metadata</value>
+           prefix="plone.app.querystring.field.tassonomia_argomenti_uid"
+  >
+    <value key="title"
+           i18n:translate=""
+    >Argomenti correlati</value>
+    <value key="description"
+           i18n:translate=""
+    >Argomenti correlati (con uid)</value>
+    <value key="enabled">True</value>
+    <value key="sortable">False</value>
+    <value key="operations">
+      <element>plone.app.querystring.operation.selection.any</element>
+      <element>plone.app.querystring.operation.selection.all</element>
+    </value>
+    <value key="vocabulary">design.plone.vocabularies.argomenti_uid</value>
+    <value key="group"
+           i18n:translate=""
+    >Metadata</value>
   </records>
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.ruolo"
+  >
+    <value key="title"
+           i18n:translate=""
+    >Ruolo</value>
+    <value key="description"
+           i18n:translate=""
+    >Ruolo</value>
+    <value key="enabled">True</value>
+    <value key="sortable">False</value>
+    <value key="operations">
+      <element>plone.app.querystring.operation.selection.any</element>
+      <element>plone.app.querystring.operation.selection.all</element>
+    </value>
+    <value key="vocabulary">design.plone.contenttypes.RuoliPersona</value>
+    <value key="group"
+           i18n:translate=""
+    >Metadata</value>
+  </records>
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.tipologia_documento"
+  >
+    <value key="title"
+           i18n:translate=""
+    >Tipologia documento</value>
+    <value key="description"
+           i18n:translate=""
+    />
+    <value key="enabled">True</value>
+    <value key="sortable">False</value>
+    <value key="operations">
+      <element>plone.app.querystring.operation.selection.any</element>
+      <element>plone.app.querystring.operation.selection.all</element>
+    </value>
+    <value key="group"
+           i18n:translate=""
+    >Metadata</value>
+    <value key="vocabulary">collective.taxonomy.tipologia_documento</value>
+    <value key="fetch_vocabulary">True</value>
+  </records>
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.event_location"
+  >
+    <value key="title"
+           i18n:translate=""
+    >Luogo evento</value>
+    <value key="description"
+           i18n:translate=""
+    >Luogo correlato legato all'evento</value>
+    <value key="enabled">True</value>
+    <value key="sortable">False</value>
+    <value key="operations">
+      <element>plone.app.querystring.operation.selection.any</element>
+      <element>plone.app.querystring.operation.selection.all</element>
+    </value>
+    <value key="vocabulary">design.plone.vocabularies.event_location</value>
+    <value key="group"
+           i18n:translate=""
+    >Metadata</value>
+  </records>
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.ufficio_responsabile"
+  >
+    <value key="title"
+           i18n:translate=""
+    >Ufficio responsabile</value>
+    <value key="description"
+           i18n:translate=""
+    >Ufficio responsabile documento personale</value>
+    <value key="enabled">True</value>
+    <value key="sortable">False</value>
+    <value key="operations">
+      <element>plone.app.querystring.operation.selection.any</element>
+      <element>plone.app.querystring.operation.selection.all</element>
+    </value>
+    <value key="vocabulary">design.plone.vocabularies.ufficio_responsabile</value>
+    <value key="group"
+           i18n:translate=""
+    >Metadata</value>
+  </records>
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.ente_bando"
+  >
+    <value key="title"
+           i18n:translate=""
+    >Ente bando</value>
+    <value key="description"
+           i18n:translate=""
+    >Ente bando</value>
+    <value key="enabled">True</value>
+    <value key="sortable">False</value>
+    <value key="operations">
+      <element>plone.app.querystring.operation.selection.any</element>
+      <element>plone.app.querystring.operation.selection.all</element>
+    </value>
+    <value key="vocabulary">redturtle.bandi.enti.vocabulary</value>
+    <value key="group"
+           i18n:translate=""
+    >Bando</value>
+  </records>
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.data_conclusione_incarico"
+  >
+    <value key="title"
+           i18n:translate=""
+    >Data conclusione incarico</value>
+    <value key="description"
+           i18n:translate=""
+    >Data conclusione incarico</value>
+    <value key="enabled">True</value>
+    <value key="sortable">False</value>
+    <value key="operations">
+      <element>plone.app.querystring.operation.date.lessThan</element>
+      <element>plone.app.querystring.operation.date.largerThan</element>
+      <element>plone.app.querystring.operation.date.between</element>
+      <element>plone.app.querystring.operation.date.lessThanRelativeDate</element>
+      <element>plone.app.querystring.operation.date.largerThanRelativeDate</element>
+      <element>plone.app.querystring.operation.date.today</element>
+      <element>plone.app.querystring.operation.date.beforeToday</element>
+      <element>plone.app.querystring.operation.date.afterToday</element>
+      <element>plone.app.querystring.operation.date.beforeRelativeDate</element>
+      <element>plone.app.querystring.operation.date.afterRelativeDate</element>
+    </value>
+    <value key="group"
+           i18n:translate=""
+    >Dates</value>
+  </records>
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.tipologia_organizzazione"
+  >
+    <value key="title"
+           i18n:translate=""
+    >Tipologia organizzazione</value>
+    <value key="description"
+           i18n:translate=""
+    />
+    <value key="enabled">True</value>
+    <value key="sortable">False</value>
+    <value key="operations">
+      <element>plone.app.querystring.operation.selection.any</element>
+      <element>plone.app.querystring.operation.selection.all</element>
+    </value>
+    <value key="vocabulary">collective.taxonomy.tipologia_organizzazione</value>
+    <value key="group"
+           i18n:translate=""
+    >Metadata</value>
+  </records>
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.business_events"
+  >
+    <value key="title"
+           i18n:translate=""
+    >Eventi della vita delle imprese</value>
+    <value key="description"
+           i18n:translate=""
+    />
+    <value key="enabled">True</value>
+    <value key="sortable">False</value>
+    <value key="operations">
+      <element>plone.app.querystring.operation.selection.any</element>
+      <element>plone.app.querystring.operation.selection.all</element>
+    </value>
+    <value key="vocabulary">collective.taxonomy.business_events</value>
+    <value key="group"
+           i18n:translate=""
+    >Metadata</value>
+  </records>
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.person_life_events"
+  >
+    <value key="title"
+           i18n:translate=""
+    >Eventi della vita delle persone</value>
+    <value key="description"
+           i18n:translate=""
+    />
+    <value key="enabled">True</value>
+    <value key="sortable">False</value>
+    <value key="operations">
+      <element>plone.app.querystring.operation.selection.any</element>
+      <element>plone.app.querystring.operation.selection.all</element>
+    </value>
+    <value key="vocabulary">collective.taxonomy.person_life_events</value>
+    <value key="group"
+           i18n:translate=""
+    >Metadata</value>
+  </records>
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.temi_dataset"
+  >
+    <value key="title"
+           i18n:translate=""
+    >Temi del dataset</value>
+    <value key="description"
+           i18n:translate=""
+    />
+    <value key="enabled">True</value>
+    <value key="sortable">False</value>
+    <value key="operations">
+      <element>plone.app.querystring.operation.selection.any</element>
+      <element>plone.app.querystring.operation.selection.all</element>
+    </value>
+    <value key="vocabulary">collective.taxonomy.temi_dataset</value>
+    <value key="group"
+           i18n:translate=""
+    >Metadata</value>
+  </records>
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.tipologia_incarico"
+  >
+    <value key="title"
+           i18n:translate=""
+    >Tipologia di incarico</value>
+    <value key="description"
+           i18n:translate=""
+    />
+    <value key="enabled">True</value>
+    <value key="sortable">False</value>
+    <value key="operations">
+      <element>plone.app.querystring.operation.selection.any</element>
+      <element>plone.app.querystring.operation.selection.all</element>
+    </value>
+    <value key="vocabulary">collective.taxonomy.tipologia_incarico</value>
+    <value key="group"
+           i18n:translate=""
+    >Metadata</value>
+  </records>
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.tipologia_luogo"
+  >
+    <value key="title"
+           i18n:translate=""
+    >Tipologia di luogo</value>
+    <value key="description"
+           i18n:translate=""
+    />
+    <value key="enabled">True</value>
+    <value key="sortable">False</value>
+    <value key="operations">
+      <element>plone.app.querystring.operation.selection.any</element>
+      <element>plone.app.querystring.operation.selection.all</element>
+    </value>
+    <value key="vocabulary">collective.taxonomy.tipologia_luogo</value>
+    <value key="group"
+           i18n:translate=""
+    >Metadata</value>
+  </records>
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.tipologia_evento"
+  >
+    <value key="title"
+           i18n:translate=""
+    >Tipologia di evento</value>
+    <value key="description"
+           i18n:translate=""
+    />
+    <value key="enabled">True</value>
+    <value key="sortable">False</value>
+    <value key="operations">
+      <element>plone.app.querystring.operation.selection.any</element>
+      <element>plone.app.querystring.operation.selection.all</element>
+    </value>
+    <value key="vocabulary">collective.taxonomy.tipologia_evento</value>
+    <value key="group"
+           i18n:translate=""
+    >Metadata</value>
+  </records>
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.tipologia_pdc"
+  >
+    <value key="title"
+           i18n:translate=""
+    >Tipologia di punto di contatto</value>
+    <value key="description"
+           i18n:translate=""
+    />
+    <value key="enabled">True</value>
+    <value key="sortable">False</value>
+    <value key="operations">
+      <element>plone.app.querystring.operation.selection.any</element>
+      <element>plone.app.querystring.operation.selection.all</element>
+    </value>
+    <value key="vocabulary">collective.taxonomy.tipologia_pdc</value>
+    <value key="group"
+           i18n:translate=""
+    >Metadata</value>
+  </records>
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.tipologia_documenti_albopretorio"
+  >
+    <value key="title"
+           i18n:translate=""
+    >Tipologia di documento albo pretorio</value>
+    <value key="description"
+           i18n:translate=""
+    />
+    <value key="enabled">True</value>
+    <value key="sortable">False</value>
+    <value key="operations">
+      <element>plone.app.querystring.operation.selection.any</element>
+      <element>plone.app.querystring.operation.selection.all</element>
+    </value>
+    <value key="vocabulary">collective.taxonomy.tipologia_documenti_albopretorio</value>
+    <value key="group"
+           i18n:translate=""
+    >Metadata</value>
+  </records>
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.tipologia_frequenza_aggiornamento"
+  >
+    <value key="title"
+           i18n:translate=""
+    >Tipologia di frequenza di aggiornamento</value>
+    <value key="description"
+           i18n:translate=""
+    />
+    <value key="enabled">True</value>
+    <value key="sortable">False</value>
+    <value key="operations">
+      <element>plone.app.querystring.operation.selection.any</element>
+      <element>plone.app.querystring.operation.selection.all</element>
+    </value>
+    <value key="vocabulary">collective.taxonomy.tipologia_frequenza_aggiornamento</value>
+    <value key="group"
+           i18n:translate=""
+    >Metadata</value>
+  </records>
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.tipologia_stati_pratica"
+  >
+    <value key="title"
+           i18n:translate=""
+    >Tipologia di stati di una pratica</value>
+    <value key="description"
+           i18n:translate=""
+    />
+    <value key="enabled">True</value>
+    <value key="sortable">False</value>
+    <value key="operations">
+      <element>plone.app.querystring.operation.selection.any</element>
+      <element>plone.app.querystring.operation.selection.all</element>
+    </value>
+    <value key="vocabulary">collective.taxonomy.tipologia_stati_pratica</value>
+    <value key="group"
+           i18n:translate=""
+    >Metadata</value>
+  </records>
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.tipologia_licenze"
+  >
+    <value key="title"
+           i18n:translate=""
+    >Tipologia di licenze</value>
+    <value key="description"
+           i18n:translate=""
+    />
+    <value key="enabled">True</value>
+    <value key="sortable">False</value>
+    <value key="operations">
+      <element>plone.app.querystring.operation.selection.any</element>
+      <element>plone.app.querystring.operation.selection.all</element>
+    </value>
+    <value key="vocabulary">collective.taxonomy.tipologia_licenze</value>
+    <value key="group"
+           i18n:translate=""
+    >Metadata</value>
+  </records>
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+         prefix="plone.app.querystring.field.canale_digitale_link"
+>
+    <value key="title" i18n:translate="">Link al Canale Digitale</value>
+    <value key="description" i18n:translate="">Link al Canale Digitale è compilato o meno</value>
+    <value key="enabled">True</value>
+    <value key="sortable">False</value>
+    <value key="operations">
+      <element>plone.app.querystring.operation.boolean.isTrue</element>
+      <element>plone.app.querystring.operation.boolean.isFalse</element>
+    </value>
+    <value key="group" i18n:translate="">Metadata</value>
+</records>
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+         prefix="plone.app.querystring.field.rassegna"
+>
+    <value key="title" i18n:translate="">Evento Rassegna</value>
+    <value key="description" i18n:translate="">Esclude le rassegne dai listing</value>
+    <value key="enabled">True</value>
+    <value key="sortable">False</value>
+    <value key="operations">
+      <element>plone.app.querystring.operation.boolean.isTrue</element>
+      <element>plone.app.querystring.operation.boolean.isFalse</element>
+    </value>
+    <value key="group" i18n:translate="">Metadata</value>
+</records>
+
 
 
   <!-- cleanup -->
   <records interface="plone.app.querystring.interfaces.IQueryField"
-            prefix="plone.app.querystring.field.argomenti"
-            remove="True">
-  </records>
+           prefix="plone.app.querystring.field.argomenti"
+           remove="True"
+  >
+</records>
 
   <records interface="plone.app.querystring.interfaces.IQueryField"
-            prefix="plone.app.querystring.field.argomenti_correlati"
-            remove="True">
-  </records>
+           prefix="plone.app.querystring.field.argomenti_correlati"
+           remove="True"
+  >
+</records>
   <records interface="plone.app.querystring.interfaces.IQueryField"
            prefix="plone.app.querystring.field.tassonomia_argomenti"
-           remove="True">
-    </records>
+           remove="True"
+  >
+</records>
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.taxonomy_tipologia_licenze"
+           remove="True"
+  >
+</records>
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.taxonomy_business_events"
+           remove="True"
+  >
+</records>
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.taxonomy_person_life_events"
+           remove="True"
+  >
+</records>
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.taxonomy_temi_dataset"
+           remove="True"
+  >
+</records>
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.taxonomy_tipologia_documenti_albopretorio"
+           remove="True"
+  >
+</records>
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.taxonomy_tipologia_documento"
+           remove="True"
+  >
+</records>
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.taxonomy_tipologia_evento"
+           remove="True"
+  >
+</records>
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.taxonomy_tipologia_frequenza_aggiornamento"
+           remove="True"
+  >
+</records>
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.taxonomy_tipologia_incarico"
+           remove="True"
+  >
+</records>
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.taxonomy_tipologia_luogo"
+           remove="True"
+  >
+</records>
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.taxonomy_tipologia_notizia"
+           remove="True"
+  >
+</records>
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.taxonomy_tipologia_organizzazione"
+           remove="True"
+  >
+</records>
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.taxonomy_tipologia_pdc"
+           remove="True"
+  >
+</records>
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.taxonomy_tipologia_stati_pratica"
+           remove="True"
+  >
+</records>
 </registry>

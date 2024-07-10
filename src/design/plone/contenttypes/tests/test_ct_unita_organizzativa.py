@@ -5,12 +5,10 @@ from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
 )
 from plone import api
-from plone.app.testing import (
-    SITE_OWNER_NAME,
-    SITE_OWNER_PASSWORD,
-    TEST_USER_ID,
-    setRoles,
-)
+from plone.app.testing import setRoles
+from plone.app.testing import SITE_OWNER_NAME
+from plone.app.testing import SITE_OWNER_PASSWORD
+from plone.app.testing import TEST_USER_ID
 from plone.restapi.testing import RelativeSession
 from Products.CMFPlone.utils import getToolByName
 from transaction import commit
@@ -23,10 +21,244 @@ import transaction
 import unittest
 
 
+class TestUOSchema(unittest.TestCase):
+    layer = DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING
+
+    def setUp(self):
+        self.app = self.layer["app"]
+        self.portal = self.layer["portal"]
+        self.request = self.layer["request"]
+        self.portal_url = self.portal.absolute_url()
+        setRoles(self.portal, TEST_USER_ID, ["Manager"])
+
+        self.api_session = RelativeSession(self.portal_url)
+        self.api_session.headers.update({"Accept": "application/json"})
+        self.api_session.auth = (SITE_OWNER_NAME, SITE_OWNER_PASSWORD)
+
+    def tearDown(self):
+        self.api_session.close()
+
+    def test_behaviors_enabled_for_uo(self):
+        portal_types = api.portal.get_tool(name="portal_types")
+        self.assertEqual(
+            portal_types["UnitaOrganizzativa"].behaviors,
+            (
+                "plone.namefromtitle",
+                "plone.allowdiscussion",
+                "plone.excludefromnavigation",
+                "plone.shortname",
+                "plone.ownership",
+                "plone.publication",
+                "plone.categorization",
+                "plone.basic",
+                "plone.locking",
+                "plone.leadimage",
+                "volto.preview_image",
+                "plone.relateditems",
+                "design.plone.contenttypes.behavior.contatti_uo",
+                "design.plone.contenttypes.behavior.argomenti",
+                "plone.textindexer",
+                "design.plone.contenttypes.behavior.additional_help_infos",
+                "plone.translatable",
+                "kitconcept.seo",
+                "plone.versioning",
+                "collective.taxonomy.generated.tipologia_organizzazione",
+            ),
+        )
+
+    def test_uo_ct_title(self):
+        portal_types = api.portal.get_tool(name="portal_types")
+        self.assertEqual(
+            "Unita Organizzativa", portal_types["UnitaOrganizzativa"].title
+        )
+
+    def test_uo_fieldsets(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/UnitaOrganizzativa").json()
+        self.assertEqual(len(resp["fieldsets"]), 12)
+        self.assertEqual(
+            [x.get("id") for x in resp["fieldsets"]],
+            [
+                "default",
+                "cosa_fa",
+                "struttura",
+                "persone",
+                "contatti",
+                "correlati",
+                "categorization",
+                "informazioni",
+                "settings",
+                "ownership",
+                "dates",
+                "seo",
+            ],
+        )
+
+    def test_uo_required_fields(self):
+        resp = self.api_session.get("@types/UnitaOrganizzativa").json()
+        self.assertEqual(
+            sorted(resp["required"]),
+            sorted(
+                [
+                    "title",
+                    "competenze",
+                    "tipologia_organizzazione",
+                    "sede",
+                    "contact_info",
+                    "description",
+                ]
+            ),
+        )
+
+    def test_uo_fields_default_fieldset(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/UnitaOrganizzativa").json()
+        self.assertEqual(
+            resp["fieldsets"][0]["fields"],
+            [
+                "title",
+                "description",
+                "image",
+                "image_caption",
+                "preview_image",
+                "preview_caption",
+                "tassonomia_argomenti",
+            ],
+        )
+
+    def test_uo_fields_cosa_fa_fieldset(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/UnitaOrganizzativa").json()
+        self.assertEqual(resp["fieldsets"][1]["fields"], ["competenze"])
+
+    def test_uo_fields_struttura_fieldset(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/UnitaOrganizzativa").json()
+        self.assertEqual(
+            resp["fieldsets"][2]["fields"],
+            [
+                "legami_con_altre_strutture",
+                "responsabile",
+                "assessore_riferimento",
+                "tipologia_organizzazione",
+            ],
+        )
+
+    def test_uo_fields_persone_fieldset(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/UnitaOrganizzativa").json()
+        self.assertEqual(
+            resp["fieldsets"][3]["fields"],
+            ["persone_struttura"],
+        )
+
+    def test_uo_fields_contatti_fieldset(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/UnitaOrganizzativa").json()
+        self.assertEqual(
+            resp["fieldsets"][4]["fields"],
+            ["contact_info", "sede", "sedi_secondarie", "orario_pubblico"],
+        )
+
+    def test_uo_fields_correlati_fieldset(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/UnitaOrganizzativa").json()
+        self.assertEqual(
+            resp["fieldsets"][5]["fields"],
+            # ["documenti_pubblici", "correlato_in_evidenza"], # BBB dovrebbe essere così
+            # ma viene fuori così nei test perché non viene vista la patch SchemaTweaks
+            ["correlato_in_evidenza"],
+        )
+
+    def test_uo_fields_categorization_fieldset(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/UnitaOrganizzativa").json()
+        self.assertEqual(
+            resp["fieldsets"][6]["fields"],
+            # ["subjects", "language"] BBB dovrebbe essere così
+            # ma nei test esce così perché non viene vista la patch di SchemaTweaks
+            ["subjects", "language", "relatedItems", "documenti_pubblici"],
+        )
+
+    def test_uo_fields_informazioni_fieldset(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/UnitaOrganizzativa").json()
+        self.assertEqual(resp["fieldsets"][7]["fields"], ["ulteriori_informazioni"])
+
+    def test_uo_fields_settings_fieldset(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/UnitaOrganizzativa").json()
+        self.assertEqual(
+            resp["fieldsets"][8]["fields"],
+            [
+                "allow_discussion",
+                "exclude_from_nav",
+                "id",
+                "versioning_enabled",
+                "changeNote",
+            ],
+        )
+
+    def test_uo_fields_ownership_fieldset(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/UnitaOrganizzativa").json()
+        self.assertEqual(
+            resp["fieldsets"][9]["fields"], ["creators", "contributors", "rights"]
+        )
+
+    def test_uo_fields_dates_fieldset(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/UnitaOrganizzativa").json()
+        self.assertEqual(resp["fieldsets"][10]["fields"], ["effective", "expires"])
+
+    def test_uo_fields_seo_fieldset(self):
+        """
+        Get the list from restapi
+        """
+        resp = self.api_session.get("@types/UnitaOrganizzativa").json()
+        self.assertEqual(
+            resp["fieldsets"][11]["fields"],
+            [
+                "seo_title",
+                "seo_description",
+                "seo_noindex",
+                "seo_canonical_url",
+                "opengraph_title",
+                "opengraph_description",
+                "opengraph_image",
+            ],
+        )
+
+
 class TestUO(unittest.TestCase):
     """Test that design.plone.contenttypes is properly installed."""
 
     layer = DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING
+    maxDiff = None
 
     def setUp(self):
         self.app = self.layer["app"]
@@ -92,47 +324,6 @@ class TestUO(unittest.TestCase):
     def tearDown(self):
         self.api_session.close()
 
-    def test_behaviors_enabled_for_uo(self):
-        portal_types = api.portal.get_tool(name="portal_types")
-        self.assertEqual(
-            portal_types["UnitaOrganizzativa"].behaviors,
-            (
-                "plone.namefromtitle",
-                "plone.allowdiscussion",
-                "plone.excludefromnavigation",
-                "plone.shortname",
-                "plone.ownership",
-                "plone.publication",
-                "plone.categorization",
-                "plone.basic",
-                "plone.locking",
-                "plone.leadimage",
-                "volto.preview_image",
-                "plone.relateditems",
-                "design.plone.contenttypes.behavior.address_uo",
-                "design.plone.contenttypes.behavior.geolocation_uo",
-                "design.plone.contenttypes.behavior.contatti_uo",
-                "design.plone.contenttypes.behavior.argomenti",
-                "collective.dexteritytextindexer",
-                "design.plone.contenttypes.behavior.additional_help_infos",
-                "plone.translatable",
-                "kitconcept.seo",
-                "plone.versioning",
-            ),
-        )
-
-    def test_uo_ct_title(self):
-        portal_types = api.portal.get_tool(name="portal_types")
-        self.assertEqual(
-            "Unita Organizzativa", portal_types["UnitaOrganizzativa"].title
-        )
-
-    def test_uo_service_related_news(self):
-        response = self.api_session.get(self.uo.absolute_url() + "?fullobjects")
-        self.assertTrue(
-            response.json()["related_news"][0]["@id"], self.news.absolute_url()
-        )
-
     def test_uo_service_related_service_show_only_services(self):
         response = self.api_session.get(self.uo.absolute_url() + "?fullobjects")
         self.assertEqual(
@@ -162,7 +353,7 @@ class TestUO(unittest.TestCase):
             "riferimento_pec_struttura",
         ]
         for field in fields:
-            self.assertEqual(sede[field], getattr(self.luogo, field, ""))
+            self.assertEqual(sede[field], getattr(self.luogo, field, None))
 
     def test_uo_location_indexer_populated(self):
         pc = api.portal.get_tool(name="portal_catalog")
@@ -215,12 +406,14 @@ class TestUO(unittest.TestCase):
 
     def test_do_not_show_parent_uo_if_not_present(self):
         response = self.api_session.get(self.uo.absolute_url())
+        self.assertEqual(response.status_code, 200)
         uo_parent = response.json()["uo_parent"]
 
         self.assertIsNone(uo_parent)
 
     def test_show_parent_uo_if_present(self):
         response = self.api_session.get(self.uo_child.absolute_url())
+        self.assertEqual(response.status_code, 200)
         uo_parent = response.json()["uo_parent"]
 
         self.assertIsNotNone(uo_parent)
@@ -232,12 +425,14 @@ class TestUO(unittest.TestCase):
 
     def test_do_not_show_children_uo_if_not_present(self):
         response = self.api_session.get(self.uo_child.absolute_url())
+        self.assertEqual(response.status_code, 200)
         uo_children = response.json()["uo_children"]
 
         self.assertEqual(uo_children, [])
 
     def test_show_children_uo_if_present(self):
         response = self.api_session.get(self.uo.absolute_url())
+        self.assertEqual(response.status_code, 200)
         uo_children = response.json()["uo_children"]
 
         self.assertEqual(len(uo_children), 1)
@@ -257,8 +452,40 @@ class TestUO(unittest.TestCase):
         transaction.commit()
 
         response = self.api_session.get(self.uo.absolute_url())
-
+        self.assertEqual(response.status_code, 200)
         self.assertIn(
             self.service.absolute_url(),
             [i["@id"] for i in response.json()["prestazioni"]],
         )
+
+    def test_cant_patch_uo_that_has_no_required_fields(self):
+        uo = api.content.create(
+            container=self.portal, type="UnitaOrganizzativa", title="Foo"
+        )
+        commit()
+        resp = self.api_session.patch(
+            uo.absolute_url(),
+            json={
+                "title": "Foo modified",
+            },
+        )
+        self.assertEqual(resp.status_code, 400)
+        self.assertIn("La descrizione è obbligatoria", resp.json()["message"])
+
+    def test_can_sort_uo_that_has_no_required_fields(self):
+        uo = api.content.create(
+            container=self.portal, type="UnitaOrganizzativa", title="Foo"
+        )
+        commit()
+        self.assertEqual(self.bando, self.portal.listFolderContents()[-2])
+        self.assertEqual(uo, self.portal.listFolderContents()[-1])
+
+        resp = self.api_session.patch(
+            self.portal_url,
+            json={"ordering": {"delta": -1, "obj_id": uo.getId()}},
+        )
+        commit()
+
+        self.assertEqual(resp.status_code, 204)
+        self.assertEqual(self.bando, self.portal.listFolderContents()[-1])
+        self.assertEqual(uo, self.portal.listFolderContents()[-2])

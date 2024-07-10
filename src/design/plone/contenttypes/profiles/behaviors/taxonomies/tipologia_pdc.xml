@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vdex xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      language="it"
+      orderSignificant="false"
+      profileType="hierarchicalTokenTerms"
+      xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd"
+>
+  <vocabName>
+    <langstring language="it">Tipo di punto di contatto</langstring>
+  </vocabName>
+  <vocabIdentifier>tipologia_pdc</vocabIdentifier>
+  <term>
+    <termIdentifier>email</termIdentifier>
+    <caption>
+      <langstring language="it">Email</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>telefono</termIdentifier>
+    <caption>
+      <langstring language="it">Telefono</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>fax</termIdentifier>
+    <caption>
+      <langstring language="it">Fax</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>url</termIdentifier>
+    <caption>
+      <langstring language="it">URL</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>pec</termIdentifier>
+    <caption>
+      <langstring language="it">PEC</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>account</termIdentifier>
+    <caption>
+      <langstring language="en" />
+      <langstring language="it">Account</langstring>
+    </caption>
+    <term>
+      <termIdentifier>whatsapp</termIdentifier>
+      <caption>
+        <langstring language="it">Whatsapp</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>telegram</termIdentifier>
+      <caption>
+        <langstring language="it">Telegram</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>skype</termIdentifier>
+      <caption>
+        <langstring language="it">Skype</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>linkedin</termIdentifier>
+      <caption>
+        <langstring language="it">Linkedin</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>twitter</termIdentifier>
+      <caption>
+        <langstring language="en" />
+        <langstring language="it">Twitter</langstring>
+      </caption>
+    </term>
+  </term>
+</vdex>

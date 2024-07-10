@@ -1,18 +1,17 @@
 # -*- coding: utf-8 -*-
 
 """Setup tests for this package."""
-from plone import api
-from plone.app.testing import (
-    SITE_OWNER_NAME,
-    SITE_OWNER_PASSWORD,
-    TEST_USER_ID,
-    setRoles,
-)
-from plone.restapi.testing import RelativeSession
-from transaction import commit
 from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
 )
+from plone import api
+from plone.app.testing import setRoles
+from plone.app.testing import SITE_OWNER_NAME
+from plone.app.testing import SITE_OWNER_PASSWORD
+from plone.app.testing import TEST_USER_ID
+from plone.restapi.testing import RelativeSession
+from transaction import commit
+
 import unittest
 
 
@@ -49,8 +48,9 @@ class TestBaseSerializer(unittest.TestCase):
         Other types shoule return their own portal_type.
         """
         response_news = self.api_session.get(self.news.absolute_url() + "?fullobjects")
-        self.assertTrue(
-            response_news.json()["design_italia_meta_type"] == "Comunicati stampa"
+        self.assertEqual(
+            response_news.json()["design_italia_meta_type"],
+            "Notizie e comunicati stampa",
         )
 
     def test_design_italia_meta_type_with_type_different_from_news(self):
@@ -61,6 +61,7 @@ class TestBaseSerializer(unittest.TestCase):
         response_service = self.api_session.get(
             self.service.absolute_url() + "?fullobjects"
         )
-        self.assertTrue(
-            response_service.json()["design_italia_meta_type"] == "Servizio"
+        self.assertEqual(
+            response_service.json()["design_italia_meta_type"],
+            "Servizio",
         )

@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 from .dxcontent import SerializeFolderToJson as BaseSerializer
+from design.plone.contenttypes.interfaces.bando import IBandoAgidSchema
 from plone.restapi.interfaces import ISerializeToJson
 from zope.component import adapter
 from zope.interface import implementer
 from zope.interface import Interface
-from design.plone.contenttypes.interfaces.bando import IBandoAgidSchema
 
 
 @implementer(ISerializeToJson)
@@ -19,6 +19,11 @@ class BandoSerializer(BaseSerializer):
             contents = bando_view.retrieveContentsOfFolderDeepening(folder["path"])
             if not contents:
                 continue
+            # fix results for enhancedlinks
+            for content in contents:
+                content["getObjSize"] = content.get("filesize", "")
+                content["mime_type"] = content.get("content-type", "")
+                content["enhanced_links_enabled"] = "filesize" in content
             folder.update({"children": contents})
             results.append(folder)
         return results

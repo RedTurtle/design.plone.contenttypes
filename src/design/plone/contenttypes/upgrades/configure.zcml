@@ -582,4 +582,321 @@
         handler=".upgrades.to_5500"
         />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="5500"
+      destination="6000"
+      >
+    <genericsetup:upgradeStep
+        title="Plone6 and pip"
+        handler=".upgrades.to_6000"
+        />
+  </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="6000"
+      destination="6010"
+      >
+    <genericsetup:upgradeStep
+        title="Add CTs Incarico and PuntoDiContatto"
+        handler=".upgrades.to_6010"
+        />
+  </genericsetup:upgradeSteps>
+
+  <genericsetup:upgradeStep
+      title="Update servizio"
+      description=""
+      profile="design.plone.contenttypes:default"
+      source="6010"
+      destination="6011"
+      handler=".upgrades.to_6011"
+      />
+
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="6011"
+      destination="7001"
+      >
+    <genericsetup:upgradeStep
+        title="Persone: Update for PNRR"
+        description="Create Incarichi folder"
+        handler=".to_7001.to_7001"
+        />
+    <genericsetup:upgradeStep
+        title="Persone: Update for PNRR"
+        description="Create Incarichi folder"
+        handler=".to_7001.create_incarichi_folder"
+        />
+    <genericsetup:upgradeStep
+        title="Persone: Update for PNRR"
+        description="Create incarichi objects"
+        handler=".to_7001.create_incarico_for_persona"
+        />
+    <genericsetup:upgradeStep
+        title="Persone: Update for PNRR"
+        description="Create PDC objects"
+        handler=".to_7001.create_pdc"
+        />
+  </genericsetup:upgradeSteps>
+
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="7001"
+      destination="7002"
+      >
+    <genericsetup:upgradeStep
+        title="Persone: Update for PNRR - migrazione Tassonomie"
+        description="Migrazione delle tassonomie sui contenttypes"
+        handler=".to_7002.update_taxonomies"
+        />
+    <genericsetup:upgradeStep
+        title="Persone: Update for PNRR - migrazione Tassonomie"
+        description="Migrazione delle tassonomie sui blocchi"
+        handler=".to_7002.update_taxonomies_on_blocks"
+        />
+  </genericsetup:upgradeSteps>
+
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="7002"
+      destination="7003"
+      >
+    <genericsetup:upgradeStep
+        title="Persone: Update for PNRR - pulizia contact_info delle UO"
+        description="I vecchi campi contact_info delle UO non devono contenere stringhe"
+        handler=".upgrades.update_uo_contact_info"
+        />
+    <genericsetup:upgradeStep
+        title="Argomenti: Reintrodotto indice per uid"
+        description=""
+        handler=".upgrades.readd_tassonomia_argomenti_uid"
+        />
+  </genericsetup:upgradeSteps>
+
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="7003"
+      destination="7004"
+      >
+    <genericsetup:upgradeStep
+        title="Persone: update ruolo indexing"
+        description=""
+        handler=".upgrades.update_ruolo_indexing"
+        />
+  </genericsetup:upgradeSteps>
+
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="7004"
+      destination="7005"
+      >
+    <genericsetup:upgradeStep
+        title="Fix eventual taxonomy mess"
+        description=""
+        handler=".upgrades.fix_ctaxonomy_indexes_and_metadata"
+        />
+  </genericsetup:upgradeSteps>
+
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="7005"
+      destination="7006"
+      >
+    <genericsetup:upgradeStep
+        title="Persone: update ruolo indexing"
+        description=""
+        handler=".upgrades.update_types"
+        />
+  </genericsetup:upgradeSteps>
+
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="7006"
+      destination="7007"
+      >
+    <genericsetup:upgradeStep
+        title="Evento: update patrocinato da"
+        description=""
+        handler=".upgrades.update_patrocinato_da"
+        />
+  </genericsetup:upgradeSteps>
+
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="7007"
+      destination="7008"
+      >
+
+    <genericsetup:upgradeStep
+        title="Evento: update folder for gallery"
+        description=""
+        handler=".upgrades.update_folder_for_gallery"
+        />
+  </genericsetup:upgradeSteps>
+
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="7008"
+      destination="7009"
+      >
+    <genericsetup:upgradeStep
+        title="Add plone.excludefromnavigation to Venue"
+        handler=".upgrades.to_7009"
+        />
+  </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="7009"
+      destination="7010"
+      >
+    <genericsetup:upgradeStep
+        title="Upgrade for CMFPlone syndication"
+        handler=".upgrades.to_7010"
+        />
+  </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="7010"
+      destination="7011"
+      >
+    <genericsetup:upgradeStep
+        title="Reindex SearchableText for Event and NewsItem"
+        handler=".upgrades.to_7011"
+        />
+  </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="7011"
+      destination="7012"
+      >
+    <genericsetup:upgradeStep
+        title="Set default value in prezzo field because now is required"
+        handler=".upgrades.to_7012"
+        />
+  </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="7012"
+      destination="7020"
+      >
+    <genericsetup:upgradeStep
+        title="Add utils views in user actions"
+        handler=".upgrades.update_actions"
+        />
+  </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="7020"
+      destination="7021"
+      >
+    <genericsetup:upgradeStep
+        title="Add utils views in user actions"
+        handler=".upgrades.update_types"
+        />
+  </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="7022"
+      destination="7023"
+      >
+    <genericsetup:upgradeStep
+        title="Update PDC with new pdc_description field (fix)"
+        handler=".upgrades.update_pdc_with_pdc_desc"
+        />
+    <genericsetup:upgradeStep
+        title="Update Servizio indexes with new canale_digitale_link index"
+        handler=".upgrades.add_canale_digitale_link_index"
+        />
+  </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="7023"
+      destination="7030"
+      >
+    <genericsetup:upgradeStep
+        title="Add new field in settings"
+        handler=".upgrades.update_registry"
+        />
+  </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="7030"
+      destination="7031"
+      >
+    <genericsetup:upgradeStep
+        title="Set base views to content-types"
+        handler=".upgrades.to_7031"
+        />
+  </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="7031"
+      destination="7100"
+      >
+    <genericsetup:upgradeStep
+        title="Add collective.volto.enhancedlinks"
+        handler=".upgrades.to_7100"
+        />
+  </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="7100"
+      destination="7200"
+      >
+    <genericsetup:upgradeStep
+        title="Add exclude_from_search behavior"
+        handler=".upgrades.to_7200"
+        />
+  </genericsetup:upgradeSteps>
+
+  <genericsetup:upgradeStep
+      title="Migrate from File/Image Field to BlobField"
+      profile="design.plone.contenttypes:default"
+      source="7200"
+      destination="7300"
+      handler=".to_7300.to_7300"
+      />
+  <genericsetup:upgradeStep
+      title="Add new folder to persona ct"
+      profile="design.plone.contenttypes:default"
+      source="7300"
+      destination="7301"
+      handler=".to_730x.to_7301"
+      />
+  <genericsetup:upgradeStep
+      title="Add new index for event"
+      profile="design.plone.contenttypes:default"
+      source="7301"
+      destination="7302"
+      handler=".to_730x.to_7302"
+      />
+  <genericsetup:upgradeStep
+      title="Add new key to filter listing by rassegna"
+      profile="design.plone.contenttypes:default"
+      source="7302"
+      destination="7303"
+      handler=".to_730x.to_7303"
+      />
+  <genericsetup:upgradeStep
+      title="Reindex an index to update catalog values"
+      profile="design.plone.contenttypes:default"
+      source="7303"
+      destination="7304"
+      handler=".to_730x.to_7304"
+      />
+  <genericsetup:upgradeStep
+      title="Reindex an index to update catalog values"
+      profile="design.plone.contenttypes:default"
+      source="7304"
+      destination="7305"
+      handler=".to_730x.to_7305"
+      />
+  <genericsetup:upgradeStep
+      title="Reload types definition"
+      profile="design.plone.contenttypes:default"
+      source="7305"
+      destination="7306"
+      handler=".to_730x.to_7306"
+      />
+
 </configure>

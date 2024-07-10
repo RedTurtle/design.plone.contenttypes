@@ -5,9 +5,11 @@ from plone.autoform import directives as form
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.dexterity.interfaces import IDexterityContent
 from plone.supermodel import model
-from z3c.relationfield.schema import RelationChoice, RelationList
+from z3c.relationfield.schema import RelationChoice
+from z3c.relationfield.schema import RelationList
 from zope.component import adapter
-from zope.interface import provider, implementer
+from zope.interface import implementer
+from zope.interface import provider
 
 
 # TODO: merge with NEWS
@@ -32,7 +34,6 @@ class IServiziCorrelati(model.Schema):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "maximumSelectionSize": 10,
             "selectableTypes": ["Servizio"],
         },
     )

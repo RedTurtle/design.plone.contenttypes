@@ -1,29 +1,45 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <object>
- <difftypes purge="False">
-  <type portal_type="CartellaModulistica">
-   <field name="any" difftype="Compound Diff for Dexterity types"/>
-  </type>
-  <type portal_type="Documento">
-   <field name="any" difftype="Compound Diff for Dexterity types"/>
-  </type>
-  <type portal_type="Pagina Argomento">
-   <field name="any" difftype="Compound Diff for Dexterity types"/>
-  </type>
-  <type portal_type="Persona">
-   <field name="any" difftype="Compound Diff for Dexterity types"/>
-  </type>
-  <type portal_type="Servizio">
-   <field name="any" difftype="Compound Diff for Dexterity types"/>
-  </type>
-  <type portal_type="UnitaOrganizzativa">
-   <field name="any" difftype="Compound Diff for Dexterity types"/>
-  </type>
-  <type portal_type="Venue">
-   <field name="any" difftype="Compound Diff for Dexterity types"/>
-  </type>
-  <type portal_type="Link">
-   <field name="any" difftype="Compound Diff for Dexterity types"/>
-  </type>
- </difftypes>
+  <difftypes purge="False">
+    <type portal_type="CartellaModulistica">
+      <field difftype="Compound Diff for Dexterity types"
+             name="any"
+      />
+    </type>
+    <type portal_type="Documento">
+      <field difftype="Compound Diff for Dexterity types"
+             name="any"
+      />
+    </type>
+    <type portal_type="Pagina Argomento">
+      <field difftype="Compound Diff for Dexterity types"
+             name="any"
+      />
+    </type>
+    <type portal_type="Persona">
+      <field difftype="Compound Diff for Dexterity types"
+             name="any"
+      />
+    </type>
+    <type portal_type="Servizio">
+      <field difftype="Compound Diff for Dexterity types"
+             name="any"
+      />
+    </type>
+    <type portal_type="UnitaOrganizzativa">
+      <field difftype="Compound Diff for Dexterity types"
+             name="any"
+      />
+    </type>
+    <type portal_type="Venue">
+      <field difftype="Compound Diff for Dexterity types"
+             name="any"
+      />
+    </type>
+    <type portal_type="Link">
+      <field difftype="Compound Diff for Dexterity types"
+             name="any"
+      />
+    </type>
+  </difftypes>
 </object>

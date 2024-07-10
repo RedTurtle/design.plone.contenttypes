@@ -3,21 +3,24 @@ from plone.app.testing import applyProfile
 from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
 from plone.testing import z2
-from zope.configuration import xmlconfig
 from redturtle.volto.testing import RedturtleVoltoLayer
 from redturtle.volto.testing import RedturtleVoltoRestApiLayer
-
+from zope.configuration import xmlconfig
 
 import collective.address
-import collective.dexteritytextindexer
+import collective.taxonomy
+
+# import collective.folderishtypes
 import collective.venue
 import collective.volto.blocksfield
 import collective.volto.cookieconsent
+import collective.volto.enhancedlinks
+import collective.z3cform.datagridfield
 import design.plone.contenttypes
+import eea.api.taxonomy
 import kitconcept.seo
 import plone.app.caching
 import plone.formwidget.geolocation
-import plone.restapi
 import redturtle.bandi
 import redturtle.volto
 
@@ -28,9 +31,9 @@ class DesignPloneContenttypesLayer(RedturtleVoltoLayer):
         # The z3c.autoinclude feature is disabled in the Plone fixture base
         # layer.
         super().setUpZope(app, configurationContext)
-        self.loadZCML(package=collective.dexteritytextindexer)
         self.loadZCML(package=collective.venue)
         self.loadZCML(package=collective.volto.blocksfield)
+        self.loadZCML(package=collective.volto.enhancedlinks)
         self.loadZCML(package=design.plone.contenttypes, context=configurationContext)
         self.loadZCML(package=plone.formwidget.geolocation)
         self.loadZCML(name="overrides.zcml", package=design.plone.contenttypes)
@@ -41,6 +44,9 @@ class DesignPloneContenttypesLayer(RedturtleVoltoLayer):
         )
         self.loadZCML(package=redturtle.bandi)
         self.loadZCML(package=kitconcept.seo)
+        self.loadZCML(package=eea.api.taxonomy)
+        self.loadZCML(package=collective.taxonomy)
+        self.loadZCML(package=collective.z3cform.datagridfield)
 
     def setUpPloneSite(self, portal):
         super().setUpPloneSite(portal)
@@ -65,12 +71,14 @@ DESIGN_PLONE_CONTENTTYPES_FUNCTIONAL_TESTING = FunctionalTesting(
 class DesignPloneContenttypesRestApiLayer(RedturtleVoltoRestApiLayer):
     def setUpZope(self, app, configurationContext):
         super().setUpZope(app, configurationContext)
-        self.loadZCML(package=collective.dexteritytextindexer)
         self.loadZCML(package=collective.venue)
         self.loadZCML(package=collective.volto.blocksfield)
+        self.loadZCML(package=collective.volto.enhancedlinks)
         self.loadZCML(package=design.plone.contenttypes, context=configurationContext)
         self.loadZCML(package=plone.formwidget.geolocation)
-        self.loadZCML(name="overrides.zcml", package=design.plone.contenttypes)
+        self.loadZCML(package=eea.api.taxonomy)
+        self.loadZCML(package=collective.taxonomy)
+        self.loadZCML(package=collective.z3cform.datagridfield)
         xmlconfig.file(
             "configure.zcml",
             design.plone.contenttypes,
@@ -78,6 +86,8 @@ class DesignPloneContenttypesRestApiLayer(RedturtleVoltoRestApiLayer):
         )
         self.loadZCML(package=redturtle.bandi)
         self.loadZCML(package=kitconcept.seo)
+
+        self.loadZCML(name="overrides.zcml", package=design.plone.contenttypes)
 
     def setUpPloneSite(self, portal):
         super().setUpPloneSite(portal)

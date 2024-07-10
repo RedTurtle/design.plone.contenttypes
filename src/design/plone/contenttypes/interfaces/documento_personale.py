@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from design.plone.contenttypes import _
 from collective.volto.blocksfield.field import BlocksField
+from design.plone.contenttypes import _
 from plone.namedfile import field
 from plone.supermodel import model
 from z3c.relationfield.schema import RelationChoice
@@ -20,9 +20,11 @@ class IDocumentoPersonale(model.Schema):
         required=True,
     )
 
-    immagine = field.NamedImage(title=_("immagine", default="Immagine"), required=False)
+    immagine = field.NamedBlobImage(
+        title=_("immagine", default="Immagine"), required=False
+    )
 
-    pratica_associata = field.NamedFile(
+    pratica_associata = field.NamedBlobFile(
         title=_("pratica_associata", default="Pratica associata"),
         required=True,
     )

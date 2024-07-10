@@ -1,21 +1,20 @@
 # -*- coding: utf-8 -*-
-from .related_news_serializer import (
-    SerializeFolderToJson as RelatedNewsSerializer,
-)
+from .related_news_serializer import SerializeFolderToJson as RelatedNewsSerializer
+from Acquisition import aq_inner
 from design.plone.contenttypes.interfaces.cartella_modulistica import (
     ICartellaModulistica,
 )
-
-from plone.restapi.interfaces import ISerializeToJson, ISerializeToJsonSummary
-from zope.component import adapter, getMultiAdapter
+from plone.restapi.interfaces import ISerializeToJson
+from plone.restapi.interfaces import ISerializeToJsonSummary
+from zc.relation.interfaces import ICatalog
+from zope.component import adapter
+from zope.component import getMultiAdapter
+from zope.component import getUtility
+from zope.globalrequest import getRequest
 from zope.interface import implementer
 from zope.interface import Interface
-from Acquisition import aq_inner
-from zope.component import getUtility
 from zope.intid.interfaces import IIntIds
 from zope.security import checkPermission
-from zc.relation.interfaces import ICatalog
-from zope.globalrequest import getRequest
 
 
 @implementer(ISerializeToJson)

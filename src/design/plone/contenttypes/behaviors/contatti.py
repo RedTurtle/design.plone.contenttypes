@@ -1,59 +1,40 @@
 # -*- coding: utf-8 -*-
-from collective import dexteritytextindexer
 from collective.venue.interfaces import IVenue
-from design.plone.contenttypes import _
 from collective.volto.blocksfield.field import BlocksField
+from design.plone.contenttypes import _
+from design.plone.contenttypes.interfaces.persona import IPersona
+from design.plone.contenttypes.interfaces.servizio import IServizio
+from design.plone.contenttypes.interfaces.unita_organizzativa import IUnitaOrganizzativa
+from plone.app.dexterity import textindexer
+from plone.app.z3cform.widget import RelatedItemsFieldWidget
+from plone.autoform import directives as form
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
-from zope import schema
+from z3c.relationfield.schema import RelationChoice
+from z3c.relationfield.schema import RelationList
 from zope.component import adapter
-from zope.interface import provider, implementer
-from design.plone.contenttypes.interfaces.unita_organizzativa import IUnitaOrganizzativa
+from zope.interface import implementer
+from zope.interface import provider
 
 
-class IContatti(model.Schema):
-    """ """
-
-    telefono = schema.TextLine(
-        title=_("telefono_label", default="Telefono"),
-        description=_(
-            "telefono_help",
-            default="Indicare un riferimento telefonico per poter contattare"
-            " i referenti.",
+@provider(IFormFieldProvider)
+class IContattiUnitaOrganizzativa(model.Schema):
+    contact_info = RelationList(
+        title=_(
+            "contact_info_label",
+            default="Punti di contatto dell'unità organizzativa",
         ),
-        required=False,
-    )
-
-    fax = schema.TextLine(
-        title=_("fax_label", default="Fax"),
-        description=_("fax_help", default="Indicare un numero di fax."),
-        required=False,
-    )
-
-    email = schema.TextLine(
-        title=_("email_label", default="E-mail"),
         description=_(
-            "email_help",
-            default="Indicare un indirizzo mail per poter contattare" " i referenti.",
+            "contact_info_help",
+            default="Contatti dell'unità organizzativa.",
         ),
-        required=False,
-    )
-
-    pec = schema.TextLine(
-        title=_("pec_label", default="Pec"),
-        description=_(
-            "pec_help",
-            default="Indicare un indirizzo pec per poter contattare" " i referenti.",
+        required=True,
+        default=[],
+        value_type=RelationChoice(
+            title=_("Informazioni di contatto"),
+            vocabulary="plone.app.vocabularies.Catalog",
         ),
-        required=False,
     )
-
-    web = schema.TextLine(
-        title=_("web_label", default="Sito web"),
-        description=_("web_help", default="Indicare un indirizzo web di riferimento."),
-        required=False,
-    )
-
     orario_pubblico = BlocksField(
         title=_("orario_pubblico_label", default="Orario per il pubblico"),
         description=_(
@@ -63,34 +44,181 @@ class IContatti(model.Schema):
         required=False,
     )
 
-    dexteritytextindexer.searchable("orario_pubblico")
-    dexteritytextindexer.searchable("email")
-    dexteritytextindexer.searchable("pec")
-    dexteritytextindexer.searchable("web")
-
-
-@provider(IFormFieldProvider)
-class IContattiUnitaOrganizzativa(IContatti):
+    form.widget(
+        "contact_info",
+        RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
+        pattern_options={
+            "selectableTypes": ["PuntoDiContatto"],
+        },
+    )
     model.fieldset(
         "contatti",
         label=_("contatti_label", default="Contatti"),
-        fields=["telefono", "fax", "email", "pec", "web", "orario_pubblico"],
+        fields=["contact_info", "orario_pubblico"],
+    )
+
+    textindexer.searchable("orario_pubblico")
+
+
+@provider(IFormFieldProvider)
+class IContattiPersona(model.Schema):
+    contact_info = RelationList(
+        title=_(
+            "contact_info_label",
+            default="Punti di contatto",
+        ),
+        description=_(
+            "contact_info_help",
+            default="Punti di contatto della persona.",
+        ),
+        required=True,
+        default=[],
+        value_type=RelationChoice(
+            title=_("Punti di contatto"),
+            vocabulary="plone.app.vocabularies.Catalog",
+        ),
+    )
+
+    form.widget(
+        "contact_info",
+        RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
+        pattern_options={
+            "selectableTypes": ["PuntoDiContatto"],
+        },
+    )
+    model.fieldset(
+        "contatti",
+        label=_("contatti_label", default="Contatti"),
+        fields=["contact_info"],
     )
 
 
 @provider(IFormFieldProvider)
-class IContattiVenue(IContatti):
-    model.fieldset(
-        "orari",
-        label=_("orari_label", default="Orari di apertura"),
-        fields=["orario_pubblico"],
+class IContattiServizio(model.Schema):
+    contact_info = RelationList(
+        title=_(
+            "contact_info_label",
+            default="Contatti",
+        ),
+        description=_(
+            "contact_info_help",
+            default="I contatti per il servizio.",
+        ),
+        required=True,
+        default=[],
+        value_type=RelationChoice(
+            title=_("Contatti"),
+            vocabulary="plone.app.vocabularies.Catalog",
+        ),
     )
-
+    form.widget(
+        "contact_info",
+        RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
+        pattern_options={
+            "selectableTypes": ["PuntoDiContatto"],
+        },
+    )
     model.fieldset(
         "contatti",
         label=_("contatti_label", default="Contatti"),
-        fields=["telefono", "fax", "email", "pec", "web"],
+        fields=["contact_info"],
     )
+
+
+@provider(IFormFieldProvider)
+class IContattiVenue(model.Schema):
+    contact_info = RelationList(
+        title=_(
+            "contact_info_label",
+            default="Punti di contatto",
+        ),
+        description=_(
+            "contact_info_help",
+            default="Telefono, mail o altri punti di contatto.",
+        ),
+        required=True,
+        default=[],
+        value_type=RelationChoice(
+            title=_("Punti di contatto"),
+            vocabulary="plone.app.vocabularies.Catalog",
+        ),
+    )
+    form.widget(
+        "contact_info",
+        RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
+        pattern_options={
+            "selectableTypes": ["PuntoDiContatto"],
+        },
+    )
+    model.fieldset(
+        "contatti",
+        label=_("contatti_label", default="Contatti"),
+        fields=["contact_info"],
+    )
+
+
+@provider(IFormFieldProvider)
+class IContattiEvent(model.Schema):
+    contact_info = RelationList(
+        title=_(
+            "contact_info_label",
+            default="Punti di contatto",
+        ),
+        description=_(
+            "contact_info_help",
+            default="Relazione con i punti di contatto dell'evento.",
+        ),
+        required=True,
+        default=[],
+        value_type=RelationChoice(
+            title=_("Punti di contatto"),
+            vocabulary="plone.app.vocabularies.Catalog",
+        ),
+    )
+    form.widget(
+        "contact_info",
+        RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
+        pattern_options={
+            "selectableTypes": ["PuntoDiContatto"],
+        },
+    )
+    model.fieldset(
+        "contatti",
+        label=_("contatti_label", default="Contatti"),
+        fields=["contact_info"],
+    )
+
+
+@implementer(IContattiEvent)
+@adapter(IContattiEvent)
+class ContattiEvent(object):
+    """ """
+
+    def __init__(self, context):
+        self.context = context
+
+
+@implementer(IContattiPersona)
+@adapter(IPersona)
+class ContattiPersona(object):
+    """ """
+
+    def __init__(self, context):
+        self.context = context
+
+
+@implementer(IContattiServizio)
+@adapter(IServizio)
+class ContattiServizio(object):
+    """ """
+
+    def __init__(self, context):
+        self.context = context
 
 
 @implementer(IContattiUnitaOrganizzativa)

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-from plone.supermodel import model
 from collective.volto.blocksfield.field import BlocksField
-from zope import schema
 from design.plone.contenttypes import _
+from plone.supermodel import model
+from zope import schema
 
 
 class IPratica(model.Schema):

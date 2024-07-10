@@ -1,37 +1,29 @@
 # -*- coding: utf-8 -*-
-from collective import dexteritytextindexer
 from collective.volto.blocksfield.field import BlocksField
 from design.plone.contenttypes import _
+from plone.app.contenttypes.interfaces import INewsItem
+from plone.app.dexterity import textindexer
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
 from plone.autoform.interfaces import IFormFieldProvider
-from plone.app.contenttypes.interfaces import INewsItem
 from plone.supermodel import model
-from z3c.relationfield.schema import RelationChoice, RelationList
+from z3c.relationfield.schema import RelationChoice
+from z3c.relationfield.schema import RelationList
 from zope import schema
 from zope.component import adapter
-from zope.interface import provider, implementer
+from zope.interface import implementer
+from zope.interface import provider
 
 
 @provider(IFormFieldProvider)
 class INewsAdditionalFields(model.Schema):
     descrizione_estesa = BlocksField(
         title=_("descrizione_estesa", default="Descrizione estesa"),
-        required=False,
+        required=True,
         description=_(
             "descrizione_estesa_help",
             default="Descrizione dettagliata e completa.",
         ),
-    )
-
-    tipologia_notizia = schema.Choice(
-        title=_("tipologia_notizia_label", default="Tipologia notizia"),
-        description=_(
-            "tipologia_notizia_help",
-            default="Seleziona la tipologia della notizia.",
-        ),
-        required=True,
-        vocabulary="design.plone.vocabularies.tipologie_notizia",
     )
 
     numero_progressivo_cs = schema.TextLine(
@@ -49,7 +41,7 @@ class INewsAdditionalFields(model.Schema):
             default="Seleziona l'ufficio di comunicazione responsabile di "
             "questa notizia/comunicato stampa.",
         ),
-        required=False,
+        required=True,
         default=[],
         value_type=RelationChoice(vocabulary="plone.app.vocabularies.Catalog"),
     )
@@ -105,7 +97,6 @@ class INewsAdditionalFields(model.Schema):
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "selectableTypes": ["Persona"],
-            "maximumSelectionSize": 50,
         },
     )
     form.widget(
@@ -113,7 +104,6 @@ class INewsAdditionalFields(model.Schema):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "maximumSelectionSize": 10,
             "selectableTypes": ["News Item"],
         },
     )
@@ -123,17 +113,19 @@ class INewsAdditionalFields(model.Schema):
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "selectableTypes": ["Venue"],
-            "maximumSelectionSize": 50,
         },
     )
-
+    model.fieldset(
+        "correlati",
+        label=_("correlati_label", default="Contenuti collegati"),
+        fields=["notizie_correlate"],
+    )
     # custom fieldsets and order
     form.order_before(descrizione_estesa="ILeadImageBehavior.image")
-    form.order_before(tipologia_notizia="ILeadImageBehavior.image")
     form.order_before(numero_progressivo_cs="ILeadImageBehavior.image")
     form.order_before(a_cura_di="ILeadImageBehavior.image")
 
-    dexteritytextindexer.searchable("descrizione_estesa")
+    textindexer.searchable("descrizione_estesa")
 
 
 @implementer(INewsAdditionalFields)

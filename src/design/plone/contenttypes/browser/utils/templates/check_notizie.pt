@@ -1,0 +1,235 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      lang="en"
+      metal:use-macro="context/prefs_main_template/macros/master"
+      xml:lang="en"
+      i18n:domain="plone"
+>
+
+  <body>
+    <metal:block fill-slot="javascript_head_slot">
+
+    </metal:block>
+    <metal:block fill-slot="style_slot">
+      <link crossorigin="anonymous"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+            integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+            referrerpolicy="no-referrer"
+            rel="stylesheet"
+      />
+      <style>
+       li.categoria{margin-bottom:2em}
+       #content-header,
+       #mainnavigation-wrapper,
+       #above-content-wrapper{display:none}
+       .container{margin-top:2em}
+
+        table.notizie{
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        table.notizie tr:nth-child(even){background-color: #f2f2f2;}
+        table.notizie tr:hover {background-color: #ddd;}
+          table.notizie th {
+          text-align: left;
+          background-color: #ccc;
+          color: #000;
+          padding: 10px;
+        }
+        table.notizie td{
+          padding: 10px;
+        }
+        table.notizie th{
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+        table.notizie thead tr th.event_title{
+            width: 250px;
+        }
+        .forms{
+          margin-top: 1em;
+          margin-bottom: 1em;
+        }
+        .forms button,
+        .forms input[type="submit"]{
+            border: none; /* Remove borders */
+            color: white; /* Add a text color */
+            padding: 10px 28px; /* Add some padding */
+            cursor: pointer; /* Add a pointer cursor on mouse-over */
+            background-color: #2196F3;
+            border-radius: 4px;
+        }
+        .forms input[type="text"]{
+            border: 1px solid #ddd;
+            padding: 8px;
+            border-radius: 4px;
+            width: 70%;
+        }
+        .forms input[type="submit"]:hover{
+            background: #0b7dda;
+        }
+        .download_button{
+          margin-top: 1em;
+          margin-bottom: 1em;
+          text-align:right;
+        }
+        .set-a-cura-di{
+          margin-bottom: 10px;
+        }
+
+        details {
+          border: 1px solid #aaa;
+          border-radius: 4px;
+          padding: 0.5em 0.5em 0;
+          width: 53%;
+          margin-bottom: 0.5em;
+        }
+
+        summary {
+          font-weight: bold;
+          margin: -0.5em -0.5em 0;
+          padding: 0.5em;
+        }
+
+        details[open] {
+          padding: 0.5em;
+        }
+
+        details[open] summary {
+          border-bottom: 1px solid #aaa;
+          margin-bottom: 0.5em;
+        }
+      </style>
+    </metal:block>
+    <tal:main metal:fill-slot="prefs_configlet_wrapper">
+
+      <tal:main metal:fill-slot="prefs_configlet_main">
+        <h1>Verifica dello stato delle Notizie</h1>
+        <div tal:condition="view/is_anonymous">
+          Non hai i permessi per vedere questo elenco di informazioni. Se pensi
+          che questo non sia corretto verifica di essere autenticato oppure rivolgiti
+          agli amministratori del sito.
+        </div>
+
+        <div class="lista_notizie"
+             tal:define="
+               notizie view/get_notizie;
+             "
+             tal:condition="not:view/is_anonymous"
+        >
+          <p class="lead"
+             tal:condition="notizie"
+          >
+               La lista seguente elenca tutte quelle Notizie per le quali non sono
+               ancora stati aggiunti i campi che AGID indica come obbligatori.
+               Ogni redattore pu&ograve; vedere in questa lista tutte le Notizie e,
+               cliccando su ognuna, andare alla vista di dettaglio della Notizia,
+            editarla e compilare tutti i campi obbligatori.</p>
+          <p class="lead"
+             tal:condition="notizie"
+          >Si fa notare, infine, che la seguente lista delle Notizie
+             presenta tutte quelle in stato pubblicato e
+            <strong>non scadute</strong>
+             secondo
+            le logiche di pubblicazione del CMS Plone, ovvero con una data di scadenza ancora da raggiugnere.</p>
+
+          <div class="forms">
+            <div class="download_button">
+              <form action="${context/absolute_url}/@@download-check-notizie">
+                <!-- <input type="Submit" value="Download" /> -->
+                <button class="download-button"
+                        type="submit"
+                >
+                  <i class="fas fa-download"></i>
+                   Download Notizie
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <ul>
+            <li class="categoria"
+                tal:repeat="categoria notizie"
+            >
+              <tal:block tal:define="
+                           categoria_url python:notizie[categoria]['url'];
+                         ">
+                <h2><a href="${categoria_url}"
+                     target="_blank"
+                  >${categoria}</a></h2>
+                <!-- SERVE O SI PUÒ TOGLIERE ??-->
+                <ul tal:condition="nothing">
+                  <li class="evento"
+                      tal:repeat="evento python:notizie[categoria]['children']"
+                  >
+                    <h5><a href="${evento/url}"
+                         target="_blank"
+                      >${evento/title}</a></h5>
+                  </li>
+                </ul>
+                <!-- SERVE O SI PUÒ TOGLIERE -->
+                <details>
+                  <summary>Imposta 'A cura di' per le notizie di questa cartella</summary>
+                  <div class="forms">
+                    <p>Imposta il path dell'ufficio che vuoi assegnare alle news e premi "Imposta 'A cura di'" per assegnare l'ufficio alle news con dato mancante in questa cartella.</p>
+                    <p>L'ufficio deve essere impostato con path relativo alla radice del sito, esempio: /amministrazione/uffici/comunicazione</p>
+                    <form action="${context/absolute_url}/@@set-a-cura-di"
+                          method="post"
+                          class="set-a-cura-di">
+                      <input name="path"
+                            type="hidden"
+                            value="${python:notizie[categoria]['path']}"
+                      />
+                      <tal:news tal:repeat="news python:notizie[categoria]['children']">
+                        <input name="uids:list"
+                              type="hidden"
+                              value="${news/UID}"
+                        />
+                      </tal:news>
+                      <input name="came_from"
+                            type="hidden"
+                            value="${request/ACTUAL_URL}"
+                      />
+                      <input name="path_ufficio"
+                            type="text"
+                            value=""
+                      />
+                      <input type="Submit"
+                            value="Imposta 'A cura di'"
+                      />
+                    </form>
+                  </div>
+                </details>
+
+                <table class="notizie">
+                  <thead>
+                    <tr>
+                      <th class="event_title"><span>Titolo</span></th>
+                      <th><span>Descrizione estesa</span></th>
+                      <th><span>Data di pubblicazione</span></th>
+                      <th><span>A cura di</span></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr tal:repeat="evento python:notizie[categoria]['children']">
+                      <td><a href="${evento/url}"
+                           target="_blank"
+                        >${evento/title}</a></td>
+                      <td><span tal:content="structure evento/descrizione_estesa"></span></td>
+                      <td><span tal:content="structure evento/data/effective_date"></span></td>
+                      <td><span tal:content="structure evento/data/a_cura_di"></span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </tal:block>
+            </li>
+          </ul>
+        </div>
+      </tal:main>
+    </tal:main>
+  </body>
+</html>

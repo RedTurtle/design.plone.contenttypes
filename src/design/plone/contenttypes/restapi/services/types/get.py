@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
-from plone.restapi.services.types.get import TypesGet as BaseGet
-from zope.interface import implementer
-from zope.publisher.interfaces import IPublishTraverse
+from design.plone.contenttypes import _
 from design.plone.contenttypes.controlpanels.geolocation_defaults import (
     IGeolocationDefaults,
 )
-from zope.i18n import translate
 from plone import api
-from design.plone.contenttypes import _
+from plone.restapi.services.types.get import TypesGet as BaseGet
+from zope.i18n import translate
+from zope.interface import implementer
+from zope.publisher.interfaces import IPublishTraverse
+
+import ast
 
 
 class FieldsetsMismatchError(Exception):
@@ -51,6 +53,11 @@ FIELDSETS_ORDER = {
         "settings",
         "ownership",
     ],
+    "Incarico": [
+        "default",
+        "informazioni_compensi",
+        "date_e_informazioni",
+    ],
     "News Item": [
         "default",
         "dates",
@@ -88,6 +95,9 @@ FIELDSETS_ORDER = {
         "dates",
         "ownership",
         "settings",
+    ],
+    "PuntoDiContatto": [
+        "default",
     ],
     "Servizio": [
         "default",
@@ -139,12 +149,15 @@ FIELDSETS_ORDER = {
 @implementer(IPublishTraverse)
 class TypesGet(BaseGet):
     def customize_document_schema(self, result):
-        fields = ["image", "image_caption", "preview_image", "preview_caption"]
+        moved = ["image", "image_caption", "preview_image"]
+        removed = ["preview_caption"]
         for fieldset in result.get("fieldsets", []):
             if fieldset.get("id", "") == "testata":
-                fieldset["fields"] = fields + fieldset["fields"]
+                fieldset["fields"] = moved + fieldset["fields"]
             if fieldset.get("id", "") == "default":
-                fieldset["fields"] = [x for x in fieldset["fields"] if x not in fields]
+                fieldset["fields"] = [
+                    x for x in fieldset["fields"] if x not in moved and x not in removed
+                ]
         return result
 
     def customize_persona_schema(self, result):
@@ -159,6 +172,11 @@ class TypesGet(BaseGet):
         """
         Unico modo per spostare il campo "notes"
         """
+        result.get("required").append("description")
+        result.get("required").append("street")
+        result.get("required").append("city")
+        result.get("required").append("zip_code")
+        result.get("required").append("geolocation")
 
         if "properties" in result:
             if "country" in result["properties"]:
@@ -192,7 +210,7 @@ class TypesGet(BaseGet):
 
             if "geolocation" in result["properties"]:
                 if not result["properties"]["geolocation"].get("default", {}):
-                    result["properties"]["geolocation"]["default"] = eval(
+                    result["properties"]["geolocation"]["default"] = ast.literal_eval(
                         api.portal.get_registry_record(
                             "geolocation", interface=IGeolocationDefaults
                         )
@@ -223,11 +241,44 @@ class TypesGet(BaseGet):
 
         return result
 
+    def customize_servizio_schema(self, result):
+        result.get("required").append("description")
+        return result
+
+    def customize_evento_schema(self, result):
+        result.get("required").append("description")
+        return result
+
+    def customize_uo_schema(self, result):
+        result.get("required").append("description")
+        versioning_fields = ["contact_info"]
+        for field in versioning_fields:
+            for fieldset in result["fieldsets"]:
+                if fieldset.get("id") == "contatti" and field in fieldset["fields"]:
+                    fieldset["fields"].remove(field)
+                    fieldset["fields"].insert(0, field)
+        return result
+
+    def customize_news_schema(self, result):
+        result.get("required").append("description")
+        if self.context.portal_type == "News Item":
+            # we are in a news and not in container
+            review_state = self.context.portal_workflow.getInfoFor(
+                self.context, "review_state"
+            )
+            if review_state == "published":
+                result.get("required").append("effective")
+
+        return result
+
+    def customize_documento_schema(self, result):
+        result.get("required").append("description")
+        return result
+
     def reply(self):
         result = super(TypesGet, self).reply()
-
         if "fieldsets" in result:
-            result["fieldsets"] = self.reorder_fieldsets(original=result["fieldsets"])
+            result["fieldsets"] = self.reorder_fieldsets(schema=result)
         pt = self.request.PATH_INFO.split("/")[-1]
 
         # be careful: result could be dict or list. If list it will not
@@ -241,13 +292,24 @@ class TypesGet(BaseGet):
                 result = self.customize_venue_schema(result)
             if pt == "Document":
                 result = self.customize_document_schema(result)
+            if pt == "Servizio":
+                result = self.customize_servizio_schema(result)
+            if pt == "UnitaOrganizzativa":
+                result = self.customize_uo_schema(result)
+            if pt == "News Item":
+                result = self.customize_news_schema(result)
+            if pt == "Documento":
+                result = self.customize_documento_schema(result)
+            if pt == "Event":
+                result = self.customize_evento_schema(result)
             result = self.customize_versioning_fields_fieldset(result)
         return result
 
     def get_order_by_type(self, portal_type):
         return [x for x in FIELDSETS_ORDER.get(portal_type, [])]
 
-    def reorder_fieldsets(self, original):
+    def reorder_fieldsets(self, schema):
+        original = schema["fieldsets"]
         pt = self.request.PATH_INFO.split("/")[-1]
         order = self.get_order_by_type(portal_type=pt)
         if not order:
@@ -265,9 +327,21 @@ class TypesGet(BaseGet):
         new = []
         for id in order:
             for fieldset in original:
-                if fieldset["id"] == id:
+                if fieldset["id"] == id and self.fieldset_has_fields(fieldset, schema):
                     new.append(fieldset)
         if not new:
             # no match
             return original
         return new
+
+    def fieldset_has_fields(self, fieldset, schema):
+        """
+        If a fieldset has all hidden fields (maybe after a schema tweak),
+        these are not in the schema data, but are still in fieldset data.
+        This happens only in add, because the schema is generate with the parent's context.
+        """
+        fieldset_fields = fieldset["fields"]
+
+        schema_fields = [x for x in fieldset_fields if x in schema["properties"].keys()]
+
+        return len(schema_fields) > 0

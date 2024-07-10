@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from DateTime import DateTime
 from datetime import datetime
+from DateTime import DateTime
 from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
 )
@@ -14,7 +14,6 @@ from transaction import commit
 from z3c.relationfield import RelationValue
 from zope.component import getUtility
 from zope.intid.interfaces import IIntIds
-
 
 import unittest
 
@@ -140,18 +139,18 @@ class VocabulariesControlpanelTest(unittest.TestCase):
         res_anon = self.api_session_anon.get(page.absolute_url()).json()
         self.assertEqual(len(res_anon["relatedItems"]), 1)
 
-    def test_api_do_not_return_related_items_with_effective_date_in_future_for_users_that_cant_edit_context(
+    def test_api_do_not_return_related_items_with_effective_date_in_future_for_users_that_cant_edit_context(  # noqa
         self,
     ):
         api.user.create(
             email="foo@example.com",
             username="foo",
-            password="secret",
+            password="secret!!!",
         )
 
         api_session = RelativeSession(self.portal_url)
         api_session.headers.update({"Accept": "application/json"})
-        api_session.auth = ("foo", "secret")
+        api_session.auth = ("foo", "secret!!!")
 
         present = api.content.create(
             container=self.portal, type="Document", title="present"

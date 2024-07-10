@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
-from collective.dexteritytextindexer.converters import (
+from design.plone.contenttypes.interfaces import IDesignPloneContentType
+from plone.app.dexterity.textindexer.converters import (
     DefaultDexterityTextIndexFieldConverter,
 )
-from collective.dexteritytextindexer.interfaces import IDexterityTextIndexFieldConverter
+from plone.app.dexterity.textindexer.interfaces import IDexterityTextIndexFieldConverter
 from plone.dexterity.interfaces import IDexterityContent
+from plone.restapi.indexers import (
+    TextBlockSearchableText as BaseTextBlockSearchableText,
+)
 from plone.restapi.interfaces import IBlockSearchableText
 from z3c.form.interfaces import IWidget
 from z3c.relationfield.interfaces import IRelationChoice
@@ -11,10 +15,6 @@ from z3c.relationfield.interfaces import IRelationList
 from zope.component import adapter
 from zope.interface import implementer
 from zope.publisher.interfaces.browser import IBrowserRequest
-from design.plone.contenttypes.interfaces import IDesignPloneContentType
-from plone.restapi.indexers import (
-    TextBlockSearchableText as BaseTextBlockSearchableText,
-)
 
 
 @implementer(IDexterityTextIndexFieldConverter)

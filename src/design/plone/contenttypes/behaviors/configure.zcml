@@ -48,6 +48,24 @@
       marker=".argomenti.IArgomenti"
       />
   <plone:behavior
+      name="design.plone.contenttypes.behavior.argomenti_news"
+      title="Argomenti"
+      description="Tassonomia argomenti news"
+      factory=".argomenti.ArgomentiNews"
+      provides=".argomenti.IArgomentiNews"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      marker=".argomenti.IArgomentiNews"
+      />
+  <plone:behavior
+      name="design.plone.contenttypes.behavior.argomenti_evento"
+      title="Argomenti"
+      description="Tassonomia argomenti evento"
+      factory=".argomenti.ArgomentiEvento"
+      provides=".argomenti.IArgomentiEvento"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      marker=".argomenti.IArgomentiEvento"
+      />
+  <plone:behavior
       name="design.plone.contenttypes.behavior.argomenti_document"
       title="Argomenti Document"
       description="Tassonomia argomenti per i Document"
@@ -74,6 +92,25 @@
       for="plone.dexterity.interfaces.IDexterityContent"
       marker=".argomenti.IArgomentiBando"
       />
+  <plone:behavior
+      name="design.plone.contenttypes.behavior.argomenti_servizio"
+      title="Argomento Servizio"
+      description="Argomento Servizio"
+      factory=".argomenti.ArgomentiServizio"
+      provides=".argomenti.IArgomentiServizio"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      marker=".argomenti.IArgomentiServizio"
+      />
+  <plone:behavior
+      name="design.plone.contenttypes.behavior.argomenti_link"
+      title="Argomenti Link"
+      description="Tassonomia argomenti"
+      factory=".argomenti.ArgomentiLink"
+      provides=".argomenti.IArgomentiLink"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      marker=".argomenti.IArgomentiLink"
+      />
+
   <plone:behavior
       name="design.plone.contenttypes.behavior.luoghi_correlati"
       title="Luoghi correlati"
@@ -169,14 +206,6 @@
       marker=".info_testata.IInfoTestata"
       />
   <plone:behavior
-      name="design.plone.contenttypes.behavior.address_uo"
-      title="Address UO"
-      description="Behavior address per UO."
-      factory=".address.AddressUnitaOrganizzativa"
-      provides=".address.IAddressUnitaOrganizzativa"
-      marker=".address.IAddressUnitaOrganizzativa"
-      />
-  <plone:behavior
       name="design.plone.contenttypes.behavior.address_venue"
       title="Address Venue"
       description="Behavior address per Venue."
@@ -209,12 +238,28 @@
       marker=".contatti.IContattiVenue"
       />
   <plone:behavior
-      name="design.plone.contenttypes.behavior.geolocation_uo"
-      title="Geolocatable"
-      description="Behavior geolocatable per UO."
-      factory=".geolocation.GeolocatableUnitaOrganizzativa"
-      provides=".geolocation.IGeolocatableUnitaOrganizzativa"
-      marker=".geolocation.IGeolocatableUnitaOrganizzativa"
+      name="design.plone.contenttypes.behavior.contatti_servizio"
+      title="Contatti"
+      description="Behavior contatti per Servizio."
+      factory=".contatti.ContattiServizio"
+      provides=".contatti.IContattiServizio"
+      marker=".contatti.IContattiServizio"
+      />
+  <plone:behavior
+      name="design.plone.contenttypes.behavior.contatti_persona"
+      title="Contatti"
+      description="Behavior contatti per Persona."
+      factory=".contatti.ContattiPersona"
+      provides=".contatti.IContattiPersona"
+      marker=".contatti.IContattiPersona"
+      />
+  <plone:behavior
+      name="design.plone.contenttypes.behavior.contatti_event"
+      title="Contatti"
+      description="Behavior contatti per Event."
+      factory=".contatti.ContattiEvent"
+      provides=".contatti.IContattiEvent"
+      marker=".contatti.IContattiEvent"
       />
   <plone:behavior
       name="design.plone.contenttypes.behavior.geolocation_venue"
@@ -269,4 +314,12 @@
       marker=".update_note.IUpdateNote"
       />
 
+  <plone:behavior
+      name="design.plone.contenttypes.behavior.exclude_from_search"
+      title="Exclude from search"
+      description="Campo per escludere un contenuto dalle ricerche del sito."
+      factory=".exclude_from_search.ExcludeFromSearch"
+      provides=".exclude_from_search.IExcludeFromSearch"
+      marker=".exclude_from_search.IExcludeFromSearch"
+      />
 </configure>

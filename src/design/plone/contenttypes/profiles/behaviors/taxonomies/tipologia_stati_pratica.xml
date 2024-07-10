@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vdex xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      language="it"
+      orderSignificant="false"
+      profileType="hierarchicalTokenTerms"
+      xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd"
+>
+  <vocabName>
+    <langstring language="it">Stati di una Pratica</langstring>
+  </vocabName>
+  <vocabIdentifier>tipologia_stati_pratica</vocabIdentifier>
+  <term>
+    <termIdentifier>processo_non_avviato</termIdentifier>
+    <caption>
+      <langstring language="it">Processo non avviato</langstring>
+    </caption>
+    <term>
+      <termIdentifier>in_bozza</termIdentifier>
+      <caption>
+        <langstring language="it">In bozza</langstring>
+      </caption>
+    </term>
+  </term>
+  <term>
+    <termIdentifier>processo_in_corso</termIdentifier>
+    <caption>
+      <langstring language="it">Processo in corso</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>processo_sospeso</termIdentifier>
+    <caption>
+      <langstring language="it">Processo sospeso</langstring>
+    </caption>
+    <term>
+      <termIdentifier>azione_da_parte_dell'utente</termIdentifier>
+      <caption>
+        <langstring language="it">Si richiede un'azione da parte dell'utente</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>anzione_da_parte_della_pubblica_amministrazione</termIdentifier>
+      <caption>
+        <langstring language="it">Si richiede un'azione da parte della Pubblica Amministrazione</langstring>
+      </caption>
+    </term>
+  </term>
+  <term>
+    <termIdentifier>processo_concluso</termIdentifier>
+    <caption>
+      <langstring language="en" />
+      <langstring language="it">Processo concluso</langstring>
+    </caption>
+    <term>
+      <termIdentifier>esito_positivo</termIdentifier>
+      <caption>
+        <langstring language="it">Esito positivo</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>esito_negativo</termIdentifier>
+      <caption>
+        <langstring language="en" />
+        <langstring language="it">Esito negativo</langstring>
+      </caption>
+    </term>
+  </term>
+</vdex>

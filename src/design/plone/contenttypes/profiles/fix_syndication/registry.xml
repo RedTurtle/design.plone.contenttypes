@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+          i18n:domain="plone"
+>
+  <!--
+        Done exactly like plone 6 do: this interface is moved, so ISiteSyndicationSettings right now is
+        pointing to plone.base.interfaces.syndication.ISiteSyndicationSettings. New ISiteSyndicationSettings
+        under CMFPlone is a sort of proxy to the new one.
+    -->
+  <records interface="Products.CMFPlone.interfaces.syndication.ISiteSyndicationSettings" />
+</registry>

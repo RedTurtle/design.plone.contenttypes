@@ -1,11 +1,15 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-          i18n:domain="plone">
+          i18n:domain="plone"
+>
   <records interface="design.plone.contenttypes.controlpanels.settings.IDesignPloneSettings" />
   <records interface="design.plone.contenttypes.controlpanels.geolocation_defaults.IGeolocationDefaults" />
-  
+
   <!-- custom values -->
-  <record name="plone.allowed_sizes" interface="Products.CMFPlone.interfaces.controlpanel.IImagingSchema" field="allowed_sizes">
+  <record field="allowed_sizes"
+          interface="Products.CMFPlone.interfaces.controlpanel.IImagingSchema"
+          name="plone.allowed_sizes"
+  >
     <value purge="False">
       <element>gallery 250:65536</element>
     </value>

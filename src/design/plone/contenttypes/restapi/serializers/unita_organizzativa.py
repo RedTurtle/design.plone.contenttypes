@@ -1,30 +1,31 @@
 # -*- coding: utf-8 -*-
-from .related_news_serializer import (
-    SerializeFolderToJson as RelatedNewsSerializer,
-)
-from design.plone.contenttypes.interfaces.unita_organizzativa import (
-    IUnitaOrganizzativa,
-)
+from .dxcontent import SerializeFolderToJson as BaseSerializer
+from Acquisition import aq_inner
+from design.plone.contenttypes.interfaces.unita_organizzativa import IUnitaOrganizzativa
 from design.plone.contenttypes.restapi.serializers.summary import (
     DefaultJSONSummarySerializer,
 )
-
+from design.plone.contenttypes.restapi.serializers.summary import (
+    get_taxonomy_information,
+)
 from plone import api
-from plone.restapi.interfaces import ISerializeToJson, ISerializeToJsonSummary
-from zope.component import adapter, getMultiAdapter
+from plone.restapi.interfaces import ISerializeToJson
+from plone.restapi.interfaces import ISerializeToJsonSummary
+from plone.restapi.serializer.converters import json_compatible
+from zc.relation.interfaces import ICatalog
+from zope.component import adapter
+from zope.component import getMultiAdapter
+from zope.component import getUtility
+from zope.globalrequest import getRequest
 from zope.interface import implementer
 from zope.interface import Interface
-from Acquisition import aq_inner
-from zope.component import getUtility
 from zope.intid.interfaces import IIntIds
 from zope.security import checkPermission
-from zc.relation.interfaces import ICatalog
-from zope.globalrequest import getRequest
 
 
 @implementer(ISerializeToJson)
 @adapter(IUnitaOrganizzativa, Interface)
-class UOSerializer(RelatedNewsSerializer):
+class UOSerializer(BaseSerializer):
     def get_services(self):
         """ """
         catalog = getUtility(ICatalog)
@@ -62,7 +63,7 @@ class UOSerializer(RelatedNewsSerializer):
         for child in children:
             data = getMultiAdapter((child, self.request), ISerializeToJsonSummary)()
             data.update(self.getAdditionalInfos(context=child))
-            res.append(data)
+            res.append(json_compatible(data))
         return res
 
     def getParentUo(self):
@@ -72,7 +73,7 @@ class UOSerializer(RelatedNewsSerializer):
 
         data = getMultiAdapter((parent, self.request), ISerializeToJsonSummary)()
         data.update(self.getAdditionalInfos(context=parent))
-        return data
+        return json_compatible(data)
 
     def getAdditionalInfos(self, context):
         return {
@@ -104,10 +105,13 @@ class UOSerializer(RelatedNewsSerializer):
         result = super(UOSerializer, self).__call__(
             version=version, include_items=include_items
         )
-        result["servizi_offerti"] = self.get_services()
-        result["uo_parent"] = self.getParentUo()
-        result["uo_children"] = self.getChildrenUo()
-        result["prestazioni"] = self.getUOServiziDoveRivolgersi(result.get("UID", ""))
+
+        result["servizi_offerti"] = json_compatible(self.get_services())
+        result["uo_parent"] = json_compatible(self.getParentUo())
+        result["uo_children"] = json_compatible(self.getChildrenUo())
+        result["prestazioni"] = json_compatible(
+            self.getUOServiziDoveRivolgersi(result.get("UID", ""))
+        )
 
         return result
 
@@ -115,25 +119,22 @@ class UOSerializer(RelatedNewsSerializer):
 @implementer(ISerializeToJsonSummary)
 @adapter(IUnitaOrganizzativa, Interface)
 class UOJSONSummarySerializer(DefaultJSONSummarySerializer):
-    def __call__(self, force_all_metadata=False):
-        data = super().__call__(force_all_metadata=force_all_metadata)
+    def __call__(self, force_images=True, **kwargs):
+        data = super().__call__(force_images=force_images, **kwargs)
         fields = [
-            "address",
-            "city",
-            "zip_code",
-            "email",
-            "telefono",
-            "nome_sede",
-            "title",
-            "quartiere",
-            "circoscrizione",
-            "street",
+            "contact_info",
+            "sede",
         ]
 
         for field in fields:
-            data[field] = getattr(self.context, field, "")
+            if field in ("contact_info", "sede"):
+                data[field] = json_compatible(getattr(self.context, field, ""))
+            else:
+                data[field] = getattr(self.context, field, "")
 
         data["geolocation"] = self.getGeolocation()
+
+        get_taxonomy_information("tipologia_organizzazione", self.context, data)
 
         return data
 

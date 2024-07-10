@@ -8,5 +8,7 @@
       factory=".adapters.LeadImageJsonSchemaProvider"
       name="ILeadImageBehavior.image"
       />
+  <adapter factory=".adapters.DataGridRowJsonSchemaProvider" />
+  <adapter factory=".adapters.TextLineJsonSchemaProvider" />
 
 </configure>

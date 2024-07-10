@@ -1,16 +1,20 @@
 # -*- coding: utf-8 -*-
-from collective import dexteritytextindexer
 from collective.volto.blocksfield.field import BlocksField
 from design.plone.contenttypes import _
 from design.plone.contenttypes.interfaces import IDesignPloneContentType
+from plone.app.dexterity import textindexer
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
 from plone.supermodel import model
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
-from zope import schema
 
 
+# TODO: migration script for these commented fields towards PDC
+# contact_info
+# Probabilmente non possibile trattandosi di un campo a blocchi
+# preferirei si arrangiassero le redazioni. Altrimenti si defaulta
+# ad un tipo a caso + tutto il testo e poi si arrangiano comunque
 class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
     """Marker interface for content type UnitaOrganizzativa"""
 
@@ -20,12 +24,12 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
             "uo_competenze_help",
             default="Descrizione dei compiti assegnati alla struttura.",
         ),
-        required=False,
+        required=True,
     )
 
     legami_con_altre_strutture = RelationList(
         title=_(
-            "legami_altre_strutture_label", default="Servizi o uffici di riferimento"
+            "legami_altre_strutture_label", default="Strutture o uffici di riferimento"
         ),
         default=[],
         description=_(
@@ -53,20 +57,8 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
         required=False,
     )
 
-    tipologia_organizzazione = schema.Choice(
-        title=_("tipologia_organizzazione_label", default="Tipologia organizzazione"),
-        # vocabolario di rif sara' la lista delle tipologie di organizzazione
-        vocabulary="" "design.plone.vocabularies.tipologie_unita_organizzativa",
-        description=_(
-            "tipologia_organizzazione_help",
-            default="Specificare la tipologia di organizzazione: politica,"
-            " amminsitrativa o di altro tipo.",
-        ),
-        required=True,
-    )
-
     assessore_riferimento = RelationList(
-        title="Assessore di riferimento",
+        title=_("assessore_riferimento_title", default="Assessore di riferimento"),
         # vocabolario di riferimento sara' dinamico con i content type
         # persona presenti all'interno della macro Amministrazione"
         value_type=RelationChoice(
@@ -105,19 +97,17 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
         description=_(
             "sede_help",
             default="Seleziona il Luogo in cui questa struttura ha sede. "
-            "Se non è presente un contenuto di tipo Luogo a cui far "
-            "riferimento, puoi compilare i campi seguenti. Se selezioni un "
-            "Luogo, puoi usare comunque i campi seguenti per sovrascrivere "
-            "alcune informazioni.",
+            "Se non è presente creare il Luogo nella sezione dedicata "
+            "nell'alberatura del sito.",
         ),
         value_type=RelationChoice(
             title=_("Sede"), vocabulary="plone.app.vocabularies.Catalog"
         ),
-        required=False,
+        required=True,
     )
 
     sedi_secondarie = RelationList(
-        title=_("sedi_secondarie_label", default="Sedi secondarie"),
+        title=_("sedi_secondarie_label", default="Altre sedi"),
         default=[],
         description=_(
             "sedi_secondarie_help",
@@ -133,33 +123,39 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
         required=False,
     )
 
-    contact_info = BlocksField(
-        title=_("contact_info_label", default="Informazioni di contatto generiche"),
-        required=False,
+    documenti_pubblici = RelationList(
+        title=_("documenti_pubblici_label", default="Documenti pubblici"),
+        default=[],
         description=_(
-            "uo_contact_info_description",
-            default="Inserisci eventuali informazioni di contatto aggiuntive "
-            "non contemplate nei campi precedenti. "
-            "Utilizza questo campo se ci sono dei contatti aggiuntivi rispetto"
-            " ai contatti della sede principale. Se inserisci un collegamento "
-            'con un indirizzo email, aggiungi "mailto:" prima dell\'indirizzo'
-            ", per farlo aprire direttamente nel client di posta.",
+            "documenti_pubblici_help",
+            default="Documenti pubblici importanti, collegati a questa Unità Organizzativa",  # noqa
         ),
+        value_type=RelationChoice(
+            title=_("Documenti pubblici"), vocabulary="plone.app.vocabularies.Catalog"
+        ),
+        required=False,
     )
 
     #  custom widgets
     form.widget(
+        "documenti_pubblici",
+        RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
+        pattern_options={
+            "selectableTypes": ["Documento"],
+        },
+    )
+    form.widget(
         "persone_struttura",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={"selectableTypes": ["Persona"], "maximumSelectionSize": 50},
+        pattern_options={"selectableTypes": ["Persona"]},
     )
     form.widget(
         "legami_con_altre_strutture",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "maximumSelectionSize": 10,
             "selectableTypes": ["UnitaOrganizzativa"],
         },
     )
@@ -194,7 +190,6 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "maximumSelectionSize": 10,
             "selectableTypes": ["Venue"],
             # "basePath": "/servizi",
         },
@@ -203,7 +198,7 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
     # custom fieldsets and order
     model.fieldset(
         "cosa_fa",
-        label=_("cosa_fa_label", default="Cosa fa"),
+        label=_("cosa_fa_label", default="Competenze"),
         fields=["competenze"],
     )
     model.fieldset(
@@ -212,7 +207,6 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
         fields=[
             "legami_con_altre_strutture",
             "responsabile",
-            "tipologia_organizzazione",
             "assessore_riferimento",
         ],
     )
@@ -224,13 +218,20 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
     model.fieldset(
         "contatti",
         label=_("contatti_label", default="Contatti"),
-        fields=["sede", "sedi_secondarie", "contact_info"],
+        fields=["sede", "sedi_secondarie"],
     )
+
+    model.fieldset(
+        "correlati",
+        label=_("correlati_label", default="Contenuti collegati"),
+        fields=["documenti_pubblici"],
+    )
+
     form.order_after(sedi_secondarie="IContattiUnitaOrganizzativa.orario_pubblico")
-    form.order_after(contact_info="sedi_secondarie")
+    form.order_after(documenti_pubblici="relatedItems")
+    # form.order_after(contact_info="sedi_secondarie")
 
     # SearchableText indexers
-    dexteritytextindexer.searchable("competenze")
-    dexteritytextindexer.searchable("tipologia_organizzazione")
-    dexteritytextindexer.searchable("assessore_riferimento")
-    dexteritytextindexer.searchable("responsabile")
+    textindexer.searchable("competenze")
+    textindexer.searchable("assessore_riferimento")
+    textindexer.searchable("responsabile")

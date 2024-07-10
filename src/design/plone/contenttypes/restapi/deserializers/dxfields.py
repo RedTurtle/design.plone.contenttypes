@@ -1,19 +1,30 @@
 # -*- coding: utf-8 -*-
+from datetime import datetime
 from design.plone.contenttypes import _
 from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
+from design.plone.contenttypes.interfaces.servizio import IServizio
 from plone.dexterity.interfaces import IDexterityContent
 from plone.formwidget.geolocation.geolocation import Geolocation
 from plone.formwidget.geolocation.interfaces import IGeolocationField
+from plone.restapi.deserializer.blocks import path2uid
+from plone.restapi.deserializer.dxfields import CollectionFieldDeserializer
 from plone.restapi.deserializer.dxfields import DefaultFieldDeserializer
+from plone.restapi.deserializer.dxfields import (
+    TextLineFieldDeserializer as BaseTextLineDeserializer,
+)
 from plone.restapi.interfaces import IBlockFieldDeserializationTransformer
 from plone.restapi.interfaces import IFieldDeserializer
 from zope.component import adapter
+from zope.component import getMultiAdapter
 from zope.component import subscribers
 from zope.i18n import translate
 from zope.interface import implementer
+from zope.schema.interfaces import IList
 from zope.schema.interfaces import ISourceText
+from zope.schema.interfaces import ITextLine
 
 import json
+
 
 KEYS_WITH_URL = ["linkUrl", "navigationRoot", "showMoreLink"]
 
@@ -73,4 +84,58 @@ class SourceTextDeserializer(DefaultFieldDeserializer):
 
                             blocks[id] = block_value
             value = json.dumps(data)
+        return value
+
+
+@implementer(IFieldDeserializer)
+@adapter(IList, IServizio, IDesignPloneContenttypesLayer)
+class TimelineTempiEScadenzeFieldDeserializer(CollectionFieldDeserializer):
+    """
+    Volto returns a string in date field, Plone expects <class datetime.date>
+    and throws error during validation. Patched.
+    Since I cannot have an empty value in data_scadenza (which is NOT a required
+    field), I'll have to do some serializing magic in Servizio serializer.
+    Also validate milestone field, frontend should take care of it, but you never know.
+    """
+
+    def __call__(self, value):
+        if self.field.getName() != "timeline_tempi_scadenze" or not value:
+            return super().__call__(value)
+
+        timeline = []
+        for item in value:
+            if not item.get("milestone", None):
+                raise ValueError("Il campo 'Titolo della fase' è obbligatorio")
+
+            entry = {
+                "milestone": item.get("milestone", ""),
+                "milestone_description": item.get("milestone_description", ""),
+                "interval_qt": item.get("interval_qt", ""),
+                "interval_type": item.get("interval_type", ""),
+                "data_scadenza": (
+                    datetime.strptime(item["data_scadenza"], "%Y-%m-%d").date()
+                    if item.get("data_scadenza", None)
+                    else None
+                ),  # noqa
+            }
+
+            timeline.append(entry)
+
+        self.field.validate(timeline)
+        return timeline
+
+
+@implementer(IFieldDeserializer)
+@adapter(ITextLine, IServizio, IDesignPloneContenttypesLayer)
+class LinkTextLineFieldDeserializer(BaseTextLineDeserializer):
+    def __call__(self, value):
+        value = super().__call__(value)
+        if self.field.getName() == "canale_digitale_link":
+            portal = getMultiAdapter(
+                (self.context, self.context.REQUEST), name="plone_portal_state"
+            ).portal()
+
+            transformed_url = path2uid(context=portal, link=value)
+            if transformed_url != value and "resolveuid" in transformed_url:
+                value = "${{portal_url}}/{uid}".format(uid=transformed_url)
         return value

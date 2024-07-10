@@ -1,0 +1,240 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      lang="en"
+      metal:use-macro="context/prefs_main_template/macros/master"
+      xml:lang="en"
+      i18n:domain="plone"
+>
+
+  <body>
+    <metal:block fill-slot="javascript_head_slot">
+
+    </metal:block>
+    <metal:block fill-slot="style_slot">
+      <link crossorigin="anonymous"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+            integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+            referrerpolicy="no-referrer"
+            rel="stylesheet"
+      />
+      <style>
+       li.categoria{margin-bottom:2em}
+       #content-header,
+       #mainnavigation-wrapper,
+       #above-content-wrapper{display:none}
+       .container{margin-top:2em}
+
+        table.services{
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        table.services tr:nth-child(even){background-color: #f2f2f2;}
+        table.services tr:hover {background-color: #ddd;}
+          table.services th {
+          text-align: left;
+          background-color: #ccc;
+          color: #000;
+          padding: 10px;
+        }
+        table.services td{
+          padding: 10px;
+        }
+        table.services th{
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+        table.services thead tr th.service_title{
+            width: 250px;
+        }
+        .forms{
+          margin-top: 1em;
+          margin-bottom: 1em;
+          text-align:center;
+        }
+        .forms button,
+        .forms input{
+            border: none; /* Remove borders */
+            color: white; /* Add a text color */
+            padding: 14px 28px; /* Add some padding */
+            cursor: pointer; /* Add a pointer cursor on mouse-over */
+            background-color: #2196F3;
+            border-radius: 4px;
+        }
+        .forms input:hover{
+            background: #0b7dda;
+        }
+        .download_button{
+          margin-top: 1em;
+          margin-bottom: 1em;
+          text-align:right;
+        }
+      </style>
+    </metal:block>
+    <tal:main metal:fill-slot="prefs_configlet_wrapper">
+
+      <tal:main metal:fill-slot="prefs_configlet_main">
+        <h1>Verifica dello stato dei servizi</h1>
+        <div tal:condition="view/is_anonymous">
+          Non hai i permessi per vedere questo elenco di informazioni. Se pensi
+          che questo non sia corretto verifica di essere autenticato oppure rivolgiti
+          agli amministratori del sito.
+        </div>
+
+        <div class="lista_servizi"
+             tal:define="
+               servizi view/get_servizi;
+             "
+             tal:condition="not:view/is_anonymous"
+        >
+          <p class="lead"
+             tal:condition="servizi"
+          >
+               La lista seguente elenca tutti quei servizi per i quali non sono
+               ancora stati aggiunti i campi che AGID indica come obbligatori.
+               Ogni redattore pu&ograve; vedere in questa lista tutti i servizi e,
+               cliccando su ognuno, andare alla vista di dettaglio del servizio,
+            editarlo e compilare tutti i campi obbligatori.</p>
+          <p class="lead"
+             tal:condition="servizi"
+          >Per quanto riguarda la colonna
+            <strong>canale di accesso</strong>,
+            nei servizi, abbiamo canale fisico e canale digitale. Il canale digitale,
+            &egrave; calcolato su due campi: uno testuale descrittivo e uno contenente il link per
+            l'accesso. &Egrave; obbligatorio compilare o il canale fisico oppure i due campi relativi al canale
+            digitale per seguire le direttive indicate da AGID.
+            Nella tabella sotto si trover&agrave; scritto "D" nel caso nel servizio siano compilati
+            i due campi del canale digitale, "F" nel caso sia compilato il canale fisico e
+            "D e F" nel caso siano compilati tutti i campi relativi al canale di accesso.</p>
+          <p class="lead"
+             tal:condition="servizi"
+          >Si fa notare, infine, che la seguente lista di servizi
+             presenta tutti quei servizi in stato pubblicato e
+            <strong>non scaduti</strong>
+             secondo
+            le logiche di pubblicazione del CMS Plone, ovvero con una data di scadenza ancora da raggiugnere.</p>
+
+          <div class="forms">
+            <div tal:condition="view/cds">
+              <form action="${context/absolute_url}/@@check-servizi">
+                <input type="Submit"
+                       value="Cerca senza condizioni di servizio"
+                />
+              </form>
+            </div>
+            <div tal:condition="not:view/cds">
+              <form action="${context/absolute_url}/@@check-servizi">
+                <input name="condizioni_di_servizio"
+                       type="hidden"
+                       value="True"
+                />
+                <input type="Submit"
+                       value="Cerca con condizioni di servizio"
+                />
+              </form>
+            </div>
+            <div class="download_button">
+              <form action="${context/absolute_url}/@@download-check-servizi">
+                <!-- <input type="Submit" value="Download" /> -->
+                <input name="condizioni_di_servizio"
+                       type="hidden"
+                       value="True"
+                       tal:condition="view/cds"
+                />
+                <button class="download-button"
+                        type="submit"
+                >
+                  <i class="fas fa-download"></i>
+                   Download servizi
+                </button>
+              </form>
+            </div>
+            <div class="download_button">
+              <form action="${context/absolute_url}/@@download-check-servizi">
+                <!-- <input type="Submit" value="Download" /> -->
+                <input name="condizioni_di_servizio"
+                       type="hidden"
+                       value="True"
+                />
+                <input name="full"
+                       type="hidden"
+                       value="True"
+                />
+                <button class="download-button"
+                        type="submit"
+                >
+                  <i class="fas fa-download"></i>
+                   Download tutti i servizi
+                </button>
+              </form>
+            </div>
+          </div>
+
+
+
+          <ul>
+            <li class="categoria"
+                tal:repeat="categoria servizi"
+            >
+              <tal:block tal:define="
+                           categoria_url python:servizi[categoria]['url'];
+                         ">
+                <h2><a href="${categoria_url}"
+                     target="_blank"
+                  >${categoria}</a></h2>
+                <ul tal:condition="nothing">
+                  <li class="servizio"
+                      tal:repeat="servizio python:servizi[categoria]['children']"
+                  >
+                    <h5><a href="${servizio/url}"
+                         target="_blank"
+                      >${servizio/title}</a></h5>
+                  </li>
+                </ul>
+                <table class="services">
+                  <thead>
+                    <tr>
+                      <th class="service_title"><span>Titolo</span></th>
+                      <th><span>Descrizione</span></th>
+                      <th tal:condition="view/cds"><span>Condizioni di servizio</span></th>
+                      <th><span>Argomenti</span></th>
+                      <th><span>A chi &egrave; rivolto</span></th>
+                      <th><span>Come fare per</span></th>
+                      <th><span>Cosa si ottiene</span></th>
+                      <th><span>Canale di accesso</span></th>
+                      <th><span>Cosa serve</span></th>
+                      <th><span>Tempi e scadenze</span></th>
+                      <th><span>Unit&agrave; org. responsabile</span></th>
+                      <th><span>Contatti</span></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr tal:repeat="servizio python:servizi[categoria]['children']">
+                      <td><a href="${servizio/url}"
+                           target="_blank"
+                        >${servizio/title}</a></td>
+                      <td><span tal:content="structure servizio/data/description"></span></td>
+                      <td tal:condition="view/cds"><span tal:content="servizio/data/condizioni_di_servizio"></span></td>
+                      <td><span tal:content="structure servizio/data/tassonomia_argomenti"></span></td>
+                      <td><span tal:content="structure servizio/data/a_chi_si_rivolge"></span></td>
+                      <td><span tal:content="structure servizio/data/come_si_fa"></span></td>
+                      <td><span tal:content="structure servizio/data/cosa_si_ottiene"></span></td>
+                      <td><span tal:content="servizio/data/canale_accesso"></span></td>
+                      <td><span tal:content="structure servizio/data/cosa_serve"></span></td>
+                      <td><span tal:content="structure servizio/data/tempi_e_scadenze"></span></td>
+                      <td><span tal:content="structure servizio/data/ufficio_responsabile"></span></td>
+                      <td><span tal:content="structure servizio/data/contact_info"></span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </tal:block>
+            </li>
+          </ul>
+        </div>
+      </tal:main>
+    </tal:main>
+  </body>
+</html>

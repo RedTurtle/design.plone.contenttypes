@@ -8,6 +8,7 @@ from plone.app.event.base import RET_MODE_BRAINS
 from plone.app.event.dx.behaviors import EventAccessor
 from plone.app.event.recurrence import EventOccurrenceAccessor
 from plone.app.querystring import queryparser
+from plone.base.interfaces import IImageScalesAdapter
 from plone.event.interfaces import IEvent
 from plone.event.interfaces import IEventRecurrence
 from plone.event.interfaces import IRecurrenceSupport
@@ -16,6 +17,8 @@ from plone.restapi.services import Service
 from Products.CMFPlone.interfaces import IPloneSiteRoot
 from Products.CMFPlone.utils import safe_hasattr
 from zope.component import getMultiAdapter
+from zope.component import queryMultiAdapter
+
 
 zcatalog_version = get_distribution("Products.ZCatalog").version
 if parse_version(zcatalog_version) >= parse_version("5.1"):
@@ -61,7 +64,7 @@ class BaseService(Service):
 
         """
 
-        assert ret_mode is not RET_MODE_BRAINS
+        assert ret_mode is not RET_MODE_BRAINS  # nosec
 
         exp_result = []
         for it in events:
@@ -155,7 +158,13 @@ class ScadenziarioSearchPost(BaseService):
         if "start" in query_for_catalog:
             start = query_for_catalog["start"]["query"]
         if "end" in query_for_catalog:
-            end = query_for_catalog["end"]["query"]
+            if query_for_catalog["end"].get("range", "") != "min":
+                # per esempio, è impostato il filtro "con fine evento da domani".
+                # se impostiamo un'end (la data  di domani), poi nella generazione delle ricorrenze,
+                # vengono scartati tutti gli eventi che hanno una data di inizio nel futuro
+                # (https://github.com/plone/plone.event/blob/master/plone/event/recurrence.py#L141)
+                # perché la data della ricorrenza è maggiore di "until", che è quello che qui inviamo come end.
+                end = query_for_catalog["end"]["query"]
         expanded_events = self.expand_events(events, 3, start, end)
 
         all_results = not_events + expanded_events
@@ -209,12 +218,12 @@ class ScadenziarioDayPost(BaseService):
         end = None
         # qui ce l'abbiamo per forza start
         if "start" in query_for_catalog:
-            start = query_for_catalog["start"]["query"]
+            start = query_for_catalog["start"]["query"][0]
         if "end" in query_for_catalog:
-            end = query_for_catalog["end"]["query"]
+            end = query_for_catalog["start"]["query"][1]
 
         expanded_events = self.expand_events(events, 3, start, end)
-        start_date = start[0].strftime("%Y/%m/%d")
+        start_date = start.strftime("%Y/%m/%d")
         correct_events = []
         for x in expanded_events:
             if start_date == x.start.strftime("%Y/%m/%d"):
@@ -240,19 +249,30 @@ class ScadenziarioDayPost(BaseService):
                 if isinstance(brain, (EventAccessor, EventOccurrenceAccessor)):
                     if brain.context.portal_type == "Occurrence":
                         url = brain.url[:-10]
+                        scales = queryMultiAdapter(
+                            (brain.context.aq_parent, self.request), IImageScalesAdapter
+                        )
+                        image_scales = scales()
                     else:
                         url = brain.url
+                        scales = queryMultiAdapter(
+                            (brain.context, self.request), IImageScalesAdapter
+                        )
+                        image_scales = scales()
+
                     results_to_be_returned[key].append(
                         {
                             "@id": url,
                             "id": brain.id,
                             "title": brain.title,
                             "text": brain.description,
-                            "start": brain.start.strftime("%Y/%m/%d"),
+                            "start": brain.start.isoformat(),
                             "type": self.context.translate("Event"),
                             "category": brain.subjects,
+                            "image_scales": image_scales,
                         }
                     )
+
                 else:
                     results_to_be_returned[key].append(
                         {
@@ -260,11 +280,12 @@ class ScadenziarioDayPost(BaseService):
                             "id": brain.getId,
                             "title": brain.Title,
                             "text": brain.Description,
-                            "start": brain.start.strftime("%Y/%m/%d"),
+                            "start": brain.start.isoformat(),
                             "type": self.context.translate(brain.portal_type),
                             "category": brain.subject,
                         }
                     )
+
                 results_to_be_returned[key].sort(key=lambda x: x["title"])
         return {
             "@id": self.request.get("URL"),

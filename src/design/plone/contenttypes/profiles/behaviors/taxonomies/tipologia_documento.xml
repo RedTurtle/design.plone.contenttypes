@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vdex xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      language="it"
+      orderSignificant="false"
+      profileType="hierarchicalTokenTerms"
+      xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd"
+>
+  <vocabName>
+    <langstring language="it">Tipologia del documento</langstring>
+  </vocabName>
+  <vocabIdentifier>tipologia_documento</vocabIdentifier>
+  <term>
+    <termIdentifier>documenti_albo_pretorio</termIdentifier>
+    <caption>
+      <langstring language="it">Documenti albo pretorio</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>modulistica</termIdentifier>
+    <caption>
+      <langstring language="it">Modulistica</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>documento_funzionamento_interno</termIdentifier>
+    <caption>
+      <langstring language="it">Documento funzionamento interno</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>atto_normativo</termIdentifier>
+    <caption>
+      <langstring language="it">Atto normativo</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>accordo_tra_enti</termIdentifier>
+    <caption>
+      <langstring language="it">Accordo tra enti</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>documento_attivita_politica</termIdentifier>
+    <caption>
+      <langstring language="it">Documento attività politica</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>documento_tecnico_di_supporto</termIdentifier>
+    <caption>
+      <langstring language="it">Documento (tecnico) di supporto</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>istanza</termIdentifier>
+    <caption>
+      <langstring language="en" />
+      <langstring language="it">Istanza</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>dataset</termIdentifier>
+    <caption>
+      <langstring language="en" />
+      <langstring language="it">Dataset</langstring>
+    </caption>
+  </term>
+</vdex>

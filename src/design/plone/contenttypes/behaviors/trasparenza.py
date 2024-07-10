@@ -1,17 +1,18 @@
 # -*- coding: utf-8 -*-
-from design.plone.contenttypes import _
 from collective.volto.blocksfield.field import BlocksField
-from plone.autoform.interfaces import IFormFieldProvider
-from plone.dexterity.interfaces import IDexterityContent
-from plone.supermodel import model
-from zope import schema
-from plone.namedfile import field
-from zope.component import adapter
-from zope.interface import provider, implementer
-from z3c.relationfield.schema import RelationChoice
-from z3c.relationfield.schema import RelationList
+from design.plone.contenttypes import _
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
+from plone.autoform.interfaces import IFormFieldProvider
+from plone.dexterity.interfaces import IDexterityContent
+from plone.namedfile import field
+from plone.supermodel import model
+from z3c.relationfield.schema import RelationChoice
+from z3c.relationfield.schema import RelationList
+from zope import schema
+from zope.component import adapter
+from zope.interface import implementer
+from zope.interface import provider
 
 
 @provider(IFormFieldProvider)
@@ -36,7 +37,7 @@ class ITrasparenza(model.Schema):
         required=False,
         description=_(
             "descrizione_procedimento_help",
-            default="Inserisci eventuale testo descrittivo del procedimento.",  # noqa
+            default="Inserisci eventuale testo descrittivo del procedimento.",
         ),
     )
     file_correlato = field.NamedBlobFile(
@@ -51,7 +52,7 @@ class ITrasparenza(model.Schema):
     soggetti_esterni = BlocksField(
         title=_(
             "soggetti_eserni_label",
-            default="Soggetti esterni, nonché, strutture interne coinvolte nel procedimento",
+            default="Soggetti esterni, nonché, strutture interne coinvolte nel procedimento",  # noqa
         ),
         required=False,
         description=_(
@@ -273,7 +274,6 @@ class ITrasparenza(model.Schema):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "maximumSelectionSize": 10,
             "selectableTypes": ["Persona"],
         },
     )
@@ -282,7 +282,6 @@ class ITrasparenza(model.Schema):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "maximumSelectionSize": 10,
             "selectableTypes": ["Persona"],
         },
     )

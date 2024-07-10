@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vdex xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      language="it"
+      orderSignificant="false"
+      profileType="hierarchicalTokenTerms"
+      xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd"
+>
+  <vocabName>
+    <langstring language="it">Eventi della vita delle imprese</langstring>
+  </vocabName>
+  <vocabIdentifier>business_events</vocabIdentifier>
+  <term>
+    <termIdentifier>avvio_impresa</termIdentifier>
+    <caption>
+      <langstring language="it">Avvio impresa</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>avvio_nuova_attivita_professionale</termIdentifier>
+    <caption>
+      <langstring language="it">Avvio nuova attività professionale</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>richiesta_licenze_permessi_certificati</termIdentifier>
+    <caption>
+      <langstring language="it">Richiesta licenze, permessi e certificati</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>registrazione_impresa_transfrontaliera</termIdentifier>
+    <caption>
+      <langstring language="it">Registrazione impresa transfrontaliera</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>avvio_e_registrazione_filiale</termIdentifier>
+    <caption>
+      <langstring language="it">Avvio e registrazione filiale</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>finanziamento_impresa</termIdentifier>
+    <caption>
+      <langstring language="it">Finanziamento impresa</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>gestione_personale</termIdentifier>
+    <caption>
+      <langstring language="it">Gestione personale</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>pagamento_tasse_iva_e_dogane</termIdentifier>
+    <caption>
+      <langstring language="it">Pagamento tasse, iva e dogane</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>notifiche_autorita</termIdentifier>
+    <caption>
+      <langstring language="it">Notifiche autorità</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>chiusura_impresa_e_attivita_professionale</termIdentifier>
+    <caption>
+      <langstring language="it">Chiusura impresa e attività professionale</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>chiusura_filiale</termIdentifier>
+    <caption>
+      <langstring language="it">Chiusura filiale</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>ristrutturazione_impresa</termIdentifier>
+    <caption>
+      <langstring language="it">Ristrutturazione impresa</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>vendita_impresa</termIdentifier>
+    <caption>
+      <langstring language="it">Vendita impresa</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>bancarotta</termIdentifier>
+    <caption>
+      <langstring language="it">Bancarotta</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>partecipazione_ad_appalti_pubblici_nazionali_e_trasfrontalieri</termIdentifier>
+    <caption>
+      <langstring language="en" />
+      <langstring language="it">Partecipazione ad appalti pubblici nazionali e trasfrontalieri</langstring>
+    </caption>
+  </term>
+</vdex>

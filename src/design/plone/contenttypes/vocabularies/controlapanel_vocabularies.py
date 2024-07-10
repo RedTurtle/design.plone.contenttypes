@@ -22,35 +22,10 @@ class BaseVocabulary(object):
         terms = [SimpleTerm(value=x, token=x, title=x) for x in values]
         terms.insert(
             0,
-            SimpleTerm(value="", token="", title="-- seleziona un valore --"),
+            SimpleTerm(value="", token="", title="-- seleziona un valore --"),  # nosec
         )
 
         return SimpleVocabulary(terms)
-
-
-@implementer(IVocabularyFactory)
-class TipologieNotizia(BaseVocabulary):
-    field = "tipologie_notizia"
-
-
-@implementer(IVocabularyFactory)
-class TipologieUnitaOrganizzativaVocabulary(BaseVocabulary):
-    field = "tipologie_unita_organizzativa"
-
-
-@implementer(IVocabularyFactory)
-class TipologieDocumento(BaseVocabulary):
-    field = "tipologie_documento"
-
-
-@implementer(IVocabularyFactory)
-class TipologiePersona(BaseVocabulary):
-    field = "tipologie_persona"
-
-
-@implementer(IVocabularyFactory)
-class RuoliPersona(BaseVocabulary):
-    field = "ruoli_persona"
 
 
 @implementer(IVocabularyFactory)
@@ -72,8 +47,3 @@ class LeadImageDimension(BaseVocabulary):
 
 
 LeadImageDimensionFactory = LeadImageDimension()
-TipologieNotiziaFactory = TipologieNotizia()
-TipologieDocumentoFactory = TipologieDocumento()
-TipologiePersonaFactory = TipologiePersona()
-RuoliPersonaFactory = RuoliPersona()
-TipologieUnitaOrganizzativaVocabularyFactory = TipologieUnitaOrganizzativaVocabulary()

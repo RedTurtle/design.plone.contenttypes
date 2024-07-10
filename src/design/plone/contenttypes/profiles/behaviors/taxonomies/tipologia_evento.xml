@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vdex xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      language="it"
+      orderSignificant="false"
+      profileType="hierarchicalTokenTerms"
+      xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd"
+>
+  <vocabName>
+    <langstring language="it">Tipo di evento</langstring>
+  </vocabName>
+  <vocabIdentifier>tipologia_evento</vocabIdentifier>
+  <term>
+    <termIdentifier>evento_culturale</termIdentifier>
+    <caption>
+      <langstring language="it">Evento culturale</langstring>
+    </caption>
+    <term>
+      <termIdentifier>manifestazione_artistica</termIdentifier>
+      <caption>
+        <langstring language="it">Manifestazione artistica</langstring>
+      </caption>
+      <term>
+        <termIdentifier>festival</termIdentifier>
+        <caption>
+          <langstring language="it">Festival</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>mostra</termIdentifier>
+        <caption>
+          <langstring language="it">Mostra</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>spettacolo_teatrale</termIdentifier>
+        <caption>
+          <langstring language="it">Spettacolo teatrale</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>maifestazione_musicale</termIdentifier>
+        <caption>
+          <langstring language="it">Manifestazione musicale</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>visita_guidata</termIdentifier>
+        <caption>
+          <langstring language="it">Visita guidata</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>lettura_pubblica</termIdentifier>
+        <caption>
+          <langstring language="it">Lettura (pubblica)</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>proiezione_cinematografia</termIdentifier>
+        <caption>
+          <langstring language="it">Proiezione cinematografica</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>visita_libera</termIdentifier>
+        <caption>
+          <langstring language="it">Visita libera</langstring>
+        </caption>
+      </term>
+    </term>
+    <term>
+      <termIdentifier>evento_di_formazione</termIdentifier>
+      <caption>
+        <langstring language="it">Evento di formazione</langstring>
+      </caption>
+      <term>
+        <termIdentifier>scuola_estiva_invernale</termIdentifier>
+        <caption>
+          <langstring language="it">Scuola estiva/invernale</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>webinar</termIdentifier>
+        <caption>
+          <langstring language="it">Webinar</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>seminario</termIdentifier>
+        <caption>
+          <langstring language="it">Seminario</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>laboratorio</termIdentifier>
+        <caption>
+          <langstring language="it">Laboratorio</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>presentazione_libro</termIdentifier>
+        <caption>
+          <langstring language="it">Presentazione libro</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>corso</termIdentifier>
+        <caption>
+          <langstring language="it">Corso</langstring>
+        </caption>
+      </term>
+    </term>
+    <term>
+      <termIdentifier>conferenza_summit</termIdentifier>
+      <caption>
+        <langstring language="it">Conferenza e Summit</langstring>
+      </caption>
+      <term>
+        <termIdentifier>convegno</termIdentifier>
+        <caption>
+          <langstring language="it">Convegno</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>vertice</termIdentifier>
+        <caption>
+          <langstring language="it">Vertice</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>congresso</termIdentifier>
+        <caption>
+          <langstring language="it">Congresso</langstring>
+        </caption>
+      </term>
+    </term>
+    <term>
+      <termIdentifier>giornata_informativa</termIdentifier>
+      <caption>
+        <langstring language="it">Giornata informativa</langstring>
+      </caption>
+      <term>
+        <termIdentifier>giornata_aperta</termIdentifier>
+        <caption>
+          <langstring language="it">Giornata aperta</langstring>
+        </caption>
+      </term>
+    </term>
+  </term>
+  <term>
+    <termIdentifier>eventi_sociali</termIdentifier>
+    <caption>
+      <langstring language="it">Eventi sociali</langstring>
+    </caption>
+    <term>
+      <termIdentifier>concordo_e_cerimonia</termIdentifier>
+      <caption>
+        <langstring language="it">Concorso e cerimonia</langstring>
+      </caption>
+      <term>
+        <termIdentifier>cerimonia</termIdentifier>
+        <caption>
+          <langstring language="it">Cerimonia</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>concorso_competizione</termIdentifier>
+        <caption>
+          <langstring language="it">Concorso/competizione</langstring>
+        </caption>
+      </term>
+    </term>
+    <term>
+      <termIdentifier>dibattito_politico</termIdentifier>
+      <caption>
+        <langstring language="it">Dibattito politico</langstring>
+      </caption>
+      <term>
+        <termIdentifier>dibattito_dialogo_pubblico</termIdentifier>
+        <caption>
+          <langstring language="it">Dibattito/dialogo pubblico</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>forum</termIdentifier>
+        <caption>
+          <langstring language="it">Forum</langstring>
+        </caption>
+      </term>
+    </term>
+    <term>
+      <termIdentifier>incontro_con_esperti</termIdentifier>
+      <caption>
+        <langstring language="it">Incontro con esperti</langstring>
+      </caption>
+      <term>
+        <termIdentifier>riunione_esperti</termIdentifier>
+        <caption>
+          <langstring language="it">Riunione esperti</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>hackathon_datathon</termIdentifier>
+        <caption>
+          <langstring language="it">Hackathon / Datathon</langstring>
+        </caption>
+      </term>
+    </term>
+    <term>
+      <termIdentifier>raduno_di_comunita</termIdentifier>
+      <caption>
+        <langstring language="it">Raduno di comunità</langstring>
+      </caption>
+      <term>
+        <termIdentifier>sfilata</termIdentifier>
+        <caption>
+          <langstring language="it">Sfilata</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>sagra</termIdentifier>
+        <caption>
+          <langstring language="it">Sagra</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>torneo_storico_o_palio</termIdentifier>
+        <caption>
+          <langstring language="it">Torneo storico o Palio</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>festa_patronale_o_dei_santi</termIdentifier>
+        <caption>
+          <langstring language="it">Festa Patronale o dei santi</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>mercatino</termIdentifier>
+        <caption>
+          <langstring language="it">Mercatino</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>commemorazione</termIdentifier>
+        <caption>
+          <langstring language="it">Commemorazione</langstring>
+        </caption>
+      </term>
+    </term>
+    <term>
+      <termIdentifier>evento_religioso</termIdentifier>
+      <caption>
+        <langstring language="it">Evento religioso</langstring>
+      </caption>
+      <term>
+        <termIdentifier>giubileo</termIdentifier>
+        <caption>
+          <langstring language="it">Giubileo</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>udienza_giubiliare</termIdentifier>
+        <caption>
+          <langstring language="it">Udienza giubiliare</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>processione</termIdentifier>
+        <caption>
+          <langstring language="it">Processione</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>celebrazione_religiosa</termIdentifier>
+        <caption>
+          <langstring language="it">Celebrazione religiosa</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>lettura_religiosa</termIdentifier>
+        <caption>
+          <langstring language="it">Lettura religiosa</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>raduno_religioso</termIdentifier>
+        <caption>
+          <langstring language="it">Raduno religioso</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>santificazione</termIdentifier>
+        <caption>
+          <langstring language="it">Santificazione</langstring>
+        </caption>
+      </term>
+    </term>
+  </term>
+  <term>
+    <termIdentifier>eventi_politici</termIdentifier>
+    <caption>
+      <langstring language="it">Eventi politici</langstring>
+    </caption>
+    <term>
+      <termIdentifier>incontro_pubblico</termIdentifier>
+      <caption>
+        <langstring language="it">Incontro pubblico</langstring>
+      </caption>
+      <term>
+        <termIdentifier>congresso_o_riunione_partito</termIdentifier>
+        <caption>
+          <langstring language="it">Congresso o riunione partito</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>corteo_o_sciopero</termIdentifier>
+        <caption>
+          <langstring language="it">Corteo o sciopero</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>comizio_elettorale</termIdentifier>
+        <caption>
+          <langstring language="it">Comizio elettorale</langstring>
+        </caption>
+      </term>
+    </term>
+  </term>
+  <term>
+    <termIdentifier>eventi_di_affari_o_commerciali</termIdentifier>
+    <caption>
+      <langstring language="it">Eventi di affari o commerciali</langstring>
+    </caption>
+    <term>
+      <termIdentifier>fiera_o_salone</termIdentifier>
+      <caption>
+        <langstring language="it">Fiera o salone</langstring>
+      </caption>
+      <term>
+        <termIdentifier>fiera_o_salone_2</termIdentifier>
+        <caption>
+          <langstring language="it">Fiera o salone</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>esposizione_o_esposizione_globale</termIdentifier>
+        <caption>
+          <langstring language="it">Esposizione o Esposizione globale</langstring>
+        </caption>
+      </term>
+    </term>
+    <term>
+      <termIdentifier>riunione_affari</termIdentifier>
+      <caption>
+        <langstring language="it">Riunione d'affari</langstring>
+      </caption>
+      <term>
+        <termIdentifier>riunione_affari_2</termIdentifier>
+        <caption>
+          <langstring language="it">Riunione d'affari</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>convention</termIdentifier>
+        <caption>
+          <langstring language="it">Convention</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>tavola_rotonda</termIdentifier>
+        <caption>
+          <langstring language="it">Tavola rotonda</langstring>
+        </caption>
+      </term>
+    </term>
+    <term>
+      <termIdentifier>evento_stagionale_commerciale</termIdentifier>
+      <caption>
+        <langstring language="it">Evento stagionale commerciale</langstring>
+      </caption>
+      <term>
+        <termIdentifier>vendita_di_fine_stagione</termIdentifier>
+        <caption>
+          <langstring language="it">Vendita di fine stagione</langstring>
+        </caption>
+      </term>
+    </term>
+  </term>
+  <term>
+    <termIdentifier>eventi_sportivi</termIdentifier>
+    <caption>
+      <langstring language="en" />
+      <langstring language="it">Eventi sportivi</langstring>
+    </caption>
+    <term>
+      <termIdentifier>manifestazione_sportiva</termIdentifier>
+      <caption>
+        <langstring language="en" />
+        <langstring language="it">Manifestazione sportiva</langstring>
+      </caption>
+      <term>
+        <termIdentifier>partita</termIdentifier>
+        <caption>
+          <langstring language="it">Partita</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>gara_torneo_competizione</termIdentifier>
+        <caption>
+          <langstring language="it">Gara o Torneo o Competizione</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>escursione</termIdentifier>
+        <caption>
+          <langstring language="it">Escursione</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>gala_sportivo</termIdentifier>
+        <caption>
+          <langstring language="it">Galà sportivo</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>corsa</termIdentifier>
+        <caption>
+          <langstring language="it">Corsa</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>raduno_sportivo</termIdentifier>
+        <caption>
+          <langstring language="en" />
+          <langstring language="it">Raduno sportivo</langstring>
+        </caption>
+      </term>
+    </term>
+  </term>
+</vdex>

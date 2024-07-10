@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vdex xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      language="it"
+      orderSignificant="false"
+      profileType="hierarchicalTokenTerms"
+      xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd"
+>
+  <vocabName>
+    <langstring language="it">Tipo di luogo</langstring>
+  </vocabName>
+  <vocabIdentifier>tipologia_luogo</vocabIdentifier>
+  <term>
+    <termIdentifier>architettura_militare_e_fortificata</termIdentifier>
+    <caption>
+      <langstring language="it">Architettura Militare e fortificata</langstring>
+    </caption>
+    <term>
+      <termIdentifier>castello</termIdentifier>
+      <caption>
+        <langstring language="it">Castello</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>fortezza</termIdentifier>
+      <caption>
+        <langstring language="it">Fortezza</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>mura</termIdentifier>
+      <caption>
+        <langstring language="it">Mura</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>roccaforte</termIdentifier>
+      <caption>
+        <langstring language="it">Roccaforte</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>torre</termIdentifier>
+      <caption>
+        <langstring language="it">Torre</langstring>
+      </caption>
+    </term>
+  </term>
+  <term>
+    <termIdentifier>architettura_residenziale</termIdentifier>
+    <caption>
+      <langstring language="it">Architettura Residenziale</langstring>
+    </caption>
+    <term>
+      <termIdentifier>sito_archeologico</termIdentifier>
+      <caption>
+        <langstring language="it">Sito archeologico</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>parco_archeologico</termIdentifier>
+      <caption>
+        <langstring language="it">Parco archeologico</langstring>
+      </caption>
+    </term>
+  </term>
+  <term>
+    <termIdentifier>centro_per_la_cultura</termIdentifier>
+    <caption>
+      <langstring language="it">Centro per la cultura</langstring>
+    </caption>
+    <term>
+      <termIdentifier>acquario</termIdentifier>
+      <caption>
+        <langstring language="it">Acquario</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>anfiteatro</termIdentifier>
+      <caption>
+        <langstring language="it">Anfiteatro</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>archivio</termIdentifier>
+      <caption>
+        <langstring language="it">Archivio</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>auditorium</termIdentifier>
+      <caption>
+        <langstring language="it">Auditorium</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>biblioteca</termIdentifier>
+      <caption>
+        <langstring language="it">Biblioteca</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>cinema</termIdentifier>
+      <caption>
+        <langstring language="it">Cinema</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>museo</termIdentifier>
+      <caption>
+        <langstring language="it">Museo</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>osservatorio</termIdentifier>
+      <caption>
+        <langstring language="it">Osservatorio</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>pinacoteca</termIdentifier>
+      <caption>
+        <langstring language="it">Pinacoteca</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>planetario</termIdentifier>
+      <caption>
+        <langstring language="it">Planetario</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>scuola</termIdentifier>
+      <caption>
+        <langstring language="it">Scuola</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>teatro</termIdentifier>
+      <caption>
+        <langstring language="it">Teatro</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>universita_facolta</termIdentifier>
+      <caption>
+        <langstring language="it">Università/Facoltà</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>parco_archeologico_2</termIdentifier>
+      <caption>
+        <langstring language="it">Parco Archeologico</langstring>
+      </caption>
+    </term>
+  </term>
+  <term>
+    <termIdentifier>edificio_di_culto</termIdentifier>
+    <caption>
+      <langstring language="it">Edificio di culto</langstring>
+    </caption>
+    <term>
+      <termIdentifier>abbazia</termIdentifier>
+      <caption>
+        <langstring language="it">Abbazia</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>chiesa</termIdentifier>
+      <caption>
+        <langstring language="it">Chiesa</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>campanile</termIdentifier>
+      <caption>
+        <langstring language="it">Campanile</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>battistero</termIdentifier>
+      <caption>
+        <langstring language="it">Battistero</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>convento</termIdentifier>
+      <caption>
+        <langstring language="it">Convento</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>duomo</termIdentifier>
+      <caption>
+        <langstring language="it">Duomo</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>edicola</termIdentifier>
+      <caption>
+        <langstring language="it">Edicola</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>eremo</termIdentifier>
+      <caption>
+        <langstring language="it">Eremo</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>mausoleo</termIdentifier>
+      <caption>
+        <langstring language="it">Mausoleo</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>monastero</termIdentifier>
+      <caption>
+        <langstring language="it">Monastero</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>santuario</termIdentifier>
+      <caption>
+        <langstring language="it">Santuario</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>sinagoga</termIdentifier>
+      <caption>
+        <langstring language="it">Sinagoga</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>tempio</termIdentifier>
+      <caption>
+        <langstring language="it">Tempio</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>sepolcro</termIdentifier>
+      <caption>
+        <langstring language="it">Sepolcro</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>basilica</termIdentifier>
+      <caption>
+        <langstring language="it">Basilica</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>cappella</termIdentifier>
+      <caption>
+        <langstring language="it">Cappella</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>catacomba</termIdentifier>
+      <caption>
+        <langstring language="it">Catacomba</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>cattedrale</termIdentifier>
+      <caption>
+        <langstring language="it">Cattedrale</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>cimitero</termIdentifier>
+      <caption>
+        <langstring language="it">Cimitero</langstring>
+      </caption>
+    </term>
+  </term>
+  <term>
+    <termIdentifier>monumento_complesso_monumentale</termIdentifier>
+    <caption>
+      <langstring language="it">Monumento o complesso munumentale</langstring>
+    </caption>
+    <term>
+      <termIdentifier>archi</termIdentifier>
+      <caption>
+        <langstring language="it">Archi</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>colonna</termIdentifier>
+      <caption>
+        <langstring language="it">Colonna</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>complesso_monumentale</termIdentifier>
+      <caption>
+        <langstring language="it">Complesso monumentale</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>monumento</termIdentifier>
+      <caption>
+        <langstring language="it">Monumento</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>obelisco</termIdentifier>
+      <caption>
+        <langstring language="it">Obelisco</langstring>
+      </caption>
+    </term>
+  </term>
+  <term>
+    <termIdentifier>parco_e_giardino</termIdentifier>
+    <caption>
+      <langstring language="it">Parco e giardino</langstring>
+    </caption>
+    <term>
+      <termIdentifier>belvedere</termIdentifier>
+      <caption>
+        <langstring language="it">Belvedere</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>giardino</termIdentifier>
+      <caption>
+        <langstring language="it">Giardino</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>parco</termIdentifier>
+      <caption>
+        <langstring language="it">Parco</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>viale</termIdentifier>
+      <caption>
+        <langstring language="it">Viale</langstring>
+      </caption>
+    </term>
+  </term>
+  <term>
+    <termIdentifier>bellezza_naturale</termIdentifier>
+    <caption>
+      <langstring language="it">Bellezza naturale</langstring>
+    </caption>
+    <term>
+      <termIdentifier>costa_marittima</termIdentifier>
+      <caption>
+        <langstring language="it">Costa marittima</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>lago</termIdentifier>
+      <caption>
+        <langstring language="it">Lago</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>Corso_acqua</termIdentifier>
+      <caption>
+        <langstring language="it">Corso d'acqua</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>montagna</termIdentifier>
+      <caption>
+        <langstring language="it">Montagna</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>ghiacciaio</termIdentifier>
+      <caption>
+        <langstring language="it">Ghiacciaio</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>riserva_naturale</termIdentifier>
+      <caption>
+        <langstring language="it">Riserva Natuale</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>foresta_e_bosco</termIdentifier>
+      <caption>
+        <langstring language="it">Foresta e bosco</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>vulcano</termIdentifier>
+      <caption>
+        <langstring language="it">Vulcano</langstring>
+      </caption>
+    </term>
+  </term>
+  <term>
+    <termIdentifier>luogo_per_lo_sport_e_il_tempo_libero</termIdentifier>
+    <caption>
+      <langstring language="it">Luogo per lo sport e il tempo libero</langstring>
+    </caption>
+    <term>
+      <termIdentifier>campo_sportivo</termIdentifier>
+      <caption>
+        <langstring language="it">Campo sportivo</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>piscina</termIdentifier>
+      <caption>
+        <langstring language="it">Piscina</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>stadio</termIdentifier>
+      <caption>
+        <langstring language="it">Stadio</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>terme</termIdentifier>
+      <caption>
+        <langstring language="it">Terme</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>casino</termIdentifier>
+      <caption>
+        <langstring language="it">Casinò</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>circolo_sportivo</termIdentifier>
+      <caption>
+        <langstring language="it">Circolo sportivo</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>piazza</termIdentifier>
+      <caption>
+        <langstring language="it">Piazza</langstring>
+      </caption>
+    </term>
+  </term>
+  <term>
+    <termIdentifier>architettura_commerciale</termIdentifier>
+    <caption>
+      <langstring language="it">Architettura commerciale</langstring>
+    </caption>
+    <term>
+      <termIdentifier>mercati</termIdentifier>
+      <caption>
+        <langstring language="it">Mercati</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>farmacie</termIdentifier>
+      <caption>
+        <langstring language="it">Farmacie</langstring>
+      </caption>
+    </term>
+  </term>
+  <term>
+    <termIdentifier>centro_assistenza_e_tutela</termIdentifier>
+    <caption>
+      <langstring language="it">Centro per l'assistenza e la tutela sociale</langstring>
+    </caption>
+    <term>
+      <termIdentifier>casa_di_riposo</termIdentifier>
+      <caption>
+        <langstring language="it">Casa di riposo</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>centro_di_accoglienza</termIdentifier>
+      <caption>
+        <langstring language="it">Centro di accoglienza</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>ospedale</termIdentifier>
+      <caption>
+        <langstring language="it">Ospedale</langstring>
+      </caption>
+    </term>
+  </term>
+  <term>
+    <termIdentifier>infrastruttura_e_impianto</termIdentifier>
+    <caption>
+      <langstring language="it">Infrastruttura e impianto</langstring>
+    </caption>
+    <term>
+      <termIdentifier>centro_di_raccolta</termIdentifier>
+      <caption>
+        <langstring language="it">Centro di raccolta</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>acquedotto</termIdentifier>
+      <caption>
+        <langstring language="it">Acquedotto</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>aeroporto</termIdentifier>
+      <caption>
+        <langstring language="it">Aeroporto</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>porto</termIdentifier>
+      <caption>
+        <langstring language="it">Porto</langstring>
+      </caption>
+    </term>
+  </term>
+  <term>
+    <termIdentifier>struttura_ricettiva</termIdentifier>
+    <caption>
+      <langstring language="en" />
+      <langstring language="it">Struttura ricettiva</langstring>
+    </caption>
+    <term>
+      <termIdentifier>albergo</termIdentifier>
+      <caption>
+        <langstring language="it">Albergo</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>foresteria</termIdentifier>
+      <caption>
+        <langstring language="it">Foresteria</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>rifugio</termIdentifier>
+      <caption>
+        <langstring language="it">Rifugio</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>rifugio_per_animali</termIdentifier>
+      <caption>
+        <langstring language="en" />
+        <langstring language="it">Rifugio per animali</langstring>
+      </caption>
+    </term>
+  </term>
+</vdex>

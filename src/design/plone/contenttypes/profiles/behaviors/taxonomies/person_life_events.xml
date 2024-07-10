@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vdex xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      language="it"
+      orderSignificant="false"
+      profileType="hierarchicalTokenTerms"
+      xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd"
+>
+  <vocabName>
+    <langstring language="it">Eventi della vita delle persone</langstring>
+  </vocabName>
+  <vocabIdentifier>person_life_events</vocabIdentifier>
+  <term>
+    <termIdentifier>iscrizione_scuola_universita_richiesta_borsa_di_studio</termIdentifier>
+    <caption>
+      <langstring language="it">Iscrizione Scuola/Università e/o richiesta borsa di studio</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>invalidita</termIdentifier>
+    <caption>
+      <langstring language="it">Invalidità</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>ricerca_di_lavoro_avvio_nuovo_lavoro_disoccupazione</termIdentifier>
+    <caption>
+      <langstring language="it">Ricerca di lavoro, avvio nuovo lavoro, disoccupazione</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>pensionamento</termIdentifier>
+    <caption>
+      <langstring language="it">Pensionamento</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>richiesta_o_rinnovo_patente</termIdentifier>
+    <caption>
+      <langstring language="it">Richiesta o rinnovo patente</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>registrazione_o_possesso_veicolo</termIdentifier>
+    <caption>
+      <langstring language="it">Registrazione o possesso veicolo</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>accesso_al_trasporto_pubblico</termIdentifier>
+    <caption>
+      <langstring language="it">Accesso al trasporto pubblico</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>compravendita_affitto_casa_edifici_terreni_costruzione_o_ristrutturazione_casa_edificio</termIdentifier>
+    <caption>
+      <langstring language="it">Compravendita/affitto casa/edifici/terreni, costruzione o ristrutturazione casa/edificio</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>cambio_di_residenza_domicilio</termIdentifier>
+    <caption>
+      <langstring language="it">Cambio di residenza/domicilio</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>richiesta_passaporto_visto_e_assistenza_viaggi_internazionali</termIdentifier>
+    <caption>
+      <langstring language="it">Richiesta passaporto, visto e assistenza viaggi internazionali</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>nascita_di_un_bambino_richiesta_adozioni</termIdentifier>
+    <caption>
+      <langstring language="it">Nascita di un bambino, richiesta adozioni</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>matrimonio_cambio_stato_civile</termIdentifier>
+    <caption>
+      <langstring language="it">Matrimonio e/o cambio stato civile</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>morte_ed_eredita</termIdentifier>
+    <caption>
+      <langstring language="it">Morte ed eredità</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>prenotazione_e_disdetta_visite_esami</termIdentifier>
+    <caption>
+      <langstring language="it">Prenotazione e disdetta visite/esami</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>denuncia_crimini</termIdentifier>
+    <caption>
+      <langstring language="it">Denuncia crimini</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>dichiarazione_dei_redditi_versamento_e_riscossione_tributi_imposte_e_contributi</termIdentifier>
+    <caption>
+      <langstring language="it">Dichiarazione dei redditi, versamento e riscossione tributi/imposte e contributi</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>accesso_luoghi_della_cultura</termIdentifier>
+    <caption>
+      <langstring language="it">Accesso luoghi della cultura</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>possesso_cura_smarrimento_animale_da_compagnia</termIdentifier>
+    <caption>
+      <langstring language="en" />
+      <langstring language="it">Possesso, cura, smarrimento animale da compagnia</langstring>
+    </caption>
+  </term>
+</vdex>

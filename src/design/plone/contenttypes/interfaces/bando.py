@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from collective import dexteritytextindexer
 from collective.volto.blocksfield.field import BlocksField
 from design.plone.contenttypes.interfaces import IDesignPloneContentType
+from plone.app.dexterity import textindexer
 from plone.app.event.base import default_timezone
 from plone.app.z3cform.widget import AjaxSelectFieldWidget
 from plone.app.z3cform.widget import DatetimeFieldWidget
@@ -11,7 +11,8 @@ from plone.autoform import directives as form
 from plone.supermodel import model
 from redturtle.bandi import bandiMessageFactory as _
 from redturtle.bandi import bandiMessageFactory as _rtbando
-from redturtle.bandi.interfaces.bandoSchema import IBandoSchema, getDefaultEnte
+from redturtle.bandi.interfaces.bandoSchema import getDefaultEnte
+from redturtle.bandi.interfaces.bandoSchema import IBandoSchema
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from z3c.form.browser.radio import RadioFieldWidget
 from z3c.relationfield.schema import RelationChoice
@@ -172,4 +173,4 @@ class IBandoAgidSchema(IBandoSchema, IDesignPloneContentType):
         fields=["area_responsabile", "ufficio_responsabile"],
     )
 
-    dexteritytextindexer.searchable("text")
+    textindexer.searchable("text")

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vdex xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      language="it"
+      orderSignificant="false"
+      profileType="hierarchicalTokenTerms"
+      xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd"
+>
+  <vocabName>
+    <langstring language="it">Licenze</langstring>
+  </vocabName>
+  <vocabIdentifier>tipologia_licenze</vocabIdentifier>
+  <term>
+    <termIdentifier>licenza_aperta</termIdentifier>
+    <caption>
+      <langstring language="it">Licenza aperta</langstring>
+    </caption>
+    <term>
+      <termIdentifier>pubblico_dominio</termIdentifier>
+      <caption>
+        <langstring language="it">Pubblico dominio</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>attribuzione</termIdentifier>
+      <caption>
+        <langstring language="it">Attribuzione</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>effetto_virale</termIdentifier>
+      <caption>
+        <langstring language="it">Effetto virale</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>condivisione</termIdentifier>
+      <caption>
+        <langstring language="it">condivisione allo stesso modo - copyleft non compatibile</langstring>
+      </caption>
+    </term>
+  </term>
+  <term>
+    <termIdentifier>non_aperta</termIdentifier>
+    <caption>
+      <langstring language="it">Non aperta</langstring>
+    </caption>
+    <term>
+      <termIdentifier>uso_non_commerciale</termIdentifier>
+      <caption>
+        <langstring language="it">Solo uso non commerciale</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>non_opere_derivate</termIdentifier>
+      <caption>
+        <langstring language="en" />
+        <langstring language="it">Non opere derivate</langstring>
+      </caption>
+    </term>
+  </term>
+  <term>
+    <termIdentifier>licenza_sconosciuta</termIdentifier>
+    <caption>
+      <langstring language="en" />
+      <langstring language="it">Licenza sconosciuta</langstring>
+    </caption>
+  </term>
+</vdex>

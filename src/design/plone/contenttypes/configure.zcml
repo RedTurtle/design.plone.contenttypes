@@ -8,11 +8,6 @@
 
   <i18n:registerTranslations directory="locales" />
 
-  <!--
-    Be careful if you use general includeDependencies, it can have sideffects!
-    Better import explicite packages or configurations ;)
-  -->
-  <!-- <includeDependencies package="." /> -->
   <include package="plone.app.caching" />
 
   <include file="permissions.zcml" />
@@ -23,6 +18,7 @@
   <include package=".events" />
   <include package=".indexers" />
   <include package=".restapi" />
+  <include package=".patches" />
   <include package=".upgrades" />
   <include package=".vocabularies" />
 
@@ -36,6 +32,15 @@
       />
 
   <genericsetup:registerProfile
+      name="taxonomy"
+      title="Design Plone: Content-types (behaviors)"
+      description="Registers taxonomies."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/behaviors"
+      post_handler=".setuphandlers.post_install_taxonomy"
+      />
+
+  <genericsetup:registerProfile
       name="uninstall"
       title="Design Plone: Content-types (uninstall)"
       description="Uninstalls the design.plone.contenttypes add-on."
@@ -43,12 +48,21 @@
       directory="profiles/uninstall"
       post_handler=".setuphandlers.uninstall"
       />
+
   <genericsetup:registerProfile
       name="to_3000"
       title="Design Plone: Content-types to 3000"
       description="Fix control panel of design.plone.contenttypes add-on."
       provides="Products.GenericSetup.interfaces.EXTENSION"
       directory="profiles/to_3000"
+      />
+
+  <genericsetup:registerProfile
+      name="fix_syndication"
+      title="Design Plone: Fix Syndication after Plone6 Migration"
+      description="After Plone6 migration syndication is broken"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/fix_syndication"
       />
 
   <utility
@@ -64,6 +78,14 @@
 
   <!-- provide interface to Venue-->
   <class class="design.plone.contenttypes.content.luogo.Venue">
+    <implements interface="design.plone.contenttypes.interfaces.IDesignPloneContentType" />
+  </class>
+
+  <!-- provide interface to News-->
+  <class class="plone.volto.content.FolderishNewsItem">
+    <implements interface="design.plone.contenttypes.interfaces.IDesignPloneContentType" />
+  </class>
+  <class class="plone.volto.content.FolderishEvent">
     <implements interface="design.plone.contenttypes.interfaces.IDesignPloneContentType" />
   </class>
 

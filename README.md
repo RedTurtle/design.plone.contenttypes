@@ -1,8 +1,16 @@
+[![Latest Version](https://img.shields.io/pypi/v/design.plone.contenttypes.svg)](https://pypi.python.org/pypi/design.plone.contenttypes/)
+[![Supported - Python Versions](https://img.shields.io/pypi/pyversions/design.plone.contenttypes.svg?style=plastic)](https://pypi.python.org/pypi/design.plone.contenttypes/)
+[![Number of PyPI downloads](https://img.shields.io/pypi/dm/design.plone.contenttypes.svg)](https://pypi.python.org/pypi/design.plone.contenttypes/)
+[![License](https://img.shields.io/pypi/l/design.plone.contenttypes.svg)](https://pypi.python.org/pypi/design.plone.contenttypes/)
+[![Tests](https://github.com/RedTurtle/design.plone.contenttypes/actions/workflows/tests.yml/badge.svg)](https://github.com/RedTurtle/design.plone.contenttypes/actions)
+[![Coverage](https://coveralls.io/repos/github/RedTurtle/design.plone.contenttypes/badge.svg?branch=main)](https://coveralls.io/github/RedTurtle/design.plone.contenttypes?branch=main)
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Design Plone Content-types](#design-plone-content-types)
 - [Features](#features)
+- [Compatibilità](#compatibilità)
 - [Tipi di contenuto](#tipi-di-contenuto)
   - [Elenco tipi implementati](#elenco-tipi-implementati)
   - [Bando](#bando)
@@ -22,10 +30,11 @@
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-2)
   - [Servizio](#servizio)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-3)
-  - [Unità Organizzativa](#unit%C3%A0-organizzativa)
+  - [Unità Organizzativa](#unità-organizzativa)
     - [Campi indicizzati nel SearchableText](#campi-indicizzati-nel-searchabletext-4)
 - [Pannello di controllo](#pannello-di-controllo)
 - [Gestione modulistica](#gestione-modulistica)
+- [Viste verifica contentuti](#viste-verifica-contentuti)
 - [Data di modifica](#data-di-modifica)
 - [Endpoint restapi](#endpoint-restapi)
   - [Customizzazione dati relation field](#customizzazione-dati-relation-field)
@@ -46,6 +55,12 @@ Pacchetto per la gestione dei content-type per un sito Agid con Plone.
 
 Installando questo pacchetto, si rendono disponibili diversi content-type per la
 gestione di un sito Agid con Plone e Volto.
+
+
+# Compatibilità
+
+- Plone 6.0, design.plone.policy 5.*, design.plone.contenttypes 6.*
+- Plone 5.2, design.plone.policy 4.*, design.plone.contenttypes 5.*
 
 # Tipi di contenuto
 
@@ -267,7 +282,7 @@ Ha 3 campi file: uno per il modulo principale, e gli altri due per eventuali for
 
 Le pagine argomento hanno i blocchi. plone.restapi ha un indexer per _SearchableText_ per poter indicizzare i blocchi.
 
-Questo va in conflitto con le personalizzazioni fatte con `collective.dexteritytextindexer` perché Plone prende come buono il primo
+Questo va in conflitto con le personalizzazioni fatte con `plone.app.dexterity.textindexer` perché Plone prende come buono il primo
 adapter di SearchableText che trova. Per ovviare a questo problema, abbiamo messo la behavior "volto.blocks" come ultima, in modo
 che venisse ignorato il suo indexer, e poi abbiamo registrato un adapter per `IDynamicTextIndexExtender` per replicare l'indicizzazione
 dei blocchi anche per le pagine argomento.
@@ -306,10 +321,8 @@ Alla creazione di una Persona, viene creata anche una struttura predefinita per 
 
 ### Campi indicizzati nel SearchableText
 
-- ruolo
 - competenze
 - deleghe
-- tipologia_persona
 - telefono
 - email
 - informazioni_di_contatto
@@ -361,11 +374,19 @@ Nel pannello di controllo "_Impostazioni Design Plone_" sono presenti diversi ca
 - Mostra la data di modifica
 
 A parte gli ultimi tre, gli altri campi sono tutti multilingua. I vocabolari che usano quei valori, ritornano solo i possibili valori a seconda della lingua selezionata dall'utente.
+
 # Gestione modulistica
 
 Agid prevede un tipo di contenuto **Documento** per gestire i moduli scaricabili.
 
 Abbiamo però sviluppato anche un contenuto chiamato **Cartella Modulistica** che ha il compito di raggruppare in modo logico più Documenti e mostrarli all'utente come faceva il vecchio prodotto **cciaa.modulistica**.
+
+# Viste verifica contentuti
+
+Viste di supporto per la verifica sulla compilazione dei contenuti secondo le regole Designers Italia.
+
+I link alle viste sono elencati alla pagina `https://nomesito.it/Plone/@@design-utils`.
+
 
 # Data di modifica
 
@@ -401,6 +422,10 @@ Endpoint ed expansion per la modulistica.
 Nei content-type CartellaModulistica, tra i vari expansion c'è anche `@modulistica_items`.
 Questo è utile per la vista di frontend, in quanto se richiamato, ritorna la struttura di dati da mostrare in visualizzazione.
 
+## @navigation
+
+Endpoint customizzato da plone.restapi per esporre anche il valore show_in_footer per decidere se disegnare o meno le colonne dinamiche nel footer.
+
 # Installazione
 
 Questo prodotto non è stato pensato per funzionare da solo, ma fa parte della suite "design.plone".
@@ -418,6 +443,11 @@ Per aggiornare le traduzioni, basta usare lo script `update_locales` dentro alla
 **N.B.: lo script va chiamato due volte perché al primo giro non aggiorna i file.**
 
 # Contribuisci
+
+Questo pacchetto usa pre-commit per cui prima di iniziare a sviluppare:
+- installa pre-commit come dipendenza del tuo ambiente di lavoro
+- fai *pre-commit install* per installare gli hook
+
 
 - Issue Tracker: https://github.com/redturtle/design.plone.contenttypes/issues
 - Codice sorgente: https://github.com/redturtle/design.plone.contenttypes

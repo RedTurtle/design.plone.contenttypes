@@ -1,10 +1,671 @@
 Changelog
 =========
 
-5.1.6 (unreleased)
+6.2.14 (unreleased)
+-------------------
+
+- Fix security problems for bandit.
+  [cekk]
+
+
+6.2.13 (2024-07-08)
+-------------------
+
+- Set `file_principale` field as primary, so we call @@download on the content, that file will be downloaded automatically.
+  [cekk]
+- Fix `to_7306`` upgrade-step to be more specific on types configuration.
+  [cekk]
+- Override listing.pt from plone.app.contenttypes due to error rendering event
+  [lucabel]
+
+
+6.2.12 (2024-06-24)
+-------------------
+
+- Fix problem with upgrade step to 7305
+  [lucabel]
+
+
+6.2.11 (2024-06-24)
+-------------------
+
+- Disallower other objs creation in Persona and Incarico ct.
+- Fix limit in query for service in ScadenziarioDayPost service
+  [eikichi18]
+
+
+6.2.10 (2024-06-11)
+-------------------
+
+- Add importi_viaggio_servizio field as block field in Incarico response
+  [eikichi18]
+- Add rassegna index to events
+  [lucabel]
+- Remove File from addable type in Servizio / modulistica folder. As stated
+  by AGID team we can't add File in this folder but link to modules in
+  "Documenti e Dati" section
+  [lucabel]
+
+6.2.9 (2024-05-21)
 ------------------
 
-- Nothing changed yet.
+- Add this folder "Altri Documenti" under "Persona pubblica"
+  [lucabel]
+- Code porting to work with both plone 6.0.10.x and 6.0.11
+  due to some core egg update
+  Code porting to work with the new plone.restapi 9.6.1 version
+  [lucabel]
+
+6.2.8 (2024-04-22)
+------------------
+
+- Add start metadata to event summary serialization;
+  useful when create event with children event: in items list we
+  have subevents with missing start date
+  [lucabel]
+
+
+6.2.7 (2024-04-22)
+------------------
+
+- Fix change_news_type view; Taxonomy doesn't index values not present in
+  the taxonomy vocabulary, so we had lot of old values not indexed and not listed
+  as available type to change.
+  [lucabel]
+- Do not break News serialzier if `tipologia_notizia` attribute is missing.
+  [cekk]
+
+
+6.2.6 (2024-04-18)
+------------------
+
+- improved check on relation.
+  [daniele]
+
+
+6.2.5 (2024-04-17)
+------------------
+
+- check-servizi: fixed check on relation title.
+  [daniele]
+
+
+6.2.4 (2024-04-16)
+------------------
+
+- converted some file and image fields as blob fields
+  [mamico]
+
+
+6.2.3 (2024-04-16)
+------------------
+
+- Image are no longer required in venue
+  [lucabel]
+
+
+6.2.2 (2024-03-19)
+------------------
+
+- @@check-servizi: provides also the full list of servizi.
+  [daniele]
+- UnitaOrganizzativa.assessore_riferimento title internationalize.
+  [folix-01]
+
+6.2.1 (2024-03-07)
+------------------
+
+- Added check for blocks field in check_luoghi view.
+  [eikichi18]
+
+
+6.2.0 (2024-03-06)
+------------------
+
+- Remove unused behavior (design.plone.contenttypes.behavior.geolocation_uo).
+  [cekk]
+- Standardize subfolders creations in events.
+  [cekk]
+- Do not return a fieldset if it has all fields hidden (maybe after a schema tweak).
+  [cekk]
+- Improve types test for their schema, required fields, fieldsets.
+  [cekk]
+- Add *exclude_from_search* indexer and behavior, and enable for Document and Folder.
+  [cekk]
+- Add custom adapter for IZCatalogCompatibleQuery to force all anonymous @search calls to skip items excluded from search.
+  [cekk]
+- Set *exclude_from_search* to True in all Documents/Folders automatically created in createSubfolders event handler,
+  and add an upgrade-step that fix already created ones.
+  [cekk]
+
+6.1.14 (2024-02-20)
+-------------------
+
+- Fix in @scadenziario endpoint: return future events if afterToday criteria is set.
+  [cekk]
+- Set base view to News Item, to do not break on Classic Plone.
+  [cekk]
+- Change description for field sede in UnitaOrganizzativa CT.
+- Fixed typo in update_note field description.
+  [eikichi18]
+
+
+6.1.13 (2024-02-08)
+-------------------
+
+- Handle missing `show_dynamic_folders_in_footer` in registry entry.
+  [cekk]
+
+
+6.1.12 (2024-02-06)
+-------------------
+
+- Remove un-needed commit in upgrade-step.
+  [cekk]
+
+
+6.1.11 (2024-01-29)
+-------------------
+
+- Added new indexer, catalog index and query operation for canale_digitale_link field of Servizio CT
+[deodorhunter]
+
+- Fixed script to update pdc with description
+  [eikichi18]
+- Add getObjSize info in File field serializer.
+  [cekk]
+- Add new flag in settings needed to choose to show or not auto-generated footer columns.
+  [cekk]
+- Customize @navigation endpoint to expose also the new flag for frontend.
+  [cekk]
+
+6.1.10 (2024-01-16)
+-------------------
+
+- Added description to PDC fields
+  [pnicolli]
+- Added upgrade step to update PDC fields description
+  [lucabel]
+- Added new widget for event luoghi_correlati
+  [pnicolli]
+- Added UID for all summary obj
+  [eikichi18]
+
+
+6.1.9 (2024-01-11)
+------------------
+
+- Add UID to UOJSONSummarySerializer
+  [eikichi18]
+
+
+6.1.8 (2023-12-22)
+------------------
+
+- Add behavior argomento to Link CT
+  [lucabel]
+- Removed maximumSelectionSize from all fields that had it greater than 0
+  [pnicolli]
+
+
+6.1.7 (2023-12-20)
+------------------
+
+- Improved "Check notizie" view adding a way to set "a cura di" field
+  [lucabel]
+- Fixed label for tassonomia_evento taxonomies.
+  [eikichi18]
+
+
+6.1.6 (2023-12-15)
+------------------
+
+- Improved "Buone pratiche" view for Event: checking both for relation with Venue and coordinates.
+  [daniele]
+
+
+6.1.5 (2023-12-13)
+------------------
+
+- Allow reorder of data grid fields.
+  [pnicolli]
+
+
+6.1.4 (2023-12-04)
+------------------
+
+- Fix check_persone. When there are no relation.
+  [mamico]
+
+
+6.1.3 (2023-11-28)
+------------------
+
+- "Buone pratiche" views: fixed check on Competenze field. Excluding expired events and news.
+  [daniele]
+
+6.1.2 (2023-11-27)
+------------------
+
+- Added utility views: @@check-notizie and @@download-check-notizie.
+  [daniele]
+- Fix event for obj parent update.
+  [eikichi18]
+
+- Added utility views: @@check-eventi and @@download-check-eventi.
+  [daniele]
+
+- Added utility views for Venue: @@check-luoghi and @@download-check-luoghi.
+  [daniele]
+
+- Added utility view for Documento:  @@check-documenti and @@download-check-documenti.
+  [daniele]
+
+- Added utils view for UO:  @@check-uo and @@download-check-uo.
+  [daniele]
+
+- Added utility views for Persona: @@check-persone and @@download-check-persone.
+  [daniele]
+
+6.1.1 (2023-11-21)
+------------------
+
+- Update default summary serializer to better handle geolocation information.
+  [lucabel]
+
+
+6.1.0 (2023-11-07)
+------------------
+
+- Optionally add image_scales and image_field in Summary serializer.
+  [mamico]
+
+- Add @@design-utils view that shows all available utility views.
+  [cekk]
+
+- Add user action that points to @@design-utils view.
+  [cekk]
+
+- Add @@export-incarichi view that allows to download a csv file with all Persona and their roles.
+  [cekk]
+
+- Add tipologia_bando to summary serializer.
+  [cekk]
+
+6.0.21 (2023-10-30)
+-------------------
+
+- Handle cost with empty text block in previous upgrade-step.
+  [cekk]
+
+
+6.0.20 (2023-10-30)
+-------------------
+
+- Add upgrade-step to set a default cost text for events.
+  [cekk]
+
+
+6.0.19 (2023-10-25)
+-------------------
+
+- Set event tickets cost as required field
+  [pnicolli]
+
+
+6.0.18 (2023-09-20)
+-------------------
+
+- Add permission check to solve problem accessing private resources with
+  anonymous user
+  [lucabel]
+
+
+6.0.17 (2023-09-06)
+-------------------
+
+- Added dates for incarico persona.
+  [deodorhuter]
+
+
+6.0.16 (2023-08-24)
+-------------------
+
+- chaged migration of compensi and importi_di_viaggio field on Incaricto ct
+  creation.
+  [eikichi18]
+- Fixed relation between person and uo.
+  [deodorhunter]
+
+
+6.0.15 (2023-07-19)
+-------------------
+
+- fix check_servizi handling "condizioni di servizio".
+  [lucabel]
+
+
+6.0.14 (2023-07-19)
+-------------------
+
+- Update check_servizi view to add service download
+- Add contact information to check_servizi view
+- Fix bug with "tempi e scadenze" error message
+  [lucabel]
+
+
+6.0.13 (2023-07-04)
+-------------------
+
+- Update check_servizi to skip private and expired services
+  [lucabel]
+
+6.0.12 (2023-07-03)
+-------------------
+
+- Add IDesignPloneContentType interface to News and Event to allow a correct
+  SearchableText indexing
+  [lucabel]
+
+
+6.0.11 (2023-06-20)
+-------------------
+
+- Added image_scales field in service of ScadenziarioDay
+- summary serializer to make it more roboust
+  [mamico]
+
+
+6.0.10 (2023-06-19)
+-------------------
+
+- remove preview_caption
+  [mamico]
+- removed required from persone_struttura field in uo
+  interface.
+  [eikichi18]
+
+
+6.0.9 (2023-05-25)
+------------------
+
+- Added time to start date in service of ScadenziarioDay.
+  [sabrina-bongiovanni]
+- Fix url in check_servizi
+  [mamico]
+
+6.0.8 (2023-05-04)
+------------------
+
+- Fix problem with Persona summary and deleted incarico object.
+  [lucabel]
+
+
+6.0.7 (2023-05-04)
+------------------
+
+- Fix check_servizi view and made optional canale_fisico in Servizio
+  [lucabel]
+
+
+6.0.6 (2023-04-28)
+------------------
+
+- Added images serialization to the summary serializer of the UO content type;
+  If both the image and preview image are present, the 'image_field' attribute
+  is forced to contain 'preview_image'.
+  [lucabel]
+
+6.0.5 (2023-04-28)
+------------------
+
+- Remove address, city, zip_code, nome_sede, title,
+  quartiere, circoscrizione, street from UO summary
+  serializer and add sede in thery place in the
+  UO summary serializer
+  [lucabel]
+- Re-add FileFieldViewModeSerializer accidentally deleted.
+  [cekk]
+- Fix broken tests.
+  [cekk]
+
+6.0.4 (2023-04-19)
+------------------
+
+- Remove redturtle.prenotazioni integration.
+  [cekk]
+- Fix syndication.
+  [lucabel]
+
+
+6.0.3 (2023-04-18)
+------------------
+
+- Change check_servizi making optional the check for
+  field "condizioni_di_servizio" and removing the check for
+  the "contact_info" field.
+  Import a fontawesome cdn in this view to show the "V" icon.
+  Change some minor style in the check_servizi view.
+  [lucabel]
+
+
+6.0.2 (2023-04-11)
+------------------
+
+- Fix condizioni_di_servizio field, no more required.
+  [eikichi18]
+
+
+6.0.1 (2023-04-06)
+------------------
+
+- Fix None type itereation attempt in relation field adapter
+  [foxtrot-dfm1]
+- Add serializer/deserializer for canale_digitale_link to handle internal/external links like remoteURL field.
+  [cekk]
+- Force canale_digitale_link return `url` widget in Servizio schema.
+  [cekk]
+- Do not purge allowed_content_types filter for Servizio.
+  [cekk]
+
+- Fix patch/post validations for required fields: do not return errors when sorting items.
+  [cekk]
+- Add "Atto di nomina" link in incarico summary serializer
+  [lucabel]
+
+6.0.0 (2023-03-23)
+------------------
+- improve upgrade step
+  [lucabel]
+
+6.0.0a22 (2023-03-07)
+---------------------
+
+- timeline_tempi_scadenze non più obbligatorio
+  [pnicolli]
+
+
+6.0.0a21 (2023-03-01)
+---------------------
+
+- Better handle default language in upgrade-step
+  [cekk]
+
+
+6.0.0a20 (2023-02-27)
+---------------------
+
+- Add a new upgrade step to rename "multimedia" in "immagini"
+  under an event and add the new "video" folder.
+  [lucabel]
+
+
+6.0.0a19 (2023-02-27)
+---------------------
+
+- Change event schema: "patrocinato da"  right now is a
+  rich text
+  [lucabel]
+
+
+6.0.0a18 (2023-02-22)
+---------------------
+
+- First release of check_service view; need to test on
+  a staging
+  [lucabel]
+
+
+6.0.0a17 (2023-02-20)
+---------------------
+
+- Start implement a view to check service for new data
+  [lucabel]
+- Improved check for taxonomy data.
+  [sabrina-bongiovanni]
+
+
+6.0.0a16 (2023-02-08)
+---------------------
+
+- Improved github action for automatic deploy.
+- Fixed tipologia_notizia in serializer.
+  [eikichi18]
+
+
+6.0.0a15 (2023-02-08)
+---------------------
+
+- Fixed tipologia_notizia in serializer.
+  [eikichi18]
+
+
+6.0.0a14 (2023-02-08)
+---------------------
+
+- Fixed design_italia_meta_type data in summary for News Item.
+  [eikichi18]
+
+
+6.0.0a13 (2023-02-06)
+---------------------
+
+- Fix field description
+  Fix bug with taxonomies for old contenttypes
+  Change field fieldset
+  [lucabel]
+
+
+6.0.0a12 (2023-02-06)
+---------------------
+
+- Cambiato descrizione tempi e scadenze
+  [lucabel]
+
+
+6.0.0a11 (2023-02-03)
+---------------------
+
+- Fix upgrade step.
+
+
+6.0.0a10 (2023-02-03)
+---------------------
+
+- Update some tickets to show or hide fields
+  in Servizo and UO.
+  Fix problems with taxonomies
+  upgrade steps to clean catalog
+  [lucabel]
+
+
+6.0.0a9 (2023-02-02)
+--------------------
+- New view 'change_news_type'
+  [foxtrot-dfm1]
+-  New view 'move_news_items'
+  [foxtrot-dfm1]
+
+
+6.0.0a8 (2023-01-23)
+--------------------
+
+- Fixed some field in event and news ct.
+- Add news argomenti_evento behavior for event.
+- Remove old argomenti behavior for news item.
+  [eikichi18]
+
+
+6.0.0a7 (2023-01-20)
+--------------------
+
+- Fix persona role handling: take the role from the connected incarico object
+  [lucabel]
+
+
+6.0.0a6 (2023-01-20)
+--------------------
+- various fixes
+- add Event summary serializer to get image information
+  also on parent
+- merge with last master update
+  [lucabel]
+
+
+6.0.0a5 (2023-01-19)
+--------------------
+
+- Fix patch for collective.taxonomy.
+  [eikichi18]
+
+
+6.0.0a4 (2023-01-19)
+--------------------
+
+- add image to event summary.
+  [lucabel]
+- fix datagrid field frontend widget declaration.
+  [roman]
+- removed unused field evento_genitore e appuntamenti from event ct.
+  [eikichi18]
+
+
+6.0.0a3 (2023-01-13)
+--------------------
+
+- Update upgrade steps to change types information
+  according to new AGID AI
+  [lucabel]
+
+
+6.0.0a2 (2023-01-12)
+--------------------
+
+- Fixed upgrade step
+- minor fix
+  [lucabel]
+
+
+6.0.0a1 (2023-01-12)
+--------------------
+
+- Remove collective.dexteritytextindexer dependency (it's in core).
+  [cekk]
+- Adjustments to the pnrr.
+  [deodorhunter, lucabel, eikichi18]
+
+5.1.7 (unreleased)
+------------------
+
+- Optional integration with redturtle.prenotazioni
+  [foxtrot-dfm1]
+- Update upgrade step after some more use case [lucabel]
+
+5.1.6 (2023-03-16)
+------------------
+
+- Enable plone.excludefromnavigation for Venue ct.
+  [cekk]
 
 
 5.1.5 (2023-02-15)

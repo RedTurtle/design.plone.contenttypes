@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from design.plone.contenttypes import _
 from collective.volto.blocksfield.field import BlocksField
+from design.plone.contenttypes import _
 from plone.namedfile import field
 from plone.supermodel import model
 from zope import schema
@@ -8,13 +8,6 @@ from zope import schema
 
 class IDataset(model.Schema):
     """Marker interface for Dataset"""
-
-    # TODO: aggiungere tassonomia e vocabolario rilevante fornito nelle linee guida  # noqa
-    temi = schema.Choice(
-        title=_("temi", default="Temi"),
-        vocabulary="design.plone.contenttypes.temi_dataset",
-        required=True,
-    )
 
     # TODO: identificativo dataset
 

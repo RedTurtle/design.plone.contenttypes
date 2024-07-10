@@ -1,37 +1,53 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<object name="Venue" meta_type="Dexterity FTI" i18n:domain="plone"
-   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
-<property name="title" i18n:translate="">Luogo</property>
-<property name="klass">design.plone.contenttypes.content.luogo.Venue</property>
-<property name="schema">collective.venue.interfaces.IVenue</property>
-<property name="allowed_content_types">
+<?xml version="1.0" encoding="utf-8"?>
+<object xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+        meta_type="Dexterity FTI"
+        name="Venue"
+        i18n:domain="plone"
+>
+  <property name="title"
+            i18n:translate=""
+  >Luogo</property>
+  <property name="klass">design.plone.contenttypes.content.luogo.Venue</property>
+  <property name="schema">collective.venue.interfaces.IVenue</property>
+  <property name="allowed_content_types">
     <element value="Folder" />
     <element value="Link" />
     <element value="Image" />
     <element value="File" />
- </property>
- <property name="behaviors" purge="True">
-  <element value="plone.app.content.interfaces.INameFromTitle"/>
-  <element value="plone.app.dexterity.behaviors.id.IShortName"/>
-  <element value="plone.app.dexterity.behaviors.metadata.IBasic"/>
-  <element value="plone.app.dexterity.behaviors.metadata.ICategorization"/>
-  <element value="plone.relateditems" />
-  <element value="plone.leadimage"/>
-  <element value="volto.preview_image" />
-  <element value="design.plone.contenttypes.behavior.contatti_venue"/>
-  <element value="design.plone.contenttypes.behavior.luogo"/>
-  <element value="design.plone.contenttypes.behavior.argomenti"/>
-  <element value="design.plone.contenttypes.behavior.address_venue"/>
-  <element value="design.plone.contenttypes.behavior.geolocation_venue"/>
-  <element value="design.plone.contenttypes.behavior.additional_help_infos"/>
-  <element value="collective.dexteritytextindexer"/>
-  <element value="plone.translatable"/>
-  <element value="kitconcept.seo"/>
-  <element value="plone.versioning"/>
-  <!-- remove unused behaviors -->
-  <element value="collective.address.behaviors.IContact" remove="True"/>
-  <element value="collective.address.behaviors.ISocial" remove="True"/>
-  <element value="design.plone.contenttypes.behavior.servizi_correlati" remove="True"/>
- </property>
+  </property>
+  <property name="behaviors"
+            purge="True"
+  >
+    <element value="plone.app.content.interfaces.INameFromTitle" />
+    <element value="plone.app.dexterity.behaviors.id.IShortName" />
+    <element value="plone.app.dexterity.behaviors.metadata.IBasic" />
+    <element value="plone.app.dexterity.behaviors.metadata.ICategorization" />
+    <element value="plone.excludefromnavigation" />
+    <element value="plone.relateditems" />
+    <element value="plone.leadimage" />
+    <element value="volto.preview_image" />
+    <element value="design.plone.contenttypes.behavior.contatti_venue" />
+    <element value="design.plone.contenttypes.behavior.luogo" />
+    <element value="design.plone.contenttypes.behavior.argomenti" />
+    <element value="design.plone.contenttypes.behavior.address_venue" />
+    <element value="design.plone.contenttypes.behavior.geolocation_venue" />
+    <element value="design.plone.contenttypes.behavior.additional_help_infos" />
+    <element value="design.plone.contenttypes.behavior.luoghi_correlati" />
+    <element value="plone.textindexer" />
+    <element value="plone.translatable" />
+    <element value="kitconcept.seo" />
+    <element value="plone.versioning" />
+    <element value="collective.taxonomy.generated.tipologia_luogo" />
+    <!-- remove unused behaviors -->
+    <element remove="True"
+             value="collective.address.behaviors.IContact"
+    />
+    <element remove="True"
+             value="collective.address.behaviors.ISocial"
+    />
+    <element remove="True"
+             value="design.plone.contenttypes.behavior.servizi_correlati"
+    />
+  </property>
 
 </object>

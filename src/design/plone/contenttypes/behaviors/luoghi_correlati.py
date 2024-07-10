@@ -5,9 +5,11 @@ from plone.autoform import directives as form
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.dexterity.interfaces import IDexterityContent
 from plone.supermodel import model
-from z3c.relationfield.schema import RelationChoice, RelationList
+from z3c.relationfield.schema import RelationChoice
+from z3c.relationfield.schema import RelationList
 from zope.component import adapter
-from zope.interface import provider, implementer
+from zope.interface import implementer
+from zope.interface import provider
 
 
 # TODO: merge with NEWS
@@ -28,7 +30,6 @@ class ILuoghiCorrelatiSchema(model.Schema):
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "selectableTypes": ["Venue"],
-            "maximumSelectionSize": 50,
         },
     )
 
@@ -64,7 +65,9 @@ class ILuoghiCorrelatiEvento(model.Schema):
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
             "selectableTypes": ["Venue"],
-            "maximumSelectionSize": 50,
+        },
+        frontendOptions={
+            "widget": "luoghi_correlati_evento",
         },
     )
 

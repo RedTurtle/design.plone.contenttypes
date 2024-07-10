@@ -25,16 +25,46 @@ class IDocumento(model.Schema, IDesignPloneContentType):
         required=False,
     )
 
-    tipologia_documento = schema.Choice(
-        title=_("tipologia_documento_label", default="Tipologia del documento"),
-        description=_(
-            "tipologia_documento_help",
-            default="Seleziona la tipologia del documento.",
+    protocollo = schema.TextLine(
+        title=_(
+            "protocollo_documento_label",
+            default="Numero di protocollo",
         ),
-        required=True,
-        vocabulary="design.plone.vocabularies.tipologie_documento",
+        description=_(
+            "protocollo_documento_help",
+            default="Il numero di protocollo del documento.",
+        ),
+        max_length=255,
+        required=False,
     )
-
+    data_protocollo = schema.Date(
+        title=_("data_protocollo", default="Data del protocollo"),
+        required=False,
+    )
+    # descrizione = BlocksField(
+    #     title=_("descrizione_label", default="Descrizione"),
+    #     description=_(
+    #         "descrizione_help",
+    #         default="L'oggetto del documento spiegato in modo semplice per il cittadino",  # noqa
+    #     ),
+    #     required=True,
+    # )
+    # url = schema.URI(
+    #     title=_("url_documento_label", default="Link al documento"),
+    #     description=_(
+    #         "url_documento_help",
+    #         default="Link al documento vero e proprio, in un formato scaricabile attraverso una URL.",  # noqa
+    #     ),
+    #     required=False,
+    # )
+    # file_correlato = field.NamedBlobFile(
+    #     title=_("file_correlato_label", default="File correlato"),
+    #     description=_(
+    #         "file_correlato_help",
+    #         default="Se non è presente un link ad una risorsa esterna, ricordarsi di caricare l'allegato vero e proprio",  # noqa
+    #     ),
+    #     required=False,
+    # )
     ufficio_responsabile = RelationList(
         title=_(
             "ufficio_responsabile_documento_label",
@@ -44,7 +74,7 @@ class IDocumento(model.Schema, IDesignPloneContentType):
             "ufficio_responsabile_documento_help",
             default="Seleziona l'ufficio responsabile di questo documento.",
         ),
-        required=False,
+        required=True,
         default=[],
         value_type=RelationChoice(
             title=_("Ufficio responsabile"),
@@ -82,7 +112,14 @@ class IDocumento(model.Schema, IDesignPloneContentType):
         required=False,
         default=[],
     )
-
+    formati_disponibili = BlocksField(
+        title=_("formati_disponibili_label", default="Formati disponibili"),
+        description=_(
+            "formati_disponibili_help",
+            default="Lista dei formati in cui è disponibile il documento",
+        ),
+        required=True,
+    )
     licenza_distribuzione = schema.TextLine(
         title=_("licenza_distribuzione_label", default="Licenza di distribuzione"),
         description=_(
@@ -104,6 +141,50 @@ class IDocumento(model.Schema, IDesignPloneContentType):
         ),
         required=False,
     )
+
+    dataset = RelationList(
+        title=_(
+            "dataset_label",
+            default="Dataset collegati",
+        ),
+        description=_(
+            "dataset_collegati_help",
+            default="Schede dataset collegate al documento",
+        ),
+        default=[],
+        required=False,
+        value_type=RelationChoice(vocabulary="plone.app.vocabularies.Catalog"),
+    )
+
+    # custom widgets
+    form.widget(
+        "dataset",
+        RelatedItemsFieldWidget,
+        vocabulary="plone.app.vocabularies.Catalog",
+        pattern_options={"selectableTypes": ["Dataset"]},
+    )
+
+    # servizi = RelationList(
+    #     title=_(
+    #         "servizi_label",
+    #         default="Servizi collegati",
+    #     ),
+    #     description=_(
+    #         "servizi_help",
+    #         default="Servizi collegati al documento",
+    #     ),
+    #     default=[],
+    #     required=False,
+    #     value_type=RelationChoice(vocabulary="plone.app.vocabularies.Catalog"),
+    # )
+
+    # # custom widgets
+    # form.widget(
+    #     "servizi",
+    #     RelatedItemsFieldWidget,
+    #     vocabulary="plone.app.vocabularies.Catalog",
+    #     pattern_options={"selectableTypes": ["Servizio"]},
+    # )
 
     documenti_allegati = RelationList(
         title=_(
@@ -136,7 +217,6 @@ class IDocumento(model.Schema, IDesignPloneContentType):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "maximumSelectionSize": 10,
             "selectableTypes": ["Persona", "UnitaOrganizzativa"],
         },
     )
@@ -153,7 +233,7 @@ class IDocumento(model.Schema, IDesignPloneContentType):
         "documenti_allegati",
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
-        pattern_options={"maximumSelectionSize": 10, "selectableTypes": ["Documento"]},
+        pattern_options={"selectableTypes": ["Documento"]},
     )
 
     #  custom fieldsets
@@ -180,7 +260,9 @@ class IDocumento(model.Schema, IDesignPloneContentType):
     )
     form.order_after(area_responsabile="ufficio_responsabile")
     form.order_after(autori="area_responsabile")
-    form.order_after(licenza_distribuzione="autori")
+    form.order_after(
+        licenza_distribuzione="IDescrizioneEstesaDocumento.descrizione_estesa"
+    )
     form.order_after(
         riferimenti_normativi="IAdditionalHelpInfos.ulteriori_informazioni"
     )

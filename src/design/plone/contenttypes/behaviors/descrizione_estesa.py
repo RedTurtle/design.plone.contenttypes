@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
-from collective import dexteritytextindexer
+from collective.volto.blocksfield.field import BlocksField
 from design.plone.contenttypes import _
 from design.plone.contenttypes.interfaces.documento import IDocumento
-from collective.volto.blocksfield.field import BlocksField
+from plone.app.dexterity import textindexer
 from plone.autoform import directives as form
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.dexterity.interfaces import IDexterityContent
 from plone.supermodel import model
 from zope.component import adapter
-from zope.interface import provider, implementer
+from zope.interface import implementer
+from zope.interface import provider
 
 
 class IDescrizioneEstesaSchema(model.Schema):
@@ -21,7 +22,7 @@ class IDescrizioneEstesaSchema(model.Schema):
         ),
     )
 
-    dexteritytextindexer.searchable("descrizione_estesa")
+    textindexer.searchable("descrizione_estesa")
 
 
 @provider(IFormFieldProvider)
@@ -32,8 +33,19 @@ class IDescrizioneEstesa(IDescrizioneEstesaSchema):
 
 
 @provider(IFormFieldProvider)
-class IDescrizioneEstesaServizio(IDescrizioneEstesaSchema):
+class IDescrizioneEstesaServizio(model.Schema):
     """ """
+
+    descrizione_estesa = BlocksField(
+        title=_("descrizione_estesa", default="Descrizione estesa"),
+        required=False,
+        description=_(
+            "descrizione_estesa_help",
+            default="Descrizione dettagliata e completa.",
+        ),
+    )
+
+    textindexer.searchable("descrizione_estesa")
 
     model.fieldset(
         "cose",
@@ -45,6 +57,15 @@ class IDescrizioneEstesaServizio(IDescrizioneEstesaSchema):
 @provider(IFormFieldProvider)
 class IDescrizioneEstesaDocumento(IDescrizioneEstesaSchema):
     """ """
+
+    descrizione_estesa = BlocksField(
+        title=_("descrizione_estesa", default="Descrizione estesa"),
+        required=False,
+        description=_(
+            "descrizione_estesa_help",
+            default="Descrizione dettagliata e completa.",
+        ),
+    )
 
     model.fieldset(
         "descrizione",

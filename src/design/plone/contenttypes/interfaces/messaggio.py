@@ -44,15 +44,7 @@ class IMessaggio(model.Schema):
         required=False,
     )
 
-    # TODO: inserire tassonomia contenente le tipologie di documenti
-    tipologia_documento = schema.Choice(
-        title=_("tipologia_documento", default="Tipologia documento"),
-        required=False,
-        vocabulary="design.plone.contenttypes.Mockup",
-        missing_value=(),
-    )
-
-    documenti_allegati = field.NamedFile(
+    documenti_allegati = field.NamedBlobFile(
         title=_("documenti_allegati", default="Documenti allegati"),
         required=False,
     )

@@ -1,0 +1,18 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:monkey="http://namespaces.plone.org/monkey"
+    i18n_domain="design.plone.contenttypes"
+    >
+
+  <include package="collective.monkeypatcher" />
+
+  <monkey:patch
+      original="__call__"
+      replacement=".patches.eea_api_taxonomy_taxonomy_call"
+      class="collective.taxonomy.utility.Taxonomy"
+      description="Patch Taxonomy class caller"
+      order="2000"
+      preserveOriginal="true"
+      />
+
+</configure>

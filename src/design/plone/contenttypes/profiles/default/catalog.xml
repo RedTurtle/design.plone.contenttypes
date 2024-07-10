@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <object name="portal_catalog" meta_type="Plone Catalog Tool">
  <index name="news_people" meta_type="KeywordIndex">
   <indexed_attr value="news_people"/>
@@ -18,6 +19,9 @@
 <index name="service_venue" meta_type="KeywordIndex">
   <indexed_attr value="service_venue"/>
  </index>
+<index name="canale_digitale_link" meta_type="BooleanIndex">
+  <indexed_attr value="canale_digitale_link"/>
+ </index>
  <index name="tipologia_notizia" meta_type="FieldIndex">
   <indexed_attr value="tipologia_notizia"/>
  </index>
@@ -28,7 +32,7 @@
     <indexed_attr value="tassonomia_argomenti_uid"/>
  </index>
  <index name="tipologia_documento" meta_type="KeywordIndex">
-  <indexed_attr value="tipologia_documento"/> 
+  <indexed_attr value="tipologia_documento"/>
  </index>
  <index name="ufficio_responsabile" meta_type="KeywordIndex">
   <indexed_attr value="ufficio_responsabile"/>
@@ -51,24 +55,39 @@
  <index name="data_conclusione_incarico" meta_type="DateIndex">
   <indexed_attr value="data_conclusione_incarico"/>
  </index>
+ <index name="exclude_from_search" meta_type="BooleanIndex">
+    <indexed_attr value="exclude_from_search"/>
+ </index>
+ <index name="rassegna" meta_type="BooleanIndex">
+    <indexed_attr value="rassegna"/>
+ </index>
 
- <!-- metadata -->
- <column value="tipologia_notizia"/>
- <column value="tipologia_documento"/>
- <column value="tassonomia_argomenti"/>
- <column value="event_location"/>
- <column value="Subject_bando"/>
- <column value="ufficio_responsabile_bando"/>
- <column value="ruolo"/>
- <column value="data_conclusione_incarico"/>
- <column value="parent"/>
- <column value="ente_bando"/>
- <column value="icona"/>
- <column value="update_note"/>
+  <!-- metadata -->
+  <column value="tipologia_notizia" />
+  <column value="tipologia_documento" />
+  <column value="tassonomia_argomenti" />
+  <column value="event_location" />
+  <column value="Subject_bando" />
+  <column value="ufficio_responsabile_bando" />
+  <column value="data_conclusione_incarico" />
+  <column value="parent" />
+  <column value="ente_bando" />
+  <column value="icona" />
+  <column value="update_note" />
+  <column value="rassegna" />
 
- <!-- cleanup -->
- <index name="argomenti_correlati" remove="True" />
- <column value="argomenti_correlati" remove="True" />
- <index name="argomenti" remove="True" />
- <column value="argomenti" remove="True" />
+  <!-- cleanup -->
+  <index name="argomenti_correlati"
+         remove="True"
+  />
+  <column remove="True"
+          value="argomenti_correlati"
+  />
+  <index name="argomenti"
+         remove="True"
+  />
+  <column remove="True"
+          value="argomenti"
+  />
+
 </object>

@@ -1,23 +1,34 @@
-<?xml version="1.0"?>
-<object name="Bando" meta_type="Dexterity FTI" i18n:domain="plone"
-   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
- <property name="title" i18n:translate="">Bando</property>
+<?xml version="1.0" encoding="utf-8"?>
+<object xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+        meta_type="Dexterity FTI"
+        name="Bando"
+        i18n:domain="plone"
+>
+  <property name="title"
+            i18n:translate=""
+  >Bando</property>
   <property name="allowed_content_types">
-  <element value="Bando Folder Deepening" />
- </property>
- <property name="behaviors" purge="False">
-    <element value="design.plone.contenttypes.behavior.argomenti_bando"/>
-    <element value="collective.dexteritytextindexer"/>
-    <element value="plone.translatable"/>
-    <element value="design.plone.contenttypes.behavior.servizi_correlati" remove="True"/>
-    <element value="plone.richtext" remove="True" />
-    <element value="kitconcept.seo"/>
-    <element value="design.plone.contenttypes.behavior.update_note"/>
+    <element value="Bando Folder Deepening" />
+  </property>
+  <property name="behaviors"
+            purge="False"
+  >
+    <element value="design.plone.contenttypes.behavior.argomenti_bando" />
+    <element value="plone.textindexer" />
+    <element value="plone.translatable" />
+    <element remove="True"
+             value="design.plone.contenttypes.behavior.servizi_correlati"
+    />
+    <element remove="True"
+             value="plone.richtext"
+    />
+    <element value="kitconcept.seo" />
+    <element value="design.plone.contenttypes.behavior.update_note" />
     <element value="volto.preview_image" />
- </property>
- <property name="schema">design.plone.contenttypes.interfaces.bando.IBandoAgidSchema</property>
- <property name="default_view">view</property>
- <property name="view_methods">
-  <element value="view" />
- </property>
+  </property>
+  <property name="schema">design.plone.contenttypes.interfaces.bando.IBandoAgidSchema</property>
+  <property name="default_view">view</property>
+  <property name="view_methods">
+    <element value="view" />
+  </property>
 </object>

@@ -1,0 +1,100 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      xml:lang="en"
+      i18n:domain="design.plone.contenttypes"
+>
+
+  <body>
+    <metal:content-title fill-slot="content-title">
+      <h1 i18n:translate="">Viste di utility per Design Plone Contenttypes</h1>
+    </metal:content-title>
+    <metal:content-description fill-slot="content-description"
+                               i18n:translate=""
+    >
+      Una raccolta di utility per i contenuti agid
+    </metal:content-description>
+    <metal:content-core fill-slot="content-core">
+      <div>
+        <h3>Content-types</h3>
+        <ul class="list-group">
+          <li class="list-group-item">
+            <a href="${context/portal_url}/change_news_type">Cambia la Tipologia Notizia</a>
+            <p class="discreet">
+              Questo tool viene usato per cambiare il valore del campo 'Tipologia Notizia' in tutte le notizie che hanno il valore del campo selezionato. Fa anche il giro su tutti i blocchi elenco.
+            </p>
+          </li>
+          <li class="list-group-item">
+            <a href="${context/portal_url}/export-incarichi">Export incarichi</a>
+            <p class="discreet">
+              Scarica un csv con la lista delle persone del sito e relativi incarichi.
+            </p>
+          </li>
+          <li class="list-group-item">
+            <a href="${context/portal_url}/check-servizi">Check servizi</a>
+            <p class="discreet">
+              Verifica dello stato dei servizi.
+            </p>
+          </li>
+          <li class="list-group-item">
+            <a href="${context/portal_url}/check-notizie">Check notizie</a>
+            <p class="discreet">
+              Verifica dello stato delle notizie.
+            </p>
+          </li>
+          <li class="list-group-item">
+            <a href="${context/portal_url}/check-eventi">Check eventi</a>
+            <p class="discreet">
+              Verifica dello stato degli eventi.
+            </p>
+          </li>
+          <li class="list-group-item">
+            <a href="${context/portal_url}/check-luoghi">Check luoghi</a>
+            <p class="discreet">
+              Verifica dello stato dei luoghi.
+            </p>
+          </li >
+          <li class="list-group-item">
+            <a href="${context/portal_url}/check-documenti">Check documenti</a>
+            <p class="discreet">
+              Verifica dello stato dei documenti.
+            </p>
+          </li>
+          <li class="list-group-item">
+            <a href="${context/portal_url}/check-uo">Check unità organizzative</a>
+            <p class="discreet">
+              Verifica dello stato delle UO.
+            </p>
+          </li>
+          <li class="list-group-item">
+            <a href="${context/portal_url}/check-persone">Check persone</a>
+            <p class="discreet">
+              Verifica dello stato delle persone.
+            </p>
+          </li>
+        </ul>
+      </div>
+      <br />
+      <div>
+        <h3>Redturtle Volto</h3>
+        <ul class="list-group">
+          <li class="list-group-item">
+            <a href="${context/portal_url}/fix-links">Fix links</a>
+            <p class="discreet">
+              Controlla e corregge i link interni nei blocchi.
+            </p>
+          </li>
+          <li class="list-group-item">
+            <a href="${context/portal_url}/find-blocks">Find blocks</a>
+            <p class="discreet">
+              Permette di trovare i contenuti che hanno un determinato blocco.
+            </p>
+          </li>
+      </div>
+    </metal:content-core>
+  </body>
+
+</html>

@@ -16,7 +16,7 @@ long_description = "\n\n".join(
 
 setup(
     name="design.plone.contenttypes",
-    version="5.1.6.dev0",
+    version="6.2.14.dev0",
     description="DesignItalia contenty types",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -26,11 +26,12 @@ setup(
         "Environment :: Web Environment",
         "Framework :: Plone",
         "Framework :: Plone :: Addon",
-        "Framework :: Plone :: 5.2",
+        "Framework :: Plone :: 6.0",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 2.7",
-        "Programming Language :: Python :: 3.6",
-        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
         "Operating System :: OS Independent",
         "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
     ],
@@ -40,9 +41,8 @@ setup(
     url="https://github.com/collective/design.plone.contenttypes",
     project_urls={
         "PyPI": "https://pypi.python.org/pypi/design.plone.contenttypes",
-        "Source": "https://github.com/collective/design.plone.contenttypes",
-        "Tracker": "https://github.com/collective/design.plone.contenttypes/issues",
-        # 'Documentation': 'https://design.plone.contenttypes.readthedocs.io/en/latest/',
+        "Source": "https://github.com/RedTurtle/design.plone.contenttypes",
+        "Tracker": "https://github.com/RedTurtle/design.plone.contenttypes/issues",
     },
     license="GPL version 2",
     packages=find_packages("src", exclude=["ez_setup"]),
@@ -50,20 +50,24 @@ setup(
     package_dir={"": "src"},
     include_package_data=True,
     zip_safe=False,
-    python_requires=">=3.7",
+    python_requires=">=3.8",
     install_requires=[
         "setuptools",
         # -*- Extra requirements: -*-
         "z3c.jbot",
         "plone.api>=1.8.4",
-        "plone.app.dexterity",
-        "collective.dexteritytextindexer",
+        "plone.app.dexterity>2.6.9",
         "collective.venue[geolocation]",
         "collective.volto.blocksfield",
+        "collective.z3cform.datagridfield",
         "plone.formwidget.geolocation",
-        "redturtle.volto",
+        "redturtle.volto>=5.0.0",
         "redturtle.bandi",
         "z3c.unconfigure",
+        "plone.restapi",
+        "eea.api.taxonomy",
+        "openpyxl",
+        "collective.volto.enhancedlinks",
     ],
     extras_require={
         "test": [
@@ -76,7 +80,7 @@ setup(
             "plone.app.contenttypes",
             "plone.app.robotframework[debug]",
             "collective.MockMailHost",
-        ]
+        ],
     },
     entry_points="""
     [z3c.autoinclude.plugin]

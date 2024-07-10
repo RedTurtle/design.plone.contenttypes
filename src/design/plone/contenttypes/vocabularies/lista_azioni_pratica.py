@@ -32,6 +32,7 @@ class ListaAzioniPratica(object):
             VocabItem("informare", _("Informare")),
             VocabItem("accettare", _("Accettare")),
         ]
+
         # Fix context if you are using the vocabulary in DataGridField.
         # See https://github.com/collective/collective.z3cform.datagridfield/issues/31:  # NOQA: 501
         if not IDexterityContent.providedBy(context):

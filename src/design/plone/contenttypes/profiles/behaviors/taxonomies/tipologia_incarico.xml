@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vdex xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      language="it"
+      orderSignificant="false"
+      profileType="hierarchicalTokenTerms"
+      xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd"
+>
+  <vocabName>
+    <langstring language="it">Tipo di incarico</langstring>
+  </vocabName>
+  <vocabIdentifier>tipologia_incarico</vocabIdentifier>
+  <term>
+    <termIdentifier>politico</termIdentifier>
+    <caption>
+      <langstring language="it">Politico</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>amministrativo</termIdentifier>
+    <caption>
+      <langstring language="it">Amministrativo</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>altro</termIdentifier>
+    <caption>
+      <langstring language="en" />
+      <langstring language="it">Altro</langstring>
+    </caption>
+  </term>
+</vdex>

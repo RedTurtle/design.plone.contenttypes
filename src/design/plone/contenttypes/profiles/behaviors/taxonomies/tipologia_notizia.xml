@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vdex xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      language="it"
+      orderSignificant="false"
+      profileType="hierarchicalTokenTerms"
+      xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd"
+>
+  <vocabName>
+    <langstring language="it">Tipologia notizia</langstring>
+  </vocabName>
+  <vocabIdentifier>tipologia_notizia</vocabIdentifier>
+  <term>
+    <termIdentifier>notizia</termIdentifier>
+    <caption>
+      <langstring language="it">Notizia</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>comunicato_stampa</termIdentifier>
+    <caption>
+      <langstring language="it">Comunicato (stampa)</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>avviso</termIdentifier>
+    <caption>
+      <langstring language="it">Avviso</langstring>
+    </caption>
+  </term>
+</vdex>

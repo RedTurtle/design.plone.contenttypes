@@ -1,18 +1,30 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<object name="Event" meta_type="Dexterity FTI" i18n:domain="plone" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
-<property name="global_allow">True</property>
-<property name="allowed_content_types" purge="False">
-    <element value="Event"/>
+<?xml version="1.0" encoding="utf-8"?>
+<object xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+        meta_type="Dexterity FTI"
+        name="Event"
+        i18n:domain="plone"
+>
+  <property name="global_allow">True</property>
+  <property name="allowed_content_types"
+            purge="False"
+  >
+    <element value="Event" />
     <element value="Document" />
     <element value="Image" />
     <element value="File" />
 
- </property>
-  <property name="behaviors" purge="False">
+  </property>
+
+  <property name="behaviors"
+            purge="False"
+  >
     <element value="plone.eventbasic" />
     <element value="plone.leadimage" />
     <element value="volto.preview_image" />
-    <element value="design.plone.contenttypes.behavior.argomenti" />
+    <element remove="True"
+             value="design.plone.contenttypes.behavior.argomenti"
+    />
+    <element value="design.plone.contenttypes.behavior.argomenti_evento" />
     <element value="plone.eventrecurrence" />
     <element value="design.plone.contenttypes.behavior.additional_help_infos" />
     <element value="design.plone.contenttypes.behavior.evento" />
@@ -20,6 +32,7 @@
     <element value="design.plone.contenttypes.behavior.address_event" />
     <element value="design.plone.contenttypes.behavior.geolocation_event" />
     <element value="design.plone.contenttypes.behavior.strutture_correlate" />
+    <element value="design.plone.contenttypes.behavior.contatti_event" />
     <element value="plone.dublincore" />
     <element value="plone.namefromtitle" />
     <element value="plone.allowdiscussion" />
@@ -29,15 +42,28 @@
     <element value="plone.versioning" />
     <element value="plone.locking" />
     <element value="plone.constraintypes" />
-    <element value="collective.dexteritytextindexer"/>
-    <element value="plone.translatable"/>
-    <element value="kitconcept.seo"/>
+    <element value="plone.textindexer" />
+    <element value="plone.translatable" />
+    <element value="kitconcept.seo" />
+    <element value="collective.taxonomy.generated.tipologia_evento" />
     <!-- remove unused behaviors -->
-    <element value="plone.eventlocation" remove="True" />
-    <element value="plone.eventattendees" remove="True" />
-    <element value="plone.eventcontact" remove="True" />
-    <element value="collective.venue.behaviors.ILocation" remove="True" />
-    <element value="collective.venue.behaviors.IOrganizer" remove="True" />
-    <element value="volto.blocks" remove="True" />
+    <element remove="True"
+             value="plone.eventlocation"
+    />
+    <element remove="True"
+             value="plone.eventattendees"
+    />
+    <element remove="True"
+             value="plone.eventcontact"
+    />
+    <element remove="True"
+             value="collective.venue.behaviors.ILocation"
+    />
+    <element remove="True"
+             value="collective.venue.behaviors.IOrganizer"
+    />
+    <element remove="True"
+             value="volto.blocks"
+    />
   </property>
 </object>
