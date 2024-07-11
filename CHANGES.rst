@@ -6,14 +6,14 @@ Changelog
 
 - Fix security problems for bandit.
   [cekk]
+- Fix `to_7306`` upgrade-step to be more specific on types configuration.
+  [cekk]
 
 
 6.2.13 (2024-07-08)
 -------------------
 
 - Set `file_principale` field as primary, so we call @@download on the content, that file will be downloaded automatically.
-  [cekk]
-- Fix `to_7306`` upgrade-step to be more specific on types configuration.
   [cekk]
 - Override listing.pt from plone.app.contenttypes due to error rendering event
   [lucabel]
