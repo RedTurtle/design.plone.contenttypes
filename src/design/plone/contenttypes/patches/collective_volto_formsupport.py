@@ -143,11 +143,36 @@ def reply(self):
     return {"data": data}
 
 
+def store_data(self):
+    store = getMultiAdapter((self.context, self.request), IFormDataStore)
+    data = {"form_data": self.filter_parameters()}
+
+    res = store.add(data=data)
+    if not res:
+        raise BadRequest("Unable to store data")
+
+    data.update(
+        {
+            "waiting_list": self.submit_limit is not None
+            and -1 < self.submit_limit < self.count_data()
+        }
+    )
+
+    return data
+
+
+def count_data(self):
+    store = getMultiAdapter((self.context, self.request), IFormDataStore)
+    return store.count()
+
+
 def patch_SubmitPost_reply():
     logger.info(
         "Patch reply method of class SubmitPost from collective.volto.formsupport"
     )
     SubmitPost.reply = reply
+    SubmitPost.store_data = store_data
+    SubmitPost.count_data = count_data
 
 
 def add(self, data):
