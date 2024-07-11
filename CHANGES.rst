@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.2.14 (unreleased)
+6.2.14 (2024-07-11)
 -------------------
 
 - Fix security problems for bandit.
