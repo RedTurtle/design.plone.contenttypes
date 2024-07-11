@@ -4,7 +4,10 @@ Changelog
 6.2.15 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Added support for field limit that limits form submission and the exceeding ones are added to a waiting list.
+  [eikichi18]
+- Added support to make one or more fields unique.
+  [eikichi18]
 
 
 6.2.14 (2024-07-11)
