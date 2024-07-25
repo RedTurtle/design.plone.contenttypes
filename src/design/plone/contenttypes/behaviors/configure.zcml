@@ -39,6 +39,14 @@
       />
 
   <plone:behavior
+      name="design.plone.contenttypes.behavior.news_base"
+      title="Metadati news base (senza descrizione_estesa)"
+      description="Adds fields."
+      provides=".news_additional_fields.INewsAdditionalFieldsBase"
+      marker=".news_additional_fields.INewsAdditionalFieldsBase"
+      />
+
+  <plone:behavior
       name="design.plone.contenttypes.behavior.argomenti"
       title="Argomenti"
       description="Tassonomia argomenti"
