@@ -16,16 +16,7 @@ from zope.interface import provider
 
 
 @provider(IFormFieldProvider)
-class INewsAdditionalFields(model.Schema):
-    descrizione_estesa = BlocksField(
-        title=_("descrizione_estesa", default="Descrizione estesa"),
-        required=True,
-        description=_(
-            "descrizione_estesa_help",
-            default="Descrizione dettagliata e completa.",
-        ),
-    )
-
+class INewsAdditionalFieldsBase(model.Schema):
     numero_progressivo_cs = schema.TextLine(
         title=_(
             "numero_progressivo_cs_label",
@@ -121,10 +112,22 @@ class INewsAdditionalFields(model.Schema):
         fields=["notizie_correlate"],
     )
     # custom fieldsets and order
-    form.order_before(descrizione_estesa="ILeadImageBehavior.image")
     form.order_before(numero_progressivo_cs="ILeadImageBehavior.image")
     form.order_before(a_cura_di="ILeadImageBehavior.image")
 
+
+@provider(IFormFieldProvider)
+class INewsAdditionalFields(INewsAdditionalFieldsBase):
+    descrizione_estesa = BlocksField(
+        title=_("descrizione_estesa", default="Descrizione estesa"),
+        required=True,
+        description=_(
+            "descrizione_estesa_help",
+            default="Descrizione dettagliata e completa.",
+        ),
+    )
+
+    form.order_before(descrizione_estesa="ILeadImageBehavior.image")
     textindexer.searchable("descrizione_estesa")
 
 
