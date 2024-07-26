@@ -6,6 +6,8 @@ Changelog
 
 - Add design.plone.contenttypes.behavior.news_base behavior (news metadata, without blocks)
   [mamico]
+- Add folder creation (multimedia + allegati) for "ComunicatiStampa" CT (if exists)
+  [mamico]
 
 
 6.2.14 (2024-07-11)
