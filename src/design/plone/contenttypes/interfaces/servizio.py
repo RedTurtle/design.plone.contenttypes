@@ -314,7 +314,7 @@ class IServizio(model.Schema, IDesignPloneContentType):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "maximumSelectionSize": 10,
+            "maximumSelectionSize": 60,
             "selectableTypes": ["Venue", "UnitaOrganizzativa"],
         },
     )
