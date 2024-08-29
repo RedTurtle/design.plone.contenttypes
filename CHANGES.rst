@@ -5,7 +5,7 @@ Changelog
 5.1.14 (unreleased)
 -------------------
 
-- Updated max limit in "dove_rivolgersi" field for Servizio ct.
+- Removed max limit in "dove_rivolgersi" field for Servizio ct.
   [daniele]
 
 
