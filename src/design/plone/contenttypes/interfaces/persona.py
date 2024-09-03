@@ -110,6 +110,24 @@ class IPersona(model.Schema, IDesignPloneContentType):
         ),
     )
 
+    emolumenti_a_carico_della_finanza_pubblica = field.NamedBlobFile(
+        title=_(
+            "emolumenti_a_carico_della_finanza_pubblica_label",
+            default="Emolumenti a carico della finanza pubblica",
+        ),
+        required=False,
+        description="",
+    )
+
+    dichiarazioni_di_insussistenza_e_incompatibilita = field.NamedBlobFile(
+        title=_(
+            "dichiarazioni_di_insussistenza_e_incompatibilita_label",
+            default="Dichiarazioni di insussistenza e incompatibilità",
+        ),
+        required=False,
+        description="",
+    )
+
     # custom widgets
     form.widget(
         "organizzazione_riferimento",
@@ -144,7 +162,11 @@ class IPersona(model.Schema, IDesignPloneContentType):
     model.fieldset(
         "documenti",
         label=_("documenti_label", default="Documenti"),
-        fields=["curriculum_vitae"],
+        fields=[
+            "curriculum_vitae",
+            "emolumenti_a_carico_della_finanza_pubblica",
+            "dichiarazioni_di_insussistenza_e_incompatibilita",
+        ],
     )
 
     # SearchableText fields

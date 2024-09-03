@@ -4,8 +4,9 @@ Changelog
 6.2.15 (unreleased)
 -------------------
 
-- Nothing changed yet.
-
+- Add "Emolumenti a carico della finanza pubblica" to Persona
+  Add "Dichiarazioni di insussistenza e incompatibilità" to Persona
+  [lucabel]  
 
 6.2.14 (2024-07-11)
 -------------------
