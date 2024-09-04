@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.2.15 (unreleased)
+6.2.15 (2024-09-04)
 -------------------
 
 - Add design.plone.contenttypes.behavior.news_base behavior (news metadata, without blocks)
