@@ -198,6 +198,9 @@ class ServizioTextLineFieldSerializer(DefaultFieldSerializer):
         match = RESOLVEUID_RE.match(path)
         if match:
             uid, suffix = match.groups()
+            # We made this check 'cause DTD asks to avoid an unauthorized page,
+            # just for the "unauthorized" label on it. If the user is anonymous,
+            # we redirect him to the login page; /login has a more friendly message
             if api.user.is_anonymous():
                 target = uuidToObject(uid, unrestricted=True)
                 value = target.absolute_url()
