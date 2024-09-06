@@ -354,8 +354,12 @@ class TestServizioApi(unittest.TestCase):
         self.api_session.headers.update({"Accept": "application/json"})
         self.api_session.auth = (SITE_OWNER_NAME, SITE_OWNER_PASSWORD)
 
+        self.api_session_anon = RelativeSession(self.portal_url)
+        self.api_session_anon.headers.update({"Accept": "application/json"})
+
     def tearDown(self):
         self.api_session.close()
+        self.api_session_anon.close()
 
     def test_related_widgets(self):
         response = self.api_session.get("/@types/Servizio")
@@ -482,10 +486,14 @@ class TestServizioApi(unittest.TestCase):
             title="Test servizio",
             canale_digitale_link="/plone/resolveuid/{}".format(page.UID()),
         )
-
+        api.content.transition(obj=servizio, transition="publish")
         commit()
+
         res = self.api_session.get(servizio.absolute_url()).json()
         self.assertEqual(res["canale_digitale_link"], page.absolute_url())
+
+        res = self.api_session_anon.get(servizio.absolute_url()).json()
+        self.assertEqual(res["canale_digitale_link"], page.absolute_url() + "/login")
 
     def test_canale_digitale_link_deserialized_as_plone_internal_url(self):
         page = api.content.create(
