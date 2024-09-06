@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.2.16 (unreleased)
+6.2.16 (2024-09-06)
 -------------------
 
 - On CT Servizio don't want to see 'unauthorized' for anonymous user when click on
