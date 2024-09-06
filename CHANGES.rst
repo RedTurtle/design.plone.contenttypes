@@ -4,7 +4,8 @@ Changelog
 6.2.18 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Refactor ServizioTextLineFieldSerializer adapter to check eventually a content type
+  [lucabel]
 
 
 6.2.17 (2024-09-06)

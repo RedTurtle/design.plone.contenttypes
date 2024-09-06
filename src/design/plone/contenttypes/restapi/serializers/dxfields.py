@@ -191,6 +191,7 @@ def get_item_children(item):
 class ServizioTextLineFieldSerializer(DefaultFieldSerializer):
 
     PERMISSION_TO_CHECK = "View"
+    CHECK_CONTENT_TYPE = None
 
     def __call__(self):
         value = self.get_value()
@@ -207,6 +208,12 @@ class ServizioTextLineFieldSerializer(DefaultFieldSerializer):
             if api.user.is_anonymous():
                 target = uuidToObject(uid, unrestricted=True)
                 value = target.absolute_url()
+                if (
+                    self.CHECK_CONTENT_TYPE
+                    and target.portal_type != self.CHECK_CONTENT_TYPE
+                ):
+                    return json_compatible(value)
+
                 if not api.user.has_permission(self.PERMISSION_TO_CHECK, obj=target):
                     value = f"{value}/login"
             else:
