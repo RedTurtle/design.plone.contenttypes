@@ -36,7 +36,6 @@ WIDGET_PROPERTY_CHECKS = {
         "selectableTypes": ["Servizio"],
     },
     "dove_rivolgersi": {
-        "maximumSelectionSize": 10,
         "selectableTypes": ["Venue", "UnitaOrganizzativa"],
     },
 }
