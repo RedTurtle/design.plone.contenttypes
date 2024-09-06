@@ -4,8 +4,12 @@ Changelog
 6.2.16 (unreleased)
 -------------------
 
-- Nothing changed yet.
-
+- On CT Servizio don't want to see 'unauthorized' for anonymous user when click on
+  "Accedi al servzio" but prefer to see an 'access' label, which can be obtained using
+  {url}/login. For this reason, we want to ensure that if the current user doesn't have
+  permission to view the target of the 'access the service' button, a link with /login
+  will be used instead.
+  [lucabel]
 
 6.2.15 (2024-09-04)
 -------------------
@@ -16,7 +20,7 @@ Changelog
   [mamico]
 - Add "Emolumenti a carico della finanza pubblica" to Persona
   Add "Dichiarazioni di insussistenza e incompatibilità" to Persona
-  [lucabel]  
+  [lucabel]
 
 6.2.14 (2024-07-11)
 -------------------
