@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.2.18 (unreleased)
+6.2.18 (2024-09-06)
 -------------------
 
 - Refactor ServizioTextLineFieldSerializer adapter to check eventually a content type
