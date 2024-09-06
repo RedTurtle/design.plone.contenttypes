@@ -10,7 +10,7 @@ from plone.base.utils import human_readable_size
 from plone.dexterity.interfaces import IDexterityContent
 from plone.namedfile.interfaces import INamedFileField
 from plone.namedfile.interfaces import INamedImageField
-from plone.outputfilters.browser.resolveuid import uuidToURL
+from plone.app.uuid.utils import uuidToURL, uuidToObject
 from plone.restapi.interfaces import IBlockFieldSerializationTransformer
 from plone.restapi.interfaces import IFieldSerializer
 from plone.restapi.interfaces import ISerializeToJsonSummary
@@ -198,7 +198,13 @@ class ServizioTextLineFieldSerializer(DefaultFieldSerializer):
         match = RESOLVEUID_RE.match(path)
         if match:
             uid, suffix = match.groups()
-            value = uuidToURL(uid)
+            if api.user.is_anonymous():
+                target = uuidToObject(uid, unrestricted=True)
+                value = target.absolute_url()
+                if not api.user.has_permission("View", obj=target):
+                    value = f"{value}/login"
+            else:
+                value = uuidToURL(uid)
         else:
             portal = getMultiAdapter(
                 (self.context, self.context.REQUEST), name="plone_portal_state"
