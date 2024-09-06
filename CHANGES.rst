@@ -4,7 +4,8 @@ Changelog
 6.2.17 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- The permission to view the ModelloPratica has been made parametric.
+  [lucabel]
 
 
 6.2.16 (2024-09-06)

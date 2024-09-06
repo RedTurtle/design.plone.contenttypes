@@ -189,6 +189,9 @@ def get_item_children(item):
 
 @adapter(ITextLine, IServizio, IDesignPloneContenttypesLayer)
 class ServizioTextLineFieldSerializer(DefaultFieldSerializer):
+
+    PERMISSION_TO_CHECK = "View"
+
     def __call__(self):
         value = self.get_value()
         if self.field.getName() != "canale_digitale_link" or not value:
@@ -204,7 +207,7 @@ class ServizioTextLineFieldSerializer(DefaultFieldSerializer):
             if api.user.is_anonymous():
                 target = uuidToObject(uid, unrestricted=True)
                 value = target.absolute_url()
-                if not api.user.has_permission("View", obj=target):
+                if not api.user.has_permission(self.PERMISSION_TO_CHECK, obj=target):
                     value = f"{value}/login"
             else:
                 value = uuidToURL(uid)
