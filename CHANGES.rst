@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.2.17 (unreleased)
+6.2.17 (2024-09-06)
 -------------------
 
 - The permission to view the ModelloPratica has been made parametric.
