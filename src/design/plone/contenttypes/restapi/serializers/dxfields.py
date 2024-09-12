@@ -207,15 +207,20 @@ class ServizioTextLineFieldSerializer(DefaultFieldSerializer):
             # we redirect him to the login page; /login has a more friendly message
             if api.user.is_anonymous():
                 target = uuidToObject(uid, unrestricted=True)
-                value = target.absolute_url()
-                if (
-                    self.CHECK_CONTENT_TYPE
-                    and target.portal_type != self.CHECK_CONTENT_TYPE
-                ):
-                    return json_compatible(value)
+                if target:
+                    value = target.absolute_url()
+                    if (
+                        self.CHECK_CONTENT_TYPE
+                        and target.portal_type != self.CHECK_CONTENT_TYPE
+                    ):
+                        return json_compatible(value)
 
-                if not api.user.has_permission(self.PERMISSION_TO_CHECK, obj=target):
-                    value = f"{value}/login"
+                    if not api.user.has_permission(
+                        self.PERMISSION_TO_CHECK, obj=target
+                    ):
+                        value = f"{value}/login"
+                else:
+                    value = uuidToURL(uid)
             else:
                 value = uuidToURL(uid)
         else:

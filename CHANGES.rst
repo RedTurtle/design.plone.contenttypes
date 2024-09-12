@@ -4,7 +4,9 @@ Changelog
 6.2.19 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix a bug introduced by changes in 6.2.16
+  AttributeError: 'NoneType' object has no attribute 'absolute_url'
+  [mamico]
 
 
 6.2.18 (2024-09-06)
@@ -25,7 +27,7 @@ Changelog
 -------------------
 
 - On CT Servizio don't want to see 'unauthorized' for anonymous user when click on
-  "Accedi al servzio" but prefer to see an 'access' label, which can be obtained using
+  "Accedi al servizio" but prefer to see an 'access' label, which can be obtained using
   {url}/login. For this reason, we want to ensure that if the current user doesn't have
   permission to view the target of the 'access the service' button, a link with /login
   will be used instead.
