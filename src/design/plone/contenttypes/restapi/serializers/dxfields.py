@@ -215,7 +215,9 @@ class ServizioTextLineFieldSerializer(DefaultFieldSerializer):
                     ):
                         return json_compatible(value)
 
-                    if not api.user.has_permission(self.PERMISSION_TO_CHECK, obj=target):
+                    if not api.user.has_permission(
+                        self.PERMISSION_TO_CHECK, obj=target
+                    ):
                         value = f"{value}/login"
                 else:
                     value = uuidToURL(uid)
