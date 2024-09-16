@@ -5,7 +5,8 @@ Changelog
 5.1.15 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Backport of #268: Set `file_principale` field as primary, so we call @@download on the content, that file will be downloaded automatically.
+  [cekk]
 
 
 5.1.14 (2024-09-06)
