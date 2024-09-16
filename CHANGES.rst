@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-5.1.15 (unreleased)
+5.1.15 (2024-09-16)
 -------------------
 
 - Backport of #268: Set `file_principale` field as primary, so we call @@download on the content, that file will be downloaded automatically.
