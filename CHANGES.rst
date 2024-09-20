@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-5.1.16 (unreleased)
+5.1.16 (2024-09-20)
 -------------------
 
 - Return Bando.apertura_bando as null if had been set default("1100-01-01T00:00:00").
