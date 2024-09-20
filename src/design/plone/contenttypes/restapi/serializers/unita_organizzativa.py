@@ -125,10 +125,14 @@ class UOJSONSummarySerializer(DefaultJSONSummarySerializer):
             "contact_info",
             "sede",
         ]
-
         for field in fields:
             if field in ("contact_info", "sede"):
-                data[field] = json_compatible(getattr(self.context, field, ""))
+                # XXX: in realta' qui andrebbe usato il serializer specifico per
+                #      i field relationfield, questo però richiede recuperare il
+                #      il field e il suo serializeadpater, al momento aggiungiamo
+                #      solo un controllo su relazioni non trovate
+                values = getattr(self.context, field, []) or []
+                data[field] = [val for val in json_compatible(values) if val]
             else:
                 data[field] = getattr(self.context, field, "")
 
