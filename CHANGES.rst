@@ -8,6 +8,8 @@ Changelog
   AttributeError: 'NoneType' object has no attribute 'absolute_url'
   [mamico]
 
+- Return Bando.apertura_bando as null if had been set default("1100-01-01T00:00:00").
+  [folix-01]
 
 6.2.18 (2024-09-06)
 -------------------
