@@ -4,12 +4,12 @@ Changelog
 6.2.19 (unreleased)
 -------------------
 
+- Return Bando.apertura_bando as null if had been set default("1100-01-01T00:00:00").
+  [folix-01]
+- Add link to "find-broken-links" in design-utils view (need dependency with redturtle.volto>=5.5.3).
 - Fix a bug introduced by changes in 6.2.16
   AttributeError: 'NoneType' object has no attribute 'absolute_url'
   [mamico]
-
-- Return Bando.apertura_bando as null if had been set default("1100-01-01T00:00:00").
-  [folix-01]
 
 6.2.18 (2024-09-06)
 -------------------
@@ -38,6 +38,8 @@ Changelog
 6.2.15 (2024-09-04)
 -------------------
 
+- Workaround for empty contacts UO summaryserializer
+  [mamico]
 - Add design.plone.contenttypes.behavior.news_base behavior (news metadata, without blocks)
   [mamico]
 - Add folder creation (multimedia + allegati) for "ComunicatiStampa" CT (if exists)
