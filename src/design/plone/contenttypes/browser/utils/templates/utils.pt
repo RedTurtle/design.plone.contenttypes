@@ -93,6 +93,13 @@
               Permette di trovare i contenuti che hanno un determinato blocco.
             </p>
           </li>
+          <li class="list-group-item">
+            <a href="${context/portal_url}/find-broken-links">Find broken links</a>
+            <p class="discreet">
+              Permette di trovare i contenuti che hanno almeno un link interni rotto nei vari blocchi.<br/>
+              Questa vista genera un file csv da scaricare.
+            </p>
+          </li>
       </div>
     </metal:content-core>
   </body>

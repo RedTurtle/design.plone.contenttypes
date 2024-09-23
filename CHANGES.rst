@@ -7,7 +7,8 @@ Changelog
 - Fix a bug introduced by changes in 6.2.16
   AttributeError: 'NoneType' object has no attribute 'absolute_url'
   [mamico]
-
+- Add link to "find-broken-links" in design-utils view (need dependency with redturtle.volto>=5.5.3).
+  [cekk]
 
 6.2.18 (2024-09-06)
 -------------------
