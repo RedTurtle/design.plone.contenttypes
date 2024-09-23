@@ -61,7 +61,7 @@ setup(
         "collective.volto.blocksfield",
         "collective.z3cform.datagridfield",
         "plone.formwidget.geolocation",
-        "redturtle.volto>=5.0.0",
+        "redturtle.volto>=5.5.3",
         "redturtle.bandi",
         "z3c.unconfigure",
         "plone.restapi",
