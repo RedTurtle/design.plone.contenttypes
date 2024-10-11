@@ -4,8 +4,8 @@ Changelog
 6.2.20 (unreleased)
 -------------------
 
-- Nothing changed yet.
-
+- Avoid acquisition problem in *onModify* event handler: now try to reindex children only if context is folderish.
+  [cekk]
 
 6.2.19 (2024-09-23)
 -------------------
