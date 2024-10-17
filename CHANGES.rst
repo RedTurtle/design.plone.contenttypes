@@ -6,7 +6,6 @@ Changelog
 
 - Fix upgrade step 
   [lucabel]
-
 - Avoid acquisition problem in *onModify* event handler: now try to reindex children only if context is folderish.
   [cekk]
 - Add sort_on sortable_title to event_location, uo_location, ufficio_responsabile vocabularies 
