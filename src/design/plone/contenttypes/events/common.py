@@ -199,8 +199,12 @@ def onModify(context, event):
         if "IBasic.title" in getattr(
             description, "attributes", []
         ) or "IDublinCore.title" in getattr(description, "attributes", []):
-            for child in context.listFolderContents():
-                child.reindexObject(idxs=["parent"])
+            context_state = api.content.get_view(
+                name="plone_context_state", context=context, request=context.REQUEST
+            )
+            if context_state.is_folderish():
+                for child in context.listFolderContents():
+                    child.reindexObject(idxs=["parent"])
 
 
 def createSubfolders(context, event):

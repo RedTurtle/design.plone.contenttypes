@@ -28,7 +28,7 @@ class ReferencesVocabulary(object):
         if self.catalog is None:
             return SimpleVocabulary([])
         values = self.get_all_index_values()
-        brains = self.catalog(UID=values)
+        brains = self.catalog(UID=values, sort_on="sortable_title")
         terms = []
         for brain in brains:
             terms.append(SimpleTerm(brain.UID, brain.UID, safe_text(brain.Title)))
