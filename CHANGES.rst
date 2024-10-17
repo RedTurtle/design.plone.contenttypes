@@ -4,7 +4,8 @@ Changelog
 6.2.20 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix upgrade step 
+  [lucabel]
 
 
 6.2.19 (2024-09-23)

@@ -82,7 +82,7 @@ def to_7303(context):
 
 
 def to_7304(context):
-    brains = context.portal_catalog()
+    brains = context.portal_catalog(**{'portal_type': 'Event'})
     tot = len(brains)
     i = 0
     for brain in brains:
