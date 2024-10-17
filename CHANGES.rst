@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.2.20 (unreleased)
+6.2.20 (2024-10-17)
 -------------------
 
 - Fix upgrade step 
