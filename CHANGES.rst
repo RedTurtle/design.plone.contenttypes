@@ -4,7 +4,8 @@ Changelog
 6.2.21 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix tests: do not import collective.volto.cookieconsent.
+  [cekk]
 
 
 6.2.20 (2024-10-17)
