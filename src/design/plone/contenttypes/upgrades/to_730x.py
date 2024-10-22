@@ -132,3 +132,29 @@ def to_7306(context):
             if behavior not in behaviors:
                 behaviors.append(behavior)
                 portal_type.behaviors = tuple(behaviors)
+
+
+def to_7307(context):
+    logger.info("Update registry")
+    update_registry(context)
+    logger.info("Add new effectivestart (DateRecurringIndex) index")
+
+    class extra:
+        recurdef = "recurrence"
+        until = ""
+
+    name = "effectivestart"
+    catalog = api.portal.get_tool(name="portal_catalog")
+    catalog.addIndex(name, "DateRecurringIndex", extra=extra())
+    logger.info("Catalog DateRecurringIndex {} created.".format(name))
+
+
+def to_7308(context):
+    logger.info("Reindex Events")
+    pc = api.portal.get_tool(name="portal_catalog")
+    brains = pc(portal_type="Event")
+    tot = len(brains)
+    for i, brain in enumerate(brains):
+        if i % 15 == 0:
+            logger.info("Progress: {}/{}".format(i, tot))
+        brain.getObject().reindexObject(idxs=["effectivestart"])

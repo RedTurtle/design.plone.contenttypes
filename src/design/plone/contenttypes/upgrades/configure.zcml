@@ -898,5 +898,18 @@
       destination="7306"
       handler=".to_730x.to_7306"
       />
-
+  <genericsetup:upgradeStep
+      title="Reload registry"
+      profile="design.plone.contenttypes:default"
+      source="7306"
+      destination="7307"
+      handler=".to_730x.to_7307"
+      />
+  <genericsetup:upgradeStep
+      title="Reload registry"
+      profile="design.plone.contenttypes:default"
+      source="7307"
+      destination="7308"
+      handler=".to_730x.to_7308"
+      />
 </configure>

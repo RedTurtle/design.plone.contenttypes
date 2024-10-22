@@ -5,6 +5,10 @@
       name="event_location"
       />
   <adapter
+      factory=".events.effectivestart"
+      name="effectivestart"
+      />
+  <adapter
       factory=".pagina_argomento.SearchableTextExtender"
       name="IPaginaArgomento"
       />
