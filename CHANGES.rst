@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.2.21 (unreleased)
+6.2.21 (2024-10-23)
 -------------------
 
 - Fix tests: do not import collective.volto.cookieconsent.
