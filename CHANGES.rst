@@ -1,9 +1,24 @@
 Changelog
 =========
 
-6.2.20 (unreleased)
+6.2.22 (unreleased)
 -------------------
 
+- Nothing changed yet.
+
+
+6.2.21 (2024-10-23)
+-------------------
+
+- Fix tests: do not import collective.volto.cookieconsent.
+  [cekk]
+
+
+6.2.20 (2024-10-17)
+-------------------
+
+- Fix upgrade step 
+  [lucabel]
 - Avoid acquisition problem in *onModify* event handler: now try to reindex children only if context is folderish.
   [cekk]
 - Add sort_on sortable_title to event_location, uo_location, ufficio_responsabile vocabularies 
