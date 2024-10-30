@@ -4,7 +4,9 @@ Changelog
 6.2.22 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Aggiunto indice per gestire correttamente i confronti rispetto
+  alla data di inizio; start viene trattato in modo customizzato
+  [lucabel]
 
 
 6.2.21 (2024-10-23)
