@@ -7,6 +7,8 @@ Changelog
 - Override BandoView: in io-Comune we add new children on Folder Deepening content
   and we need to proper handle it
   [lucabel]
+- update serializer for documento ct adding more information about modulo children
+  [lucabel]
 
 6.2.22 (2024-10-30)
 -------------------
