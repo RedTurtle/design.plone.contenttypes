@@ -140,6 +140,8 @@ class UOJSONSummarySerializer(DefaultJSONSummarySerializer):
 
         get_taxonomy_information("tipologia_organizzazione", self.context, data)
 
+        data['image_caption'] = getattr(self.context, "image_caption", None)
+        data['preview_caption'] = getattr(self.context, "preview_caption", None)
         return data
 
     def getGeolocation(self):
