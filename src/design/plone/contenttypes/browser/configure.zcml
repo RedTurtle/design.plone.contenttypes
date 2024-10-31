@@ -46,5 +46,15 @@
         permission="zope2.View"
         />
   </configure>
+  <configure package="redturtle.bandi.browser">
+      <browser:page
+        name="bando_view"
+        template="bando.pt"
+        permission="zope2.View"
+        for="..interfaces.IBando"
+        class="design.plone.contenttypes.browser.bando.BandoView"
+        layer="design.plone.contenttypes.interfaces.IDesignPloneContenttypesLayer"
+        />
+  </configure>
 
 </configure>

@@ -4,8 +4,9 @@ Changelog
 6.2.23 (unreleased)
 -------------------
 
-- Nothing changed yet.
-
+- Override BandoView: in io-Comune we add new children on Folder Deepening content
+  and we need to proper handle it
+  [lucabel]
 
 6.2.22 (2024-10-30)
 -------------------
