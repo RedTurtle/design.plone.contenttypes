@@ -23,6 +23,10 @@
              Products.ZCatalog.interfaces.IZCatalog"
         name="SearchableText"
         />
+
+    <!-- BBB To be removed when we remove eea.api.taxonomy -->
+    <adapter factory="eea.api.taxonomy.restapi.serializer.TaxonomySerializer" />
+
   </unconfigure>
 
 </configure>
