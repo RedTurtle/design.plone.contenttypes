@@ -22,5 +22,11 @@
       />
 
   <adapter factory=".query.ZCatalogCompatibleQueryAdapter" />
+  
 
+  <!-- blocks linkintegrity -->
+  <subscriber
+      factory=".blocks_linkintegrity.SimpleCardBlockLinksRetriever"
+      provides="plone.restapi.interfaces.IBlockFieldLinkIntegrityRetriever"
+      />
 </configure>
