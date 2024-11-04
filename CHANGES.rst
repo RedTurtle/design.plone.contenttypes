@@ -4,7 +4,8 @@ Changelog
 6.2.23 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- add SEO behavior to File
+  [mamico]
 
 
 6.2.22 (2024-10-30)
