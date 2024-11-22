@@ -47,12 +47,12 @@
         />
   </configure>
   <configure package="redturtle.bandi.browser">
-      <browser:page
+    <browser:page
         name="bando_view"
-        template="bando.pt"
-        permission="zope2.View"
         for="..interfaces.IBando"
         class="design.plone.contenttypes.browser.bando.BandoView"
+        template="bando.pt"
+        permission="zope2.View"
         layer="design.plone.contenttypes.interfaces.IDesignPloneContenttypesLayer"
         />
   </configure>
