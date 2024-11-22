@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.2.23 (unreleased)
+6.2.23 (2024-11-22)
 -------------------
 
 - Override BandoView: in io-Comune we add new children on Folder Deepening content
