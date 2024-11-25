@@ -613,4 +613,14 @@
         handler=".upgrades.to_5800"
         />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="5800"
+      destination="5900"
+      >
+    <genericsetup:upgradeStep
+        title="Reindex exclude_from_search for missing folders"
+        handler=".upgrades.to_5900"
+        />
+  </genericsetup:upgradeSteps>
 </configure>

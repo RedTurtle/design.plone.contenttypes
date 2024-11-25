@@ -1068,3 +1068,20 @@ def to_5800(context):
 
     catalog = api.portal.get_tool(name="portal_catalog")
     catalog.manage_reindexIndex(ids=["exclude_from_search"])
+
+
+def to_5900(context):
+    """
+    Re-launch 5800 upgrade to already created folders, because there were some missing ids
+    """
+    for id, pt in [
+        ("sponsor_evento", "Document"),
+        ("documenti", "Document"),
+        ("documenti-allegati", "Document"),
+        ("modulistica", "Document"),
+    ]:  # ...
+        brains = api.content.find(getId=id, portal_type=pt)
+        for brain in brains:
+            obj = brain.getObject()
+            obj.exclude_from_search = True
+            obj.reindexObject(idxs=["exclude_from_search"])

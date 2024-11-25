@@ -5,7 +5,8 @@ Changelog
 5.1.17 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Re-launch 5800 upgrade-step for already created folders because there were some missing ids.
+  [cekk]
 
 
 5.1.16 (2024-09-20)
