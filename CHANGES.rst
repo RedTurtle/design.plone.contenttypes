@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-5.1.17 (unreleased)
+5.1.17 (2024-11-25)
 -------------------
 
 - Re-launch 5800 upgrade-step for already created folders because there were some missing ids.
