@@ -350,3 +350,5 @@ class SummarySerializerTest(unittest.TestCase):
         resp = self.api_session.get(event1.absolute_url()).json()
         subevent = [x for x in resp["items"] if x["@type"] == "Event"][0]
         self.assertIn("start", subevent)
+        self.assertIn("end", subevent)
+        self.assertIn("recurrence", subevent)
