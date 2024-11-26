@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.2.24 (unreleased)
+6.2.24 (2024-11-26)
 -------------------
 
 - Add fields end and recurrence on event summary serializer
