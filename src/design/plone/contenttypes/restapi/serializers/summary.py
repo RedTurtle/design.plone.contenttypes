@@ -169,6 +169,8 @@ class DefaultJSONSummarySerializer(BaseSerializer):
 
         if self.context.portal_type == "Event":
             res["start"] = json_compatible(self.context.start)
+            res["end"] = json_compatible(self.context.end)
+            res["recurrence"] = json_compatible(self.context.recurrence)
 
         if "geolocation" in metadata_fields or self.show_all_metadata_fields:
             # backward compatibility for some block templates

@@ -4,7 +4,8 @@ Changelog
 6.2.24 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add fields end and recurrence on event summary serializer
+  [eikichi18]
 
 
 6.2.23 (2024-11-22)
