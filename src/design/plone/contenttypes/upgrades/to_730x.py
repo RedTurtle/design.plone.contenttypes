@@ -162,5 +162,7 @@ def to_7308(context):
 
 def to_7309(context):
     ps = api.portal.get_tool(name="portal_setup")
-    ps.runAllImportStepsFromProfile("profile-eea.api.taxonomy:uninstall")
+    ps.runAllImportStepsFromProfile(
+        "profile-design.plone.contenttypes:remove_eea_api_taxonomy"
+    )
     ps.unsetLastVersionForProfile("eea.api.taxonomy:default")

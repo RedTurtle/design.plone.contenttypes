@@ -65,10 +65,9 @@ setup(
         "redturtle.bandi",
         "z3c.unconfigure",
         "plone.restapi",
-        "collective.taxonomy",
+        "collective.taxonomy>=3.1",
         "openpyxl",
         "collective.volto.enhancedlinks",
-        "eea.api.taxonomy",  # BBB to be removed. Remove also the unconfigure in overrides.zcml
     ],
     extras_require={
         "test": [
