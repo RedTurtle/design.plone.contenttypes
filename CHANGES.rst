@@ -4,7 +4,8 @@ Changelog
 6.2.25 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add dependency with collective.volto.blocksfield >= 2.2.0 and install it to have all blocks indexed in block_types index.
+  [cekk]
 
 
 6.2.24 (2024-11-26)

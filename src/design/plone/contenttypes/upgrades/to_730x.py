@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from plone.app.upgrade.utils import installOrReinstallProduct
 from design.plone.contenttypes.events.common import SUBFOLDERS_MAPPING
 from design.plone.contenttypes.utils import create_default_blocks
 from plone import api
@@ -158,3 +159,9 @@ def to_7308(context):
         if i % 15 == 0:
             logger.info("Progress: {}/{}".format(i, tot))
         brain.getObject().reindexObject(idxs=["effectivestart"])
+
+
+def to_7309(context):
+    """"""
+    logger.info("Install blocksfield")
+    installOrReinstallProduct(api.portal.get(), "collective.volto.blocksfield")

@@ -912,4 +912,11 @@
       destination="7308"
       handler=".to_730x.to_7308"
       />
+  <genericsetup:upgradeStep
+      title="Install collective.volto.blocksfield"
+      profile="design.plone.contenttypes:default"
+      source="7308"
+      destination="7309"
+      handler=".to_730x.to_7309"
+      />
 </configure>

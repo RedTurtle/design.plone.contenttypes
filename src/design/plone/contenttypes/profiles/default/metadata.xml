@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
-  <version>7308</version>
+  <version>7309</version>
   <dependencies>
     <dependency>profile-redturtle.bandi:default</dependency>
     <dependency>profile-collective.venue:default</dependency>
@@ -9,5 +9,6 @@
     <dependency>profile-collective.z3cform.datagridfield:default</dependency>
     <dependency>profile-design.plone.contenttypes:taxonomy</dependency>
     <dependency>profile-collective.volto.enhancedlinks:default</dependency>
+    <dependency>profile-collective.volto.blocksfield:default</dependency>
   </dependencies>
 </metadata>
