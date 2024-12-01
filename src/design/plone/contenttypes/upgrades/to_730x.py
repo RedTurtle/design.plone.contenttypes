@@ -158,3 +158,16 @@ def to_7308(context):
         if i % 15 == 0:
             logger.info("Progress: {}/{}".format(i, tot))
         brain.getObject().reindexObject(idxs=["effectivestart"])
+
+
+def to_7309(context):
+    logger.info("Enable kitconcept.seo behavior to File")
+    portal_types = api.portal.get_tool(name="portal_types")
+    behavior = "kitconcept.seo"
+    for ct in ["File"]:
+        portal_type = portal_types.get(ct, None)
+        if portal_type:
+            behaviors = list(portal_type.behaviors)
+            if behavior not in behaviors:
+                behaviors.append(behavior)
+                portal_type.behaviors = tuple(behaviors)
