@@ -1,13 +1,29 @@
 Changelog
 =========
 
-6.2.23 (unreleased)
+6.2.25 (unreleased)
 -------------------
 
 - Do not use eea.api.taxonomy because it is deprecated.
   We still leave it as dependency to not broke old sites before uninstall (made by an upgrade-step). It need to be removed later.
   [cekk]
 
+
+6.2.24 (2024-11-26)
+-------------------
+
+- Add fields end and recurrence on event summary serializer
+  [eikichi18]
+
+
+6.2.23 (2024-11-22)
+-------------------
+
+- Override BandoView: in io-Comune we add new children on Folder Deepening content
+  and we need to proper handle it
+  [lucabel]
+- update serializer for documento ct adding more information about modulo children
+  [lucabel]
 
 6.2.22 (2024-10-30)
 -------------------
