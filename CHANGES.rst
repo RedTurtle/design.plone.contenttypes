@@ -5,7 +5,6 @@ Changelog
 -------------------
 
 - Do not use eea.api.taxonomy because it is deprecated.
-  We still leave it as dependency to not broke old sites before uninstall (made by an upgrade-step). It need to be removed later.
   [cekk]
 
 
