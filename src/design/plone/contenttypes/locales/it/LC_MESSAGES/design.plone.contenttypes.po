@@ -402,7 +402,7 @@ msgstr ""
 #: design/plone/contenttypes/controlpanels/settings.py:106
 #: design/plone/contenttypes/profiles/default/controlpanel.xml
 msgid "Impostazioni Design Plone"
-msgstr "IoComune"
+msgstr "io-Comune"
 
 #: design/plone/contenttypes/vocabularies/tags_vocabulary.py:44
 msgid "Imposte"
