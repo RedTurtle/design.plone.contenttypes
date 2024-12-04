@@ -4,7 +4,8 @@ Changelog
 6.2.25 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Update it translations
+  [lucabel]
 
 
 6.2.24 (2024-11-26)
