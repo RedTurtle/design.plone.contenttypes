@@ -23,6 +23,8 @@ from zope.intid.interfaces import IIntIds
 from zope.lifecycleevent import ObjectModifiedEvent
 from zope.schema import getFields
 from design.plone.contenttypes.events.common import SUBFOLDERS_MAPPING
+from plone.namedfile import file
+from plone.app.upgrade.utils import installOrReinstallProduct
 
 import json
 import logging
@@ -1032,6 +1034,55 @@ def to_5500(context):
 
 def to_6000(context):
     """ """
+    installOrReinstallProduct(api.portal.get(), "collective.z3cform.datagridfield")
+
+    mapping = {
+        # portal_type
+        "Documento Personale": {
+            # field: "type"
+            "immagine": "image",
+            "pratica_associata": "file",
+        },
+        "Messaggio": {
+            "documenti_allegati": "file",
+        },
+        "Persona": {
+            "foto_persona": "image",
+        },
+        "RicevutaPagamento": {
+            "stampa_ricevuta": "file",
+            "pratica_associata": "file",
+            "allegato": "file",
+        },
+    }
+
+    mapping_types = {
+        "image": (file.NamedImage, file.NamedBlobImage),
+        "file": (file.NamedFile, file.NamedBlobFile),
+    }
+
+    for portal_type, fields in mapping.items():
+        brains = api.content.find(unrestricted=True, portal_type=portal_type)
+        logger.info("Updating fields for %s %s objects", portal_type, len(brains))
+        for brain in brains:
+            obj = aq_base(brain.getObject())
+            for fieldname, _type in fields.items():
+                value = getattr(obj, fieldname, None)
+                # if value:
+                #     import pdb; pdb.set_trace()
+                if value and isinstance(value, mapping_types[_type][0]):
+                    logger.info("Updated %s for %s", fieldname, brain.getPath())
+                    setattr(
+                        obj,
+                        fieldname,
+                        mapping_types[_type][1](
+                            data=value.data,
+                            contentType=value.contentType,
+                            filename=value.filename,
+                        ),
+                    )
+    logger.info("Finished updating fields")
+
     logger.info(
         "Convert behavior: collective.dexteritytextindexer => plone.textindexer"  # noqa
     )
@@ -1669,9 +1720,9 @@ def to_7200(context):
         ]
         if container.portal_type == "Persona":
             # cleanup also some old-style (v2) folders
-            mappings.extend(persona_old_mapping)
+            mappings["content"].extend(persona_old_mapping)
 
-        for mapping in mappings:
+        for mapping in mappings["content"]:
             child = container.get(mapping["id"], None)
             if not child:
                 continue
