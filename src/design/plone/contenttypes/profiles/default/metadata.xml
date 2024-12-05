@@ -5,10 +5,10 @@
     <dependency>profile-redturtle.bandi:default</dependency>
     <dependency>profile-collective.venue:default</dependency>
     <dependency>profile-redturtle.volto:default</dependency>
-    <dependency>profile-eea.api.taxonomy:default</dependency>
     <dependency>profile-collective.z3cform.datagridfield:default</dependency>
     <dependency>profile-design.plone.contenttypes:taxonomy</dependency>
     <dependency>profile-collective.volto.enhancedlinks:default</dependency>
     <dependency>profile-collective.volto.blocksfield:default</dependency>
+    <dependency>profile-collective.taxonomy:default</dependency>
   </dependencies>
 </metadata>

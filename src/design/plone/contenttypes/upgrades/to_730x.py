@@ -162,6 +162,12 @@ def to_7308(context):
 
 
 def to_7309(context):
-    """"""
+    logger.info("Uninstall eea.api.taxonomy")
+    ps = api.portal.get_tool(name="portal_setup")
+    ps.runAllImportStepsFromProfile(
+        "profile-design.plone.contenttypes:remove_eea_api_taxonomy"
+    )
+    ps.unsetLastVersionForProfile("eea.api.taxonomy:default")
+    
     logger.info("Install blocksfield")
     installOrReinstallProduct(api.portal.get(), "collective.volto.blocksfield")

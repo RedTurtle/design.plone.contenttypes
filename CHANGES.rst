@@ -6,6 +6,8 @@ Changelog
 
 - Add dependency with collective.volto.blocksfield >= 2.2.0 and install it to have all blocks indexed in block_types index.
   [cekk]
+- Do not use eea.api.taxonomy because it is deprecated.
+  [cekk]
 
 
 6.2.24 (2024-11-26)

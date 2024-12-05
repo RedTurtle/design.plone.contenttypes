@@ -23,6 +23,7 @@
              Products.ZCatalog.interfaces.IZCatalog"
         name="SearchableText"
         />
+
   </unconfigure>
 
 </configure>

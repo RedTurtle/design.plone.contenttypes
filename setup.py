@@ -65,7 +65,7 @@ setup(
         "redturtle.bandi",
         "z3c.unconfigure",
         "plone.restapi",
-        "eea.api.taxonomy",
+        "collective.taxonomy>=3.1",
         "openpyxl",
         "collective.volto.enhancedlinks",
     ],
