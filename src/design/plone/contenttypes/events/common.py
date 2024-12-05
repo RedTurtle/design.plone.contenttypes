@@ -64,7 +64,6 @@ SUBFOLDERS_MAPPING = {
                 "allowed_types": ("File",),
             },
         ],
-        "allowed_types": [],
     },
     "Venue": {
         "content": [
