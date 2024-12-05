@@ -187,25 +187,25 @@ class TypesGet(BaseGet):
                     }
             if "city" in result["properties"]:
                 if not result["properties"]["city"].get("default", ""):
-                    result["properties"]["city"]["default"] = (
-                        api.portal.get_registry_record(
-                            "city", interface=IGeolocationDefaults
-                        )
+                    result["properties"]["city"][
+                        "default"
+                    ] = api.portal.get_registry_record(
+                        "city", interface=IGeolocationDefaults
                     )
             if "zip_code" in result["properties"]:
                 if not result["properties"]["zip_code"].get("default", ""):
-                    result["properties"]["zip_code"]["default"] = (
-                        api.portal.get_registry_record(
-                            "zip_code", interface=IGeolocationDefaults
-                        )
+                    result["properties"]["zip_code"][
+                        "default"
+                    ] = api.portal.get_registry_record(
+                        "zip_code", interface=IGeolocationDefaults
                     )
 
             if "street" in result["properties"]:
                 if not result["properties"]["street"].get("default", ""):
-                    result["properties"]["street"]["default"] = (
-                        api.portal.get_registry_record(
-                            "street", interface=IGeolocationDefaults
-                        )
+                    result["properties"]["street"][
+                        "default"
+                    ] = api.portal.get_registry_record(
+                        "street", interface=IGeolocationDefaults
                     )
 
             if "geolocation" in result["properties"]:

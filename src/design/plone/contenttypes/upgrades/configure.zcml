@@ -912,7 +912,7 @@
       destination="7308"
       handler=".to_730x.to_7308"
       />
-    
+
   <genericsetup:upgradeStep
       title="Uninstall eea.api.taxonomy and install collective.volto.blocksfield"
       profile="design.plone.contenttypes:default"

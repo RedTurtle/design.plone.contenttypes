@@ -34,7 +34,6 @@ fields = [
 
 @implementer(IBandoView)
 class BandoView(BaseBandoView):
-
     def retrieveContentsOfFolderDeepening(self, path_dfolder):
         """Retrieves all objects contained in Folder Deppening"""
 
@@ -76,9 +75,9 @@ class BandoView(BaseBandoView):
                 elif brain.Type == "File":
                     obj_file = brain.getObject().file
                     if obj_file:
-                        dictfields["url"] = (
-                            f"{brain.getURL()}/@@download/file/{obj_file.filename}"  # noqa E501
-                        )
+                        dictfields[
+                            "url"
+                        ] = f"{brain.getURL()}/@@download/file/{obj_file.filename}"  # noqa E501
                         obj_size = obj_file.size
                         dictfields["filesize"] = self.getSizeString(obj_size)
                 elif brain.Type == "Modulo":
