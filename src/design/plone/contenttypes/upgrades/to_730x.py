@@ -168,6 +168,5 @@ def to_7309(context):
         "profile-design.plone.contenttypes:remove_eea_api_taxonomy"
     )
     ps.unsetLastVersionForProfile("eea.api.taxonomy:default")
-
     logger.info("Install blocksfield")
     installOrReinstallProduct(api.portal.get(), "collective.volto.blocksfield")
