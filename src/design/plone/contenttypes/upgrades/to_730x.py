@@ -158,3 +158,11 @@ def to_7308(context):
         if i % 15 == 0:
             logger.info("Progress: {}/{}".format(i, tot))
         brain.getObject().reindexObject(idxs=["effectivestart"])
+
+
+def to_7309(context):
+    ps = api.portal.get_tool(name="portal_setup")
+    ps.runAllImportStepsFromProfile(
+        "profile-design.plone.contenttypes:remove_eea_api_taxonomy"
+    )
+    ps.unsetLastVersionForProfile("eea.api.taxonomy:default")

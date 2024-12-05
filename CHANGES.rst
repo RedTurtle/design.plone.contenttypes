@@ -4,7 +4,8 @@ Changelog
 6.2.25 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Do not use eea.api.taxonomy because it is deprecated.
+  [cekk]
 
 
 6.2.24 (2024-11-26)
