@@ -34,7 +34,6 @@ fields = [
 
 @implementer(IBandoView)
 class BandoView(BaseBandoView):
-
     def retrieveContentsOfFolderDeepening(self, path_dfolder):
         """Retrieves all objects contained in Folder Deppening"""
 
