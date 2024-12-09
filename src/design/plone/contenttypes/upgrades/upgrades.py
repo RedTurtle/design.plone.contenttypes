@@ -1415,12 +1415,15 @@ def update_folder_for_gallery(self):
     pc = api.portal.get_tool(name="portal_catalog")
     for brain in pc(portal_type="Event"):
         evento = brain.getObject()
-
         logger.info(f"{colors.DARKCYAN} Event: {evento.absolute_url()} {colors.ENDC}")
         if "multimedia" in evento.keys():
-            renamed_event = api.content.rename(evento["multimedia"], new_id="immagini")
-            renamed_event.title = "Immagini"
-            renamed_event.reindexObject(idxs=["id", "title"])
+            try:
+                renamed_event = api.content.rename(evento["multimedia"], new_id="immagini")
+                renamed_event.title = "Immagini"
+                renamed_event.reindexObject(idxs=["id", "title"])
+            except:
+                import pdb;pdb.set_trace()
+
             logger.info(f"{colors.GREEN} Rename multimedia {colors.ENDC}")
 
         if "video" not in evento.keys():

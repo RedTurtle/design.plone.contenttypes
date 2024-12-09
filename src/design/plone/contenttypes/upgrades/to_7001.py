@@ -300,7 +300,7 @@ def create_pdc(context):
                 continue
 
             if not migrated_contact_info(obj):
-                if hasattr(aq_base(obj), "contact_info"):
+                if getattr(aq_base(obj), "contact_info"):
                     obj.old_contact_info = obj.contact_info
                     if obj.portal_type == "UnitaOrganizzativa":
                         del obj.contact_info
