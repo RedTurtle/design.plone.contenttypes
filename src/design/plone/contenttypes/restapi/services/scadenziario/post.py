@@ -185,8 +185,8 @@ class ScadenziarioDayPost(BaseService):
         if query is None:
             raise Exception("No query supplied")
 
-        if sort_order:
-            sort_order = "descending" if sort_order else "ascending"
+        if sort_order not in {"descending", "ascending"}:
+            sort_order = "ascending"
 
         # results = querybuilder(**querybuilder_parameters)
         # Seems that origina querybuilder is not able to handle event search on
@@ -265,7 +265,7 @@ class ScadenziarioDayPost(BaseService):
                             "category": brain.subject,
                         }
                     )
-                results_to_be_returned[key].sort(key=lambda x: x["title"])
+
         return {
             "@id": self.request.get("URL"),
             "items": results_to_be_returned,

@@ -5,7 +5,8 @@ Changelog
 5.1.18 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix sorting in @scadenziario-day endpoint.
+  [folix-01]
 
 
 5.1.17 (2024-11-25)
