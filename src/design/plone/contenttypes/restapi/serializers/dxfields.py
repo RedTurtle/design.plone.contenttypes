@@ -189,7 +189,6 @@ def get_item_children(item):
 
 @adapter(ITextLine, IServizio, IDesignPloneContenttypesLayer)
 class ServizioTextLineFieldSerializer(DefaultFieldSerializer):
-
     PERMISSION_TO_CHECK = "View"
     CHECK_CONTENT_TYPE = None
 
