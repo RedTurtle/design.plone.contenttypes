@@ -4,8 +4,8 @@ Changelog
 6.3.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Added the metadata preview_caption and image_caption. An upgrade step is not necessary because the metadata will primarily be used for new content.
+  [mamico]
 
 6.3.1 (2024-12-12)
 ------------------

@@ -75,6 +75,8 @@
   <column value="icona" />
   <column value="update_note" />
   <column value="rassegna" />
+  <column value="image_caption" />
+  <column value="preview_caption" />
 
   <!-- cleanup -->
   <index name="argomenti_correlati"
