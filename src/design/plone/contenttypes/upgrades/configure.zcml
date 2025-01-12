@@ -912,11 +912,19 @@
       destination="7308"
       handler=".to_730x.to_7308"
       />
+
   <genericsetup:upgradeStep
-      title="add kitconcept.seo to File"
+      title="Uninstall eea.api.taxonomy and install collective.volto.blocksfield"
       profile="design.plone.contenttypes:default"
       source="7308"
       destination="7309"
       handler=".to_730x.to_7309"
+      />
+  <genericsetup:upgradeStep
+      title="add kitconcept.seo to File"
+      profile="design.plone.contenttypes:default"
+      source="7309"
+      destination="7310"
+      handler=".to_730x.to_7310"
       />
 </configure>

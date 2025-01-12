@@ -65,6 +65,13 @@
       directory="profiles/fix_syndication"
       />
 
+  <genericsetup:registerProfile
+      name="remove_eea_api_taxonomy"
+      title="Uninstall eea.api.taxonomy"
+      description=""
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/remove_eea_api_taxonomy"
+      />
   <utility
       factory=".setuphandlers.HiddenProfiles"
       name="design.plone.contenttypes-hiddenprofiles"

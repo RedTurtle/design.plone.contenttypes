@@ -52,5 +52,16 @@ class DocumentoSerializer(SerializeFolderToJson):
         result = super(DocumentoSerializer, self).__call__(
             version=version, include_items=include_items
         )
+        # Una via alternativa era l'injection di fullobject nella request ma
+        # mi pare una cosa cattiva da fare
+        brain_moduli = [
+            x for x in self.context.getFolderContents() if x.portal_type == "Modulo"
+        ]
+        result["moduli_del_documento"] = []
+        for brain in brain_moduli:
+            modulo = brain.getObject()
+            result["moduli_del_documento"].append(
+                getMultiAdapter((modulo, self.request), ISerializeToJson)()
+            )
         result["servizi_collegati"] = self.get_services()
         return result

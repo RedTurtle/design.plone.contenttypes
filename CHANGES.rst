@@ -1,12 +1,45 @@
 Changelog
 =========
 
-6.2.23 (unreleased)
--------------------
+6.3.2 (unreleased)
+------------------
 
+- Added the metadata preview_caption and image_caption. An upgrade step is not necessary because the metadata will primarily be used for new content.
+  [mamico]
 - add SEO behavior to File
   [mamico]
 
+6.3.1 (2024-12-12)
+------------------
+
+- Update it translations
+  [lucabel]
+
+
+6.3.0 (2024-12-05)
+------------------
+
+- Add dependency with collective.volto.blocksfield >= 2.2.0 and install it to have all blocks indexed in block_types index.
+  [cekk]
+- Do not use eea.api.taxonomy because it is deprecated.
+  [cekk]
+
+
+6.2.24 (2024-11-26)
+-------------------
+
+- Add fields end and recurrence on event summary serializer
+  [eikichi18]
+
+
+6.2.23 (2024-11-22)
+-------------------
+
+- Override BandoView: in io-Comune we add new children on Folder Deepening content
+  and we need to proper handle it
+  [lucabel]
+- update serializer for documento ct adding more information about modulo children
+  [lucabel]
 
 6.2.22 (2024-10-30)
 -------------------
