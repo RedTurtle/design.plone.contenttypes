@@ -8,6 +8,8 @@ Changelog
   [mamico]
 - add SEO behavior to File
   [mamico]
+- Fix sorting in @scadenziario-day endpoint.
+  [folix-01]
 
 6.3.1 (2024-12-12)
 ------------------
