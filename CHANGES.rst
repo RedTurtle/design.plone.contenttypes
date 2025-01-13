@@ -6,6 +6,8 @@ Changelog
 
 - Added the metadata preview_caption and image_caption. An upgrade step is not necessary because the metadata will primarily be used for new content.
   [mamico]
+- add SEO behavior to File
+  [mamico]
 
 6.3.1 (2024-12-12)
 ------------------

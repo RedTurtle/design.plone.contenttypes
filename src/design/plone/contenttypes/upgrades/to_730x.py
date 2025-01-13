@@ -170,3 +170,16 @@ def to_7309(context):
     ps.unsetLastVersionForProfile("eea.api.taxonomy:default")
     logger.info("Install blocksfield")
     installOrReinstallProduct(api.portal.get(), "collective.volto.blocksfield")
+
+
+def to_7310(context):
+    logger.info("Enable kitconcept.seo behavior to File")
+    portal_types = api.portal.get_tool(name="portal_types")
+    behavior = "kitconcept.seo"
+    for ct in ["File"]:
+        portal_type = portal_types.get(ct, None)
+        if portal_type:
+            behaviors = list(portal_type.behaviors)
+            if behavior not in behaviors:
+                behaviors.append(behavior)
+                portal_type.behaviors = tuple(behaviors)
