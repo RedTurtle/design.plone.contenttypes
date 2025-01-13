@@ -47,12 +47,12 @@ class IDesignPloneSettings(Interface):
     lead_image_dimension = List(
         title=_(
             "lead_image_dimension_label",
-            default="Dimensioni lead image",
+            default="Dimensioni dell'immagine di testata",
         ),
         description=_(
             "lead_image_dimension_help",
-            default="Se un content-type deve avere una dimensione della "
-            "leadimage particolare, indicarle qui. "
+            default="Se un tipo di contenuto deve avere una dimensione dell'"
+            "immagine di testata particolare, indicarle qui. "
             "Inserire le dimensioni nella forma di esempio "
             "PortalType|900x900",
         ),

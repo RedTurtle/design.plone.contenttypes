@@ -1,11 +1,21 @@
 Changelog
 =========
 
-6.3.1 (unreleased)
+6.3.2 (unreleased)
 ------------------
 
+- Added the metadata preview_caption and image_caption. An upgrade step is not necessary because the metadata will primarily be used for new content.
+  [mamico]
+- add SEO behavior to File
+  [mamico]
 - Fix sorting in @scadenziario-day endpoint.
   [folix-01]
+
+6.3.1 (2024-12-12)
+------------------
+
+- Update it translations
+  [lucabel]
 
 
 6.3.0 (2024-12-05)

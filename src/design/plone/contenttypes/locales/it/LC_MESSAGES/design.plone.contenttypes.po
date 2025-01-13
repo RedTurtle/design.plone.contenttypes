@@ -402,7 +402,7 @@ msgstr ""
 #: design/plone/contenttypes/controlpanels/settings.py:106
 #: design/plone/contenttypes/profiles/default/controlpanel.xml
 msgid "Impostazioni Design Plone"
-msgstr ""
+msgstr "io-Comune"
 
 #: design/plone/contenttypes/vocabularies/tags_vocabulary.py:44
 msgid "Imposte"
@@ -1762,12 +1762,12 @@ msgstr ""
 msgid "interval_type_label"
 msgstr ""
 
-#. Default: "Se un content-type deve avere una dimensione della leadimage particolare, indicarle qui. Inserire le dimensioni nella forma di esempio PortalType|900x900"
+#. Default: "Se un tipo di contenuto deve avere una dimensione dell'immagine di testata particolare, indicarle qui. Inserire le dimensioni nella forma di esempio PortalType|900x900"
 #: design/plone/contenttypes/controlpanels/settings.py:52
 msgid "lead_image_dimension_help"
 msgstr ""
 
-#. Default: "Dimensioni lead image"
+#. Default: "Dimensioni dell'immagine di testata"
 #: design/plone/contenttypes/controlpanels/settings.py:48
 msgid "lead_image_dimension_label"
 msgstr ""
