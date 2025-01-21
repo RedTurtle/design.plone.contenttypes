@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-5.1.18 (unreleased)
+5.1.18 (2025-01-21)
 -------------------
 
 - Fix sorting in @scadenziario-day endpoint.
