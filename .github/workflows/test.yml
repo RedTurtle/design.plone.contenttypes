@@ -24,7 +24,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r requirements.txt -c constraints_plone${{ matrix.plone }}.txt
-          pip install Pillow==6.2.2
+          sudo apt-get install python3-dev python3-setuptools
           cp test_plone${{ matrix.plone }}.cfg buildout.cfg
       - name: Install buildout
         run: |
