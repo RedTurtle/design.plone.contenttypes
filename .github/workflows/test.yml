@@ -8,7 +8,7 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        python: ["3.8"]
+        python: ["3.9"]
         plone: ["52"]
     steps:
       - uses: actions/checkout@v1
