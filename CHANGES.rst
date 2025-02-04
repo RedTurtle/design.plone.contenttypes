@@ -10,6 +10,8 @@ Changelog
   [mamico]
 - Fix sorting in @scadenziario-day endpoint.
   [folix-01]
+- Removed moduli limitation on Documento CT serializer.
+  [eikichi18]
 
 6.3.1 (2024-12-12)
 ------------------
