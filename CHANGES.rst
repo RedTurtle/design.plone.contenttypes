@@ -10,6 +10,8 @@ Changelog
   [mamico]
 - Fix sorting in @scadenziario-day endpoint.
   [folix-01]
+- Removed Document from addable types of Documento CT.
+  [eikichi18]
 
 6.3.1 (2024-12-12)
 ------------------
