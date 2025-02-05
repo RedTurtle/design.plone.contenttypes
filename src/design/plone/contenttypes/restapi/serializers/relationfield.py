@@ -22,7 +22,13 @@ from zope.interface import implementer
 class RelationListFieldSerializer(DefaultRelationListFieldSerializer):
     def __call__(self, force_images=True):
         data = []
-        for value in self.get_value() or ():
+
+        try:
+            values = self.get_value()
+        except AttributeError:
+            values = ()
+
+        for value in values:
             if not value:
                 continue
             try:
