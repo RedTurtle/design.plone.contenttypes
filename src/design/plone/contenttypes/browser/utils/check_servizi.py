@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
+
 from DateTime import DateTime
 from design.plone.contenttypes.utils import text_in_block
 from openpyxl import Workbook
+from openpyxl.cell.cell import ILLEGAL_CHARACTERS_RE
 from openpyxl.styles import Alignment
 from openpyxl.styles import Font
 from openpyxl.styles import PatternFill
 from openpyxl.utils import get_column_letter
+from openpyxl.utils.exceptions import IllegalCharacterError
 from plone import api
 from Products.Five import BrowserView
-from openpyxl.cell.cell import ILLEGAL_CHARACTERS_RE
-from openpyxl.utils.exceptions import IllegalCharacterError
-
 import io
 
 
@@ -295,7 +295,7 @@ class DownloadCheckServizi(CheckServizi):
             except IllegalCharacterError:
                 tmp_row = []
                 for row_item in row:
-                    tmp_row.append(ILLEGAL_CHARACTERS_RE.sub(r' ', row_item))
+                    tmp_row.append(ILLEGAL_CHARACTERS_RE.sub(r" ", row_item))
                 sheet.append(tmp_row)
 
             if row[0] == "Titolo":
