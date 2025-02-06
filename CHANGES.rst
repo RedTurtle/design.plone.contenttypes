@@ -10,6 +10,7 @@ Changelog
   [mamico]
 - Fix sorting in @scadenziario-day endpoint.
   [folix-01]
+- Removed Document from addable types of Documento CT.
 - Removed moduli limitation on Documento CT serializer.
   [eikichi18]
 
