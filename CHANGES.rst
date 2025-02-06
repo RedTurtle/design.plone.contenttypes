@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.3.2 (unreleased)
+6.3.2 (2025-02-06)
 ------------------
 
 - Added the metadata preview_caption and image_caption. An upgrade step is not necessary because the metadata will primarily be used for new content.
