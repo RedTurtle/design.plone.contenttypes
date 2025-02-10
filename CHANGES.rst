@@ -4,7 +4,8 @@ Changelog
 6.3.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Return None in geolocation converter also if coordinates are 0.0.
+  [cekk]
 
 
 6.3.2 (2025-02-06)

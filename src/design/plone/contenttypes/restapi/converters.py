@@ -11,9 +11,6 @@ def geolocation_converter(value):
     if value is None:
         return value
 
+    if value.latitude == 0.0 and value.longitude == 0.0:
+        return None
     return value.__dict__
-
-    raise TypeError(
-        "No converter for making"
-        " {0!r} ({1}) JSON compatible.".format(value, type(value))
-    )
