@@ -4,7 +4,8 @@ Changelog
 6.3.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Refactor retrieveContentsOfFolderDeepening to be compliant with https://github.com/RedTurtle/redturtle.bandi/pull/25.
+  [cekk]
 
 
 6.3.2 (2025-02-06)
