@@ -45,7 +45,7 @@ class UsersSummaryDownload(Download):
             #      tutti
 
             users = {}
-
+            groups = [g.getId() for g in api.group.get_groups()]
             for group in api.group.get_groups():
                 for userid in group.getGroupMemberIds():
                     if userid not in users:
@@ -55,8 +55,9 @@ class UsersSummaryDownload(Download):
                                 "username": user.getUserName(),
                                 "email": user.getProperty("email"),
                                 "fullname": user.getProperty("fullname"),
-                                "groups": ",".join([g for g in user.getGroups() if g not in ["AuthenticatedUsers"]),
                             }
+                            for g in user.getGroups():
+                                users[userid][g] = "x"
             workbook = Workbook()
             sheet = workbook.active
             sheet.title = f"Redazione {api.portal.get().Title()}"
@@ -66,23 +67,27 @@ class UsersSummaryDownload(Download):
                     "USERNAME",
                     "EMAIL",
                     "NOME",
-                    "GRUPPI",
                 ]
             )
             sheet.cell(row=1, column=1).font = header_font
             sheet.cell(row=1, column=2).font = header_font
             sheet.cell(row=1, column=3).font = header_font
-            sheet.cell(row=1, column=4).font = header_font
+            for idx, g in enumerate(groups):
+                sheet.cell(row=1, column=4 + idx).value = g
+                sheet.cell(row=1, column=4 + idx).font = header_font
 
-            for user in sorted(users.values(), key=lambda u: u["username"]):
+            for row, user in enumerate(
+                sorted(users.values(), key=lambda u: u["username"])
+            ):
                 sheet.append(
                     [
                         user["username"],
                         user["email"],
                         user["fullname"],
-                        user["groups"],
                     ]
                 )
+                for col, g in enumerate(groups):
+                    sheet.cell(row=row + 2, column=3 + col).value = user.get(g)
 
             bytes_io = io.BytesIO()
             workbook.save(bytes_io)
