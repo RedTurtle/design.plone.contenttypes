@@ -4,6 +4,8 @@ Changelog
 6.3.3 (unreleased)
 ------------------
 
+- Added download xlsx of users in design-utils
+  [mamico]
 - Return None in geolocation converter also if coordinates are 0.0.
   [cekk]
 
