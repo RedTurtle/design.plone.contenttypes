@@ -100,6 +100,17 @@
               Questa vista genera un file csv da scaricare.
             </p>
           </li>
+        </ul>
+      </div>
+      <div>
+        <h3>Utenti</h3>
+        <ul class="list-group">
+          <li class="list-group-item">
+            <a href="${context/portal_url}/users-summary/@@download/users.xlsx">Excel con gli utenti del sito</a>
+            <p class="discreet">
+            </p>
+          </li>
+        </ul>
       </div>
     </metal:content-core>
   </body>
