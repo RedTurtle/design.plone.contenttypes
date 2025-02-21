@@ -1,0 +1,19 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="design.plone.contenttypes"
+    >
+  <browser:page
+      name="users-summary"
+      for="plone.app.layout.navigation.interfaces.INavigationRoot"
+      class=".users.UsersSummaryView"
+      permission="cmf.ManagePortal"
+      />
+  <browser:page
+      name="download"
+      for=".users.IUsersSummaryView"
+      class=".users.UsersSummaryDownload"
+      permission="cmf.ManagePortal"
+      />
+</configure>

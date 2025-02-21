@@ -5,6 +5,12 @@
     i18n_domain="design.plone.contenttypes"
     >
 
+  <include file="users.zcml" />
+
+  <!-- TODO: tutte queste registrazioni sono su "*" invece credo andrebbero fatte 
+             (almeno la maggior parte)su portalroot o navigationroot 
+  -->
+  <!-- TODO: questa vista andrebbe spostata su Volto -->
   <browser:page
       name="design-utils"
       for="*"
