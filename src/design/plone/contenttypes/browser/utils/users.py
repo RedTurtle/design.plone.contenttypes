@@ -45,7 +45,11 @@ class UsersSummaryDownload(Download):
             #      tutti
 
             users = {}
-            groups = [g.getId() for g in api.group.get_groups() if g.getId() not in ["AuthenticatedUsers"]]
+            groups = [
+                g.getId()
+                for g in api.group.get_groups()
+                if g.getId() not in ["AuthenticatedUsers"]
+            ]
             for group in api.group.get_groups():
                 for userid in group.getGroupMemberIds():
                     if userid not in users:
