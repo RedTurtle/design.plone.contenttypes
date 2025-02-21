@@ -1,11 +1,18 @@
 Changelog
 =========
 
-6.3.3 (unreleased)
+6.3.4 (unreleased)
 ------------------
 
 - Added download xlsx of users in design-utils
   [mamico]
+
+
+6.3.3 (2025-02-20)
+------------------
+
+- Refactor retrieveContentsOfFolderDeepening to be compliant with https://github.com/RedTurtle/redturtle.bandi/pull/25.
+  [cekk]
 - Return None in geolocation converter also if coordinates are 0.0.
   [cekk]
 
