@@ -38,7 +38,7 @@ class UsersSummaryDownload(Download):
     def publishTraverse(self, request, name):
         super().publishTraverse(request=request, name=name)
 
-        if name == "user.xlsx":
+        if name == "users.xlsx":
             # XXX: al momento l'estrazione avviene a partire dai gruppi,
             #      questo perchè il sito potrebbe essere connesso ad un LDAP
             #      aziendale contenente molti utenti e non cii interessa estrarli tutti
@@ -54,7 +54,7 @@ class UsersSummaryDownload(Download):
                                 "username": user.getUserName(),
                                 "email": user.getProperty("email"),
                                 "fullname": user.getProperty("fullname"),
-                                "groups": ",".join(user.getGroups()),
+                                "groups": ",".join([g for g in user.getGroups() if g not in ["AuthenticatedUsers"]),
                             }
             workbook = Workbook()
             sheet = workbook.active
@@ -68,12 +68,12 @@ class UsersSummaryDownload(Download):
                     "GRUPPI",
                 ]
             )
-            sheet.cell(row=0, column=0).font = header_font
-            sheet.cell(row=0, column=1).font = header_font
-            sheet.cell(row=0, column=2).font = header_font
-            sheet.cell(row=0, column=3).font = header_font
+            sheet.cell(row=1, column=1).font = header_font
+            sheet.cell(row=1, column=2).font = header_font
+            sheet.cell(row=1, column=3).font = header_font
+            sheet.cell(row=1, column=4).font = header_font
 
-            for user in sorted(users, key=lambda u: u["username"]):
+            for user in sorted(users.values(), key=lambda u: u["username"]):
                 sheet.append(
                     [
                         user["username"],
@@ -100,7 +100,8 @@ class UsersSummaryDownload(Download):
 
         return self
 
-    def _getFile(self):
+    # def _getFile(self):
+    def __call__(self):
         if not self.data:
             raise NotFound(self, "b", self.request)
         return self.data
