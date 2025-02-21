@@ -41,7 +41,8 @@ class UsersSummaryDownload(Download):
         if name == "users.xlsx":
             # XXX: al momento l'estrazione avviene a partire dai gruppi,
             #      questo perchè il sito potrebbe essere connesso ad un LDAP
-            #      aziendale contenente molti utenti e non cii interessa estrarli tutti
+            #      aziendale contenente molti utenti e non ci interessa estrarli
+            #      tutti
 
             users = {}
 
