@@ -4,7 +4,8 @@ Changelog
 6.3.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Added download xlsx of users in design-utils
+  [mamico]
 
 
 6.3.3 (2025-02-20)
