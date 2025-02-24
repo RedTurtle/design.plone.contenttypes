@@ -4,7 +4,7 @@ from design.plone.contenttypes.events.common import SUBFOLDERS_MAPPING
 from design.plone.contenttypes.utils import create_default_blocks
 from plone import api
 from Products.CMFPlone.interfaces import ISelectableConstrainTypes
-
+from design.plone.contenttypes.events.common import createStructure
 import logging
 import transaction
 
@@ -183,3 +183,38 @@ def to_7310(context):
             if behavior not in behaviors:
                 behaviors.append(behavior)
                 portal_type.behaviors = tuple(behaviors)
+
+
+def to_7311(context):
+    logger.info("Add new folder to Persona CT")
+    mapping1 = {
+        "content": [
+            {
+                "id": "dichiarazione-insussistenza-cause-di-inconferibilita-e-incompatibilita",  # noqa
+                "title": "Dichiarazione insussistenza cause di inconferibilità e"
+                " incompatibilità",
+                "allowed_types": ("File",),
+            },
+        ]
+    }
+    mapping2 = {
+        "content": [
+            {
+                "id": "emolumenti-complessivi-percepiti-a-carico-della-finanza-pubblica",  # noqa
+                "title": "Emolumenti complessivi percepiti a carico della finanza"
+                " pubblica",
+                "allowed_types": ("File",),
+            },
+        ]
+    }
+    pc = api.portal.get_tool(name="portal_catalog")
+    brains = pc(portal_type="Persona")
+    for brain in brains:
+        persona = brain.getObject()
+        if "dichiarazione-insussistenza-cause-di-inconferibilita-e-incompatibilita" not in persona.keys():
+            createStructure(persona, mapping1)
+            logger.info("Add dichiarazione insussistenza for {}".format(persona.title))
+        if "emolumenti-complessivi-percepiti-a-carico-della-finanza-pubblica" not in persona.keys():
+            createStructure(persona, mapping2)
+            logger.info("Add emolumenti complessivi for {}".format(persona.title))
+    raise

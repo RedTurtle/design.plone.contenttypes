@@ -222,6 +222,8 @@ class TestEventCreation(unittest.TestCase):
         - variazione-situazione-patrimoniale" "altre-cariche
         - incarichi
         - altri-documenti
+        - dichiarazione-insussistenza-cause-di-inconferibilita-e-incompatibilita
+        - emolumenti-complessivi-percepiti-a-carico-della-finanza-pubblica
         """
         item = api.content.create(
             container=self.portal,
@@ -241,6 +243,8 @@ class TestEventCreation(unittest.TestCase):
                 "altre-cariche",
                 "incarichi",
                 "altri-documenti",
+                "dichiarazione-insussistenza-cause-di-inconferibilita-e-incompatibilita",
+                "emolumenti-complessivi-percepiti-a-carico-della-finanza-pubblica",
             ],
         )
 
