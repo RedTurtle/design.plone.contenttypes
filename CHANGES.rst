@@ -1,22 +1,11 @@
 Changelog
 =========
 
-6.3.4 (unreleased)
-------------------
+6.3.2.1 (unreleased)
+--------------------
 
-- Added download xlsx of users in design-utils
-  [mamico]
 - Change number of related assessore_riferimento
   [lucabel]
-
-
-6.3.3 (2025-02-20)
-------------------
-
-- Refactor retrieveContentsOfFolderDeepening to be compliant with https://github.com/RedTurtle/redturtle.bandi/pull/25.
-  [cekk]
-- Return None in geolocation converter also if coordinates are 0.0.
-  [cekk]
 
 
 6.3.2 (2025-02-06)
