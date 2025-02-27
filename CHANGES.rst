@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.3.2.1 (unreleased)
+6.3.2.1 (2025-02-27)
 --------------------
 
 - Change number of related assessore_riferimento
