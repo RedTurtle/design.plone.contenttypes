@@ -7,6 +7,7 @@ Changelog
 - Added download xlsx of users in design-utils
   [mamico]
 - Change number of related assessore_riferimento
+  [lucabel]
 
 
 6.3.3 (2025-02-20)
