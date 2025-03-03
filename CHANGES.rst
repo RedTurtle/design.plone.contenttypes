@@ -10,6 +10,8 @@ Changelog
   [mamico]
 - Fix sorting in @scadenziario-day endpoint.
   [folix-01]
+- Check servizi view: remove illegal characters.
+  [daniele] 
 
 6.3.1 (2024-12-12)
 ------------------

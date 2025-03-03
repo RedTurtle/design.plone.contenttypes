@@ -290,10 +290,7 @@ class DownloadCheckServizi(CheckServizi):
             if have_url:
                 url = row.pop()
 
-            tmp_row = []
-            for row_item in row:
-                tmp_row.append(ILLEGAL_CHARACTERS_RE.sub(r" ", row_item))
-            sheet.append(tmp_row)
+            sheet.append([ILLEGAL_CHARACTERS_RE.sub(r" ", x) for x in row])
 
             if row[0] == "Titolo":
                 for index, cell in enumerate(sheet[i]):
