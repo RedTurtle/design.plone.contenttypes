@@ -1,7 +1,25 @@
 Changelog
 =========
 
-6.3.2 (unreleased)
+6.3.4 (unreleased)
+------------------
+
+- Added download xlsx of users in design-utils
+  [mamico]
+- Change number of related assessore_riferimento
+  [lucabel]
+
+
+6.3.3 (2025-02-20)
+------------------
+
+- Refactor retrieveContentsOfFolderDeepening to be compliant with https://github.com/RedTurtle/redturtle.bandi/pull/25.
+  [cekk]
+- Return None in geolocation converter also if coordinates are 0.0.
+  [cekk]
+
+
+6.3.2 (2025-02-06)
 ------------------
 
 - Added the metadata preview_caption and image_caption. An upgrade step is not necessary because the metadata will primarily be used for new content.
@@ -11,7 +29,10 @@ Changelog
 - Fix sorting in @scadenziario-day endpoint.
   [folix-01]
 - Check servizi view: remove illegal characters.
-  [daniele] 
+  [daniele]
+- Removed Document from addable types of Documento CT.
+- Removed moduli limitation on Documento CT serializer.
+  [eikichi18]
 
 6.3.1 (2024-12-12)
 ------------------
