@@ -28,6 +28,8 @@ Changelog
   [mamico]
 - Fix sorting in @scadenziario-day endpoint.
   [folix-01]
+- Check servizi view: remove illegal characters.
+  [daniele]
 - Removed Document from addable types of Documento CT.
 - Removed moduli limitation on Documento CT serializer.
   [eikichi18]
