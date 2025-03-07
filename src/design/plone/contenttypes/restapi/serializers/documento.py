@@ -64,4 +64,12 @@ class DocumentoSerializer(SerializeFolderToJson):
                 getMultiAdapter((modulo, self.request), ISerializeToJson)()
             )
         result["servizi_collegati"] = self.get_services()
+
+        types = result["@components"]["types"]
+        # if we don't have expand in request we don't have a list but this:
+        if isinstance(types, list):
+            for cttype in result["@components"]["types"]:
+                if cttype["id"] == "File":
+                    cttype["addable"] = False
+                    cttype["immediately_addable"] = False
         return result

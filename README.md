@@ -227,6 +227,8 @@ E' presente una customizzazione del serializer per poter mostrare di default pi�
 
 Se si prova a fare un caricamento massivo di file dalla vista "*contents*" di un Documento, c'è una personalizzazione di restapi che converte il tipo da File (il default che imposta Volto per la POST) a **Modulo**. In questo modo si può fare il caricamento massivo di Moduli dentro ad un Documento.
 
+Se si prova a tagliare/incollare dei file dentro al CT Documento la cosa funziona. In realtà anche il tipo File è aggiungibile ma serve solo redazionalmente; questo significa che il File viene nascosto tramite serializer per non mostrarlo nel menu add di frontend
+
 ### Campi indicizzati nel SearchableText
 
 - blocchi Volto
