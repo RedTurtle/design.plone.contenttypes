@@ -4,7 +4,8 @@ Changelog
 6.3.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add upgrade-step to add missing metadata for image captions.
+  [cekk]
 
 
 6.3.4 (2025-03-07)

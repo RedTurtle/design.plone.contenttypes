@@ -188,3 +188,13 @@ def to_7310(context):
 def to_7311(context):
     update_types(context)
     logger.info("Update ct documento addables")
+
+
+def to_7312(context):
+    """
+    Only add metadata if missing. We don't want to force reindexing.
+    """
+    pc = api.portal.get_tool(name="portal_catalog")
+    for column in ["image_caption", "preview_caption"]:
+        if column not in pc.schema():
+            pc.addColumn(column)
