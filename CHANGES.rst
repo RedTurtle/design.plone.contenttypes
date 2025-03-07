@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.3.4 (unreleased)
+6.3.4 (2025-03-07)
 ------------------
 
 - Added download xlsx of users in design-utils
