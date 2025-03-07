@@ -8,6 +8,9 @@ Changelog
   [mamico]
 - Change number of related assessore_riferimento
   [lucabel]
+- Add File to CT Documento but hide it from volto add menu
+  [lucabel]
+  
 
 
 6.3.3 (2025-02-20)
