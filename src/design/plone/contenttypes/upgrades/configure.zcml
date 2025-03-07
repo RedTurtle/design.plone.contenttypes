@@ -928,7 +928,7 @@
       handler=".to_730x.to_7310"
       />
   <genericsetup:upgradeStep
-      title="add kitconcept.seo to File"
+      title="Reload types information"
       profile="design.plone.contenttypes:default"
       source="7310"
       destination="7311"
