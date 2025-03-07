@@ -934,4 +934,11 @@
       destination="7311"
       handler=".to_730x.to_7311"
       />
+  <genericsetup:upgradeStep
+      title="Add caption metadata"
+      profile="design.plone.contenttypes:default"
+      source="7311"
+      destination="7312"
+      handler=".to_730x.to_7312"
+      />
 </configure>
