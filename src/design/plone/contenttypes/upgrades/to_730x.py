@@ -183,3 +183,8 @@ def to_7310(context):
             if behavior not in behaviors:
                 behaviors.append(behavior)
                 portal_type.behaviors = tuple(behaviors)
+
+
+def to_7311(context):
+    update_types(context)
+    logger.info("Update ct documento addables")
