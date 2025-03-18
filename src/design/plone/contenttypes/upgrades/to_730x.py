@@ -185,7 +185,7 @@ def to_7311(context):
     allowed = list(context.portal_types["Documento"].allowed_content_types)
     if "File" not in allowed:
         allowed.append("File")
-    context.portal_types["Documento"].allowed_content_types = tuple(allowed)
+        context.portal_types["Documento"].allowed_content_types = tuple(allowed)
     logger.info("Update ct documento addables")
 
 
