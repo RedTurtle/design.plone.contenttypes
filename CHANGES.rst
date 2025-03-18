@@ -4,7 +4,9 @@ Changelog
 6.3.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix upgrade step; we can't update types due to customer customizations;
+  we need to fix single parts of type profiles
+  [lucabel]
 
 
 6.3.4 (2025-03-07)
