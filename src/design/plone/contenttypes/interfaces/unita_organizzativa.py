@@ -174,7 +174,6 @@ class IUnitaOrganizzativa(model.Schema, IDesignPloneContentType):
         RelatedItemsFieldWidget,
         vocabulary="plone.app.vocabularies.Catalog",
         pattern_options={
-            "maximumSelectionSize": 2,
             "selectableTypes": ["Persona"],
             # "basePath": "/amministrazione",
         },

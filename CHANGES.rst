@@ -4,9 +4,10 @@ Changelog
 6.3.5 (unreleased)
 ------------------
 
-
 - Fix upgrade step; we can't update types due to customer customizations;
   we need to fix single parts of type profiles
+  [lucabel]
+- Remove limit to "assessore_di_riferimento" in UO
   [lucabel]
 - Add upgrade-step to add missing metadata for image captions.
   [cekk]
