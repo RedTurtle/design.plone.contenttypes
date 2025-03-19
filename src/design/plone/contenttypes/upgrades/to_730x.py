@@ -201,21 +201,24 @@ def to_7312(context):
 
 def to_7313(context):
     logger.info("Update registry")
-    update_registry(context)
-    logger.info("Add new effectiveend (DateRecurringIndex) index")
+    context.runImportStepFromProfile(
+        "profile-design.plone.contenttypes:to_7313",
+        "plone.app.registry", False)
 
+    logger.info("Add new effectiveend (DateRecurringIndex) index")
     class extra:
         recurdef = "recurrence"
         until = ""
 
     name = "effectiveend"
     catalog = api.portal.get_tool(name="portal_catalog")
-    catalog.addIndex(name, "DateRecurringIndex", extra=extra())
-    logger.info("Catalog DateRecurringIndex {} created.".format(name))
+
+    if 'effectiveend' not in catalog.indexes():
+        catalog.addIndex(name, "DateRecurringIndex", extra=extra())
+        logger.info("Catalog DateRecurringIndex {} created.".format(name))
 
     logger.info("Reindex Events")
-    pc = api.portal.get_tool(name="portal_catalog")
-    brains = pc(portal_type="Event")
+    brains = catalog(portal_type="Event")
     tot = len(brains)
     for i, brain in enumerate(brains):
         if i % 15 == 0:

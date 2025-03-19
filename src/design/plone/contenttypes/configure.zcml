@@ -72,6 +72,15 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       directory="profiles/remove_eea_api_taxonomy"
       />
+
+  <genericsetup:registerProfile
+      name="to_7313"
+      title="Design Plone: Content-types to 7313"
+      description="Fix control panel of design.plone.contenttypes add-on."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/to_7313"
+      />
+
   <utility
       factory=".setuphandlers.HiddenProfiles"
       name="design.plone.contenttypes-hiddenprofiles"

@@ -11,6 +11,8 @@ Changelog
   [lucabel]
 - Add upgrade-step to add missing metadata for image captions.
   [cekk]
+- Add "data fine effettiva" for events, to order listing correctly
+  [lucabel]
 
 
 6.3.4 (2025-03-07)
