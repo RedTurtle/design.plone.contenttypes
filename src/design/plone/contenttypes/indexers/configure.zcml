@@ -9,6 +9,10 @@
       name="effectivestart"
       />
   <adapter
+      factory=".events.effectiveend"
+      name="effectiveend"
+      />
+  <adapter
       factory=".pagina_argomento.SearchableTextExtender"
       name="IPaginaArgomento"
       />
