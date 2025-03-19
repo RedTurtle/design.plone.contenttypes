@@ -202,10 +202,11 @@ def to_7312(context):
 def to_7313(context):
     logger.info("Update registry")
     context.runImportStepFromProfile(
-        "profile-design.plone.contenttypes:to_7313",
-        "plone.app.registry", False)
+        "profile-design.plone.contenttypes:to_7313", "plone.app.registry", False
+    )
 
     logger.info("Add new effectiveend (DateRecurringIndex) index")
+
     class extra:
         recurdef = "recurrence"
         until = ""
@@ -213,7 +214,7 @@ def to_7313(context):
     name = "effectiveend"
     catalog = api.portal.get_tool(name="portal_catalog")
 
-    if 'effectiveend' not in catalog.indexes():
+    if "effectiveend" not in catalog.indexes():
         catalog.addIndex(name, "DateRecurringIndex", extra=extra())
         logger.info("Catalog DateRecurringIndex {} created.".format(name))
 
