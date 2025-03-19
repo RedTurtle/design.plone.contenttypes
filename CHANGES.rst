@@ -5,7 +5,8 @@ Changelog
 5.1.19 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix typo in Venue serializer that didn't return the right history version.
+  [cekk]
 
 
 5.1.18 (2025-01-21)
