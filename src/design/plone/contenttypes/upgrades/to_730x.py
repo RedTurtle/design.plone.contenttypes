@@ -225,10 +225,15 @@ def to_7314(context):
     brains = pc(portal_type="Persona")
     for brain in brains:
         persona = brain.getObject()
-        if "dichiarazione-insussistenza-cause-di-inconferibilita-e-incompatibilita" not in persona.keys():
+        if (
+            "dichiarazione-insussistenza-cause-di-inconferibilita-e-incompatibilita"
+            not in persona.keys()
+        ):
             createStructure(persona, mapping1)
             logger.info("Add dichiarazione insussistenza for {}".format(persona.title))
-        if "emolumenti-complessivi-percepiti-a-carico-della-finanza-pubblica" not in persona.keys():
+        if (
+            "emolumenti-complessivi-percepiti-a-carico-della-finanza-pubblica"
+            not in persona.keys()
+        ):
             createStructure(persona, mapping2)
             logger.info("Add emolumenti complessivi for {}".format(persona.title))
-    raise
