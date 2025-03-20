@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+          i18n:domain="plone"
+>
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.effectiveend" >
+    <value key="title" i18n:translate="effectivestart">Data effettiva di fine evento</value>
+    <value key="description">Criterio per ricerche che si basano sulla data effettiva di fine</value>
+    <value key="enabled">True</value>
+    <value key="sortable">True</value>
+    <value key="operations">
+        <element>plone.app.querystring.operation.date.lessThan</element>
+        <element>plone.app.querystring.operation.date.largerThan</element>
+        <element>plone.app.querystring.operation.date.between</element>
+        <element>plone.app.querystring.operation.date.lessThanRelativeDate</element>
+        <element>plone.app.querystring.operation.date.largerThanRelativeDate</element>
+        <element>plone.app.querystring.operation.date.today</element>
+        <element>plone.app.querystring.operation.date.beforeToday</element>
+        <element>plone.app.querystring.operation.date.afterToday</element>
+        <element>plone.app.querystring.operation.date.beforeRelativeDate</element>
+        <element>plone.app.querystring.operation.date.afterRelativeDate</element>
+    </value>
+    <value i18n:translate="" i18n:domain="plone" key="group">Dates</value>
+  </records>
+</registry>
