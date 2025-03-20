@@ -15,6 +15,9 @@ Changelog
   [lucabel]
 - Fix typo in Venue serializer that didn't return the right history version.
   [cekk]
+- Add "Emolumenti a carico della finanza pubblica" to Persona
+  Add "Dichiarazioni di insussistenza e incompatibilità" to Persona
+  [lucabel]
 
 
 6.3.4 (2025-03-07)
