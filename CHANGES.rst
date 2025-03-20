@@ -11,7 +11,8 @@ Changelog
   [lucabel]
 - Add upgrade-step to add missing metadata for image captions.
   [cekk]
-
+- Fix typo in Venue serializer that didn't return the right history version.
+  [cekk]
 
 6.3.4 (2025-03-07)
 ------------------
