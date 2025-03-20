@@ -11,7 +11,7 @@ jobs:
       - name: Install doctoc
         run: |
           sudo npm install -g doctoc
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Generate full TOC
         run: |
           doctoc --github --notitle README.md

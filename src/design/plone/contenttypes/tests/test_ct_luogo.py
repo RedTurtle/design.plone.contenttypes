@@ -14,7 +14,9 @@ from Products.CMFPlone.utils import getToolByName
 from transaction import commit
 from z3c.relationfield import RelationValue
 from zope.component import getUtility
+from zope.event import notify
 from zope.intid.interfaces import IIntIds
+from zope.lifecycleevent import ObjectModifiedEvent
 
 import unittest
 
@@ -171,3 +173,19 @@ class TestLuogoApi(unittest.TestCase):
             res["related_news"][1]["@id"],
             self.news.absolute_url(),
         )
+
+    def test_venue_history_return_right_data(self):
+        venue = api.content.create(container=self.portal, type="Venue", title="venue1")
+        venue.description = "aaa"
+        notify(ObjectModifiedEvent(venue))
+        venue.description = "aaa bbb"
+        notify(ObjectModifiedEvent(venue))
+        commit()
+
+        response0 = self.api_session.get(f"{venue.absolute_url()}/@history/0").json()
+        response1 = self.api_session.get(f"{venue.absolute_url()}/@history/1").json()
+        response2 = self.api_session.get(f"{venue.absolute_url()}/@history/2").json()
+
+        self.assertEqual(response0["description"], "")
+        self.assertEqual(response1["description"], "aaa")
+        self.assertEqual(response2["description"], "aaa bbb")
