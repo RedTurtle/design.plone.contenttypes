@@ -67,7 +67,7 @@ class TestDocumentoSchema(unittest.TestCase):
     def test_documento_addable_types(self):
         portal_types = api.portal.get_tool(name="portal_types")
         self.assertEqual(
-            ("Document", "Modulo", "Link"),
+            ("Document", "Modulo", "File", "Link"),
             portal_types["Documento"].allowed_content_types,
         )
 
@@ -340,3 +340,15 @@ class TestDocumentoApi(unittest.TestCase):
         self.assertEqual(resp.status_code, 204)
         self.assertEqual(self.documento, self.portal.listFolderContents()[1])
         self.assertEqual(new_documento, self.portal.listFolderContents()[0])
+
+    def test_document_serializer(self):
+        response = self.api_session.get(self.documento.absolute_url() + "?expand=types")
+        res = response.json()
+        for cttype in res["@components"]["types"]:
+            if cttype["id"] == "File":
+                self.assertFalse(cttype["addable"])
+                self.assertFalse(cttype["immediately_addable"])
+        documento_ct = self.portal.portal_types["Documento"]
+        self.assertEqual(
+            documento_ct.allowed_content_types, ("Document", "Modulo", "File", "Link")
+        )

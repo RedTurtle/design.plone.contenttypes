@@ -1,10 +1,38 @@
 Changelog
 =========
 
-6.3.3 (unreleased)
+6.3.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix upgrade step; we can't update types due to customer customizations;
+  we need to fix single parts of type profiles
+  [lucabel]
+- Remove limit to "assessore_di_riferimento" in UO
+  [lucabel]
+- Add upgrade-step to add missing metadata for image captions.
+  [cekk]
+- Fix typo in Venue serializer that didn't return the right history version.
+  [cekk]
+
+6.3.4 (2025-03-07)
+------------------
+
+- Added download xlsx of users in design-utils
+  [mamico]
+- Change number of related assessore_riferimento
+  [lucabel]
+- Add File to CT Documento but hide it from volto add menu
+  [lucabel]
+  
+
+
+6.3.3 (2025-02-20)
+------------------
+
+- Refactor retrieveContentsOfFolderDeepening to be compliant with https://github.com/RedTurtle/redturtle.bandi/pull/25.
+  [cekk]
+- Return None in geolocation converter also if coordinates are 0.0.
+  [cekk]
 
 
 6.3.2 (2025-02-06)
@@ -16,6 +44,8 @@ Changelog
   [mamico]
 - Fix sorting in @scadenziario-day endpoint.
   [folix-01]
+- Check servizi view: remove illegal characters.
+  [daniele]
 - Removed Document from addable types of Documento CT.
 - Removed moduli limitation on Documento CT serializer.
   [eikichi18]

@@ -928,10 +928,24 @@
       handler=".to_730x.to_7310"
       />
   <genericsetup:upgradeStep
-      title="Update Persona subfolder"
+      title="Reload types information"
       profile="design.plone.contenttypes:default"
       source="7310"
       destination="7311"
       handler=".to_730x.to_7311"
+      />
+  <genericsetup:upgradeStep
+      title="Add caption metadata"
+      profile="design.plone.contenttypes:default"
+      source="7311"
+      destination="7312"
+      handler=".to_730x.to_7312"
+      />
+  <genericsetup:upgradeStep
+      title="Update Persona subfolder"
+      profile="design.plone.contenttypes:default"
+      source="7313"
+      destination="7314"
+      handler=".to_730x.to_7314"
       />
 </configure>

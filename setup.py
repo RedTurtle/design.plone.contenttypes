@@ -16,7 +16,7 @@ long_description = "\n\n".join(
 
 setup(
     name="design.plone.contenttypes",
-    version="6.3.3.dev0",
+    version="6.3.5.dev0",
     description="DesignItalia contenty types",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -62,7 +62,7 @@ setup(
         "collective.z3cform.datagridfield",
         "plone.formwidget.geolocation",
         "redturtle.volto>=5.5.3",
-        "redturtle.bandi",
+        "redturtle.bandi>=1.5.0",
         "z3c.unconfigure",
         "plone.restapi",
         "collective.taxonomy>=3.1",

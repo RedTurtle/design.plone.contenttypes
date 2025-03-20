@@ -26,10 +26,6 @@ def update_registry(context):
     update_profile(context, "plone.app.registry", run_dependencies=False)
 
 
-def update_types(context):
-    update_profile(context, "typeinfo")
-
-
 def to_7301(context):
     brains = api.content.find(portal_type="Persona")
     for brain in brains:
@@ -186,6 +182,24 @@ def to_7310(context):
 
 
 def to_7311(context):
+    allowed = list(context.portal_types["Documento"].allowed_content_types)
+    if "File" not in allowed:
+        allowed.append("File")
+        context.portal_types["Documento"].allowed_content_types = tuple(allowed)
+    logger.info("Update ct documento addables")
+
+
+def to_7312(context):
+    """
+    Only add metadata if missing. We don't want to force reindexing.
+    """
+    pc = api.portal.get_tool(name="portal_catalog")
+    for column in ["image_caption", "preview_caption"]:
+        if column not in pc.schema():
+            pc.addColumn(column)
+
+
+def to_7314(context):
     logger.info("Add new folder to Persona CT")
     mapping1 = {
         "content": [
