@@ -36,6 +36,4 @@ def effectiveend(obj):
     for occurrence in list(occurrences):
         if occurrence.end > end:
             end = occurrence.end
-    if obj.title:
-        print(f"{obj.title} - {end}")
     return end

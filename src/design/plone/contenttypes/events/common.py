@@ -163,6 +163,18 @@ SUBFOLDERS_MAPPING = {
                 "title": "Altri documenti",
                 "allowed_types": ("File", "Image", "Link"),
             },
+            {
+                "id": "dichiarazione-insussistenza-cause-di-inconferibilita-e-incompatibilita",  # noqa
+                "title": "Dichiarazione insussistenza cause di inconferibilità e"
+                " incompatibilità",
+                "allowed_types": ("File",),
+            },
+            {
+                "id": "emolumenti-complessivi-percepiti-a-carico-della-finanza-pubblica",  # noqa
+                "title": "Emolumenti complessivi percepiti a carico della finanza"
+                " pubblica",
+                "allowed_types": ("File",),
+            },
         ],
         "allowed_types": [],
     },
@@ -207,16 +219,7 @@ def onModify(context, event):
                     child.reindexObject(idxs=["parent"])
 
 
-def createSubfolders(context, event):
-    """
-    Create subfolders structure based on a portal_type mapping
-    """
-    if not IDesignPloneContenttypesLayer.providedBy(context.REQUEST):
-        return
-
-    subfolders_mapping = SUBFOLDERS_MAPPING.get(context.portal_type, [])
-    if not subfolders_mapping:
-        return
+def createStructure(context, subfolders_mapping):
 
     for mapping in subfolders_mapping.get("content", {}):
         if mapping["id"] not in context.keys():
@@ -251,3 +254,16 @@ def createSubfolders(context, event):
         constraints_context = ISelectableConstrainTypes(context)
         constraints_context.setConstrainTypesMode(1)
         constraints_context.setLocallyAllowedTypes(allowed_types)
+
+
+def createSubfolders(context, event):
+    """
+    Create subfolders structure based on a portal_type mapping
+    """
+    if not IDesignPloneContenttypesLayer.providedBy(context.REQUEST):
+        return
+
+    subfolders_mapping = SUBFOLDERS_MAPPING.get(context.portal_type, [])
+    if not subfolders_mapping:
+        return
+    createStructure(context, subfolders_mapping)
