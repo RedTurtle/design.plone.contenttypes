@@ -2,6 +2,7 @@
 from plone.app.contenttypes.interfaces import IEvent
 from plone.indexer.decorator import indexer
 from plone.event.interfaces import IEventAccessor
+from plone.event.interfaces import IRecurrenceSupport
 
 
 @indexer(IEvent)
@@ -26,3 +27,13 @@ def effectivestart(obj):
     if not start:
         raise AttributeError
     return start
+
+
+@indexer(IEvent)
+def effectiveend(obj):
+    occurrences = IRecurrenceSupport(obj).occurrences()
+    end = obj.end
+    for occurrence in list(occurrences):
+        if occurrence.end > end:
+            end = occurrence.end
+    return end

@@ -942,6 +942,13 @@
       handler=".to_730x.to_7312"
       />
   <genericsetup:upgradeStep
+      title="Add caption metadata"
+      profile="design.plone.contenttypes:default"
+      source="7312"
+      destination="7313"
+      handler=".to_730x.to_7313"
+      />
+  <genericsetup:upgradeStep
       title="Update Persona subfolder"
       profile="design.plone.contenttypes:default"
       source="7313"
