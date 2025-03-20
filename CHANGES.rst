@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-5.1.19 (unreleased)
+5.1.19 (2025-03-20)
 -------------------
 
 - Fix typo in Venue serializer that didn't return the right history version.
