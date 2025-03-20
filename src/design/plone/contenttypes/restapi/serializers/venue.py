@@ -68,7 +68,7 @@ class VenueSerializer(RelatedNewsSerializer):
 
     def __call__(self, version=None, include_items=True):
         self.index = "news_venue"
-        result = super(VenueSerializer, self).__call__(version=None, include_items=True)
+        result = super().__call__(version=version, include_items=include_items)
         result["venue_services"] = self.get_venue_services(result)
         result["sede_di"] = self.get_venue_offices(result)
         return result

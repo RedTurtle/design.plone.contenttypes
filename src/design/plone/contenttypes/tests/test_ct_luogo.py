@@ -16,6 +16,8 @@ from uuid import uuid4
 from z3c.relationfield import RelationValue
 from zope.component import getUtility
 from zope.intid.interfaces import IIntIds
+from zope.lifecycleevent import ObjectModifiedEvent
+from zope.event import notify
 
 import unittest
 
@@ -432,3 +434,19 @@ class TestLuogoApi(unittest.TestCase):
             if item["id"] in ["venue1", "venue2"]:
                 self.assertEqual(item["geolocation"]["latitude"], 44.35)
                 self.assertEqual(item["geolocation"]["longitude"], 11.7)
+
+    def test_venue_history_return_right_data(self):
+        venue = api.content.create(container=self.portal, type="Venue", title="venue1")
+        venue.description = "aaa"
+        notify(ObjectModifiedEvent(venue))
+        venue.description = "aaa bbb"
+        notify(ObjectModifiedEvent(venue))
+        commit()
+
+        response0 = self.api_session.get(f"{venue.absolute_url()}/@history/0").json()
+        response1 = self.api_session.get(f"{venue.absolute_url()}/@history/1").json()
+        response2 = self.api_session.get(f"{venue.absolute_url()}/@history/2").json()
+
+        self.assertEqual(response0["description"], "")
+        self.assertEqual(response1["description"], "aaa")
+        self.assertEqual(response2["description"], "aaa bbb")

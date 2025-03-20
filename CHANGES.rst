@@ -13,6 +13,8 @@ Changelog
   [cekk]
 - Add "data fine effettiva" for events, to order listing correctly
   [lucabel]
+- Fix typo in Venue serializer that didn't return the right history version.
+  [cekk]
 
 
 6.3.4 (2025-03-07)
