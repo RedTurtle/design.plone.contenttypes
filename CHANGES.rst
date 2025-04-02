@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.3.5 (unreleased)
+6.3.5 (2025-04-02)
 ------------------
 
 - Fix upgrade step; we can't update types due to customer customizations;
