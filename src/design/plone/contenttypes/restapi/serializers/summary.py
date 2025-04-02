@@ -28,6 +28,7 @@ from zope.globalrequest import getRequest
 from zope.i18n import translate
 from zope.interface import implementer
 from zope.interface import Interface
+from zope.interface.interfaces import ComponentLookupError
 from zope.schema import getFieldsInOrder
 
 import logging
@@ -42,10 +43,22 @@ def get_taxonomy_information(field_name, context, res):
     """
     Get the proper values for taxonomy fields
     """
-    request = getRequest()
-    taxonomy = getUtility(ITaxonomy, name=f"collective.taxonomy.{field_name}")
-    taxonomy_voc = taxonomy.makeVocabulary(request.get("LANGUAGE"))
+    value = getattr(context, field_name, None)
+    if not value:
+        return res
 
+    request = getRequest()
+
+    try:
+        taxonomy = getUtility(ITaxonomy, name=f"collective.taxonomy.{field_name}")
+        taxonomy_voc = taxonomy.makeVocabulary(request.get("LANGUAGE"))
+    except ComponentLookupError:
+        # utility not found, return default
+        if isinstance(value, list):
+            res[field_name] = [{"token": token, "title": token} for token in value]
+        else:
+            res[field_name] = {"token": value, "title": value}
+        return res
     # il summary di un fullobject torna un value
     # il summary di un brain torna una lista (collective.taxonomy ha motivi per
     # fare così).
@@ -241,9 +254,13 @@ class DefaultJSONSummarySerializer(BaseSerializer):
         if self.context.portal_type == "News Item":
             tipologia_notizia = getattr(self.context, "tipologia_notizia", "")
             if tipologia_notizia:
-                taxonomy = getUtility(
-                    ITaxonomy, name="collective.taxonomy.tipologia_notizia"
-                )
+                try:
+                    taxonomy = getUtility(
+                        ITaxonomy, name="collective.taxonomy.tipologia_notizia"
+                    )
+                except ComponentLookupError:
+                    # utility not found, return default
+                    return tipologia_notizia
                 taxonomy_voc = taxonomy.makeVocabulary(self.request.get("LANGUAGE"))
                 if isinstance(tipologia_notizia, list):
                     token = tipologia_notizia[0]
