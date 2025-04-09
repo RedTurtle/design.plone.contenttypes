@@ -1,7 +1,20 @@
 Changelog
 =========
 
-6.3.5 (unreleased)
+6.3.7 (unreleased)
+------------------
+
+- Nothing changed yet.
+
+
+6.3.6 (2025-04-09)
+------------------
+
+- Fixed upgrade steps for Persona CT to prevent breakage due to ConstrainTypes restrictions
+  [lucabel]
+
+
+6.3.5 (2025-04-02)
 ------------------
 
 - Fix upgrade step; we can't update types due to customer customizations;
