@@ -22,13 +22,12 @@ from redturtle.volto.restapi.serializer.summary import (
 )
 from zope.component import adapter
 from zope.component import getMultiAdapter
-from zope.component import getUtility
+from zope.component import queryUtility
 from zope.component import queryMultiAdapter
 from zope.globalrequest import getRequest
 from zope.i18n import translate
 from zope.interface import implementer
 from zope.interface import Interface
-from zope.interface.interfaces import ComponentLookupError
 from zope.schema import getFieldsInOrder
 
 import logging
@@ -49,16 +48,16 @@ def get_taxonomy_information(field_name, context, res):
 
     request = getRequest()
 
-    try:
-        taxonomy = getUtility(ITaxonomy, name=f"collective.taxonomy.{field_name}")
-        taxonomy_voc = taxonomy.makeVocabulary(request.get("LANGUAGE"))
-    except ComponentLookupError:
+    taxonomy = queryUtility(ITaxonomy, name=f"collective.taxonomy.{field_name}")
+    if not taxonomy:
         # utility not found, return default
         if isinstance(value, list):
             res[field_name] = [{"token": token, "title": token} for token in value]
         else:
             res[field_name] = {"token": value, "title": value}
         return res
+
+    taxonomy_voc = taxonomy.makeVocabulary(request.get("LANGUAGE"))
     # il summary di un fullobject torna un value
     # il summary di un brain torna una lista (collective.taxonomy ha motivi per
     # fare così).
@@ -254,11 +253,10 @@ class DefaultJSONSummarySerializer(BaseSerializer):
         if self.context.portal_type == "News Item":
             tipologia_notizia = getattr(self.context, "tipologia_notizia", "")
             if tipologia_notizia:
-                try:
-                    taxonomy = getUtility(
-                        ITaxonomy, name="collective.taxonomy.tipologia_notizia"
-                    )
-                except ComponentLookupError:
+                taxonomy = queryUtility(
+                    ITaxonomy, name="collective.taxonomy.tipologia_notizia"
+                )
+                if not taxonomy:
                     # utility not found, return default
                     return tipologia_notizia
                 taxonomy_voc = taxonomy.makeVocabulary(self.request.get("LANGUAGE"))

@@ -21,9 +21,8 @@ from plone.restapi.serializer.dxcontent import SerializeFolderToJson
 from plone.restapi.serializer.dxcontent import SerializeToJson
 from Products.CMFCore.utils import getToolByName
 from zope.component import getMultiAdapter
-from zope.component import getUtility
+from zope.component import queryUtility
 from zope.i18n import translate
-from zope.interface.interfaces import ComponentLookupError
 
 
 original_serialize_to_json__call__ = SerializeToJson.__call__
@@ -40,10 +39,10 @@ def design_italia_serialize_to_json_call(self, version=None, include_items=True)
     if self.context.portal_type == "News Item":
         tipologia_notizia = getattr(self.context, "tipologia_notizia", "")
         if tipologia_notizia:
-            try:
-                taxonomy = getUtility(
-                    ITaxonomy, name="collective.taxonomy.tipologia_notizia"
-                )
+            taxonomy = queryUtility(
+                ITaxonomy, name="collective.taxonomy.tipologia_notizia"
+            )
+            if taxonomy:
                 taxonomy_voc = taxonomy.makeVocabulary(self.request.get("LANGUAGE"))
 
                 title = taxonomy_voc.inv_data.get(self.context.tipologia_notizia, None)
@@ -51,7 +50,7 @@ def design_italia_serialize_to_json_call(self, version=None, include_items=True)
                     result["design_italia_meta_type"] = title.replace(
                         PATH_SEPARATOR, "", 1
                     )
-            except ComponentLookupError:
+            else:
                 result["design_italia_meta_type"] = tipologia_notizia
     return result
 
