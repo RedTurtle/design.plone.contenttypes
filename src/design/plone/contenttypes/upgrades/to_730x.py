@@ -253,6 +253,10 @@ def to_7314(context):
     brains = pc(portal_type="Persona")
     for brain in brains:
         persona = brain.getObject()
+        actual_contraints = ISelectableConstrainTypes(persona)
+        actual_constrain_type = actual_contraints.getConstrainTypesMode()
+        # devo poter aggiungere
+        actual_contraints.setConstrainTypesMode(0)
         if (
             "dichiarazione-insussistenza-cause-di-inconferibilita-e-incompatibilita"
             not in persona.keys()
@@ -265,3 +269,5 @@ def to_7314(context):
         ):
             createStructure(persona, mapping2)
             logger.info("Add emolumenti complessivi for {}".format(persona.title))
+        # reimposto il valore precedente del constraintypes
+        actual_contraints.setConstrainTypesMode(actual_constrain_type)
