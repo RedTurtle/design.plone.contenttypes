@@ -159,7 +159,7 @@ class IPersona(model.Schema, IDesignPloneContentType):
         required=False,
         description=_(
             "atto_nomina_help",
-            default="Inserire un file contenente l'atto di nomina della" " persona.",
+            default="Inserire un file contenente l'atto di nomina della persona.",
         ),
     )
 
