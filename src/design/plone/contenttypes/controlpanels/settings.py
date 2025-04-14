@@ -99,6 +99,23 @@ class IDesignPloneSettings(Interface):
         required=False,
     )
 
+    header_parent_title = TextLine(
+        title=_("header_parent_title_label", default="Sito padre in testata"),
+        description=_(
+            "header_parent_title_help",
+            default="Inserisci il nome del link ad un sito padre da mostrare nella testata del sito (in alto a sinistra)."
+            " Lascialo vuoto per non mostrare nulla.",
+        ),
+    )
+    header_parent_url = TextLine(
+        title=_("header_parent_url_label", default="Url sito padre in testata"),
+        description=_(
+            "header_parent_url_help",
+            default="Inserisci l'url per generare un link ad un sito padre da mostrare nella testata del sito (in alto a sinistra)."
+            " Lascialo vuoto per non mostrare solo del testo non cliccabile.",
+        ),
+    )
+
 
 class DesignPloneControlPanelForm(RegistryEditForm):
     schema = IDesignPloneSettings
