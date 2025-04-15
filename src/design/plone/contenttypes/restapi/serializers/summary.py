@@ -161,8 +161,7 @@ class DefaultJSONSummarySerializer(BaseSerializer):
 
             # if default set to None
             if (
-                "apertura_bando" in metadata_fields
-                or self.show_all_metadata_fields
+                ("apertura_bando" in metadata_fields or self.show_all_metadata_fields)
                 and res["apertura_bando"] == "1100-01-01T00:00:00"
             ):
                 res["apertura_bando"] = None
