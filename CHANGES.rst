@@ -4,8 +4,10 @@ Changelog
 6.3.7 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Do not break serializers if there is not tipologia_notizia taxonomy utility.
+  [cekk]
+- Fix operator order in condition in summary for apertura_bando
+  [mamico]
 
 6.3.6 (2025-04-09)
 ------------------
@@ -31,7 +33,6 @@ Changelog
 - Add "Emolumenti a carico della finanza pubblica" to Persona
   Add "Dichiarazioni di insussistenza e incompatibilità" to Persona
   [lucabel]
-
 
 6.3.4 (2025-03-07)
 ------------------
