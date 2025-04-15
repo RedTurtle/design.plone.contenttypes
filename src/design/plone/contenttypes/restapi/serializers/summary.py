@@ -172,11 +172,9 @@ class DefaultJSONSummarySerializer(BaseSerializer):
                 res["bando_state"] = self.get_bando_state()
 
             # if default set to None
-            if (
-                ("apertura_bando" in metadata_fields or self.show_all_metadata_fields)
-                and res["apertura_bando"] == "1100-01-01T00:00:00"
-            ):
-                res["apertura_bando"] = None
+            if "apertura_bando" in metadata_fields or self.show_all_metadata_fields:
+                if res.get("apertura_bando") == "1100-01-01T00:00:00":
+                    res["apertura_bando"] = None
 
         if self.context.portal_type == "Event":
             res["start"] = json_compatible(self.context.start)

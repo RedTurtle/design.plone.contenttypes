@@ -4,8 +4,8 @@ Changelog
 6.3.7 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Fix operator order in condition in summary for apertura_bando
+  [mamico]
 
 6.3.6 (2025-04-09)
 ------------------
