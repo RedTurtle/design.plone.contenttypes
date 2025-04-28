@@ -6,8 +6,6 @@ Changelog
 
 - Do not break serializers if there is not tipologia_notizia taxonomy utility.
   [cekk]
-- Fix operator order in condition in summary for apertura_bando
-  [mamico]
 
 6.3.7 (2025-04-28)
 ------------------
