@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.3.8 (unreleased)
+6.3.8 (2025-04-28)
 ------------------
 
 - Do not break serializers if there is not tipologia_notizia taxonomy utility.
