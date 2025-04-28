@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.3.7 (unreleased)
+6.3.7 (2025-04-28)
 ------------------
 
 - Fix operator order in condition in summary for apertura_bando
