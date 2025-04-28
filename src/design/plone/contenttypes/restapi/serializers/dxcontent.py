@@ -11,7 +11,7 @@ from plone.restapi.serializer.dxcontent import (
 )
 from plone.restapi.serializer.dxcontent import SerializeToJson as BaseSerializer
 from zope.component import adapter
-from zope.component import getUtility
+from zope.component import queryUtility
 from zope.i18n import translate
 from zope.interface import implementer
 
@@ -21,9 +21,11 @@ class MetaTypeSerializer(object):
         ttool = api.portal.get_tool("portal_types")
         tipologia_notizia = getattr(self.context, "tipologia_notizia", "")
         if self.context.portal_type == "News Item" and tipologia_notizia:
-            taxonomy = getUtility(
+            taxonomy = queryUtility(
                 ITaxonomy, name="collective.taxonomy.tipologia_notizia"
             )
+            if not taxonomy:
+                return tipologia_notizia
             taxonomy_voc = taxonomy.makeVocabulary(self.request.get("LANGUAGE"))
             if isinstance(tipologia_notizia, list):
                 token = tipologia_notizia[0]

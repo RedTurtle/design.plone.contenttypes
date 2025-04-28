@@ -22,7 +22,7 @@ from redturtle.volto.restapi.serializer.summary import (
 )
 from zope.component import adapter
 from zope.component import getMultiAdapter
-from zope.component import getUtility
+from zope.component import queryUtility
 from zope.component import queryMultiAdapter
 from zope.globalrequest import getRequest
 from zope.i18n import translate
@@ -42,10 +42,22 @@ def get_taxonomy_information(field_name, context, res):
     """
     Get the proper values for taxonomy fields
     """
-    request = getRequest()
-    taxonomy = getUtility(ITaxonomy, name=f"collective.taxonomy.{field_name}")
-    taxonomy_voc = taxonomy.makeVocabulary(request.get("LANGUAGE"))
+    value = getattr(context, field_name, None)
+    if not value:
+        return res
 
+    request = getRequest()
+
+    taxonomy = queryUtility(ITaxonomy, name=f"collective.taxonomy.{field_name}")
+    if not taxonomy:
+        # utility not found, return default
+        if isinstance(value, list):
+            res[field_name] = [{"token": token, "title": token} for token in value]
+        else:
+            res[field_name] = {"token": value, "title": value}
+        return res
+
+    taxonomy_voc = taxonomy.makeVocabulary(request.get("LANGUAGE"))
     # il summary di un fullobject torna un value
     # il summary di un brain torna una lista (collective.taxonomy ha motivi per
     # fare così).
@@ -238,9 +250,12 @@ class DefaultJSONSummarySerializer(BaseSerializer):
         if self.context.portal_type == "News Item":
             tipologia_notizia = getattr(self.context, "tipologia_notizia", "")
             if tipologia_notizia:
-                taxonomy = getUtility(
+                taxonomy = queryUtility(
                     ITaxonomy, name="collective.taxonomy.tipologia_notizia"
                 )
+                if not taxonomy:
+                    # utility not found, return default
+                    return tipologia_notizia
                 taxonomy_voc = taxonomy.makeVocabulary(self.request.get("LANGUAGE"))
                 if isinstance(tipologia_notizia, list):
                     token = tipologia_notizia[0]
