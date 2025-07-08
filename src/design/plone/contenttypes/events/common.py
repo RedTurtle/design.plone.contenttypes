@@ -100,26 +100,6 @@ SUBFOLDERS_MAPPING = {
             },
         ],
     },
-    "ComunicatoStampa": {
-        "content": [
-            {
-                "id": "multimedia",
-                "title": "Multimedia",
-                "allowed_types": (
-                    "Image",
-                    "Link",
-                ),
-            },
-            {
-                "id": "documenti-allegati",
-                "title": "Documenti allegati",
-                "allowed_types": (
-                    "File",
-                    "Image",
-                ),
-            },
-        ]
-    },
     "Persona": {
         "content": [
             {
