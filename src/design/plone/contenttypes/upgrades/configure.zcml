@@ -623,4 +623,14 @@
         handler=".upgrades.to_5900"
         />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="5900"
+      destination="5901"
+      >
+    <genericsetup:upgradeStep
+        title="Reindex sortable_title"
+        handler=".upgrades.to_5901"
+        />
+  </genericsetup:upgradeSteps>
 </configure>
