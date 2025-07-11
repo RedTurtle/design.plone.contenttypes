@@ -74,7 +74,10 @@
       name="exclude_from_search"
       />
   <!-- only metadata -->
-  
-  <adapter factory=".common.sortable_title" name="sortable_title" />
+
+  <adapter
+      factory=".common.sortable_title"
+      name="sortable_title"
+      />
 
 </configure>
