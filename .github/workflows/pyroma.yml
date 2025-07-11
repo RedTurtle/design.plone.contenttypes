@@ -6,7 +6,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: [3.8]
+        python-version: [3.11]
 
     steps:
       # git checkout
@@ -28,7 +28,7 @@ jobs:
 
       # install pyroma
       - name: install pyroma
-        run: pip install pyroma
+        run: pip install pyroma==4.2
 
       # run pyroma
       - name: run pyroma
