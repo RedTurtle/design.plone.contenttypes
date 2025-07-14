@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-5.1.20 (unreleased)
+5.1.20 (2025-07-14)
 -------------------
 
 - Customize sortable_title to not truncate index (plone 6 backport).
