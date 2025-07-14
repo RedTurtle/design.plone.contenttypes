@@ -17,6 +17,7 @@ from zope.event import notify
 from zope.intid.interfaces import IIntIds
 from zope.lifecycleevent import ObjectModifiedEvent
 from zope.schema import getFields
+from Products.ZCatalog.ProgressHandler import ZLogHandler
 
 # from design.plone.contenttypes.events.common import SUBFOLDERS_MAPPING
 
@@ -1085,3 +1086,11 @@ def to_5900(context):
             obj = brain.getObject()
             obj.exclude_from_search = True
             obj.reindexObject(idxs=["exclude_from_search"])
+
+
+def to_5901(context):
+    """ """
+    logger.info("Reindexing sortable_title")
+    pghandler = ZLogHandler(100)
+    catalog = api.portal.get_tool(name="portal_catalog")
+    catalog.reindexIndex("sortable_title", context.REQUEST, pghandler)
