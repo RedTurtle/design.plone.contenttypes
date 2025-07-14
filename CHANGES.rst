@@ -5,7 +5,8 @@ Changelog
 5.1.21 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Improved check on UO relations.
+  [daniele]
 
 
 5.1.20 (2025-07-14)
