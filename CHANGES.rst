@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-5.1.21 (unreleased)
+5.1.21 (2025-07-16)
 -------------------
 
 - Improved check on UO relations.
