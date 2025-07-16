@@ -39,6 +39,8 @@ class UOSerializer(RelatedNewsSerializer):
             )
 
             for rel in relations:
+                if not rel.from_id:
+                    continue
                 obj = intids.queryObject(rel.from_id)
                 if (
                     obj is not None
