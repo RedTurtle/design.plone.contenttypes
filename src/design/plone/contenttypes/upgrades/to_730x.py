@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-from plone.app.upgrade.utils import installOrReinstallProduct
-from design.plone.contenttypes.events.common import SUBFOLDERS_MAPPING
-from design.plone.contenttypes.utils import create_default_blocks
-from plone import api
-from Products.CMFPlone.interfaces import ISelectableConstrainTypes
-from design.plone.contenttypes.events.common import createStructure
 import logging
-import transaction
 
+import transaction
+from plone import api
+from plone.app.upgrade.utils import installOrReinstallProduct
+from Products.CMFPlone.interfaces import ISelectableConstrainTypes
+
+from design.plone.contenttypes.events.common import SUBFOLDERS_MAPPING, createStructure
+from design.plone.contenttypes.utils import create_default_blocks
 
 logger = logging.getLogger(__name__)
 
@@ -271,3 +271,16 @@ def to_7314(context):
             logger.info("Add emolumenti complessivi for {}".format(persona.title))
         # reimposto il valore precedente del constraintypes
         actual_contraints.setConstrainTypesMode(actual_constrain_type)
+
+
+def to_7315(context):
+    wanted = (("cig", "FieldIndex"),)
+    pc = api.portal.get_tool(name="portal_catalog")
+    for name, meta_type in wanted:
+        if name not in pc.indexes():
+            pc.addIndex(name, meta_type)
+            pc.addColumn(name)
+            logger.info("Added index {} of type {}".format(name, meta_type))
+        else:
+            logger.info("Index {} already exists".format(name))
+    logger.info("Reindex Bandi")

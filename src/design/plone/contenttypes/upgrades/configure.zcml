@@ -955,4 +955,11 @@
       destination="7314"
       handler=".to_730x.to_7314"
       />
+  <genericsetup:upgradeStep
+      title="Update Persona subfolder"
+      profile="design.plone.contenttypes:default"
+      source="7314"
+      destination="7315"
+      handler=".to_730x.to_7315"
+      />
 </configure>
