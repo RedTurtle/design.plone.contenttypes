@@ -4,7 +4,8 @@ Changelog
 6.3.9 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Blocchi search e listing / variante table - aggiunte le proprietà dei campi nella colonna nel serializer
+  [pnicolli]
 
 
 6.3.8 (2025-04-28)
