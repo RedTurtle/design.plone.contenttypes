@@ -37,12 +37,12 @@
   <adapter factory=".punto_di_contatto.PuntoDiContattoSerializer" />
 
   <subscriber
-    factory=".tablevariation.SearchTableVariationBlockSerialize"
-    provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
-    />
+      factory=".tablevariation.SearchTableVariationBlockSerialize"
+      provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
+      />
   <subscriber
-    factory=".tablevariation.ListingTableVariationBlockSerialize"
-    provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
-    />
+      factory=".tablevariation.ListingTableVariationBlockSerialize"
+      provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
+      />
 
 </configure>
