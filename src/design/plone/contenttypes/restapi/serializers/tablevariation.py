@@ -7,6 +7,11 @@ from zope.component import queryMultiAdapter
 from zope.interface import implementer
 from zope.publisher.interfaces.browser import IBrowserRequest
 
+import logging
+
+
+logger = logging.getLogger(__name__)
+
 
 @implementer(IBlockFieldSerializationTransformer)
 @adapter(IBlocks, IBrowserRequest)
@@ -26,7 +31,7 @@ class SearchTableVariationBlockSerialize:
         try:
             dtype = dtool.publishTraverse(self.request, portal_type)
         except KeyError:
-            # TODO: log missing portal_type
+            logger.warning(f"KeyError: portal_type '{portal_type}' not found.")
             return None
         schema = get_info_for_type(dtype, self.request, portal_type)
         return schema
