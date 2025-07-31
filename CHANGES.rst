@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.3.9 (unreleased)
+6.3.9 (2025-07-31)
 ------------------
 
 - Search and listing blocks / table variant - added field properties in the column in the serializer
