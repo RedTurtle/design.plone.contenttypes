@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.3.10 (unreleased)
+6.3.10 (2025-08-20)
 -------------------
 
 - Add CIG to Bando ct
