@@ -4,7 +4,8 @@ Changelog
 6.3.10 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add CIG to Bando ct
+  [lucabel]
 
 
 6.3.9 (2025-07-31)
