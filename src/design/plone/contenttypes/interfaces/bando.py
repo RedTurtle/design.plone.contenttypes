@@ -1,29 +1,35 @@
 # -*- coding: utf-8 -*-
 from collective.volto.blocksfield.field import BlocksField
-from design.plone.contenttypes.interfaces import IDesignPloneContentType
 from plone.app.dexterity import textindexer
 from plone.app.event.base import default_timezone
-from plone.app.z3cform.widget import AjaxSelectFieldWidget
-from plone.app.z3cform.widget import DatetimeFieldWidget
-from plone.app.z3cform.widget import RelatedItemsFieldWidget
+from plone.app.z3cform.widget import (
+    AjaxSelectFieldWidget,
+    DatetimeFieldWidget,
+    RelatedItemsFieldWidget,
+)
 from plone.autoform import directives
 from plone.autoform import directives as form
 from plone.supermodel import model
 from redturtle.bandi import bandiMessageFactory as _
 from redturtle.bandi import bandiMessageFactory as _rtbando
-from redturtle.bandi.interfaces.bandoSchema import getDefaultEnte
-from redturtle.bandi.interfaces.bandoSchema import IBandoSchema
+from redturtle.bandi.interfaces.bandoSchema import IBandoSchema, getDefaultEnte
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from z3c.form.browser.radio import RadioFieldWidget
-from z3c.relationfield.schema import RelationChoice
-from z3c.relationfield.schema import RelationList
+from z3c.relationfield.schema import RelationChoice, RelationList
 from zope import schema
+
+from design.plone.contenttypes.interfaces import IDesignPloneContentType
 
 
 class IBandoAgidSchema(IBandoSchema, IDesignPloneContentType):
     """A Dexterity schema for Annoucements"""
 
     # ridefinito, così usiamo il campo dei blocchi
+    cig = schema.TextLine(
+        title=_("cig_label", default="CIG"),
+        description=_("cig_help", default="Codice Identificativo di Gara (CIG)"),
+        required=False,
+    )
     text = BlocksField(
         title=_("text_label", default="Testo"),
         description=_(
@@ -174,3 +180,4 @@ class IBandoAgidSchema(IBandoSchema, IDesignPloneContentType):
     )
 
     textindexer.searchable("text")
+    textindexer.searchable("cig")

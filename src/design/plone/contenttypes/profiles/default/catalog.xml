@@ -61,7 +61,9 @@
  <index name="rassegna" meta_type="BooleanIndex">
     <indexed_attr value="rassegna"/>
  </index>
-
+ <index name="cig" meta_type="FieldIndex">
+  <indexed_attr value="cig"/>
+ </index>
   <!-- metadata -->
   <column value="tipologia_notizia" />
   <column value="tipologia_documento" />
@@ -77,6 +79,7 @@
   <column value="rassegna" />
   <column value="image_caption" />
   <column value="preview_caption" />
+  <column value="cig" />
 
   <!-- cleanup -->
   <index name="argomenti_correlati"
