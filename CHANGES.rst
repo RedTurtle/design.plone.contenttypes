@@ -5,7 +5,8 @@ Changelog
 5.1.22 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- block "info" in SearchableText
+  [mamico]
 
 
 5.1.21 (2025-07-16)

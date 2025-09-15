@@ -633,4 +633,14 @@
         handler=".upgrades.to_5901"
         />
   </genericsetup:upgradeSteps>
+  <genericsetup:upgradeSteps
+      profile="design.plone.contenttypes:default"
+      source="5901"
+      destination="5902"
+      >
+    <genericsetup:upgradeStep
+        title="Reindex searchabletext (block info)"
+        handler=".upgrades.to_5902"
+        />
+  </genericsetup:upgradeSteps>
 </configure>

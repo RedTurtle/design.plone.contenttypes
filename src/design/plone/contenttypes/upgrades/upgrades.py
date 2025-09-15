@@ -1094,3 +1094,10 @@ def to_5901(context):
     pghandler = ZLogHandler(100)
     catalog = api.portal.get_tool(name="portal_catalog")
     catalog.reindexIndex("sortable_title", context.REQUEST, pghandler)
+
+
+def to_5902(context):
+    brains = api.content.find(object_provides="plone.restapi.behaviors.IBlocks")
+    for brain in brains:
+        obj = brain.getObject()
+        obj.reindexObject(idxs=["SearchableText"])
