@@ -19,10 +19,10 @@
       name="text"
       />
 
-    <adapter
-        factory="plone.restapi.indexers.TextBlockSearchableText"
-        name="info"
-        />
+  <adapter
+      factory="plone.restapi.indexers.TextBlockSearchableText"
+      name="info"
+      />
 
 
   <adapter factory=".query.ZCatalogCompatibleQueryAdapter" />
