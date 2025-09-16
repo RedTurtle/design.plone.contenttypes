@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-5.1.22 (unreleased)
+5.1.22 (2025-09-16)
 -------------------
 
 - block "info" in SearchableText
