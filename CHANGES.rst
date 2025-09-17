@@ -4,7 +4,8 @@ Changelog
 6.3.11 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Remove ufficiostampa dependencies.
+  [cekk]
 
 
 6.3.10 (2025-08-20)
