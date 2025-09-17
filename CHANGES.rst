@@ -1,10 +1,24 @@
 Changelog
 =========
 
-6.3.9 (unreleased)
-------------------
+6.3.11 (unreleased)
+-------------------
 
 - Nothing changed yet.
+
+
+6.3.10 (2025-08-20)
+-------------------
+
+- Add CIG to Bando ct
+  [lucabel]
+
+
+6.3.9 (2025-07-31)
+------------------
+
+- Search and listing blocks / table variant - added field properties in the column in the serializer
+  [pnicolli]
 
 
 6.3.8 (2025-04-28)
