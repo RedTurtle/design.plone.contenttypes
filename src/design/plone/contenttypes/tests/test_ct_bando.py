@@ -92,6 +92,7 @@ class TestBandoSchema(unittest.TestCase):
             [
                 "title",
                 "description",
+                "cig",
                 "text",
                 "tipologia_bando",
                 "destinatari",
