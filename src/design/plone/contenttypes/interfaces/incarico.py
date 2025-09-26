@@ -93,7 +93,7 @@ class IIncarico(model.Schema, IDesignPloneContentType):
 
     data_inizio_incarico = schema.Date(
         title=_("data_inizio_incarico", default="Data inizio incarico"),
-        required=True,
+        required=False,
     )
 
     data_conclusione_incarico = schema.Date(
