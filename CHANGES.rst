@@ -6,6 +6,8 @@ Changelog
 
 - Remove ufficiostampa dependencies.
   [cekk]
+- data_inizio_incarico is no longer required in incarico
+  [sabrina-bongiovanni]
 
 
 6.3.10 (2025-08-20)
@@ -68,7 +70,6 @@ Changelog
   [lucabel]
 - Add File to CT Documento but hide it from volto add menu
   [lucabel]
-  
 
 
 6.3.3 (2025-02-20)
@@ -145,11 +146,11 @@ Changelog
 6.2.20 (2024-10-17)
 -------------------
 
-- Fix upgrade step 
+- Fix upgrade step
   [lucabel]
 - Avoid acquisition problem in *onModify* event handler: now try to reindex children only if context is folderish.
   [cekk]
-- Add sort_on sortable_title to event_location, uo_location, ufficio_responsabile vocabularies 
+- Add sort_on sortable_title to event_location, uo_location, ufficio_responsabile vocabularies
   [lucabel]
 
 6.2.19 (2024-09-23)
