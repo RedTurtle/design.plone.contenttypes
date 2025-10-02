@@ -40,6 +40,12 @@ class PersonaSerializer(SerializeFolderToJson):
         return sorted(items, key=lambda k: k["title"])
 
     def __call__(self, version=None, include_items=True):
+        # useful if you want to have (i.e. fullobject of childrens by default)
+        # TODO: add behavior and field for manage attribute TTW (actually managed only
+        #       by code)
+        if getattr(self.context, "expand_items", None):
+            self.request.form["fullobjects"] = "1"
+
         result = super(PersonaSerializer, self).__call__(
             version=version, include_items=include_items
         )
@@ -53,4 +59,5 @@ class PersonaSerializer(SerializeFolderToJson):
             result["responsabile_di"] = responsabile_di
         if assessore_di:
             result["assessore_di"] = assessore_di
+
         return result
