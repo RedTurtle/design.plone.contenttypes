@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.3.11 (unreleased)
+6.3.11 (2025-10-02)
 -------------------
 
 - Remove ufficiostampa dependencies.
