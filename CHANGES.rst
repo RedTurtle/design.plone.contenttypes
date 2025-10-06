@@ -4,7 +4,8 @@ Changelog
 6.3.12 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Update incarichi_persona label
+  [lucabel]
 
 
 6.3.11 (2025-10-02)

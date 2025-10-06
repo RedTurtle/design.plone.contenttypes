@@ -62,7 +62,7 @@ class IPersona(model.Schema, IDesignPloneContentType):
         ),
         description=_(
             "incarichi_help",
-            default="Seleziona l'incarico corrente della persona.",
+            default="Seleziona l'incarico corrente della persona. Attenzione: è necessario selezionare sempre un incarico già creato e associarlo correttamente alla persona pubblica. Questa operazione è obbligatoria per garantire il superamento dell’asseverazione.",  # noqa
         ),
         value_type=RelationChoice(
             title=_("Incarichi"),
