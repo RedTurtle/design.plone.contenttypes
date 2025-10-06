@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.3.12 (unreleased)
+6.3.12 (2025-10-06)
 -------------------
 
 - Update incarichi_persona label
