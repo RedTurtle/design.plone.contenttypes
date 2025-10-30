@@ -1,4 +1,5 @@
 from DateTime import DateTime
+from design.plone.contenttypes.utils import text_in_block
 from openpyxl import Workbook
 from openpyxl.styles import Alignment
 from openpyxl.styles import Font
@@ -30,10 +31,7 @@ class CheckLuoghi(BrowserView):
         if not isinstance(modalita_accesso, dict):
             modalita_accesso = ""
         else:
-            modalita_accesso_blocks = modalita_accesso.get("blocks", {})
-            res = [x.get("text", "") for x in modalita_accesso_blocks.values()]
-            if not [x for x in res if x]:
-                modalita_accesso = ""
+            modalita_accesso = text_in_block(modalita_accesso)
 
         return {
             "description": getattr(luogo, "description", "").strip(),

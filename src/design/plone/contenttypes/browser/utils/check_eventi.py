@@ -1,4 +1,5 @@
 from DateTime import DateTime
+from design.plone.contenttypes.utils import text_in_block
 from openpyxl import Workbook
 from openpyxl.styles import Alignment
 from openpyxl.styles import Font
@@ -21,9 +22,8 @@ class CheckEventi(BrowserView):
 
     def information_dict(self, evento):
         prezzo = getattr(evento, "prezzo", "")
-        res = [x.get("text", "") for x in prezzo["blocks"].values()]
-        if not [x for x in res if x]:
-            prezzo = ""
+
+        prezzo = text_in_block(prezzo)
 
         luoghi_correlati = False
         if getattr(evento, "luoghi_correlati", None):

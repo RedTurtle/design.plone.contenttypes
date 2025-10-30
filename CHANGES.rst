@@ -4,7 +4,12 @@ Changelog
 6.3.13 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix check_notizie to properly check empty rich text in descrizione_estesa
+  [lucabel]
+- Fix check_eventi to properly check empty rich text in modalita_accesso
+  [lucabel]
+- Fix check_eventi to properly check empty rich text in descrizione_estesa
+  [lucabel]
 
 
 6.3.12 (2025-10-06)
