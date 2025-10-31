@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.3.13 (unreleased)
+6.3.13 (2025-10-31)
 -------------------
 
 - Fix check_notizie to properly check empty rich text in descrizione_estesa
