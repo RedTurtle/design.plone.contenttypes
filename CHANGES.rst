@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.3.14 (unreleased)
+6.3.14 (2025-10-31)
 -------------------
 
 - Fix check_uo to properly check empty rich text in competenze
