@@ -8,7 +8,7 @@ Changelog
   [lucabel]
 - Fix check_luoghi to properly check empty rich text in modalita_accesso
   [lucabel]
-- Fix check_notizie to properly check empty rich text in descrizione_estesa
+- Fix check_eventi to properly check empty rich text in prezzo
   [lucabel]
 
 
