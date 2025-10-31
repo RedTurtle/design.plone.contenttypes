@@ -6,9 +6,9 @@ Changelog
 
 - Fix check_notizie to properly check empty rich text in descrizione_estesa
   [lucabel]
-- Fix check_eventi to properly check empty rich text in modalita_accesso
+- Fix check_luoghi to properly check empty rich text in modalita_accesso
   [lucabel]
-- Fix check_eventi to properly check empty rich text in descrizione_estesa
+- Fix check_notizie to properly check empty rich text in descrizione_estesa
   [lucabel]
 
 
