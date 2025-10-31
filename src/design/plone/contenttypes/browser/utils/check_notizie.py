@@ -1,4 +1,5 @@
 from DateTime import DateTime
+from design.plone.contenttypes.utils import text_in_block
 from openpyxl import Workbook
 from openpyxl.styles import Alignment
 from openpyxl.styles import Font
@@ -25,9 +26,7 @@ class CheckNotizie(BrowserView):
 
     def information_dict(self, notizia):
         descrizione_estesa = getattr(notizia, "descrizione_estesa", "")
-        res = [x.get("text", "") for x in descrizione_estesa["blocks"].values()]
-        if not [x for x in res if x]:
-            descrizione_estesa = ""
+        descrizione_estesa = text_in_block(descrizione_estesa)
 
         return {
             "descrizione_estesa": descrizione_estesa,
