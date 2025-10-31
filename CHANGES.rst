@@ -4,7 +4,8 @@ Changelog
 6.3.14 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix check_uo to properly check empty rich text in competenze
+  [lucabel]
 
 
 6.3.13 (2025-10-31)
