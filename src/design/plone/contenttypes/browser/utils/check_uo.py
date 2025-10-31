@@ -1,4 +1,5 @@
 from DateTime import DateTime
+from design.plone.contenttypes.utils import text_in_block
 from openpyxl import Workbook
 from openpyxl.styles import Alignment
 from openpyxl.styles import Font
@@ -46,10 +47,7 @@ class CheckUnitaOrganizzative(BrowserView):
             sede_ref = sede_ref[0]
 
         competenze = getattr(uo, "competenze", "")
-        if competenze:
-            res = [x.get("text", "") for x in competenze["blocks"].values()]
-            if not [x for x in res if x]:
-                competenze = ""
+        competenze = text_in_block(competenze)
         return {
             "description": getattr(uo, "description", "").strip(),
             "competenze": competenze,
