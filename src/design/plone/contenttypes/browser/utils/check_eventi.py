@@ -22,7 +22,6 @@ class CheckEventi(BrowserView):
 
     def information_dict(self, evento):
         prezzo = getattr(evento, "prezzo", "")
-
         prezzo = text_in_block(prezzo)
 
         luoghi_correlati = False
