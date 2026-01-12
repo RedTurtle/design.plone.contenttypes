@@ -2,7 +2,6 @@
 from design.plone.contenttypes.interfaces.cartella_modulistica import (
     ICartellaModulistica,
 )
-from plone import api
 from plone.dexterity.utils import iterSchemata
 from plone.restapi.interfaces import IExpandableElement
 from plone.restapi.interfaces import IFieldSerializer
@@ -46,7 +45,7 @@ class ModulisticaItems(object):
             if brain.portal_type == "Document" and brain.getId == "multimedia":
                 continue
             child = brain.getObject()
-            if getattr(child, "exclude_from_nav", False) and api.user.is_anonymous():
+            if getattr(child, "exclude_from_nav", False):
                 continue
 
             serializer = queryMultiAdapter(

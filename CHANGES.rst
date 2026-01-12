@@ -4,7 +4,7 @@ Changelog
 6.3.15 (unreleased)
 -------------------
 
-- For anonymous users avoid showing items inside cartella modulistica if omitted from navigation.
+- Avoid showing items inside cartella modulistica if omitted from navigation.
   [daniele]
 
 
