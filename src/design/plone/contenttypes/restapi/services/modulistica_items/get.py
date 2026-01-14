@@ -45,6 +45,9 @@ class ModulisticaItems(object):
             if brain.portal_type == "Document" and brain.getId == "multimedia":
                 continue
             child = brain.getObject()
+            if getattr(child, "exclude_from_nav", False):
+                continue
+
             serializer = queryMultiAdapter(
                 (child, self.request), ISerializeToJsonSummary
             )

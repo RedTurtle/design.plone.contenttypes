@@ -4,7 +4,8 @@ Changelog
 6.3.15 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Avoid showing items inside cartella modulistica if omitted from navigation.
+  [daniele]
 
 
 6.3.14 (2025-10-31)
