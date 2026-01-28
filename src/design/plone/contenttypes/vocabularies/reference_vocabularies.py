@@ -2,7 +2,6 @@
 
 from Products.CMFCore.utils import getToolByName
 
-
 try:
     from plone.base.utils import safe_text
 except ImportError:

@@ -25,7 +25,6 @@ from zope.schema.interfaces import ITextLine
 
 import json
 
-
 KEYS_WITH_URL = ["linkUrl", "navigationRoot", "showMoreLink"]
 
 

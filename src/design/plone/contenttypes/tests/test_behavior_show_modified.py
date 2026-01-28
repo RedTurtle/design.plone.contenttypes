@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """Setup tests for this package."""
+
 from design.plone.contenttypes.controlpanels.settings import IDesignPloneSettings
 from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,

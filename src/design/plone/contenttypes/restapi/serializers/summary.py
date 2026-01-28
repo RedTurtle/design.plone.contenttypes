@@ -33,7 +33,6 @@ from zope.schema import getFieldsInOrder
 import logging
 import re
 
-
 RESOLVEUID_RE = re.compile(".*?/resolve[Uu]id/([^/]*)/?(.*)$")
 logger = logging.getLogger(__name__)
 

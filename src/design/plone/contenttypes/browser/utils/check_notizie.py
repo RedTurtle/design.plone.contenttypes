@@ -14,7 +14,6 @@ from zope.intid.interfaces import IIntIds
 import io
 import transaction
 
-
 FLAG = '<i class="fa-solid fa-check"></i>'
 
 

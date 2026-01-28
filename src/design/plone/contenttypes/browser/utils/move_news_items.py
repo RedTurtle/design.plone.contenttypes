@@ -11,7 +11,6 @@ import logging
 import pkg_resources
 import time
 
-
 JS_TEMPLATE = (
     "{portal_url}/++plone++design.plone.contenttypes/js/{name}.js?v={version}"  # noqa
 )

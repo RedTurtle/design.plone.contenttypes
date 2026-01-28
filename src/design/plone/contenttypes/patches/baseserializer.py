@@ -24,7 +24,6 @@ from zope.component import getMultiAdapter
 from zope.component import queryUtility
 from zope.i18n import translate
 
-
 original_serialize_to_json__call__ = SerializeToJson.__call__
 
 

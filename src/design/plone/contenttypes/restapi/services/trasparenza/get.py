@@ -12,7 +12,6 @@ from zope.globalrequest import getRequest
 from zope.interface import implementer
 from zope.interface import Interface
 
-
 TRASPARENZA_FIELDS = [
     "modalita_avvio",
     "descrizione",

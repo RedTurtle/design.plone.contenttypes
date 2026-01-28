@@ -12,7 +12,6 @@ from Products.CMFPlone.interfaces import ISelectableConstrainTypes
 import logging
 import transaction
 
-
 logger = logging.getLogger(__name__)
 
 DEFAULT_PROFILE = "profile-design.plone.contenttypes:default"

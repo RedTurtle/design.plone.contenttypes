@@ -16,7 +16,6 @@ from transaction import commit
 
 import unittest
 
-
 WIDGET_PROPERTY_CHECKS = {
     "tassonomia_argomenti": {
         "selectableTypes": ["Pagina Argomento"],

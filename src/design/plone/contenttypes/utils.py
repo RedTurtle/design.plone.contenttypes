@@ -9,7 +9,6 @@ import json
 import logging
 import six
 
-
 HAVE_REST_API_PRE_961 = False
 
 try:
