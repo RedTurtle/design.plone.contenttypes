@@ -962,4 +962,11 @@
       destination="7315"
       handler=".to_730x.to_7315"
       />
+  <genericsetup:upgradeStep
+      title="Update Servizio canale_digitale_link refrences"
+      profile="design.plone.contenttypes:default"
+      source="7315"
+      destination="7320"
+      handler=".to_730x.to_7320"
+      />
 </configure>

@@ -23,4 +23,7 @@
 
   <adapter factory=".query.ZCatalogCompatibleQueryAdapter" />
 
+  <!-- link integrity retriever -->
+  <adapter factory=".linkintegrity_retriever.ServizioCanaleDigitaleRetriever" />
+
 </configure>

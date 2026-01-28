@@ -6,7 +6,8 @@ Changelog
 
 - Avoid showing items inside cartella modulistica if omitted from navigation.
   [daniele]
-
+- Add linkintegrity support for canale_digitale_link field in Servizio CT.
+  [cekk]
 
 6.3.14 (2025-10-31)
 -------------------
