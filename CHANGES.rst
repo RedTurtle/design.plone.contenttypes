@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.3.15 (unreleased)
+6.3.15 (2026-01-29)
 -------------------
 
 - Avoid showing items inside cartella modulistica if omitted from navigation.
