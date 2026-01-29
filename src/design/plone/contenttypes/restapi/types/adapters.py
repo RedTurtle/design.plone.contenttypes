@@ -19,7 +19,6 @@ from zope.schema.interfaces import IField
 from zope.schema.interfaces import ITextLine
 from zope.schema.interfaces import IVocabularyFactory
 
-
 DATAGRID_FIELDS = ["value_punto_contatto", "timeline_tempi_scadenze"]
 
 

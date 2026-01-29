@@ -4,7 +4,6 @@ from plone.app.dexterity.textindexer.interfaces import IDynamicTextIndexExtender
 from zope.component import adapter
 from zope.interface import implementer
 
-
 HAVE_REST_API_PRE_961 = False
 
 try:

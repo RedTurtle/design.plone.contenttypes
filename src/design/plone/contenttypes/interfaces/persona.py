@@ -10,7 +10,6 @@ from plone.supermodel import model
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
 
-
 # TODO: migration script for these commented fields towards PDC
 # telefono
 # fax

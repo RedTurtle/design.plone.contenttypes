@@ -9,7 +9,6 @@ from zope.publisher.interfaces.browser import IBrowserRequest
 
 import logging
 
-
 logger = logging.getLogger(__name__)
 
 

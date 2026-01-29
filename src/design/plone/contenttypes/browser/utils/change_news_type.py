@@ -11,7 +11,6 @@ from zope.interface.interfaces import ComponentLookupError
 
 import json
 
-
 logger = getLogger(__name__)
 
 

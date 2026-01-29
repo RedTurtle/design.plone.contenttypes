@@ -28,7 +28,6 @@ import json
 import logging
 import six
 
-
 logger = logging.getLogger(__name__)
 
 DEFAULT_PROFILE = "profile-design.plone.contenttypes:default"

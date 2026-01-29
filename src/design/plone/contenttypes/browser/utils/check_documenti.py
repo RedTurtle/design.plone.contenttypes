@@ -12,7 +12,6 @@ from plone.restapi.interfaces import ISerializeToJsonSummary
 
 import io
 
-
 FLAG = '<i class="fa-solid fa-check"></i>'
 
 

@@ -5,7 +5,6 @@ from Acquisition import aq_base
 from copy import deepcopy
 from plone import api
 
-
 TYPE_TO_TAXONOMIES_MAPPING = {
     "News Item": {
         "tipologia_notizia": {

@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 """Setup tests for this package."""
+
 from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
 )
 from plone import api
+from plone.app.linkintegrity.utils import getIncomingLinks
+from plone.app.linkintegrity.utils import getOutgoingLinks
 from plone.app.testing import setRoles
 from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import SITE_OWNER_PASSWORD
@@ -12,7 +15,6 @@ from plone.restapi.testing import RelativeSession
 from transaction import commit
 
 import unittest
-
 
 WIDGET_PROPERTY_CHECKS = {
     "tassonomia_argomenti": {
@@ -337,6 +339,38 @@ class TestServizioSchema(unittest.TestCase):
                 "opengraph_image",
             ],
         )
+
+    def test_canale_digitale_link_to_object_generate_reference(self):
+        doc = api.content.create(container=self.portal, type="Document", title="doc")
+
+        self.assertEqual(len(list(getIncomingLinks(doc))), 0)
+
+        servizio = api.content.create(
+            container=self.portal,
+            type="Servizio",
+            title="servizio",
+            canale_digitale_link=f"${{portal_url}}/resolveuid/{doc.UID()}",
+        )
+        self.assertEqual(len(list(getIncomingLinks(doc))), 1)
+        self.assertEqual([x.from_object for x in getIncomingLinks(doc)], [servizio])
+
+        self.assertEqual(len(list(getOutgoingLinks(servizio))), 1)
+        self.assertEqual([x.to_object for x in getOutgoingLinks(servizio)], [doc])
+
+    def test_canale_digitale_link_to_external_do_not_generate_reference(self):
+        doc = api.content.create(container=self.portal, type="Document", title="doc")
+
+        self.assertEqual(len(list(getIncomingLinks(doc))), 0)
+
+        servizio = api.content.create(
+            container=self.portal,
+            type="Servizio",
+            title="servizio",
+            canale_digitale_link="https://www.plone.org",
+        )
+        self.assertEqual(len(list(getIncomingLinks(doc))), 0)
+
+        self.assertEqual(len(list(getOutgoingLinks(servizio))), 0)
 
 
 class TestServizioApi(unittest.TestCase):

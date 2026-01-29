@@ -9,7 +9,6 @@ from zope.component import adapter
 from zope.interface import implementer
 from zope.interface import Interface
 
-
 TITLE_MAX_LEN = 255
 DESCRIPTION_MAX_LEN = 255
 EMPTY_BLOCK_MARKER = {"@type": "text"}

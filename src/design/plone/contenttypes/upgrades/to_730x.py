@@ -1,13 +1,16 @@
 # -*- coding: utf-8 -*-
-import logging
-
-import transaction
+from design.plone.contenttypes.events.common import createStructure
+from design.plone.contenttypes.events.common import SUBFOLDERS_MAPPING
+from design.plone.contenttypes.utils import create_default_blocks
 from plone import api
+from plone.app.linkintegrity.handlers import getObjectsFromLinks
+from plone.app.linkintegrity.handlers import updateReferences
+from plone.app.linkintegrity.interfaces import IRetriever
 from plone.app.upgrade.utils import installOrReinstallProduct
 from Products.CMFPlone.interfaces import ISelectableConstrainTypes
 
-from design.plone.contenttypes.events.common import SUBFOLDERS_MAPPING, createStructure
-from design.plone.contenttypes.utils import create_default_blocks
+import logging
+import transaction
 
 logger = logging.getLogger(__name__)
 
@@ -284,3 +287,17 @@ def to_7315(context):
         else:
             logger.info("Index {} already exists".format(name))
     logger.info("Reindex Bandi")
+
+
+def to_7320(context):
+    brains = api.content.find(portal_type="Servizio")
+    tot = len(brains)
+    logger.info("Updating {} Servizio objects".format(tot))
+    for i, brain in enumerate(brains):
+        logger.info(f"Progress: {i+1}/{tot}")
+        servizio = brain.getObject()
+        retriever = IRetriever(servizio, None)
+        if retriever is not None:
+            links = retriever.retrieveLinks()
+            refs = getObjectsFromLinks(servizio, links)
+            updateReferences(servizio, refs)

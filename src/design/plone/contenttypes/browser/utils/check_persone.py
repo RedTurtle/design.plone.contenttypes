@@ -18,7 +18,6 @@ from zope.intid.interfaces import IIntIds
 from zope.security import checkPermission
 from zc.relation.interfaces import ICatalog
 
-
 FLAG = '<i class="fa-solid fa-check"></i>'
 
 

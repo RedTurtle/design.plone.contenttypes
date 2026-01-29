@@ -19,7 +19,6 @@ from Products.CMFPlone.utils import safe_hasattr
 from zope.component import getMultiAdapter
 from zope.component import queryMultiAdapter
 
-
 zcatalog_version = get_distribution("Products.ZCatalog").version
 if parse_version(zcatalog_version) >= parse_version("5.1"):
     SUPPORT_NOT_UUID_QUERIES = True

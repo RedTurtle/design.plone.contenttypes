@@ -13,7 +13,6 @@ from plone import api
 from Products.Five import BrowserView
 import io
 
-
 FLAG = '<i class="fa-solid fa-check"></i>'
 
 
