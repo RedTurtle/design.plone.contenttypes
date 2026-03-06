@@ -969,4 +969,11 @@
       destination="7320"
       handler=".to_730x.to_7320"
       />
+  <genericsetup:upgradeStep
+      title="Reindex Modulo mime_type"
+      profile="design.plone.contenttypes:default"
+      source="7320"
+      destination="7321"
+      handler=".to_730x.to_7321"
+      />
 </configure>

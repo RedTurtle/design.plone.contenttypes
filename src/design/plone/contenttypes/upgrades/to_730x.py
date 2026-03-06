@@ -301,3 +301,11 @@ def to_7320(context):
             links = retriever.retrieveLinks()
             refs = getObjectsFromLinks(servizio, links)
             updateReferences(servizio, refs)
+
+
+def to_7321(context):
+    update_catalog(context)
+    brains = api.content.find(portal_type="Modulo")
+    logger.info("Reindexing mime_type for {} Modulo objects".format(len(brains)))
+    for brain in brains:
+        brain.getObject().reindexObject(idxs=["mime_type"])
