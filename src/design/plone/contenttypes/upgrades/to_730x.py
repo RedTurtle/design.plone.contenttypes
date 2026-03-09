@@ -15,9 +15,9 @@ from plone.dexterity.utils import iterSchemata
 from Products.CMFPlone.interfaces import ISelectableConstrainTypes
 from zope.schema import getFields
 
-import json
 import logging
 import transaction
+
 
 logger = logging.getLogger(__name__)
 
