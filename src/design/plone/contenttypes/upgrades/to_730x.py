@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+from Acquisition import aq_base
+from collective.volto.blocksfield.field import BlocksField
+from copy import deepcopy
 from design.plone.contenttypes.events.common import createStructure
 from design.plone.contenttypes.events.common import SUBFOLDERS_MAPPING
 from design.plone.contenttypes.utils import create_default_blocks
@@ -7,8 +10,12 @@ from plone.app.linkintegrity.handlers import getObjectsFromLinks
 from plone.app.linkintegrity.handlers import updateReferences
 from plone.app.linkintegrity.interfaces import IRetriever
 from plone.app.upgrade.utils import installOrReinstallProduct
+from plone.app.uuid.utils import uuidToObject
+from plone.dexterity.utils import iterSchemata
 from Products.CMFPlone.interfaces import ISelectableConstrainTypes
+from zope.schema import getFields
 
+import json
 import logging
 import transaction
 
@@ -309,3 +316,64 @@ def to_7321(context):
     logger.info("Reindexing mime_type for {} Modulo objects".format(len(brains)))
     for brain in brains:
         brain.getObject().reindexObject(idxs=["mime_type"])
+
+    logger.info("### START REFRESH MODULE LINKS ###")
+
+    portal_enhancedlinks = api.portal.get_tool("portal_enhancedlinks")
+
+    def refresh_module_links(blocks, url):
+        for block in blocks.values():
+            if block.get("@type", "") != "slate":
+                continue
+            for row in block.get("value", []):
+                for child in row.get("children", []):
+                    # find slate links with resolveuid
+                    if child.get("type") != "link":
+                        continue
+                    link_url = child.get("data", {}).get("url", "")
+                    if "resolveuid/" not in link_url:
+                        continue
+
+                    # extract UID
+                    uid = link_url.split("resolveuid/", 1)[1].split("/", 1)[0]
+                    target = uuidToObject(uid, unrestricted=True)
+                    if not target or target.portal_type != "Modulo":
+                        continue
+
+                    portal_enhancedlinks.get_enhanced_link(uid, force_reload=True)
+                    logger.info("- {} -> {}".format(url, uid))
+
+    # fix root
+    portal = api.portal.get()
+    if getattr(portal, "blocks", ""):
+        portal_blocks = json.loads(portal.blocks)
+        refresh_module_links(portal_blocks, portal.absolute_url())
+
+    # fix blocks in contents
+    pc = api.portal.get_tool(name="portal_catalog")
+    brains = pc()
+    tot = len(brains)
+    i = 0
+    for brain in brains:
+        i += 1
+        if i % 1000 == 0:
+            logger.info("Progress: {}/{}".format(i, tot))
+        item = aq_base(brain.getObject())
+        if getattr(item, "blocks", {}):
+            blocks = deepcopy(item.blocks)
+            if blocks:
+                refresh_module_links(blocks, brain.getURL())
+        for schema in iterSchemata(item):
+            # fix blocks in blocksfields
+            for name, field in getFields(schema).items():
+                if name == "blocks":
+                    blocks = deepcopy(item.blocks)
+                    if blocks:
+                        refresh_module_links(blocks, brain.getURL())
+                elif isinstance(field, BlocksField):
+                    value = deepcopy(field.get(item))
+                    if not value or not isinstance(value, dict):
+                        continue
+                    blocks = value.get("blocks", {})
+                    if blocks:
+                        refresh_module_links(blocks, brain.getURL())
