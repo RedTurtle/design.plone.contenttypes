@@ -346,7 +346,7 @@ def to_7321(context):
     # fix root
     portal = api.portal.get()
     if getattr(portal, "blocks", ""):
-        portal_blocks = json.loads(portal.blocks)
+        portal_blocks = deepcopy(portal.blocks)
         refresh_module_links(portal_blocks, portal.absolute_url())
 
     # fix blocks in contents
