@@ -4,7 +4,8 @@ Changelog
 6.3.16 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Reindex mime_type for Modulo items and refresh cached enhanced link data so links to module files show the correct file type.
+  [TheSaintSimon]
 
 
 6.3.15 (2026-01-29)
