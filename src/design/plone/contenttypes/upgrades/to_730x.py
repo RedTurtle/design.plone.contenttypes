@@ -369,9 +369,7 @@ def to_7321(context):
             # fix blocks in blocksfields
             for name, field in getFields(schema).items():
                 if name == "blocks":
-                    blocks = deepcopy(item.blocks)
-                    if blocks:
-                        refresh_module_links(blocks, brain.getURL())
+                    continue
                 elif isinstance(field, BlocksField):
                     value = deepcopy(field.get(item))
                     if not value or not isinstance(value, dict):
