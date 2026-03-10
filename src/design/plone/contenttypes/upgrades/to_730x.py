@@ -313,7 +313,6 @@ def to_7321(context):
 
     logger.info("### RE-ALIGN MODULES MIME-TYPES ###")
 
-    update_catalog(context)
     brains = api.content.find(portal_type="Modulo")
     logger.info("Reindexing mime_type for {} Modulo objects".format(len(brains)))
     for brain in brains:
