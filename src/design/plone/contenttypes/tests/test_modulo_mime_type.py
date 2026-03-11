@@ -12,7 +12,7 @@ import os
 import unittest
 
 
-class TestUpgradeTo7321(unittest.TestCase):
+class TestModuloMimeType(unittest.TestCase):
     layer = DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING
 
     def setUp(self):
@@ -33,6 +33,16 @@ class TestUpgradeTo7321(unittest.TestCase):
             container=self.documento,
             type="Modulo",
             title="Modulo",
+            file_principale=NamedBlobFile(
+                data=pdf_data,
+                filename="example.pdf",
+                contentType="application/pdf",
+            ),
+        )
+        self.modulo_2 = api.content.create(
+            container=self.documento,
+            type="Modulo",
+            title="Modulo_2",
             file_principale=NamedBlobFile(
                 data=pdf_data,
                 filename="example.pdf",
@@ -61,3 +71,12 @@ class TestUpgradeTo7321(unittest.TestCase):
             self.enhancedlinks_tool.get_enhanced_link(self.modulo.UID())["mime_type"],
             "application/pdf",
         )
+
+    def test_modulo_mime_type_indexer(self):
+        # The indexer should return the correct mime type for the Modulo.
+
+        catalog = api.portal.get_tool("portal_catalog")
+        results = catalog(UID=self.modulo_2.UID())
+        brain = results[0]
+
+        self.assertEqual(brain.mime_type, "application/pdf")
