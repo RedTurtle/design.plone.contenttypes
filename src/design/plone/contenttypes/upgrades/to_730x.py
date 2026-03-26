@@ -7,7 +7,6 @@ from plone.app.linkintegrity.handlers import getObjectsFromLinks
 from plone.app.linkintegrity.handlers import updateReferences
 from plone.app.linkintegrity.interfaces import IRetriever
 from plone.app.upgrade.utils import installOrReinstallProduct
-from plone.app.uuid.utils import uuidToObject
 from Products.CMFPlone.interfaces import ISelectableConstrainTypes
 
 import logging
@@ -316,15 +315,13 @@ def to_7321(context):
     logger.info("### START REFRESH MODULE LINKS ###")
 
     portal_enhancedlinks = api.portal.get_tool("portal_enhancedlinks")
-    uids = portal_enhancedlinks._enhanced_links.keys()
-    tot = len(uids)
-    i = 0
-    for uid in uids:
-        i += 1
+    cached_uids = portal_enhancedlinks._enhanced_links
+    tot = len(brains)
+    for i, brain in enumerate(brains, start=1):
         if i % 1000 == 0:
             logger.info("Progress: {}/{}".format(i, tot))
-        target = uuidToObject(uid, unrestricted=True)
-        if not target or target.portal_type != "Modulo":
+        uid = brain.UID
+        if uid not in cached_uids:
             continue
         portal_enhancedlinks.get_enhanced_link(uid, force_reload=True)
         logger.info("- {}".format(uid))
