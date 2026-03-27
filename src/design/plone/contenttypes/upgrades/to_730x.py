@@ -309,17 +309,13 @@ def to_7321(context):
 
     brains = api.content.find(portal_type="Modulo")
     logger.info("Reindexing mime_type for {} Modulo objects".format(len(brains)))
-    for brain in brains:
-        brain.getObject().reindexObject(idxs=["mime_type"])
-
-    logger.info("### START REFRESH MODULE LINKS ###")
-
     portal_enhancedlinks = api.portal.get_tool("portal_enhancedlinks")
     cached_uids = portal_enhancedlinks._enhanced_links
     tot = len(brains)
     for i, brain in enumerate(brains, start=1):
         if i % 1000 == 0:
             logger.info("Progress: {}/{}".format(i, tot))
+        brain.getObject().reindexObject(idxs=["mime_type"])
         uid = brain.UID
         if uid not in cached_uids:
             continue
