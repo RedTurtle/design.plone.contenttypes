@@ -82,6 +82,10 @@
       name="IPuntoDiContatto"
       />
   <adapter
+      factory=".modulo.mime_type"
+      name="mime_type"
+      />
+  <adapter
       factory=".common.exclude_from_search"
       name="exclude_from_search"
       />

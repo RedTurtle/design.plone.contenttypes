@@ -301,3 +301,23 @@ def to_7320(context):
             links = retriever.retrieveLinks()
             refs = getObjectsFromLinks(servizio, links)
             updateReferences(servizio, refs)
+
+
+def to_7321(context):
+
+    logger.info("### RE-ALIGN MODULES MIME-TYPES ###")
+
+    brains = api.content.find(portal_type="Modulo")
+    logger.info("Reindexing mime_type for {} Modulo objects".format(len(brains)))
+    portal_enhancedlinks = api.portal.get_tool("portal_enhancedlinks")
+    cached_uids = portal_enhancedlinks._enhanced_links
+    tot = len(brains)
+    for i, brain in enumerate(brains, start=1):
+        if i % 1000 == 0:
+            logger.info("Progress: {}/{}".format(i, tot))
+        brain.getObject().reindexObject(idxs=["mime_type"])
+        uid = brain.UID
+        if uid not in cached_uids:
+            continue
+        portal_enhancedlinks.get_enhanced_link(uid, force_reload=True)
+        logger.info("- {}".format(uid))
