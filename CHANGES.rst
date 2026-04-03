@@ -4,7 +4,10 @@ Changelog
 6.3.16 (unreleased)
 -------------------
 
-- Fixed file type shown for links to Modulo files.
+- Modulo: ``mime_type`` is now indexed as the mime type of ``file_principale``
+  (the main attached file). The ``to_7321`` upgrade step re-aligns the catalog
+  index and refreshes stale ``portal_enhancedlinks`` cache entries for existing
+  Modulo objects.
   [TheSaintSimon]
 
 

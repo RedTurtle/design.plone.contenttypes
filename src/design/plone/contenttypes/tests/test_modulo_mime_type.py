@@ -49,17 +49,18 @@ class TestModuloMimeType(unittest.TestCase):
                 contentType="application/pdf",
             ),
         )
-        self.enhancedlinks_tool = api.portal.get_tool("portal_enhancedlinks")
+
+    def test_to_7321_refreshes_modulo_mime_type_cache(self):
+        enhancedlinks_tool = api.portal.get_tool("portal_enhancedlinks")
         # Simulate the stale cache entry that the upgrade has to refresh.
-        self.enhancedlinks_tool._enhanced_links[self.modulo.UID()] = {
+        enhancedlinks_tool._enhanced_links[self.modulo.UID()] = {
             "getObjSize": "1 KB",
             "mime_type": "text/plain",
         }
 
-    def test_to_7321_refreshes_modulo_mime_type_cache(self):
         # Start from the broken cached mime type.
         self.assertEqual(
-            self.enhancedlinks_tool.get_enhanced_link(self.modulo.UID())["mime_type"],
+            enhancedlinks_tool.get_enhanced_link(self.modulo.UID())["mime_type"],
             "text/plain",
         )
 
@@ -68,9 +69,16 @@ class TestModuloMimeType(unittest.TestCase):
 
         # After the refresh the cache must reflect the PDF mime type.
         self.assertEqual(
-            self.enhancedlinks_tool.get_enhanced_link(self.modulo.UID())["mime_type"],
+            enhancedlinks_tool.get_enhanced_link(self.modulo.UID())["mime_type"],
             "application/pdf",
         )
+
+    def test_modulo_base_tool_mime_type(self):
+        # Without any stale cache, the tool should already have the correct
+        # mime type for the Modulo (taken from file_principale).
+        enhancedlinks_tool = api.portal.get_tool("portal_enhancedlinks")
+        result = enhancedlinks_tool.get_enhanced_link(self.modulo.UID())
+        self.assertEqual(result["mime_type"], "application/pdf")
 
     def test_modulo_mime_type_indexer(self):
         # The indexer should return the correct mime type for the Modulo.
