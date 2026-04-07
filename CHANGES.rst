@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.3.16 (unreleased)
+6.3.16 (2026-04-07)
 -------------------
 
 - Modulo: ``mime_type`` is now indexed as the mime type of ``file_principale``
