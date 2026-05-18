@@ -85,6 +85,55 @@ class BaseService(Service):
             exp_result.reverse()
         return exp_result
 
+    def _get_image_scales(self, context):
+        """Get image scales for a content object."""
+        scales = queryMultiAdapter(
+            (context, self.request),
+            IImageScalesAdapter,
+        )
+        return scales() if scales else {}
+
+    def _get_related_places(self, event_obj):
+        """Extract related places (luoghi_correlati) from event object.
+
+        Returns a list of dicts with 'name' and 'url' keys.
+        """
+        related_places = []
+        try:
+            # Try to get the field from the behavior
+            if hasattr(event_obj, "luoghi_correlati"):
+                relations = event_obj.luoghi_correlati
+                if relations:
+                    for relation in relations:
+                        target = relation.to_object
+                        if target:
+                            related_places.append(
+                                {
+                                    "name": target.title or target.id,
+                                    "url": target.absolute_url(),
+                                }
+                            )
+        except (AttributeError, TypeError):
+            # Field doesn't exist or relation access fails
+            pass
+        return related_places
+
+    def _get_parent_event(self, event_obj):
+        """Get parent event info if this event is a child of another event.
+
+        Returns a dict with 'name' and 'url' keys, or None if no parent.
+        """
+        try:
+            parent = event_obj.aq_parent
+            if parent and parent.portal_type == "Event":
+                return {
+                    "name": parent.title or parent.id,
+                    "url": parent.absolute_url(),
+                }
+        except (AttributeError, TypeError):
+            pass
+        return None
+
 
 class ScadenziarioSearchPost(BaseService):
     """
@@ -196,10 +245,7 @@ class ScadenziarioDayPost(BaseService):
         if sort_order not in {"descending", "ascending"}:
             sort_order = "ascending"
 
-        # results = querybuilder(**querybuilder_parameters)
-        # Seems that origina querybuilder is not able to handle event search on
-        # a single day... I can handle this calling catalog and going through
-        # DateTime conversion
+        # Convert query to catalog query with DateTime objects
         query_for_catalog = queryparser.parseFormquery(
             self.context, query, sort_on=sort_on, sort_order=sort_order
         )
@@ -209,83 +255,116 @@ class ScadenziarioDayPost(BaseService):
         query_for_catalog["start"]["query"][1] = DateTime(
             query_for_catalog["start"]["query"][1]
         )
+
+        # Execute the catalog query
         results = self.context.portal_catalog(query_for_catalog)
-        # preparati per l'expand degli eventi.
+
+        # Separate events from other content types
         not_events = [x for x in results if x.portal_type != "Event"]
         events = [x for x in results if x.portal_type == "Event"]
-        start = None
-        end = None
-        # qui ce l'abbiamo per forza start
+
+        # Extract start/end dates from query
+        start = end = None
         if "start" in query_for_catalog:
             start = query_for_catalog["start"]["query"][0]
         if "end" in query_for_catalog:
             end = query_for_catalog["start"]["query"][1]
 
+        # Expand recurring events
         expanded_events = self.expand_events(events, 3, start, end)
-        start_date = start.strftime("%Y/%m/%d")
-        correct_events = []
-        for x in expanded_events:
-            if start_date == x.start.strftime("%Y/%m/%d"):
-                correct_events.append(x)
 
+        # Filter events to only those on the requested day
+        start_date = start.strftime("%Y/%m/%d")
+        correct_events = [
+            x
+            for x in expanded_events
+            if start_date == x.start.strftime("%Y/%m/%d")  # noqa: E501
+        ]
+
+        # Combine all results
         all_results = not_events + correct_events
 
+        # Group results by date
         brains_grouped = {}
         for brain in all_results:
-            if not safe_hasattr(results[0], "start"):
+            if not safe_hasattr(brain, "start") or not brain.start:
                 continue
-            brains_grouped.setdefault(brain.start.strftime("%Y/%m/%d"), []).append(
-                brain
-            )
+            date_key = brain.start.strftime("%Y/%m/%d")
+            brains_grouped.setdefault(date_key, []).append(brain)
 
-        keys = list(brains_grouped.keys())
-        keys.sort()
-
+        # Build response with enhanced data
         results_to_be_returned = {}
-        for key in keys:
-            results_to_be_returned[key] = []
-            for brain in brains_grouped[key]:
-                if isinstance(brain, (EventAccessor, EventOccurrenceAccessor)):
-                    if brain.context.portal_type == "Occurrence":
-                        url = brain.url[:-10]
-                        scales = queryMultiAdapter(
-                            (brain.context.aq_parent, self.request), IImageScalesAdapter
-                        )
-                        image_scales = scales()
-                    else:
-                        url = brain.url
-                        scales = queryMultiAdapter(
-                            (brain.context, self.request), IImageScalesAdapter
-                        )
-                        image_scales = scales()
-
-                    results_to_be_returned[key].append(
-                        {
-                            "@id": url,
-                            "id": brain.id,
-                            "title": brain.title,
-                            "text": brain.description,
-                            "start": brain.start.isoformat(),
-                            "type": self.context.translate("Event"),
-                            "category": brain.subjects,
-                            "image_scales": image_scales,
-                        }
-                    )
-
-                else:
-                    results_to_be_returned[key].append(
-                        {
-                            "@id": brain.getURL(),
-                            "id": brain.getId,
-                            "title": brain.Title,
-                            "text": brain.Description,
-                            "start": brain.start.isoformat(),
-                            "type": self.context.translate(brain.portal_type),
-                            "category": brain.subject,
-                        }
-                    )
+        for date_key in sorted(brains_grouped.keys()):
+            results_to_be_returned[date_key] = []
+            for brain in brains_grouped[date_key]:
+                item_data = self._build_item_data(brain)
+                results_to_be_returned[date_key].append(item_data)
 
         return {
             "@id": self.request.get("URL"),
             "items": results_to_be_returned,
         }
+
+    def _build_item_data(self, brain):
+        """Build the data dictionary for a single item.
+
+        Handles both EventAccessor/EventOccurrenceAccessor and brain results.
+        """
+        if isinstance(brain, (EventAccessor, EventOccurrenceAccessor)):
+            return self._build_event_accessor_item(brain)
+        else:
+            return self._build_brain_item(brain)
+
+    def _build_event_accessor_item(self, brain):
+        """Build item data from EventAccessor or EventOccurrenceAccessor."""
+        # Get the actual object based on occurrence type
+        if brain.context.portal_type == "Occurrence":
+            event_obj = brain.context.aq_parent
+            url = brain.url[:-10]  # Remove "/@@view" suffix
+        else:
+            event_obj = brain.context
+            url = brain.url
+
+        # Get image scales
+        image_scales = self._get_image_scales(event_obj)
+
+        # Build base item data
+        item_data = {
+            "@id": url,
+            "id": brain.id,
+            "title": brain.title,
+            "text": brain.description,
+            "start": brain.start.isoformat(),
+            "type": self.context.translate("Event"),
+            "category": brain.subjects,
+            "image_scales": image_scales,
+        }
+
+        # Add related places and parent event info
+        self._add_relations_data(item_data, event_obj)
+
+        return item_data
+
+    def _build_brain_item(self, brain):
+        """Build item data from a catalog brain (non-event)."""
+        return {
+            "@id": brain.getURL(),
+            "id": brain.getId,
+            "title": brain.Title,
+            "text": brain.Description,
+            "start": brain.start.isoformat(),
+            "type": self.context.translate(brain.portal_type),
+            "category": brain.subject,
+        }
+
+    def _add_relations_data(self, item_data, event_obj):
+        """Add related places and parent event info to item data."""
+        # Add related places (luoghi_correlati)
+        related_places = self._get_related_places(event_obj)
+        if related_places:
+            item_data["luoghi_correlati"] = related_places
+
+        # Add parent event info (rassegna)
+        parent_event = self._get_parent_event(event_obj)
+        if parent_event:
+            item_data["parent_event"] = parent_event

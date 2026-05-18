@@ -4,7 +4,9 @@ Changelog
 6.3.17 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Now @scadenziario-day returns also a list "luoghi_correlati" and
+  "parent_event" if there is one directly above.
+  [fedevancin]
 
 
 6.3.16 (2026-04-07)
