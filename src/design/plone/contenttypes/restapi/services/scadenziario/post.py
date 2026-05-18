@@ -249,12 +249,11 @@ class ScadenziarioDayPost(BaseService):
         query_for_catalog = queryparser.parseFormquery(
             self.context, query, sort_on=sort_on, sort_order=sort_order
         )
-        query_for_catalog["start"]["query"][0] = DateTime(
-            query_for_catalog["start"]["query"][0]
-        )
-        query_for_catalog["start"]["query"][1] = DateTime(
-            query_for_catalog["start"]["query"][1]
-        )
+
+        # Normalize date query values so they can be consumed by portal_catalog
+        # across different querystring parser versions.
+        self._normalize_query_datetime(query_for_catalog, "start")
+        self._normalize_query_datetime(query_for_catalog, "end")
 
         # Execute the catalog query
         results = self.context.portal_catalog(query_for_catalog)
@@ -266,20 +265,24 @@ class ScadenziarioDayPost(BaseService):
         # Extract start/end dates from query
         start = end = None
         if "start" in query_for_catalog:
-            start = query_for_catalog["start"]["query"][0]
+            start, end = self._extract_date_range(query_for_catalog["start"])
         if "end" in query_for_catalog:
-            end = query_for_catalog["start"]["query"][1]
+            end_from_end, _ = self._extract_date_range(query_for_catalog["end"])
+            if end_from_end and not end:
+                end = end_from_end
 
         # Expand recurring events
         expanded_events = self.expand_events(events, 3, start, end)
 
         # Filter events to only those on the requested day
-        start_date = start.strftime("%Y/%m/%d")
-        correct_events = [
-            x
-            for x in expanded_events
-            if start_date == x.start.strftime("%Y/%m/%d")  # noqa: E501
-        ]
+        correct_events = expanded_events
+        if start:
+            start_date = start.strftime("%Y/%m/%d")
+            correct_events = [
+                x
+                for x in expanded_events
+                if start_date == x.start.strftime("%Y/%m/%d")  # noqa: E501
+            ]
 
         # Combine all results
         all_results = not_events + correct_events
@@ -304,6 +307,31 @@ class ScadenziarioDayPost(BaseService):
             "@id": self.request.get("URL"),
             "items": results_to_be_returned,
         }
+
+    def _normalize_query_datetime(self, query_for_catalog, field_name):
+        field_query = query_for_catalog.get(field_name)
+        if not field_query or "query" not in field_query:
+            return
+
+        raw_query = field_query["query"]
+        if isinstance(raw_query, (list, tuple)):
+            field_query["query"] = [self._to_datetime(v) for v in raw_query]
+        else:
+            field_query["query"] = self._to_datetime(raw_query)
+
+    def _to_datetime(self, value):
+        if value is None or isinstance(value, DateTime):
+            return value
+        return DateTime(value)
+
+    def _extract_date_range(self, field_query):
+        raw_query = field_query.get("query")
+        if isinstance(raw_query, (list, tuple)):
+            if len(raw_query) >= 2:
+                return raw_query[0], raw_query[1]
+            if len(raw_query) == 1:
+                return raw_query[0], None
+        return raw_query, None
 
     def _build_item_data(self, brain):
         """Build the data dictionary for a single item.

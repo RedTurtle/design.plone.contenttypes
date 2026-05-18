@@ -91,7 +91,9 @@ class ScadenziarioTest(unittest.TestCase):
     def test_scadenziario_day_returns_events_for_specific_day(self):
         """Test @scadenziario-day endpoint returns events for a specific day."""
         now = datetime.now()
-        target_day = now.replace(hour=0, minute=0, second=0, microsecond=0)
+        target_day = (now + timedelta(days=1)).replace(
+            hour=0, minute=0, second=0, microsecond=0
+        )
 
         # Create events on different days
         api.content.create(
@@ -127,8 +129,11 @@ class ScadenziarioTest(unittest.TestCase):
                 "query": [
                     {
                         "i": "start",
-                        "o": ("plone.app.querystring.operation." "date.afterToday"),
-                        "v": "",
+                        "o": "plone.app.querystring.operation.date.between",
+                        "v": [
+                            target_day.strftime("%Y-%m-%d"),
+                            (target_day + timedelta(days=1)).strftime("%Y-%m-%d"),
+                        ],
                     }
                 ]
             },
@@ -149,7 +154,9 @@ class ScadenziarioTest(unittest.TestCase):
         from zope.intid.interfaces import IIntIds
 
         now = datetime.now()
-        target_day = now.replace(hour=0, minute=0, second=0, microsecond=0)
+        target_day = (now + timedelta(days=1)).replace(
+            hour=0, minute=0, second=0, microsecond=0
+        )
 
         # Create a venue
         venue = api.content.create(
@@ -181,15 +188,24 @@ class ScadenziarioTest(unittest.TestCase):
                 "query": [
                     {
                         "i": "start",
-                        "o": ("plone.app.querystring.operation." "date.afterToday"),
-                        "v": "",
+                        "o": "plone.app.querystring.operation.date.between",
+                        "v": [
+                            target_day.strftime("%Y-%m-%d"),
+                            (target_day + timedelta(days=1)).strftime("%Y-%m-%d"),
+                        ],
                     }
                 ]
             },
         ).json()
 
         date_key = target_day.strftime("%Y/%m/%d")
-        event_data = response["items"][date_key][0]
+        event_data = None
+        for item in response["items"].get(date_key, []):
+            if item["title"] == "Event with Venue":
+                event_data = item
+                break
+
+        self.assertIsNotNone(event_data)
 
         # Check that luoghi_correlati is present and correct
         self.assertIn("luoghi_correlati", event_data)
@@ -203,7 +219,9 @@ class ScadenziarioTest(unittest.TestCase):
     def test_scadenziario_day_includes_parent_event(self):
         """Test @scadenziario-day includes parent event (rassegna) info."""
         now = datetime.now()
-        target_day = now.replace(hour=0, minute=0, second=0, microsecond=0)
+        target_day = (now + timedelta(days=1)).replace(
+            hour=0, minute=0, second=0, microsecond=0
+        )
 
         # Create parent event (rassegna)
         parent_event = api.content.create(
@@ -233,8 +251,11 @@ class ScadenziarioTest(unittest.TestCase):
                 "query": [
                     {
                         "i": "start",
-                        "o": "plone.app.querystring.operation.date.afterToday",
-                        "v": "",
+                        "o": "plone.app.querystring.operation.date.between",
+                        "v": [
+                            target_day.strftime("%Y-%m-%d"),
+                            (target_day + timedelta(days=1)).strftime("%Y-%m-%d"),
+                        ],
                     }
                 ]
             },
@@ -257,7 +278,9 @@ class ScadenziarioTest(unittest.TestCase):
     def test_scadenziario_day_without_related_places_or_parent(self):
         """Test @scadenziario-day event without related places or parent."""
         now = datetime.now()
-        target_day = now.replace(hour=0, minute=0, second=0, microsecond=0)
+        target_day = (now + timedelta(days=1)).replace(
+            hour=0, minute=0, second=0, microsecond=0
+        )
 
         # Create standalone event
         event = api.content.create(
@@ -277,15 +300,24 @@ class ScadenziarioTest(unittest.TestCase):
                 "query": [
                     {
                         "i": "start",
-                        "o": "plone.app.querystring.operation.date.afterToday",
-                        "v": "",
+                        "o": "plone.app.querystring.operation.date.between",
+                        "v": [
+                            target_day.strftime("%Y-%m-%d"),
+                            (target_day + timedelta(days=1)).strftime("%Y-%m-%d"),
+                        ],
                     }
                 ]
             },
         ).json()
 
         date_key = target_day.strftime("%Y/%m/%d")
-        event_data = response["items"][date_key][0]
+        event_data = None
+        for item in response["items"].get(date_key, []):
+            if item["title"] == "Standalone Event":
+                event_data = item
+                break
+
+        self.assertIsNotNone(event_data)
 
         # Check that luoghi_correlati and parent_event are NOT in the response
         # (or empty if present)
