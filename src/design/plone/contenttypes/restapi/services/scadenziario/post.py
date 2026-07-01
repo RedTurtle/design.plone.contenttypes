@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from datetime import timedelta
 from DateTime import DateTime
 from pkg_resources import get_distribution
 from pkg_resources import parse_version
@@ -24,6 +25,13 @@ if parse_version(zcatalog_version) >= parse_version("5.1"):
     SUPPORT_NOT_UUID_QUERIES = True
 else:
     SUPPORT_NOT_UUID_QUERIES = False
+
+
+def _to_pydate(value):
+    """Normalize a Zope DateTime or a Python datetime to a Python date."""
+    if hasattr(value, "asdatetime"):
+        value = value.asdatetime()
+    return value.date()
 
 
 class BaseService(Service):
@@ -165,15 +173,26 @@ class ScadenziarioSearchPost(BaseService):
                 # perché la data della ricorrenza è maggiore di "until", che è quello che qui inviamo come end.
                 end = query_for_catalog["end"]["query"]
         expanded_events = self.expand_events(events, 3, start, end)
-
         all_results = not_events + expanded_events
         brains_grouped = {}
         for brain in all_results:
             if not safe_hasattr(brain, "start") or not brain.start:
                 continue
-            brains_grouped.setdefault(brain.start.strftime("%Y/%m/%d"), []).append(
-                brain
-            )
+            # brain.start/brain.end sono già quelli della singola occorrenza
+            # (calcolati da expand_events/IRecurrenceSupport quando è
+            # impostata una recurrence, altrimenti quelli dell'evento
+            # stesso): la ricorrenza ha quindi già la precedenza sull'intero
+            # intervallo start-end dell'evento master.
+            start_day = _to_pydate(brain.start)
+            end_day = start_day
+            if safe_hasattr(brain, "end") and brain.end:
+                candidate_end_day = _to_pydate(brain.end)
+                if candidate_end_day > start_day:
+                    end_day = candidate_end_day
+            day = start_day
+            while day <= end_day:
+                brains_grouped.setdefault(day.strftime("%Y/%m/%d"), []).append(brain)
+                day += timedelta(days=1)
         keys = list(brains_grouped.keys())
         if sort_order == "descending":
             keys.sort(reverse=True)
@@ -209,34 +228,51 @@ class ScadenziarioDayPost(BaseService):
         query_for_catalog["start"]["query"][1] = DateTime(
             query_for_catalog["start"]["query"][1]
         )
+        day_start = query_for_catalog["start"]["query"][0]
+        day_end = query_for_catalog["start"]["query"][1]
+        day_key = day_start.strftime("%Y/%m/%d")
+
         results = self.context.portal_catalog(query_for_catalog)
         # preparati per l'expand degli eventi.
         not_events = [x for x in results if x.portal_type != "Event"]
-        events = [x for x in results if x.portal_type == "Event"]
-        start = None
-        end = None
-        # qui ce l'abbiamo per forza start
-        if "start" in query_for_catalog:
-            start = query_for_catalog["start"]["query"][0]
-        if "end" in query_for_catalog:
-            end = query_for_catalog["start"]["query"][1]
 
-        expanded_events = self.expand_events(events, 3, start, end)
-        start_date = start.strftime("%Y/%m/%d")
+        # Per gli eventi non basta cercare chi ha "start" nel giorno
+        # richiesto: un evento che dura più giorni deve comparire in ognuno
+        # di essi. Cerchiamo quindi tutti gli eventi che si sovrappongono al
+        # giorno richiesto (inizio entro la fine giornata e fine dopo
+        # l'inizio giornata), come fa plone.app.event.base.start_end_query.
+        events_query = dict(query_for_catalog)
+        events_query["start"] = {"query": day_end, "range": "max"}
+        events_query["end"] = {"query": day_start, "range": "min"}
+        events = [
+            x
+            for x in self.context.portal_catalog(events_query)
+            if x.portal_type == "Event"
+        ]
+
+        expanded_events = self.expand_events(
+            events, 3, day_start.asdatetime(), day_end.asdatetime()
+        )
         correct_events = []
         for x in expanded_events:
-            if start_date == x.start.strftime("%Y/%m/%d"):
+            # x.start/x.end sono quelli della singola occorrenza (la
+            # ricorrenza ha precedenza sull'intervallo start-end dell'evento
+            # master, si veda self.expand_events). Confrontiamo usando Zope
+            # DateTime, che gestisce senza errori sia datetime naive che
+            # aware (a differenza di un confronto diretto fra oggetti
+            # datetime Python con tzinfo differenti).
+            occ_start = DateTime(x.start)
+            occ_end = DateTime(x.end) if x.end else occ_start
+            if occ_start <= day_end and occ_end >= day_start:
                 correct_events.append(x)
 
         all_results = not_events + correct_events
 
-        brains_grouped = {}
+        brains_grouped = {day_key: []}
         for brain in all_results:
-            if not safe_hasattr(results[0], "start"):
+            if not safe_hasattr(brain, "start") or not brain.start:
                 continue
-            brains_grouped.setdefault(brain.start.strftime("%Y/%m/%d"), []).append(
-                brain
-            )
+            brains_grouped[day_key].append(brain)
 
         keys = list(brains_grouped.keys())
         keys.sort()
