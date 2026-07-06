@@ -203,6 +203,17 @@ class ScadenziarioSearchPost(BaseService):
 
 
 class ScadenziarioDayPost(BaseService):
+    def _get_extra_event_data(self, event_obj):
+        """Hook for subclasses to contribute extra fields to an event's
+        result item.
+
+        :param event_obj: the underlying Event object for the result item
+            (already resolved from brain.context, or from its parent for an
+            Occurrence).
+        :returns: a dict merged into the item returned to the client.
+        """
+        return {}
+
     def reply(self):
         data = json_body(self.request)
         query = data.get("query", None)
@@ -283,30 +294,28 @@ class ScadenziarioDayPost(BaseService):
             for brain in brains_grouped[key]:
                 if isinstance(brain, (EventAccessor, EventOccurrenceAccessor)):
                     if brain.context.portal_type == "Occurrence":
+                        event_obj = brain.context.aq_parent
                         url = brain.url[:-10]
-                        scales = queryMultiAdapter(
-                            (brain.context.aq_parent, self.request), IImageScalesAdapter
-                        )
-                        image_scales = scales()
                     else:
+                        event_obj = brain.context
                         url = brain.url
-                        scales = queryMultiAdapter(
-                            (brain.context, self.request), IImageScalesAdapter
-                        )
-                        image_scales = scales()
-
-                    results_to_be_returned[key].append(
-                        {
-                            "@id": url,
-                            "id": brain.id,
-                            "title": brain.title,
-                            "text": brain.description,
-                            "start": brain.start.isoformat(),
-                            "type": self.context.translate("Event"),
-                            "category": brain.subjects,
-                            "image_scales": image_scales,
-                        }
+                    scales = queryMultiAdapter(
+                        (event_obj, self.request), IImageScalesAdapter
                     )
+                    image_scales = scales()
+
+                    item = {
+                        "@id": url,
+                        "id": brain.id,
+                        "title": brain.title,
+                        "text": brain.description,
+                        "start": brain.start.isoformat(),
+                        "type": self.context.translate("Event"),
+                        "category": brain.subjects,
+                        "image_scales": image_scales,
+                    }
+                    item.update(self._get_extra_event_data(event_obj))
+                    results_to_be_returned[key].append(item)
 
                 else:
                     results_to_be_returned[key].append(
