@@ -4,7 +4,10 @@ Changelog
 6.3.17 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add a ``_get_extra_event_data`` hook to ``ScadenziarioDayPost`` so that
+  downstream packages can add extra fields to ``@scadenziario-day`` event
+  results without duplicating the whole endpoint.
+  [fedevancin]
 
 
 6.3.16 (2026-04-07)
