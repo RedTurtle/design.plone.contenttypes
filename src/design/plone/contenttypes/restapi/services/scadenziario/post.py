@@ -319,7 +319,11 @@ class ScadenziarioDayPost(BaseService):
                         "type": self.context.translate("Event"),
                         "category": brain.subjects,
                         "image_scales": image_scales,
-                        "image": image_scales.get(image_field_name) if image_field_name else None,
+                        "image": (
+                            image_scales.get(image_field_name)
+                            if image_field_name
+                            else None
+                        ),
                         "image_field": image_field_name,
                     }
                     item.update(self._get_extra_event_data(event_obj))
