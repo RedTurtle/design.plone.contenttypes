@@ -304,6 +304,12 @@ class ScadenziarioDayPost(BaseService):
                     )
                     image_scales = scales()
 
+                    image_field_name = None
+                    if getattr(event_obj, "preview_image", None):
+                        image_field_name = "preview_image"
+                    elif getattr(event_obj, "image", None):
+                        image_field_name = "image"
+
                     item = {
                         "@id": url,
                         "id": brain.id,
@@ -313,6 +319,12 @@ class ScadenziarioDayPost(BaseService):
                         "type": self.context.translate("Event"),
                         "category": brain.subjects,
                         "image_scales": image_scales,
+                        "image": (
+                            image_scales.get(image_field_name)
+                            if image_field_name
+                            else None
+                        ),
+                        "image_field": image_field_name,
                     }
                     item.update(self._get_extra_event_data(event_obj))
                     results_to_be_returned[key].append(item)
