@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from datetime import timedelta
+from dateutil import rrule
 from DateTime import DateTime
 from pkg_resources import get_distribution
 from pkg_resources import parse_version
@@ -11,6 +12,7 @@ from plone.app.event.recurrence import EventOccurrenceAccessor
 from plone.app.querystring import queryparser
 from plone.base.interfaces import IImageScalesAdapter
 from plone.event.interfaces import IEvent
+from plone.event.interfaces import IEventAccessor
 from plone.event.interfaces import IEventRecurrence
 from plone.event.interfaces import IRecurrenceSupport
 from plone.restapi.deserializer import json_body
@@ -32,6 +34,30 @@ def _to_pydate(value):
     if hasattr(value, "asdatetime"):
         value = value.asdatetime()
     return value.date()
+
+
+def _event_start_matches_own_rule(accessor):
+    """Whether an event's own start date is actually a valid occurrence of
+    its recurrence rule.
+
+    plone.event.recurrence.recurrence_sequence_ical always force-includes
+    the event's start date in the recurrence set (RFC5545 DTSTART
+    semantics), even when it doesn't satisfy the RRULE itself, e.g. a
+    FREQ=WEEKLY;BYDAY=MO,FR rule starting on a Thursday. We don't want that
+    date to show up in the @scadenziario listing, so we recompute the rule
+    on its own, without that forced inclusion, to check it.
+    """
+    recrule = getattr(accessor, "recurrence", None)
+    event_start = getattr(accessor, "start", None)
+    if not recrule or not event_start:
+        return True
+    try:
+        rset = rrule.rrulestr(
+            recrule, dtstart=event_start, forceset=True, ignoretz=True
+        )
+    except (ValueError, TypeError):
+        return True
+    return next(iter(rset), None) == event_start
 
 
 class BaseService(Service):
@@ -81,6 +107,13 @@ class BaseService(Service):
                     _obj_or_acc(occ, ret_mode)
                     for occ in IRecurrenceSupport(obj).occurrences(start, end)
                 ]
+                accessor = IEventAccessor(obj)
+                if (
+                    occurrences
+                    and occurrences[0].start == accessor.start
+                    and not _event_start_matches_own_rule(accessor)
+                ):
+                    occurrences = occurrences[1:]
             elif IEvent.providedBy(obj):
                 occurrences = [_obj_or_acc(obj, ret_mode)]
             else:
