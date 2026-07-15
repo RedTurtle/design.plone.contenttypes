@@ -8,6 +8,10 @@ Changelog
   downstream packages can add extra fields to ``@scadenziario-day`` event
   results without duplicating the whole endpoint.
   [fedevancin]
+- Fixed the ``@scadenziario`` endpoint in order to remove the first occurrence
+  if it does not match any recurrence. ``plone.event`` implements a
+  RFC5545 compliant system, so it always force-inject the first day by default.
+  [fedevancin]
 
 
 6.3.16 (2026-04-07)
