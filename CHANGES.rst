@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.3.17 (unreleased)
+6.3.17 (2026-07-15)
 -------------------
 
 - Add a ``_get_extra_event_data`` hook to ``ScadenziarioDayPost`` so that
