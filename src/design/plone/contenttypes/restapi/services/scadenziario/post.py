@@ -51,13 +51,17 @@ def _event_start_matches_own_rule(accessor):
     event_start = getattr(accessor, "start", None)
     if not recrule or not event_start:
         return True
+    # dateutil refuses a tz-aware dtstart together with a tz-naive UNTIL
+    # (as recurrence_sequence_ical produces one): mirror that function's
+    # own workaround of stripping the tzinfo before parsing the rule.
+    naive_start = event_start.replace(tzinfo=None)
     try:
         rset = rrule.rrulestr(
-            recrule, dtstart=event_start, forceset=True, ignoretz=True
+            recrule, dtstart=naive_start, forceset=True, ignoretz=True
         )
     except (ValueError, TypeError):
         return True
-    return next(iter(rset), None) == event_start
+    return next(iter(rset), None) == naive_start
 
 
 class BaseService(Service):
