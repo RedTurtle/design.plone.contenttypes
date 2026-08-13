@@ -41,7 +41,8 @@ class ModulisticaItems(object):
         if context is None:
             context = self.context
         res = []
-        for brain in context.getFolderContents():
+        content_listing = context.restrictedTraverse("@@contentlisting")
+        for brain in content_listing():
             if brain.portal_type == "Document" and brain.getId == "multimedia":
                 continue
             child = brain.getObject()
