@@ -54,10 +54,8 @@ class DocumentoSerializer(SerializeFolderToJson):
         )
         # Una via alternativa era l'injection di fullobject nella request ma
         # mi pare una cosa cattiva da fare
-        content_listing = self.context.restrictedTraverse('@@contentlisting')
-        brain_moduli = [
-            x for x in content_listing() if x.portal_type != "Document"
-        ]
+        content_listing = self.context.restrictedTraverse("@@contentlisting")
+        brain_moduli = [x for x in content_listing() if x.portal_type != "Document"]
         result["moduli_del_documento"] = []
         for brain in brain_moduli:
             modulo = brain.getObject()
