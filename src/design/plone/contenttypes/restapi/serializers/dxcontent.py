@@ -63,6 +63,6 @@ class SerializeFolderToJson(BaseFolderSerializer, MetaTypeSerializer):
             # siamo in un sotto-elemento di quello richiesto dalla query.
             #  ritorniamo il numero di elementi totale, senza doverli ritornare
             # effettivamente.
-            content_listing = self.context.restrictedTraverse('@@contentlisting')
+            content_listing = self.context.restrictedTraverse("@@contentlisting")
             result["items_total"] = content_listing().actual_result_count
         return result

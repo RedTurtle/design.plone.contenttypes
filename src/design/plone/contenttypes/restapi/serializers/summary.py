@@ -358,7 +358,9 @@ class IncaricoDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
             compensi_folder = getattr(self.context, "compensi-file")
             res["compensi_file"] = []
             if api.user.has_permission("View", obj=compensi_folder):
-                content_listing = getattr(self.context, "compensi-file").restrictedTraverse('@@contentlisting')
+                content_listing = getattr(
+                    self.context, "compensi-file"
+                ).restrictedTraverse("@@contentlisting")
                 for brain in content_listing():
                     res["compensi_file"].append(
                         getMultiAdapter(
@@ -370,7 +372,7 @@ class IncaricoDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
             importi_folder = getattr(self.context, "importi-di-viaggio-e-o-servizi")
             res["importi_di_viaggio_e_o_servizi"] = []
             if api.user.has_permission("View", obj=importi_folder):
-                content_listing = importi_folder.restrictedTraverse('@@contentlisting')
+                content_listing = importi_folder.restrictedTraverse("@@contentlisting")
                 for brain in content_listing():
                     res["importi_di_viaggio_e_o_servizi"].append(
                         getMultiAdapter(
