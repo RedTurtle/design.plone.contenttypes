@@ -4,7 +4,8 @@ Changelog
 6.3.18 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix ``@scadenziario-day`` endpoint to return preview image properly.
+  [daniele]
 
 
 6.3.17 (2026-07-15)
