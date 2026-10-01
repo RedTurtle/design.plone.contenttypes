@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
 from datetime import timedelta
+from dateutil.rrule import rrulestr
 from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
 )
@@ -90,6 +91,77 @@ class ScadenziarioTest(unittest.TestCase):
         self.assertEqual(set(response["items"]), expected_days)
         # results are in asc order
         self.assertEqual(response["items"], sorted(response["items"]))
+
+    def test_recurring_event_excludes_start_date_not_matching_byday_rule(self):
+        # an event spanning multiple weeks
+        # (e.g. from Thursday the 2nd to Friday the 17th) with a
+        # recurrence limited to Mondays and Fridays. Since the event
+        # itself starts on a Thursday, that start date does not satisfy
+        # the BYDAY rule and must not be listed: only the actual
+        # Monday/Friday occurrence dates should appear.
+        # See https://github.com/plone/plone.event RFC5545 DTSTART handling:
+        # DTSTART is always part of the recurrence set even if it doesn't
+        # match the rule, but that's not what we want to expose here.
+        # fixed reference date (a Thursday), so the test doesn't depend on
+        # the day it happens to run.
+        start = datetime(2024, 4, 4, 9, 0)
+        end = start + timedelta(hours=1)
+        # spans multiple weeks, like the reported "from the 2nd to the
+        # 17th" case (15 days, i.e. more than two full weeks).
+        until = start + timedelta(days=15)
+        recurrence = "RRULE:FREQ=WEEKLY;BYDAY=MO,FR;UNTIL={}".format(
+            until.strftime("%Y%m%dT235959")
+        )
+
+        api.content.create(
+            container=self.portal,
+            type="Event",
+            title="Recurring event starting on a non-matching weekday",
+            start=start,
+            end=end,
+            recurrence=recurrence,
+        )
+        commit()
+
+        # what the RRULE alone actually produces, ignoring the forced
+        # DTSTART inclusion: this is what @scadenziario should return.
+        expected_days = sorted(
+            {
+                occurrence.strftime("%Y/%m/%d")
+                for occurrence in rrulestr(
+                    recurrence, dtstart=start, forceset=True, ignoretz=True
+                )
+            }
+        )
+        start_day = start.strftime("%Y/%m/%d")
+        # sanity checks on the fixture itself: multiple weeks, several
+        # occurrences, and the (non-matching) start day genuinely absent.
+        self.assertGreaterEqual(len(expected_days), 5)
+        self.assertNotIn(start_day, expected_days)
+
+        response = self.api_session.post(
+            f"{self.portal_url}/@scadenziario",
+            json={
+                "query": [
+                    {
+                        "i": "portal_type",
+                        "o": "plone.app.querystring.operation.selection.any",
+                        "v": ["Event"],
+                    },
+                    {
+                        "i": "path",
+                        "o": "plone.app.querystring.operation.string.relativePath",
+                        "v": "./",
+                    },
+                ],
+                "sort_on": "start",
+                "sort_order": "ascending",
+                "b_size": 100,
+            },
+        ).json()
+
+        self.assertEqual(response["items"], expected_days)
+        self.assertNotIn(start_day, response["items"])
 
 
 class ScadenziarioDayTest(unittest.TestCase):
@@ -234,3 +306,51 @@ class ScadenziarioDayTest(unittest.TestCase):
             for item in day_response["items"].get(day_after_first_occurrence, [])
         ]
         self.assertNotIn("Recurring event", titles)
+
+    def test_recurring_event_excludes_start_date_not_matching_byday_rule(self):
+        # same bug and fixture as in ScadenziarioTest (event spanning
+        # multiple weeks, e.g. from Thursday the 2nd to Friday the 17th,
+        # recurring only on Mondays and Fridays), but checked against
+        # @scadenziario-day: it must not be found on its own (non-matching)
+        # Thursday start date, only on the actual Monday/Friday occurrences.
+        # fixed reference date (a Thursday), so the test doesn't depend on
+        # the day it happens to run.
+        start = datetime(2024, 4, 4, 9, 0)
+        end = start + timedelta(hours=1)
+        # spans multiple weeks, like the reported "from the 2nd to the
+        # 17th" case (15 days, i.e. more than two full weeks).
+        until = start + timedelta(days=15)
+        recurrence = "RRULE:FREQ=WEEKLY;BYDAY=MO,FR;UNTIL={}".format(
+            until.strftime("%Y%m%dT235959")
+        )
+
+        api.content.create(
+            container=self.portal,
+            type="Event",
+            title="Recurring event starting on a non-matching weekday",
+            start=start,
+            end=end,
+            recurrence=recurrence,
+        )
+        commit()
+
+        occurrence_days = {
+            occurrence.strftime("%Y/%m/%d")
+            for occurrence in rrulestr(
+                recurrence, dtstart=start, forceset=True, ignoretz=True
+            )
+        }
+        start_day = start.strftime("%Y/%m/%d")
+        self.assertGreaterEqual(len(occurrence_days), 5)
+        self.assertNotIn(start_day, occurrence_days)
+
+        for occurrence_day in occurrence_days:
+            day_response = self.query_day(datetime.strptime(occurrence_day, "%Y/%m/%d"))
+            titles = [
+                item["title"] for item in day_response["items"].get(occurrence_day, [])
+            ]
+            self.assertIn("Recurring event starting on a non-matching weekday", titles)
+
+        day_response = self.query_day(start)
+        titles = [item["title"] for item in day_response["items"].get(start_day, [])]
+        self.assertNotIn("Recurring event starting on a non-matching weekday", titles)

@@ -1,15 +1,25 @@
 Changelog
 =========
 
-6.3.17 (unreleased)
+6.3.18 (unreleased)
+-------------------
+
+- Fix ``@scadenziario-day`` endpoint to return preview image properly.
+  [daniele]
+
+
+6.3.17 (2026-07-15)
 -------------------
 
 - Add a ``_get_extra_event_data`` hook to ``ScadenziarioDayPost`` so that
   downstream packages can add extra fields to ``@scadenziario-day`` event
   results without duplicating the whole endpoint.
   [fedevancin]
-- Fix ``@scadenziario-day`` endpoint to return preview image properly.
-  [daniele]
+- Fixed the ``@scadenziario`` endpoint in order to remove the first occurrence
+  if it does not match any recurrence. ``plone.event`` implements a
+  RFC5545 compliant system, so it always force-inject the first day by default.
+  [fedevancin]
+
 
 6.3.16 (2026-04-07)
 -------------------
