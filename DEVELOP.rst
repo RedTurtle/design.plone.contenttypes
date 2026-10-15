@@ -1,41 +1,22 @@
-Using the development buildout
-==============================
+Development
+===========
 
-Create a virtualenv in the package::
+This package is configured with `plone.meta <https://github.com/plone/meta>`_.
+Do not edit the generated files (``tox.ini``, ``pyproject.toml``, ``.pre-commit-config.yaml``, ...) by hand:
+change ``.meta.toml`` and run::
 
-    $ virtualenv --clear .
-
-Install requirements with pip::
-
-    $ ./bin/pip install -r requirements.txt
-
-Run buildout::
-
-    $ ./bin/buildout
-
-Start Plone in foreground:
-
-    $ ./bin/instance fg
-
+    $ uvx --from plone.meta config-package --branch current --no-commit .
 
 Running tests
 -------------
 
-    $ tox
-
-list all tox environments:
+Tests are run with `tox <https://tox.wiki>`_ (Plone 6.0, 6.1 and 6.2, Python 3.11+)::
 
     $ tox -l
-    py27-Plone43
-    py27-Plone51
-    py27-Plone52
-    py37-Plone52
-    build_instance
-    code-analysis
-    lint-py27
-    lint-py37
-    coverage-report
+    $ tox -e py311-plone62
 
-run a specific tox env:
+Code quality
+------------
 
-    $ tox -e py37-Plone52
+    $ tox -e lint
+    $ tox -e dependencies

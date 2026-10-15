@@ -5,7 +5,9 @@ include tox.ini
 global-exclude *.pyc
 include *.GPL
 include *.disabled
-include *.txt
+include *.md
+include *.toml
 exclude .flake8
+exclude .meta.toml
 exclude .pre-commit-config.yaml
 exclude src/.bandit
