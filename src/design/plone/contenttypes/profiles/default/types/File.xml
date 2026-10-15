@@ -4,7 +4,9 @@
         name="File"
         i18n:domain="plone"
 >
-  <property name="behaviors" purge="False">
+  <property name="behaviors"
+            purge="False"
+  >
     <element value="kitconcept.seo" />
   </property>
 </object>

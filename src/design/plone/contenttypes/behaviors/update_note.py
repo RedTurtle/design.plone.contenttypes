@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from design.plone.contenttypes import _
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.dexterity.interfaces import IDexterityContent
@@ -28,7 +27,7 @@ class IUpdateNote(model.Schema):
 
 @implementer(IUpdateNote)
 @adapter(IDexterityContent)
-class UpdateNote(object):
+class UpdateNote:
     """ """
 
     def __init__(self, context):

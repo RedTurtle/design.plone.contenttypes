@@ -1,7 +1,8 @@
-# -*- coding: utf-8 -*-
+from design.plone.contenttypes.testing import (
+    DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
+)
 from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING,
-    DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
 )
 from design.plone.contenttypes.tests.utils import default_fieldset_fields
 from design.plone.contenttypes.tests.utils import fieldsets_ids
@@ -10,9 +11,9 @@ from design.plone.contenttypes.tests.utils import PLONE_61
 from design.plone.contenttypes.tests.utils import PLONE_62
 from plone import api
 from plone.app.testing import setRoles
-from plone.app.testing import TEST_USER_ID
 from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import SITE_OWNER_PASSWORD
+from plone.app.testing import TEST_USER_ID
 from plone.restapi.testing import RelativeSession
 from redturtle.bandi.interfaces.settings import IBandoSettings
 

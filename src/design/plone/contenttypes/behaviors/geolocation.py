@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from collective.geolocationbehavior.geolocation import IGeolocatable
 from collective.venue.interfaces import IVenue
 from design.plone.contenttypes import _
@@ -38,7 +37,7 @@ class IGeolocatableEvent(IGeolocatable):
 
 @implementer(IGeolocatableUnitaOrganizzativa)
 @adapter(IUnitaOrganizzativa)
-class GeolocatableUnitaOrganizzativa(object):
+class GeolocatableUnitaOrganizzativa:
     """ """
 
     def __init__(self, context):
@@ -47,7 +46,7 @@ class GeolocatableUnitaOrganizzativa(object):
 
 @implementer(IGeolocatableVenue)
 @adapter(IVenue)
-class GeolocatableVenue(object):
+class GeolocatableVenue:
     """ """
 
     def __init__(self, context):
@@ -56,7 +55,7 @@ class GeolocatableVenue(object):
 
 @implementer(IGeolocatableEvent)
 @adapter(IDexterityContent)
-class GeolocatableEvent(object):
+class GeolocatableEvent:
     """ """
 
     def __init__(self, context):

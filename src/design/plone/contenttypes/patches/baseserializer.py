@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 We need a solution like that because for some different reasons:
  * we have to customize both SerializeToJson and SerializeFolderToJson

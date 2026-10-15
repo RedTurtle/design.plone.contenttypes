@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from plone import api
 from plone.restapi.interfaces import IExpandableElement
 from plone.restapi.interfaces import ISerializeToJson
@@ -54,7 +53,7 @@ class TrasparenzaService(Service):
 
 @implementer(IExpandableElement)
 @adapter(Interface, Interface)
-class TrasparenzaItems(object):
+class TrasparenzaItems:
     def __init__(self, context, request):
         self.context = context
         self.request = request
@@ -65,7 +64,7 @@ class TrasparenzaItems(object):
 
         result = {
             "trasparenza-items": {
-                "@id": "{}/@trasparenza-items".format(self.context.absolute_url())
+                "@id": f"{self.context.absolute_url()}/@trasparenza-items"
             }
         }
         if not expand:

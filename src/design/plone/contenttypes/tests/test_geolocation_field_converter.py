@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
 )
@@ -10,7 +9,6 @@ from plone.app.testing import TEST_USER_ID
 from plone.formwidget.geolocation import Geolocation
 from plone.restapi.testing import RelativeSession
 from transaction import commit
-
 
 import unittest
 

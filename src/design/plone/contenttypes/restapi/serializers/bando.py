@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from .dxcontent import SerializeFolderToJson as BaseSerializer
 from design.plone.contenttypes.interfaces.bando import IBandoAgidSchema
 from plone.restapi.interfaces import ISerializeToJson
@@ -29,9 +28,7 @@ class BandoSerializer(BaseSerializer):
         return results
 
     def __call__(self, version=None, include_items=True):
-        result = super(BandoSerializer, self).__call__(
-            version=version, include_items=include_items
-        )
+        result = super().__call__(version=version, include_items=include_items)
         bando_view = self.context.restrictedTraverse("bando_view")
         result["approfondimento"] = self.get_approfondimenti(bando_view)
         result["bando_state"] = bando_view.getBandoState()

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from design.plone.contenttypes import _
 from plone.app.textfield import RichText
 from plone.autoform.interfaces import IFormFieldProvider
@@ -71,7 +70,7 @@ class IInfoTestata(model.Schema):
 
 @implementer(IInfoTestata)
 @adapter(IDexterityContent)
-class InfoTestata(object):
+class InfoTestata:
     """ """
 
     def __init__(self, context):

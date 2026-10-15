@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from datetime import datetime
 from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
@@ -132,7 +131,7 @@ class SummarySerializerTest(unittest.TestCase):
             container=self.portal,
             type="Link",
             title="link",
-            remoteUrl="	/plone/resolveuid/{}".format(self.document.UID()),
+            remoteUrl=f"	/plone/resolveuid/{self.document.UID()}",
         )
         commit()
 
@@ -215,7 +214,7 @@ class SummarySerializerTest(unittest.TestCase):
         # self.assertEqual(serializer["design_italia_meta_type"], "foo")
 
         # other contents return their name
-        response = self.api_session.get("@search?UID={}".format(self.document.UID()))
+        response = self.api_session.get(f"@search?UID={self.document.UID()}")
         result = response.json()
         items = result.get("items", [])
 

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from design.plone.contenttypes.controlpanels.settings import IDesignPloneSettings
 from plone import api
 from plone.restapi.behaviors import IBlocks
@@ -31,7 +30,7 @@ def get_settings_for_language(field):
     )
     if not values:
         return []
-    if not isinstance(values, six.text_type):
+    if not isinstance(values, str):
         return values
     try:
         json_data = json.loads(values)
@@ -50,7 +49,7 @@ def create_default_blocks(context):
 
 def text_in_block(blocks):
     @implementer(IBlocks)
-    class FakeObject(object):
+    class FakeObject:
         """
         We use a fake object to use SearchableText Indexer
         """
