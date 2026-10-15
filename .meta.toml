@@ -25,6 +25,9 @@ dependencies_mappings = [
 check_manifest_ignores = """
     ".coveragerc",
 """
+# Not imported directly, but required at test-run time: plone.restapi.testing
+# hard-imports collective.MockMailHost (and plone.app.robotframework via plone.app.contenttypes.testing).
+dependencies_ignores = "['collective.MockMailHost', 'plone.app.robotframework']"
 codespell_skip = "*.po,*.pot,*.pt,*.xml,*.zcml,*.json,README.md,CHANGES.rst"
 # Italian words used in code, comments and user-facing labels, not typos.
 codespell_ignores = "possibile,nome,termine,strutture,momento,amministrative,collegate,stati,alle,parma,serie,ore,fase,differente,visibile,impossibile,foto,aplha,tre,allo,compatibile,esclude"
