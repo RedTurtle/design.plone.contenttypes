@@ -358,7 +358,8 @@ class IncaricoDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
             compensi_folder = getattr(self.context, "compensi-file")
             res["compensi_file"] = []
             if api.user.has_permission("View", obj=compensi_folder):
-                for brain in getattr(self.context, "compensi-file").getFolderContents():
+                compensi_file = getattr(self.context, "compensi-file")
+                for brain in api.content.find(context=compensi_file, depth=1):
                     res["compensi_file"].append(
                         getMultiAdapter(
                             (brain, self.request), ISerializeToJsonSummary
@@ -369,7 +370,7 @@ class IncaricoDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
             importi_folder = getattr(self.context, "importi-di-viaggio-e-o-servizi")
             res["importi_di_viaggio_e_o_servizi"] = []
             if api.user.has_permission("View", obj=importi_folder):
-                for brain in importi_folder.getFolderContents():
+                for brain in api.content.find(context=importi_folder, depth=1):
                     res["importi_di_viaggio_e_o_servizi"].append(
                         getMultiAdapter(
                             (brain, self.request), ISerializeToJsonSummary

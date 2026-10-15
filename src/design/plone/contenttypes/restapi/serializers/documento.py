@@ -4,6 +4,7 @@ from design.plone.contenttypes.interfaces.documento import IDocumento
 from design.plone.contenttypes.restapi.serializers.dxcontent import (
     SerializeFolderToJson,
 )
+from plone import api
 from plone.restapi.interfaces import ISerializeToJson
 from plone.restapi.interfaces import ISerializeToJsonSummary
 from zc.relation.interfaces import ICatalog
@@ -55,7 +56,9 @@ class DocumentoSerializer(SerializeFolderToJson):
         # Una via alternativa era l'injection di fullobject nella request ma
         # mi pare una cosa cattiva da fare
         brain_moduli = [
-            x for x in self.context.getFolderContents() if x.portal_type != "Document"
+            x
+            for x in api.content.find(context=self.context, depth=1)
+            if x.portal_type != "Document"
         ]
         result["moduli_del_documento"] = []
         for brain in brain_moduli:

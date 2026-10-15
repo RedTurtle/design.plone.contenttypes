@@ -4,7 +4,8 @@ Changelog
 6.3.19 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- deprecate getFolderContents.
+  [daniele]
 
 
 6.3.18 (2026-10-01)
