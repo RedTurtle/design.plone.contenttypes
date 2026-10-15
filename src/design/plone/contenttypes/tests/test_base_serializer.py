@@ -44,7 +44,7 @@ class TestBaseSerializer(unittest.TestCase):
     def test_design_italia_meta_type_with_news(self):
         """
         News should return the news type (tipologia_notizia field)
-        Other types shoule return their own portal_type.
+        Other types should return their own portal_type.
         """
         response_news = self.api_session.get(self.news.absolute_url() + "?fullobjects")
         self.assertEqual(
@@ -55,7 +55,7 @@ class TestBaseSerializer(unittest.TestCase):
     def test_design_italia_meta_type_with_type_different_from_news(self):
         """
         News should return the news type (tipologia_notizia field)
-        Other types shoule return their own portal_type.
+        Other types should return their own portal_type.
         """
         response_service = self.api_session.get(
             self.service.absolute_url() + "?fullobjects"

@@ -20,7 +20,7 @@ from zope import schema
 
 
 class IBandoAgidSchema(IBandoSchema, IDesignPloneContentType):
-    """A Dexterity schema for Annoucements"""
+    """A Dexterity schema for Announcements"""
 
     # ridefinito, così usiamo il campo dei blocchi
     cig = schema.TextLine(

@@ -25,7 +25,6 @@ from zope.schema import getFields
 
 import json
 import logging
-import six
 
 logger = logging.getLogger(__name__)
 
@@ -1167,7 +1166,7 @@ def migrate_pdc_and_incarico(context):
         fixed_total = 0
         mapping = None
         # mapping = type_mapping[portal_type]["PDC"]
-        # Reenable mapping to use
+        # Re-enable mapping to use
         if not mapping:
             logger.info(f"No need to fix Punto di Contatto for '{portal_type}: DONE")
             return

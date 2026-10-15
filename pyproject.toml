@@ -37,8 +37,8 @@ target-version = ["py311"]
 ##
 
 [tool.codespell]
-ignore-words-list = "discreet,assertin,thet,"
-skip = "*.po,"
+ignore-words-list = "discreet,assertin,thet,possibile,nome,termine,strutture,momento,amministrative,collegate,stati,alle,parma,serie,ore,fase,differente,visibile,impossibile,foto,aplha,tre,allo,compatibile,esclude"
+skip = "*.po,*.po,*.pot,*.pt,*.xml,*.zcml,*.json,README.md,CHANGES.rst"
 ##
 # Add extra configuration options in .meta.toml:
 #  [pyproject]
