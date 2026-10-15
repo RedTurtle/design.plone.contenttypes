@@ -25,3 +25,12 @@ dependencies_mappings = [
 check_manifest_ignores = """
     ".coveragerc",
 """
+codespell_skip = "*.po,*.pot,*.pt,*.xml,*.zcml,*.json,README.md,CHANGES.rst"
+# Italian words used in code, comments and user-facing labels, not typos.
+codespell_ignores = "possibile,nome,termine,strutture,momento,amministrative,collegate,stati,alle,parma,serie,ore,fase,differente,visibile,impossibile,foto,aplha,tre,allo,compatibile,esclude"
+
+[pre_commit]
+# Maintenance views for site administrators, not part of the translated UI.
+i18ndude_extra_lines = """
+        exclude: ^src/design/plone/contenttypes/browser/utils/templates/.*\\.pt$
+"""

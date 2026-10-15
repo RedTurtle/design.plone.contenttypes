@@ -62,7 +62,7 @@ class TempiEScadenzeValueSerializer(DefaultFieldSerializer):
 @adapter(INamedFileField, IDexterityContent, IDesignPloneContenttypesLayer)
 class FileFieldViewModeSerializer(DefaultFieldSerializer):
     """
-    Ovveride the basic DX serializer to:
+    Override the basic DX serializer to:
         - handle the visualize file functionality
         - add getObjSize info
     """
@@ -97,7 +97,7 @@ class FileFieldViewModeSerializer(DefaultFieldSerializer):
         return json_compatible(result)
 
     def get_file_view_mode(self, content_type):
-        """Pdf view depends on the visualize_files property in thq aq_chain"""
+        """Pdf view depends on the visualize_files property in the aq_chain"""
         if self.context and "pdf" in content_type:
             if getattr(aq_inner(self.context), "visualize_files", None):
                 return "@@display-file"

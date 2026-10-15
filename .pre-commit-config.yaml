@@ -74,6 +74,7 @@ repos:
     rev: "6.3.0"
     hooks:
     -   id: i18ndude
+        exclude: ^src/design/plone/contenttypes/browser/utils/templates/.*\.pt$
 
 
 ##

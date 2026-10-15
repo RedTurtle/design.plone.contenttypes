@@ -102,7 +102,7 @@ def _extract_img_from_tags(document, root):
         else:
             root.insert(root.index(paragraph), lxml.html.builder.P(image))
 
-        # clenup empty tags
+        # cleanup empty tags
         text = ""
         if img_parent.text is not None:
             text = img_parent.text.strip()
@@ -113,7 +113,7 @@ def _extract_img_from_tags(document, root):
             text = ""
             if img_parent.text is not None:
                 text = img_parent.text.strip()
-        # clenup empty tags
+        # cleanup empty tags
 
 
 def _fix_blocks(block):
@@ -131,7 +131,7 @@ def _fix_blocks(block):
 def _conversion_tool(html):
     if not draftjs_converter:
         raise Exception(
-            "DRAFTJS_CONVERTER_URL environment varialbe not set. Unable to convert html to draftjs."  # noqa
+            "DRAFTJS_CONVERTER_URL environment variable not set. Unable to convert html to draftjs."  # noqa
         )
     resp = requests.post(draftjs_converter, data={"html": html})
     if resp.status_code != 200:

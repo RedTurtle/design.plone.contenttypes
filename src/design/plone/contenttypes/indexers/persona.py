@@ -22,7 +22,7 @@ def ruolo(obj):
     incarichi = obj.incarichi_persona
     if incarichi:
         # in teoria dovremmo averne uno, ma è consentito averne più di uno.
-        # usiamo un keyowrd index per cui in realtà per indicizzare ci interessa
+        # usiamo un keyword index per cui in realtà per indicizzare ci interessa
         # poco
         return [x.to_object.title for x in obj.incarichi_persona if not x.isBroken()]
     return []
