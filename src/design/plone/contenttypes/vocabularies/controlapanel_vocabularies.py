@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from design.plone.contenttypes.controlpanels.settings import IDesignPloneSettings
 from design.plone.contenttypes.utils import get_settings_for_language
 from plone import api
@@ -12,7 +11,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-class BaseVocabulary(object):
+class BaseVocabulary:
     def __call__(self, context):
         values = get_settings_for_language(field=self.field)
         if not values:

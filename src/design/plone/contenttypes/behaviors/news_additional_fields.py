@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from collective.volto.blocksfield.field import BlocksField
 from design.plone.contenttypes import _
 from plone.app.contenttypes.interfaces import INewsItem
@@ -133,7 +132,7 @@ class INewsAdditionalFields(INewsAdditionalFieldsBase):
 
 @implementer(INewsAdditionalFields)
 @adapter(INewsItem)
-class NewsAdditionalFields(object):
+class NewsAdditionalFields:
     """ """
 
     def __init__(self, context):

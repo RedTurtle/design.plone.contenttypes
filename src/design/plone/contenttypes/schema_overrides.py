@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from design.plone.contenttypes import _
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import interfaces
@@ -9,7 +8,7 @@ from zope.interface import implementer
 
 @implementer(interfaces.ISchemaPlugin)
 @adapter(IFormFieldProvider)
-class SchemaTweaks(object):
+class SchemaTweaks:
     """ """
 
     order = 999999

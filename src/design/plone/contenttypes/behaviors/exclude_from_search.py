@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from design.plone.contenttypes import _
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.dexterity.interfaces import IDexterityContent
@@ -30,7 +29,7 @@ class IExcludeFromSearch(model.Schema):
 
 @implementer(IExcludeFromSearch)
 @adapter(IDexterityContent)
-class ExcludeFromSearch(object):
+class ExcludeFromSearch:
     """ """
 
     def __init__(self, context):

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from collective.venue.interfaces import IVenue
 from design.plone.contenttypes.utils import text_in_block
 from plone.restapi.deserializer import json_body
@@ -73,9 +72,9 @@ class DeserializeLuogoFromJson(DeserializeFromJson):
 
             for field in MANDATORY_RICH_TEXT_FIELDS:
                 if field not in data:
-                    errors.append(new_error("Il campo {} è obbligatorio".format(field)))
+                    errors.append(new_error(f"Il campo {field} è obbligatorio"))
                 elif field in data and not text_in_block(data.get(field)):
-                    errors.append(new_error("Il campo {} è obbligatorio".format(field)))
+                    errors.append(new_error(f"Il campo {field} è obbligatorio"))
 
         if is_patch:
             # Title validation
@@ -112,7 +111,7 @@ class DeserializeLuogoFromJson(DeserializeFromJson):
 
             for field in MANDATORY_RICH_TEXT_FIELDS:
                 if field in data and not text_in_block(data.get(field)):
-                    errors.append(new_error("Il campo {} è obbligatorio".format(field)))
+                    errors.append(new_error(f"Il campo {field} è obbligatorio"))
 
                 # Se siamo nella patch siamo in modifica. Se siamo in modifica e siamo
                 # su un sito che ha avuto upgrade alla versione pnrr può essere che dei
@@ -121,7 +120,7 @@ class DeserializeLuogoFromJson(DeserializeFromJson):
                 if field not in data and not text_in_block(
                     getattr(self.context, field)
                 ):
-                    errors.append(new_error("Il campo {} è obbligatorio".format(field)))
+                    errors.append(new_error(f"Il campo {field} è obbligatorio"))
 
             if "geolocation" not in data and not getattr(self.context, "geolocation"):
                 errors.append(
@@ -130,6 +129,4 @@ class DeserializeLuogoFromJson(DeserializeFromJson):
 
         if errors:
             raise BadRequest(errors)
-        return super(DeserializeLuogoFromJson, self).__call__(
-            validate_all=False, data=data, create=False
-        )
+        return super().__call__(validate_all=False, data=data, create=False)

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from datetime import datetime
 from design.plone.contenttypes import _
 from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
@@ -50,7 +49,7 @@ class GeolocationFieldDeserializer(DefaultFieldDeserializer):
 @adapter(ISourceText, IDexterityContent, IDesignPloneContenttypesLayer)
 class SourceTextDeserializer(DefaultFieldDeserializer):
     def __call__(self, value):
-        value = super(SourceTextDeserializer, self).__call__(value)
+        value = super().__call__(value)
         if self.field.getName() == "search_sections":
             #  per ora solo con questo, ma potenzialmente con altri simili
             data = json.loads(value)
@@ -136,5 +135,5 @@ class LinkTextLineFieldDeserializer(BaseTextLineDeserializer):
 
             transformed_url = path2uid(context=portal, link=value)
             if transformed_url != value and "resolveuid" in transformed_url:
-                value = "${{portal_url}}/{uid}".format(uid=transformed_url)
+                value = f"${{portal_url}}/{transformed_url}"
         return value

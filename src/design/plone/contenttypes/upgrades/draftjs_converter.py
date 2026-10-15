@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-s
 from plone import api
 from Products.CMFPlone.utils import safe_unicode
 from uuid import uuid4
@@ -136,7 +135,7 @@ def _conversion_tool(html):
         )
     resp = requests.post(draftjs_converter, data={"html": html})
     if resp.status_code != 200:
-        raise Exception("Unable to convert to draftjs this html: {}".format(html))
+        raise Exception(f"Unable to convert to draftjs this html: {html}")
     return resp.json()["data"]
 
 

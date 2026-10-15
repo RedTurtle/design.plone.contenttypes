@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from collective.volto.blocksfield.field import BlocksField
 from design.plone.contenttypes import _
 from plone.app.dexterity import textindexer
@@ -181,7 +180,7 @@ class ILuogo(model.Schema):
 
 @implementer(ILuogo)
 @adapter(IDexterityContent)
-class Luogo(object):
+class Luogo:
     """ """
 
     def __init__(self, context):

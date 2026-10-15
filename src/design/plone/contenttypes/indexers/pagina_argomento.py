@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from design.plone.contenttypes.interfaces.pagina_argomento import IPaginaArgomento
 from plone.app.dexterity.textindexer.interfaces import IDynamicTextIndexExtender
 from zope.component import adapter
@@ -20,7 +19,7 @@ except ImportError:
 
 @adapter(IPaginaArgomento)
 @implementer(IDynamicTextIndexExtender)
-class SearchableTextExtender(object):
+class SearchableTextExtender:
     def __init__(self, context):
         self.context = context
 

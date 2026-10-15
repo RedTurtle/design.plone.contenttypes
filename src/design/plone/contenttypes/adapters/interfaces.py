@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from plone.restapi.deserializer import json_body
 from zope.interface import Interface
 
@@ -7,7 +6,7 @@ class ICorrelati(Interface):
     pass
 
 
-class Correlati(object):
+class Correlati:
     """Generic class for defining correlationn data"""
 
     def __init__(self, context, request):

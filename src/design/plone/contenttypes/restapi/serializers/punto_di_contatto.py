@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from .related_news_serializer import SerializeFolderToJson
 from Acquisition import aq_inner
 from design.plone.contenttypes.interfaces.punto_di_contatto import IPuntoDiContatto
@@ -77,9 +76,7 @@ class PuntoDiContattoSerializer(SerializeFolderToJson):
         return sorted(items, key=lambda k: k["title"])
 
     def __call__(self, version=None, include_items=True):
-        result = super(PuntoDiContattoSerializer, self).__call__(
-            version=version, include_items=include_items
-        )
+        result = super().__call__(version=version, include_items=include_items)
         strutture_correlate = self.related_contents(
             field="contact_info", portal_type="UnitaOrganizzativa"
         )

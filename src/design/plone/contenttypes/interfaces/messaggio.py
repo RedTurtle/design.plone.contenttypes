@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from design.plone.contenttypes import _
 from plone.namedfile import field
 from plone.supermodel import model

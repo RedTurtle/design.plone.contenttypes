@@ -1,3 +1,4 @@
+from Acquisition import aq_inner
 from DateTime import DateTime
 from openpyxl import Workbook
 from openpyxl.styles import Alignment
@@ -5,18 +6,16 @@ from openpyxl.styles import Font
 from openpyxl.styles import PatternFill
 from openpyxl.utils import get_column_letter
 from plone import api
-from Products.Five import BrowserView
-from zope.globalrequest import getRequest
-from zope.component import getMultiAdapter
 from plone.restapi.interfaces import ISerializeToJsonSummary
-
-import io
-
-from Acquisition import aq_inner
+from Products.Five import BrowserView
+from zc.relation.interfaces import ICatalog
+from zope.component import getMultiAdapter
 from zope.component import getUtility
+from zope.globalrequest import getRequest
 from zope.intid.interfaces import IIntIds
 from zope.security import checkPermission
-from zc.relation.interfaces import ICatalog
+
+import io
 
 FLAG = '<i class="fa-solid fa-check"></i>'
 

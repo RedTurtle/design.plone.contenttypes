@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from collective.volto.blocksfield.field import BlocksField
 from design.plone.contenttypes import _
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
@@ -318,7 +317,7 @@ class ITrasparenza(model.Schema):
 
 @implementer(ITrasparenza)
 @adapter(IDexterityContent)
-class Trasparenza(object):
+class Trasparenza:
     """ """
 
     def __init__(self, context):

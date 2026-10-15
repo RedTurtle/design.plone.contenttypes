@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from .related_news_serializer import SerializeFolderToJson as RelatedNewsSerializer
 from Acquisition import aq_inner
 from design.plone.contenttypes.interfaces.cartella_modulistica import (
@@ -48,8 +47,6 @@ class CartellaModulisticaSerializer(RelatedNewsSerializer):
 
     def __call__(self, version=None, include_items=True):
         self.index = "news_uo"
-        result = super(CartellaModulisticaSerializer, self).__call__(
-            version=version, include_items=include_items
-        )
+        result = super().__call__(version=version, include_items=include_items)
         result["servizi_collegati"] = self.get_services()
         return result

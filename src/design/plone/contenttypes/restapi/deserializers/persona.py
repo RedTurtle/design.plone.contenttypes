@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from AccessControl import getSecurityManager
 from design.plone.contenttypes.interfaces.persona import IPersona
 from plone.restapi.deserializer import json_body
@@ -41,6 +40,4 @@ class DeserializePersonaFromJson(DeserializeFromJson):
                 data["data_conclusione_incarico"] = data["data_conclusione_incarico"][
                     0:10
                 ]
-        return super(DeserializePersonaFromJson, self).__call__(
-            validate_all=False, data=data, create=False
-        )
+        return super().__call__(validate_all=False, data=data, create=False)

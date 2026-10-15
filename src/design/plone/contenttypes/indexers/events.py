@@ -1,8 +1,7 @@
-# -*- coding: utf-8 -*-
 from plone.app.contenttypes.interfaces import IEvent
-from plone.indexer.decorator import indexer
 from plone.event.interfaces import IEventAccessor
 from plone.event.interfaces import IRecurrenceSupport
+from plone.indexer.decorator import indexer
 
 
 @indexer(IEvent)

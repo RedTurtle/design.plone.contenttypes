@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from plone import api
 from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
@@ -7,13 +6,11 @@ from zope.schema.vocabulary import SimpleVocabulary
 
 
 @implementer(IVocabularyFactory)
-class ArgomentiVocabulary(object):
+class ArgomentiVocabulary:
     """ """
 
     def __call__(self, context):
-        values = set(
-            [x.Title for x in api.content.find(portal_type="Pagina Argomento")]
-        )
+        values = {x.Title for x in api.content.find(portal_type="Pagina Argomento")}
         values = sorted(list(values))
         terms = [
             SimpleTerm(value="", token="", title="-- seleziona un valore --")  # nosec
@@ -25,7 +22,7 @@ class ArgomentiVocabulary(object):
 
 
 @implementer(IVocabularyFactory)
-class ArgomentiUIDVocabulary(object):
+class ArgomentiUIDVocabulary:
     """ """
 
     def __call__(self, context):

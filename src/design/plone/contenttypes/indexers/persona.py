@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from Acquisition import aq_base
 from design.plone.contenttypes.interfaces.persona import IPersona
 from plone.indexer.decorator import indexer

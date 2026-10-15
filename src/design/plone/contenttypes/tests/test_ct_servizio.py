@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Setup tests for this package."""
 
 from design.plone.contenttypes.testing import (
@@ -518,7 +517,7 @@ class TestServizioApi(unittest.TestCase):
             container=self.portal,
             type="Servizio",
             title="Test servizio",
-            canale_digitale_link="/plone/resolveuid/{}".format(page.UID()),
+            canale_digitale_link=f"/plone/resolveuid/{page.UID()}",
         )
         api.content.transition(obj=servizio, transition="publish")
         commit()
@@ -575,7 +574,7 @@ class TestServizioApi(unittest.TestCase):
         commit()
         self.assertEqual(
             servizio.canale_digitale_link,
-            "${{portal_url}}/resolveuid/{}".format(page.UID()),
+            f"${{portal_url}}/resolveuid/{page.UID()}",
         )
 
     def test_cant_patch_servizio_that_has_no_required_fields(self):

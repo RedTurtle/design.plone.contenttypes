@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
 from design.plone.contenttypes.interfaces.modulo import IModulo
 from design.plone.contenttypes.restapi.serializers.summary import (

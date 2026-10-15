@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from DateTime import DateTime
 from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
@@ -15,9 +14,9 @@ from transaction import commit
 from uuid import uuid4
 from z3c.relationfield import RelationValue
 from zope.component import getUtility
+from zope.event import notify
 from zope.intid.interfaces import IIntIds
 from zope.lifecycleevent import ObjectModifiedEvent
-from zope.event import notify
 
 import unittest
 

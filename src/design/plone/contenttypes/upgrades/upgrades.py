@@ -1,8 +1,8 @@
-# -*- coding: utf-8 -*-
 from Acquisition import aq_base
 from collective.volto.blocksfield.field import BlocksField
 from copy import deepcopy
 from design.plone.contenttypes.controlpanels.settings import IDesignPloneSettings
+from design.plone.contenttypes.events.common import SUBFOLDERS_MAPPING
 from design.plone.contenttypes.setuphandlers import remove_blocks_behavior
 from design.plone.contenttypes.upgrades.draftjs_converter import to_draftjs
 from design.plone.contenttypes.utils import create_default_blocks
@@ -22,7 +22,6 @@ from zope.event import notify
 from zope.intid.interfaces import IIntIds
 from zope.lifecycleevent import ObjectModifiedEvent
 from zope.schema import getFields
-from design.plone.contenttypes.events.common import SUBFOLDERS_MAPPING
 
 import json
 import logging
@@ -77,7 +76,7 @@ def remap_fields(mapping):
     pc = api.portal.get_tool(name="portal_catalog")
     brains = pc()
     tot = len(brains)
-    logger.info("Trovati {} elementi da sistemare.".format(tot))
+    logger.info(f"Trovati {tot} elementi da sistemare.")
     # remap fields
     for brain in brains:
         item = brain.getObject()
@@ -147,7 +146,7 @@ def to_1005(context):
                         or query["i"] == "tassonomia_argomenti"
                     ):  # noqa
                         query["i"] = "argomenti"
-                        logger.info(" - {}".format(brain.getURL()))
+                        logger.info(f" - {brain.getURL()}")
 
     # fix root
     portal = api.portal.get()
@@ -166,7 +165,7 @@ def to_1005(context):
     for brain in api.portal.get_tool("portal_catalog")():
         item = brain.getObject()
         if getattr(item.aq_base, "tassonomia_argomenti", []):
-            logger.info(" - {}".format(brain.getURL()))
+            logger.info(f" - {brain.getURL()}")
             item.reindexObject(idxs=["argomenti"])
 
 
@@ -182,7 +181,7 @@ def to_1006(context):
                     ):  # noqa
                         query["i"] = "argomenti"
                         query["v"] = [x.Title for x in api.content.find(UID=query["v"])]
-                        logger.info(" - {}".format(brain.getURL()))
+                        logger.info(f" - {brain.getURL()}")
 
     # fix root
     portal = api.portal.get()
@@ -222,7 +221,7 @@ def to_1009(context):
                 for query in block.get("query", []):
                     if query["i"] == "argomenti":
                         query["i"] = "tassonomia_argomenti"
-                        logger.info(" - {}".format(brain.getURL()))
+                        logger.info(f" - {brain.getURL()}")
 
     # fix root
     portal = api.portal.get()
@@ -241,7 +240,7 @@ def to_1009(context):
     for brain in api.portal.get_tool("portal_catalog")():
         item = brain.getObject()
         if getattr(item.aq_base, "tassonomia_argomenti", []):
-            logger.info(" - {}".format(brain.getURL()))
+            logger.info(f" - {brain.getURL()}")
             item.reindexObject(idxs=["tassonomia_argomenti"])
 
 
@@ -280,7 +279,7 @@ def to_1013(context):
     for brain in brains:
         i += 1
         if i % 1000 == 0:
-            logger.info("Progress: {}/{}".format(i, tot))
+            logger.info(f"Progress: {i}/{tot}")
         item = brain.getObject()
         blocks = deepcopy(getattr(item, "blocks", {}))
         if blocks:
@@ -293,7 +292,7 @@ def to_1013(context):
     if fixed_items:
         logger.info("Updated items:")
         for fixed in fixed_items:
-            logger.info("- {}".format(fixed))
+            logger.info(f"- {fixed}")
     else:
         logger.info("No items affected.")
 
@@ -368,7 +367,7 @@ def to_2000(context):  # noqa: C901
     for brain in brains:
         i += 1
         if i % 1000 == 0:
-            logger.info("Progress: {}/{}".format(i, tot))
+            logger.info(f"Progress: {i}/{tot}")
         item = brain.getObject()
         if brain.portal_type in ["Event", "News Item"]:
             blocks = getattr(item, "blocks", {})
@@ -397,8 +396,8 @@ def to_2000(context):  # noqa: C901
                 value = field.get(item)
                 if not value:
                     continue
-                if isinstance(value, six.string_types):
-                    value = "<p>{}</p>".format(value)
+                if isinstance(value, str):
+                    value = f"<p>{value}</p>"
                 elif isinstance(value, RichTextValue):
                     value = value.raw
                 else:
@@ -408,9 +407,7 @@ def to_2000(context):  # noqa: C901
                 try:
                     new_value = to_draftjs(value)
                 except Exception as e:
-                    logger.error(
-                        "[NOT MIGRATED] - {}: {}".format(brain.getPath(), name)
-                    )
+                    logger.error(f"[NOT MIGRATED] - {brain.getPath()}: {name}")
                     raise e
                 setattr(item, name, new_value)
 
@@ -436,7 +433,7 @@ def to_2002(context):
             fixed_total += 1
         commit()
     logger.info("Fixing 'Tipologia Persona': DONE")
-    logger.info("Updated {} objects".format(fixed_total))
+    logger.info(f"Updated {fixed_total} objects")
 
 
 def to_3000(context):
@@ -490,7 +487,7 @@ def to_3101(context):
             logger.info("Fixed item {}".format("/".join(item.getPhysicalPath())))
 
     logger.info("Fixing 'Documento': DONE")
-    logger.info("Updated {} objects Documento".format(fixed_total))
+    logger.info(f"Updated {fixed_total} objects Documento")
 
 
 def to_3102(context):
@@ -518,12 +515,12 @@ def to_volto13(context):  # noqa: C901
         for block in blocks.values():
             if block.get("@type", "") == "listing":
                 if block.get("template", False) and not block.get("variation", False):
-                    logger.error("- {}".format(url))
+                    logger.error(f"- {url}")
                 if block.get("template", False) and block.get("variation", False):
-                    logger.error("- {}".format(url))
+                    logger.error(f"- {url}")
                 if block.get("variation", "") == "default":
                     block["variation"] = "simpleCard"
-                    logger.info("- {}".format(url))
+                    logger.info(f"- {url}")
 
     # fix root
     portal = api.portal.get()
@@ -539,7 +536,7 @@ def to_volto13(context):  # noqa: C901
     for brain in brains:
         i += 1
         if i % 1000 == 0:
-            logger.info("Progress: {}/{}".format(i, tot))
+            logger.info(f"Progress: {i}/{tot}")
         item = aq_base(brain.getObject())
         if getattr(item, "blocks", {}):
             blocks = deepcopy(item.blocks)
@@ -569,9 +566,7 @@ def to_volto13(context):  # noqa: C901
                     try:
                         blocks = value.get("blocks", {})
                     except AttributeError:
-                        logger.warning(
-                            "[RICHTEXT] - {} (not converted)".format(brain.getURL())
-                        )
+                        logger.warning(f"[RICHTEXT] - {brain.getURL()} (not converted)")
                     if blocks:
                         fix_listing(blocks, brain.getURL())
                         setattr(item, name, value)
@@ -599,7 +594,7 @@ def to_3400(context):  # noqa: C901
     for brain in brains:
         i += 1
         if i % 1000 == 0:
-            logger.info("Progress: {}/{}".format(i, tot))
+            logger.info(f"Progress: {i}/{tot}")
         item = aq_base(brain.getObject())
         if getattr(item, "blocks", {}):
             blocks = deepcopy(item.blocks)
@@ -629,9 +624,7 @@ def to_3400(context):  # noqa: C901
                     try:
                         blocks = value.get("blocks", {})
                     except AttributeError:
-                        logger.warning(
-                            "[RICHTEXT] - {} (not converted)".format(brain.getURL())
-                        )
+                        logger.warning(f"[RICHTEXT] - {brain.getURL()} (not converted)")
                     if blocks:
                         fix_block(blocks, brain.getURL())
                         setattr(item, name, value)
@@ -654,12 +647,12 @@ def to_3500(context):
     # reindex
     brains = api.content.find(portal_type="UnitaOrganizzativa")
     tot = len(brains)
-    logger.info("Found {} UO.".format(tot))
+    logger.info(f"Found {tot} UO.")
     i = 0
     for brain in brains:
         i += 1
         if i % 1000 == 0:
-            logger.info("Progress: {}/{}".format(i, tot))
+            logger.info(f"Progress: {i}/{tot}")
         uo = brain.getObject()
         uo.reindexObject(idxs=["uo_location", "tipologia_organizzazione"])
 
@@ -669,12 +662,12 @@ def to_3501(context):
 
     brains = api.content.find(portal_type="UnitaOrganizzativa")
     tot = len(brains)
-    logger.info("Found {} UO.".format(tot))
+    logger.info(f"Found {tot} UO.")
     i = 0
     for brain in brains:
         i += 1
         if i % 1000 == 0:
-            logger.info("Progress: {}/{}".format(i, tot))
+            logger.info(f"Progress: {i}/{tot}")
         uo = brain.getObject()
         uo.reindexObject(idxs=["SearchableText"])
 
@@ -699,7 +692,7 @@ def to_3600(context):
     for ct_type in types_list:
         if "kitconcept.seo" not in portal_types[ct_type].behaviors:
             portal_types[ct_type].behaviors += ("kitconcept.seo",)
-            logger.info("Enabled kitconcept.seo on: {}".format(ct_type))
+            logger.info(f"Enabled kitconcept.seo on: {ct_type}")
 
     logger.info("Bandi customizations")
     update_catalog(context)
@@ -725,7 +718,7 @@ def to_3600(context):
     for brain in brains:
         i += 1
         if i % 1000 == 0:
-            logger.info("Progress: {}/{}".format(i, tot))
+            logger.info(f"Progress: {i}/{tot}")
         bando = brain.getObject()
         bando.reindexObject(idxs=["ufficio_responsabile_bando", "Subject_bando"])
 
@@ -830,7 +823,7 @@ def to_5000(context):
     for brain in brains:
         i += 1
         if i % 500 == 0:
-            logger.info("Progress: {}/{}".format(i, tot))
+            logger.info(f"Progress: {i}/{tot}")
         obj = brain.getObject()
         if "image" in obj.keys():
             api.content.rename(obj=obj["image"], new_id="image-1")
@@ -847,11 +840,11 @@ def to_5001(context):
     i = 0
     brains = catalog(portal_type="Pagina Argomento")
     tot = len(brains)
-    logger.info("Add icona metadata to {}".format(tot))
+    logger.info(f"Add icona metadata to {tot}")
     for brain in brains:
         i += 1
         if i % 500 == 0:
-            logger.info("Progress: {}/{}".format(i, tot))
+            logger.info(f"Progress: {i}/{tot}")
         obj = brain.getObject()
         catalog.catalog_object(obj)
 
@@ -867,7 +860,7 @@ def to_5002(context):
     for brain in brains:
         i += 1
         if i % 500 == 0:
-            logger.info("Progress: {}/{}".format(i, tot))
+            logger.info(f"Progress: {i}/{tot}")
         obj = brain.getObject()
         catalog.catalog_object(obj)
 
@@ -907,7 +900,7 @@ def to_5220(context):
     for brain in brains:
         i += 1
         if i % 500 == 0:
-            logger.info("Progress: {}/{}".format(i, tot))
+            logger.info(f"Progress: {i}/{tot}")
         obj = brain.getObject()
         obj.reindexObject(idxs=["SearchableText", "object_provides"])
 
@@ -946,7 +939,7 @@ def to_5310(context):
     for brain in brains:
         i += 1
         if i % 500 == 0:
-            logger.info("Progress: {}/{}".format(i, tot))
+            logger.info(f"Progress: {i}/{tot}")
         brain.getObject().reindexObject(idxs=["SearchableText"])
 
 
@@ -987,7 +980,7 @@ def to_5500(context):
                                 new_values.append(uid)
                         query["i"] = "tassonomia_argomenti_uid"
                         query["v"] = new_values
-                        logger.info(" - {}".format(brain.getURL()))
+                        logger.info(f" - {brain.getURL()}")
 
     pc = api.portal.get_tool(name="portal_catalog")
     brains = pc()
@@ -996,7 +989,7 @@ def to_5500(context):
     for brain in brains:
         i += 1
         if i % 1000 == 0:
-            logger.info("Progress: {}/{}".format(i, tot))
+            logger.info(f"Progress: {i}/{tot}")
         item_obj = brain.getObject()
         item = aq_base(brain.getObject())
 
@@ -1165,7 +1158,7 @@ def migrate_pdc_and_incarico(context):
                     )  # noqa
                 except Exception:
                     logger.error("Error", Exception)
-            logger.info("Updated {} objects".format(fixed_total))
+            logger.info(f"Updated {fixed_total} objects")
 
         pass
 
@@ -1199,7 +1192,7 @@ def migrate_pdc_and_incarico(context):
             commit()
 
         logger.info(f"Fixing Punto di Contatto for '{portal_type}: DONE")
-        logger.info("Updated {} objects".format(fixed_total))
+        logger.info(f"Updated {fixed_total} objects")
 
     for pt in type_mapping:
         logger.info(
@@ -1209,7 +1202,7 @@ def migrate_pdc_and_incarico(context):
         createIncaricoAndMigratePersona(pt)
 
 
-class colors(object):
+class colors:
     GREEN = "\033[92m"
     ENDC = "\033[0m"
     RED = "\033[91m"
@@ -1406,7 +1399,7 @@ def to_7009(context):
     for brain in brains:
         i += 1
         if i % 100 == 0:
-            logger.info("Progress: {}/{}".format(i, tot))
+            logger.info(f"Progress: {i}/{tot}")
         venue = brain.getObject()
         if not getattr(venue, "exclude_from_nav", None):
             setattr(venue, "exclude_from_nav", False)
@@ -1500,12 +1493,12 @@ def to_7011(context):
 
     brains = api.content.find(portal_type=["Event", "News Item"])
     tot = len(brains)
-    logger.info("Found {} documents.".format(tot))
+    logger.info(f"Found {tot} documents.")
     i = 0
     for brain in brains:
         i += 1
         if i % 100 == 0:
-            logger.info("Progress: {}/{}".format(i, tot))
+            logger.info(f"Progress: {i}/{tot}")
         doc = brain.getObject()
         doc.reindexObject(idxs=["SearchableText"])
     logger.info("Ends of reindex")
@@ -1533,7 +1526,7 @@ def to_7012(context):
     for brain in brains:
         i += 1
         if i % 100 == 0:
-            logger.info("Progress: {}/{}".format(i, tot))
+            logger.info(f"Progress: {i}/{tot}")
         event = brain.getObject()
         prezzo = getattr(event, "prezzo", None)
         if has_empty_prezzo(value=prezzo):
@@ -1615,7 +1608,7 @@ def to_7100(context):
     for brain in brains:
         i += 1
         if i % 100 == 0:
-            logger.info("Progress: {}/{}".format(i, tot))
+            logger.info(f"Progress: {i}/{tot}")
         brain.getObject().reindexObject(idxs=["enhanced_links_enabled"])
 
 
@@ -1638,7 +1631,7 @@ def to_7200(context):
     for brain in brains:
         i += 1
         if i % 100 == 0:
-            logger.info("Progress: {}/{}".format(i, tot))
+            logger.info(f"Progress: {i}/{tot}")
         container = brain.getObject()
         mappings = SUBFOLDERS_MAPPING.get(container.portal_type, [])
         persona_old_mapping = [

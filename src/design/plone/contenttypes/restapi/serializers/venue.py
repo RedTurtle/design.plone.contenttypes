@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from .related_news_serializer import SerializeFolderToJson as RelatedNewsSerializer
 from Acquisition import aq_inner
 from collective.venue.interfaces import IVenue

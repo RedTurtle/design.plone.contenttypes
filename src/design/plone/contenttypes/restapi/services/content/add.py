@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from plone.restapi.deserializer import json_body
 from plone.restapi.services.content.add import FolderPost
 
@@ -17,4 +16,4 @@ class DocumentoPost(FolderPost):
             data["file_principale"] = data["file"]
             del data["file"]
         self.request["BODY"] = json.dumps(data)
-        return super(DocumentoPost, self).reply()
+        return super().reply()

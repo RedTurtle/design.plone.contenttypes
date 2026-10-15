@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from .upgrades import colors
 from .upgrades import logger
 from Acquisition import aq_base

@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
 """Installer for the design.plone.contenttypes package."""
 
 from setuptools import find_packages
 from setuptools import setup
-
 
 long_description = "\n\n".join(
     [

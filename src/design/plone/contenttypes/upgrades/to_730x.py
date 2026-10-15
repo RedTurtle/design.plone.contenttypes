@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from design.plone.contenttypes.events.common import createStructure
 from design.plone.contenttypes.events.common import SUBFOLDERS_MAPPING
 from design.plone.contenttypes.utils import create_default_blocks
@@ -71,7 +70,7 @@ def to_7302(context):
     for brain in brains:
         i += 1
         if i % 100 == 0:
-            logger.info("Progress: {}/{}".format(i, tot))
+            logger.info(f"Progress: {i}/{tot}")
         event = brain.getObject()
         event.reindexObject(idxs=["rassegna"])
 
@@ -88,7 +87,7 @@ def to_7304(context):
     for brain in brains:
         i += 1
         if i % 100 == 0:
-            logger.info("Progress: {}/{}".format(i, tot))
+            logger.info(f"Progress: {i}/{tot}")
             transaction.commit()
         doc = brain.getObject()
         doc.reindexObject(idxs=["parent"])
@@ -107,7 +106,7 @@ def to_7305(context):
     for brain in brains:
         i += 1
         if i % 100 == 0:
-            logger.info("Progress: {}/{}".format(i, tot))
+            logger.info(f"Progress: {i}/{tot}")
             transaction.commit()
         servizio = brain.getObject()
         FOLDER_ID = "modulistica"
@@ -146,7 +145,7 @@ def to_7307(context):
     name = "effectivestart"
     catalog = api.portal.get_tool(name="portal_catalog")
     catalog.addIndex(name, "DateRecurringIndex", extra=extra())
-    logger.info("Catalog DateRecurringIndex {} created.".format(name))
+    logger.info(f"Catalog DateRecurringIndex {name} created.")
 
 
 def to_7308(context):
@@ -156,7 +155,7 @@ def to_7308(context):
     tot = len(brains)
     for i, brain in enumerate(brains):
         if i % 15 == 0:
-            logger.info("Progress: {}/{}".format(i, tot))
+            logger.info(f"Progress: {i}/{tot}")
         brain.getObject().reindexObject(idxs=["effectivestart"])
 
 
@@ -219,14 +218,14 @@ def to_7313(context):
 
     if "effectiveend" not in catalog.indexes():
         catalog.addIndex(name, "DateRecurringIndex", extra=extra())
-        logger.info("Catalog DateRecurringIndex {} created.".format(name))
+        logger.info(f"Catalog DateRecurringIndex {name} created.")
 
     logger.info("Reindex Events")
     brains = catalog(portal_type="Event")
     tot = len(brains)
     for i, brain in enumerate(brains):
         if i % 15 == 0:
-            logger.info("Progress: {}/{}".format(i, tot))
+            logger.info(f"Progress: {i}/{tot}")
         brain.getObject().reindexObject(idxs=["effectiveend"])
 
 
@@ -265,13 +264,13 @@ def to_7314(context):
             not in persona.keys()
         ):
             createStructure(persona, mapping1)
-            logger.info("Add dichiarazione insussistenza for {}".format(persona.title))
+            logger.info(f"Add dichiarazione insussistenza for {persona.title}")
         if (
             "emolumenti-complessivi-percepiti-a-carico-della-finanza-pubblica"
             not in persona.keys()
         ):
             createStructure(persona, mapping2)
-            logger.info("Add emolumenti complessivi for {}".format(persona.title))
+            logger.info(f"Add emolumenti complessivi for {persona.title}")
         # reimposto il valore precedente del constraintypes
         actual_contraints.setConstrainTypesMode(actual_constrain_type)
 
@@ -283,16 +282,16 @@ def to_7315(context):
         if name not in pc.indexes():
             pc.addIndex(name, meta_type)
             pc.addColumn(name)
-            logger.info("Added index {} of type {}".format(name, meta_type))
+            logger.info(f"Added index {name} of type {meta_type}")
         else:
-            logger.info("Index {} already exists".format(name))
+            logger.info(f"Index {name} already exists")
     logger.info("Reindex Bandi")
 
 
 def to_7320(context):
     brains = api.content.find(portal_type="Servizio")
     tot = len(brains)
-    logger.info("Updating {} Servizio objects".format(tot))
+    logger.info(f"Updating {tot} Servizio objects")
     for i, brain in enumerate(brains):
         logger.info(f"Progress: {i+1}/{tot}")
         servizio = brain.getObject()
@@ -308,16 +307,16 @@ def to_7321(context):
     logger.info("### RE-ALIGN MODULES MIME-TYPES ###")
 
     brains = api.content.find(portal_type="Modulo")
-    logger.info("Reindexing mime_type for {} Modulo objects".format(len(brains)))
+    logger.info(f"Reindexing mime_type for {len(brains)} Modulo objects")
     portal_enhancedlinks = api.portal.get_tool("portal_enhancedlinks")
     cached_uids = portal_enhancedlinks._enhanced_links
     tot = len(brains)
     for i, brain in enumerate(brains, start=1):
         if i % 1000 == 0:
-            logger.info("Progress: {}/{}".format(i, tot))
+            logger.info(f"Progress: {i}/{tot}")
         brain.getObject().reindexObject(idxs=["mime_type"])
         uid = brain.UID
         if uid not in cached_uids:
             continue
         portal_enhancedlinks.get_enhanced_link(uid, force_reload=True)
-        logger.info("- {}".format(uid))
+        logger.info(f"- {uid}")
