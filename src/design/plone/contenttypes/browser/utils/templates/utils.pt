@@ -56,7 +56,7 @@
             <p class="discreet">
               Verifica dello stato dei luoghi.
             </p>
-          </li >
+          </li>
           <li class="list-group-item">
             <a href="${context/portal_url}/check-documenti">Check documenti</a>
             <p class="discreet">
@@ -64,7 +64,7 @@
             </p>
           </li>
           <li class="list-group-item">
-            <a href="${context/portal_url}/check-uo">Check unità organizzative</a>
+            <a href="${context/portal_url}/check-uo">Check unit&agrave; organizzative</a>
             <p class="discreet">
               Verifica dello stato delle UO.
             </p>
@@ -96,7 +96,7 @@
           <li class="list-group-item">
             <a href="${context/portal_url}/find-broken-links">Find broken links</a>
             <p class="discreet">
-              Permette di trovare i contenuti che hanno almeno un link interni rotto nei vari blocchi.<br/>
+              Permette di trovare i contenuti che hanno almeno un link interni rotto nei vari blocchi.<br />
               Questa vista genera un file csv da scaricare.
             </p>
           </li>

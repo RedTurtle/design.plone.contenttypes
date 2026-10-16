@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from design.plone.contenttypes import _
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
@@ -80,7 +79,7 @@ class ILuoghiCorrelatiEvento(model.Schema):
 
 @implementer(ILuoghiCorrelati)
 @adapter(IDexterityContent)
-class LuoghiCorrelati(object):
+class LuoghiCorrelati:
     """ """
 
     def __init__(self, context):
@@ -89,7 +88,7 @@ class LuoghiCorrelati(object):
 
 @implementer(ILuoghiCorrelatiEvento)
 @adapter(IDexterityContent)
-class LuoghiCorrelatiEvento(object):
+class LuoghiCorrelatiEvento:
     """ """
 
     def __init__(self, context):

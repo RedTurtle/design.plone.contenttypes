@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from design.plone.contenttypes import _
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.dexterity.interfaces import IDexterityContent
@@ -51,7 +50,7 @@ class IMultiFile(IMultiFileSchema):
 
 @implementer(IMultiFile)
 @adapter(IDexterityContent)
-class MultiFile(object):
+class MultiFile:
     """"""
 
     def __init__(self, context):

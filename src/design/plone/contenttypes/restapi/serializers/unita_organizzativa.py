@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from .dxcontent import SerializeFolderToJson as BaseSerializer
 from Acquisition import aq_inner
 from design.plone.contenttypes.interfaces.unita_organizzativa import IUnitaOrganizzativa
@@ -102,9 +101,7 @@ class UOSerializer(BaseSerializer):
 
     def __call__(self, version=None, include_items=True):
         self.index = "news_uo"
-        result = super(UOSerializer, self).__call__(
-            version=version, include_items=include_items
-        )
+        result = super().__call__(version=version, include_items=include_items)
 
         result["servizi_offerti"] = json_compatible(self.get_services())
         result["uo_parent"] = json_compatible(self.getParentUo())

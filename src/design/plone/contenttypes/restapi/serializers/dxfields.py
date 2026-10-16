@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from AccessControl.unauthorized import Unauthorized
 from Acquisition import aq_inner
 from collective.volto.enhancedlinks.interfaces import IEnhancedLinksEnabled
@@ -6,11 +5,12 @@ from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
 from design.plone.contenttypes.interfaces.servizio import IServizio
 from plone import api
 from plone.app.contenttypes.utils import replace_link_variables_by_paths
+from plone.app.uuid.utils import uuidToObject
+from plone.app.uuid.utils import uuidToURL
 from plone.base.utils import human_readable_size
 from plone.dexterity.interfaces import IDexterityContent
 from plone.namedfile.interfaces import INamedFileField
 from plone.namedfile.interfaces import INamedImageField
-from plone.app.uuid.utils import uuidToURL, uuidToObject
 from plone.restapi.interfaces import IBlockFieldSerializationTransformer
 from plone.restapi.interfaces import IFieldSerializer
 from plone.restapi.interfaces import ISerializeToJsonSummary
@@ -28,7 +28,6 @@ from zope.schema.interfaces import IList
 from zope.schema.interfaces import ISourceText
 from zope.schema.interfaces import ITextLine
 
-
 import json
 import re
 
@@ -40,7 +39,7 @@ KEYS_WITH_URL = ["linkUrl", "navigationRoot", "showMoreLink"]
 @adapter(ISourceText, IDexterityContent, IDesignPloneContenttypesLayer)
 class SourceTextSerializer(DefaultFieldSerializer):
     def __call__(self):
-        value = super(SourceTextSerializer, self).__call__()
+        value = super().__call__()
         if self.field.getName() == "search_sections":
             return json.dumps(serialize_data(context=self.context, json_data=value))
         return value
@@ -50,7 +49,7 @@ class SourceTextSerializer(DefaultFieldSerializer):
 @adapter(IList, IServizio, IDesignPloneContenttypesLayer)
 class TempiEScadenzeValueSerializer(DefaultFieldSerializer):
     def __call__(self):
-        value = super(TempiEScadenzeValueSerializer, self).__call__()
+        value = super().__call__()
 
         patched_timeline = []
         if self.field.getName() == "timeline_tempi_scadenze" and value:
@@ -63,7 +62,7 @@ class TempiEScadenzeValueSerializer(DefaultFieldSerializer):
 @adapter(INamedFileField, IDexterityContent, IDesignPloneContenttypesLayer)
 class FileFieldViewModeSerializer(DefaultFieldSerializer):
     """
-    Ovveride the basic DX serializer to:
+    Override the basic DX serializer to:
         - handle the visualize file functionality
         - add getObjSize info
     """
@@ -98,7 +97,7 @@ class FileFieldViewModeSerializer(DefaultFieldSerializer):
         return json_compatible(result)
 
     def get_file_view_mode(self, content_type):
-        """Pdf view depends on the visualize_files property in thq aq_chain"""
+        """Pdf view depends on the visualize_files property in the aq_chain"""
         if self.context and "pdf" in content_type:
             if getattr(aq_inner(self.context), "visualize_files", None):
                 return "@@display-file"

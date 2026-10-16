@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from collective.volto.blocksfield.field import BlocksField
 from design.plone.contenttypes import _
 from plone.app.dexterity import textindexer
@@ -34,7 +33,7 @@ class IAdditionalHelpInfos(model.Schema):
 
 @implementer(IAdditionalHelpInfos)
 @adapter(IDexterityContent)
-class AdditionalHelpInfos(object):
+class AdditionalHelpInfos:
     """ """
 
     def __init__(self, context):

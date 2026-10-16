@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from design.plone.contenttypes import _
 from design.plone.contenttypes.controlpanels.geolocation_defaults import (
     IGeolocationDefaults,
@@ -276,7 +275,7 @@ class TypesGet(BaseGet):
         return result
 
     def reply(self):
-        result = super(TypesGet, self).reply()
+        result = super().reply()
         if "fieldsets" in result:
             result["fieldsets"] = self.reorder_fieldsets(schema=result)
         pt = self.request.PATH_INFO.split("/")[-1]

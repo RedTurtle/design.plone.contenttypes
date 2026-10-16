@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from collective.volto.blocksfield.field import BlocksField
 from design.plone.contenttypes import _
 from plone.namedfile import field

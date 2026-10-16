@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from collective.taxonomy import PATH_SEPARATOR
 from collective.taxonomy.interfaces import ITaxonomy
 from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
@@ -22,8 +21,8 @@ from redturtle.volto.restapi.serializer.summary import (
 )
 from zope.component import adapter
 from zope.component import getMultiAdapter
-from zope.component import queryUtility
 from zope.component import queryMultiAdapter
+from zope.component import queryUtility
 from zope.globalrequest import getRequest
 from zope.i18n import translate
 from zope.interface import implementer

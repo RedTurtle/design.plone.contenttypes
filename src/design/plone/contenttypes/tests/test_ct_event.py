@@ -1,9 +1,13 @@
-# -*- coding: utf-8 -*-
 from design.plone.contenttypes.interfaces import IDesignPloneContentType
 from design.plone.contenttypes.schema_overrides import SchemaTweaks
 from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
 )
+from design.plone.contenttypes.tests.compat import fieldset_fields
+from design.plone.contenttypes.tests.compat import PLONE_61_PLUS
+from design.plone.contenttypes.tests.compat import PREVIEW_FIELDSET_COUNT
+from design.plone.contenttypes.tests.compat import with_preview_fieldset
+from design.plone.contenttypes.tests.compat import without_preview_fields
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import SITE_OWNER_NAME
@@ -37,9 +41,10 @@ class TestEventSchema(unittest.TestCase):
 
     def test_behaviors_enabled_for_event(self):
         portal_types = api.portal.get_tool(name="portal_types")
-        self.assertEqual(
-            portal_types["Event"].behaviors,
-            (
+        if PLONE_61_PLUS:
+            expected = (
+                "volto.preview_image_link",
+                "volto.navtitle",
                 "plone.eventbasic",
                 "plone.leadimage",
                 "volto.preview_image",
@@ -65,8 +70,36 @@ class TestEventSchema(unittest.TestCase):
                 "plone.translatable",
                 "kitconcept.seo",
                 "collective.taxonomy.generated.tipologia_evento",
-            ),
-        )
+            )
+        else:
+            expected = (
+                "plone.eventbasic",
+                "plone.leadimage",
+                "volto.preview_image",
+                "design.plone.contenttypes.behavior.argomenti_evento",
+                "plone.eventrecurrence",
+                "design.plone.contenttypes.behavior.additional_help_infos",
+                "design.plone.contenttypes.behavior.evento",
+                "design.plone.contenttypes.behavior.luoghi_correlati_evento",
+                "design.plone.contenttypes.behavior.address_event",
+                "design.plone.contenttypes.behavior.geolocation_event",
+                "design.plone.contenttypes.behavior.strutture_correlate",
+                "design.plone.contenttypes.behavior.contatti_event",
+                "plone.dublincore",
+                "plone.namefromtitle",
+                "plone.allowdiscussion",
+                "plone.excludefromnavigation",
+                "plone.shortname",
+                "plone.relateditems",
+                "plone.versioning",
+                "plone.locking",
+                "plone.constraintypes",
+                "plone.textindexer",
+                "plone.translatable",
+                "kitconcept.seo",
+                "collective.taxonomy.generated.tipologia_evento",
+            )
+        self.assertEqual(portal_types["Event"].behaviors, expected)
 
     def test_event_addable_types(self):
         portal_types = api.portal.get_tool(name="portal_types")
@@ -85,26 +118,28 @@ class TestEventSchema(unittest.TestCase):
         Get the list from restapi
         """
         resp = self.api_session.get("@types/Event").json()
-        self.assertEqual(len(resp["fieldsets"]), 12)
+        self.assertEqual(len(resp["fieldsets"]), 12 + PREVIEW_FIELDSET_COUNT)
         # should be 13 but SchemaTweaks does not work in tests
-        # self.assertEqual(len(resp["fieldsets"]), 13)
+        # self.assertEqual(len(resp["fieldsets"]), 13 + PREVIEW_FIELDSET_COUNT)
         self.assertEqual(
             [x.get("id") for x in resp["fieldsets"]],
-            [
-                "default",
-                "cose",
-                "luogo",
-                "date_e_orari",
-                "costi",
-                "contatti",
-                "informazioni",
-                # "correlati", see SchemaTweaks problem in tests
-                "categorization",
-                "dates",
-                "settings",
-                "ownership",
-                "seo",
-            ],
+            with_preview_fieldset(
+                [
+                    "default",
+                    "cose",
+                    "luogo",
+                    "date_e_orari",
+                    "costi",
+                    "contatti",
+                    "informazioni",
+                    # "correlati", see SchemaTweaks problem in tests
+                    "categorization",
+                    "dates",
+                    "settings",
+                    "ownership",
+                    "seo",
+                ],
+            ),
         )
 
     def test_event_required_fields(self):
@@ -134,24 +169,26 @@ class TestEventSchema(unittest.TestCase):
         resp = self.api_session.get("@types/Event").json()
         self.assertEqual(
             resp["fieldsets"][0]["fields"],
-            [
-                "title",
-                "description",
-                "start",
-                "end",
-                "whole_day",
-                "open_end",
-                "sync_uid",
-                "image",
-                "image_caption",
-                "preview_image",
-                "preview_caption",
-                "correlato_in_evidenza",
-                "tassonomia_argomenti",
-                "recurrence",
-                "sottotitolo",
-                "tipologia_evento",
-            ],
+            without_preview_fields(
+                [
+                    "title",
+                    "description",
+                    "start",
+                    "end",
+                    "whole_day",
+                    "open_end",
+                    "sync_uid",
+                    "image",
+                    "image_caption",
+                    "preview_image",
+                    "preview_caption",
+                    "correlato_in_evidenza",
+                    "tassonomia_argomenti",
+                    "recurrence",
+                    "sottotitolo",
+                    "tipologia_evento",
+                ]
+            ),
             # should be like this with SchemaTweaks
             # [
             #     "title",
@@ -299,16 +336,24 @@ class TestEventSchema(unittest.TestCase):
         Get the list from restapi
         """
         resp = self.api_session.get("@types/Event").json()
-        self.assertEqual(
-            resp["fieldsets"][9]["fields"],
-            [
+        if PLONE_61_PLUS:
+            expected = [
+                "nav_title",
                 "allow_discussion",
                 "exclude_from_nav",
                 "id",
                 "versioning_enabled",
                 "changeNote",
-            ],
-        )
+            ]
+        else:
+            expected = [
+                "allow_discussion",
+                "exclude_from_nav",
+                "id",
+                "versioning_enabled",
+                "changeNote",
+            ]
+        self.assertEqual(resp["fieldsets"][9]["fields"], expected)
 
     def test_event_fields_ownership_fieldset(self):
         """
@@ -325,7 +370,7 @@ class TestEventSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Event").json()
         self.assertEqual(
-            resp["fieldsets"][11]["fields"],
+            fieldset_fields(resp, "seo"),
             [
                 "seo_title",
                 "seo_description",

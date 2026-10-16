@@ -1,8 +1,11 @@
-# -*- coding: utf-8 -*-
 from DateTime import DateTime
 from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
 )
+from design.plone.contenttypes.tests.compat import fieldset_fields
+from design.plone.contenttypes.tests.compat import PREVIEW_FIELDSET_COUNT
+from design.plone.contenttypes.tests.compat import with_preview_fieldset
+from design.plone.contenttypes.tests.compat import without_preview_fields
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import SITE_OWNER_NAME
@@ -15,9 +18,9 @@ from transaction import commit
 from uuid import uuid4
 from z3c.relationfield import RelationValue
 from zope.component import getUtility
+from zope.event import notify
 from zope.intid.interfaces import IIntIds
 from zope.lifecycleevent import ObjectModifiedEvent
-from zope.event import notify
 
 import unittest
 
@@ -76,22 +79,24 @@ class TestLuogoSchema(unittest.TestCase):
         Get the list from restapi
         """
         resp = self.api_session.get("@types/Venue").json()
-        self.assertEqual(len(resp["fieldsets"]), 11)
+        self.assertEqual(len(resp["fieldsets"]), 11 + PREVIEW_FIELDSET_COUNT)
         self.assertEqual(
             [x.get("id") for x in resp["fieldsets"]],
-            [
-                "default",
-                "descrizione",
-                "accesso",
-                "dove",
-                "orari",
-                "contatti",
-                "informazioni",
-                "settings",
-                "correlati",
-                "categorization",
-                "seo",
-            ],
+            with_preview_fieldset(
+                [
+                    "default",
+                    "descrizione",
+                    "accesso",
+                    "dove",
+                    "orari",
+                    "contatti",
+                    "informazioni",
+                    "settings",
+                    "correlati",
+                    "categorization",
+                    "seo",
+                ],
+            ),
         )
 
     def test_luogo_required_fields(self):
@@ -119,18 +124,20 @@ class TestLuogoSchema(unittest.TestCase):
         resp = self.api_session.get("@types/Venue").json()
         self.assertEqual(
             resp["fieldsets"][0]["fields"],
-            [
-                "title",
-                "description",
-                "image",
-                "image_caption",
-                "preview_image",
-                "preview_caption",
-                "nome_alternativo",
-                "tassonomia_argomenti",
-                "luoghi_correlati",
-                "tipologia_luogo",
-            ],
+            without_preview_fields(
+                [
+                    "title",
+                    "description",
+                    "image",
+                    "image_caption",
+                    "preview_image",
+                    "preview_caption",
+                    "nome_alternativo",
+                    "tassonomia_argomenti",
+                    "luoghi_correlati",
+                    "tipologia_luogo",
+                ]
+            ),
         )
 
     def test_luogo_fields_descrizione_fieldset(self):
@@ -251,7 +258,7 @@ class TestLuogoSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Venue").json()
         self.assertEqual(
-            resp["fieldsets"][10]["fields"],
+            fieldset_fields(resp, "seo"),
             [
                 "seo_title",
                 "seo_description",

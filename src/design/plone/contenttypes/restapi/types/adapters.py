@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from collective.z3cform.datagridfield.interfaces import IRow
 from design.plone.contenttypes import _
 from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
@@ -34,7 +33,7 @@ class LeadImageJsonSchemaProvider(ObjectJsonSchemaProvider):
         return {term.token: term.title for term in vocabulary if term.token}
 
     def get_schema(self):
-        schema = super(LeadImageJsonSchemaProvider, self).get_schema()
+        schema = super().get_schema()
         sizes = self.get_size_vocabulary()
         portal_type = getattr(self.request, "steps")[-1]
         portal_type_size = sizes.get(portal_type, None)

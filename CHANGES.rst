@@ -17,6 +17,10 @@ Changelog
 6.3.17 (2026-07-15)
 -------------------
 
+- Configure the package with plone.meta 2.11.1. Supported versions are now
+  Plone 6.0, 6.1 and 6.2 on Python 3.11 to 3.14.
+  [mamico]
+
 - Add a ``_get_extra_event_data`` hook to ``ScadenziarioDayPost`` so that
   downstream packages can add extra fields to ``@scadenziario-day`` event
   results without duplicating the whole endpoint.
@@ -105,6 +109,7 @@ Changelog
 - Fix operator order in condition in summary for apertura_bando
   [mamico]
 
+
 6.3.6 (2025-04-09)
 ------------------
 
@@ -135,6 +140,7 @@ Changelog
 
 - Added download xlsx of users in design-utils
   [mamico]
+
 - Change number of related assessore_riferimento
   [lucabel]
 - Add File to CT Documento but hide it from volto add menu
@@ -155,8 +161,10 @@ Changelog
 
 - Added the metadata preview_caption and image_caption. An upgrade step is not necessary because the metadata will primarily be used for new content.
   [mamico]
+
 - add SEO behavior to File
   [mamico]
+
 - Fix sorting in @scadenziario-day endpoint.
   [folix-01]
 - Check servizi view: remove illegal characters.
@@ -232,6 +240,7 @@ Changelog
   AttributeError: 'NoneType' object has no attribute 'absolute_url'
   [mamico]
 
+
 6.2.18 (2024-09-06)
 -------------------
 
@@ -261,10 +270,13 @@ Changelog
 
 - Workaround for empty contacts UO summaryserializer
   [mamico]
+
 - Add design.plone.contenttypes.behavior.news_base behavior (news metadata, without blocks)
   [mamico]
+
 - Add folder creation (multimedia + allegati) for "ComunicatiStampa" CT (if exists)
   [mamico]
+
 - Add "Emolumenti a carico della finanza pubblica" to Persona
   Add "Dichiarazioni di insussistenza e incompatibilità" to Persona
   [lucabel]
@@ -363,6 +375,7 @@ Changelog
 
 - converted some file and image fields as blob fields
   [mamico]
+
 
 
 6.2.3 (2024-04-16)
@@ -506,6 +519,7 @@ Changelog
   [mamico]
 
 
+
 6.1.3 (2023-11-28)
 ------------------
 
@@ -547,6 +561,7 @@ Changelog
 
 - Optionally add image_scales and image_field in Summary serializer.
   [mamico]
+
 
 - Add @@design-utils view that shows all available utility views.
   [cekk]
@@ -644,11 +659,13 @@ Changelog
   [mamico]
 
 
+
 6.0.10 (2023-06-19)
 -------------------
 
 - remove preview_caption
   [mamico]
+
 - removed required from persone_struttura field in uo
   interface.
   [eikichi18]
@@ -661,6 +678,7 @@ Changelog
   [sabrina-bongiovanni]
 - Fix url in check_servizi
   [mamico]
+
 
 6.0.8 (2023-05-04)
 ------------------

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from Acquisition import aq_inner
 from design.plone.contenttypes.interfaces.documento import IDocumento
 from design.plone.contenttypes.restapi.serializers.dxcontent import (
@@ -49,9 +48,7 @@ class DocumentoSerializer(SerializeFolderToJson):
     def __call__(self, version=None, include_items=True):
         if "b_size" not in self.request.form:
             self.request.form["b_size"] = 200
-        result = super(DocumentoSerializer, self).__call__(
-            version=version, include_items=include_items
-        )
+        result = super().__call__(version=version, include_items=include_items)
         # Una via alternativa era l'injection di fullobject nella request ma
         # mi pare una cosa cattiva da fare
         content_listing = self.context.restrictedTraverse("@@contentlisting")

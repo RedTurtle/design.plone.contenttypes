@@ -1,8 +1,10 @@
-# -*- coding: utf-8 -*-
-
 from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
 )
+from design.plone.contenttypes.tests.compat import fieldset_fields
+from design.plone.contenttypes.tests.compat import PREVIEW_FIELDSET_COUNT
+from design.plone.contenttypes.tests.compat import with_preview_fieldset
+from design.plone.contenttypes.tests.compat import without_preview_fields
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import SITE_OWNER_NAME
@@ -76,20 +78,22 @@ class TestDocumentoSchema(unittest.TestCase):
         Get the list from restapi
         """
         resp = self.api_session.get("@types/Documento").json()
-        self.assertEqual(len(resp["fieldsets"]), 9)
+        self.assertEqual(len(resp["fieldsets"]), 9 + PREVIEW_FIELDSET_COUNT)
         self.assertEqual(
             [x.get("id") for x in resp["fieldsets"]],
-            [
-                "default",
-                "descrizione",
-                "informazioni",
-                "settings",
-                "correlati",
-                "categorization",
-                "dates",
-                "ownership",
-                "seo",
-            ],
+            with_preview_fieldset(
+                [
+                    "default",
+                    "descrizione",
+                    "informazioni",
+                    "settings",
+                    "correlati",
+                    "categorization",
+                    "dates",
+                    "ownership",
+                    "seo",
+                ],
+            ),
         )
 
     def test_documento_required_fields(self):
@@ -116,24 +120,26 @@ class TestDocumentoSchema(unittest.TestCase):
         resp = self.api_session.get("@types/Documento").json()
         self.assertEqual(
             resp["fieldsets"][0]["fields"],
-            [
-                "title",
-                "description",
-                "identificativo",
-                "protocollo",
-                "data_protocollo",
-                "formati_disponibili",
-                "dataset",
-                "image",
-                "image_caption",
-                "preview_image",
-                "preview_caption",
-                "tassonomia_argomenti",
-                "person_life_events",
-                "business_events",
-                "tipologia_documenti_albopretorio",
-                "tipologia_documento",
-            ],
+            without_preview_fields(
+                [
+                    "title",
+                    "description",
+                    "identificativo",
+                    "protocollo",
+                    "data_protocollo",
+                    "formati_disponibili",
+                    "dataset",
+                    "image",
+                    "image_caption",
+                    "preview_image",
+                    "preview_caption",
+                    "tassonomia_argomenti",
+                    "person_life_events",
+                    "business_events",
+                    "tipologia_documenti_albopretorio",
+                    "tipologia_documento",
+                ]
+            ),
         )
 
     def test_documento_fields_descrizione_fieldset(self):
@@ -220,7 +226,7 @@ class TestDocumentoSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Documento").json()
         self.assertEqual(
-            resp["fieldsets"][8]["fields"],
+            fieldset_fields(resp, "seo"),
             [
                 "seo_title",
                 "seo_description",
@@ -259,7 +265,7 @@ class TestDocumentoApi(unittest.TestCase):
             child = api.content.create(
                 container=self.documento,
                 type="Modulo",
-                title="File {}".format(i),
+                title=f"File {i}",
             )
             filename = os.path.join(os.path.dirname(__file__), "example.pdf")
             child.file = NamedBlobFile(

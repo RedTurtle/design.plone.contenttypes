@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from design.plone.contenttypes.interfaces.cartella_modulistica import (
     ICartellaModulistica,
 )

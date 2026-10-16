@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from .related_news_serializer import SerializeFolderToJson
 from Acquisition import aq_inner
 from design.plone.contenttypes.interfaces.persona import IPersona
@@ -42,9 +41,7 @@ class PersonaSerializer(SerializeFolderToJson):
         return sorted(items, key=lambda k: k["title"])
 
     def __call__(self, version=None, include_items=True):
-        result = super(PersonaSerializer, self).__call__(
-            version=version, include_items=include_items
-        )
+        result = super().__call__(version=version, include_items=include_items)
         strutture_correlate = self.related_contents(field="persone_struttura")
         responsabile_di = self.related_contents(field="responsabile")
         assessore_di = self.related_contents(field="assessore_riferimento")

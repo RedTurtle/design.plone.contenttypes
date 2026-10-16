@@ -1,4 +1,7 @@
-# -*- coding: utf-8 -*-
+from design.plone.contenttypes.tests.compat import fieldset_fields
+from design.plone.contenttypes.tests.compat import PREVIEW_FIELDSET_COUNT
+from design.plone.contenttypes.tests.compat import with_preview_fieldset
+from design.plone.contenttypes.tests.compat import without_preview_fields
 
 """Setup tests for this package."""
 
@@ -78,23 +81,25 @@ class TestUOSchema(unittest.TestCase):
         Get the list from restapi
         """
         resp = self.api_session.get("@types/UnitaOrganizzativa").json()
-        self.assertEqual(len(resp["fieldsets"]), 12)
+        self.assertEqual(len(resp["fieldsets"]), 12 + PREVIEW_FIELDSET_COUNT)
         self.assertEqual(
             [x.get("id") for x in resp["fieldsets"]],
-            [
-                "default",
-                "cosa_fa",
-                "struttura",
-                "persone",
-                "contatti",
-                "correlati",
-                "categorization",
-                "informazioni",
-                "settings",
-                "ownership",
-                "dates",
-                "seo",
-            ],
+            with_preview_fieldset(
+                [
+                    "default",
+                    "cosa_fa",
+                    "struttura",
+                    "persone",
+                    "contatti",
+                    "correlati",
+                    "categorization",
+                    "informazioni",
+                    "settings",
+                    "ownership",
+                    "dates",
+                    "seo",
+                ],
+            ),
         )
 
     def test_uo_required_fields(self):
@@ -120,15 +125,17 @@ class TestUOSchema(unittest.TestCase):
         resp = self.api_session.get("@types/UnitaOrganizzativa").json()
         self.assertEqual(
             resp["fieldsets"][0]["fields"],
-            [
-                "title",
-                "description",
-                "image",
-                "image_caption",
-                "preview_image",
-                "preview_caption",
-                "tassonomia_argomenti",
-            ],
+            without_preview_fields(
+                [
+                    "title",
+                    "description",
+                    "image",
+                    "image_caption",
+                    "preview_image",
+                    "preview_caption",
+                    "tassonomia_argomenti",
+                ]
+            ),
         )
 
     def test_uo_fields_cosa_fa_fieldset(self):
@@ -242,7 +249,7 @@ class TestUOSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/UnitaOrganizzativa").json()
         self.assertEqual(
-            resp["fieldsets"][11]["fields"],
+            fieldset_fields(resp, "seo"),
             [
                 "seo_title",
                 "seo_description",

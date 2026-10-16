@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from .dxcontent import SerializeFolderToJson as BaseSerializer
 from design.plone.contenttypes.interfaces.servizio import IServizio
 from plone import api
@@ -15,9 +14,7 @@ class SerializeFolderToJson(BaseSerializer):
     def __call__(self, version=None, include_items=True):
         # if include_items:
         #     self.request.form = {"fullobjects": ""}
-        result = super(SerializeFolderToJson, self).__call__(
-            version=version, include_items=include_items
-        )
+        result = super().__call__(version=version, include_items=include_items)
 
         catalog = api.portal.get_tool("portal_catalog")
         limit = 3

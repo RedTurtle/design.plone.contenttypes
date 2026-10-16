@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # TODO: documentare le motiviazioni di questo override
 #
 from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer

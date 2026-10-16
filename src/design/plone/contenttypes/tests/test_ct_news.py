@@ -1,8 +1,12 @@
-# -*- coding: utf-8 -*-
 from design.plone.contenttypes.interfaces import IDesignPloneContentType
 from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
 )
+from design.plone.contenttypes.tests.compat import fieldset_fields
+from design.plone.contenttypes.tests.compat import PLONE_61_PLUS
+from design.plone.contenttypes.tests.compat import PREVIEW_FIELDSET_COUNT
+from design.plone.contenttypes.tests.compat import with_preview_fieldset
+from design.plone.contenttypes.tests.compat import without_preview_fields
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import SITE_OWNER_NAME
@@ -36,10 +40,29 @@ class TestNewsSchema(unittest.TestCase):
 
     def test_behaviors_enabled_for_news(self):
         portal_types = api.portal.get_tool(name="portal_types")
-
-        self.assertEqual(
-            portal_types["News Item"].behaviors,
-            (
+        if PLONE_61_PLUS:
+            expected = (
+                "plone.dublincore",
+                "plone.namefromtitle",
+                "plone.shortname",
+                "plone.excludefromnavigation",
+                "plone.relateditems",
+                "plone.leadimage",
+                "plone.versioning",
+                "plone.locking",
+                "volto.preview_image_link",
+                "volto.navtitle",
+                "volto.preview_image",
+                "design.plone.contenttypes.behavior.news",
+                "design.plone.contenttypes.behavior.argomenti_news",
+                "plone.constraintypes",
+                "plone.textindexer",
+                "plone.translatable",
+                "kitconcept.seo",
+                "collective.taxonomy.generated.tipologia_notizia",
+            )
+        else:
+            expected = (
                 "plone.dublincore",
                 "plone.namefromtitle",
                 "plone.allowdiscussion",
@@ -57,8 +80,8 @@ class TestNewsSchema(unittest.TestCase):
                 "plone.translatable",
                 "kitconcept.seo",
                 "collective.taxonomy.generated.tipologia_notizia",
-            ),
-        )
+            )
+        self.assertEqual(portal_types["News Item"].behaviors, expected)
 
     def test_news_item_ct_title(self):
         portal_types = api.portal.get_tool(name="portal_types")
@@ -81,18 +104,20 @@ class TestNewsSchema(unittest.TestCase):
         Get the list from restapi
         """
         resp = self.api_session.get("@types/News%20Item").json()
-        self.assertEqual(len(resp["fieldsets"]), 7)
+        self.assertEqual(len(resp["fieldsets"]), 7 + PREVIEW_FIELDSET_COUNT)
         self.assertEqual(
             [x.get("id") for x in resp["fieldsets"]],
-            [
-                "default",
-                "dates",
-                "correlati",
-                "categorization",
-                "settings",
-                "ownership",
-                "seo",
-            ],
+            with_preview_fieldset(
+                [
+                    "default",
+                    "dates",
+                    "correlati",
+                    "categorization",
+                    "settings",
+                    "ownership",
+                    "seo",
+                ],
+            ),
         )
 
     def test_news_item_required_fields(self):
@@ -118,21 +143,23 @@ class TestNewsSchema(unittest.TestCase):
         resp = self.api_session.get("@types/News%20Item").json()
         self.assertEqual(
             resp["fieldsets"][0]["fields"],
-            [
-                "title",
-                "description",
-                "image",
-                "image_caption",
-                "preview_image",
-                "preview_caption",
-                "numero_progressivo_cs",
-                "a_cura_di",
-                "a_cura_di_persone",
-                "luoghi_correlati",
-                "descrizione_estesa",
-                "tassonomia_argomenti",
-                "tipologia_notizia",
-            ],
+            without_preview_fields(
+                [
+                    "title",
+                    "description",
+                    "image",
+                    "image_caption",
+                    "preview_image",
+                    "preview_caption",
+                    "numero_progressivo_cs",
+                    "a_cura_di",
+                    "a_cura_di_persone",
+                    "luoghi_correlati",
+                    "descrizione_estesa",
+                    "tassonomia_argomenti",
+                    "tipologia_notizia",
+                ]
+            ),
         )
 
     def test_news_item_fields_dates_fieldset(self):
@@ -166,16 +193,23 @@ class TestNewsSchema(unittest.TestCase):
         Get the list from restapi
         """
         resp = self.api_session.get("@types/News%20Item").json()
-        self.assertEqual(
-            resp["fieldsets"][4]["fields"],
-            [
+        if PLONE_61_PLUS:
+            expected = [
+                "id",
+                "exclude_from_nav",
+                "versioning_enabled",
+                "nav_title",
+                "changeNote",
+            ]
+        else:
+            expected = [
                 "allow_discussion",
                 "id",
                 "exclude_from_nav",
                 "versioning_enabled",
                 "changeNote",
-            ],
-        )
+            ]
+        self.assertEqual(resp["fieldsets"][4]["fields"], expected)
 
     def test_news_item_fields_ownership_fieldset(self):
         """
@@ -192,7 +226,7 @@ class TestNewsSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/News%20Item").json()
         self.assertEqual(
-            resp["fieldsets"][6]["fields"],
+            fieldset_fields(resp, "seo"),
             [
                 "seo_title",
                 "seo_description",
@@ -301,8 +335,8 @@ class TestNewsApi(unittest.TestCase):
         news = response.json()
 
         self.assertEqual(
-            set([i["id"] for i in news["items"]]),
-            set(["multimedia", "documenti-allegati"]),
+            {i["id"] for i in news["items"]},
+            {"multimedia", "documenti-allegati"},
         )
         self.assertEqual(news["description"], "Test")
         self.assertIn(

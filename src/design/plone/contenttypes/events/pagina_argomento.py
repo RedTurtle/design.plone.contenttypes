@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from Acquisition import aq_inner
 from zc.relation.interfaces import ICatalog
 from zope.component import getUtility

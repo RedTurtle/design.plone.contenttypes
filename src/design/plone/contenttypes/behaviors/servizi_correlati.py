@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from design.plone.contenttypes import _
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form
@@ -48,7 +47,7 @@ class IServiziCorrelati(model.Schema):
 
 @implementer(IServiziCorrelati)
 @adapter(IDexterityContent)
-class ServiziCorrelati(object):
+class ServiziCorrelati:
     """"""
 
     def __init__(self, context):

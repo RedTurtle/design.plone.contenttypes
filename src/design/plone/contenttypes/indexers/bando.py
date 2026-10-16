@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from design.plone.contenttypes.interfaces.bando import IBandoAgidSchema
 from plone.indexer.decorator import indexer
 

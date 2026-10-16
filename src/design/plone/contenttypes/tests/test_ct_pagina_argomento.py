@@ -1,4 +1,8 @@
-# -*- coding: utf-8 -*-
+from design.plone.contenttypes.tests.compat import fieldset_fields
+from design.plone.contenttypes.tests.compat import PREVIEW_FIELDSET_COUNT
+from design.plone.contenttypes.tests.compat import with_preview_fieldset
+from design.plone.contenttypes.tests.compat import without_preview_fields
+
 """Setup tests for this package."""
 
 from design.plone.contenttypes.testing import (
@@ -61,20 +65,22 @@ class TestPaginaArgomentoSchema(unittest.TestCase):
         Get the list from restapi
         """
         resp = self.api_session.get("@types/Pagina%20Argomento").json()
-        self.assertEqual(len(resp["fieldsets"]), 8)
+        self.assertEqual(len(resp["fieldsets"]), 8 + PREVIEW_FIELDSET_COUNT)
         self.assertEqual(
             [x.get("id") for x in resp["fieldsets"]],
-            [
-                "default",
-                "informazioni",
-                # "correlati", questo non viene fuori nei test
-                "categorization",
-                "dates",
-                "settings",
-                "layout",
-                "ownership",
-                "seo",
-            ],
+            with_preview_fieldset(
+                [
+                    "default",
+                    "informazioni",
+                    # "correlati", questo non viene fuori nei test
+                    "categorization",
+                    "dates",
+                    "settings",
+                    "layout",
+                    "ownership",
+                    "seo",
+                ],
+            ),
         )
 
     def test_pagina_argomento_required_fields(self):
@@ -95,16 +101,18 @@ class TestPaginaArgomentoSchema(unittest.TestCase):
         resp = self.api_session.get("@types/Pagina%20Argomento").json()
         self.assertEqual(
             resp["fieldsets"][0]["fields"],
-            [
-                "title",
-                "description",
-                "icona",
-                "unita_amministrative_responsabili",
-                "image",
-                "image_caption",
-                "preview_image",
-                "preview_caption",
-            ],
+            without_preview_fields(
+                [
+                    "title",
+                    "description",
+                    "icona",
+                    "unita_amministrative_responsabili",
+                    "image",
+                    "image_caption",
+                    "preview_image",
+                    "preview_caption",
+                ]
+            ),
         )
 
     def test_pagina_argomento_fields_informazioni_fieldset(self):
@@ -151,7 +159,7 @@ class TestPaginaArgomentoSchema(unittest.TestCase):
         Get the list from restapi
         """
         resp = self.api_session.get("@types/Pagina%20Argomento").json()
-        self.assertEqual(resp["fieldsets"][5]["fields"], ["blocks", "blocks_layout"])
+        self.assertEqual(fieldset_fields(resp, "layout"), ["blocks", "blocks_layout"])
 
     def test_pagina_argomento_fields_ownership_fieldset(self):
         """
@@ -168,7 +176,7 @@ class TestPaginaArgomentoSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Pagina%20Argomento").json()
         self.assertEqual(
-            resp["fieldsets"][7]["fields"],
+            fieldset_fields(resp, "seo"),
             [
                 "seo_title",
                 "seo_description",

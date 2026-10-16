@@ -1,13 +1,15 @@
-# -*- coding: utf-8 -*-
-
 from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
 )
+from design.plone.contenttypes.tests.compat import fieldset_fields
+from design.plone.contenttypes.tests.compat import PREVIEW_FIELDSET_COUNT
+from design.plone.contenttypes.tests.compat import with_preview_fieldset
+from design.plone.contenttypes.tests.compat import without_preview_fields
 from plone import api
 from plone.app.testing import setRoles
-from plone.app.testing import TEST_USER_ID
 from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import SITE_OWNER_PASSWORD
+from plone.app.testing import TEST_USER_ID
 from plone.restapi.testing import RelativeSession
 
 import unittest
@@ -65,18 +67,21 @@ class TestCartellaModulisticaSchema(unittest.TestCase):
         Get the list from restapi
         """
         resp = self.api_session.get("@types/CartellaModulistica").json()
-        self.assertEqual(len(resp["fieldsets"]), 7)
+        self.assertEqual(len(resp["fieldsets"]), 7 + PREVIEW_FIELDSET_COUNT)
         self.assertEqual(
             [x.get("id") for x in resp["fieldsets"]],
-            [
-                "default",
-                "settings",
-                "ownership",
-                "dates",
-                "categorization",
-                "layout",
-                "seo",
-            ],
+            with_preview_fieldset(
+                [
+                    "default",
+                    "settings",
+                    "ownership",
+                    "dates",
+                    "categorization",
+                    "layout",
+                    "seo",
+                ],
+                before="layout",
+            ),
         )
 
     def test_cartella_modulistica_required_fields(self):
@@ -93,15 +98,17 @@ class TestCartellaModulisticaSchema(unittest.TestCase):
         resp = self.api_session.get("@types/CartellaModulistica").json()
         self.assertEqual(
             resp["fieldsets"][0]["fields"],
-            [
-                "title",
-                "description",
-                "visualize_files",
-                "image",
-                "image_caption",
-                "preview_image",
-                "preview_caption",
-            ],
+            without_preview_fields(
+                [
+                    "title",
+                    "description",
+                    "visualize_files",
+                    "image",
+                    "image_caption",
+                    "preview_image",
+                    "preview_caption",
+                ]
+            ),
         )
 
     def test_cartella_modulistica_fields_settings_fieldset(self):
@@ -148,7 +155,7 @@ class TestCartellaModulisticaSchema(unittest.TestCase):
         Get the list from restapi
         """
         resp = self.api_session.get("@types/CartellaModulistica").json()
-        self.assertEqual(resp["fieldsets"][5]["fields"], ["blocks", "blocks_layout"])
+        self.assertEqual(fieldset_fields(resp, "layout"), ["blocks", "blocks_layout"])
 
     def test_cartella_modulistica_fields_seo_fieldset(self):
         """
@@ -156,7 +163,7 @@ class TestCartellaModulisticaSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/CartellaModulistica").json()
         self.assertEqual(
-            resp["fieldsets"][6]["fields"],
+            fieldset_fields(resp, "seo"),
             [
                 "seo_title",
                 "seo_description",

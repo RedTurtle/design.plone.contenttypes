@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from collective.address.behaviors import IAddress
 from design.plone.contenttypes import _
 from plone.app.dexterity import textindexer
@@ -83,7 +82,7 @@ class IAddressEvent(IAddress, IAddressNomeSede, IAddressLocal):
 
 @implementer(IAddressVenue)
 @adapter(IDexterityContent)
-class AddressVenue(object):
+class AddressVenue:
     """ """
 
     def __init__(self, context):
@@ -92,7 +91,7 @@ class AddressVenue(object):
 
 @implementer(IAddressEvent)
 @adapter(IDexterityContent)
-class AddressEvent(object):
+class AddressEvent:
     """ """
 
     def __init__(self, context):

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from design.plone.contenttypes.interfaces.cartella_modulistica import (
     ICartellaModulistica,
 )
@@ -18,7 +17,7 @@ from zope.schema import getFields
 
 @implementer(IExpandableElement)
 @adapter(ICartellaModulistica, Interface)
-class ModulisticaItems(object):
+class ModulisticaItems:
     def __init__(self, context, request):
         self.context = context
         self.request = request
@@ -26,7 +25,7 @@ class ModulisticaItems(object):
     def __call__(self, expand=False):
         result = {
             "modulistica-items": {
-                "@id": "{}/@modulistica-items".format(self.context.absolute_url())
+                "@id": f"{self.context.absolute_url()}/@modulistica-items"
             }
         }
         if not expand:
