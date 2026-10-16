@@ -109,6 +109,7 @@ ignore = [
     "mx.ini",
     "tox.ini",
     ".coveragerc",
+    "constraints/*",
 
 ]
 
