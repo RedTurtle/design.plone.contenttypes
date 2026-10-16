@@ -4,6 +4,11 @@ from design.plone.contenttypes.testing import (
 from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING,
 )
+from design.plone.contenttypes.tests.compat import fieldset_fields
+from design.plone.contenttypes.tests.compat import PLONE_61
+from design.plone.contenttypes.tests.compat import PREVIEW_FIELDSET_COUNT
+from design.plone.contenttypes.tests.compat import with_preview_fieldset
+from design.plone.contenttypes.tests.compat import without_preview_fields
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import SITE_OWNER_NAME
@@ -62,18 +67,22 @@ class TestBandoSchema(unittest.TestCase):
         Get the list from restapi
         """
         resp = self.api_session.get("@types/Bando").json()
-        self.assertEqual(len(resp["fieldsets"]), 7)
+        self.assertEqual(len(resp["fieldsets"]), 7 + PREVIEW_FIELDSET_COUNT)
         self.assertEqual(
             [x.get("id") for x in resp["fieldsets"]],
-            [
-                "default",
-                "correlati",
-                "settings",
-                "categorization",
-                "dates",
-                "ownership",
-                "seo",
-            ],
+            with_preview_fieldset(
+                [
+                    "default",
+                    "correlati",
+                    "settings",
+                    "categorization",
+                    "dates",
+                    "ownership",
+                    "seo",
+                ],
+                before="seo",
+                after=True,
+            ),
         )
 
     def test_bando_required_fields(self):
@@ -90,23 +99,25 @@ class TestBandoSchema(unittest.TestCase):
         resp = self.api_session.get("@types/Bando").json()
         self.assertEqual(
             resp["fieldsets"][0]["fields"],
-            [
-                "title",
-                "description",
-                "cig",
-                "text",
-                "tipologia_bando",
-                "destinatari",
-                "ente_bando",
-                "apertura_bando",
-                "scadenza_domande_bando",
-                "scadenza_bando",
-                "chiusura_procedimento_bando",
-                "riferimenti_bando",
-                "update_note",
-                "preview_image",
-                "preview_caption",
-            ],
+            without_preview_fields(
+                [
+                    "title",
+                    "description",
+                    "cig",
+                    "text",
+                    "tipologia_bando",
+                    "destinatari",
+                    "ente_bando",
+                    "apertura_bando",
+                    "scadenza_domande_bando",
+                    "scadenza_bando",
+                    "chiusura_procedimento_bando",
+                    "riferimenti_bando",
+                    "update_note",
+                    "preview_image",
+                    "preview_caption",
+                ]
+            ),
         )
 
     def test_bando_fields_correlati_fieldset(self):
@@ -129,17 +140,18 @@ class TestBandoSchema(unittest.TestCase):
         Get the list from restapi
         """
         resp = self.api_session.get("@types/Bando").json()
-        self.assertEqual(
-            resp["fieldsets"][2]["fields"],
-            [
-                "allow_discussion",
-                "exclude_from_nav",
-                "id",
-                "versioning_enabled",
-                "table_of_contents",
-                "changeNote",
-            ],
-        )
+        expected = [
+            "allow_discussion",
+            "exclude_from_nav",
+            "id",
+            "versioning_enabled",
+            "table_of_contents",
+            "changeNote",
+        ]
+        if PLONE_61:
+            # only in Plone 6.1 the Bando type has not the allowdiscussion behavior
+            expected.remove("allow_discussion")
+        self.assertEqual(resp["fieldsets"][2]["fields"], expected)
 
     def test_bando_fields_categorization_fieldset(self):
         """
@@ -173,7 +185,7 @@ class TestBandoSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Bando").json()
         self.assertEqual(
-            resp["fieldsets"][6]["fields"],
+            fieldset_fields(resp, "seo"),
             [
                 "seo_title",
                 "seo_description",

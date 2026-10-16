@@ -1,6 +1,7 @@
 from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
 )
+from design.plone.contenttypes.tests.compat import PLONE_61_PLUS
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import SITE_OWNER_NAME
@@ -30,9 +31,19 @@ class TestFolderSchema(unittest.TestCase):
 
     def test_behaviors_enabled_for_folder(self):
         portal_types = api.portal.get_tool(name="portal_types")
-        self.assertEqual(
-            portal_types["Folder"].behaviors,
-            (
+        if PLONE_61_PLUS:
+            expected = (
+                "plone.dublincore",
+                "plone.namefromtitle",
+                "plone.excludefromnavigation",
+                "plone.shortname",
+                "plone.constraintypes",
+                "plone.relateditems",
+                "plone.nextprevioustoggle",
+                "design.plone.contenttypes.behavior.exclude_from_search",
+            )
+        else:
+            expected = (
                 "plone.dublincore",
                 "plone.namefromtitle",
                 "plone.allowdiscussion",
@@ -42,5 +53,5 @@ class TestFolderSchema(unittest.TestCase):
                 "plone.relateditems",
                 "plone.nextprevioustoggle",
                 "design.plone.contenttypes.behavior.exclude_from_search",
-            ),
-        )
+            )
+        self.assertEqual(portal_types["Folder"].behaviors, expected)
