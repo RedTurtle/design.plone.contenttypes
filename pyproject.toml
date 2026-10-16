@@ -86,7 +86,7 @@ Zope = [
 ]
 python-dateutil = ['dateutil']
 pytest-plone = ['pytest', 'zope.pytestlayer', 'plone.testing', 'plone.app.testing']
-ignore-packages = ['collective.MockMailHost', 'plone.app.robotframework']
+ignore-packages = ['collective.MockMailHost']
 setuptools = ['pkg_resources']
 
 ##
