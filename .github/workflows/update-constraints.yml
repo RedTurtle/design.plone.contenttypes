@@ -1,0 +1,52 @@
+name: Update constraints
+
+# Keeps constraints/plone6x.txt aligned with the pins used by iocomune-backend.
+# Opens (or updates) a PR when something changed.
+
+on:
+  schedule:
+    - cron: "17 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+env:
+  SOURCE: https://raw.githubusercontent.com/RedTurtle/iocomune-backend/main/dependabot
+  BRANCH: bot/update-constraints
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - name: Fetch constraints
+        run: |
+          for v in 60 61 62; do
+            curl -fsS "$SOURCE/plone$v/requirements.txt" -o "constraints/plone$v.txt.new"
+            # The package under test is installed in editable mode: a pin on itself would conflict.
+            grep -viE '^design\.plone\.contenttypes==' "constraints/plone$v.txt.new" > "constraints/plone$v.txt"
+            rm "constraints/plone$v.txt.new"
+            # Not in the backend pins; zope.testrunner needs pkg_resources (setuptools<82).
+            curl -fsS "https://dist.plone.org/release/${v:0:1}.${v:1:1}-dev/constraints.txt" | grep -iE '^setuptools==' >> "constraints/plone$v.txt"
+          done
+      - name: Open or update PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet -- constraints; then
+            echo "Constraints already up to date."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B "$BRANCH"
+          git add constraints
+          git commit -m "Update constraints from iocomune-backend"
+          git push --force origin "$BRANCH"
+          if [ -z "$(gh pr list --head "$BRANCH" --state open --json number --jq '.[0].number')" ]; then
+            gh pr create --base "${{ github.event.repository.default_branch }}" --head "$BRANCH" \
+              --title "Update constraints from iocomune-backend" \
+              --body "Automated refresh of constraints/plone6x.txt from RedTurtle/iocomune-backend (dependabot/plone6x/requirements.txt)."
+          fi
