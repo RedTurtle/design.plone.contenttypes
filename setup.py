@@ -62,6 +62,7 @@ setup(
         "collective.geolocationbehavior",
         "collective.monkeypatcher",
         "lxml",
+        "python-dateutil",
         "plone.app.z3cform",
         "plone.app.caching",
         "plone.app.contenttypes",

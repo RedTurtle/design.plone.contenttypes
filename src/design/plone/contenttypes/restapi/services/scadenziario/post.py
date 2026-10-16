@@ -1,6 +1,6 @@
 from datetime import timedelta
-from dateutil import rrule
 from DateTime import DateTime
+from dateutil import rrule
 from pkg_resources import get_distribution
 from pkg_resources import parse_version
 from plone.app.event.base import _get_compare_attr
