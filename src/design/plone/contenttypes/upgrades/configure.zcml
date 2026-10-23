@@ -976,4 +976,11 @@
       destination="7321"
       handler=".to_730x.to_7321"
       />
+  <genericsetup:upgradeStep
+      title="Exclude auto-created subfolders from search"
+      profile="design.plone.contenttypes:default"
+      source="7321"
+      destination="7322"
+      handler=".to_730x.to_7322"
+      />
 </configure>
