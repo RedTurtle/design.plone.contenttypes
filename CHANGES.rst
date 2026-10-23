@@ -4,7 +4,9 @@ Changelog
 6.3.19 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Upgrade step 7322: exclude from search (and so from sitemap.xml.gz) the already existing
+  auto-created subfolders and add ``Bando Folder Deepening`` to ``types_not_searched``.
+  [fedevancin]
 
 
 6.3.18 (2026-10-01)

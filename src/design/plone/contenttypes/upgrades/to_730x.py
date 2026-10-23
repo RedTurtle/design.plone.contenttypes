@@ -7,7 +7,10 @@ from plone.app.linkintegrity.handlers import getObjectsFromLinks
 from plone.app.linkintegrity.handlers import updateReferences
 from plone.app.linkintegrity.interfaces import IRetriever
 from plone.app.upgrade.utils import installOrReinstallProduct
+from plone.registry.interfaces import IRegistry
+from Products.CMFPlone.interfaces import ISearchSchema
 from Products.CMFPlone.interfaces import ISelectableConstrainTypes
+from zope.component import getUtility
 
 import logging
 import transaction
@@ -321,3 +324,38 @@ def to_7321(context):
             continue
         portal_enhancedlinks.get_enhanced_link(uid, force_reload=True)
         logger.info("- {}".format(uid))
+
+
+def to_7322(context):
+    """
+    Auto-created subfolders must not be found by the search (and so they must
+    not be in sitemap.xml.gz).
+    """
+    logger.info("### EXCLUDE AUTO-CREATED SUBFOLDERS FROM SEARCH ###")
+
+    fixed = 0
+    for parent_type, mapping in SUBFOLDERS_MAPPING.items():
+        subfolders = {x["id"]: x.get("type", "Document") for x in mapping["content"]}
+        for brain in api.content.find(portal_type=parent_type):
+            parent = brain.getObject()
+            for child_id, child_type in subfolders.items():
+                child = parent.get(child_id, None)
+                if child is None or child.portal_type != child_type:
+                    continue
+                if child_type not in ["Folder", "Document"]:
+                    # "Bando Folder Deepening" is handled with types_not_searched
+                    continue
+                if getattr(child.aq_base, "exclude_from_search", False):
+                    continue
+                child.exclude_from_search = True
+                child.reindexObject(idxs=["exclude_from_search"])
+                fixed += 1
+    logger.info("{} subfolders excluded from search".format(fixed))
+
+    registry = getUtility(IRegistry)
+    settings = registry.forInterface(ISearchSchema, prefix="plone")
+    types = set(settings.types_not_searched)
+    if "Bando Folder Deepening" not in types:
+        types.add("Bando Folder Deepening")
+        settings.types_not_searched = tuple(types)
+        logger.info("Added Bando Folder Deepening to types_not_searched")
