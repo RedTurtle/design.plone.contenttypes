@@ -4,7 +4,10 @@ Changelog
 6.3.19 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- ``@navigation`` and the ``navigation`` expander now extend the redturtle.volto ``Navigation``,
+  so they inherit its limits on ``expand.navigation.depth`` and on the navigation tree size.
+  Requires redturtle.volto >= 5.10.1.
+  [cekk]
 
 
 6.3.18 (2026-10-01)
