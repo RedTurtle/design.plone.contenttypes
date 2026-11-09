@@ -3,7 +3,9 @@ from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
 from plone import api
 from plone.restapi.interfaces import IExpandableElement
 from plone.restapi.services import Service
-from plone.restapi.services.navigation.get import Navigation as BaseNavigation
+from redturtle.volto.restapi.services.navigation.navigation import (
+    Navigation as BaseNavigation,
+)
 from zope.component import adapter
 from zope.interface import implementer
 from zope.interface import Interface
