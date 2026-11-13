@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         config:
         # [Python version, tox env]
@@ -19,7 +19,10 @@ jobs:
         # - ["3.9",  "py39-plone60"]
         # - ["3.10",  "py310-plone60"]
         - ["3.11",  "py311-plone60"]
+        - ["3.12",  "py312-plone62"]
     name: ${{ matrix.config[1] }}
+    # Plone 6.2 line is still experimental (as in iocomune-backend): don't block the PR
+    continue-on-error: ${{ endsWith(matrix.config[1], 'plone62') }}
     steps:
     - uses: actions/checkout@v4
     - name: Set up Python

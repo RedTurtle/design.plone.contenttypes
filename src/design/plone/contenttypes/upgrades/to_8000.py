@@ -28,7 +28,9 @@ def to_8000(context):
         for behavior in old_behaviors:
             new_behavior = mapping.get(behavior, behavior)
             if new_behavior != behavior:
-                logger.info(f"[{type_id}] Replaced behavior {behavior} => {new_behavior}")
+                logger.info(
+                    f"[{type_id}] Replaced behavior {behavior} => {new_behavior}"
+                )
             if new_behavior not in behaviors:
                 behaviors.append(new_behavior)
         if tuple(behaviors) != old_behaviors:
