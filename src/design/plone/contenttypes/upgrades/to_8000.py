@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 from .upgrades import logger
-from Acquisition import aq_base
 from plone import api
-from plone.namedfile import file
 
 
 def to_8000(context):
@@ -23,7 +21,10 @@ def to_8000(context):
 
     portal_types = api.portal.get_tool(name="portal_types")
     for type_id, portal_type in portal_types.items():
-        behaviors = list(portal_type.behaviors)
+        behaviors = getattr(portal_type, "behaviors", ())
+        if not behaviors:
+            continue
+        behaviors = list(behaviors)
         for old_behavior, new_behavior in mapping.items():
             if old_behavior in behaviors:
                 behaviors.remove(old_behavior)
