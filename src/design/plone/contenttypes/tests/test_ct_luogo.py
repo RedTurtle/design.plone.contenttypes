@@ -44,8 +44,8 @@ class TestLuogoSchema(unittest.TestCase):
         self.assertEqual(
             portal_types["Venue"].behaviors,
             (
-                "plone.app.content.interfaces.INameFromTitle",
-                "plone.app.dexterity.behaviors.id.IShortName",
+                "plone.namefromtitle",
+                "plone.shortname",
                 "plone.app.dexterity.behaviors.metadata.IBasic",
                 "plone.app.dexterity.behaviors.metadata.ICategorization",
                 "plone.excludefromnavigation",

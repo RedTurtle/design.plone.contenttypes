@@ -4,7 +4,12 @@ Changelog
 6.3.19 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Convert old-style behavior names to short names for Venue and, as a safety net, for all other content-types (upgrade-step 8000).
+  [cekk]
+
+- Plone 6.1/6.2 compatibility: replace getFolderContents skin script (removed in Plone 6.2)
+  with a catalog query; add Plone 6.1 and 6.2 test environments.
+  [mamico, cekk]
 
 
 6.3.18 (2026-10-01)

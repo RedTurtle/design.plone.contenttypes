@@ -2,6 +2,7 @@
 from collective.taxonomy import PATH_SEPARATOR
 from collective.taxonomy.interfaces import ITaxonomy
 from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
+from design.plone.contenttypes.utils import get_folder_contents
 from plone import api
 from plone.dexterity.interfaces import IDexterityContainer
 from plone.dexterity.interfaces import IDexterityContent
@@ -63,5 +64,5 @@ class SerializeFolderToJson(BaseFolderSerializer, MetaTypeSerializer):
             # siamo in un sotto-elemento di quello richiesto dalla query.
             #  ritorniamo il numero di elementi totale, senza doverli ritornare
             # effettivamente.
-            result["items_total"] = self.context.getFolderContents().actual_result_count
+            result["items_total"] = get_folder_contents(self.context).actual_result_count
         return result
