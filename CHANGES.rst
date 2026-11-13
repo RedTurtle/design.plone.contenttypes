@@ -4,7 +4,8 @@ Changelog
 6.3.19 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Convert old-style behavior names to short names for Venue and, as a safety net, for all other content-types (upgrade-step 8000).
+  [cekk]
 
 
 6.3.18 (2026-10-01)

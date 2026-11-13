@@ -5,7 +5,9 @@ from plone import api
 
 def to_8000(context):
     """
-    convert old-style behavior names
+    Convert old-style behavior names, keeping the original order.
+    Iterate over all portal_types as a safety net: each product should fix its
+    own types, but this catches any type we missed.
     """
     mapping = {
         "plone.app.content.interfaces.INameFromTitle": "plone.namefromtitle",
@@ -20,17 +22,15 @@ def to_8000(context):
     }
 
     portal_types = api.portal.get_tool(name="portal_types")
-    for type_id, portal_type in portal_types.items():
-        behaviors = getattr(portal_type, "behaviors", ())
-        if not behaviors:
-            continue
-        behaviors = list(behaviors)
-        for old_behavior, new_behavior in mapping.items():
-            if old_behavior in behaviors:
-                behaviors.remove(old_behavior)
-                if new_behavior not in behaviors:
-                    behaviors.append(new_behavior)
-                    logger.info(
-                        f"[{type_id}] Replaced behavior {old_behavior} => {new_behavior}"
-                    )
-        portal_type.behaviors = tuple(behaviors)
+    for type_id, fti in portal_types.objectItems():
+        old_behaviors = tuple(getattr(fti, "behaviors", ()))
+        behaviors = []
+        for behavior in old_behaviors:
+            new_behavior = mapping.get(behavior, behavior)
+            if new_behavior != behavior:
+                logger.info(f"[{type_id}] Replaced behavior {behavior} => {new_behavior}")
+            if new_behavior not in behaviors:
+                behaviors.append(new_behavior)
+        if tuple(behaviors) != old_behaviors:
+            # _updateProperty also notifies the FTI modification (schema cache)
+            fti._updateProperty("behaviors", tuple(behaviors))
