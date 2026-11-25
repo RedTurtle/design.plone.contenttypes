@@ -38,8 +38,6 @@ def to_7300(context):
             obj = aq_base(brain.getObject())
             for fieldname, _type in fields.items():
                 value = getattr(obj, fieldname, None)
-                # if value:
-                #     import pdb; pdb.set_trace()
                 if value and isinstance(value, mapping_types[_type][0]):
                     logger.info("Updated %s for %s", fieldname, brain.getPath())
                     setattr(
