@@ -16,6 +16,9 @@ Changelog
   was no more hidden. Make tests independent from the Plone version.
   [mamico]
 
+- Add Plone 6.1, 6.2 and Python 3.12, 3.13 classifiers.
+  [mamico]
+
 
 6.3.18 (2026-10-01)
 -------------------
