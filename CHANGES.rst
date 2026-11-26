@@ -1,8 +1,8 @@
 Changelog
 =========
 
+6.4.0 (unreleased)
 ------------------
--------------------
 
 - Convert old-style behavior names to short names for Venue and, as a safety net, for all other content-types (upgrade-step 8000).
   [cekk]
