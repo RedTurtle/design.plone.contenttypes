@@ -9,5 +9,7 @@ updates:
     schedule:
       # Check for updates to GitHub Actions every week
       interval: "weekly"
+    # Disable version-update PRs: plone/meta references are bumped by hand
+    open-pull-requests-limit: 0
     cooldown:
       default-days: 7
