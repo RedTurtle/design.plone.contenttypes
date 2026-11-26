@@ -3,6 +3,10 @@
 from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
 )
+from design.plone.contenttypes.tests.utils import fieldsets_ids
+from design.plone.contenttypes.tests.utils import get_fieldset_fields
+from design.plone.contenttypes.tests.utils import PLONE_61
+from design.plone.contenttypes.tests.utils import PLONE_VOLTO_5
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
@@ -32,49 +36,53 @@ class TestDocumentSchema(unittest.TestCase):
 
     def test_behaviors_enabled_for_document(self):
         portal_types = api.portal.get_tool(name="portal_types")
-        self.assertEqual(
-            portal_types["Document"].behaviors,
-            (
-                "plone.namefromtitle",
-                "plone.allowdiscussion",
-                "plone.excludefromnavigation",
-                "plone.shortname",
-                "plone.dublincore",
-                "plone.relateditems",
-                "plone.locking",
-                "volto.blocks",
-                "plone.versioning",
-                "design.plone.contenttypes.behavior.info_testata",
-                "design.plone.contenttypes.behavior.argomenti_document",
-                "plone.translatable",
-                "design.plone.contenttypes.behavior.show_modified",
-                "kitconcept.seo",
-                "plone.constraintypes",
-                "design.plone.contenttypes.behavior.exclude_from_search",
-                "plone.leadimage",
-                "volto.preview_image",
-            ),
-        )
+        expected = [
+            "plone.namefromtitle",
+            "plone.allowdiscussion",
+            "plone.excludefromnavigation",
+            "plone.shortname",
+            "plone.dublincore",
+            "plone.relateditems",
+            "plone.locking",
+            "volto.blocks",
+            "plone.versioning",
+            "design.plone.contenttypes.behavior.info_testata",
+            "design.plone.contenttypes.behavior.argomenti_document",
+            "plone.translatable",
+            "design.plone.contenttypes.behavior.show_modified",
+            "kitconcept.seo",
+            "plone.constraintypes",
+            "design.plone.contenttypes.behavior.exclude_from_search",
+            "plone.leadimage",
+            "volto.preview_image",
+        ]
+        if PLONE_61:
+            expected.remove("plone.allowdiscussion")
+        if PLONE_VOLTO_5:
+            idx = expected.index("volto.blocks")
+            expected[idx:idx] = ["volto.preview_image_link", "volto.navtitle"]
+        self.assertEqual(portal_types["Document"].behaviors, tuple(expected))
 
     def test_document_fieldsets(self):
         """
         Get the list from restapi
         """
         resp = self.api_session.get("@types/Document").json()
-        self.assertEqual(len(resp["fieldsets"]), 9)
         self.assertEqual(
             [x.get("id") for x in resp["fieldsets"]],
-            [
-                "default",
-                "testata",
-                "settings",
-                "correlati",
-                "categorization",
-                "dates",
-                "ownership",
-                "layout",
-                "seo",
-            ],
+            fieldsets_ids(
+                [
+                    "default",
+                    "testata",
+                    "settings",
+                    "correlati",
+                    "categorization",
+                    "dates",
+                    "ownership",
+                    "layout",
+                    "seo",
+                ]
+            ),
         )
 
     def test_document_required_fields(self):
@@ -90,7 +98,7 @@ class TestDocumentSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Document").json()
         self.assertEqual(
-            resp["fieldsets"][0]["fields"],
+            get_fieldset_fields(resp, "default"),
             [
                 "title",
                 "description",
@@ -103,7 +111,7 @@ class TestDocumentSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Document").json()
         self.assertEqual(
-            resp["fieldsets"][1]["fields"],
+            get_fieldset_fields(resp, "testata"),
             [
                 "image",
                 "image_caption",
@@ -116,23 +124,40 @@ class TestDocumentSchema(unittest.TestCase):
             ],
         )
 
+    def test_document_preview_image_only_in_testata_fieldset(self):
+        """
+        preview_image is moved in "testata" and preview_caption is hidden:
+        with plone.volto 5+ they are not in "default" but in "preview_image".
+        """
+        resp = self.api_session.get("@types/Document").json()
+        fields = [x for fieldset in resp["fieldsets"] for x in fieldset["fields"]]
+        self.assertEqual(fields.count("preview_image"), 1)
+        self.assertNotIn("preview_caption", fields)
+        if PLONE_VOLTO_5:
+            self.assertEqual(
+                get_fieldset_fields(resp, "preview_image"),
+                ["preview_image_link", "preview_caption_link"],
+            )
+
     def test_document_fields_settings_fieldset(self):
         """
         Get the list from restapi
         """
         resp = self.api_session.get("@types/Document").json()
-        self.assertEqual(
-            resp["fieldsets"][2]["fields"],
-            [
-                "allow_discussion",
-                "exclude_from_nav",
-                "id",
-                "versioning_enabled",
-                "show_modified",
-                "exclude_from_search",
-                "changeNote",
-            ],
-        )
+        expected = [
+            "allow_discussion",
+            "exclude_from_nav",
+            "id",
+            "versioning_enabled",
+            "show_modified",
+            "exclude_from_search",
+            "changeNote",
+        ]
+        if PLONE_61:
+            expected.remove("allow_discussion")
+        if PLONE_VOLTO_5:
+            expected.insert(expected.index("id") + 1, "nav_title")
+        self.assertEqual(get_fieldset_fields(resp, "settings"), expected)
 
     def test_document_fields_correlati_fieldset(self):
         """
@@ -140,7 +165,7 @@ class TestDocumentSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Document").json()
         self.assertEqual(
-            resp["fieldsets"][3]["fields"],
+            get_fieldset_fields(resp, "correlati"),
             ["correlato_in_evidenza"],
         )
 
@@ -150,7 +175,8 @@ class TestDocumentSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Document").json()
         self.assertEqual(
-            resp["fieldsets"][4]["fields"], ["subjects", "language", "relatedItems"]
+            get_fieldset_fields(resp, "categorization"),
+            ["subjects", "language", "relatedItems"],
         )
 
     def test_document_fields_dates_fieldset(self):
@@ -158,7 +184,7 @@ class TestDocumentSchema(unittest.TestCase):
         Get the list from restapi
         """
         resp = self.api_session.get("@types/Document").json()
-        self.assertEqual(resp["fieldsets"][5]["fields"], ["effective", "expires"])
+        self.assertEqual(get_fieldset_fields(resp, "dates"), ["effective", "expires"])
 
     def test_document_fields_ownership_fieldset(self):
         """
@@ -166,7 +192,8 @@ class TestDocumentSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Document").json()
         self.assertEqual(
-            resp["fieldsets"][6]["fields"], ["creators", "contributors", "rights"]
+            get_fieldset_fields(resp, "ownership"),
+            ["creators", "contributors", "rights"],
         )
 
     def test_document_fields_layout_fieldset(self):
@@ -174,7 +201,9 @@ class TestDocumentSchema(unittest.TestCase):
         Get the list from restapi
         """
         resp = self.api_session.get("@types/Document").json()
-        self.assertEqual(resp["fieldsets"][7]["fields"], ["blocks", "blocks_layout"])
+        self.assertEqual(
+            get_fieldset_fields(resp, "layout"), ["blocks", "blocks_layout"]
+        )
 
     def test_document_fields_seo_fieldset(self):
         """
@@ -182,7 +211,7 @@ class TestDocumentSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Document").json()
         self.assertEqual(
-            resp["fieldsets"][8]["fields"],
+            get_fieldset_fields(resp, "seo"),
             [
                 "seo_title",
                 "seo_description",

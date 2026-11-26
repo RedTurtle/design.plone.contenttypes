@@ -3,6 +3,9 @@ from DateTime import DateTime
 from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
 )
+from design.plone.contenttypes.tests.utils import default_fieldset_fields
+from design.plone.contenttypes.tests.utils import fieldsets_ids
+from design.plone.contenttypes.tests.utils import get_fieldset_fields
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import SITE_OWNER_NAME
@@ -44,8 +47,8 @@ class TestLuogoSchema(unittest.TestCase):
         self.assertEqual(
             portal_types["Venue"].behaviors,
             (
-                "plone.app.content.interfaces.INameFromTitle",
-                "plone.app.dexterity.behaviors.id.IShortName",
+                "plone.namefromtitle",
+                "plone.shortname",
                 "plone.app.dexterity.behaviors.metadata.IBasic",
                 "plone.app.dexterity.behaviors.metadata.ICategorization",
                 "plone.excludefromnavigation",
@@ -76,22 +79,23 @@ class TestLuogoSchema(unittest.TestCase):
         Get the list from restapi
         """
         resp = self.api_session.get("@types/Venue").json()
-        self.assertEqual(len(resp["fieldsets"]), 11)
         self.assertEqual(
             [x.get("id") for x in resp["fieldsets"]],
-            [
-                "default",
-                "descrizione",
-                "accesso",
-                "dove",
-                "orari",
-                "contatti",
-                "informazioni",
-                "settings",
-                "correlati",
-                "categorization",
-                "seo",
-            ],
+            fieldsets_ids(
+                [
+                    "default",
+                    "descrizione",
+                    "accesso",
+                    "dove",
+                    "orari",
+                    "contatti",
+                    "informazioni",
+                    "settings",
+                    "correlati",
+                    "categorization",
+                    "seo",
+                ]
+            ),
         )
 
     def test_luogo_required_fields(self):
@@ -118,19 +122,21 @@ class TestLuogoSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Venue").json()
         self.assertEqual(
-            resp["fieldsets"][0]["fields"],
-            [
-                "title",
-                "description",
-                "image",
-                "image_caption",
-                "preview_image",
-                "preview_caption",
-                "nome_alternativo",
-                "tassonomia_argomenti",
-                "luoghi_correlati",
-                "tipologia_luogo",
-            ],
+            get_fieldset_fields(resp, "default"),
+            default_fieldset_fields(
+                [
+                    "title",
+                    "description",
+                    "image",
+                    "image_caption",
+                    "preview_image",
+                    "preview_caption",
+                    "nome_alternativo",
+                    "tassonomia_argomenti",
+                    "luoghi_correlati",
+                    "tipologia_luogo",
+                ]
+            ),
         )
 
     def test_luogo_fields_descrizione_fieldset(self):
@@ -139,7 +145,7 @@ class TestLuogoSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Venue").json()
         self.assertEqual(
-            resp["fieldsets"][1]["fields"],
+            get_fieldset_fields(resp, "descrizione"),
             ["descrizione_completa", "elementi_di_interesse"],
         )
 
@@ -149,7 +155,7 @@ class TestLuogoSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Venue").json()
         self.assertEqual(
-            resp["fieldsets"][2]["fields"],
+            get_fieldset_fields(resp, "accesso"),
             ["modalita_accesso"],
         )
 
@@ -159,7 +165,7 @@ class TestLuogoSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Venue").json()
         self.assertEqual(
-            resp["fieldsets"][3]["fields"],
+            get_fieldset_fields(resp, "dove"),
             [
                 "street",
                 "zip_code",
@@ -178,7 +184,7 @@ class TestLuogoSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Venue").json()
         self.assertEqual(
-            resp["fieldsets"][4]["fields"],
+            get_fieldset_fields(resp, "orari"),
             ["orario_pubblico"],
         )
 
@@ -188,7 +194,7 @@ class TestLuogoSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Venue").json()
         self.assertEqual(
-            resp["fieldsets"][5]["fields"],
+            get_fieldset_fields(resp, "contatti"),
             [
                 "contact_info",
                 "struttura_responsabile_correlati",
@@ -202,7 +208,7 @@ class TestLuogoSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Venue").json()
         self.assertEqual(
-            resp["fieldsets"][6]["fields"],
+            get_fieldset_fields(resp, "informazioni"),
             [
                 "ulteriori_informazioni",
             ],
@@ -214,7 +220,7 @@ class TestLuogoSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Venue").json()
         self.assertEqual(
-            resp["fieldsets"][7]["fields"],
+            get_fieldset_fields(resp, "settings"),
             [
                 "id",
                 "exclude_from_nav",
@@ -229,7 +235,7 @@ class TestLuogoSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Venue").json()
         self.assertEqual(
-            resp["fieldsets"][8]["fields"],
+            get_fieldset_fields(resp, "correlati"),
             ["correlato_in_evidenza"],
         )
 
@@ -239,7 +245,7 @@ class TestLuogoSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Venue").json()
         self.assertEqual(
-            resp["fieldsets"][9]["fields"],
+            get_fieldset_fields(resp, "categorization"),
             # ["subjects", "language", "identificativo_mibac"] BBB dovrebbe essere così
             # ma nei test esce così perché non viene vista la patch di SchemaTweaks
             ["subjects", "language", "relatedItems", "identificativo_mibac"],
@@ -251,7 +257,7 @@ class TestLuogoSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Venue").json()
         self.assertEqual(
-            resp["fieldsets"][10]["fields"],
+            get_fieldset_fields(resp, "seo"),
             [
                 "seo_title",
                 "seo_description",

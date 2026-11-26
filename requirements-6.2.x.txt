@@ -1,0 +1,2 @@
+# Same requirements as io-Comune backend (Plone 6.2 line)
+-r https://raw.githubusercontent.com/RedTurtle/iocomune-backend/main/requirements62.txt

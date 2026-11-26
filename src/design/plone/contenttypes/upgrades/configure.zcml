@@ -976,4 +976,11 @@
       destination="7321"
       handler=".to_730x.to_7321"
       />
+  <genericsetup:upgradeStep
+      title="Adjust content-type behavior names"
+      profile="design.plone.contenttypes:default"
+      source="7321"
+      destination="8000"
+      handler=".to_8000.to_8000"
+      />
 </configure>

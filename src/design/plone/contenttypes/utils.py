@@ -75,3 +75,15 @@ def text_in_block(blocks):
     else:
         blocks_text = get_blocks_text(fakeObj)
         return text_strip(blocks_text)
+
+
+def get_folder_contents(context):
+    """
+    Replacement for the getFolderContents skin script, removed in Plone 6.2.
+    Returns catalog brains of the direct children of context, in folder order.
+    """
+    catalog = api.portal.get_tool(name="portal_catalog")
+    return catalog(
+        path={"query": "/".join(context.getPhysicalPath()), "depth": 1},
+        sort_on="getObjPositionInParent",
+    )

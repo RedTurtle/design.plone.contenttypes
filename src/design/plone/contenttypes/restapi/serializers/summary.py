@@ -8,6 +8,7 @@ from design.plone.contenttypes.interfaces.incarico import IIncarico
 from design.plone.contenttypes.interfaces.persona import IPersona
 from design.plone.contenttypes.interfaces.pratica import IPratica
 from design.plone.contenttypes.interfaces.punto_di_contatto import IPuntoDiContatto
+from design.plone.contenttypes.utils import get_folder_contents
 from plone import api
 from plone.app.contenttypes.interfaces import IEvent
 from plone.app.contenttypes.interfaces import INewsItem
@@ -358,7 +359,7 @@ class IncaricoDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
             compensi_folder = getattr(self.context, "compensi-file")
             res["compensi_file"] = []
             if api.user.has_permission("View", obj=compensi_folder):
-                for brain in getattr(self.context, "compensi-file").getFolderContents():
+                for brain in get_folder_contents(compensi_folder):
                     res["compensi_file"].append(
                         getMultiAdapter(
                             (brain, self.request), ISerializeToJsonSummary
@@ -369,7 +370,7 @@ class IncaricoDefaultJSONSummarySerializer(DefaultJSONSummarySerializer):
             importi_folder = getattr(self.context, "importi-di-viaggio-e-o-servizi")
             res["importi_di_viaggio_e_o_servizi"] = []
             if api.user.has_permission("View", obj=importi_folder):
-                for brain in importi_folder.getFolderContents():
+                for brain in get_folder_contents(importi_folder):
                     res["importi_di_viaggio_e_o_servizi"].append(
                         getMultiAdapter(
                             (brain, self.request), ISerializeToJsonSummary

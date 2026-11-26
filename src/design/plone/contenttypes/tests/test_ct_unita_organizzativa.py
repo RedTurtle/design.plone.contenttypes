@@ -5,6 +5,9 @@
 from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
 )
+from design.plone.contenttypes.tests.utils import default_fieldset_fields
+from design.plone.contenttypes.tests.utils import fieldsets_ids
+from design.plone.contenttypes.tests.utils import get_fieldset_fields
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import SITE_OWNER_NAME
@@ -78,23 +81,24 @@ class TestUOSchema(unittest.TestCase):
         Get the list from restapi
         """
         resp = self.api_session.get("@types/UnitaOrganizzativa").json()
-        self.assertEqual(len(resp["fieldsets"]), 12)
         self.assertEqual(
             [x.get("id") for x in resp["fieldsets"]],
-            [
-                "default",
-                "cosa_fa",
-                "struttura",
-                "persone",
-                "contatti",
-                "correlati",
-                "categorization",
-                "informazioni",
-                "settings",
-                "ownership",
-                "dates",
-                "seo",
-            ],
+            fieldsets_ids(
+                [
+                    "default",
+                    "cosa_fa",
+                    "struttura",
+                    "persone",
+                    "contatti",
+                    "correlati",
+                    "categorization",
+                    "informazioni",
+                    "settings",
+                    "ownership",
+                    "dates",
+                    "seo",
+                ]
+            ),
         )
 
     def test_uo_required_fields(self):
@@ -119,16 +123,18 @@ class TestUOSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/UnitaOrganizzativa").json()
         self.assertEqual(
-            resp["fieldsets"][0]["fields"],
-            [
-                "title",
-                "description",
-                "image",
-                "image_caption",
-                "preview_image",
-                "preview_caption",
-                "tassonomia_argomenti",
-            ],
+            get_fieldset_fields(resp, "default"),
+            default_fieldset_fields(
+                [
+                    "title",
+                    "description",
+                    "image",
+                    "image_caption",
+                    "preview_image",
+                    "preview_caption",
+                    "tassonomia_argomenti",
+                ]
+            ),
         )
 
     def test_uo_fields_cosa_fa_fieldset(self):
@@ -136,7 +142,7 @@ class TestUOSchema(unittest.TestCase):
         Get the list from restapi
         """
         resp = self.api_session.get("@types/UnitaOrganizzativa").json()
-        self.assertEqual(resp["fieldsets"][1]["fields"], ["competenze"])
+        self.assertEqual(get_fieldset_fields(resp, "cosa_fa"), ["competenze"])
 
     def test_uo_fields_struttura_fieldset(self):
         """
@@ -144,7 +150,7 @@ class TestUOSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/UnitaOrganizzativa").json()
         self.assertEqual(
-            resp["fieldsets"][2]["fields"],
+            get_fieldset_fields(resp, "struttura"),
             [
                 "legami_con_altre_strutture",
                 "responsabile",
@@ -159,7 +165,7 @@ class TestUOSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/UnitaOrganizzativa").json()
         self.assertEqual(
-            resp["fieldsets"][3]["fields"],
+            get_fieldset_fields(resp, "persone"),
             ["persone_struttura"],
         )
 
@@ -169,7 +175,7 @@ class TestUOSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/UnitaOrganizzativa").json()
         self.assertEqual(
-            resp["fieldsets"][4]["fields"],
+            get_fieldset_fields(resp, "contatti"),
             ["contact_info", "sede", "sedi_secondarie", "orario_pubblico"],
         )
 
@@ -179,7 +185,7 @@ class TestUOSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/UnitaOrganizzativa").json()
         self.assertEqual(
-            resp["fieldsets"][5]["fields"],
+            get_fieldset_fields(resp, "correlati"),
             # ["documenti_pubblici", "correlato_in_evidenza"], # BBB dovrebbe essere così
             # ma viene fuori così nei test perché non viene vista la patch SchemaTweaks
             ["correlato_in_evidenza"],
@@ -191,7 +197,7 @@ class TestUOSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/UnitaOrganizzativa").json()
         self.assertEqual(
-            resp["fieldsets"][6]["fields"],
+            get_fieldset_fields(resp, "categorization"),
             # ["subjects", "language"] BBB dovrebbe essere così
             # ma nei test esce così perché non viene vista la patch di SchemaTweaks
             ["subjects", "language", "relatedItems", "documenti_pubblici"],
@@ -202,7 +208,9 @@ class TestUOSchema(unittest.TestCase):
         Get the list from restapi
         """
         resp = self.api_session.get("@types/UnitaOrganizzativa").json()
-        self.assertEqual(resp["fieldsets"][7]["fields"], ["ulteriori_informazioni"])
+        self.assertEqual(
+            get_fieldset_fields(resp, "informazioni"), ["ulteriori_informazioni"]
+        )
 
     def test_uo_fields_settings_fieldset(self):
         """
@@ -210,7 +218,7 @@ class TestUOSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/UnitaOrganizzativa").json()
         self.assertEqual(
-            resp["fieldsets"][8]["fields"],
+            get_fieldset_fields(resp, "settings"),
             [
                 "allow_discussion",
                 "exclude_from_nav",
@@ -226,7 +234,8 @@ class TestUOSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/UnitaOrganizzativa").json()
         self.assertEqual(
-            resp["fieldsets"][9]["fields"], ["creators", "contributors", "rights"]
+            get_fieldset_fields(resp, "ownership"),
+            ["creators", "contributors", "rights"],
         )
 
     def test_uo_fields_dates_fieldset(self):
@@ -234,7 +243,7 @@ class TestUOSchema(unittest.TestCase):
         Get the list from restapi
         """
         resp = self.api_session.get("@types/UnitaOrganizzativa").json()
-        self.assertEqual(resp["fieldsets"][10]["fields"], ["effective", "expires"])
+        self.assertEqual(get_fieldset_fields(resp, "dates"), ["effective", "expires"])
 
     def test_uo_fields_seo_fieldset(self):
         """
@@ -242,7 +251,7 @@ class TestUOSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/UnitaOrganizzativa").json()
         self.assertEqual(
-            resp["fieldsets"][11]["fields"],
+            get_fieldset_fields(resp, "seo"),
             [
                 "seo_title",
                 "seo_description",

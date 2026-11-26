@@ -2,6 +2,7 @@
 from design.plone.contenttypes.interfaces.cartella_modulistica import (
     ICartellaModulistica,
 )
+from design.plone.contenttypes.utils import get_folder_contents
 from plone.dexterity.utils import iterSchemata
 from plone.restapi.interfaces import IExpandableElement
 from plone.restapi.interfaces import IFieldSerializer
@@ -41,7 +42,7 @@ class ModulisticaItems(object):
         if context is None:
             context = self.context
         res = []
-        for brain in context.getFolderContents():
+        for brain in get_folder_contents(context):
             if brain.portal_type == "Document" and brain.getId == "multimedia":
                 continue
             child = brain.getObject()

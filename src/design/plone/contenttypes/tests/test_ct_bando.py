@@ -3,6 +3,11 @@ from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_INTEGRATION_TESTING,
     DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
 )
+from design.plone.contenttypes.tests.utils import default_fieldset_fields
+from design.plone.contenttypes.tests.utils import fieldsets_ids
+from design.plone.contenttypes.tests.utils import get_fieldset_fields
+from design.plone.contenttypes.tests.utils import PLONE_61
+from design.plone.contenttypes.tests.utils import PLONE_62
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
@@ -61,18 +66,20 @@ class TestBandoSchema(unittest.TestCase):
         Get the list from restapi
         """
         resp = self.api_session.get("@types/Bando").json()
-        self.assertEqual(len(resp["fieldsets"]), 7)
         self.assertEqual(
             [x.get("id") for x in resp["fieldsets"]],
-            [
-                "default",
-                "correlati",
-                "settings",
-                "categorization",
-                "dates",
-                "ownership",
-                "seo",
-            ],
+            fieldsets_ids(
+                [
+                    "default",
+                    "correlati",
+                    "settings",
+                    "categorization",
+                    "dates",
+                    "ownership",
+                    "seo",
+                ],
+                preview_before=None,
+            ),
         )
 
     def test_bando_required_fields(self):
@@ -88,24 +95,26 @@ class TestBandoSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Bando").json()
         self.assertEqual(
-            resp["fieldsets"][0]["fields"],
-            [
-                "title",
-                "description",
-                "cig",
-                "text",
-                "tipologia_bando",
-                "destinatari",
-                "ente_bando",
-                "apertura_bando",
-                "scadenza_domande_bando",
-                "scadenza_bando",
-                "chiusura_procedimento_bando",
-                "riferimenti_bando",
-                "update_note",
-                "preview_image",
-                "preview_caption",
-            ],
+            get_fieldset_fields(resp, "default"),
+            default_fieldset_fields(
+                [
+                    "title",
+                    "description",
+                    "cig",
+                    "text",
+                    "tipologia_bando",
+                    "destinatari",
+                    "ente_bando",
+                    "apertura_bando",
+                    "scadenza_domande_bando",
+                    "scadenza_bando",
+                    "chiusura_procedimento_bando",
+                    "riferimenti_bando",
+                    "update_note",
+                    "preview_image",
+                    "preview_caption",
+                ]
+            ),
         )
 
     def test_bando_fields_correlati_fieldset(self):
@@ -114,7 +123,7 @@ class TestBandoSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Bando").json()
         self.assertEqual(
-            resp["fieldsets"][1]["fields"],
+            get_fieldset_fields(resp, "correlati"),
             [
                 "area_responsabile",
                 "ufficio_responsabile",
@@ -128,17 +137,20 @@ class TestBandoSchema(unittest.TestCase):
         Get the list from restapi
         """
         resp = self.api_session.get("@types/Bando").json()
-        self.assertEqual(
-            resp["fieldsets"][2]["fields"],
-            [
-                "allow_discussion",
-                "exclude_from_nav",
-                "id",
-                "versioning_enabled",
-                "table_of_contents",
-                "changeNote",
-            ],
-        )
+        expected = [
+            "allow_discussion",
+            "exclude_from_nav",
+            "id",
+            "versioning_enabled",
+            "table_of_contents",
+            "changeNote",
+        ]
+        if PLONE_61 and not PLONE_62:
+            # Bando (redturtle.bandi) uses the old behavior name
+            # plone.app.dexterity.behaviors.discussion.IAllowDiscussion, whose
+            # BBB alias is broken in plone.app.dexterity 4.x (Plone 6.1).
+            expected.remove("allow_discussion")
+        self.assertEqual(get_fieldset_fields(resp, "settings"), expected)
 
     def test_bando_fields_categorization_fieldset(self):
         """
@@ -146,7 +158,7 @@ class TestBandoSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Bando").json()
         self.assertEqual(
-            resp["fieldsets"][3]["fields"],
+            get_fieldset_fields(resp, "categorization"),
             ["subjects", "language", "relatedItems"],
         )
 
@@ -155,7 +167,7 @@ class TestBandoSchema(unittest.TestCase):
         Get the list from restapi
         """
         resp = self.api_session.get("@types/Bando").json()
-        self.assertEqual(resp["fieldsets"][4]["fields"], ["effective", "expires"])
+        self.assertEqual(get_fieldset_fields(resp, "dates"), ["effective", "expires"])
 
     def test_bando_fields_ownership_fieldset(self):
         """
@@ -163,7 +175,8 @@ class TestBandoSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Bando").json()
         self.assertEqual(
-            resp["fieldsets"][5]["fields"], ["creators", "contributors", "rights"]
+            get_fieldset_fields(resp, "ownership"),
+            ["creators", "contributors", "rights"],
         )
 
     def test_bando_fields_seo_fieldset(self):
@@ -172,7 +185,7 @@ class TestBandoSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Bando").json()
         self.assertEqual(
-            resp["fieldsets"][6]["fields"],
+            get_fieldset_fields(resp, "seo"),
             [
                 "seo_title",
                 "seo_description",

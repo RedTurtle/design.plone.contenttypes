@@ -3,6 +3,11 @@ from design.plone.contenttypes.interfaces import IDesignPloneContentType
 from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
 )
+from design.plone.contenttypes.tests.utils import default_fieldset_fields
+from design.plone.contenttypes.tests.utils import fieldsets_ids
+from design.plone.contenttypes.tests.utils import get_fieldset_fields
+from design.plone.contenttypes.tests.utils import PLONE_61
+from design.plone.contenttypes.tests.utils import PLONE_VOLTO_5
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import SITE_OWNER_NAME
@@ -36,29 +41,31 @@ class TestNewsSchema(unittest.TestCase):
 
     def test_behaviors_enabled_for_news(self):
         portal_types = api.portal.get_tool(name="portal_types")
-
-        self.assertEqual(
-            portal_types["News Item"].behaviors,
-            (
-                "plone.dublincore",
-                "plone.namefromtitle",
-                "plone.allowdiscussion",
-                "plone.shortname",
-                "plone.excludefromnavigation",
-                "plone.relateditems",
-                "plone.leadimage",
-                "plone.versioning",
-                "plone.locking",
-                "volto.preview_image",
-                "design.plone.contenttypes.behavior.news",
-                "design.plone.contenttypes.behavior.argomenti_news",
-                "plone.constraintypes",
-                "plone.textindexer",
-                "plone.translatable",
-                "kitconcept.seo",
-                "collective.taxonomy.generated.tipologia_notizia",
-            ),
-        )
+        expected = [
+            "plone.dublincore",
+            "plone.namefromtitle",
+            "plone.allowdiscussion",
+            "plone.shortname",
+            "plone.excludefromnavigation",
+            "plone.relateditems",
+            "plone.leadimage",
+            "plone.versioning",
+            "plone.locking",
+            "volto.preview_image",
+            "design.plone.contenttypes.behavior.news",
+            "design.plone.contenttypes.behavior.argomenti_news",
+            "plone.constraintypes",
+            "plone.textindexer",
+            "plone.translatable",
+            "kitconcept.seo",
+            "collective.taxonomy.generated.tipologia_notizia",
+        ]
+        if PLONE_61:
+            expected.remove("plone.allowdiscussion")
+        if PLONE_VOLTO_5:
+            idx = expected.index("volto.preview_image")
+            expected[idx:idx] = ["volto.preview_image_link", "volto.navtitle"]
+        self.assertEqual(portal_types["News Item"].behaviors, tuple(expected))
 
     def test_news_item_ct_title(self):
         portal_types = api.portal.get_tool(name="portal_types")
@@ -81,18 +88,19 @@ class TestNewsSchema(unittest.TestCase):
         Get the list from restapi
         """
         resp = self.api_session.get("@types/News%20Item").json()
-        self.assertEqual(len(resp["fieldsets"]), 7)
         self.assertEqual(
             [x.get("id") for x in resp["fieldsets"]],
-            [
-                "default",
-                "dates",
-                "correlati",
-                "categorization",
-                "settings",
-                "ownership",
-                "seo",
-            ],
+            fieldsets_ids(
+                [
+                    "default",
+                    "dates",
+                    "correlati",
+                    "categorization",
+                    "settings",
+                    "ownership",
+                    "seo",
+                ]
+            ),
         )
 
     def test_news_item_required_fields(self):
@@ -117,22 +125,24 @@ class TestNewsSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/News%20Item").json()
         self.assertEqual(
-            resp["fieldsets"][0]["fields"],
-            [
-                "title",
-                "description",
-                "image",
-                "image_caption",
-                "preview_image",
-                "preview_caption",
-                "numero_progressivo_cs",
-                "a_cura_di",
-                "a_cura_di_persone",
-                "luoghi_correlati",
-                "descrizione_estesa",
-                "tassonomia_argomenti",
-                "tipologia_notizia",
-            ],
+            get_fieldset_fields(resp, "default"),
+            default_fieldset_fields(
+                [
+                    "title",
+                    "description",
+                    "image",
+                    "image_caption",
+                    "preview_image",
+                    "preview_caption",
+                    "numero_progressivo_cs",
+                    "a_cura_di",
+                    "a_cura_di_persone",
+                    "luoghi_correlati",
+                    "descrizione_estesa",
+                    "tassonomia_argomenti",
+                    "tipologia_notizia",
+                ]
+            ),
         )
 
     def test_news_item_fields_dates_fieldset(self):
@@ -140,7 +150,7 @@ class TestNewsSchema(unittest.TestCase):
         Get the list from restapi
         """
         resp = self.api_session.get("@types/News%20Item").json()
-        self.assertEqual(resp["fieldsets"][1]["fields"], ["effective", "expires"])
+        self.assertEqual(get_fieldset_fields(resp, "dates"), ["effective", "expires"])
 
     def test_news_item_fields_correlati_fieldset(self):
         """
@@ -148,7 +158,7 @@ class TestNewsSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/News%20Item").json()
         self.assertEqual(
-            resp["fieldsets"][2]["fields"],
+            get_fieldset_fields(resp, "correlati"),
             ["notizie_correlate", "correlato_in_evidenza"],
         )
 
@@ -158,7 +168,8 @@ class TestNewsSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/News%20Item").json()
         self.assertEqual(
-            resp["fieldsets"][3]["fields"], ["subjects", "language", "relatedItems"]
+            get_fieldset_fields(resp, "categorization"),
+            ["subjects", "language", "relatedItems"],
         )
 
     def test_news_item_fields_settings_fieldset(self):
@@ -166,16 +177,18 @@ class TestNewsSchema(unittest.TestCase):
         Get the list from restapi
         """
         resp = self.api_session.get("@types/News%20Item").json()
-        self.assertEqual(
-            resp["fieldsets"][4]["fields"],
-            [
-                "allow_discussion",
-                "id",
-                "exclude_from_nav",
-                "versioning_enabled",
-                "changeNote",
-            ],
-        )
+        expected = [
+            "allow_discussion",
+            "id",
+            "exclude_from_nav",
+            "versioning_enabled",
+            "changeNote",
+        ]
+        if PLONE_61:
+            expected.remove("allow_discussion")
+        if PLONE_VOLTO_5:
+            expected.insert(expected.index("changeNote"), "nav_title")
+        self.assertEqual(get_fieldset_fields(resp, "settings"), expected)
 
     def test_news_item_fields_ownership_fieldset(self):
         """
@@ -183,7 +196,8 @@ class TestNewsSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/News%20Item").json()
         self.assertEqual(
-            resp["fieldsets"][5]["fields"], ["creators", "contributors", "rights"]
+            get_fieldset_fields(resp, "ownership"),
+            ["creators", "contributors", "rights"],
         )
 
     def test_news_item_fields_seo_fieldset(self):
@@ -192,7 +206,7 @@ class TestNewsSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/News%20Item").json()
         self.assertEqual(
-            resp["fieldsets"][6]["fields"],
+            get_fieldset_fields(resp, "seo"),
             [
                 "seo_title",
                 "seo_description",
