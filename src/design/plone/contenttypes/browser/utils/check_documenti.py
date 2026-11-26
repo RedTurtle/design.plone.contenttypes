@@ -5,10 +5,10 @@ from openpyxl.styles import Font
 from openpyxl.styles import PatternFill
 from openpyxl.utils import get_column_letter
 from plone import api
-from Products.Five import BrowserView
-from zope.globalrequest import getRequest
-from zope.component import getMultiAdapter
 from plone.restapi.interfaces import ISerializeToJsonSummary
+from Products.Five import BrowserView
+from zope.component import getMultiAdapter
+from zope.globalrequest import getRequest
 
 import io
 

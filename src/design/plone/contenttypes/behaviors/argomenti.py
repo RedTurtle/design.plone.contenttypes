@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from design.plone.contenttypes import _
 from design.plone.contenttypes.interfaces.bando import IBandoAgidSchema
 from design.plone.contenttypes.interfaces.documento import IDocumento
@@ -251,7 +250,7 @@ class IArgomentiBando(IArgomentiSchema):
 
 @implementer(IArgomenti)
 @adapter(IDexterityContent)
-class Argomenti(object):
+class Argomenti:
     """"""
 
     def __init__(self, context):
@@ -281,7 +280,7 @@ class ArgomentiDocument(Argomenti):
 
 @implementer(IArgomentiServizio)
 @adapter(IServizio)
-class ArgomentiServizio(object):
+class ArgomentiServizio:
     """"""
 
     def __init__(self, context):
@@ -290,7 +289,7 @@ class ArgomentiServizio(object):
 
 @implementer(IArgomentiNews)
 @adapter(IServizio)
-class ArgomentiNews(object):
+class ArgomentiNews:
     """"""
 
     def __init__(self, context):
@@ -299,7 +298,7 @@ class ArgomentiNews(object):
 
 @implementer(IArgomentiEvento)
 @adapter(IServizio)
-class ArgomentiEvento(object):
+class ArgomentiEvento:
     """"""
 
     def __init__(self, context):
@@ -308,7 +307,7 @@ class ArgomentiEvento(object):
 
 @implementer(IArgomentiLink)
 @adapter(ILink)
-class ArgomentiLink(object):
+class ArgomentiLink:
     """"""
 
     def __init__(self, context):

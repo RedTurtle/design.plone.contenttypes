@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Init and utils."""
 
 from collective.address.behaviors import IAddress

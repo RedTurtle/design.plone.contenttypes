@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from .upgrades import logger
 from plone import api
 

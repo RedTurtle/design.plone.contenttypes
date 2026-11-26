@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from design.plone.contenttypes.interfaces import IDesignPloneContentType
 from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
@@ -315,8 +314,8 @@ class TestNewsApi(unittest.TestCase):
         news = response.json()
 
         self.assertEqual(
-            set([i["id"] for i in news["items"]]),
-            set(["multimedia", "documenti-allegati"]),
+            {i["id"] for i in news["items"]},
+            {"multimedia", "documenti-allegati"},
         )
         self.assertEqual(news["description"], "Test")
         self.assertIn(

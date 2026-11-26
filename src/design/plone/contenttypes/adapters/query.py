@@ -1,10 +1,10 @@
 from design.plone.contenttypes.interfaces import IDesignPloneContenttypesLayer
+from plone import api
 from plone.restapi.interfaces import IZCatalogCompatibleQuery
 from plone.restapi.search.query import ZCatalogCompatibleQueryAdapter as BaseAdapter
 from zope.component import adapter
 from zope.interface import implementer
 from zope.interface import Interface
-from plone import api
 
 
 @implementer(IZCatalogCompatibleQuery)

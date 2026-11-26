@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from design.plone.contenttypes import _
 from design.plone.contenttypes.controlpanels.settings import IDesignPloneSettings
 from plone import api
@@ -39,7 +38,7 @@ class IShowModified(model.Schema):
 
 @implementer(IShowModified)
 @adapter(IDexterityContent)
-class ShowModified(object):
+class ShowModified:
     """ """
 
     def __init__(self, context):

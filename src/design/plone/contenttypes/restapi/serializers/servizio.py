@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from design.plone.contenttypes.interfaces.servizio import IServizio
 from design.plone.contenttypes.restapi.serializers.summary import (
     DefaultJSONSummarySerializer,

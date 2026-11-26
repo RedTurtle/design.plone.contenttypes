@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from collective.taxonomy.interfaces import ITaxonomy
 from design.plone.contenttypes import _
 from plone import api

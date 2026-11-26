@@ -1,55 +1,95 @@
-# See https://pre-commit.com for more information
-# See https://pre-commit.com/hooks.html for more hooks
-
-default_language_version:
-  python: python3.9
-
-default_stages: [commit, push]
+# Generated from:
+# https://github.com/plone/meta/tree/2.x/src/plone/meta/default
+# See the inline comments on how to expand/tweak this configuration file
+ci:
+    autofix_prs: false
+    autoupdate_schedule: monthly
 
 repos:
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.6.0
+-   repo: https://github.com/asottile/pyupgrade
+    rev: v3.21.2
     hooks:
-      - id: trailing-whitespace
-      - id: end-of-file-fixer
-      - id: check-yaml
-  - repo: https://github.com/psf/black
-    rev: 24.4.2
+    -   id: pyupgrade
+        args: [--py311-plus]
+-   repo: https://github.com/pycqa/isort
+    rev: 9.0.0b1
     hooks:
-      - id: black
-#        args: ["--line-length=88", "--check", "--diff", "--force-exclude=migrations", "src/"]
-        args: ["--line-length=88", "--force-exclude=migrations", "src/"]
-        types: [python]
-        entry: black
-  - repo: https://github.com/PyCQA/flake8.git
-    rev: "7.0.0"
+    -   id: isort
+-   repo: https://github.com/psf/black-pre-commit-mirror
+    rev: 26.5.1
     hooks:
-      - id: flake8
-        name: flake8
-        entry: flake8
-        additional_dependencies: ["flake8-django==0.0.4", "pylint-django==2.0.11"]
-        types: [python]
-        args: ["--max-complexity=30", "--max-line-length=88", "--ignore=DJ01,DJ08,W503,ANN101", "--exclude=docs/*", "src/", "setup.py"]
-  - repo: https://github.com/pycqa/isort
-    rev: 5.13.2
+    -   id: black
+-   repo: https://github.com/collective/zpretty
+    rev: 4.0.3
     hooks:
-      - id: isort
-        name: isort (python)
-        args: ["--multi-line=3", "--lbt=1", "--trailing-comma", "--force-grid-wrap=0", "--use-parentheses", "--ensure-newline-before-comments", "--line-length=88"]
-  - repo: local
+    -   id: zpretty
+
+##
+# Add extra configuration options in .meta.toml:
+#  [pre_commit]
+#  zpretty_extra_lines = """
+#  _your own configuration lines_
+#  """
+##
+-   repo: https://github.com/PyCQA/flake8
+    rev: 7.3.0
     hooks:
-      - id: python-check-pdb
-        name: check pdb
-        description: 'PDB check inside code'
-        entry: '^\s?[^#]+\.set_trace\(\)'
-        language: pygrep
-        types: [python]
-  - repo: https://github.com/collective/zpretty
-    rev: 3.1.0
+    -   id: flake8
+
+##
+# Add extra configuration options in .meta.toml:
+#  [pre_commit]
+#  flake8_extra_lines = """
+#  _your own configuration lines_
+#  """
+##
+-   repo: https://github.com/codespell-project/codespell
+    rev: v2.4.3
     hooks:
-      - id: zpretty
-        name: zpretty
-  - repo: https://github.com/regebro/pyroma
-    rev: '4.2'
+    -   id: codespell
+        additional_dependencies:
+          - tomli
+
+##
+# Add extra configuration options in .meta.toml:
+#  [pre_commit]
+#  codespell_extra_lines = """
+#  _your own configuration lines_
+#  """
+##
+-   repo: https://github.com/mgedmin/check-manifest
+    rev: "0.51"
     hooks:
-      - id: pyroma
+    -   id: check-manifest
+-   repo: https://github.com/regebro/pyroma
+    rev: "5.1b1"
+    hooks:
+    -   id: pyroma
+-   repo: https://github.com/mgedmin/check-python-versions
+    rev: "0.24.2"
+    hooks:
+    -   id: check-python-versions
+        args: ['--only', 'setup.py,tox.ini']
+-   repo: https://github.com/collective/i18ndude
+    rev: "6.3.0"
+    hooks:
+    -   id: i18ndude
+        exclude: ^src/design/plone/contenttypes/browser/utils/templates/.*\.pt$
+
+
+##
+# Add extra configuration options in .meta.toml:
+#  [pre_commit]
+#  i18ndude_extra_lines = """
+#  _your own configuration lines_
+#  """
+##
+
+
+##
+# Add extra configuration options in .meta.toml:
+#  [pre_commit]
+#  extra_lines = """
+#  _your own configuration lines_
+#  """
+##

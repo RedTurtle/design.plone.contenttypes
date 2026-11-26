@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Helpers to run the same tests on Plone 6.0, 6.1 and 6.2.
 """

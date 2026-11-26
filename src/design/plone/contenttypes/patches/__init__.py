@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from design.plone.contenttypes.patches.baseserializer import (
     patch_base_folder_serializer,
 )

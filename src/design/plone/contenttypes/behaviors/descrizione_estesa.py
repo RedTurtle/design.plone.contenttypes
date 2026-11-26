@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from collective.volto.blocksfield.field import BlocksField
 from design.plone.contenttypes import _
 from design.plone.contenttypes.interfaces.documento import IDocumento
@@ -76,7 +75,7 @@ class IDescrizioneEstesaDocumento(IDescrizioneEstesaSchema):
 
 @implementer(IDescrizioneEstesa)
 @adapter(IDexterityContent)
-class DescrizioneEstesa(object):
+class DescrizioneEstesa:
     """"""
 
     def __init__(self, context):
@@ -85,7 +84,7 @@ class DescrizioneEstesa(object):
 
 @implementer(IDescrizioneEstesaServizio)
 @adapter(IDexterityContent)
-class DescrizioneEstesaServizio(object):
+class DescrizioneEstesaServizio:
     """"""
 
     def __init__(self, context):
@@ -94,7 +93,7 @@ class DescrizioneEstesaServizio(object):
 
 @implementer(IDescrizioneEstesaDocumento)
 @adapter(IDocumento)
-class DescrizioneEstesaDocumento(object):
+class DescrizioneEstesaDocumento:
     """"""
 
     def __init__(self, context):

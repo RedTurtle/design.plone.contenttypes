@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from plone.app.contenttypes.interfaces import INewsItem
 from plone.indexer.decorator import indexer
 

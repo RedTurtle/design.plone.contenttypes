@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from design.plone.contenttypes.interfaces.modulo import IModulo
 from plone.indexer.decorator import indexer
 

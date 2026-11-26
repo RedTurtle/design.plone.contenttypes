@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from .upgrades import colors
 from .upgrades import logger
 from .upgrades import update_catalog

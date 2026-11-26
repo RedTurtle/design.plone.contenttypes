@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from DateTime import DateTime
 from design.plone.contenttypes.utils import text_in_block
 from openpyxl import Workbook
@@ -8,9 +6,9 @@ from openpyxl.styles import Alignment
 from openpyxl.styles import Font
 from openpyxl.styles import PatternFill
 from openpyxl.utils import get_column_letter
-
 from plone import api
 from Products.Five import BrowserView
+
 import io
 
 FLAG = '<i class="fa-solid fa-check"></i>'

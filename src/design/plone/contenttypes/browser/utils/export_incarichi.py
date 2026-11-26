@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
+from io import StringIO
 from plone import api
 from Products.Five import BrowserView
-from six import StringIO
 
 import csv
 

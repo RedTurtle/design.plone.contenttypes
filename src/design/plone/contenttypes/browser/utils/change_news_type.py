@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from Acquisition import aq_base
 from collective.taxonomy.interfaces import ITaxonomy
 from copy import deepcopy
@@ -42,7 +41,7 @@ class View(BrowserView):
     def substitute_news_type(self):
         # the only way to get all the tipologia_notizia value is to query news
         # objects not the brains. Taxonomy doesn't index values not present in
-        # the taxonomy vocabulary so we have a lot of brain withou tipologia_notizia
+        # the taxonomy vocabulary so we have a lot of brain without tipologia_notizia
         self.brains = api.content.find(portal_type="News Item")
         self.news = [brain.getObject() for brain in self.brains]
 

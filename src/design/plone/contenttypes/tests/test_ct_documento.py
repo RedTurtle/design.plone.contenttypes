@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
 )
@@ -267,7 +265,7 @@ class TestDocumentoApi(unittest.TestCase):
             child = api.content.create(
                 container=self.documento,
                 type="Modulo",
-                title="File {}".format(i),
+                title=f"File {i}",
             )
             filename = os.path.join(os.path.dirname(__file__), "example.pdf")
             child.file = NamedBlobFile(

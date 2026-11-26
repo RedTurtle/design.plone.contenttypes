@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from collective.venue.interfaces import IVenue
 from collective.volto.blocksfield.field import BlocksField
 from design.plone.contenttypes import _
@@ -196,7 +195,7 @@ class IContattiEvent(model.Schema):
 
 @implementer(IContattiEvent)
 @adapter(IContattiEvent)
-class ContattiEvent(object):
+class ContattiEvent:
     """ """
 
     def __init__(self, context):
@@ -205,7 +204,7 @@ class ContattiEvent(object):
 
 @implementer(IContattiPersona)
 @adapter(IPersona)
-class ContattiPersona(object):
+class ContattiPersona:
     """ """
 
     def __init__(self, context):
@@ -214,7 +213,7 @@ class ContattiPersona(object):
 
 @implementer(IContattiServizio)
 @adapter(IServizio)
-class ContattiServizio(object):
+class ContattiServizio:
     """ """
 
     def __init__(self, context):
@@ -223,7 +222,7 @@ class ContattiServizio(object):
 
 @implementer(IContattiUnitaOrganizzativa)
 @adapter(IUnitaOrganizzativa)
-class ContattiUnitaOrganizzativa(object):
+class ContattiUnitaOrganizzativa:
     """ """
 
     def __init__(self, context):
@@ -232,7 +231,7 @@ class ContattiUnitaOrganizzativa(object):
 
 @implementer(IContattiVenue)
 @adapter(IVenue)
-class ContattiVenue(object):
+class ContattiVenue:
     """ """
 
     def __init__(self, context):
