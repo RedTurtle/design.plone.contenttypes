@@ -4,6 +4,11 @@ Changelog
 6.4.0 (unreleased)
 ------------------
 
+- ``@navigation`` and the ``navigation`` expander now extend the redturtle.volto ``Navigation``,
+  so they inherit its limits on ``expand.navigation.depth`` and on the navigation tree size.
+  Requires redturtle.volto >= 5.10.1.
+  [cekk]
+
 - Convert old-style behavior names to short names for Venue and, as a safety net, for all other content-types (upgrade-step 8000).
   [cekk]
 
