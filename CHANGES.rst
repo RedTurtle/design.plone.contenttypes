@@ -19,6 +19,10 @@ Changelog
 - Add Plone 6.1, 6.2 and Python 3.12, 3.13 classifiers.
   [mamico]
 
+- Configure the package with plone.meta 2.11.1. Supported versions are now
+  Plone 6.0, 6.1 and 6.2 on Python 3.11 to 3.14.
+  [mamico]
+
 
 6.3.18 (2026-10-01)
 -------------------
@@ -29,10 +33,6 @@ Changelog
 
 6.3.17 (2026-07-15)
 -------------------
-
-- Configure the package with plone.meta 2.11.1. Supported versions are now
-  Plone 6.0, 6.1 and 6.2 on Python 3.11 to 3.14.
-  [mamico]
 
 - Add a ``_get_extra_event_data`` hook to ``ScadenziarioDayPost`` so that
   downstream packages can add extra fields to ``@scadenziario-day`` event
