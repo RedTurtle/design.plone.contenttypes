@@ -151,13 +151,27 @@ class TypesGet(BaseGet):
     def customize_document_schema(self, result):
         moved = ["image", "image_caption", "preview_image"]
         removed = ["preview_caption"]
+        fieldsets = []
         for fieldset in result.get("fieldsets", []):
             if fieldset.get("id", "") == "testata":
                 fieldset["fields"] = moved + fieldset["fields"]
-            if fieldset.get("id", "") == "default":
-                fieldset["fields"] = [
+            else:
+                # Plone 6.0 has these fields in "default", plone.volto >= 5
+                # (Plone 6.1+) in its own "preview_image" fieldset: remove them
+                # everywhere, to not have them twice in the form.
+                fields = [
                     x for x in fieldset["fields"] if x not in moved and x not in removed
                 ]
+                if (
+                    fieldset["fields"]
+                    and not fields
+                    and fieldset.get("id") != "default"
+                ):
+                    # do not leave an empty fieldset
+                    continue
+                fieldset["fields"] = fields
+            fieldsets.append(fieldset)
+        result["fieldsets"] = fieldsets
         return result
 
     def customize_persona_schema(self, result):

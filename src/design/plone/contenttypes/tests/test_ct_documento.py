@@ -3,6 +3,9 @@
 from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
 )
+from design.plone.contenttypes.tests.utils import default_fieldset_fields
+from design.plone.contenttypes.tests.utils import fieldsets_ids
+from design.plone.contenttypes.tests.utils import get_fieldset_fields
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import SITE_OWNER_NAME
@@ -76,20 +79,21 @@ class TestDocumentoSchema(unittest.TestCase):
         Get the list from restapi
         """
         resp = self.api_session.get("@types/Documento").json()
-        self.assertEqual(len(resp["fieldsets"]), 9)
         self.assertEqual(
             [x.get("id") for x in resp["fieldsets"]],
-            [
-                "default",
-                "descrizione",
-                "informazioni",
-                "settings",
-                "correlati",
-                "categorization",
-                "dates",
-                "ownership",
-                "seo",
-            ],
+            fieldsets_ids(
+                [
+                    "default",
+                    "descrizione",
+                    "informazioni",
+                    "settings",
+                    "correlati",
+                    "categorization",
+                    "dates",
+                    "ownership",
+                    "seo",
+                ]
+            ),
         )
 
     def test_documento_required_fields(self):
@@ -115,25 +119,27 @@ class TestDocumentoSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Documento").json()
         self.assertEqual(
-            resp["fieldsets"][0]["fields"],
-            [
-                "title",
-                "description",
-                "identificativo",
-                "protocollo",
-                "data_protocollo",
-                "formati_disponibili",
-                "dataset",
-                "image",
-                "image_caption",
-                "preview_image",
-                "preview_caption",
-                "tassonomia_argomenti",
-                "person_life_events",
-                "business_events",
-                "tipologia_documenti_albopretorio",
-                "tipologia_documento",
-            ],
+            get_fieldset_fields(resp, "default"),
+            default_fieldset_fields(
+                [
+                    "title",
+                    "description",
+                    "identificativo",
+                    "protocollo",
+                    "data_protocollo",
+                    "formati_disponibili",
+                    "dataset",
+                    "image",
+                    "image_caption",
+                    "preview_image",
+                    "preview_caption",
+                    "tassonomia_argomenti",
+                    "person_life_events",
+                    "business_events",
+                    "tipologia_documenti_albopretorio",
+                    "tipologia_documento",
+                ]
+            ),
         )
 
     def test_documento_fields_descrizione_fieldset(self):
@@ -142,7 +148,7 @@ class TestDocumentoSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Documento").json()
         self.assertEqual(
-            resp["fieldsets"][1]["fields"],
+            get_fieldset_fields(resp, "descrizione"),
             [
                 "ufficio_responsabile",
                 "area_responsabile",
@@ -159,7 +165,7 @@ class TestDocumentoSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Documento").json()
         self.assertEqual(
-            resp["fieldsets"][2]["fields"],
+            get_fieldset_fields(resp, "informazioni"),
             ["riferimenti_normativi", "documenti_allegati", "ulteriori_informazioni"],
         )
 
@@ -169,7 +175,7 @@ class TestDocumentoSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Documento").json()
         self.assertEqual(
-            resp["fieldsets"][3]["fields"],
+            get_fieldset_fields(resp, "settings"),
             [
                 "allow_discussion",
                 "exclude_from_nav",
@@ -185,7 +191,7 @@ class TestDocumentoSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Documento").json()
         self.assertEqual(
-            resp["fieldsets"][4]["fields"],
+            get_fieldset_fields(resp, "correlati"),
             ["correlato_in_evidenza"],
         )
 
@@ -195,7 +201,8 @@ class TestDocumentoSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Documento").json()
         self.assertEqual(
-            resp["fieldsets"][5]["fields"], ["subjects", "language", "relatedItems"]
+            get_fieldset_fields(resp, "categorization"),
+            ["subjects", "language", "relatedItems"],
         )
 
     def test_documento_fields_dates_fieldset(self):
@@ -203,7 +210,7 @@ class TestDocumentoSchema(unittest.TestCase):
         Get the list from restapi
         """
         resp = self.api_session.get("@types/Documento").json()
-        self.assertEqual(resp["fieldsets"][6]["fields"], ["effective", "expires"])
+        self.assertEqual(get_fieldset_fields(resp, "dates"), ["effective", "expires"])
 
     def test_documento_fields_ownership_fieldset(self):
         """
@@ -211,7 +218,8 @@ class TestDocumentoSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Documento").json()
         self.assertEqual(
-            resp["fieldsets"][7]["fields"], ["creators", "contributors", "rights"]
+            get_fieldset_fields(resp, "ownership"),
+            ["creators", "contributors", "rights"],
         )
 
     def test_documento_fields_seo_fieldset(self):
@@ -220,7 +228,7 @@ class TestDocumentoSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Documento").json()
         self.assertEqual(
-            resp["fieldsets"][8]["fields"],
+            get_fieldset_fields(resp, "seo"),
             [
                 "seo_title",
                 "seo_description",

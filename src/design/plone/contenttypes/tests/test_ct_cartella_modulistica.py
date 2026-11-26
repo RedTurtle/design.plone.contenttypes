@@ -3,6 +3,9 @@
 from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
 )
+from design.plone.contenttypes.tests.utils import default_fieldset_fields
+from design.plone.contenttypes.tests.utils import fieldsets_ids
+from design.plone.contenttypes.tests.utils import get_fieldset_fields
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
@@ -65,18 +68,20 @@ class TestCartellaModulisticaSchema(unittest.TestCase):
         Get the list from restapi
         """
         resp = self.api_session.get("@types/CartellaModulistica").json()
-        self.assertEqual(len(resp["fieldsets"]), 7)
         self.assertEqual(
             [x.get("id") for x in resp["fieldsets"]],
-            [
-                "default",
-                "settings",
-                "ownership",
-                "dates",
-                "categorization",
-                "layout",
-                "seo",
-            ],
+            fieldsets_ids(
+                [
+                    "default",
+                    "settings",
+                    "ownership",
+                    "dates",
+                    "categorization",
+                    "layout",
+                    "seo",
+                ],
+                preview_before="layout",
+            ),
         )
 
     def test_cartella_modulistica_required_fields(self):
@@ -92,16 +97,18 @@ class TestCartellaModulisticaSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/CartellaModulistica").json()
         self.assertEqual(
-            resp["fieldsets"][0]["fields"],
-            [
-                "title",
-                "description",
-                "visualize_files",
-                "image",
-                "image_caption",
-                "preview_image",
-                "preview_caption",
-            ],
+            get_fieldset_fields(resp, "default"),
+            default_fieldset_fields(
+                [
+                    "title",
+                    "description",
+                    "visualize_files",
+                    "image",
+                    "image_caption",
+                    "preview_image",
+                    "preview_caption",
+                ]
+            ),
         )
 
     def test_cartella_modulistica_fields_settings_fieldset(self):
@@ -110,7 +117,7 @@ class TestCartellaModulisticaSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/CartellaModulistica").json()
         self.assertEqual(
-            resp["fieldsets"][1]["fields"],
+            get_fieldset_fields(resp, "settings"),
             [
                 "allow_discussion",
                 "exclude_from_nav",
@@ -126,7 +133,8 @@ class TestCartellaModulisticaSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/CartellaModulistica").json()
         self.assertEqual(
-            resp["fieldsets"][2]["fields"], ["creators", "contributors", "rights"]
+            get_fieldset_fields(resp, "ownership"),
+            ["creators", "contributors", "rights"],
         )
 
     def test_cartella_modulistica_fields_dates_fieldset(self):
@@ -134,21 +142,25 @@ class TestCartellaModulisticaSchema(unittest.TestCase):
         Get the list from restapi
         """
         resp = self.api_session.get("@types/CartellaModulistica").json()
-        self.assertEqual(resp["fieldsets"][3]["fields"], ["effective", "expires"])
+        self.assertEqual(get_fieldset_fields(resp, "dates"), ["effective", "expires"])
 
     def test_cartella_modulistica_fields_categorization_fieldset(self):
         """
         Get the list from restapi
         """
         resp = self.api_session.get("@types/CartellaModulistica").json()
-        self.assertEqual(resp["fieldsets"][4]["fields"], ["subjects", "language"])
+        self.assertEqual(
+            get_fieldset_fields(resp, "categorization"), ["subjects", "language"]
+        )
 
     def test_cartella_modulistica_fields_layout_fieldset(self):
         """
         Get the list from restapi
         """
         resp = self.api_session.get("@types/CartellaModulistica").json()
-        self.assertEqual(resp["fieldsets"][5]["fields"], ["blocks", "blocks_layout"])
+        self.assertEqual(
+            get_fieldset_fields(resp, "layout"), ["blocks", "blocks_layout"]
+        )
 
     def test_cartella_modulistica_fields_seo_fieldset(self):
         """
@@ -156,7 +168,7 @@ class TestCartellaModulisticaSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/CartellaModulistica").json()
         self.assertEqual(
-            resp["fieldsets"][6]["fields"],
+            get_fieldset_fields(resp, "seo"),
             [
                 "seo_title",
                 "seo_description",

@@ -11,6 +11,11 @@ Changelog
   with a catalog query; add Plone 6.1 and 6.2 test environments.
   [mamico, cekk]
 
+- Fix ``@types/Document`` with plone.volto 5+ (Plone 6.1+): ``preview_image`` was shown
+  twice (in "testata" and in the new "preview_image" fieldset) and ``preview_caption``
+  was no more hidden. Make tests independent from the Plone version.
+  [mamico]
+
 
 6.3.18 (2026-10-01)
 -------------------

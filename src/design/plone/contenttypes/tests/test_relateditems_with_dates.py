@@ -96,11 +96,12 @@ class VocabulariesControlpanelTest(unittest.TestCase):
         relatedItems = result.get("relatedItems", [])
         self.assertEqual(len(relatedItems), 3)
 
-        # news
-        self.assertNotIn("start", relatedItems[0])
-        self.assertNotIn("end", relatedItems[0])
-        self.assertNotIn("start", relatedItems[1])
-        self.assertNotIn("end", relatedItems[1])
+        # news: plone.volto 5+ (Plone 6.1+) adds start and end to the default
+        # summary metadata fields, so they could be there but empty.
+        self.assertIsNone(relatedItems[0].get("start"))
+        self.assertIsNone(relatedItems[0].get("end"))
+        self.assertIsNone(relatedItems[1].get("start"))
+        self.assertIsNone(relatedItems[1].get("end"))
 
         # event
         self.assertIn("start", relatedItems[2])

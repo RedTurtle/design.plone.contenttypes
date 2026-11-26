@@ -4,6 +4,9 @@
 from design.plone.contenttypes.testing import (
     DESIGN_PLONE_CONTENTTYPES_API_FUNCTIONAL_TESTING,
 )
+from design.plone.contenttypes.tests.utils import default_fieldset_fields
+from design.plone.contenttypes.tests.utils import fieldsets_ids
+from design.plone.contenttypes.tests.utils import get_fieldset_fields
 from plone import api
 from plone.app.linkintegrity.utils import getIncomingLinks
 from plone.app.linkintegrity.utils import getOutgoingLinks
@@ -92,29 +95,30 @@ class TestServizioSchema(unittest.TestCase):
         Get the list from restapi
         """
         resp = self.api_session.get("@types/Servizio").json()
-        self.assertEqual(len(resp["fieldsets"]), 18)
         self.assertEqual(
             [x.get("id") for x in resp["fieldsets"]],
-            [
-                "default",
-                "cose",
-                "a_chi_si_rivolge",
-                "accedi_al_servizio",
-                "cosa_serve",
-                "costi_e_vincoli",
-                "tempi_e_scadenze",
-                "casi_particolari",
-                "contatti",
-                "documenti",
-                "link_utili",
-                "informazioni",
-                "correlati",
-                "categorization",
-                "settings",
-                "ownership",
-                "dates",
-                "seo",
-            ],
+            fieldsets_ids(
+                [
+                    "default",
+                    "cose",
+                    "a_chi_si_rivolge",
+                    "accedi_al_servizio",
+                    "cosa_serve",
+                    "costi_e_vincoli",
+                    "tempi_e_scadenze",
+                    "casi_particolari",
+                    "contatti",
+                    "documenti",
+                    "link_utili",
+                    "informazioni",
+                    "correlati",
+                    "categorization",
+                    "settings",
+                    "ownership",
+                    "dates",
+                    "seo",
+                ]
+            ),
         )
 
     def test_servizio_required_fields(self):
@@ -143,23 +147,25 @@ class TestServizioSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Servizio").json()
         self.assertEqual(
-            resp["fieldsets"][0]["fields"],
-            [
-                "title",
-                "description",
-                "sottotitolo",
-                "stato_servizio",
-                "motivo_stato_servizio",
-                "condizioni_di_servizio",
-                "image",
-                "image_caption",
-                "preview_image",
-                "preview_caption",
-                "correlato_in_evidenza",
-                "tassonomia_argomenti",
-                "person_life_events",
-                "business_events",
-            ],
+            get_fieldset_fields(resp, "default"),
+            default_fieldset_fields(
+                [
+                    "title",
+                    "description",
+                    "sottotitolo",
+                    "stato_servizio",
+                    "motivo_stato_servizio",
+                    "condizioni_di_servizio",
+                    "image",
+                    "image_caption",
+                    "preview_image",
+                    "preview_caption",
+                    "correlato_in_evidenza",
+                    "tassonomia_argomenti",
+                    "person_life_events",
+                    "business_events",
+                ]
+            ),
         )
 
     def test_servizio_fields_cose_fieldset(self):
@@ -168,7 +174,7 @@ class TestServizioSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Servizio").json()
         self.assertEqual(
-            resp["fieldsets"][1]["fields"],
+            get_fieldset_fields(resp, "cose"),
             ["descrizione_estesa"],
         )
 
@@ -178,7 +184,7 @@ class TestServizioSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Servizio").json()
         self.assertEqual(
-            resp["fieldsets"][2]["fields"],
+            get_fieldset_fields(resp, "a_chi_si_rivolge"),
             ["a_chi_si_rivolge", "chi_puo_presentare", "copertura_geografica"],
         )
 
@@ -188,7 +194,7 @@ class TestServizioSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Servizio").json()
         self.assertEqual(
-            resp["fieldsets"][3]["fields"],
+            get_fieldset_fields(resp, "accedi_al_servizio"),
             [
                 "come_si_fa",
                 "cosa_si_ottiene",
@@ -208,7 +214,7 @@ class TestServizioSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Servizio").json()
         self.assertEqual(
-            resp["fieldsets"][4]["fields"],
+            get_fieldset_fields(resp, "cosa_serve"),
             ["cosa_serve"],
         )
 
@@ -217,7 +223,9 @@ class TestServizioSchema(unittest.TestCase):
         Get the list from restapi
         """
         resp = self.api_session.get("@types/Servizio").json()
-        self.assertEqual(resp["fieldsets"][5]["fields"], ["costi", "vincoli"])
+        self.assertEqual(
+            get_fieldset_fields(resp, "costi_e_vincoli"), ["costi", "vincoli"]
+        )
 
     def test_servizio_fields_tempi_e_scadenze_fieldset(self):
         """
@@ -225,7 +233,7 @@ class TestServizioSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Servizio").json()
         self.assertEqual(
-            resp["fieldsets"][6]["fields"],
+            get_fieldset_fields(resp, "tempi_e_scadenze"),
             ["tempi_e_scadenze", "timeline_tempi_scadenze"],
         )
 
@@ -234,7 +242,9 @@ class TestServizioSchema(unittest.TestCase):
         Get the list from restapi
         """
         resp = self.api_session.get("@types/Servizio").json()
-        self.assertEqual(resp["fieldsets"][7]["fields"], ["casi_particolari"])
+        self.assertEqual(
+            get_fieldset_fields(resp, "casi_particolari"), ["casi_particolari"]
+        )
 
     def test_servizio_fields_contatti_fieldset(self):
         """
@@ -242,7 +252,7 @@ class TestServizioSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Servizio").json()
         self.assertEqual(
-            resp["fieldsets"][8]["fields"],
+            get_fieldset_fields(resp, "contatti"),
             ["ufficio_responsabile", "area", "contact_info"],
         )
 
@@ -251,14 +261,14 @@ class TestServizioSchema(unittest.TestCase):
         Get the list from restapi
         """
         resp = self.api_session.get("@types/Servizio").json()
-        self.assertEqual(resp["fieldsets"][9]["fields"], ["altri_documenti"])
+        self.assertEqual(get_fieldset_fields(resp, "documenti"), ["altri_documenti"])
 
     def test_servizio_fields_link_utili_fieldset(self):
         """
         Get the list from restapi
         """
         resp = self.api_session.get("@types/Servizio").json()
-        self.assertEqual(resp["fieldsets"][10]["fields"], ["link_siti_esterni"])
+        self.assertEqual(get_fieldset_fields(resp, "link_utili"), ["link_siti_esterni"])
 
     def test_servizio_fields_informazioni_fieldset(self):
         """
@@ -266,7 +276,7 @@ class TestServizioSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Servizio").json()
         self.assertEqual(
-            resp["fieldsets"][11]["fields"],
+            get_fieldset_fields(resp, "informazioni"),
             ["codice_ipa", "settore_merceologico", "ulteriori_informazioni"],
         )
 
@@ -276,7 +286,7 @@ class TestServizioSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Servizio").json()
         self.assertEqual(
-            resp["fieldsets"][12]["fields"],
+            get_fieldset_fields(resp, "correlati"),
             ["servizi_collegati"],
         )
 
@@ -286,7 +296,7 @@ class TestServizioSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Servizio").json()
         self.assertEqual(
-            resp["fieldsets"][13]["fields"],
+            get_fieldset_fields(resp, "categorization"),
             ["identificativo", "subjects", "language", "relatedItems"],
         )
 
@@ -296,7 +306,7 @@ class TestServizioSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Servizio").json()
         self.assertEqual(
-            resp["fieldsets"][14]["fields"],
+            get_fieldset_fields(resp, "settings"),
             [
                 "allow_discussion",
                 "exclude_from_nav",
@@ -312,7 +322,8 @@ class TestServizioSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Servizio").json()
         self.assertEqual(
-            resp["fieldsets"][15]["fields"], ["creators", "contributors", "rights"]
+            get_fieldset_fields(resp, "ownership"),
+            ["creators", "contributors", "rights"],
         )
 
     def test_servizio_fields_dates_fieldset(self):
@@ -320,7 +331,7 @@ class TestServizioSchema(unittest.TestCase):
         Get the list from restapi
         """
         resp = self.api_session.get("@types/Servizio").json()
-        self.assertEqual(resp["fieldsets"][16]["fields"], ["effective", "expires"])
+        self.assertEqual(get_fieldset_fields(resp, "dates"), ["effective", "expires"])
 
     def test_servizio_fields_seo_fieldset(self):
         """
@@ -328,7 +339,7 @@ class TestServizioSchema(unittest.TestCase):
         """
         resp = self.api_session.get("@types/Servizio").json()
         self.assertEqual(
-            resp["fieldsets"][17]["fields"],
+            get_fieldset_fields(resp, "seo"),
             [
                 "seo_title",
                 "seo_description",
