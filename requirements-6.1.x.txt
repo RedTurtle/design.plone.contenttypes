@@ -1,2 +1,5 @@
 # Same requirements as io-Comune backend (Plone 6.1 line)
 -r https://raw.githubusercontent.com/RedTurtle/iocomune-backend/main/requirements61.txt
+# Plone 6.1 does not ship it (6.0 io-Comune and 6.2 do): needed to mix pkg_resources
+# (experimental.noacquisition) and PEP 420 (experimental.catalogmoveopt) namespaces
+horse-with-no-namespace==20260202.0
