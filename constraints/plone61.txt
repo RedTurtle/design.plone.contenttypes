@@ -603,4 +603,4 @@ zope.testrunner==8.2
 zope.traversing==6.0
 zope.viewlet==6.0
 zopfli==0.2.2
-setuptools==81.0.0
+setuptools<82

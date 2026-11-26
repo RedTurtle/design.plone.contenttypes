@@ -28,8 +28,9 @@ jobs:
             # The package under test is installed in editable mode: a pin on itself would conflict.
             grep -viE '^design\.plone\.contenttypes==' "constraints/plone$v.txt.new" > "constraints/plone$v.txt"
             rm "constraints/plone$v.txt.new"
-            # Not in the backend pins; zope.testrunner needs pkg_resources (setuptools<82).
-            curl -fsS "https://dist.plone.org/release/${v:0:1}.${v:1:1}-dev/constraints.txt" | grep -iE '^setuptools==' >> "constraints/plone$v.txt"
+            # Not in the backend pins; zope.testrunner and several Zope/Plone packages
+            # still import pkg_resources, which setuptools 82+ no longer ships.
+            echo 'setuptools<82' >> "constraints/plone$v.txt"
           done
       - name: Open or update PR
         env:
