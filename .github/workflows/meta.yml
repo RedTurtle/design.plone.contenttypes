@@ -20,7 +20,7 @@ on:
 
 jobs:
   qa:
-    uses: plone/meta/.github/workflows/qa.yml@f3bf7140b6272dd21e793a92a4366c9c17ef6e10
+    uses: plone/meta/.github/workflows/qa.yml@f788cca8391d4f45008182305635e42ff5bd30a7
   coverage:
     uses: plone/meta/.github/workflows/coverage.yml@f3bf7140b6272dd21e793a92a4366c9c17ef6e10
   dependencies:
