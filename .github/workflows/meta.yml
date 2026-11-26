@@ -24,7 +24,7 @@ jobs:
   coverage:
     uses: plone/meta/.github/workflows/coverage.yml@f3bf7140b6272dd21e793a92a4366c9c17ef6e10
   dependencies:
-    uses: plone/meta/.github/workflows/dependencies.yml@f3bf7140b6272dd21e793a92a4366c9c17ef6e10
+    uses: plone/meta/.github/workflows/dependencies.yml@f788cca8391d4f45008182305635e42ff5bd30a7
   release_ready:
     uses: plone/meta/.github/workflows/release_ready.yml@f3bf7140b6272dd21e793a92a4366c9c17ef6e10
   circular:
